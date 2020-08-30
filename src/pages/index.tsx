@@ -1,9 +1,13 @@
 import * as React from 'react'
-import { SampleService } from 'src/services/Sample'
+import { PageWrapper } from 'src/components/PageWrapper'
+import { TeamLayout } from 'src/contents/team/TeamLayout'
 
 const IndexPage = () => {
-  const service = new SampleService()
-  return <div>{service.hello()}</div>
+  return (
+    <PageWrapper>
+      <TeamLayout />
+    </PageWrapper>
+  )
 }
 
 export default IndexPage
