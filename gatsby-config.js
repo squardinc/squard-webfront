@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   siteMetadata: {
     title: `Squard`,
@@ -8,14 +10,14 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-root-import',
       options: {
-        src:`${__dirname}/src`
+        src: path.resolve(__dirname, 'src')
       }
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
+        path: path.resolve(__dirname, 'src', 'images'),
       },
     },
     {

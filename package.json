@@ -17,7 +17,9 @@
     "test-once": "jest  --coverage",
     "e2e": "node_modules/.bin/cypress open",
     "e2e-headless": "node_modules/.bin/cypress run",
-    "deploy-s3": "gatsby-plugin-s3 deploy --yes"
+    "deploy-s3": "gatsby-plugin-s3 deploy --yes",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "gatsby": "^2.24.52",
@@ -41,6 +43,13 @@
     "redux-localstorage-simple": "^2.3.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "@storybook/addon-actions": "^6.0.20",
+    "@storybook/addon-essentials": "^6.0.20",
+    "@storybook/addon-links": "^6.0.20",
     "@storybook/addon-storyshots": "^6.0.20",
     "@storybook/react": "^6.0.20",
     "@types/enzyme": "^3.10.5",
@@ -51,7 +60,10 @@
     "@types/react-test-renderer": "^16.9.3",
     "@types/redux-mock-store": "^1.0.2",
     "babel-jest": "^26.3.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-remove-graphql-queries": "^2.9.17",
     "babel-preset-gatsby": "^0.5.8",
+    "babel-preset-react-app": "^9.1.2",
     "cypress": "^5.0.0",
     "cypress-cucumber-preprocessor": "^2.5.5",
     "enzyme": "^3.11.0",
@@ -64,7 +76,9 @@
     "gatsby-plugin-root-import": "^2.0.5",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.4.2",
+    "path": "^0.12.7",
     "prettier": "^2.1.1",
+    "react-is": "^16.13.1",
     "react-test-renderer": "^16.13.1",
     "redux-mock-store": "^1.5.4",
     "serverless-offline": "^6.7.0",
