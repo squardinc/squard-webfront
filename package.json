@@ -1,8 +1,9 @@
 {
-  "name": "Squard",
+  "name": "squard",
   "private": true,
   "version": "0.0.1",
-  "author": "Squard.Inc",
+  "author": "Squard, Inc.",
+  "license": "MIT",
   "scripts": {
     "build": "gatsby build --prefix-paths",
     "dev": "gatsby develop --https",
@@ -75,7 +76,6 @@
   "keywords": [
     "gatsby"
   ],
-  "license": "MIT",
   "env": {
     "cypress/globals": true
   }
