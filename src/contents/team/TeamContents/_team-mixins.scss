@@ -2,6 +2,12 @@
   padding: 20px 30px;
   background-color: $color;
 }
+@mixin personIconDisplayWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
 @mixin personIcon($width: 120px, $height: 120px) {
   margin: 5px 0px;
   width: $width;

@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { TeamTop } from './TeamTop'
 import { TeamIntroduction } from './TeamIntroduction'
-import { TeamMembers } from './TeamMembers'
 import { TeamProspects } from './TeamProspects'
 import { TeamAngels } from './TeamAngels'
 import { TeamVIP } from './TeamVIP'
 import { TeamCoreMembers } from './TeamContents/TeamCoreMembers'
+import { TeamMembers } from './TeamContents/TeamMembers'
 
 const DUMMY_MEMBERS = [
   'https://firebasestorage.googleapis.com/v0/b/story-gate.appspot.com/o/squard%2Fshunpei.png?alt=media&token=3e8b258d-fb7d-4437-ac86-298573471d81',
@@ -20,7 +20,7 @@ export const TeamLayout = () => {
       <TeamTop />
       <TeamIntroduction />
       <TeamCoreMembers coreMembers={DUMMY_MEMBERS} />
-      <TeamMembers members={DUMMY_MEMBERS} />
+      <TeamMembers topMember={DUMMY_MEMBERS[0]} members={DUMMY_MEMBERS} />
       <TeamProspects propspects={DUMMY_MEMBERS} />
       <TeamAngels angels={DUMMY_MEMBERS} numOfAngels={65535} />
       <TeamVIP vips={DUMMY_MEMBERS} />
