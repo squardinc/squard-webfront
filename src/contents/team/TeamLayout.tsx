@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { TeamTop } from './TeamTop'
 import { TeamIntroduction } from './TeamIntroduction'
-import { TeamCoreMembers } from './TeamCoreMembers'
 import { TeamMembers } from './TeamMembers'
 import { TeamProspects } from './TeamProspects'
 import { TeamAngels } from './TeamAngels'
 import { TeamVIP } from './TeamVIP'
+import { TeamCoreMembers } from './TeamContents/TeamCoreMembers'
 
 const DUMMY_MEMBERS = [
   'https://firebasestorage.googleapis.com/v0/b/story-gate.appspot.com/o/squard%2Fshunpei.png?alt=media&token=3e8b258d-fb7d-4437-ac86-298573471d81',
