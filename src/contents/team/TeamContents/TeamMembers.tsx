@@ -11,7 +11,7 @@ const Member: React.FC<MemberProps> = ({ member, name}) => {
     <div className={styles.memberContainer} >
       <img src={member} className={styles.member} />
       <div className={styles.memberCaption}>
-        <div　className={styles.memberName}>{name}</div>
+        <div className={styles.memberName}>{name}</div>
       </div>
     </div>
   )
