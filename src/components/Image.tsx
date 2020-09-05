@@ -6,9 +6,9 @@ import { StaticImageDataQuery } from 'types/graphql-types'
 type imageName = keyof StaticImageDataQuery
 interface StaticImageProps {
   image: imageName
-  style?: Object
+  className?: any
 }
-export const StaticImageFluid: React.FC<StaticImageProps> = ({ image, style }) => {
+export const StaticImageFluid: React.FC<StaticImageProps> = ({ image, className }) => {
   return <StaticQuery
     query={query}
     render={(data: StaticImageDataQuery) => {
@@ -16,7 +16,7 @@ export const StaticImageFluid: React.FC<StaticImageProps> = ({ image, style }) =
       if (!img) {
         return <></>
       }
-      return <GatsbyImage fluid={img} style={style} />
+      return <GatsbyImage fluid={img} className={className} />
     }}
   />
 }

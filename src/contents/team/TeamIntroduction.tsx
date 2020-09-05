@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { StaticImageFluid } from 'src/components/Image'
 import { HashTag } from 'src/components/HashTag'
 import { DefaultButton } from 'src/components/Button/DefaultButton'
+import backgroundImage from 'src/images/background.png'
 import styles from './TeamIntroduction.module.scss'
 
 const TAGS = [
@@ -14,9 +14,8 @@ const TAGS = [
 
 export const TeamIntroduction = () => {
   return (
-    <div className={styles.container}>
-      <StaticImageFluid image='background' />
-      <div className={styles.content}>
+    <div style={{ backgroundImage: `url(${backgroundImage})` }}>
+      <div id='introduction' className={styles.content}>
         <div className={styles.caption}>
           <div className={styles.caption1}>
             個人でも会社でも実現できない

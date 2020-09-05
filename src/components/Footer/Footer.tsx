@@ -1,17 +1,14 @@
 import * as React from 'react'
-import { StaticImageFluid } from '../Image'
-
-import styles from './Footer.module.scss'
-import { DefaultButton } from '../Button/DefaultButton'
+import { DefaultButton } from 'src/components/Button/DefaultButton'
 import { Link } from 'gatsby'
+
+import backgroundImage from 'src/images/background.png'
 import Logo from 'src/assets/Logo.svg'
+import styles from './Footer.module.scss'
 
 export const Footer = () => {
   return (
-    <div className={styles.container}>
-      <div className={styles.background}>
-        <StaticImageFluid image='background' />
-      </div>
+    <div style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className={styles.content}>
         <div className={styles.titleSub}>What's the</div>
         <div className={styles.titleMain}>Squard?</div>
