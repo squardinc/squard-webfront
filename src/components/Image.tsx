@@ -21,7 +21,6 @@ export const StaticImageFluid: React.FC<StaticImageProps> = ({ image, style }) =
   />
 }
 
-
 const query = graphql`
   query StaticImageData {
     icon: file(relativePath: { eq: "logo.png" }) {
@@ -39,6 +38,48 @@ const query = graphql`
       }
     }
     background: file(relativePath: { eq: "background.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 1000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    headlineCoremebers: file(relativePath: { eq: "headlineCoremebers.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 1000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    headlineMembers: file(relativePath: { eq: "headlineMembers.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 1000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    headlinePropspects: file(relativePath: { eq: "headlinePropspects.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 1000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    headlineAngels: file(relativePath: { eq: "headlineAngels.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 1000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    headlineVIP: file(relativePath: { eq: "headlineVIP.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 1000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    footerLogo: file(relativePath: { eq: "footerLogo.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
