@@ -3,6 +3,7 @@ import { TeamTop } from './TeamTop'
 import { TeamIntroduction } from './TeamIntroduction'
 import { TeamCoreMembers } from './TeamCoreMembers'
 import { TeamMembers } from './TeamMembers'
+import { TeamProspects } from './TeamProspects'
 
 export const TeamLayout = () => {
   return (
@@ -11,6 +12,7 @@ export const TeamLayout = () => {
       <TeamIntroduction />
       <TeamCoreMembers />
       <TeamMembers />
+      <TeamProspects />
     </>
   )
 }
