@@ -1,0 +1,18 @@
+$button-color: yellow;
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.button {
+  display: inline-block;
+  border-radius: 20px;
+  border: 1px solid $button-color;
+  background-color: $button-color;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 40px;
+}

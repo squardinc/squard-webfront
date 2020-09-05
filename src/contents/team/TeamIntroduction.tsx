@@ -2,6 +2,7 @@ import * as React from 'react'
 import { StaticImageFluid } from 'src/components/Image'
 import styles from './TeamIntroduction.module.scss'
 import { HashTag } from 'src/components/HashTag'
+import { DefaultButton } from 'src/components/Button/DefaultButton'
 
 const TAGS = [
   'チームメイキング',
@@ -40,11 +41,7 @@ export const TeamIntroduction = () => {
           </div>
           </div>
         </div>
-        <div className={styles.buttonContainer}>
-          <div className={styles.button}>
-            Squardに参加してみる？
-        </div>
-        </div>
+        <DefaultButton text='Squardに参加してみる？' />
       </div>
     </div>
   )
