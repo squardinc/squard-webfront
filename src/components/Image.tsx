@@ -1,17 +1,17 @@
 import * as React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import GatsbyImage, { FluidObject } from 'gatsby-image'
-import { StaticImageDataQuery } from 'types/graphql-types'
 
-type imageName = keyof StaticImageDataQuery
+const IMAGES = ['icon', 'top', 'backgorund'] as const
+type image = typeof IMAGES[number]
 interface StaticImageProps {
-  image: imageName
+  image: image
   className?: any
 }
 export const StaticImageFluid: React.FC<StaticImageProps> = ({ image, className }) => {
   return <StaticQuery
     query={query}
-    render={(data: StaticImageDataQuery) => {
+    render={(data: { [key in image]: { childImageSharp: { fluid: FluidObject } } }) => {
       const img = data[image]?.childImageSharp?.fluid as FluidObject
       if (!img) {
         return <></>

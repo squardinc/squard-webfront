@@ -20,12 +20,6 @@ module.exports = {
         path: path.resolve(__dirname, 'src', 'images'),
       },
     },
-    {
-      resolve: 'gatsby-plugin-graphql-codegen',
-      options: {
-        fileName: `types/graphql-types.d.ts`
-      }
-    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
