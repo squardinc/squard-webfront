@@ -1,0 +1,42 @@
+.container {
+  background-color: black;
+  color: white;
+  position: relative;
+}
+.content {
+  position: absolute;
+  top: 0px;
+  padding: 40px;
+}
+.titleSub {
+  font-weight: bold;
+  font-style: italic;
+  color: yellow;
+}
+.titleMain {
+  font-weight: bold;
+  font-style: italic;
+  font-size: xxx-large;
+}
+.description {
+  margin: 20px 0px;
+}
+.question {
+  text-align: center;
+  font-size: small;
+  color: yellow;
+}
+.sitemap {
+  display: flex;
+  justify-content: space-between;
+}
+.links {
+  display: flex;
+  flex-direction: column;
+  color: yellow;
+}
+.copyright {
+  text-align: center;
+  font-size: small;
+  color: yellow;
+}
