@@ -6,8 +6,9 @@ import { StaticImageDataQuery } from 'types/graphql-types'
 type imageName = keyof StaticImageDataQuery
 interface StaticImageProps {
   image: imageName
+  style?: Object
 }
-export const StaticImageFluid: React.FC<StaticImageProps> = ({ image }) => {
+export const StaticImageFluid: React.FC<StaticImageProps> = ({ image, style }) => {
   return <StaticQuery
     query={query}
     render={(data: StaticImageDataQuery) => {
@@ -15,7 +16,7 @@ export const StaticImageFluid: React.FC<StaticImageProps> = ({ image }) => {
       if (!img) {
         return <></>
       }
-      return <GatsbyImage fluid={img} />
+      return <GatsbyImage fluid={img} style={style} />
     }}
   />
 }
@@ -23,14 +24,21 @@ export const StaticImageFluid: React.FC<StaticImageProps> = ({ image }) => {
 
 const query = graphql`
   query StaticImageData {
-    icon: file(relativePath: { eq: "gatsby-icon.png" }) {
+    icon: file(relativePath: { eq: "logo.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
         }
       }
     }
-    top: file(relativePath: { eq: "gatsby-astronaut.png" }) {
+    top: file(relativePath: { eq: "top.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 1000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    background: file(relativePath: { eq: "background.png" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid

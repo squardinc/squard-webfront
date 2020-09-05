@@ -2469,7 +2469,7 @@ export type StringQueryOperatorInput = {
 export type StaticImageDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type StaticImageDataQuery = { icon?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }>, top?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }> };
+export type StaticImageDataQuery = { icon?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }>, top?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }>, background?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }> };
 
 export type MetaDataQueryVariables = Exact<{ [key: string]: never; }>;
 
