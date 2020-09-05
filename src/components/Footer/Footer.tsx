@@ -4,6 +4,7 @@ import { StaticImageFluid } from '../Image'
 import styles from './Footer.module.scss'
 import { DefaultButton } from '../Button/DefaultButton'
 import { Link } from 'gatsby'
+import Logo from 'src/assets/Logo.svg'
 
 export const Footer = () => {
   return (
@@ -30,7 +31,7 @@ export const Footer = () => {
             <Link to='/'>Company</Link>
             <Link to='/'>Privacy Policy</Link>
           </div>
-          <StaticImageFluid image='footerLogo' />
+          <Logo className={styles.logo} />
         </div>
       </div>
       <div className={styles.copyright}>

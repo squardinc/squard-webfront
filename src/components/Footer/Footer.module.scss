@@ -16,7 +16,7 @@
 .titleMain {
   font-weight: bold;
   font-style: italic;
-  font-size: xxx-large;
+  font-size: xx-large;
 }
 .description {
   margin: 20px 0px;
@@ -28,12 +28,20 @@
 }
 .sitemap {
   display: flex;
-  justify-content: space-between;
+  margin-top: 40px;
+  justify-content: space-around;
 }
 .links {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  font-size: large;
+  font-weight: bold;
   color: yellow;
+}
+.logo {
+  width: 120px;
+  height: auto;
 }
 .copyright {
   text-align: center;
