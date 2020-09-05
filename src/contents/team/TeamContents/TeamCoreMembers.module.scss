@@ -1,0 +1,16 @@
+@import './team-mixins';
+
+.container {
+  @include team-content-container(white)
+}
+
+.members {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.member {
+  @include personIcon(200px, 420px);
+}

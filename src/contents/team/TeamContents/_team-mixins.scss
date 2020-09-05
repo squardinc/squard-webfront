@@ -1,0 +1,28 @@
+$border-radius: 20px;
+
+@mixin team-content-container($color: black) {
+  padding: 20px 30px;
+  background-color: $color;
+}
+@mixin personIconDisplayWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+@mixin personIconDisplayScroll {
+  display: flex;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display:none;
+  }
+}
+@mixin personIcon($width: 120px, $height: 120px) {
+  margin: 5px 0px;
+  width: $width;
+  height: $height;
+  border-radius: $border-radius;
+  object-fit: cover;
+  object-position: 50% 0%;
+}

@@ -1,0 +1,16 @@
+@import './team-mixins';
+
+.container {
+  @include team-content-container(black)
+}
+
+.prospectContainer {
+  position: relative;
+  margin: 5px;
+}
+.prospects {
+  @include personIconDisplayScroll();
+}
+.prospect {
+  @include personIcon(120px, 120px)
+}

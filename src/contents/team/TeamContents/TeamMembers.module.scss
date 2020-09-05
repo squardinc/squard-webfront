@@ -1,0 +1,45 @@
+@import './team-mixins';
+
+.container {
+  @include team-content-container(black)
+}
+
+.members {
+  @include personIconDisplayWrap();
+}
+
+.memberContainer {
+  position: relative;
+  margin: 5px;
+}
+
+.topMember {
+  @include personIcon(100%, 240px)
+}
+
+.memberCaption {
+  position: absolute;
+  width: 80%;
+  top: 70%;
+  padding: 2px 0px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  backdrop-filter: blur(24px);
+}
+.topMemberName {
+  font-size: x-large;
+}
+.topMemberTitle {
+  color: yellow;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 5px;
+}
+.member {
+  @include personIcon(120px, 140px)
+}
+.memberName {
+  font-size: small;
+}

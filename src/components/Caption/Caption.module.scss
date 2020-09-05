@@ -1,0 +1,52 @@
+@mixin withLeftBorder ($color: black) {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 10px 20px;
+  font-weight: bold;
+  font-size: 2em;
+  color: $color;
+}
+
+.withLeftBorder[color=black] {
+  @include withLeftBorder(black)
+}
+
+.withLeftBorder[color=white] {
+  @include withLeftBorder(white)
+}
+
+@mixin leftBorder($color: black) {
+  content: "";
+  flex-grow: 1;
+  height: 6px;
+  display: block;
+  background: $color;
+}
+
+.withLeftBorder[color=black]:before {
+  @include leftBorder(black)
+}
+
+.withLeftBorder[color=white]:before {
+  @include leftBorder(white)
+}
+
+.withLeftBorder:before {
+  margin-right: .4em;
+}
+
+.large {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 5em;
+}
+.medium {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 3em;
+}

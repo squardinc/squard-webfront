@@ -1,0 +1,29 @@
+$button-color: yellow;
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin button($size: 'medium', $padding: 10px 40px) {
+  display: inline-block;
+  border-radius: 20px;
+  border: 1px solid $button-color;
+  background-color: $button-color;
+  color: black;
+  font-weight: bold;
+  font-size: $size;
+  text-align: center;
+  padding: $padding;
+  white-space: nowrap;
+}
+
+.button[data-size=icon] {
+  @include button(large, 3px);
+}
+.button[data-size=medium] {
+  @include button(medium);
+}
+.button[data-size=small] {
+  @include button(small, 2px 10px);
+}

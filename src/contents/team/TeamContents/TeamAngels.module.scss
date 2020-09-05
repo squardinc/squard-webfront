@@ -1,0 +1,16 @@
+@import './team-mixins';
+
+.container {
+  @include team-content-container(white)
+}
+
+.angels {
+@include personIconDisplayWrap();
+}
+.angelContainer {
+  position: relative;
+  margin: 5px;
+}
+.angel {
+  @include personIcon(100px, 100px)
+}

@@ -20,12 +20,6 @@ module.exports = {
         path: path.resolve(__dirname, 'src', 'images'),
       },
     },
-    {
-      resolve: 'gatsby-plugin-graphql-codegen',
-      options: {
-        fileName: `types/graphql-types.d.ts`
-      }
-    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -37,10 +31,19 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/logo.png`,
       },
     },
     `gatsby-plugin-typescript`,
+    `gatsby-plugin-sass`, 
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /assets/ 
+        }
+      }
+    },
     // {
     //   resolve: `gatsby-plugin-react-redux`,
     //   options: {
