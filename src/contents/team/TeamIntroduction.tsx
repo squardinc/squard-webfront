@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { StaticImageFluid } from 'src/components/Image'
-import styles from './TeamIntroduction.module.scss'
 import { HashTag } from 'src/components/HashTag'
 import { DefaultButton } from 'src/components/Button/DefaultButton'
+import styles from './TeamIntroduction.module.scss'
 
 const TAGS = [
   'チームメイキング',

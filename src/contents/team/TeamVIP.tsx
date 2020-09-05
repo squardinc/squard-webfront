@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { StaticImageFluid } from 'src/components/Image'
+import { LeftBorderCaption } from 'src/components/Caption/Captions'
 import styles from './TeamVIP.module.scss'
 
 const CORE_MEMBERS = [
@@ -12,10 +12,9 @@ const CORE_MEMBERS = [
 export const TeamVIP = () => {
   return (
     <div className={styles.container}>
-      <StaticImageFluid image='headlineVIP' />
+      <LeftBorderCaption text='V.I.P.' />
       <div className={styles.members}>
         {CORE_MEMBERS.map(member =>
-          //  <StaticImageFixed image={member} />
           <img src={member} className={styles.member} />
         )}
       </div>

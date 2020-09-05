@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { StaticImageFluid, StaticImageFixed } from 'src/components/Image'
+import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import styles from './TeamCoreMembers.module.scss'
 
 const CORE_MEMBERS = [
@@ -12,10 +12,9 @@ const CORE_MEMBERS = [
 export const TeamCoreMembers = () => {
   return (
     <div className={styles.container}>
-      <StaticImageFluid image='headlineCoremebers' />
+      <TwoStagedCaption sub='CORE' main='MEMBERS' />
       <div className={styles.members}>
         {CORE_MEMBERS.map(member =>
-          //  <StaticImageFixed image={member} />
           <img src={member} className={styles.member} />
         )}
       </div>

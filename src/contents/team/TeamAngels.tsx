@@ -1,7 +1,8 @@
 import * as React from 'react'
-import { StaticImageFluid } from 'src/components/Image'
-import styles from './TeamAngels.module.scss'
 import { DefaultButton } from 'src/components/Button/DefaultButton'
+import { TwoStagedCaption } from 'src/components/Caption/Captions'
+
+import styles from './TeamAngels.module.scss'
 
 const CORE_MEMBERS = [
   'https://firebasestorage.googleapis.com/v0/b/story-gate.appspot.com/o/squard%2Fshunpei.png?alt=media&token=3e8b258d-fb7d-4437-ac86-298573471d81',
@@ -10,13 +11,13 @@ const CORE_MEMBERS = [
   'https://firebasestorage.googleapis.com/v0/b/story-gate.appspot.com/o/squard%2Fshoya.png?alt=media&token=50e1a69b-2f2c-4998-bba9-8fc3deb7d06d',
 ]
 
+const numOfAngels = 65535
 export const TeamAngels = () => {
   return (
     <div className={styles.container}>
-      <StaticImageFluid image='headlineAngels' />
+      <TwoStagedCaption sub='And we have' main={`${numOfAngels} Angels`} style='medium' />
       <div className={styles.members}>
         {CORE_MEMBERS.map(member =>
-          //  <StaticImageFixed image={member} />
           <img src={member} className={styles.member} />
         )}
       </div>
