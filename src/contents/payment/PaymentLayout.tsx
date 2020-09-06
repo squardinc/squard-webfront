@@ -14,7 +14,7 @@ const PaymnetContent: React.FC = ({ sessionId, setSessionId }) => {
     StripeAPI.checkout(sessionId)
   }
   return (
-    <div className={style.content}>
+    <div className={style.paymentLayout}>
       <div>
         ・Squard Front 開発に Prospect として参加を申し込む
           <br />
@@ -62,7 +62,7 @@ export const PaymentLayout: React.FC = () => {
   const paymentStatus = params.status
   if (paymentStatus) {
     return (
-      <div className={style.content}>
+      <div className={style.paymentLayout}>
         Congratulations! You're Squard Prospect from now on!
       </div>
     )
