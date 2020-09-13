@@ -5,6 +5,9 @@
   "author": "Squard, Inc.",
   "license": "MIT",
   "scripts": {
+    "build:tailwind": "tailwindcss build src/styles/tailwind.css -o src/styles/tailwind.output.css",
+    "prestart": "npm run build:tailwind",
+    "prebuild": "npm run build:tailwind",
     "build": "gatsby build --prefix-paths",
     "dev": "gatsby develop --https",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
@@ -46,7 +49,8 @@
     "react-redux": "^7.2.1",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
-    "redux-localstorage-simple": "^2.3.1"
+    "redux-localstorage-simple": "^2.3.1",
+    "tailwindcss": "^1.8.9"
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",
