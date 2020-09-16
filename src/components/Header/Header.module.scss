@@ -2,11 +2,25 @@
   padding: 10px;
   background-color: black;
   color: white;
-  height: 50px;
+  height: 60px;
 }
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+}
+
+.searchBar {
+  position: absolute;
+  top: 70px;
+  z-index: 99;
+  width: 450px;
+}
+
+.searchBtn {
+  height: 48px;
+  width: 50px;
+  background-color: #f8e32d;
+  border-radius: 50%;
 }
