@@ -7,7 +7,7 @@ interface SearchBarProps {
   show: boolean
 }
 export const SearchBar: React.FC<SearchBarProps> = ({ show }) => {
-  if (show) {
+  if (!show) {
     return <></>
   }
   return (
