@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'src/styles/variables.scss';
+
 body {
-  width: 480px;
+  width: $window-width;
   margin-right: auto;
   margin-left : auto;
   background-color: black;

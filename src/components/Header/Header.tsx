@@ -36,9 +36,7 @@ export const Header = () => {
         </div>
       </div>
       <SearchBar show={showSearchBar} />
-      <div id="nav-bar" style={{ display: 'none' }} className={styles.navModal}>
-        <Navbar show={showNavBar} hideNavBar={() => setShowNavBar(false)}/>
-      </div>
+      <Navbar show={showNavBar} hideNavBar={() => setShowNavBar(false)} />
     </React.Fragment>
   )
 }
