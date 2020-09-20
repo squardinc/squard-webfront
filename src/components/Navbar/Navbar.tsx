@@ -16,41 +16,14 @@ interface NavBarProps {
 export const Navbar: React.FC<NavBarProps> = ({ show, hideNavBar }) => {
   function fadeOutNavBar() {
     const el = document.getElementById('nav-menu')
-    var pos = 600
-    var id = setInterval(frame, 5)
-    function frame() {
-      if (pos == 0) {
-        clearInterval(id)
-        const navbarEl = document.getElementById('nav-modal')
-        if (navbarEl) {
-          navbarEl.style.display = 'none'
-        }
-      } else {
-        pos -= 10
-        if (el) {
-          el.style.height = pos + 'px'
-        }
-      }
-    }
+    el?.classList.remove('open')
+    el?.classList.add('close')
   }
+
   function fadeInNavBar() {
-    const el = document.getElementById('nav-menu');
-    var pos = 0;
-    var id = setInterval(frame, 5);
-    function frame() {
-      if (pos == 600) {
-        clearInterval(id);
-      } else {
-        pos += 10
-        if (el) {
-          el.style.height = pos + 'px';
-        }
-      }
-    }
-    const navbarEl = document.getElementById('nav-modal')
-    if (navbarEl && navbarEl.style.display === 'none') {
-      navbarEl.style.display = 'block'
-    }
+    const el = document.getElementById('nav-menu')
+    el?.classList.remove('close')
+    el?.classList.add('open')
   }
   React.useEffect(() => {
     if (show) {
@@ -61,56 +34,60 @@ export const Navbar: React.FC<NavBarProps> = ({ show, hideNavBar }) => {
   }, [show])
 
   return (
-    <div id="nav-modal" style={{ display: 'none' }} className={styles.navModal}>
-      <div id="nav-menu" className={styles.navBar}>
+    <div
+      id="nav-modal"
+      style={{ display: 'block' }}
+      className="z-auto bg-gray-700 static top-0 left-0 h-full w-full"
+    >
+      <div id="nav-menu" className={styles.navBar + ' ' + 'transition close'}>
         <div className={styles.navToggleBtn} onClick={hideNavBar}></div>
         <ul className={styles.navMenu}>
           <li>
-            <div className={styles.navItem}>
-              <Setting style={{ height: '70px', width: 'auto' }} />
-              <div className={styles.navText}>Settings</div>
+            <div className="inline-flex">
+              <Setting className="h-16 w-auto" />
+              <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>Settings</div>
             </div>
           </li>
           <li>
-            <div className={styles.navItem}>
-              <MyPage style={{ height: '65px', width: 'auto' }} />
-              <div className={styles.navText}>My Page</div>
+            <div className="inline-flex">
+              <MyPage  className="h-16 w-auto" />
+              <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>My Page</div>
             </div>
           </li>
           <li>
-            <div className={styles.navItem + ' ' + styles.disabled}>
-              <AddNewTeam style={{ height: '65px', width: 'auto' }} />
-              <div className={styles.navText}>Add new team</div>
+            <div className='inline-flex opacity-50 cursor-not-allowed'>
+              <AddNewTeam  className="h-16 w-auto" />
+              <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>Add new team</div>
             </div>
           </li>
           <li>
-            <div className={styles.navItem}>
-              <About style={{ height: '65px', width: 'auto' }} />
-              <div className={styles.navText}>About us</div>
+            <div className="inline-flex">
+              <About  className="h-16 w-auto" />
+              <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>About us</div>
             </div>
           </li>
           <li>
-            <div className={styles.navItem}>
-              <Faq style={{ height: '65px', width: 'auto' }} />
-              <div className={styles.navText}>FAQ</div>
+            <div className="inline-flex">
+              <Faq  className="h-16 w-auto" />
+              <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>FAQ</div>
             </div>
           </li>
           <li>
-            <div className={styles.navItem}>
-              <CompanyIcon style={{ height: '65px', width: 'auto' }} />
-              <div className={styles.navText}>Company</div>
+            <div className="inline-flex">
+              <CompanyIcon  className="h-16 w-auto" />
+              <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>Company</div>
             </div>
           </li>
           <li>
-            <div className={styles.navItem}>
-              <PrivacyPolicy style={{ height: '65px', width: 'auto' }} />
-              <div className={styles.navText}>Privacy Policy</div>
+            <div className="inline-flex">
+              <PrivacyPolicy  className="h-16 w-auto" />
+              <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>Privacy Policy</div>
             </div>
           </li>
           <li>
-            <div className={styles.navItem}>
-              <LegalInfo style={{ height: '65px', width: 'auto' }} />
-              <div className={styles.navText}>Legal Information</div>
+            <div className="inline-flex">
+              <LegalInfo className="h-16 w-auto" />
+              <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>Legal Information</div>
             </div>
           </li>
         </ul>
