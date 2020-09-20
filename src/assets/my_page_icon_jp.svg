@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <clipPath id="clip-Mypage_icon_Japanese_マイページ_">
+      <rect width="1080" height="1080"/>
+    </clipPath>
+  </defs>
+  <g id="Mypage_icon_Japanese_マイページ_" data-name="Mypage_icon（Japanese”マイページ”）" clip-path="url(#clip-Mypage_icon_Japanese_マイページ_)">
+    <path id="パス_3899" data-name="パス 3899" d="M362.431,165C253.568,165,165,253.18,165,362.428a197.431,197.431,0,1,0,394.862,0C559.862,253.35,471.469,165,362.431,165ZM485.825,496.769V485.193c0-108.828-246.789-108.828-246.789,0v11.575a181.931,181.931,0,0,1-59.01-134.341c0-100.741,81.664-182.412,182.4-182.412A182.41,182.41,0,0,1,485.825,496.769ZM362.431,231.962a75.111,75.111,0,1,0,75.112,75.112A75.106,75.106,0,0,0,362.431,231.962Z" transform="translate(177.498 177.501)" fill="#fff"/>
+  </g>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <clipPath id="clip-Company_icon_Japanese_会社概要_">
+      <rect width="1080" height="1080"/>
+    </clipPath>
+  </defs>
+  <g id="Company_icon_Japanese_会社概要_" data-name="Company_icon（Japanese”会社概要”）" clip-path="url(#clip-Company_icon_Japanese_会社概要_)">
+    <g id="グループ_2718" data-name="グループ 2718" transform="translate(-411 61)">
+      <g id="グループ_2585" data-name="グループ 2585" transform="translate(763.062 278.145)">
+        <g id="グループ_2581" data-name="グループ 2581" transform="translate(0 378.164)">
+          <path id="パス_3969" data-name="パス 3969" d="M1051.3,398.91H812.242v-.023h-49.18V375.94h375.89v22.947H1051.3Z" transform="translate(-763.063 -375.94)" fill="#fff" fill-rule="evenodd"/>
+        </g>
+        <g id="グループ_2582" data-name="グループ 2582" transform="translate(284.294 80.664)">
+          <path id="パス_3970" data-name="パス 3970" d="M836.582,299.005h78.835v21.863l-8.976,21.937V584.317H836.582V561.352h46.944V523.912H836.582V500.966h46.944V463.5H836.582V440.58h46.944V403.164l.02-.023H836.582V380.2h46.944V342.805H836.582Z" transform="translate(-836.582 -299.005)" fill="#fff" fill-rule="evenodd"/>
+        </g>
+        <g id="グループ_2583" data-name="グループ 2583" transform="translate(94.812)">
+          <path id="パス_3971" data-name="パス 3971" d="M964.876,321.973V644.121H897.022v-43.77H941.9V563.407h-2.839q-6.06.006-12.135,0h-6.986v.031H897.022v-.031h-2.235q-10.08.006-20.149,0h-.858q-3.652.006-7.312,0c-.167,0-.333,0-.5,0h-1.613v.031H841.482v-.031H834q-7.269.006-14.528,0v36.944H864.38v43.77H796.553V321.973l-8.971-21.967v-21.86H973.847v21.86Zm-145.4,97.748H941.9V382.309l.031-.031h-2.87q-6.06.005-12.135,0h-4q-6.073.005-12.134,0-8.007.005-16.011,0h-1.208q-9.9.005-19.8,0-2.969.005-5.928,0c-.557.007-1.109.007-1.663,0h-3.313c-.139,0-.29,0-.429,0q-6.075.005-12.139,0-4.039.005-8.066,0c-1.361,0-2.711,0-4.068,0q-9.35.005-18.7,0h-.027l.027.031Zm0,60.385H941.9V442.64H819.473Zm0,22.942v37.443H941.9V503.048ZM941.9,321.973H819.473v37.389H941.9Z" transform="translate(-787.582 -278.146)" fill="#fff" fill-rule="evenodd"/>
+        </g>
+        <g id="グループ_2584" data-name="グループ 2584" transform="translate(12.765 80.664)">
+          <path id="パス_3972" data-name="パス 3972" d="M845.227,299.005v43.8H798.281V380.2h46.945v22.942H798.25l.031.023V440.58h46.945V463.5H798.281v37.466h46.945v22.946H798.281v37.439h46.945v22.966H775.339V342.805l-8.976-21.937V299.005Z" transform="translate(-766.363 -299.005)" fill="#fff" fill-rule="evenodd"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
