@@ -21,7 +21,7 @@ export const Navbar: React.FC<NavBarProps> = ({ show, hideNavBar }) => {
     function frame() {
       if (pos == 0) {
         clearInterval(id)
-        const navbarEl = document.getElementById('nav-bar')
+        const navbarEl = document.getElementById('nav-modal')
         if (navbarEl) {
           navbarEl.style.display = 'none'
         }
@@ -47,7 +47,7 @@ export const Navbar: React.FC<NavBarProps> = ({ show, hideNavBar }) => {
         }
       }
     }
-    const navbarEl = document.getElementById('nav-bar')
+    const navbarEl = document.getElementById('nav-modal')
     if (navbarEl && navbarEl.style.display === 'none') {
       navbarEl.style.display = 'block'
     }
@@ -61,7 +61,7 @@ export const Navbar: React.FC<NavBarProps> = ({ show, hideNavBar }) => {
   }, [show])
 
   return (
-    <React.Fragment>
+    <div id="nav-modal" style={{ display: 'none' }} className={styles.navModal}>
       <div id="nav-menu" className={styles.navBar}>
         <div className={styles.navToggleBtn} onClick={hideNavBar}></div>
         <ul className={styles.navMenu}>
@@ -115,6 +115,6 @@ export const Navbar: React.FC<NavBarProps> = ({ show, hideNavBar }) => {
           </li>
         </ul>
       </div>
-    </React.Fragment>
+    </div>
   )
 }
