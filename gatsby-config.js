@@ -35,7 +35,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-typescript`,
-    `gatsby-plugin-sass`, 
     {
       resolve: "gatsby-plugin-react-svg",
       options: {
@@ -43,6 +42,16 @@ module.exports = {
           include: /assets/ 
         }
       }
+    },
+    `gatsby-plugin-postcss`,
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        postCssPlugins: [
+          require("tailwindcss"),
+          require("./tailwind.config.js"),
+        ],
+      },
     },
     // {
     //   resolve: `gatsby-plugin-react-redux`,
