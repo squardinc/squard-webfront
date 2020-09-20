@@ -1,16 +1,20 @@
 import * as React from 'react'
 import styles from './Navbar.module.scss'
-import Setting from '../../assets/settings_icon_jp.svg'
-import MyPage from '../../assets/my_page_icon_jp.svg'
-import AddNewTeam from '../../assets/add_new_team_icon.svg'
-import Faq from '../../assets/faq_icon.svg'
-import CompanyIcon from '../../assets/company_icon.svg'
-import LegalInfo from '../../assets/legal_information_icon.svg'
-import PrivacyPolicy from '../../assets/privacy_policy_icon_jp.svg'
-import About from '../../assets/about_icon.svg'
+import Setting from 'src/assets/settings_icon_jp.svg'
+import MyPage from 'src/assets/my_page_icon_jp.svg'
+import AddNewTeam from 'src/assets/add_new_team_icon.svg'
+import Faq from 'src/assets/faq_icon.svg'
+import CompanyIcon from 'src/assets/company_icon.svg'
+import LegalInfo from 'src/assets/legal_information_icon.svg'
+import PrivacyPolicy from 'src/assets/privacy_policy_icon_jp.svg'
+import About from 'src/assets/about_icon.svg'
 
-export const Navbar = () => {
-  function toggleNavbar() {
+interface NavBarProps {
+  show: boolean
+  hideNavBar: VoidFunction
+}
+export const Navbar: React.FC<NavBarProps> = ({ show, hideNavBar }) => {
+  function fadeOutNavBar() {
     const el = document.getElementById('nav-menu')
     var pos = 600
     var id = setInterval(frame, 5)
@@ -19,11 +23,7 @@ export const Navbar = () => {
         clearInterval(id)
         const navbarEl = document.getElementById('nav-bar')
         if (navbarEl) {
-          if (navbarEl.style.display === 'none') {
-            navbarEl.style.display = 'block'
-          } else {
-            navbarEl.style.display = 'none'
-          }
+          navbarEl.style.display = 'none'
         }
       } else {
         pos -= 10
@@ -33,11 +33,37 @@ export const Navbar = () => {
       }
     }
   }
+  function fadeInNavBar() {
+    const el = document.getElementById('nav-menu');
+    var pos = 0;
+    var id = setInterval(frame, 5);
+    function frame() {
+      if (pos == 600) {
+        clearInterval(id);
+      } else {
+        pos += 10
+        if (el) {
+          el.style.height = pos + 'px';
+        }
+      }
+    }
+    const navbarEl = document.getElementById('nav-bar')
+    if (navbarEl && navbarEl.style.display === 'none') {
+      navbarEl.style.display = 'block'
+    }
+  }
+  React.useEffect(() => {
+    if (show) {
+      fadeInNavBar()
+      return
+    }
+    fadeOutNavBar()
+  }, [show])
 
   return (
     <React.Fragment>
       <div id="nav-menu" className={styles.navBar}>
-        <div className={styles.navToggleBtn} onClick={toggleNavbar}></div>
+        <div className={styles.navToggleBtn} onClick={hideNavBar}></div>
         <ul className={styles.navMenu}>
           <li>
             <div className={styles.navItem}>
