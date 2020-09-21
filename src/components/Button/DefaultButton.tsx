@@ -24,3 +24,15 @@ export const IconButton: React.FC<FontAwesomeIconButtonProps> = ({ ...props }) =
     </div>
   )
 }
+interface RoundButtonProps {
+  textColor: string
+  bgColor: string
+  text: string
+}
+export const RoundButton: React.FC<RoundButtonProps> = ({ textColor, bgColor, text }) => {
+  return (
+    <div className={`flex justify-center items-center bg-gray-200 h-10 w-full my-2 px-4 rounded-full text-sm ${textColor} ${bgColor}`}>
+      {text}
+    </div>
+  )
+}
