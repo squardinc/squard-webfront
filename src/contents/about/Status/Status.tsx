@@ -51,8 +51,8 @@ export const Status: React.FC<StatusProps> = (props) => {
         Membersの人員が集まった時点で自動的に「Drive」に変更され、チームが始動します。その後プロジェクトが完遂されれば「Complete」途中で解散すれば「Breakup」となります。
       </Description>
       <div className={styles.statusList}>
-        {statusList.map((el) => (
-          <div className={styles.status}>
+        {statusList.map((el, index) => (
+          <div key={index} className={styles.status}>
             <div className={styles.logo}>{el.logo}</div>
             <div className={styles.description}>{el.description}</div>
           </div>

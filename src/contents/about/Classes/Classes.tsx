@@ -71,8 +71,9 @@ export const Classes: React.FC<ClassesProps> = (props) => {
         Members、Members、Prospects、Angels、Galleries、V.I.P.の7種類があります。
       </Description>
       <div>
-        {classes.map((el) => (
+        {classes.map((el, index) => (
           <ClassCard
+            key={index}
             logo={el.logo}
             title={el.title}
             description={el.description}

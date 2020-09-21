@@ -36,8 +36,8 @@ export const ManagementSystem: React.FC<ManagementSystemProps> = (props) => {
         ひとつは中央集権型の「Topdown（トップダウン）」もうひとつは自律分散型の「DAO（ダオ）」です。このマネジメントシステムはプロジェクトの進行において大変重要な意味を持ち、チームの理念に基づいて選択する必要があります。
       </Description>
       <div>
-        {managementSystems.map((el) => (
-          <div className={styles.card}>
+        {managementSystems.map((el, index) => (
+          <div key={index} className={styles.card}>
             <GradientCard2>
               <div className={styles.name}>
                 <div className={styles.nameMain}>{el.name.main}</div>
