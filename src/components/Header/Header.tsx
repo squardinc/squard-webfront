@@ -34,8 +34,8 @@ export const Header = () => {
             onClick={() => setShowSearchBar(!showSearchBar)}
           />
         </div>
+        <SearchBar show={showSearchBar} />
       </div>
-      <SearchBar show={showSearchBar} />
       <NavMenu show={showNavMenu} hideNavMenu={() => setShowNavMenu(false)} />
     </React.Fragment>
   )
