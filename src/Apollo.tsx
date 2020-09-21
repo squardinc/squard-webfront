@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { ApolloProvider } from '@apollo/client'
-import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-import aws_exports from 'src/aws-exports'
+import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
+import { setContext } from '@apollo/client/link/context'
+import { AWS_APPSYNC_GRAPHQL_ENDPOINT, AWS_APPSYNC_API_KEY } from './utils/env';
 
 const httpLink = createHttpLink({
-  uri: aws_exports.aws_appsync_graphqlEndpoint,
+  uri: AWS_APPSYNC_GRAPHQL_ENDPOINT,
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -21,7 +21,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      'x-api-key': aws_exports.aws_appsync_apiKey
+      'x-api-key': AWS_APPSYNC_API_KEY
     }
   }
 
