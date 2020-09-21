@@ -8,6 +8,18 @@ import CompanyIcon from 'src/assets/company_icon.svg'
 import LegalInfo from 'src/assets/legal_information_icon.svg'
 import PrivacyPolicy from 'src/assets/privacy_policy_icon_jp.svg'
 import About from 'src/assets/about_icon.svg'
+import { MenuItem, MenuItemProps } from './MenuItem'
+
+const MENU_ITEMS: MenuItemProps[] = [
+  { text: '設定', SVGIcon: Setting },
+  { text: 'マイページ', SVGIcon: MyPage },
+  { text: 'チームを作る+', SVGIcon: AddNewTeam, className: 'opacity-50 cursor-not-allowed' },
+  { text: 'Squardについて', SVGIcon: About },
+  { text: 'よくある質問', SVGIcon: Faq },
+  { text: '会社概要', SVGIcon: CompanyIcon },
+  { text: '個人情報の取り扱いについて', SVGIcon: PrivacyPolicy },
+  { text: '特定商取引法に基づく表記', SVGIcon: LegalInfo },
+]
 
 interface NavMenuProps {
   show: boolean
@@ -22,56 +34,9 @@ export const NavMenu: React.FC<NavMenuProps> = ({ show, hideNavMenu }) => {
     >
       <div id="nav-menu" className={`${styles.navMenu} ${show ? styles.open : styles.close}`}>
         <div className={styles.navToggleBtn} onClick={hideNavMenu}></div>
-        <ul className={styles.menuItems}>
-          <li>
-            <div className="inline-flex">
-              <Setting className="h-16 w-auto" />
-              <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>Settings</div>
-            </div>
-          </li>
-          <li>
-            <div className="inline-flex">
-              <MyPage className="h-16 w-auto" />
-              <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>My Page</div>
-            </div>
-          </li>
-          <li>
-            <div className='inline-flex opacity-50 cursor-not-allowed'>
-              <AddNewTeam className="h-16 w-auto" />
-              <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>Add new team</div>
-            </div>
-          </li>
-          <li>
-            <div className="inline-flex">
-              <About className="h-16 w-auto" />
-              <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>About us</div>
-            </div>
-          </li>
-          <li>
-            <div className="inline-flex">
-              <Faq className="h-16 w-auto" />
-              <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>FAQ</div>
-            </div>
-          </li>
-          <li>
-            <div className="inline-flex">
-              <CompanyIcon className="h-16 w-auto" />
-              <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>Company</div>
-            </div>
-          </li>
-          <li>
-            <div className="inline-flex">
-              <PrivacyPolicy className="h-16 w-auto" />
-              <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>Privacy Policy</div>
-            </div>
-          </li>
-          <li>
-            <div className="inline-flex">
-              <LegalInfo className="h-16 w-auto" />
-              <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>Legal Information</div>
-            </div>
-          </li>
-        </ul>
+        <div className={styles.menuItems}>
+          {MENU_ITEMS.map(item => <MenuItem key={item.text} {...item} />)}
+        </div>
       </div>
     </div>
   )
