@@ -14,24 +14,6 @@ interface NavMenuProps {
   hideNavMenu: VoidFunction
 }
 export const NavMenu: React.FC<NavMenuProps> = ({ show, hideNavMenu }) => {
-  function fadeOutNavMenu() {
-    const el = document.getElementById('nav-menu')
-    el?.classList.remove('open')
-    el?.classList.add('close')
-  }
-
-  function fadeInNavMenu() {
-    const el = document.getElementById('nav-menu')
-    el?.classList.remove('close')
-    el?.classList.add('open')
-  }
-  React.useEffect(() => {
-    if (show) {
-      fadeInNavMenu()
-      return
-    }
-    fadeOutNavMenu()
-  }, [show])
   return (
     <div
       id="nav-modal"
