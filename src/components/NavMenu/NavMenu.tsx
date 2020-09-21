@@ -27,12 +27,10 @@ interface NavMenuProps {
 }
 export const NavMenu: React.FC<NavMenuProps> = ({ show, hideNavMenu }) => {
   return (
-    <div className='z-auto bg-gray-700 static top-0 left-0 h-full w-full'>
-      <div className={`${styles.navMenu} ${show ? styles.open : styles.close}`}>
-        <div className={styles.navToggleBtn} onClick={hideNavMenu}></div>
-        <div className={styles.menuItems}>
-          {MENU_ITEMS.map(item => <MenuItem key={item.text} {...item} />)}
-        </div>
+    <div className={`${styles.navMenu} ${show ? styles.open : styles.close}`}>
+      <div className={styles.navToggleBtn} onClick={hideNavMenu}></div>
+      <div className={styles.menuItems}>
+        {MENU_ITEMS.map(item => <MenuItem key={item.text} {...item} />)}
       </div>
     </div>
   )
