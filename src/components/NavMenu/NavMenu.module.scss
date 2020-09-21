@@ -5,7 +5,6 @@
   position: fixed;
   bottom: 0;
   width: $window-width;
-  height: 600px;
   opacity: 0.97;
   background-image: linear-gradient(#f0cd0f, #8d0e2c);
   color: white;
@@ -24,18 +23,10 @@
   cursor: pointer;
 }
 
-.menuItems {
-  margin: 20px 0px 60px 0px;
-}
-
-.menuItems .navText {
-  width: 415px;
-}
-
 .close {
-  margin-bottom: -100vh;
+  height: 0px;
 }
 
 .open {
-  margin-bottom: 0vh;
+  height: 560px;
 }

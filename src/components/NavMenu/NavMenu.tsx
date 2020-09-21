@@ -29,7 +29,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({ show, hideNavMenu }) => {
   return (
     <div className={`${styles.navMenu} ${show ? styles.open : styles.close}`}>
       <div className={styles.navToggleBtn} onClick={hideNavMenu}></div>
-      <div className={styles.menuItems}>
+      <div className='flex flex-col mt-6 mr-4'>
         {MENU_ITEMS.map(item => <MenuItem key={item.text} {...item} />)}
       </div>
     </div>
