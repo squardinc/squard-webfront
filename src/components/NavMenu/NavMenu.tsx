@@ -38,7 +38,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({ show, hideNavMenu }) => {
       style={{ display: 'block' }}
       className="z-auto bg-gray-700 static top-0 left-0 h-full w-full"
     >
-      <div id="nav-menu" className={`${styles.navMenu} transition close`}>
+      <div id="nav-menu" className={`${styles.navMenu} ${show ? styles.open : styles.close}`}>
         <div className={styles.navToggleBtn} onClick={hideNavMenu}></div>
         <ul className={styles.menuItems}>
           <li>
@@ -49,37 +49,37 @@ export const NavMenu: React.FC<NavMenuProps> = ({ show, hideNavMenu }) => {
           </li>
           <li>
             <div className="inline-flex">
-              <MyPage  className="h-16 w-auto" />
+              <MyPage className="h-16 w-auto" />
               <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>My Page</div>
             </div>
           </li>
           <li>
             <div className='inline-flex opacity-50 cursor-not-allowed'>
-              <AddNewTeam  className="h-16 w-auto" />
+              <AddNewTeam className="h-16 w-auto" />
               <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>Add new team</div>
             </div>
           </li>
           <li>
             <div className="inline-flex">
-              <About  className="h-16 w-auto" />
+              <About className="h-16 w-auto" />
               <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>About us</div>
             </div>
           </li>
           <li>
             <div className="inline-flex">
-              <Faq  className="h-16 w-auto" />
+              <Faq className="h-16 w-auto" />
               <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>FAQ</div>
             </div>
           </li>
           <li>
             <div className="inline-flex">
-              <CompanyIcon  className="h-16 w-auto" />
+              <CompanyIcon className="h-16 w-auto" />
               <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>Company</div>
             </div>
           </li>
           <li>
             <div className="inline-flex">
-              <PrivacyPolicy  className="h-16 w-auto" />
+              <PrivacyPolicy className="h-16 w-auto" />
               <div className={"mt-4 font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>Privacy Policy</div>
             </div>
           </li>

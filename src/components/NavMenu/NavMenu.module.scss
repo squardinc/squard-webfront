@@ -10,6 +10,7 @@
   background-image: linear-gradient(#f0cd0f, #8d0e2c);
   color: white;
   border-radius: 25px 25px 0 0;
+  transition: all 1s ease-in-out;
 }
 
 .navToggleBtn {
@@ -29,4 +30,12 @@
 
 .menuItems .navText {
   width: 415px;
+}
+
+.close {
+  margin-bottom: -100vh;
+}
+
+.open {
+  margin-bottom: 0vh;
 }
