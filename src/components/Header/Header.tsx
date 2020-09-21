@@ -2,12 +2,12 @@ import * as React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons'
 import styles from './Header.module.scss'
-import { Navbar } from '../Navbar/Navbar'
+import { NavMenu } from 'src/components/NavMenu/NavMenu'
 import { SearchBar } from './SearchBar'
 
 export const Header = () => {
   const [showSearchBar, setShowSearchBar] = React.useState(false)
-  const [showNavBar, setShowNavBar] = React.useState(false)
+  const [showNavMenu, setShowNavMenu] = React.useState(false)
 
   return (
     <React.Fragment>
@@ -17,7 +17,7 @@ export const Header = () => {
             icon={faBars}
             size="2x"
             cursor="pointer"
-            onClick={() => setShowNavBar(!showNavBar)}
+            onClick={() => setShowNavMenu(!showNavMenu)}
           />
           <span style={{ fontSize: '1.6rem', fontWeight: 'bold' }}>
             Squard
@@ -36,7 +36,7 @@ export const Header = () => {
         </div>
       </div>
       <SearchBar show={showSearchBar} />
-      <Navbar show={showNavBar} hideNavBar={() => setShowNavBar(false)} />
+      <NavMenu show={showNavMenu} hideNavMenu={() => setShowNavMenu(false)} />
     </React.Fragment>
   )
 }

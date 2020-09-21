@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styles from './Navbar.module.scss'
+import styles from './NavMenu.module.scss'
 import Setting from 'src/assets/settings_icon_jp.svg'
 import MyPage from 'src/assets/my_page_icon_jp.svg'
 import AddNewTeam from 'src/assets/add_new_team_icon.svg'
@@ -9,39 +9,38 @@ import LegalInfo from 'src/assets/legal_information_icon.svg'
 import PrivacyPolicy from 'src/assets/privacy_policy_icon_jp.svg'
 import About from 'src/assets/about_icon.svg'
 
-interface NavBarProps {
+interface NavMenuProps {
   show: boolean
-  hideNavBar: VoidFunction
+  hideNavMenu: VoidFunction
 }
-export const Navbar: React.FC<NavBarProps> = ({ show, hideNavBar }) => {
-  function fadeOutNavBar() {
+export const NavMenu: React.FC<NavMenuProps> = ({ show, hideNavMenu }) => {
+  function fadeOutNavMenu() {
     const el = document.getElementById('nav-menu')
     el?.classList.remove('open')
     el?.classList.add('close')
   }
 
-  function fadeInNavBar() {
+  function fadeInNavMenu() {
     const el = document.getElementById('nav-menu')
     el?.classList.remove('close')
     el?.classList.add('open')
   }
   React.useEffect(() => {
     if (show) {
-      fadeInNavBar()
+      fadeInNavMenu()
       return
     }
-    fadeOutNavBar()
+    fadeOutNavMenu()
   }, [show])
-
   return (
     <div
       id="nav-modal"
       style={{ display: 'block' }}
       className="z-auto bg-gray-700 static top-0 left-0 h-full w-full"
     >
-      <div id="nav-menu" className={styles.navBar + ' ' + 'transition close'}>
-        <div className={styles.navToggleBtn} onClick={hideNavBar}></div>
-        <ul className={styles.navMenu}>
+      <div id="nav-menu" className={`${styles.navMenu} transition close`}>
+        <div className={styles.navToggleBtn} onClick={hideNavMenu}></div>
+        <ul className={styles.menuItems}>
           <li>
             <div className="inline-flex">
               <Setting className="h-16 w-auto" />

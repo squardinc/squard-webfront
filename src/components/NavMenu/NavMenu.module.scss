@@ -1,6 +1,6 @@
 @import 'src/styles/variables';
 
-.navBar {
+.navMenu {
   z-index: $nav-bar;
   position: fixed;
   bottom: 0;
@@ -23,10 +23,10 @@
   cursor: pointer;
 }
 
-.navMenu {
+.menuItems {
   margin: 20px 0px 60px 0px;
 }
 
-.navMenu .navText {
+.menuItems .navText {
   width: 415px;
 }
