@@ -5,9 +5,6 @@
   "author": "Squard, Inc.",
   "license": "MIT",
   "scripts": {
-    "build:tailwind": "tailwindcss build src/styles/tailwind.css -o src/styles/tailwind.output.css",
-    "prestart": "npm run build:tailwind",
-    "prebuild": "npm run build:tailwind",
     "build": "gatsby build --prefix-paths",
     "dev": "gatsby develop --https",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
@@ -31,6 +28,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
     "aws-sdk": "^2.756.0",
+    "cross-fetch": "^3.0.6",
     "gatsby": "^2.24.52",
     "gatsby-image": "^2.4.16",
     "gatsby-plugin-manifest": "^2.4.26",

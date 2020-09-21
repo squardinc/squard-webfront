@@ -1,4 +1,5 @@
 import * as React from 'react'
+import fetch from 'cross-fetch'
 import { ApolloProvider } from '@apollo/client'
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
@@ -6,6 +7,7 @@ import { AWS_APPSYNC_GRAPHQL_ENDPOINT, AWS_APPSYNC_API_KEY } from './utils/env';
 
 const httpLink = createHttpLink({
   uri: AWS_APPSYNC_GRAPHQL_ENDPOINT,
+  fetch,
 });
 
 const authLink = setContext((_, { headers }) => {
