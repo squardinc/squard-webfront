@@ -4,15 +4,13 @@ import { DefaultButton } from 'src/components/Button/DefaultButton'
 import backgroundImage from 'src/images/background.png'
 import styles from './TeamIntroduction.module.scss'
 
-const TAGS = [
-  'チームメイキング',
-  '働き方3.0',
-  'Topdown',
-  'DAO',
-  '離合集散',
-]
+interface TeamIntroductionProps {
+  tags?: string[]
+  leaderName?: string
+  system?: string
+}
 
-export const TeamIntroduction = () => {
+export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({ tags = [], leaderName = '', system = '' }) => {
   return (
     <div style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div id='introduction' className={styles.content}>
@@ -28,16 +26,16 @@ export const TeamIntroduction = () => {
           チーム「Squard（スクアード）」はコラボレーションプラットフォーム「Squard」の企画/開発/運営を目的として集まったチームです。
         </div>
         <div>
-          {TAGS.map(tag => <HashTag text={tag} />)}
+          {tags.map(tag => <HashTag text={tag} />)}
         </div>
         <div className={styles.attributeContainer}>
           <div>
             <div>
-              マネジメントシステム: トップダウン
-          </div>
+              マネジメントシステム: {system}
+            </div>
             <div>
-              チームリーダー: 小池駿平
-          </div>
+              チームリーダー: {leaderName}
+            </div>
           </div>
         </div>
         <DefaultButton text='Squardに参加してみる？' />
