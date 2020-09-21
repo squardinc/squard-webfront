@@ -17,7 +17,7 @@ export const Footer = () => {
           <br />
           チームページからProspects（プロスペクト）またはAngels（エンジェル）としてチームに参加することで、チームが定めた各種特典を受け取ることができます。
         </div>
-        <div className={styles.question}>
+        <div className={styles.question + ' pb-4'}>
           「Prospects」や「Angels」についてはこちら↓
         </div>
         <DefaultButton text='Class（クラス）ってなに？' />

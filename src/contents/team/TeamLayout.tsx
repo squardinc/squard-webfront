@@ -17,13 +17,20 @@ const DUMMY_MEMBERS = [
   'https://firebasestorage.googleapis.com/v0/b/story-gate.appspot.com/o/squard%2Fshoya.png?alt=media&token=50e1a69b-2f2c-4998-bba9-8fc3deb7d06d',
 ]
 
+const DUMMY_CORE_MEMBERS = [
+  {designation: "CEO", age: 27, title1: "This is a title", title2: "Large title", url: 'images/raw.jpg', style: 'red'},
+  {designation: "COO", age: 25, title1: "This is a title", title2: "Large title", url: 'images/raw.jpg', style: 'blue'},
+  {designation: "CFO", age: 29, title1: "This is a title", title2: "Large title", url: 'images/raw.jpg', style: 'green'},
+  {designation: "CTO", age: 27, title1: "This is a title", title2: "Large title", url: 'images/raw.jpg', style: 'yellow'},
+]
+
 export const TeamLayout = () => {
   const { loading, error, data } = useQuery<GetTeamQuery>(gql(getTeam), { variables: { id: 'squard' } });
   return (
     <>
       <TeamTop />
       <TeamIntroduction tags={data?.getTeam?.tags} leaderName={data?.getTeam?.leaderName} system={data?.getTeam?.system} />
-      <TeamCoreMembers coreMembers={DUMMY_MEMBERS} />
+      <TeamCoreMembers coreMembers={DUMMY_CORE_MEMBERS} />
       <TeamMembers topMember={DUMMY_MEMBERS[0]} members={DUMMY_MEMBERS} />
       <TeamProspects propspects={DUMMY_MEMBERS} />
       <TeamAngels angels={DUMMY_MEMBERS} numOfAngels={65535} />
