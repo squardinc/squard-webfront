@@ -1,0 +1,25 @@
+.wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.rocketBack {
+  position: relative;
+  top: 600px;
+  animation : upcoming 5s ease-out 0.5s 1 forwards;
+}
+
+@keyframes upcoming {
+  100% {
+    top: 0;
+  }
+}
+
+.rocketFront {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
