@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="115.607" height="118.346" viewBox="0 0 115.607 118.346">
+  <defs>
+    <filter id="svg_vip_00" x="37.693" y="25.156" width="40.221" height="75.043" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_vip_01" x="51.635" y="45.019" width="63.971" height="73.327" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_vip_02" x="0" y="45.019" width="63.971" height="73.327" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-3"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_vip_03" x="59.674" y="28.742" width="37.164" height="55.512" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-4"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-4"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_vip_04" x="18.769" y="28.742" width="37.164" height="55.512" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-5"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-5"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_vip_05" x="28.307" y="0" width="58.992" height="53.335" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-6"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-6"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_vip_06" x="74.449" y="21.693" width="31.884" height="43.553" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-7"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-7"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_vip_07" x="9.274" y="21.693" width="31.884" height="43.553" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-8"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-8"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_vip_08" x="81.355" y="48.713" width="24.797" height="33.03" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-9"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-9"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_vip_09" x="9.455" y="48.713" width="24.797" height="33.03" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-10"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-10"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_vip_10" x="51.32" y="54.015" width="45.536" height="58.209" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-11"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-11"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_vip_11" x="18.751" y="54.015" width="45.536" height="58.209" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-12"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-12"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="translate(-317 -233.117)">
+    <g transform="matrix(1, 0, 0, 1, 317, 233.12)" filter="url(#svg_vip_00)">
+      <path d="M471.5,385.849c1.338-3.57,2.859-7.065,4.345-10.479,3.479-8,6.766-15.547,6.766-22.069,0-10.772-6.005-18.373-11.11-24.494-5.105,6.121-11.11,13.722-11.11,24.494,0,6.522,3.287,14.074,6.766,22.069C468.64,378.784,470.16,382.279,471.5,385.849Z" transform="translate(-413.69 -297.65)" fill="#fff"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 317, 233.12)" filter="url(#svg_vip_01)">
+      <path d="M536.892,426.238c-4.072,8.063-10.379,13.2-16.158,17.9-4.453,3.623-8.37,6.812-10.637,10.817,8.37-2.671,19.1-7.19,28.1-14.532,12.139-9.9,18.148-22.512,17.859-37.474-.024-1.217-.079-2.308-.169-3.321q-2.608.826-5.217,1.891a31.163,31.163,0,0,1-2.167,9.975A33.883,33.883,0,0,1,536.892,426.238Z" transform="translate(-449.46 -348.61)" fill="#fff"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 317, 233.12)" filter="url(#svg_vip_02)">
+      <path d="M345.175,426.238c4.072,8.063,10.379,13.2,16.158,17.9,4.453,3.623,8.37,6.812,10.637,10.817-8.371-2.671-19.1-7.19-28.1-14.532-12.139-9.9-18.147-22.512-17.859-37.474.024-1.217.079-2.308.169-3.321q2.608.826,5.217,1.891a31.167,31.167,0,0,0,2.167,9.975A33.883,33.883,0,0,0,345.175,426.238Z" transform="translate(-317 -348.61)" fill="#fff"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 317, 233.12)" filter="url(#svg_vip_03)">
+      <path d="M541.22,352.377a31.826,31.826,0,0,1,1.65,10.124c0,5.25-1.77,10.8-4.112,16.6q1.661-2.075,3.529-4.081a77.463,77.463,0,0,1,15.635-12.759,40.736,40.736,0,0,0-7.273-20.673A82.335,82.335,0,0,0,541.22,352.377Z" transform="translate(-470.08 -306.85)" fill="#fff"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 317, 233.12)" filter="url(#svg_vip_04)">
+      <path d="M409.619,352.377a31.828,31.828,0,0,0-1.65,10.124c0,5.25,1.77,10.8,4.112,16.6q-1.661-2.075-3.529-4.081a77.465,77.465,0,0,0-15.635-12.759,40.736,40.736,0,0,1,7.273-20.673A82.33,82.33,0,0,1,409.619,352.377Z" transform="translate(-365.15 -306.85)" fill="#fff"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 317, 233.12)" filter="url(#svg_vip_05)">
+      <path d="M447.42,259.315a1.937,1.937,0,0,1,1.489.7l.866,1.038c3.023,3.615,6.678,7.989,9.277,13.4a88.992,88.992,0,0,1,8.864-9.8c-2.562-3.423-5.433-6.693-8.351-10.014-4.267-4.857-8.661-9.86-12.146-15.522-3.484,5.662-7.879,10.664-12.146,15.522-2.917,3.321-5.789,6.59-8.351,10.014a89,89,0,0,1,8.864,9.8c2.6-5.41,6.254-9.785,9.277-13.4l.866-1.038A1.937,1.937,0,0,1,447.42,259.315Z" transform="translate(-389.62 -233.12)" fill="#fff"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 317, 233.12)" filter="url(#svg_vip_06)">
+      <path d="M605.318,339.124c-.206-6.3-2.417-13.839-8.078-22.665a50.749,50.749,0,0,0-5.806,4.416,45.392,45.392,0,0,1,8.092,21.137Q602.372,340.445,605.318,339.124Z" transform="translate(-507.99 -288.77)" fill="#fff"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 317, 233.12)" filter="url(#svg_vip_07)">
+      <path d="M359.066,339.124c.206-6.3,2.417-13.839,8.077-22.665a50.744,50.744,0,0,1,5.806,4.416,45.388,45.388,0,0,0-8.092,21.137Q362.012,340.445,359.066,339.124Z" transform="translate(-340.79 -288.77)" fill="#fff"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 317, 233.12)" filter="url(#svg_vip_08)">
+      <path d="M617.053,422.576a44.456,44.456,0,0,1-.995,5.25,27.687,27.687,0,0,0,6.8-15.03q-2.721,1.307-5.379,2.855A51.1,51.1,0,0,1,617.053,422.576Z" transform="translate(-525.7 -358.08)" fill="#fff"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 317, 233.12)" filter="url(#svg_vip_09)">
+      <path d="M365.511,422.576a44.45,44.45,0,0,0,.995,5.25,27.688,27.688,0,0,1-6.8-15.03q2.721,1.307,5.378,2.855A51.069,51.069,0,0,0,365.511,422.576Z" transform="translate(-341.25 -358.08)" fill="#fff"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 317, 233.12)" filter="url(#svg_vip_10)">
+      <path d="M508.974,471.908a71.044,71.044,0,0,1,8.508-7.7c7.859-6.393,16.767-13.64,18.681-28.525.176-1.37.286-2.694.347-3.984C522.56,441,511.164,455.2,508.974,471.908Z" transform="translate(-448.65 -371.68)" fill="#fff"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 317, 233.12)" filter="url(#svg_vip_11)">
+      <path d="M420.388,471.908a71.049,71.049,0,0,0-8.508-7.7c-7.859-6.393-16.767-13.64-18.681-28.525-.176-1.37-.286-2.694-.347-3.984C406.8,441,418.2,455.2,420.388,471.908Z" transform="translate(-365.1 -371.68)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

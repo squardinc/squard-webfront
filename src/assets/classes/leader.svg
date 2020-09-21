@@ -1,0 +1,344 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="123.978" height="118.581" viewBox="0 0 123.978 118.581">
+  <defs>
+    <filter id="svg_leader_00" x="5.034" y="3.481" width="113.561" height="111.385" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_01" x="38.794" y="95.404" width="29.725" height="23.177" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_02" x="27.689" y="92.933" width="30.262" height="22.219" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-3"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_03" x="17.871" y="87.496" width="30.208" height="22.324" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-4"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-4"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_04" x="9.843" y="79.56" width="29.565" height="23.441" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-5"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-5"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_05" x="4.017" y="69.463" width="28.371" height="25.242" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-6"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-6"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_06" x="0.692" y="57.973" width="26.705" height="27.178" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-7"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-7"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_07" x="0" y="46.025" width="24.726" height="28.731" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-8"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-8"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_08" x="1.535" y="34.237" width="23.073" height="29.787" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-9"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-9"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_09" x="5.121" y="23.211" width="22.187" height="30.28" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-10"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-10"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_10" x="10.578" y="13.514" width="22.378" height="30.179" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-11"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-11"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_11" x="17.511" y="5.643" width="23.559" height="29.492" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-12"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-12"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_12" x="25.916" y="0" width="25.397" height="28.259" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-13"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-13"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_13" x="55.458" y="95.404" width="29.726" height="23.177" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-14"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-14"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_14" x="66.025" y="92.933" width="30.261" height="22.219" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-15"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-15"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_15" x="75.898" y="87.496" width="30.208" height="22.324" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-16"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-16"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_16" x="84.568" y="79.56" width="29.565" height="23.441" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-17"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-17"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_17" x="91.588" y="69.463" width="28.371" height="25.242" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-18"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-18"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_18" x="96.579" y="57.973" width="26.705" height="27.178" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-19"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-19"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_19" x="99.251" y="46.025" width="24.727" height="28.731" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-20"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-20"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_20" x="99.369" y="34.237" width="23.073" height="29.787" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-21"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-21"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_21" x="96.669" y="23.211" width="22.185" height="30.28" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-22"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-22"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_22" x="91.021" y="13.514" width="22.379" height="30.179" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-23"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-23"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_23" x="82.907" y="5.643" width="23.558" height="29.492" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-24"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-24"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_24" x="72.662" y="0" width="25.399" height="28.259" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-25"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-25"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_25" x="34.194" y="0.27" width="29.397" height="23.712" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-26"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-26"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_26" x="60.252" y="0.27" width="29.396" height="23.712" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-27"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-27"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_27" x="16.62" y="26.268" width="89.581" height="38.458" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-28"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-28"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_28" x="58.715" y="50.505" width="36.907" height="24.238" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-29"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-29"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_29" x="35.774" y="59.918" width="48.951" height="31.216" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-30"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-30"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_leader_30" x="24.913" y="50.505" width="36.877" height="24.238" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-31"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-31"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="translate(9 6)">
+    <g>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_00)">
+        <path d="M3140.048,205.826a49.382,49.382,0,0,0-19.482-11.858v.426a47.44,47.44,0,1,1-28.544-.034v-.425a47.749,47.749,0,1,0,48.026,11.891Z" transform="translate(-3044.37 -184.45)" fill="#fff"/>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_01)">
+        <path d="M3252.591,709.323c3.229-1.068,6.135-1.058,6.493.022s-1.969,2.823-5.2,3.891a11.475,11.475,0,0,1-6.492-.022A11.474,11.474,0,0,1,3252.591,709.323Z" transform="translate(-3199.6 -607.12)" fill="#fff"/>
+      </g>
+      <path d="M3258.923,682.584c2.843,1.865,5.654,2.605,6.278,1.654s-1.174-3.235-4.017-5.1a11.483,11.483,0,0,0-6.278-1.653A11.473,11.473,0,0,0,3258.923,682.584Z" transform="translate(-3214.771 -587.62)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_02)">
+        <path d="M3191.168,694.774c3.385-.315,6.215.349,6.321,1.482s-2.554,2.307-5.939,2.622a11.472,11.472,0,0,1-6.321-1.482A11.473,11.473,0,0,1,3191.168,694.774Z" transform="translate(-3148.54 -595.76)" fill="#fff"/>
+      </g>
+      <path d="M3208.19,661.6c2.351,2.456,4.923,3.81,5.746,3.024s-.417-3.416-2.768-5.873a11.475,11.475,0,0,0-5.744-3.023A11.475,11.475,0,0,0,3208.19,661.6Z" transform="translate(-3174.128 -569.754)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_03)">
+        <path d="M3136.644,664.336c3.37.455,5.978,1.738,5.826,2.866s-3.008,1.674-6.377,1.219a11.468,11.468,0,0,1-5.824-2.866A11.474,11.474,0,0,1,3136.644,664.336Z" transform="translate(-3103.4 -570.76)" fill="#fff"/>
+      </g>
+      <path d="M3163.342,629.708c1.738,2.922,3.94,4.819,4.918,4.238s.363-3.422-1.374-6.345a11.487,11.487,0,0,0-4.919-4.238A11.478,11.478,0,0,0,3163.342,629.708Z" transform="translate(-3138.408 -543.172)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_04)">
+        <path d="M3091.816,620.439c3.181,1.2,5.434,3.038,5.031,4.1s-3.305.954-6.486-.247a11.478,11.478,0,0,1-5.032-4.1A11.48,11.48,0,0,1,3091.816,620.439Z" transform="translate(-3066.48 -534.27)" fill="#fff"/>
+      </g>
+      <path d="M3124.681,588.578c1.037,3.238,2.755,5.582,3.838,5.236s1.124-3.253.089-6.492a3.423,3.423,0,1,0-3.927,1.256Z" transform="translate(-3107.448 -509.269)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_05)">
+        <path d="M3058.98,565.011c2.83,1.886,4.611,4.182,3.979,5.13s-3.437.186-6.266-1.7a11.473,11.473,0,0,1-3.979-5.13A11.477,11.477,0,0,1,3058.98,565.011Z" transform="translate(-3039.7 -487.84)" fill="#fff"/>
+      </g>
+      <path d="M3093.66,540.319c.281,3.388,1.427,6.059,2.563,5.965s1.826-2.917,1.546-6.305a3.423,3.423,0,1,0-4.109.34Z" transform="translate(-3082.304 -469.783)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_06)">
+        <path d="M3039.822,502.053c2.333,2.474,3.552,5.113,2.724,5.894s-3.391-.592-5.722-3.066a11.468,11.468,0,0,1-2.723-5.893A11.477,11.477,0,0,1,3039.822,502.053Z" transform="translate(-3024.41 -435.01)" fill="#fff"/>
+      </g>
+      <path d="M3071.935,487.4c-.489,3.364.029,6.225,1.154,6.388s2.436-2.432,2.925-5.8a3.423,3.423,0,1,0-4.08-.592Z" transform="translate(-3064.333 -426.736)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_07)">
+        <path d="M3035.151,436.376c1.714,2.936,2.31,5.78,1.327,6.355s-3.17-1.339-4.886-4.275a11.474,11.474,0,0,1-1.328-6.355A11.481,11.481,0,0,1,3035.151,436.376Z" transform="translate(-3021.23 -380.08)" fill="#fff"/>
+      </g>
+      <path d="M3060.029,432.539c-1.234,3.168-1.373,6.071-.314,6.484s2.92-1.821,4.154-4.989a11.478,11.478,0,0,0,.313-6.485A11.479,11.479,0,0,0,3060.029,432.539Z" transform="translate(-3053.863 -382.337)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_08)">
+        <path d="M3043.171,371.372c1.011,3.246.95,6.152-.136,6.491s-2.788-2.018-3.8-5.264a11.471,11.471,0,0,1,.136-6.49A11.48,11.48,0,0,1,3043.171,371.372Z" transform="translate(-3028.28 -325.87)" fill="#fff"/>
+      </g>
+      <path d="M3060.147,378.545c-1.914,2.81-2.7,5.607-1.762,6.248s3.253-1.118,5.169-3.927a11.473,11.473,0,0,0,1.762-6.248A11.484,11.484,0,0,0,3060.147,378.545Z" transform="translate(-3053.029 -338.86)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_09)">
+        <path d="M3063.027,310.369c.255,3.391-.457,6.208-1.593,6.294s-2.262-2.594-2.518-5.984a3.423,3.423,0,1,1,4.111-.31Z" transform="translate(-3044.77 -275.17)" fill="#fff"/>
+      </g>
+      <path d="M3073.185,328.186c-2.5,2.307-3.9,4.855-3.123,5.691s3.423-.357,5.921-2.664a11.483,11.483,0,0,0,3.123-5.692A11.478,11.478,0,0,0,3073.185,328.186Z" transform="translate(-3062.771 -298.535)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_10)">
+        <path d="M3093.719,256.5c-.514,3.361-1.843,5.946-2.967,5.775s-1.622-3.036-1.108-6.4a11.475,11.475,0,0,1,2.967-5.774A11.482,11.482,0,0,1,3093.719,256.5Z" transform="translate(-3069.86 -230.59)" fill="#fff"/>
+      </g>
+      <path d="M3098.8,283.829c-2.951,1.686-4.886,3.854-4.323,4.843s3.415.422,6.368-1.264a11.471,11.471,0,0,0,4.322-4.843A11.476,11.476,0,0,0,3098.8,283.829Z" transform="translate(-3082.921 -263.213)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_11)">
+        <path d="M3133.143,212.518c-1.257,3.159-3.133,5.379-4.19,4.959s-.9-3.323.36-6.482a11.474,11.474,0,0,1,4.19-4.959A11.477,11.477,0,0,1,3133.143,212.518Z" transform="translate(-3101.74 -194.39)" fill="#fff"/>
+      </g>
+      <path d="M3135.814,245.674c-3.255.979-5.629,2.656-5.3,3.746s3.232,1.18,6.489.2a11.488,11.488,0,0,0,5.3-3.747A11.482,11.482,0,0,0,3135.814,245.674Z" transform="translate(-3112.573 -232.632)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_12)">
+        <path d="M3180.891,180.684c-1.936,2.8-4.262,4.537-5.2,3.889s-.126-3.44,1.809-6.235a11.466,11.466,0,0,1,5.2-3.889A11.476,11.476,0,0,1,3180.891,180.684Z" transform="translate(-3140.39 -168.45)" fill="#fff"/>
+      </g>
+      <path d="M3182.38,215.335c-3.392.222-6.082,1.322-6.008,2.457s2.884,1.877,6.277,1.656a11.481,11.481,0,0,0,6.009-2.458A11.479,11.479,0,0,0,3182.38,215.335Z" transform="translate(-3150.265 -208.017)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_13)">
+        <path d="M3347.211,709.323c-3.228-1.068-6.134-1.058-6.493.022s1.969,2.823,5.2,3.891a11.478,11.478,0,0,0,6.493-.022A11.478,11.478,0,0,0,3347.211,709.323Z" transform="translate(-3276.22 -607.12)" fill="#fff"/>
+      </g>
+      <path d="M3346.886,682.584c-2.842,1.865-5.654,2.605-6.278,1.654s1.174-3.235,4.017-5.1a11.481,11.481,0,0,1,6.278-1.653A11.484,11.484,0,0,1,3346.886,682.584Z" transform="translate(-3285.062 -587.62)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_14)">
+        <path d="M3406.164,694.774c-3.385-.315-6.215.349-6.32,1.482s2.552,2.307,5.939,2.622a11.467,11.467,0,0,0,6.32-1.482A11.473,11.473,0,0,0,3406.164,694.774Z" transform="translate(-3324.82 -595.76)" fill="#fff"/>
+      </g>
+      <path d="M3405.218,661.6c-2.351,2.456-4.923,3.81-5.745,3.024s.416-3.416,2.765-5.873a11.486,11.486,0,0,1,5.746-3.023A11.472,11.472,0,0,1,3405.218,661.6Z" transform="translate(-3333.303 -569.754)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_15)">
+        <path d="M3460.938,664.336c-3.37.455-5.977,1.738-5.825,2.866s3.008,1.674,6.377,1.219a11.47,11.47,0,0,0,5.824-2.866A11.476,11.476,0,0,0,3460.938,664.336Z" transform="translate(-3370.21 -570.76)" fill="#fff"/>
+      </g>
+      <path d="M3459.157,629.708c-1.736,2.922-3.939,4.819-4.917,4.238s-.363-3.422,1.375-6.345a11.471,11.471,0,0,1,4.917-4.238A11.477,11.477,0,0,1,3459.157,629.708Z" transform="translate(-3378.115 -543.172)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_16)">
+        <path d="M3508.725,620.439c-3.181,1.2-5.434,3.038-5.032,4.1s3.308.954,6.487-.247a11.468,11.468,0,0,0,5.032-4.1A11.476,11.476,0,0,0,3508.725,620.439Z" transform="translate(-3410.08 -534.27)" fill="#fff"/>
+      </g>
+      <path d="M3505.51,588.578c-1.037,3.238-2.755,5.582-3.838,5.236s-1.124-3.253-.088-6.492a3.423,3.423,0,1,1,3.927,1.256Z" transform="translate(-3416.766 -509.269)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_17)">
+        <path d="M3547.044,565.011c-2.828,1.886-4.611,4.182-3.979,5.13s3.437.186,6.265-1.7a11.471,11.471,0,0,0,3.979-5.13A11.482,11.482,0,0,0,3547.044,565.011Z" transform="translate(-3442.35 -487.84)" fill="#fff"/>
+      </g>
+      <path d="M3540.746,540.319c-.281,3.388-1.427,6.059-2.562,5.965s-1.826-2.917-1.546-6.305a3.423,3.423,0,1,1,4.107.34Z" transform="translate(-3446.125 -469.783)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_18)">
+        <path d="M3573.864,502.053c-2.331,2.474-3.55,5.113-2.724,5.894s3.392-.592,5.723-3.066a11.457,11.457,0,0,0,2.723-5.893A11.486,11.486,0,0,0,3573.864,502.053Z" transform="translate(-3465.3 -435.01)" fill="#fff"/>
+      </g>
+      <path d="M3561.759,487.4c.49,3.364-.027,6.225-1.154,6.388s-2.435-2.432-2.925-5.8a3.423,3.423,0,1,1,4.079-.592Z" transform="translate(-3463.385 -426.736)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_19)">
+        <path d="M3587.641,436.376c-1.716,2.936-2.312,5.78-1.328,6.355s3.171-1.339,4.886-4.275a11.483,11.483,0,0,0,1.329-6.355A11.474,11.474,0,0,0,3587.641,436.376Z" transform="translate(-3477.59 -380.08)" fill="#fff"/>
+      </g>
+      <path d="M3568.361,432.539c1.232,3.168,1.372,6.071.312,6.484s-2.919-1.821-4.153-4.989a11.474,11.474,0,0,1-.312-6.485A11.481,11.481,0,0,1,3568.361,432.539Z" transform="translate(-3468.549 -382.337)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_20)">
+        <path d="M3587.219,371.372c-1.012,3.246-.952,6.152.135,6.491s2.789-2.018,3.8-5.264a11.484,11.484,0,0,0-.136-6.49A11.47,11.47,0,0,0,3587.219,371.372Z" transform="translate(-3478.13 -325.87)" fill="#fff"/>
+      </g>
+      <path d="M3559.857,378.545c1.914,2.81,2.7,5.607,1.763,6.248s-3.254-1.118-5.169-3.927a11.491,11.491,0,0,1-1.763-6.248A11.477,11.477,0,0,1,3559.857,378.545Z" transform="translate(-3460.998 -338.86)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_21)">
+        <path d="M3571.44,310.369c-.256,3.391.458,6.208,1.592,6.294s2.263-2.594,2.517-5.984a3.423,3.423,0,1,0-4.109-.31Z" transform="translate(-3465.72 -275.17)" fill="#fff"/>
+      </g>
+      <path d="M3537.971,328.186c2.5,2.307,3.895,4.855,3.123,5.691s-3.424-.357-5.921-2.664a11.482,11.482,0,0,1-3.122-5.692A11.48,11.48,0,0,1,3537.971,328.186Z" transform="translate(-3442.408 -298.535)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_22)">
+        <path d="M3539.866,256.5c.515,3.361,1.843,5.946,2.967,5.775s1.623-3.036,1.11-6.4a11.485,11.485,0,0,0-2.968-5.774A11.481,11.481,0,0,0,3539.866,256.5Z" transform="translate(-3439.75 -230.59)" fill="#fff"/>
+      </g>
+      <path d="M3505.3,283.829c2.952,1.686,4.886,3.854,4.323,4.843s-3.416.422-6.368-1.264a11.479,11.479,0,0,1-4.323-4.843A11.48,11.48,0,0,1,3505.3,283.829Z" transform="translate(-3415.209 -263.213)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_23)">
+        <path d="M3495.011,212.518c1.258,3.159,3.134,5.379,4.192,4.959s.9-3.323-.362-6.482a11.467,11.467,0,0,0-4.189-4.959A11.486,11.486,0,0,0,3495.011,212.518Z" transform="translate(-3402.44 -194.39)" fill="#fff"/>
+      </g>
+      <path d="M3463.544,245.674c3.255.979,5.629,2.656,5.3,3.746s-3.232,1.18-6.489.2a11.482,11.482,0,0,1-5.3-3.747A11.478,11.478,0,0,1,3463.544,245.674Z" transform="translate(-3380.81 -232.632)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_24)">
+        <path d="M3438.808,180.684c1.934,2.8,4.262,4.537,5.2,3.889s.126-3.44-1.809-6.235a11.475,11.475,0,0,0-5.2-3.889A11.467,11.467,0,0,0,3438.808,180.684Z" transform="translate(-3355.33 -168.45)" fill="#fff"/>
+      </g>
+      <path d="M3414.834,215.335c3.391.222,6.082,1.322,6.008,2.457s-2.884,1.877-6.277,1.656a11.479,11.479,0,0,1-6.008-2.458A11.477,11.477,0,0,1,3414.834,215.335Z" transform="translate(-3340.974 -208.017)" fill="#fff"/>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_25)">
+        <path d="M3228.177,180.513c-3.131,1.325-6.029,1.55-6.474.5s1.736-2.973,4.867-4.3a11.476,11.476,0,0,1,6.473-.5A11.476,11.476,0,0,1,3228.177,180.513Z" transform="translate(-3178.45 -169.69)" fill="#fff"/>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#svg_leader_26)">
+        <path d="M3372.388,180.513c3.131,1.325,6.029,1.55,6.472.5s-1.734-2.973-4.864-4.3a11.479,11.479,0,0,0-6.474-.5A11.483,11.483,0,0,0,3372.388,180.513Z" transform="translate(-3298.27 -169.69)" fill="#fff"/>
+      </g>
+    </g>
+    <g transform="translate(16.62 26.268)">
+      <g transform="matrix(1, 0, 0, 1, -25.62, -32.27)" filter="url(#svg_leader_27)">
+        <path d="M814.225,700.539,806.722,683l-7.5,17.539-27.128.105,2.887,2.814h26.179l5.565-13.007,5.565,13.007h28.5l2.887-2.814Z" transform="translate(-746.47 -650.73)" fill="#fff"/>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, -25.62, -32.27)" filter="url(#svg_leader_28)">
+        <path d="M1344.692,1006.641h-4.2l-6.3,6.139.03.1h15.458l3.418-2.86h-11.876Z" transform="translate(-1266.48 -950.14)" fill="#fff"/>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, -25.62, -32.27)" filter="url(#svg_leader_29)">
+        <path d="M1051.786,1132.323,1054,1139.7l-10.662-5.605-10.66,5.6,2.217-7.374h-3.06l-3.973,13.216,15.477-8.136,15.474,8.135-3.966-13.215Z" transform="translate(-983.09 -1066.4)" fill="#fff"/>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, -25.62, -32.27)" filter="url(#svg_leader_30)">
+        <path d="M901.682,1012.878h.029l-.024-.016.024-.079-6.3-6.143h-4.2l3.466,3.378H882.834l3.418,2.86h15.43Z" transform="translate(-848.92 -950.14)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>
