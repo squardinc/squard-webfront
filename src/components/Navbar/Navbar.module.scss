@@ -1,9 +1,10 @@
+@import 'src/styles/variables';
 
 .navBar {
-  z-index: 999;
+  z-index: $nav-bar;
   position: fixed;
   bottom: 0;
-  width: 480px;
+  width: $window-width;
   height: 600px;
   opacity: 0.97;
   background-image: linear-gradient(#f0cd0f, #8d0e2c);
