@@ -7,7 +7,7 @@ import { Status } from 'src/contents/about/Status/Status'
 import { ManagementSystem } from 'src/contents/about/ManagementSystem/ManagementSystem'
 import { Heading1 } from 'src/components/Heading1/Heading1'
 
-const IndexPage = () => {
+const AboutPage: React.FC = () => {
   return (
     <PageWrapper>
       <Heading1>About</Heading1>
@@ -19,4 +19,4 @@ const IndexPage = () => {
   )
 }
 
-export default IndexPage
+export default AboutPage
