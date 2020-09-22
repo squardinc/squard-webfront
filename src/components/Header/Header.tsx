@@ -4,15 +4,17 @@ import { faBars, faSearch, faTimes } from '@fortawesome/free-solid-svg-icons'
 import styles from './Header.module.scss'
 import { NavMenu } from 'src/components/NavMenu/NavMenu'
 import { SearchBar } from './SearchBar'
+import { LoginModal } from '../Modal/LoginModal'
 
 export const Header = () => {
   const [showSearchBar, setShowSearchBar] = React.useState(false)
   const [showNavMenu, setShowNavMenu] = React.useState(false)
+  const [showLoginModal, setShowLoginModal] = React.useState(false)
   const [showCrossIcon, setshowCrossIcon] = React.useState(false)
 
   function toggleSearchBar() {
-    setshowCrossIcon(!showCrossIcon)
     setShowSearchBar(!showSearchBar)
+    setshowCrossIcon(!showCrossIcon)
   }
 
   return (
@@ -40,7 +42,12 @@ export const Header = () => {
         </div>
         <SearchBar show={showSearchBar} />
       </div>
-      <NavMenu show={showNavMenu} hideNavMenu={() => setShowNavMenu(false)} />
+      <NavMenu
+        show={showNavMenu}
+        hideNavMenu={() => setShowNavMenu(false)}
+        showLoginModal={() => setShowLoginModal(true)}
+      />
+      <div>{showLoginModal ? <LoginModal closeModal={() => setShowLoginModal(false)} /> : <></>}</div>
     </React.Fragment>
   )
 }

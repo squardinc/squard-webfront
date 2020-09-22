@@ -20,15 +20,19 @@ export const Footer = () => {
         <div className={styles.question + ' pb-4'}>
           「Prospects」や「Angels」についてはこちら↓
         </div>
-        <DefaultButton text='Class（クラス）ってなに？' />
+        <Link to='/about'>
+          <DefaultButton text='Class（クラス）ってなに？' />
+        </Link>
         <div className={styles.sitemap}>
           <div className={styles.links}>
-            <Link to='/'>FAQ</Link>
-            <Link to='/'>About</Link>
-            <Link to='/'>Company</Link>
-            <Link to='/'>Privacy Policy</Link>
+            <Link to='/faq'>FAQ</Link>
+            <Link to='/about'>About</Link>
+            <Link to='/company'>Company</Link>
+            <Link to='/privacypolicy'>Privacy Policy</Link>
           </div>
-          <Logo className={styles.logo} />
+          <Link to='/'>
+            <Logo className={styles.logo} />
+          </Link>
         </div>
       </div>
       <div className={styles.copyright}>

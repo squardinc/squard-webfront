@@ -18,10 +18,10 @@ const DUMMY_MEMBERS = [
 ]
 
 const DUMMY_CORE_MEMBERS = [
-  {designation: "CEO", age: 27, title1: "This is a title", title2: "Large title", url: 'images/raw.jpg', style: 'red'},
-  {designation: "COO", age: 25, title1: "This is a title", title2: "Large title", url: 'images/raw.jpg', style: 'blue'},
-  {designation: "CFO", age: 29, title1: "This is a title", title2: "Large title", url: 'images/raw.jpg', style: 'green'},
-  {designation: "CTO", age: 27, title1: "This is a title", title2: "Large title", url: 'images/raw.jpg', style: 'yellow'},
+  { id: 'shunpei_koike', designation: "CEO", age: 27, title1: "This is a title", title2: "Large title", url: 'images/raw.jpg', style: 'red' },
+  { id: 'hiroki_matsui', designation: "COO", age: 25, title1: "This is a title", title2: "Large title", url: 'images/raw.jpg', style: 'blue' },
+  { id: 'akihiro_kimura', designation: "CFO", age: 29, title1: "This is a title", title2: "Large title", url: 'images/raw.jpg', style: 'green' },
+  { id: 'shoya_yanagisawa', designation: "CTO", age: 27, title1: "This is a title", title2: "Large title", url: 'images/raw.jpg', style: 'yellow' },
 ]
 
 export const TeamLayout = () => {
