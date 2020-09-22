@@ -2,6 +2,7 @@ import * as React from 'react'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { Link } from 'gatsby'
 import styles from './TeamCoreMembers.module.scss'
+import DummyImage from 'src/images/raw.jpg'
 
 interface TeamCoreMembersProps {
   coreMembers: any
@@ -31,7 +32,7 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
             <div className="relative mt-4">
               <div
                 style={{
-                  background: `url("${member.url}") no-repeat center center `,
+                  background: `url("${DummyImage}") no-repeat center center `,
                   backgroundSize: 'cover',
                 }}
                 className={getImageTheme(member.style)}
