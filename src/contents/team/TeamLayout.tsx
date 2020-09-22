@@ -1,4 +1,6 @@
 import * as React from 'react'
+import { gql, useQuery } from '@apollo/client'
+import { getTeam } from 'src/graphql/queries'
 import { TeamTop } from './TeamTop'
 import { TeamIntroduction } from './TeamIntroduction'
 import { TeamCoreMembers } from './TeamContents/TeamCoreMembers'
@@ -6,6 +8,7 @@ import { TeamMembers } from './TeamContents/TeamMembers'
 import { TeamProspects } from './TeamContents/TeamProspects'
 import { TeamAngels } from './TeamContents/TeamAngels'
 import { TeamVIP } from './TeamContents/TeamVIP'
+import { GetTeamQuery } from 'src/types/API'
 
 const DUMMY_MEMBERS = [
   'https://firebasestorage.googleapis.com/v0/b/story-gate.appspot.com/o/squard%2Fshunpei.png?alt=media&token=3e8b258d-fb7d-4437-ac86-298573471d81',
@@ -15,10 +18,11 @@ const DUMMY_MEMBERS = [
 ]
 
 export const TeamLayout = () => {
+  const { loading, error, data } = useQuery<GetTeamQuery>(gql(getTeam), { variables: { id: 'squard' } });
   return (
     <>
       <TeamTop />
-      <TeamIntroduction />
+      <TeamIntroduction tags={data?.getTeam?.tags} leaderName={data?.getTeam?.leaderName} system={data?.getTeam?.system} />
       <TeamCoreMembers coreMembers={DUMMY_MEMBERS} />
       <TeamMembers topMember={DUMMY_MEMBERS[0]} members={DUMMY_MEMBERS} />
       <TeamProspects propspects={DUMMY_MEMBERS} />

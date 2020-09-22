@@ -1,11 +1,31 @@
+@import 'src/styles/variables.scss';
+
 .container {
   padding: 10px;
   background-color: black;
   color: white;
+  height: 60px;
+  width: $window-width;
+  position: fixed;
+  z-index: $header;
 }
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+}
+
+.searchBar {
+  position: absolute;
+  top: 70px;
+  z-index: $header;
+  width: 450px;
+}
+
+.searchBtn {
+  height: 48px;
+  width: 50px;
+  background-color: #f8e32d;
+  border-radius: 50%;
 }

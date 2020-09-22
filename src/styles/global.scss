@@ -1,5 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .bg-v-gradient {
+    background-image: linear-gradient(#f0cd0f, #8d0e2c);
+  }
+}
+
+@import 'src/styles/variables.scss';
+
 body {
-  width: 480px;
+  width: $window-width;
   margin-right: auto;
   margin-left : auto;
   background-color: black;
