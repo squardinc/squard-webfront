@@ -1,12 +1,17 @@
 import * as React from 'react'
+import { Router } from '@reach/router'
 import { WithApolloProvider } from 'src/Apollo'
 import { PageWrapper } from 'src/components/PageWrapper'
-import { TeamLayout } from 'src/contents/team/TeamLayout'
+import { TopLayout } from 'src/contents/top'
+import { ContentLayout } from 'src/contents/ContentLayout'
 
 const IndexPage: React.FC = () => {
   return (
     <PageWrapper>
-      <TeamLayout />
+      <Router>
+        <TopLayout default />
+        <ContentLayout path=':contentId' contentId='' />
+      </Router>
     </PageWrapper>
   )
 }
