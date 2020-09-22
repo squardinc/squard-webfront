@@ -48,6 +48,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
+    "react-modal": "^3.11.2",
     "tailwindcss": "^1.8.10"
   },
   "devDependencies": {
@@ -64,6 +65,7 @@
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^26.0.10",
     "@types/react-helmet": "^6.1.0",
+    "@types/react-modal": "^3.10.6",
     "@types/react-test-renderer": "^16.9.3",
     "babel-jest": "^26.3.0",
     "babel-loader": "^8.1.0",
