@@ -9,6 +9,7 @@ import { TeamProspects } from './TeamContents/TeamProspects'
 import { TeamAngels } from './TeamContents/TeamAngels'
 import { TeamVIP } from './TeamContents/TeamVIP'
 import { GetTeamQuery } from 'src/types/API'
+import DummyImage from 'src/images/raw.jpg'
 
 const DUMMY_MEMBERS = [
   'https://firebasestorage.googleapis.com/v0/b/story-gate.appspot.com/o/squard%2Fshunpei.png?alt=media&token=3e8b258d-fb7d-4437-ac86-298573471d81',
@@ -18,10 +19,10 @@ const DUMMY_MEMBERS = [
 ]
 
 const DUMMY_CORE_MEMBERS = [
-  { id: 'shunpei_koike', designation: "CEO", age: 27, title1: "This is a title", title2: "Large title", url: 'images/raw.jpg', style: 'red' },
-  { id: 'hiroki_matsui', designation: "COO", age: 25, title1: "This is a title", title2: "Large title", url: 'images/raw.jpg', style: 'blue' },
-  { id: 'akihiro_kimura', designation: "CFO", age: 29, title1: "This is a title", title2: "Large title", url: 'images/raw.jpg', style: 'green' },
-  { id: 'shoya_yanagisawa', designation: "CTO", age: 27, title1: "This is a title", title2: "Large title", url: 'images/raw.jpg', style: 'yellow' },
+  { id: 'shunpei_koike', title: 'CEO', age: 27, introduction: '鏡の国から導く技術者', name: '小池駿平', imageUrl: DummyImage, color: 'red' },
+  { id: 'hiroki_matsui', title: 'COO', age: 25, introduction: 'アートを論理で切り取る教祖', name: '松井大樹', imageUrl: DummyImage, color: 'blue' },
+  { id: 'akihiro_kimura', title: 'CFO', age: 29, introduction: 'ゴリラ界最強の頭脳', name: '木村明寛', imageUrl: DummyImage, color: 'green' },
+  { id: 'shoya_yanagisawa', title: 'CTO', age: 27, introduction: '時代を愛するエンジニア侍', name: '柳澤翔矢', imageUrl: DummyImage, color: 'yellow' },
 ]
 
 export const TeamLayout = () => {

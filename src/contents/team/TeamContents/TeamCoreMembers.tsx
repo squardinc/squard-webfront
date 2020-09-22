@@ -4,8 +4,17 @@ import { Link } from 'gatsby'
 import styles from './TeamCoreMembers.module.scss'
 import DummyImage from 'src/images/raw.jpg'
 
+interface CoreMember {
+  id: string
+  imageUrl: string
+  age: string
+  title: string
+  introduction: string
+  name:string
+  color: string
+}
 interface TeamCoreMembersProps {
-  coreMembers: any
+  coreMembers: CoreMember[]
 }
 export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
   coreMembers,
@@ -32,10 +41,10 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
             <div className="relative mt-4">
               <div
                 style={{
-                  background: `url("${DummyImage}") no-repeat center center `,
+                  background: `url("${member.imageUrl}") no-repeat center center `,
                   backgroundSize: 'cover',
                 }}
-                className={getImageTheme(member.style)}
+                className={getImageTheme(member.color)}
               ></div>
               <div className={styles.ageTag}>
                 <p className="ml-2 mr-2 pl-1 leading-9 text-sm font-semibold text-white border-b border-dashed">
@@ -43,9 +52,9 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
               </p>
                 <p className="pl-3 text-2xl font-bold text-white">{member.age}</p>
               </div>
-              <div className={styles.designationText}>{member.designation}</div>
-              <div className={styles.titleSM}>{member.title1}</div>
-              <div className={styles.titleLG}>{member.title2}</div>
+              <div className={styles.designationText}>{member.title}</div>
+              <div className={styles.titleSM}>{member.introduction}</div>
+              <div className={styles.titleLG}>{member.name}</div>
             </div>
           </Link>
         ))}
