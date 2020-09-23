@@ -3,6 +3,7 @@ import { LeftBorderCaption } from 'src/components/Caption/Captions'
 import { faPaperPlane, faLink } from '@fortawesome/free-solid-svg-icons'
 import { DefaultButton, IconButton } from 'src/components/Button/DefaultButton'
 import styles from './TeamVIP.module.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const trim = (text: string, length: number) => `${text.substring(0, length)}...`
 interface VIPProps {
@@ -12,24 +13,40 @@ interface VIPProps {
 }
 const VIP: React.FC<VIPProps> = ({ vip, name, introduction }) => {
   return (
-    <div className={styles.vipContainer} >
-      <img src={vip} className={styles.vip} />
-      <div className={styles.vipCaptionContainer}>
-        <div className={styles.vipCaption}>
-          <div className={styles.vipCaptionTop} >
-            <div className={styles.vipName}>{name}</div>
-            <div className={styles.vipIntroduction}>{introduction}</div>
-          </div>
-          <div className={styles.vipLinks}>
-            <IconButton icon={faPaperPlane} />
-            <IconButton icon={faLink} />
-            <DefaultButton text='Read More' size='small' />
+    <div className={styles.vipContainer}>
+      <div className="pl-0 pr-0" style={{ width: '300px', height: '520px' }}>
+        <img src={vip} className={styles.vip} />
+        <div className={styles.vipCaptionContainer}>
+          <div className={styles.vipCaption}>
+            <div className={styles.vipCaptionTop}>
+              <div className={styles.vipName}>{name}</div>
+              <div className={styles.vipIntroduction}>{introduction}</div>
+            </div>
+            <div className={styles.vipLinks}>
+              <div className="bg-yellow-400 text-black rounded-full h-12 w-12 flex items-center justify-center mr-2">
+                <FontAwesomeIcon
+                  icon={faPaperPlane}
+                  size="1x"
+                  cursor="pointer"
+                />
+              </div>
+              <div className="bg-yellow-400 text-black rounded-full h-12 w-12 flex items-center justify-center mr-2">
+                <FontAwesomeIcon
+                  icon={faLink}
+                  size="1x"
+                  cursor="pointer"
+                />
+              </div>
+              <div className="bg-yellow-400 text-black rounded-full h-12 w-40 flex items-center justify-center mr-2">
+               <span className="font-bold text-lg">Read More</span>
+              </div>
+              
+            </div>
           </div>
         </div>
       </div>
     </div>
   )
-
 }
 interface TeamVIPProps {
   vips: string[]
@@ -37,19 +54,21 @@ interface TeamVIPProps {
 export const TeamVIP: React.FC<TeamVIPProps> = ({ vips }) => {
   return (
     <div className={styles.container}>
-      <LeftBorderCaption text='V.I.P.' />
-      <div className={styles.vips}>
-        {vips.map(vip =>
+      <div className="pl-2 pr-2">
+        <LeftBorderCaption text="V.I.P." />
+      </div>
+      <div className="flex overflow-x-auto overflow-y-hidden pl-6 pr-6">
+        {vips.map((vip) => (
           <VIP
             vip={vip}
-            name='Shunpei Koike'
-            introduction={
-              trim(
-                '起業家。2017年にブルームバーグ社の「世界に一番影響力を与えた人物50人」のうちの1人に選ばれ、2018年にはフォーブス誌の「30アンダー30」に選ばれる。'
-                , 50
-              )}
-          />)}
+            name="Shunpei Koike"
+            introduction={trim(
+              '起業家。2017年にブルームバーグ社の「世界に一番影響力を与えた人物50人」のうちの1人に選ばれ、2018年にはフォーブス誌の「30アンダー30」に選ばれる。',
+              50
+            )}
+          />
+        ))}
       </div>
-    </div >
+    </div>
   )
 }

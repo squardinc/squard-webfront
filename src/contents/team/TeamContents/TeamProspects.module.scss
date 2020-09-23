@@ -1,7 +1,7 @@
 @import './team-mixins';
 
 .container {
-  @include team-content-container(black)
+  padding: 20px 0;
 }
 
 .prospectContainer {
@@ -12,5 +12,5 @@
   @include personIconDisplayScroll();
 }
 .prospect {
-  @include personIcon(120px, 120px)
+  @include personIcon(150px, 150px, 5px);
 }

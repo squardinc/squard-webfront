@@ -26,7 +26,7 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
       <TwoStagedCaption sub="CORE" main="MEMBERS" />
       <div className={styles.members}>
         {coreMembers.map((member: any) => (
-          <div className="relative mt-4">
+          <div className="relative mt-3">
             <div
               style={{
                 background: `url("${member.url}") no-repeat center center `,
@@ -35,10 +35,10 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
               className={getImageTheme(member.style)}
             ></div>
             <div className={styles.ageTag}>
-              <p className="ml-2 mr-2 pl-1 leading-9 text-sm font-semibold text-white border-b border-dashed">
+              <p className="ml-2 mr-2 pl-1 leading-9 text-xs font-semibold text-white border-b border-dashed">
                 Age
               </p>
-              <p className="pl-3 text-2xl font-bold text-white">{member.age}</p>
+              <p className="pl-3 text-xl font-bold text-white">{member.age}</p>
             </div>
             <div className={styles.designationText}>{member.designation}</div>
             <div className={styles.titleSM}>{member.title1}</div>

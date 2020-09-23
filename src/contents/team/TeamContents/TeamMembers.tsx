@@ -8,7 +8,7 @@ interface MemberProps {
 }
 const Member: React.FC<MemberProps> = ({ member, name}) => {
   return (
-    <div className={styles.memberContainer} >
+    <div className="relative mt-4 pr-3 pl-2">
       <img src={member} className={styles.member} />
       <div className={styles.memberCaption}>
         <div className={styles.memberName}>{name}</div>
@@ -22,11 +22,11 @@ type TopMemberProps = MemberProps & {
 }
 const TopMember: React.FC<TopMemberProps> = ({ member, name, title }) => {
   return (
-    <div className={styles.memberContainer} >
+    <div className={styles.topMemberContainer} >
       <img src={member} className={styles.topMember} />
-      <div className={styles.memberCaption}>
+      <div className={styles.topMemberCaption}>
         <div　className={styles.topMemberName}>{name}</div>
-        <div　className={styles.topMemberTitle}> / {title}</div>
+        <div　className={styles.topMemberTitle}> &nbsp;/ {title}</div>
       </div>
     </div>
   )
@@ -37,6 +37,7 @@ interface TeamMembersProps {
   members: string[]
 }
 export const TeamMembers: React.FC<TeamMembersProps> = ({ topMember, members }) => {
+  members.push('images/raw.jpg');
   return (
     <div className={styles.container}>
       <LeftBorderCaption text='MEMBERS' color='white' />

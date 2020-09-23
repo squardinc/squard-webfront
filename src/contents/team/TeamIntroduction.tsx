@@ -29,12 +29,12 @@ export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({ tags = [], l
           {tags.map(tag => <HashTag text={tag} />)}
         </div>
         <div className={styles.attributeContainer}>
-          <div>
+          <div className="text-base tracking-wide font-thin">
             <div>
-              マネジメントシステム: {system}
+              マネジメントシステム: <span className="text-yellow-400">{system}</span>
             </div>
             <div>
-              チームリーダー: {leaderName}
+              チームリーダー: <span className="text-yellow-400">{leaderName}</span>
             </div>
           </div>
         </div>

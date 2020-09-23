@@ -7,8 +7,10 @@ interface ProspectProps {
 }
 const Prospect: React.FC<ProspectProps> = ({ prospect }) => {
   return (
-    <div className={styles.prospectContainer} >
-      <img src={prospect} className={styles.prospect} />
+    <div className={styles.prospectContainer}>
+      <div className="pl-1 pr-2 w-40">
+        <img src={prospect} className={styles.prospect} />
+      </div>
     </div>
   )
 }
@@ -16,15 +18,19 @@ const Prospect: React.FC<ProspectProps> = ({ prospect }) => {
 interface TeamPropspectsProps {
   propspects: string[]
 }
-export const TeamProspects: React.FC<TeamPropspectsProps> = ({ propspects }) => {
+export const TeamProspects: React.FC<TeamPropspectsProps> = ({
+  propspects,
+}) => {
   return (
     <div className={styles.container}>
-      <LeftBorderCaption text='PROSPECTS' color='white' />
-      <div className={styles.prospects}>
-        {propspects.map(prospect =>
-          <Prospect prospect={prospect} />
-        )}
+      <div className="pl-6 pr-6">
+        <LeftBorderCaption text="PROSPECTS" color="white" />
       </div>
-    </div >
+      <div className="flex overflow-x-auto pl-6 pr-6">
+        {propspects.map((prospect) => (
+          <Prospect prospect={prospect} />
+        ))}
+      </div>
+    </div>
   )
 }

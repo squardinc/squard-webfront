@@ -1,5 +1,7 @@
 @import './team-mixins';
 
+$image-container-width: 188px;
+
 .container {
   @include team-content-container(white);
 }
@@ -9,6 +11,7 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  margin-top: 30px;
 }
 
 .member {
@@ -16,7 +19,7 @@
 }
 
 .redImageContainer {
-  width: 200px;
+  width: $image-container-width;
   height: 420px;
   border: 0px;
   border-radius: 20px;
@@ -27,7 +30,7 @@
 }
 
 .blueImageContainer {
-  width: 200px;
+  width: $image-container-width;
   height: 420px;
   border: 0px;
   border-radius: 20px;
@@ -38,7 +41,7 @@
 }
 
 .greenImageContainer {
-  width: 200px;
+  width: $image-container-width;
   height: 420px;
   border: 0px;
   border-radius: 20px;
@@ -49,7 +52,7 @@
 }
 
 .yellowImageContainer {
-  width: 200px;
+  width: $image-container-width;
   height: 420px;
   border: 0px;
   border-radius: 20px;
@@ -64,8 +67,9 @@
   top: 15px;
   left: 20px;
   color: white;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bolder;
+  font-style: italic;
 }
 
 .ageTag {
@@ -76,6 +80,7 @@
   height: 75px;
   width: 50px;
   border-radius: 0 0 10px 10px;
+  font-style: italic;
 }
 
 .titleSM {
@@ -85,6 +90,7 @@
   color: white;
   font-size: 1rem;
   font-weight: bold;
+  font-style: italic;
 }
 
 .titleLG {
@@ -94,4 +100,5 @@
   color: white;
   font-size: 1.8rem;
   font-weight: bolder;
+  font-style: italic;
 }

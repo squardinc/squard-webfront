@@ -20,13 +20,15 @@ export const Footer = () => {
         <div className={styles.question + ' pb-4'}>
           「Prospects」や「Angels」についてはこちら↓
         </div>
-        <DefaultButton text='Class（クラス）ってなに？' />
+        <div className="border-2 border-yellow-400 rounded-full h-12 w-full flex items-center justify-center mr-2">
+          <span className="text-yellow-400 font-bold text-lg">Class（クラス）ってなに？</span>
+        </div>
         <div className={styles.sitemap}>
           <div className={styles.links}>
-            <Link to='/'>FAQ</Link>
-            <Link to='/'>About</Link>
-            <Link to='/'>Company</Link>
-            <Link to='/'>Privacy Policy</Link>
+            <Link to="/">FAQ</Link>
+            <Link to="/">About</Link>
+            <Link to="/">Company</Link>
+            <Link to="/">Privacy Policy</Link>
           </div>
           <Logo className={styles.logo} />
         </div>
@@ -37,4 +39,3 @@ export const Footer = () => {
     </div>
   )
 }
-

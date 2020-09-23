@@ -1,13 +1,13 @@
-$button-color: yellow;
+$button-color: #ffeb3b;
 
 .buttonContainer {
   display: flex;
   justify-content: center;
 }
 
-@mixin button($size: 'medium', $padding: 10px 40px) {
+@mixin button($size: 'medium', $padding: 12px 40px, $width: 100%) {
   display: inline-block;
-  border-radius: 20px;
+  border-radius: 25px;
   border: 1px solid $button-color;
   background-color: $button-color;
   color: black;
@@ -16,14 +16,17 @@ $button-color: yellow;
   text-align: center;
   padding: $padding;
   white-space: nowrap;
+  width: $width;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-.button[data-size=icon] {
+.button[data-size='icon'] {
   @include button(large, 3px);
 }
-.button[data-size=medium] {
+.button[data-size='medium'] {
   @include button(medium);
 }
-.button[data-size=small] {
-  @include button(small, 2px 10px);
+.button[data-size='small'] {
+  @include button(medium, 8px 10px, 60%);
 }
