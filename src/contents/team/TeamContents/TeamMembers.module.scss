@@ -1,3 +1,4 @@
+@import 'src/styles/variables.scss';
 @import './team-mixins';
 
 .container {
@@ -51,7 +52,7 @@
 }
 
 .topMemberTitle {
-  color: yellow;
+  color: $yellow;
   display: flex;
   justify-content: center;
   align-items: flex-end;
