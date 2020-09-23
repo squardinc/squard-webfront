@@ -1,11 +1,12 @@
 import * as React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faSearch, faTimes } from '@fortawesome/free-solid-svg-icons'
-import styles from './Header.module.scss'
 import { NavMenu } from 'src/components/NavMenu/NavMenu'
+import { LoginModal } from 'src/components/Modal/LoginModal'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { SearchBar } from './SearchBar'
-import { LoginModal } from '../Modal/LoginModal'
+import Cross from 'src/assets/cross.svg'
+import Search from 'src/assets/search.svg'
+import Menu from 'src/assets/menu.svg'
+import styles from './Header.module.scss'
 
 export const Header = () => {
   const [showSearchBar, setShowSearchBar] = React.useState(false)
@@ -16,9 +17,7 @@ export const Header = () => {
     <React.Fragment>
       <div className={styles.container}>
         <div className={styles.header}>
-          <FontAwesomeIcon
-            icon={faBars}
-            size="2x"
+          <Menu
             cursor="pointer"
             onClick={() => setShowNavMenu(!showNavMenu)}
           />
@@ -29,12 +28,10 @@ export const Header = () => {
             </span>
           </TextDisplay>
           <div className="w-6">
-            <FontAwesomeIcon
-              icon={!showSearchBar ? faSearch : faTimes}
-              size="2x"
-              cursor="pointer"
-              onClick={() => setShowSearchBar(!showSearchBar)}
-            />
+            {showSearchBar
+              ? <Cross cursor="pointer" onClick={() => setShowSearchBar(false)} />
+              : <Search cursor="pointer" onClick={() => setShowSearchBar(true)} />
+            }
           </div>
         </div>
         <SearchBar show={showSearchBar} />
