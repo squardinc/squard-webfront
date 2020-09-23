@@ -28,7 +28,7 @@ export const TwoStagedCaption: React.FC<TwoStagedCaptionProps> = ({ sub, main, s
     <>
       <LeftBorderCaption text={sub} fontWeight={subFontWeight} />
       <TextDisplay className={styles[style]}>
-        {main}
+        <i>{main}</i>
       </TextDisplay>
     </>
   )
