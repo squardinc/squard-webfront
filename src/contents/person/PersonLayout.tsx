@@ -14,20 +14,18 @@ import ProfileLink from 'src/assets/profile_link_icon.svg'
 
 export const PersonLayout = () => {
   return (
-    <div
-      className="relative h-full mb-0"
-      style={{ backgroundColor: '#e2e2e2' }}
-    >
-      <div className="pt-16 pb-2">
+    <div className={styles.container} style={{ backgroundColor: '#e2e2e2' }}>
+      <div className="pb-2">
         <img src="images/Person_1.png" height="100%" width="100%" />
         <div className={styles.profileContainer}>
           <div className={styles.profilerImageContainer}>
-              <div style={{
-                  background: `url("images/user.png") no-repeat center center `,
-                  backgroundSize: 'cover',
-                }}
-                className={styles.profilerImage}
-              ></div>
+            <div
+              style={{
+                background: `url("images/user.png") no-repeat center center `,
+                backgroundSize: 'cover',
+              }}
+              className={styles.profilerImage}
+            ></div>
           </div>
           <div className="text-2xl font-medium text-white tracking-widest pl-32 pt-5">
             小池駿平
@@ -65,7 +63,9 @@ export const PersonLayout = () => {
             </div>
           </div>
           <div className={styles.profilerDesignation}>
-            <div className="text-black font-thin pl-5 pt-2 pr-5">iOS Engineer</div>
+            <div className="text-black font-thin pl-5 pt-2 pr-5">
+              iOS Engineer
+            </div>
           </div>
         </div>
         <div id="profile-link-member" className="pt-8">

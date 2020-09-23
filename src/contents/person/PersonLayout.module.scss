@@ -1,5 +1,11 @@
 @import 'src/styles/variables';
 
+
+.container {
+  position: relative;
+  top: 60px;
+}
+
 .profileContainer {
   position: relative;
   bottom: 80px;
