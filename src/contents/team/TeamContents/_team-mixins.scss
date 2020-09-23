@@ -1,6 +1,8 @@
+@import 'src/styles/variables.scss';
+
 $border-radius: 20px;
 
-@mixin team-content-container($color: black) {
+@mixin team-content-container($color: $background-color) {
   padding: 20px;
   background-color: $color;
 }
