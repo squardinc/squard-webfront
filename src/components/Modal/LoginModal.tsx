@@ -9,7 +9,7 @@ import { TextDisplay } from '../TextDisplay/TextDisplay'
 type LoginComponentProps = ModalProps & {}
 const LoginComponent: React.FC<LoginComponentProps> = ({ closeModal }) => {
   return (
-    <div className='bg-v-gradient text-white p-6 rounded-lg w-5/6'>
+    <div className='bg-v-gradient text-white p-6 rounded-xl w-7/9'>
       <div className='flex justify-end w-full'>
         <FontAwesomeIcon icon={faTimes} className='text-white cursor-pointer' onClick={closeModal} />
       </div>
