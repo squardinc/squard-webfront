@@ -5,7 +5,7 @@ import { MetaDataQuery } from 'types/graphql-types'
 
 const WebFonts = () => (
   <>
-    <script type='application/javascript'>
+    <script id='Noto Sans CJK JP' type='application/javascript'>
       {`
         {
           (function(d) {
@@ -19,12 +19,11 @@ const WebFonts = () => (
         }
     `}
     </script>
-    <link rel="stylesheet" href="https://use.typekit.net/pey6zyl.css" />
-    <link rel="stylesheet" href="https://use.typekit.net/vac6hkl.css" />
-    <link rel="stylesheet" href="https://use.typekit.net/ajn0goi.css" />
-    <link rel="stylesheet" href="https://use.typekit.net/bff0wql.css" />
-    <link rel="stylesheet" href="https://use.typekit.net/bwj6ctc.css" />
-    <link rel="stylesheet" href="https://use.typekit.net/nlu4xtp.css" />
+    <link id='Montserrat' rel="stylesheet" href="https://use.typekit.net/pey6zyl.css" />
+    <link id='ATF Livermore Script' rel="stylesheet" href="https://use.typekit.net/ajn0goi.css" />
+    <link id='Raleway' rel="stylesheet" href="https://use.typekit.net/bff0wql.css" />
+    <link id='Raleway v2.0' rel="stylesheet" href="https://use.typekit.net/bwj6ctc.css" />
+    <link id='Lato' rel="stylesheet" href="https://use.typekit.net/nlu4xtp.css" />
   </>
 )
 
