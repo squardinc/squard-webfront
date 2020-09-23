@@ -6,6 +6,9 @@ module.exports = {
   purge: ["./src/**/*.ts", "./src/**/*.tsx"],
   theme: {
     extend: {},
+    maxWidth: {
+      xs: '480px',
+    }
   },
   variants: {},
   plugins: [],

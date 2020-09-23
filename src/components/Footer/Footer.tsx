@@ -13,24 +13,28 @@ export const Footer = () => {
         <div className={styles.titleSub}>What's the</div>
         <div className={styles.titleMain}>Squard?</div>
         <div className={styles.description}>
-          Webサービス「Squard（スクアード）」は、個人でもなく法人でもない新しい働き方の実現を目標に、新時代のチームメイキングソリューションを提供するコラボレーションプラットフォームです。
+          Webサービス「Squard（スクアード）」は、新時代のチームメイキングソリューションを提供するコラボレーションプラットフォームです。
           <br />
-          チームページからProspects（プロスペクト）またはAngels（エンジェル）としてチームに参加することで、チームが定めた各種特典を受け取ることができます。
+          チームページからProspects（プロスペクト）またはAngels（エンジェル）としてチームに参加することで、コミュニケーションツールや限定コンテンツのアクセスなどClass（クラス）ごとに定められた各種特典を受け取ることができます。
         </div>
         <div className={styles.question + ' pb-4'}>
           「Prospects」や「Angels」についてはこちら↓
         </div>
+        <Link to='/about'>
         <div className="border-2 border-yellow-400 rounded-full h-12 w-full flex items-center justify-center mr-2">
           <span className="text-yellow-400 font-bold text-lg">Class（クラス）ってなに？</span>
         </div>
+        </Link>
         <div className={styles.sitemap}>
           <div className={styles.links}>
-            <Link to="/">FAQ</Link>
-            <Link to="/">About</Link>
-            <Link to="/">Company</Link>
-            <Link to="/">Privacy Policy</Link>
+            <Link to='/faq'>FAQ</Link>
+            <Link to='/about'>About</Link>
+            <Link to='/company'>Company</Link>
+            <Link to='/privacypolicy'>Privacy Policy</Link>
           </div>
-          <Logo className={styles.logo} />
+          <Link to='/'>
+            <Logo className={styles.logo} />
+          </Link>
         </div>
       </div>
       <div className={styles.copyright}>

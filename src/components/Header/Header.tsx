@@ -4,16 +4,12 @@ import { faBars, faSearch, faTimes } from '@fortawesome/free-solid-svg-icons'
 import styles from './Header.module.scss'
 import { NavMenu } from 'src/components/NavMenu/NavMenu'
 import { SearchBar } from './SearchBar'
+import { LoginModal } from '../Modal/LoginModal'
 
 export const Header = () => {
   const [showSearchBar, setShowSearchBar] = React.useState(false)
   const [showNavMenu, setShowNavMenu] = React.useState(false)
-  const [showCrossIcon, setshowCrossIcon] = React.useState(false)
-
-  function toggleSearchBar() {
-    setshowCrossIcon(!showCrossIcon)
-    setShowSearchBar(!showSearchBar)
-  }
+  const [showLoginModal, setShowLoginModal] = React.useState(false)
 
   return (
     <React.Fragment>
@@ -31,16 +27,21 @@ export const Header = () => {
           </span>
           <div className="w-6">
             <FontAwesomeIcon
-              icon={!showCrossIcon ? faSearch : faTimes}
+              icon={!showSearchBar ? faSearch : faTimes}
               size="2x"
               cursor="pointer"
-              onClick={() => toggleSearchBar()}
+              onClick={() => setShowSearchBar(!showSearchBar)}
             />
           </div>
         </div>
         <SearchBar show={showSearchBar} />
       </div>
-      <NavMenu show={showNavMenu} hideNavMenu={() => setShowNavMenu(false)} />
+      <NavMenu
+        show={showNavMenu}
+        hideNavMenu={() => setShowNavMenu(false)}
+        showLoginModal={() => setShowLoginModal(true)}
+      />
+      <div>{showLoginModal ? <LoginModal closeModal={() => setShowLoginModal(false)} /> : <></>}</div>
     </React.Fragment>
   )
 }

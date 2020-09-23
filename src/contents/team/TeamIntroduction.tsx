@@ -16,10 +16,10 @@ export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({ tags = [], l
       <div id='introduction' className={styles.content}>
         <div className={styles.caption}>
           <div className={styles.caption1}>
-            個人でも会社でも実現できない
+            未来のチームを定義する
           </div>
           <div className={styles.caption2}>
-            新しいチームを実現する
+            Squard
           </div>
         </div>
         <div className={styles.description}>
