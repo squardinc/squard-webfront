@@ -1,0 +1,56 @@
+@import 'src/styles/variables';
+
+.profileContainer {
+  position: relative;
+  bottom: 80px;
+  z-index: 1;
+  background: #051026;
+  opacity: 0.85;
+  height: 450px;
+  margin: 0px 20px 0px 20px;
+  border-radius: 10px;
+}
+
+.profilerImageContainer {
+  position: absolute;
+  top: -20px;
+  height: 100px;
+  width: 80px;
+  margin: 0px 20px 20px 20px;
+  background-image: linear-gradient(#edc74c, #bc4c49);
+  border-radius: 10px;
+  z-index: 1;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.profilerImage {
+  height: 94px;
+  width: 74px;
+  border-radius: 10px;
+  margin: 3px 0px 0px 3px;
+}
+
+.profilerLink {
+  position: relative;
+  bottom: 50px;
+  height: 80px;
+  margin: 0px 20px 20px 20px;
+  background-image: linear-gradient(to right, #bc4c49, #edc74c);
+  border-radius: 10px;
+  z-index: 1;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.profilerDesignation {
+  position: relative;
+  bottom: 80px;
+  float: right;
+  height: 35px;
+  margin: 0px 30px 20px 20px;
+  background-color: #e9e8e8;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-radius: 5px;
+}
