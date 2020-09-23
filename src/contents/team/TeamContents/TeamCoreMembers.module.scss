@@ -1,7 +1,9 @@
 @import './team-mixins';
 
+$image-container-width: 188px;
+
 .container {
-  @include team-content-container(white)
+  @include team-content-container(white);
 }
 
 .members {
@@ -9,8 +11,91 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  margin-top: 30px;
 }
 
 .member {
   @include personIcon(200px, 420px);
+}
+
+.redImageContainer {
+  width: $image-container-width;
+  height: 420px;
+  border: 0px;
+  border-radius: 20px;
+  -webkit-filter: invert(40%) grayscale(100%) brightness(50%) sepia(100%)
+    hue-rotate(-70deg) saturate(400%) contrast(0.8) blur(0.6px);
+  filter: grayscale(100%) brightness(50%) sepia(100%) hue-rotate(-70deg)
+    saturate(500%) contrast(0.8) blur(0.6px);
+}
+
+.blueImageContainer {
+  width: $image-container-width;
+  height: 420px;
+  border: 0px;
+  border-radius: 20px;
+  -webkit-filter: grayscale(100%) brightness(50%) sepia(100%)
+    hue-rotate(-210deg) saturate(1000%) contrast(0.7) blur(0.6px);
+  filter: grayscale(100%) brightness(50%) sepia(100%) hue-rotate(-205deg)
+    saturate(1000%) contrast(0.7) blur(0.6px);
+}
+
+.greenImageContainer {
+  width: $image-container-width;
+  height: 420px;
+  border: 0px;
+  border-radius: 20px;
+  -webkit-filter: grayscale(100%) brightness(50%) sepia(100%) hue-rotate(120deg)
+    saturate(1000%) contrast(0.8) blur(0.6px);
+  filter: grayscale(100%) brightness(50%) sepia(100%) hue-rotate(120deg)
+    saturate(1000%) contrast(0.8) blur(0.6px);
+}
+
+.yellowImageContainer {
+  width: $image-container-width;
+  height: 420px;
+  border: 0px;
+  border-radius: 20px;
+  -webkit-filter: grayscale(90%) brightness(80%) sepia(90%) hue-rotate(5deg)
+    saturate(500%) contrast(0.8) blur(0.6px);
+  filter: grayscale(90%) brightness(80%) sepia(90%) hue-rotate(5deg)
+    saturate(500%) contrast(0.8) blur(0.6px);
+}
+
+.designationText {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  color: white;
+  font-size: 1rem;
+  font-weight: bolder;
+  font-style: italic;
+}
+
+.ageTag {
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  background-color: black;
+  height: 75px;
+  width: 50px;
+  border-radius: 0 0 10px 10px;
+}
+
+.titleSM {
+  position: absolute;
+  bottom: 45px;
+  left: 10px;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.titleLG {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: bolder;
 }

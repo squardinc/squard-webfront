@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styles from './NavMenu.module.scss'
+import { TextDisplay } from '../TextDisplay/TextDisplay'
 
 interface MenuItemProps {
   text: string
@@ -14,7 +15,10 @@ export const MenuItem: React.FC<MenuItemProps> = ({ text, SVGIcon, onClick }) =>
       onClick={onClick || (() => { })}
     >
       <SVGIcon className="h-16 w-auto" />
-      <div className={"mt-4 flex-grow w-auto font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>{text}</div>
+      <TextDisplay
+        className={"mt-4 flex-grow w-auto font-thin text-lg border-b border-gray-100 border-opacity-75 " + styles.navText}>
+        {text}
+      </TextDisplay>
     </div >
   )
 }

@@ -9,6 +9,7 @@ import { TeamProspects } from './TeamContents/TeamProspects'
 import { TeamAngels } from './TeamContents/TeamAngels'
 import { TeamVIP } from './TeamContents/TeamVIP'
 import { GetTeamQuery } from 'src/types/API'
+import DummyImage from 'src/images/raw.jpg'
 
 const DUMMY_MEMBERS = [
   'https://firebasestorage.googleapis.com/v0/b/story-gate.appspot.com/o/squard%2Fshunpei.png?alt=media&token=3e8b258d-fb7d-4437-ac86-298573471d81',
@@ -17,11 +18,11 @@ const DUMMY_MEMBERS = [
   'https://firebasestorage.googleapis.com/v0/b/story-gate.appspot.com/o/squard%2Fshoya.png?alt=media&token=50e1a69b-2f2c-4998-bba9-8fc3deb7d06d',
 ]
 
-const DUMMY_MEMBERS_WITH_ID = [
-  { id: 'shunpei_koike', imageUrl: 'https://firebasestorage.googleapis.com/v0/b/story-gate.appspot.com/o/squard%2Fshunpei.png?alt=media&token=3e8b258d-fb7d-4437-ac86-298573471d81' },
-  { id: 'hiroki_matsui', imageUrl: 'https://firebasestorage.googleapis.com/v0/b/story-gate.appspot.com/o/squard%2Fmatsui.png?alt=media&token=6b84927f-4069-40ac-8a90-09099a7f71ab' },
-  { id: 'akihiro_kimura', imageUrl: 'https://firebasestorage.googleapis.com/v0/b/story-gate.appspot.com/o/squard%2Fkimura.png?alt=media&token=ce7a24bd-b92d-4c31-a803-90263e76d52a' },
-  { id: 'shoya_yanagisawa', imageUrl: 'https://firebasestorage.googleapis.com/v0/b/story-gate.appspot.com/o/squard%2Fshoya.png?alt=media&token=50e1a69b-2f2c-4998-bba9-8fc3deb7d06d' },
+const DUMMY_CORE_MEMBERS = [
+  { id: 'shunpei_koike', title: 'CEO', age: 27, introduction: '鏡の国から導く技術者', name: '小池駿平', imageUrl: DummyImage, color: 'red' },
+  { id: 'hiroki_matsui', title: 'COO', age: 25, introduction: 'アートを論理で切り取る教祖', name: '松井大樹', imageUrl: DummyImage, color: 'blue' },
+  { id: 'akihiro_kimura', title: 'CFO', age: 29, introduction: 'ゴリラ界最強の頭脳', name: '木村明寛', imageUrl: DummyImage, color: 'green' },
+  { id: 'shoya_yanagisawa', title: 'CTO', age: 27, introduction: '時代を愛するエンジニア侍', name: '柳澤翔矢', imageUrl: DummyImage, color: 'yellow' },
 ]
 
 export const TeamLayout = () => {
@@ -30,7 +31,7 @@ export const TeamLayout = () => {
     <>
       <TeamTop />
       <TeamIntroduction tags={data?.getTeam?.tags} leaderName={data?.getTeam?.leaderName} system={data?.getTeam?.system} />
-      <TeamCoreMembers coreMembers={DUMMY_MEMBERS_WITH_ID} />
+      <TeamCoreMembers coreMembers={DUMMY_CORE_MEMBERS} />
       <TeamMembers topMember={DUMMY_MEMBERS[0]} members={DUMMY_MEMBERS} />
       <TeamProspects propspects={DUMMY_MEMBERS} />
       <TeamAngels angels={DUMMY_MEMBERS} numOfAngels={65535} />

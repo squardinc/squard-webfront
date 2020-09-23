@@ -5,20 +5,23 @@
 .titleSub {
   font-weight: bold;
   font-style: italic;
-  color: yellow;
+  color: #ffeb3b;
+  font-size: x-large;
 }
 .titleMain {
   font-weight: bold;
   font-style: italic;
-  font-size: xx-large;
+  font-size: 3em;
 }
 .description {
+  font-size: larger;
+  font-weight: 200;
   margin: 20px 0px;
 }
 .question {
   text-align: center;
   font-size: small;
-  color: yellow;
+  color: #ffeb3b;
 }
 .sitemap {
   display: flex;
@@ -31,7 +34,7 @@
   justify-content: space-between;
   font-size: large;
   font-weight: bold;
-  color: yellow;
+  color: #ffeb3b;
 }
 .logo {
   width: auto;
@@ -40,5 +43,10 @@
 .copyright {
   text-align: center;
   font-size: small;
-  color: yellow;
+  font-weight: 200;
+  color: #ffeb3b;
+  background-color: #051026;
+  padding-bottom: 10px;
+  padding-top: 3px;
+  height: 30px;
 }
