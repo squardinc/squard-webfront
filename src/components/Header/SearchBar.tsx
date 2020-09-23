@@ -20,7 +20,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ show }) => {
           className="border-2 border-gray-300 bg-white h-12 w-full px-5 pr-16 rounded-full text-sm focus:outline-none"
           type="search"
           name="search"
-          placeholder="Search"
+          placeholder="キーワードかハッシュタグを入力"
         />
         <div className="absolute right-0 top-0 mt-2 ml-4">
           <div className={styles.searchBtn}>
