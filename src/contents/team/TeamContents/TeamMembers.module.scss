@@ -5,7 +5,9 @@
 }
 
 .members {
-  @include personIconDisplayWrap();
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .topMemberContainer {
