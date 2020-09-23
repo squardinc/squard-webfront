@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { FontAwesomeIconProps, FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './Button.module.scss'
+import { TextDisplay } from '../TextDisplay/TextDisplay'
 
 interface ButtonProps {
   text: string
@@ -10,7 +11,9 @@ export const DefaultButton: React.FC<ButtonProps> = ({ text, size = 'medium' }) 
   return (
     <div className={styles.buttonContainer}>
       <div className={styles.button} data-size={size}>
-        {text}
+        <TextDisplay>
+          {text}
+        </TextDisplay>
       </div>
     </div>
   )
@@ -31,8 +34,8 @@ interface RoundButtonProps {
 }
 export const RoundButton: React.FC<RoundButtonProps> = ({ textColor, bgColor, text }) => {
   return (
-    <div className={`flex justify-center items-center bg-gray-200 h-10 w-full my-2 px-4 rounded-full text-sm ${textColor} ${bgColor}`}>
+    <TextDisplay className={`flex justify-center items-center bg-gray-200 h-10 w-full my-2 px-4 rounded-full text-sm ${textColor} ${bgColor}`}>
       {text}
-    </div>
+    </TextDisplay>
   )
 }
