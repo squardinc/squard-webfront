@@ -2,7 +2,7 @@ import * as React from 'react'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { Link } from 'gatsby'
 import styles from './TeamCoreMembers.module.scss'
-import DummyImage from 'src/images/raw.jpg'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 
 interface CoreMember {
   id: string
@@ -46,15 +46,15 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
                 }}
                 className={getImageTheme(member.color)}
               ></div>
-              <div className={styles.ageTag}>
+              <TextDisplay className={styles.ageTag}>
               <p className="ml-2 mr-2 pl-1 leading-9 text-xs font-semibold text-white border-b border-dashed">
                   Age
               </p>
                 <p className="pl-3 text-2xl font-bold text-white">{member.age}</p>
-              </div>
-              <div className={styles.designationText}>{member.title}</div>
-              <div className={styles.titleSM}>{member.introduction}</div>
-              <div className={styles.titleLG}>{member.name}</div>
+              </TextDisplay>
+              <TextDisplay className={styles.designationText}>{member.title}</TextDisplay>
+              <TextDisplay className={styles.titleSM}>{member.introduction}</TextDisplay>
+              <TextDisplay className={styles.titleLG}>{member.name}</TextDisplay>
             </div>
           </Link>
         ))}

@@ -3,6 +3,7 @@ import { HashTag } from 'src/components/HashTag'
 import { DefaultButton } from 'src/components/Button/DefaultButton'
 import backgroundImage from 'src/images/background.png'
 import styles from './TeamIntroduction.module.scss'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 
 interface TeamIntroductionProps {
   tags?: string[]
@@ -15,27 +16,27 @@ export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({ tags = [], l
     <div style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div id='introduction' className={styles.content}>
         <div className={styles.caption}>
-          <div className={styles.caption1}>
+          <TextDisplay className={styles.caption1} >
             未来のチームを定義する
-          </div>
-          <div className={styles.caption2}>
+          </TextDisplay>
+          <TextDisplay className={styles.caption2}>
             Squard
-          </div>
+          </TextDisplay>
         </div>
-        <div className={styles.description}>
+        <TextDisplay className={styles.description}>
           チーム「Squard（スクアード）」はコラボレーションプラットフォーム「Squard」の企画/開発/運営を目的として集まったチームです。
-        </div>
+        </TextDisplay>
         <div>
           {tags.map(tag => <HashTag text={tag} />)}
         </div>
         <div className={styles.attributeContainer}>
           <div className="text-base tracking-wide font-thin">
-            <div>
+            <TextDisplay>
               マネジメントシステム: <span className="text-yellow-400">{system}</span>
-            </div>
-            <div>
+            </TextDisplay>
+            <TextDisplay>
               チームリーダー: <span className="text-yellow-400">{leaderName}</span>
-            </div>
+            </TextDisplay>
           </div>
         </div>
         <DefaultButton text='Squardに参加してみる？' />

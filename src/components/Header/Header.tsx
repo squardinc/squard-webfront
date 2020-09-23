@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faSearch, faTimes } from '@fortawesome/free-solid-svg-icons'
 import styles from './Header.module.scss'
 import { NavMenu } from 'src/components/NavMenu/NavMenu'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { SearchBar } from './SearchBar'
 import { LoginModal } from '../Modal/LoginModal'
 
@@ -21,10 +22,12 @@ export const Header = () => {
             cursor="pointer"
             onClick={() => setShowNavMenu(!showNavMenu)}
           />
-          <span className="text-2xl font-bold">
-            Squard
+          <TextDisplay>
+            <span className="text-2xl font-bold">
+              Squard
             <span className="text-xl font-bold text-red-600">.</span>
-          </span>
+            </span>
+          </TextDisplay>
           <div className="w-6">
             <FontAwesomeIcon
               icon={!showSearchBar ? faSearch : faTimes}

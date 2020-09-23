@@ -31,6 +31,7 @@ export const TeamAngels: React.FC<TeamAngelsProps> = ({
           sub="And we have"
           main={`${numOfAngels} Angels`}
           style="medium"
+          subFontWeight=''
         />
       </div>
       <div className="pt-6">

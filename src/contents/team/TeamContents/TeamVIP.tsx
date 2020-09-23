@@ -4,6 +4,7 @@ import { faPaperPlane, faLink } from '@fortawesome/free-solid-svg-icons'
 import { DefaultButton, IconButton } from 'src/components/Button/DefaultButton'
 import styles from './TeamVIP.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 
 const trim = (text: string, length: number) => `${text.substring(0, length)}...`
 interface VIPProps {
@@ -19,8 +20,8 @@ const VIP: React.FC<VIPProps> = ({ vip, name, introduction }) => {
         <div className={styles.vipCaptionContainer}>
           <div className={styles.vipCaption}>
             <div className={styles.vipCaptionTop}>
-              <div className={styles.vipName}>{name}</div>
-              <div className={styles.vipIntroduction}>{introduction}</div>
+              <TextDisplay className={styles.vipName}>{name}</TextDisplay>
+              <TextDisplay className={styles.vipIntroduction}>{introduction}</TextDisplay>
             </div>
             <div className={styles.vipLinks}>
               <div className="bg-yellow-400 text-black rounded-full h-12 w-12 flex items-center justify-center mr-2">
@@ -38,9 +39,10 @@ const VIP: React.FC<VIPProps> = ({ vip, name, introduction }) => {
                 />
               </div>
               <div className="bg-yellow-400 text-black rounded-full h-12 w-40 flex items-center justify-center mr-2">
-               <span className="font-bold text-lg">Read More</span>
+              <TextDisplay>
+                <span className="font-bold text-lg">Read More</span>
+              </TextDisplay>
               </div>
-              
             </div>
           </div>
         </div>

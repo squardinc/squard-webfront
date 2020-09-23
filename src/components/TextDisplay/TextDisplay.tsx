@@ -2,7 +2,7 @@ import * as React from 'react'
 import innerText from 'react-innertext'
 import styles from './TextDisplay.module.scss'
 
-const REGEX = /^[a-zA-Z0-9!-/:-@¥[-`{-~]*$/
+const REGEX = /^[a-zA-Z0-9!-/:-@¥[-`{-~'? "©]*$/
 const onlyAlphanumeric = (text: string) => REGEX.test(text)
 interface TextDisplayProps {
   className?: string

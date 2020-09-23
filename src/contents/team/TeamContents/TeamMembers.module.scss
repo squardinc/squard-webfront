@@ -47,7 +47,7 @@
 
 .topMemberName {
   line-height: 3rem;
-  font-size: x-large;
+  font-size: 1.4rem;
 }
 
 .topMemberTitle {
@@ -55,7 +55,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 .member {
   @include personIcon(170px, 150px, 5px);

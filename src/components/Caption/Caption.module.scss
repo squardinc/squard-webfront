@@ -1,9 +1,9 @@
-@mixin withLeftBorder ($color: black) {
+@mixin withLeftBorder ($color: black, $font-weight: '') {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   margin: 10px 10px 10px 5px;
-  font-weight: bold;
+  font-weight: $font-weight;
   font-size: 2em;
   color: $color;
 }
@@ -12,8 +12,15 @@
   @include withLeftBorder(black)
 }
 
+.withLeftBorder[color=black][data-font-weight=bold] {
+  @include withLeftBorder(black, bold)
+}
+
 .withLeftBorder[color=white] {
   @include withLeftBorder(white)
+}
+.withLeftBorder[color=white][data-font-weight=bold] {
+  @include withLeftBorder(white, bold)
 }
 
 @mixin leftBorder($color: black) {
