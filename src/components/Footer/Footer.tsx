@@ -13,9 +13,9 @@ export const Footer = () => {
         <div className={styles.titleSub}>What's the</div>
         <div className={styles.titleMain}>Squard?</div>
         <div className={styles.description}>
-          Webサービス「Squard（スクアード）」は、個人でもなく法人でもない新しい働き方の実現を目標に、新時代のチームメイキングソリューションを提供するコラボレーションプラットフォームです。
+          Webサービス「Squard（スクアード）」は、新時代のチームメイキングソリューションを提供するコラボレーションプラットフォームです。
           <br />
-          チームページからProspects（プロスペクト）またはAngels（エンジェル）としてチームに参加することで、チームが定めた各種特典を受け取ることができます。
+          チームページからProspects（プロスペクト）またはAngels（エンジェル）としてチームに参加することで、コミュニケーションツールや限定コンテンツのアクセスなどClass（クラス）ごとに定められた各種特典を受け取ることができます。
         </div>
         <div className={styles.question + ' pb-4'}>
           「Prospects」や「Angels」についてはこちら↓
