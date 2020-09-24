@@ -1,11 +1,13 @@
-$hashtag-color: yellow;
+$hashtag-color: #f6e05e;
 
 .container {
   display: inline-block;
-  border-radius: 10px;
+  border-radius: 20px;
   border: 1px solid $hashtag-color;
   color: $hashtag-color;
-  font-size: small;
-  padding: 1px 10px 2px;
-  margin: 2px;
+  font-size: 0.9rem;
+  letter-spacing: 0.025em;
+  padding: 8px 20px 8px;
+  margin: 4px 7px 7px 0px;
+  font-weight: 200;
 }

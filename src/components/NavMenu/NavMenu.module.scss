@@ -1,0 +1,30 @@
+@import 'src/styles/variables';
+
+.navMenu {
+  z-index: $nav-bar;
+  position: fixed;
+  bottom: 0;
+  width: $window-width;
+  color: white;
+  border-radius: 25px 25px 0 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.navToggleBtn {
+  position: relative;
+  top: 15px;
+  left: 175px;
+  background-color: white;
+  border-radius: 10px;
+  height: 10px;
+  width: 70px;
+  cursor: pointer;
+}
+
+.close {
+  height: 0px;
+}
+
+.open {
+  height: 560px;
+}

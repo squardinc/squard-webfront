@@ -5,36 +5,44 @@ import { Link } from 'gatsby'
 import backgroundImage from 'src/images/background.png'
 import Logo from 'src/assets/Logo.svg'
 import styles from './Footer.module.scss'
+import { TextDisplay } from '../TextDisplay/TextDisplay'
 
 export const Footer = () => {
   return (
     <div style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className={styles.content}>
-        <div className={styles.titleSub}>What's the</div>
-        <div className={styles.titleMain}>Squard?</div>
-        <div className={styles.description}>
-          Webサービス「Squard（スクアード）」は、個人でもなく法人でもない新しい働き方の実現を目標に、新時代のチームメイキングソリューションを提供するコラボレーションプラットフォームです。
+        <TextDisplay>
+          <div className={styles.titleSub}>What's the</div>
+          <div className={styles.titleMain}>Squard?</div>
+        </TextDisplay>
+        <TextDisplay className={styles.description}>
+          Webサービス「Squard（スクアード）」は、新時代のチームメイキングソリューションを提供するコラボレーションプラットフォームです。
           <br />
-          チームページからProspects（プロスペクト）またはAngels（エンジェル）としてチームに参加することで、チームが定めた各種特典を受け取ることができます。
-        </div>
-        <div className={styles.question}>
+          チームページから<span className='text-yellow-400'>Prospects（プロスペクト）</span>または<span className='text-yellow-400'>Angels（エンジェル）</span>としてチームに参加することで、コミュニケーションツールや限定コンテンツのアクセスなど<span className='text-yellow-400'>Class（クラス）</span>ごとに定められた各種特典を受け取ることができます。
+        </TextDisplay>
+        <TextDisplay className={styles.question + ' pb-4'}>
           「Prospects」や「Angels」についてはこちら↓
-        </div>
-        <DefaultButton text='Class（クラス）ってなに？' />
+        </TextDisplay>
+        <Link to='/about'>
+          <TextDisplay className="border-2 border-yellow-400 rounded-full h-12 w-full flex items-center justify-center mr-2">
+            <span className="text-yellow-400 font-bold text-lg">Class（クラス）ってなに？</span>
+          </TextDisplay>
+        </Link>
         <div className={styles.sitemap}>
-          <div className={styles.links}>
-            <Link to='/'>FAQ</Link>
-            <Link to='/'>About</Link>
-            <Link to='/'>Company</Link>
-            <Link to='/'>Privacy Policy</Link>
-          </div>
-          <Logo className={styles.logo} />
+          <TextDisplay className={styles.links}>
+            <Link to='/faq'>FAQ</Link>
+            <Link to='/about'>About</Link>
+            <Link to='/company'>Company</Link>
+            <Link to='/privacypolicy'>Privacy Policy</Link>
+          </TextDisplay>
+          <Link to='/'>
+            <Logo className={styles.logo} />
+          </Link>
         </div>
       </div>
-      <div className={styles.copyright}>
+      <TextDisplay className={styles.copyright}>
         Copyright ©2020 Squard, Inc. All Rights Reseverd.
-      </div>
+      </TextDisplay>
     </div>
   )
 }
-

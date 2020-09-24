@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { LeftBorderCaption } from 'src/components/Caption/Captions'
 import styles from './TeamMembers.module.scss'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 
 interface MemberProps {
   member: string
@@ -8,10 +9,10 @@ interface MemberProps {
 }
 const Member: React.FC<MemberProps> = ({ member, name}) => {
   return (
-    <div className={styles.memberContainer} >
+    <div className="relative mt-4 pr-3 pl-2">
       <img src={member} className={styles.member} />
       <div className={styles.memberCaption}>
-        <div className={styles.memberName}>{name}</div>
+        <TextDisplay className={styles.memberName}>{name}</TextDisplay>
       </div>
     </div>
   )
@@ -22,12 +23,12 @@ type TopMemberProps = MemberProps & {
 }
 const TopMember: React.FC<TopMemberProps> = ({ member, name, title }) => {
   return (
-    <div className={styles.memberContainer} >
+    <div className={styles.topMemberContainer} >
       <img src={member} className={styles.topMember} />
-      <div className={styles.memberCaption}>
-        <div　className={styles.topMemberName}>{name}</div>
-        <div　className={styles.topMemberTitle}> / {title}</div>
-      </div>
+      <TextDisplay className={styles.topMemberCaption}>
+        <div className={styles.topMemberName}>{name}</div>
+        <div className={styles.topMemberTitle}> &nbsp;/ {title}</div>
+      </TextDisplay>
     </div>
   )
 }
@@ -37,10 +38,11 @@ interface TeamMembersProps {
   members: string[]
 }
 export const TeamMembers: React.FC<TeamMembersProps> = ({ topMember, members }) => {
+  members.push('images/raw.jpg');
   return (
     <div className={styles.container}>
       <LeftBorderCaption text='MEMBERS' color='white' />
-      <TopMember member={topMember} name='小池駿平' title='Blockchain × xR Engineer' />
+      <TopMember member={topMember} name='小池駿平' title='Blockchain Engineer' />
       <div className={styles.members}>
         {members.filter(member => member != topMember).map((member, index) =>
           <Member member={member} name={`舎弟${index+1}`} />

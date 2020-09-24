@@ -1,4 +1,7 @@
+const dotenv = require('dotenv')
 const path = require('path')
+
+dotenv.config({ path: `env/.${process.env.BRANCH === 'master' ? 'master' : 'develop'}` })
 
 module.exports = {
   siteMetadata: {
@@ -35,7 +38,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-typescript`,
-    `gatsby-plugin-sass`, 
     {
       resolve: "gatsby-plugin-react-svg",
       options: {
@@ -44,21 +46,19 @@ module.exports = {
         }
       }
     },
-    // {
-    //   resolve: `gatsby-plugin-react-redux`,
-    //   options: {
-    //     pathToCreateStoreModule: './src/state/createStore',
-    //     serialize: {
-    //       space: 0,
-    //       isJSON: true,
-    //       unsafe: false,
-    //     },
-    //     cleanupOnClient: true,
-    //     windowKey: '__PRELOADED_STATE__',
-    //   },
-    // },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-postcss`,
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        postCssPlugins: [
+          require("tailwindcss"),
+          require("./tailwind.config.js"),
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-create-client-paths`,
+      options: { prefixes: ['/*'] }
+    },
   ],
 }

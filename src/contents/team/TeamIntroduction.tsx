@@ -3,41 +3,40 @@ import { HashTag } from 'src/components/HashTag'
 import { DefaultButton } from 'src/components/Button/DefaultButton'
 import backgroundImage from 'src/images/background.png'
 import styles from './TeamIntroduction.module.scss'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 
-const TAGS = [
-  'チームメイキング',
-  '働き方3.0',
-  'Topdown',
-  'DAO',
-  '離合集散',
-]
+interface TeamIntroductionProps {
+  tags?: string[]
+  leaderName?: string
+  system?: string
+}
 
-export const TeamIntroduction = () => {
+export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({ tags = [], leaderName = '', system = '' }) => {
   return (
     <div style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div id='introduction' className={styles.content}>
         <div className={styles.caption}>
-          <div className={styles.caption1}>
-            個人でも会社でも実現できない
-          </div>
-          <div className={styles.caption2}>
-            新しいチームを実現する
-          </div>
+          <TextDisplay className={styles.caption1} >
+            未来のチームを定義する
+          </TextDisplay>
+          <TextDisplay className={styles.caption2}>
+            Squard
+          </TextDisplay>
         </div>
-        <div className={styles.description}>
+        <TextDisplay className={styles.description}>
           チーム「Squard（スクアード）」はコラボレーションプラットフォーム「Squard」の企画/開発/運営を目的として集まったチームです。
-        </div>
+        </TextDisplay>
         <div>
-          {TAGS.map(tag => <HashTag text={tag} />)}
+          {tags.map(tag => <HashTag text={tag} />)}
         </div>
         <div className={styles.attributeContainer}>
-          <div>
-            <div>
-              マネジメントシステム: トップダウン
-          </div>
-            <div>
-              チームリーダー: 小池駿平
-          </div>
+          <div className="text-base tracking-wide font-thin">
+            <TextDisplay>
+              マネジメントシステム: <span className="text-yellow-400">{system}</span>
+            </TextDisplay>
+            <TextDisplay>
+              チームリーダー: <span className="text-yellow-400">{leaderName}</span>
+            </TextDisplay>
           </div>
         </div>
         <DefaultButton text='Squardに参加してみる？' />

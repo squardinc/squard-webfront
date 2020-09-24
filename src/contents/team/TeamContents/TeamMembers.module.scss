@@ -1,23 +1,26 @@
+@import 'src/styles/variables.scss';
 @import './team-mixins';
 
 .container {
-  @include team-content-container(black)
+  @include team-content-container();
 }
 
 .members {
-  @include personIconDisplayWrap();
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.memberContainer {
+.topMemberContainer {
   position: relative;
-  margin: 5px;
+  margin: 15px 5px;
 }
 
 .topMember {
-  @include personIcon(100%, 240px)
+  @include personIcon(100%, 240px, 5px);
 }
 
-.memberCaption {
+.topMemberCaption {
   position: absolute;
   width: 80%;
   top: 70%;
@@ -25,21 +28,40 @@
   color: white;
   display: flex;
   justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(24px);
+  border-radius: 0 10px 10px 0;
 }
+
+.memberCaption {
+  position: absolute;
+  width: 50%;
+  top: 70%;
+  padding: 2px 0px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(24px);
+  border-radius: 0 10px 10px 0;
+}
+
 .topMemberName {
-  font-size: x-large;
+  line-height: 3rem;
+  font-size: 1.4rem;
 }
+
 .topMemberTitle {
-  color: yellow;
+  color: $yellow;
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 .member {
-  @include personIcon(120px, 140px)
+  @include personIcon(170px, 150px, 5px);
 }
 .memberName {
   font-size: small;
+  line-height: 2rem;
 }
