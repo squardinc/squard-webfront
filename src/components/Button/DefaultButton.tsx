@@ -5,11 +5,17 @@ import { TextDisplay } from '../TextDisplay/TextDisplay'
 
 interface ButtonProps {
   text: string
+  onClick: VoidFunction
   size?: 'medium' | 'small'
 }
-export const DefaultButton: React.FC<ButtonProps> = ({ text, size = 'medium' }) => {
+export const DefaultButton: React.FC<ButtonProps> = ({ text, onClick, size = 'medium' }) => {
   return (
-    <div className={styles.buttonContainer}>
+    <div className={`${styles.buttonContainer} cursor-pointer`}
+      onClick={onClick}
+      onKeyPress={onClick}
+      tabIndex={0}
+      role='button'
+    >
       <div className={styles.button} data-size={size}>
         <TextDisplay>
           {text}

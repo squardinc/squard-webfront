@@ -8,7 +8,6 @@ import { TeamMembers } from './TeamContents/TeamMembers'
 import { TeamProspects } from './TeamContents/TeamProspects'
 import { TeamAngels } from './TeamContents/TeamAngels'
 import { TeamVIP } from './TeamContents/TeamVIP'
-import { TeamFooter } from './TeamFooter'
 import { GetTeamQuery } from 'src/types/API'
 import DummyImage from 'src/images/raw.jpg'
 import { ContentFooter } from 'src/components/Footer/ContentFooter'
@@ -31,9 +30,9 @@ const DUMMY_CORE_MEMBERS = [
 export const TeamLayout = () => {
   const { loading, error, data } = useQuery<GetTeamQuery>(gql(getTeam), { variables: { id: 'squard' } });
   return (
-    <>
+    <div className='theme-dark'>
       <TeamTop />
-      <TeamIntroduction tags={data?.getTeam?.tags} leaderName={data?.getTeam?.leaderName} system={data?.getTeam?.system} />
+      <TeamIntroduction teamId={data?.getTeam?.id} tags={data?.getTeam?.tags} leaderName={data?.getTeam?.leaderName} system={data?.getTeam?.system} />
       <TeamCoreMembers coreMembers={DUMMY_CORE_MEMBERS} />
       <TeamMembers topMember={DUMMY_MEMBERS[0]} members={DUMMY_MEMBERS} />
       <TeamProspects propspects={DUMMY_MEMBERS} />
@@ -53,6 +52,6 @@ export const TeamLayout = () => {
         buttonText="Class（クラス）ってなに？"
         onButtonClick={() => navigateTo('/about')}
       />
-    </>
+    </div>
   )
 }

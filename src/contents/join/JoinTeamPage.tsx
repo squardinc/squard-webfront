@@ -5,8 +5,9 @@ import styles from './JoinTeam.module.scss'
 import { JoinCard } from 'src/components/JoinCard/JoinCard'
 import { Heading3 } from 'src/components/Heading3/Heading3'
 import { Description } from 'src/components/Description/Description'
+import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 
-export const JoinTeam: React.FC = (props) => {
+export const JoinTeamPage: React.FC = (props) => {
   const classes = [
     {
       main: 'ANGELS',
@@ -61,6 +62,7 @@ export const JoinTeam: React.FC = (props) => {
           />
         ))}
       </div>
+      <DefaultFooter lightTheme />
     </div>
   )
 }
