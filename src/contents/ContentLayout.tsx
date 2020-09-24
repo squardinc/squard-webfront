@@ -2,7 +2,7 @@ import * as React from 'react'
 import { AboutPage } from './about'
 import { CompanyPage } from './company/company'
 import { FAQPage } from './faq'
-import { PrivacyPolicyPage } from './privacypolicy'
+import { PrivacyPolicyPage } from './privacypolicy/privacypolicy'
 import { TeamLayout } from './team/TeamLayout'
 import { PersonLayout } from './person/PersonLayout'
 
