@@ -16,8 +16,13 @@ import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 export const PersonLayout = () => {
   return (
     <div className={styles.container} style={{ backgroundColor: '#e2e2e2' }}>
-      <div className="pb-2">
-        <img src="images/Person_1.png" height="100%" width="100%" />
+      <div className="pb-0">
+        <div  style={{
+                background: `url("images/Person_1.png") no-repeat center center `,
+                backgroundSize: 'cover',
+              }} className={styles.cover}>
+
+        </div>
         <div className={styles.profileContainer}>
           <div className={styles.profilerImageContainer}>
             <div
@@ -54,11 +59,11 @@ export const PersonLayout = () => {
           <div className={styles.profilerLink}>
             <div className="pl-6 pt-4 inline-flex">
               <SquardLeader className="h-12 w-auto" />
-              <span className="pl-8 text-white leading-6">
-                <TextDisplay className="text-2xl font-bold">Squard</TextDisplay>
+              <span className="pl-8 pt-1 text-white leading-6">
+                <TextDisplay className="text-2xl font-semibold">Squard</TextDisplay>
                 <TextDisplay>- Leader</TextDisplay>
               </span>
-              <div className="absolute right-0">
+              <div className="absolute right-0 pt-1">
                 <ProfileLink className="pr-2 h-12 w-auto" />
               </div>
             </div>
@@ -69,15 +74,15 @@ export const PersonLayout = () => {
             </TextDisplay>
           </div>
         </div>
-        <div id="profile-link-member" className="pt-8">
+        <div id="profile-link-member" className="pt-10">
           <div className={styles.profilerLink}>
-            <div className="pl-6 pt-4 inline-flex">
+            <div className="pl-6 inline-flex">
               <CoreMembers className="h-12 w-auto" />
-              <span className="pl-8 text-white leading-6">
-                <TextDisplay className="text-2xl font-bold">Cheerfully</TextDisplay>
+              <span className="pl-8 pt-1 text-white leading-6">
+                <TextDisplay className="text-2xl font-semibold">Cheerfully</TextDisplay>
                 <TextDisplay>- Core Members</TextDisplay>
               </span>
-              <div className="absolute right-0">
+              <div className="absolute right-0 pt-1">
                 <ProfileLink className="pr-2 h-12 w-auto" />
               </div>
             </div>
