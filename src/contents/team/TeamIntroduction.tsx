@@ -4,14 +4,16 @@ import { DefaultButton } from 'src/components/Button/DefaultButton'
 import backgroundImage from 'src/images/background.png'
 import styles from './TeamIntroduction.module.scss'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import {  navigate } from 'gatsby'
 
 interface TeamIntroductionProps {
+  teamId?: string
   tags?: string[]
   leaderName?: string
   system?: string
 }
 
-export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({ tags = [], leaderName = '', system = '' }) => {
+export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({ teamId = 'squard', tags = [], leaderName = '', system = '' }) => {
   return (
     <div style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div id='introduction' className={styles.content}>
@@ -39,7 +41,7 @@ export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({ tags = [], l
             </TextDisplay>
           </div>
         </div>
-        <DefaultButton text='Squardに参加してみる？' />
+        <DefaultButton text='Squardに参加してみる？' onClick={() => navigate(`/${teamId}/join`)} />
       </div>
     </div>
   )
