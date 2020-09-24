@@ -1,17 +1,19 @@
 .content {
-  padding: 40px;
+  padding: 0px 40px;
   color: white;
 }
 .titleSub {
   font-weight: bold;
   font-style: italic;
   color: #ffeb3b;
-  font-size: x-large;
+  font-size: 1.2rem;
+  line-height: normal;
 }
 .titleMain {
   font-weight: bold;
   font-style: italic;
   font-size: 3em;
+  line-height: normal;
 }
 .description {
   font-size: larger;
@@ -24,8 +26,8 @@
   color: #ffeb3b;
 }
 .sitemap {
+  padding: 40px 0px;
   display: flex;
-  margin-top: 40px;
   justify-content: space-around;
 }
 .links {
