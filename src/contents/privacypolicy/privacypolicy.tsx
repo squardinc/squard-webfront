@@ -1,6 +1,5 @@
 import * as React from 'react'
 import styles from './privacypolicy.module.scss'
-import SharpUnderliner from 'src/assets/sharp_corner_underline.svg'
 
 export const PrivacyPolicyPage: React.FC = () => {
   return (
@@ -8,7 +7,9 @@ export const PrivacyPolicyPage: React.FC = () => {
       <div className="pt-24 text-center text-white text-3xl font-bold tracking-wider">
         Privacy Policy
         <div className="pb-8">
-          <SharpUnderliner className="pl-20 h-6 w-auto" />
+          <div className="pl-24">
+            <img src="images/sharp_underline.png" />
+          </div>
           <div className="pt-8 pl-16 pr-16 text-justify text-white text-sm font-thin tracking-widest">
             スクアード株式会社（以下，「当社」といいます。）は，本ウェブサイト上で提供するサービス（以下,「本サービス」といいます。）における，ユーザーの個人情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。
           </div>
@@ -254,16 +255,15 @@ export const PrivacyPolicyPage: React.FC = () => {
             <p className="pt-4">
               本ポリシーに関するお問い合わせは，下記の窓口までお願いいたします。
             </p>
-           
           </div>
           <div className="pt-8 pl-16 pr-16 text-center text-white text-2xl underline font-medium tracking-widest">
             contact@squard.jp
           </div>
           <div className="pt-16 pl-16 pr-6 text-right text-white text-2xl font-medium tracking-widest">
-          以上
+            以上
           </div>
           <div className="pt-24 pl-16 pr-16 text-center text-white text-xl font-medium tracking-widest">
-          2020年8月1日制定・施行
+            2020年8月1日制定・施行
           </div>
         </div>
       </div>

@@ -59,7 +59,12 @@ export const CompanyPage: React.FC = () => {
       </div>
       <div className="pt-2 pb-8">
         <div className="pl-4 pr-4">
-          <TwoStagedCaption style="medium" sub="About" main="Our Company" />
+          <TwoStagedCaption
+            style="medium"
+            sub="About"
+            main="Our Company"
+            shadow={true}
+          />
         </div>
         <div className="pl-3 pt-8">
           <div className={styles.members}>
