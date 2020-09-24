@@ -5,21 +5,26 @@ import { FAQPage } from './faq'
 import { PrivacyPolicyPage } from './privacypolicy'
 import { TeamLayout } from './team/TeamLayout'
 import { PersonLayout } from './person/PersonLayout'
-import { JoinTeamPage } from './join/JoinTeamPage'
+
+export const StaticPagePaths = [
+  'about',
+  'company',
+  'faq',
+  'privacypolicy'
+] as const
+
+type StaticPageType = typeof StaticPagePaths[number]
 
 interface ContentLayoutProps {
   path: string
-  contentId: string
+  contentId: StaticPageType | string
 }
 export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId }) => {
-  console.log(contentId)
   switch (contentId) {
     case 'about':
       return <AboutPage />
     case 'company':
       return <CompanyPage />
-    case 'join':
-      return <JoinTeamPage />
     case 'faq':
       return <FAQPage />
     case 'privacypolicy':
