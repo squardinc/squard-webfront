@@ -4,10 +4,11 @@ import styles from './JoinTeam.module.scss'
 
 import { JoinCard } from 'src/components/JoinCard/JoinCard'
 import { Heading3 } from 'src/components/Heading3/Heading3'
-import { Description } from 'src/components/Description/Description'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
+import { ThemeContext, withTheme } from 'src/context/ThemeContext'
 
-export const JoinTeamPage: React.FC = (props) => {
+const Page: React.FC = (props) => {
+  React.useContext(ThemeContext).setTheme('light')
   const classes = [
     {
       main: 'ANGELS',
@@ -66,3 +67,5 @@ export const JoinTeamPage: React.FC = (props) => {
     </div>
   )
 }
+
+export const JoinTeamPage = withTheme(Page, 'light')

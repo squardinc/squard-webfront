@@ -15,3 +15,9 @@ export const ThemeContextProvider: React.FC = ({ children }) => {
     </ThemeContext.Provider>
   )
 }
+
+export const withTheme = (Component: React.FC, theme: ThemeType) =>
+  () => {
+    React.useContext(ThemeContext).setTheme(theme)
+    return <Component />
+  }

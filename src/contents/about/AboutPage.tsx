@@ -7,8 +7,9 @@ import { ManagementSystem } from './ManagementSystem/ManagementSystem'
 import { Status } from './Status/Status'
 import { ContentFooter } from 'src/components/Footer/ContentFooter'
 import { LoginModal } from 'src/components/Modal/LoginModal'
+import { withTheme } from 'src/context/ThemeContext'
 
-export const AboutPage: React.FC = () => {
+const Page: React.FC = () => {
   const [showLoginModal, setShowLoginModal] = React.useState(false)
   return (
     <div>
@@ -28,3 +29,5 @@ export const AboutPage: React.FC = () => {
     </div>
   )
 }
+
+export const AboutPage = withTheme(Page, 'dark')

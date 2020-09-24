@@ -12,6 +12,7 @@ import { GetTeamQuery } from 'src/types/API'
 import DummyImage from 'src/images/raw.jpg'
 import { ContentFooter } from 'src/components/Footer/ContentFooter'
 import { navigateTo } from 'gatsby'
+import { ThemeContext, withTheme } from 'src/context/ThemeContext'
 
 const DUMMY_MEMBERS = [
   'https://firebasestorage.googleapis.com/v0/b/story-gate.appspot.com/o/squard%2Fshunpei.png?alt=media&token=3e8b258d-fb7d-4437-ac86-298573471d81',
@@ -27,10 +28,10 @@ const DUMMY_CORE_MEMBERS = [
   { id: 'shoya_yanagisawa', title: 'CTO', age: 27, introduction: '時代を愛するエンジニア侍', name: '柳澤翔矢', imageUrl: DummyImage, color: 'yellow' },
 ]
 
-export const TeamLayout = () => {
+const Layout = () => {
   const { loading, error, data } = useQuery<GetTeamQuery>(gql(getTeam), { variables: { id: 'squard' } });
   return (
-    <div className='theme-dark'>
+    <>
       <TeamTop />
       <TeamIntroduction teamId={data?.getTeam?.id} tags={data?.getTeam?.tags} leaderName={data?.getTeam?.leaderName} system={data?.getTeam?.system} />
       <TeamCoreMembers coreMembers={DUMMY_CORE_MEMBERS} />
@@ -52,6 +53,8 @@ export const TeamLayout = () => {
         buttonText="Class（クラス）ってなに？"
         onButtonClick={() => navigateTo('/about')}
       />
-    </div>
+    </>
   )
 }
+
+export const TeamLayout = withTheme(Layout, 'dark')
