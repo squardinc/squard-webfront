@@ -1,0 +1,32 @@
+@import "../../styles/const";
+
+.wrapper {
+  position: relative;
+  margin: 20px 20px 80px;
+  padding: 10px;
+  border-radius: 12px;
+  color: $text-white;
+  background: linear-gradient(135deg, $gradient-yellow, $gradient-red);
+  &::before {
+      position: absolute;
+      height: 50px;
+      bottom: -50px;
+      left: 0;
+      right: 0;
+      content: '';
+      display: block;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      background: linear-gradient(35deg, $gradient-yellow, $gradient-red);
+  }
+  &::after {
+      position: absolute;
+      height: 50px;
+      bottom: -50px;
+      left: 0;
+      right: 0;
+      content: '';
+      display: block;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1) 80%);
+  }
+}

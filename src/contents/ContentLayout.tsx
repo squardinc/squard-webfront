@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { AboutPage } from './about'
+import { AboutPage } from './about/AboutPage'
 import { CompanyPage } from './company/company'
 import { FAQPage } from './faq'
 import { PrivacyPolicyPage } from './privacypolicy/privacypolicy'
