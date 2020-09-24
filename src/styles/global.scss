@@ -1,3 +1,5 @@
+@import 'src/styles/variables.scss';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,7 +14,18 @@
   }
 }
 
-@import 'src/styles/variables.scss';
+.theme-light {
+  --text-color-theme: #262626;
+  --bg-color-theme: white;
+  --button-color-theme: linear-gradient(#AF1A3D, #FBE62E)
+
+}
+.theme-dark {
+  --text-color-theme: white;
+  --bg-color-theme: #051026;
+  --button-color-theme: #FBE62E
+}
+
 
 body {
   width: $window-width;

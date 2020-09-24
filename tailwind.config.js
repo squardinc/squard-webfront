@@ -4,8 +4,15 @@ module.exports = {
     // purgeLayersByDefault: true,
   },
   purge: ["./src/**/*.ts", "./src/**/*.tsx"],
-  theme: {
-    extend: {},
+  theme: {    
+    important: true,
+    extend: {
+      colors: {
+        'theme-text': 'var(--text-color-theme)',
+        'theme-bg': 'var(--bg-color-theme)',
+        'theme-button': 'var(--button-color-theme)',
+      },
+    },
     maxWidth: {
       xs: '480px',
     },
