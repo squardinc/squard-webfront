@@ -1,0 +1,121 @@
+@import "../../styles/const";
+
+$card-width: 320px;
+$flag-width: 180px;
+$flag-top-shift: 12px;
+$flag-bottom-cut: 50px;
+
+.card {
+  margin: 60px auto;
+  width: $card-width;
+  background: $bg-black;
+  box-shadow: 0 20px 30px 0px $bg-black;
+}
+
+.flagWrapper {
+  position: relative;
+  width: $flag-width;
+  margin: 0 auto;
+  top: -$flag-top-shift;
+
+  &::before {
+    position: absolute;
+    top:0;
+    left: -$flag-top-shift;
+    content: '';
+    display: block;
+    border-top: $flag-top-shift $gradient-yellow solid;
+    border-left: $flag-top-shift $gradient-yellow solid;
+    border-radius: $flag-top-shift 0 0 0;
+    width: 0;
+    height: 0;
+  }
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: -$flag-top-shift;
+    content: '';
+    display: block;
+    border-top: $flag-top-shift $gradient-yellow solid;
+    border-right: $flag-top-shift $gradient-yellow solid;
+    border-radius: 0 $flag-top-shift 0 0;
+    width: 0;
+    height: 0;
+  }
+}
+
+.flag {
+  background: linear-gradient(to top, $gradient-red, $gradient-yellow);
+  padding: 40px 10px 80px;
+  text-align: center;
+
+  position: relative;
+  color: #fff;
+
+  &:before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: '';
+    display: block;
+    border-top: $flag-bottom-cut solid transparent;
+    border-right: $flag-width / 2 solid $bg-black;
+  }
+
+  &:after {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    content: '';
+    display: block;
+    border-top: $flag-bottom-cut solid transparent;
+    border-left: $flag-width / 2 solid $bg-black;
+  }
+}
+
+.nameMain {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.nameSub {
+  font-size: 0.9rem;
+}
+
+.price {
+  margin-top: 10px;
+}
+
+.entitlements {
+  margin: 20px 0;
+}
+
+.entitlement {
+  padding: 8px 0;
+  text-align: center;
+  color: $text-white;
+  border-top: 1px solid $border-gray;
+  font-size: 0.9rem;
+
+  &:last-child {
+    border-bottom: 1px solid $border-gray;
+  }
+}
+
+.joinNowWrapper {
+  display: block;
+  text-align: center;
+  padding: 10px 0 30px;
+}
+
+.joinNow {
+  display: inline-block;
+  padding: 0 40px;
+  border-radius: 30px;
+  color: $text-white;
+  height: 50px;
+  line-height: 50px;
+  font-size: 1.2rem;
+  background: linear-gradient(70deg, $gradient-red, $gradient-yellow);
+}
