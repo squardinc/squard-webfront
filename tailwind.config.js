@@ -8,9 +8,11 @@ module.exports = {
     important: true,
     extend: {
       colors: {
-        'theme-text': 'var(--text-color-theme)',
-        'theme-bg': 'var(--bg-color-theme)',
-        'theme-button': 'var(--button-color-theme)',
+        'theme-text-main': 'var(--text-color-theme-main)',
+        'theme-text-sub': 'var(--text-color-theme-sub)',
+        'theme-bg-main': 'var(--bg-color-theme-main)',
+        black: '#051026',
+        yellow: '#FBE62E'
       },
     },
     maxWidth: {

@@ -2,8 +2,12 @@ import * as React from 'react';
 
 type ThemeType = 'dark' | 'light'
 
-export const ThemeContext = React.createContext({
-  theme: '',
+interface ThemeContextInterface {
+  theme: ThemeType
+  setTheme: (theme: ThemeType) => void
+}
+export const ThemeContext = React.createContext<ThemeContextInterface>({
+  theme: 'dark',
   setTheme: (theme: ThemeType) => { },
 })
 

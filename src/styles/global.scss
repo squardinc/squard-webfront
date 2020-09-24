@@ -12,18 +12,28 @@
   .blur-3 {
     backdrop-filter: blur(3px);
   }
+  .background-theme-footer {
+    background: var(--background-theme-footer);
+  }
+  .background-theme-button {
+    background: var(--background-theme-button);
+  }
 }
 
 .theme-light {
-  --text-color-theme: #262626;
-  --bg-color-theme: white;
-  --button-color-theme: linear-gradient(#AF1A3D, #FBE62E)
-
+  --text-color-theme-main: #262626;
+  --text-color-theme-sub: #FFFFFF;
+  --bg-color-theme-main: #FFFFFF;
+  --background-theme-footer: linear-gradient(70deg, #AF1A3D, #FBE62E);
+  --background-theme-button: linear-gradient(70deg, #AF1A3D, #FBE62E);
 }
+
 .theme-dark {
-  --text-color-theme: white;
-  --bg-color-theme: #051026;
-  --button-color-theme: #FBE62E
+  --text-color-theme-main: #ffffff;
+  --text-color-theme-sub: #FBE62E;
+  --bg-color-theme-main: #051026;
+  --background-theme-footer: #051026;
+  --background-theme-button: #FBE62E;
 }
 
 

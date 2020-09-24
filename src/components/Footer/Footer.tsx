@@ -1,18 +1,20 @@
 import * as React from 'react'
-import { DefaultButton } from 'src/components/Button/DefaultButton'
 import { Link } from 'gatsby'
 
-import backgroundImage from 'src/images/background.png'
 import Logo from 'src/assets/Logo.svg'
+import BlueLogo from 'src/assets/Logo_Blue.svg'
 import styles from './Footer.module.scss'
 import { TextDisplay } from '../TextDisplay/TextDisplay'
+import { FooterWrapper } from './FooterWrapper'
+import { ThemeContext } from 'src/context/ThemeContext'
 
 export const Footer = () => {
+  const { theme } = React.useContext(ThemeContext)
   return (
     <>
-      <div style={{ backgroundImage: `url(${backgroundImage})` }}>
+      <FooterWrapper>
         <div className={styles.content}>
-          <div className={styles.sitemap}>
+          <div className={`${styles.sitemap} ${theme === 'dark' ? 'text-theme-text-sub' : ''}`}>
             <TextDisplay className={styles.links}>
               <Link to='/faq'>FAQ</Link>
               <Link to='/about'>About</Link>
@@ -20,12 +22,16 @@ export const Footer = () => {
               <Link to='/privacypolicy'>Privacy Policy</Link>
             </TextDisplay>
             <Link to='/'>
-              <Logo className={styles.logo} />
+              {theme === 'dark'
+                ? <Logo className={styles.logo} />
+                // FIXME Resize
+                : <BlueLogo className={styles.logo} />
+              }
             </Link>
           </div>
         </div>
-      </div>
-      <TextDisplay className={styles.copyright}>
+      </FooterWrapper>
+      <TextDisplay className={`${styles.copyright} background-theme-footer text-theme-text-sub`}>
         Copyright ©2020 Squard, Inc. All Rights Reseverd.
       </TextDisplay>
     </>
