@@ -6,6 +6,7 @@ import { JoinCard } from 'src/components/JoinCard/JoinCard'
 import { Heading3 } from 'src/components/Heading3/Heading3'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { ThemeContext, withTheme } from 'src/context/ThemeContext'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 
 const Page: React.FC = (props) => {
   React.useContext(ThemeContext).setTheme('light')
@@ -44,14 +45,16 @@ const Page: React.FC = (props) => {
 
   return (
     <div className={styles.pageWrapper}>
-      <Heading3>Join The Team</Heading3>
+      <Heading3>
+        <TextDisplay>Join The Team</TextDisplay>
+      </Heading3>
       <div className={styles.joinInfo}>
-        <div className={styles.joinTeam}>
+        <TextDisplay className={styles.joinTeam}>
           <span className={styles.teamName}>Squard</span>に参加する
-        </div>
-        <div className={styles.description}>
+        </TextDisplay>
+        <TextDisplay className={styles.description}>
           チームが設定した月々のサブスクリプション料金を支払いProspectsやAngelsとしてチームに参加することで、様々な特典を受け取ることができます。
-        </div>
+        </TextDisplay>
       </div>
       <div className={styles.classCardWrapper}>
         {classes.map((el) => (
@@ -63,7 +66,7 @@ const Page: React.FC = (props) => {
           />
         ))}
       </div>
-      <DefaultFooter lightTheme />
+      <DefaultFooter />
     </div>
   )
 }

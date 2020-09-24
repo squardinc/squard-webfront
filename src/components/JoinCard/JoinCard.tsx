@@ -3,6 +3,7 @@ import * as React from 'react'
 import styles from './JoinCard.module.scss'
 
 import { addComma } from 'src/utils/NumberFormatter'
+import { TextDisplay } from '../TextDisplay/TextDisplay'
 
 interface JoinCardProps {
   main: string
@@ -18,18 +19,18 @@ export const JoinCard: React.FC<JoinCardProps> = (props) => {
     <div className={styles.card}>
       <div className={styles.flagWrapper}>
         <div className={styles.flag}>
-          <div className={styles.nameMain}>{props.main}</div>
-          <div className={styles.nameSub}>（{props.sub}）</div>
-          <div className={styles.price}>￥{formattedPrice} / 月額</div>
+          <TextDisplay className={styles.nameMain}>{props.main}</TextDisplay>
+          <TextDisplay className={styles.nameSub}>（{props.sub}）</TextDisplay>
+          <TextDisplay className={styles.price}>￥{formattedPrice} / 月額</TextDisplay>
         </div>
       </div>
       <div className={styles.entitlements}>
         {props.entitlements.map((el) => (
-          <div className={styles.entitlement}>{el}</div>
+          <TextDisplay className={styles.entitlement}>{el}</TextDisplay>
         ))}
       </div>
       <div className={styles.joinNowWrapper}>
-        <div className={styles.joinNow}>今すぐ参加する</div>
+        <TextDisplay className={styles.joinNow}>今すぐ参加する</TextDisplay>
       </div>
     </div>
   )
