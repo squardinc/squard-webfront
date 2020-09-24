@@ -11,6 +11,7 @@ import Zoom from 'src/assets/zoom_icon.svg'
 import SquardLeader from 'src/assets/squard_leader.svg'
 import CoreMembers from 'src/assets/core_members.svg'
 import ProfileLink from 'src/assets/profile_link_icon.svg'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 
 export const PersonLayout = () => {
   return (
@@ -27,15 +28,15 @@ export const PersonLayout = () => {
               className={styles.profilerImage}
             ></div>
           </div>
-          <div className="text-2xl font-medium text-white tracking-widest pl-32 pt-5">
+          <TextDisplay className="text-2xl font-medium text-white tracking-widest pl-32 pt-5">
             小池駿平
-          </div>
-          <div className="text-base font-thin text-white tracking-widest pl-32">
+          </TextDisplay>
+          <TextDisplay className="text-base font-thin text-white tracking-widest pl-32">
             Shunpei Koike
-          </div>
-          <div className="text-sm font-hairline text-white tracking-widest text-justify p-6">
+          </TextDisplay>
+          <TextDisplay className="text-sm font-hairline text-white tracking-widest text-justify p-6">
             プログラミングにのめり込み、研修時代ついたあだ名はJava(ジャバ)くん。英語力ゼロなのにラスベガスで恐れずスピーチ、金欠なのに世界各国で海外生活。多くの応援により香港科技大学で研究をはじめ、同時にSquard株式会社を設立。ブロックチェーンとバナナシェイクをこよなく愛する男。
-          </div>
+          </TextDisplay>
           <div className="pl-8 pr-16 inline-flex">
             <Facebook className="mr-4 h-16 w-auto" />
             <Instagram className="mr-4 h-16 w-auto" />
@@ -54,8 +55,8 @@ export const PersonLayout = () => {
             <div className="pl-6 pt-4 inline-flex">
               <SquardLeader className="h-12 w-auto" />
               <span className="pl-8 text-white leading-6">
-                <p className="text-2xl font-bold">Squard</p>
-                <p>- Leader</p>
+                <TextDisplay className="text-2xl font-bold">Squard</TextDisplay>
+                <TextDisplay>- Leader</TextDisplay>
               </span>
               <div className="absolute right-0">
                 <ProfileLink className="pr-2 h-12 w-auto" />
@@ -63,9 +64,9 @@ export const PersonLayout = () => {
             </div>
           </div>
           <div className={styles.profilerDesignation}>
-            <div className="text-black font-thin pl-5 pt-2 pr-5">
+            <TextDisplay className="text-black font-thin pl-5 pt-2 pr-5">
               iOS Engineer
-            </div>
+            </TextDisplay>
           </div>
         </div>
         <div id="profile-link-member" className="pt-8">
@@ -73,8 +74,8 @@ export const PersonLayout = () => {
             <div className="pl-6 pt-4 inline-flex">
               <CoreMembers className="h-12 w-auto" />
               <span className="pl-8 text-white leading-6">
-                <p className="text-2xl font-bold">Cheerfully</p>
-                <p>- Core Members</p>
+                <TextDisplay className="text-2xl font-bold">Cheerfully</TextDisplay>
+                <TextDisplay>- Core Members</TextDisplay>
               </span>
               <div className="absolute right-0">
                 <ProfileLink className="pr-2 h-12 w-auto" />
@@ -82,7 +83,7 @@ export const PersonLayout = () => {
             </div>
           </div>
           <div className={styles.profilerDesignation}>
-            <div className="text-black font-thin pl-5 pt-2 pr-5">Manager</div>
+            <TextDisplay className="text-black font-thin pl-5 pt-2 pr-5">Manager</TextDisplay>
           </div>
         </div>
       </div>
