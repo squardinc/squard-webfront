@@ -1,3 +1,5 @@
+@import 'src/styles/variables.scss';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,9 +12,30 @@
   .blur-3 {
     backdrop-filter: blur(3px);
   }
+  .background-theme-footer {
+    background: var(--background-theme-footer);
+  }
+  .background-theme-button {
+    background: var(--background-theme-button);
+  }
 }
 
-@import 'src/styles/variables.scss';
+.theme-light {
+  --text-color-theme-main: #262626;
+  --text-color-theme-sub: #FFFFFF;
+  --bg-color-theme-main: #FFFFFF;
+  --background-theme-footer: linear-gradient(70deg, #AF1A3D, #FBE62E);
+  --background-theme-button: linear-gradient(70deg, #AF1A3D, #FBE62E);
+}
+
+.theme-dark {
+  --text-color-theme-main: #ffffff;
+  --text-color-theme-sub: #FBE62E;
+  --bg-color-theme-main: #051026;
+  --background-theme-footer: #051026;
+  --background-theme-button: #FBE62E;
+}
+
 
 body {
   width: $window-width;

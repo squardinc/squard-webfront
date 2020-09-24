@@ -15,7 +15,7 @@ export const Header = () => {
 
   return (
     <React.Fragment>
-      <div className={styles.container}>
+      <div className={`${styles.container} bg-theme-bg-main text-theme-text-main`}>
         <div className={styles.header}>
           <Menu
             cursor="pointer"
