@@ -1,0 +1,28 @@
+@import "../../styles/const";
+
+.wrapper {
+  margin: 20px;
+  text-align: center;
+  font-weight: 700;
+  color: $text-white;
+  text-align: center;
+}
+
+.heading {
+  display: block;
+  &::after {
+    margin-top: 10px;
+    content: '';
+    display: block;
+    height: 2px;
+    background: linear-gradient(to right, $gradient-yellow 0%, $gradient-red 100%);
+  }
+}
+
+.main {
+  font-size: 1.5rem;
+}
+
+.sub {
+  font-size: 1rem;
+}

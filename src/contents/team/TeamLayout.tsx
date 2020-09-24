@@ -8,8 +8,11 @@ import { TeamMembers } from './TeamContents/TeamMembers'
 import { TeamProspects } from './TeamContents/TeamProspects'
 import { TeamAngels } from './TeamContents/TeamAngels'
 import { TeamVIP } from './TeamContents/TeamVIP'
+import { TeamFooter } from './TeamFooter'
 import { GetTeamQuery } from 'src/types/API'
 import DummyImage from 'src/images/raw.jpg'
+import { ContentFooter } from 'src/components/Footer/ContentFooter'
+import { navigateTo } from 'gatsby'
 
 const DUMMY_MEMBERS = [
   'https://firebasestorage.googleapis.com/v0/b/story-gate.appspot.com/o/squard%2Fshunpei.png?alt=media&token=3e8b258d-fb7d-4437-ac86-298573471d81',
@@ -36,6 +39,20 @@ export const TeamLayout = () => {
       <TeamProspects propspects={DUMMY_MEMBERS} />
       <TeamAngels angels={DUMMY_MEMBERS} numOfAngels={65535} />
       <TeamVIP vips={DUMMY_MEMBERS} />
+      <ContentFooter
+        titleSub="What's the"
+        titleMain="Squard?"
+        text={
+          <>
+            Webサービス「Squard（スクアード）」は、新時代のチームメイキングソリューションを提供するコラボレーションプラットフォームです。
+            <br />
+            チームページから<span className='text-yellow-400'>Prospects（プロスペクト）</span>または<span className='text-yellow-400'>Angels（エンジェル）</span>としてチームに参加することで、コミュニケーションツールや限定コンテンツのアクセスなど<span className='text-yellow-400'>Class（クラス）</span>ごとに定められた各種特典を受け取ることができます。
+          </>
+        }
+        buttonSub="「Prospects」や「Angels」についてはこちら↓"
+        buttonText="Class（クラス）ってなに？"
+        onButtonClick={() => navigateTo('/about')}
+      />
     </>
   )
 }

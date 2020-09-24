@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="110.067" height="127.354" viewBox="0 0 110.067 127.354">
+  <defs>
+    <filter id="svg_core_members_0" x="0" y="0" width="110.067" height="127.354" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="svg_core_members_1" x="12.471" y="12.471" width="85.125" height="83.088" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#svg_core_members_0)">
+    <path d="M1040.852,727.13a46.033,46.033,0,1,0-58.105,44.417l-.779,18.9,12.851-6.756,12.851,6.756-.779-18.9A46.108,46.108,0,0,0,1040.852,727.13ZM1006.7,767.024l-.345-8.369a33.711,33.711,0,0,1-23.081,0l-.345,8.369a41.632,41.632,0,1,1,23.771,0Z" transform="translate(-939.78 -675.1)" fill="#fff"/>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#svg_core_members_1)">
+    <path d="M1097.514,796.261a33.562,33.562,0,1,0-45.1,31.526l1.145-27.772-10.4-10.134,14.368-2.088,6.425-13.019,6.425,13.019,14.368,2.088-10.4,10.134,1.144,27.772A33.576,33.576,0,0,0,1097.514,796.261Z" transform="translate(-1008.92 -744.23)" fill="#fff"/>
+  </g>
+</svg>
