@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { LeftBorderCaption } from 'src/components/Caption/Captions'
 import { faPaperPlane, faLink } from '@fortawesome/free-solid-svg-icons'
-import { DefaultButton, IconButton } from 'src/components/Button/DefaultButton'
 import styles from './TeamVIP.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
@@ -24,21 +23,21 @@ const VIP: React.FC<VIPProps> = ({ vip, name, introduction }) => {
               <TextDisplay className={styles.vipIntroduction}>{introduction}</TextDisplay>
             </div>
             <div className={styles.vipLinks}>
-              <div className="bg-yellow-400 text-black rounded-full h-12 w-12 flex items-center justify-center mr-2">
+              <div className="bg-yellow text-black rounded-full h-12 w-12 flex items-center justify-center mr-2">
                 <FontAwesomeIcon
                   icon={faPaperPlane}
                   size="1x"
                   cursor="pointer"
                 />
               </div>
-              <div className="bg-yellow-400 text-black rounded-full h-12 w-12 flex items-center justify-center mr-2">
+              <div className="bg-yellow text-black rounded-full h-12 w-12 flex items-center justify-center mr-2">
                 <FontAwesomeIcon
                   icon={faLink}
                   size="1x"
                   cursor="pointer"
                 />
               </div>
-              <div className="bg-yellow-400 text-black rounded-full h-12 w-40 flex items-center justify-center mr-2">
+              <div className="bg-yellow text-black rounded-full h-12 w-40 flex items-center justify-center mr-2">
               <TextDisplay>
                 <span className="font-bold text-lg">Read More</span>
               </TextDisplay>

@@ -6,9 +6,18 @@ import { PrivacyPolicyPage } from './privacypolicy/privacypolicy'
 import { TeamLayout } from './team/TeamLayout'
 import { PersonLayout } from './person/PersonLayout'
 
+export const StaticPagePaths = [
+  'about',
+  'company',
+  'faq',
+  'privacypolicy'
+] as const
+
+type StaticPageType = typeof StaticPagePaths[number]
+
 interface ContentLayoutProps {
   path: string
-  contentId: string
+  contentId: StaticPageType | string
 }
 export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId }) => {
   switch (contentId) {
