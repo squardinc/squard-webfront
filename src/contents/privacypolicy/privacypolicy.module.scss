@@ -1,0 +1,12 @@
+@import 'src/styles/variables';
+
+.container {
+  position: relative;
+  background-color: #051026;
+}
+
+.underLiner {
+  margin-top: 5px;
+  height: 2px;
+  background-image: linear-gradient(to right, #fbe62e, #af1a3d);
+}
