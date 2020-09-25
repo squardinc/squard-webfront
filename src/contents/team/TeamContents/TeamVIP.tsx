@@ -55,7 +55,7 @@ interface TeamVIPProps {
 export const TeamVIP: React.FC<TeamVIPProps> = ({ vips }) => {
   return (
     <div className={styles.container}>
-      <div className="pl-2 pr-2">
+      {/* <div className="pl-2 pr-2">
         <LeftBorderCaption text="V.I.P." />
       </div>
       <div className="flex overflow-x-auto overflow-y-hidden pl-6 pr-6">
@@ -70,7 +70,7 @@ export const TeamVIP: React.FC<TeamVIPProps> = ({ vips }) => {
             )}
           />
         ))}
-      </div>
+      </div> */}
     </div>
   )
 }

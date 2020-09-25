@@ -23,10 +23,8 @@ export const TeamProspects: React.FC<TeamPropspectsProps> = ({
 }) => {
   return (
     <div className={styles.container}>
-      <div className="pl-6 pr-6">
-        <LeftBorderCaption text="PROSPECTS" color="white" />
-      </div>
-      <div className="flex overflow-x-auto pl-6 pr-6">
+      <LeftBorderCaption text="PROSPECTS" color="white" />
+      <div className="flex overflow-x-auto">
         {propspects.map((prospect, index) => (
           <Prospect key={index} prospect={prospect} />
         ))}
