@@ -12,12 +12,27 @@
 .heading {
   display: inline-block;
   padding: 0 0 8px;
+  position: relative;
 
-  &::after {
-    margin: 0px -40px 0 -20px;
+  &::before {
+    position: absolute;
     content: '';
     display: block;
     height: 8px;
-    background-image: linear-gradient(to right bottom, transparent 0% 45%, #ddd 50%, white 60% 100%), linear-gradient(to right, $gradient-yellow 0%, $gradient-red 100%);
+    bottom: 0;
+    right: -20px;
+    left: 0;
+    background-image: linear-gradient(to right, $gradient-yellow 0%, $gradient-red 100%);
+  }
+
+  &::after {
+    position: absolute;
+    content: '';
+    display: block;
+    height: 8px;
+    bottom: 0;
+    right: -20px;
+    left: 0;
+    background-image: linear-gradient(to right bottom, transparent 0% 45%, #ddd 50%, white 60% 100%);
   }
 }
