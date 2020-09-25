@@ -46,7 +46,7 @@ const Page: React.FC = (props) => {
   return (
     <div className={styles.pageWrapper}>
       <Heading3>
-        <TextDisplay>Join The Team</TextDisplay>
+        <TextDisplay>Join&nbsp;The&nbsp;Team</TextDisplay>
       </Heading3>
       <div className={styles.joinInfo}>
         <TextDisplay className={styles.joinTeam}>
