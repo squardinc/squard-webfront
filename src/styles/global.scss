@@ -6,15 +6,17 @@
 
 @layer utilities {
   .bg-v-gradient {
-    background-image: linear-gradient(rgba(251, 230, 46, 0.9), rgba(175, 26, 61, 0.9));
+    background-image: linear-gradient(rgba(251, 230, 46, 0.8), rgba(175, 26, 61, 0.8));
   }
 
   .blur-3 {
     backdrop-filter: blur(3px);
   }
+
   .background-theme-footer {
     background: var(--background-theme-footer);
   }
+
   .background-theme-button {
     background: var(--background-theme-button);
   }

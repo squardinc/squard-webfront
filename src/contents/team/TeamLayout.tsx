@@ -46,7 +46,7 @@ const Layout = () => {
           <>
             Webサービス「Squard（スクアード）」は、新時代のチームメイキングソリューションを提供するコラボレーションプラットフォームです。
             <br />
-            チームページから<span className='text-yellow-400'>Prospects（プロスペクト）</span>または<span className='text-yellow-400'>Angels（エンジェル）</span>としてチームに参加することで、コミュニケーションツールや限定コンテンツのアクセスなど<span className='text-yellow-400'>Class（クラス）</span>ごとに定められた各種特典を受け取ることができます。
+            チームページから<span className='text-yellow'>Prospects（プロスペクト）</span>または<span className='text-yellow'>Angels（エンジェル）</span>としてチームに参加することで、コミュニケーションツールや限定コンテンツのアクセスなど<span className='text-yellow'>Class（クラス）</span>ごとに定められた各種特典を受け取ることができます。
           </>
         }
         buttonSub="「Prospects」や「Angels」についてはこちら↓"
