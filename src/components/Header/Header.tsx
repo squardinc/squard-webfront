@@ -7,6 +7,7 @@ import Search from 'src/assets/search.svg'
 import Menu from 'src/assets/menu.svg'
 import styles from './Header.module.scss'
 import { SignUpLoginLayout } from '../Modal/SignUpLoginModal'
+import { Link } from 'gatsby'
 
 export const Header = () => {
   const [showSearchBar, setShowSearchBar] = React.useState(false)
@@ -23,10 +24,10 @@ export const Header = () => {
             onClick={() => setShowNavMenu(!showNavMenu)}
           />
           <TextDisplay>
-            <span className="text-2xl font-bold">
+            <Link to="/" className="text-2xl font-bold">
               Squard
             <span className="text-xl font-bold text-red-600">.</span>
-            </span>
+            </Link>
           </TextDisplay>
           <div className="w-6">
             {showSearchBar

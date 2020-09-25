@@ -3,6 +3,26 @@
 .container {
   position: relative;
   background-color: #051026;
+  font-family: 'montserrat', sans-serif;
+}
+
+.sharpUnderLiner {
+  display: inline-block;
+  padding: 0 10px 25px;
+
+  &::after {
+    margin-left: 20px;
+    content: '';
+    display: block;
+    height: 6px;
+    width: 280px;
+    background-image: linear-gradient(
+        to right bottom,
+        transparent 0% 45%,
+        #051026 50% 100%
+      ),
+      linear-gradient(to right, #fbe62e 0%, #af1a3d 100%);
+  }
 }
 
 .underLiner {

@@ -4,16 +4,32 @@ import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 
 interface MemberProps {
-  member: string
-  name: string
+  member: { imageUrl: string; color: string; title: string }
 }
 
-const Member: React.FC<MemberProps> = ({ member, name }) => {
+const Member: React.FC<MemberProps> = ({ member }) => {
+  function getImageTheme(key: string) {
+    let style = styles.yellowFilter
+    if (key === 'red') {
+      style = styles.redFilter
+    } else if (key === 'blue') {
+      style = styles.blueFilter
+    } else if (key === 'green') {
+      style = styles.greenFilter
+    } else {
+      style = styles.yellowFilter
+    }
+    return style
+  }
+
   return (
     <div className="relative mt-1 pr-1 pl-2">
-      <img src={member} className={styles.member} />
+      <img
+        src={member.imageUrl}
+        className={styles.member + ' ' + getImageTheme(member.color)}
+      />
       <div className={styles.memberCaption}>
-        <TextDisplay className={styles.memberName}>{name}</TextDisplay>
+        <TextDisplay className={styles.memberName}>{member.title}</TextDisplay>
       </div>
     </div>
   )
@@ -21,11 +37,12 @@ const Member: React.FC<MemberProps> = ({ member, name }) => {
 
 export const CompanyPage: React.FC = () => {
   const members = [
-    'images/raw.jpg',
-    'images/raw.jpg',
-    'images/raw.jpg',
-    'images/raw.jpg',
+    { imageUrl: 'images/raw.jpg', color: 'red', title: 'CEO / 小池駿平' },
+    { imageUrl: 'images/raw.jpg', color: 'blue', title: 'COO / 松井大樹' },
+    { imageUrl: 'images/raw.jpg', color: 'green', title: 'CFO / 木村明寛' },
+    { imageUrl: 'images/raw.jpg', color: 'yello', title: 'CTO / 柳澤翔矢' },
   ]
+
   return (
     <div className={styles.container}>
       <div
@@ -36,22 +53,22 @@ export const CompanyPage: React.FC = () => {
         className={styles.companyImageContainer}
       >
         <div className={styles.contactInfo}>
-          <p className="pl-8 text-white text-opacity-75 font-hairline antialiased tracking-wider">
+          <p className="pl-10 text-white text-sm text-opacity-75 tracking-widest">
             Web : www.squard.co.jp
           </p>
-          <p className="pl-8 text-white text-opacity-75 font-hairline antialiased tracking-wider">
+          <p className="pt-2 pl-10 text-white text-sm text-opacity-75 tracking-widest">
             Mail : contact@squared.co.jp
           </p>
         </div>
         <div className={styles.companyInfo}>
-          <div className="float-right text-right leading-8 pt-16">
-            <p className="pr-6 text-white text-xl font-thin tracking-wider">
+          <div className="float-right text-right leading-8 pt-24">
+            <p className="pt-4 pr-6 text-white text-xl font-light tracking-wider">
               <span className="line-through">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We
               </span>{' '}
               are the
             </p>
-            <p className="pr-6 text-white text-4xl font-black tracking-wider">
+            <p className="pr-6 text-white text-4xl font-bold tracking-wider">
               Squard, Inc<span className="text-red-600">.</span>
             </p>
           </div>
@@ -69,7 +86,7 @@ export const CompanyPage: React.FC = () => {
         <div className="pl-3 pt-8">
           <div className={styles.members}>
             {members.map((member, index) => (
-              <Member member={member} name={`舎弟${index + 1}`} />
+              <Member key={index} member={member} />
             ))}
           </div>
         </div>
