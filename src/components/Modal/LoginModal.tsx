@@ -7,6 +7,7 @@ import { asModal, ModalProps } from './asModal'
 import { DefaultModalContainer } from './ModalContainer'
 import { AuthService } from 'src/services/AuthService'
 import { CompleteModal } from './CompleteModal'
+import { ErrorModal } from './ErrorModal'
 
 type LoginComponentProps = ModalProps & {
   showSignUpModal: VoidFunction
@@ -15,6 +16,7 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ closeModal, showSignUpM
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [succeeded, setSucceeded] = React.useState(false)
+  const [errorMesasge, setErrorMessage] = React.useState('')
   return (
     <DefaultModalContainer closeModal={closeModal}>
       {!succeeded ?
@@ -26,8 +28,10 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ closeModal, showSignUpM
           <TextDisplay className='flex justify-end w-full text-sm mb-4'>パスワードを忘れた方はこちら</TextDisplay>
           <div className='flex flex-col'>
             <RoundButton className='text-black bg-white' text='ログイン' onClick={async () => {
-              const credential = await new AuthService().login(email, password)
-                setSucceeded(!!credential)
+              new AuthService().login(email, password).then(
+                (credential) => { setSucceeded(!!credential) },
+                (err) => { setErrorMessage(err) }
+              )
             }} />
             <RoundButton className='text-white bg-blue-700' text='Facebookでログイン' />
           </div>
@@ -37,11 +41,11 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ closeModal, showSignUpM
         </>
         :
         <CompleteModal
-          title='SignUp'
-          headerDescription='Login Completed!'
+          title='Login Completed!'
           footerDescription='ログインしました'
           closeModal={closeModal}
         />}
+      {errorMesasge ? <ErrorModal message={errorMesasge} closeModal={() => setErrorMessage('')} /> : ''}
     </DefaultModalContainer>
   )
 }

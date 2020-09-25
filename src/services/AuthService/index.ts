@@ -5,14 +5,14 @@ interface LoginUser {
 }
 
 export class AuthService {
-  signUp = async (userId: string, password: string): Promise<LoginUser> => {
-    const user = await Cognito.signUp(userId, password)
+  signUp = async (email: string, password: string): Promise<LoginUser> => {
+    const user = await Cognito.signUp(email, password)
     return {
       userId: user.getUsername()
     }
   }
-  signUpConfirmation = async (userId: string, code: string) => {
-    return Cognito.confirmSignUp(userId, code)
+  signUpConfirmation = async (username: string, code: string) => {
+    return Cognito.confirmSignUp(username, code)
   }
 
   login = async (email: string, password: string) => {
