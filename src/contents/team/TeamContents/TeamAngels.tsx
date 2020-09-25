@@ -36,8 +36,8 @@ export const TeamAngels: React.FC<TeamAngelsProps> = ({
       </div>
       <div className="pt-6">
         <div className={styles.angels}>
-          {angels.map((angel) => (
-            <Angel angel={angel} />
+          {angels.map((angel, index) => (
+            <Angel key={index} angel={angel} />
           ))}
         </div>
       </div>

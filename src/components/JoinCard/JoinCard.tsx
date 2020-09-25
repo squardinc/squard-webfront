@@ -21,12 +21,16 @@ export const JoinCard: React.FC<JoinCardProps> = (props) => {
         <div className={styles.flag}>
           <TextDisplay className={styles.nameMain}>{props.main}</TextDisplay>
           <TextDisplay className={styles.nameSub}>（{props.sub}）</TextDisplay>
-          <TextDisplay className={styles.price}>￥{formattedPrice} / 月額</TextDisplay>
+          <TextDisplay className={styles.price}>
+            ￥{formattedPrice} / 月額
+          </TextDisplay>
         </div>
       </div>
       <div className={styles.entitlements}>
-        {props.entitlements.map((el) => (
-          <TextDisplay className={styles.entitlement}>{el}</TextDisplay>
+        {props.entitlements.map((el, index) => (
+          <TextDisplay key={index} className={styles.entitlement}>
+            {el}
+          </TextDisplay>
         ))}
       </div>
       <div className={styles.joinNowWrapper}>

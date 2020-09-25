@@ -29,7 +29,7 @@ export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({ teamId = 'sq
           チーム「Squard（スクアード）」はコラボレーションプラットフォーム「Squard」の企画/開発/運営を目的として集まったチームです。
         </TextDisplay>
         <div>
-          {tags.map(tag => <HashTag text={tag} />)}
+          {tags.map((tag, index) => <HashTag key={index} text={tag} />)}
         </div>
         <div className={styles.attributeContainer}>
           <div className="text-base tracking-wide font-thin">
