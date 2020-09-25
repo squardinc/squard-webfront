@@ -34,13 +34,12 @@ export const IconButton: React.FC<FontAwesomeIconButtonProps> = ({ ...props }) =
   )
 }
 interface RoundButtonProps {
-  textColor: string
-  bgColor: string
   text: string
+  className?: string
 }
-export const RoundButton: React.FC<RoundButtonProps> = ({ textColor, bgColor, text }) => {
+export const RoundButton: React.FC<RoundButtonProps> = ({ text, className = '' }) => {
   return (
-    <TextDisplay className={`flex justify-center items-center bg-gray-200 h-10 w-full my-2 px-4 rounded-full text-sm ${textColor} ${bgColor}`}>
+    <TextDisplay className={`flex justify-center items-center h-10 w-full my-2 px-4 rounded-full text-sm ${className}`}>
       {text}
     </TextDisplay>
   )
