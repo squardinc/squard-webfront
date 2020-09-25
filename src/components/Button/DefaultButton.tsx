@@ -35,12 +35,15 @@ export const IconButton: React.FC<FontAwesomeIconButtonProps> = ({ ...props }) =
 }
 interface RoundButtonProps {
   text: string
+  onClick?: VoidFunction
   className?: string
 }
-export const RoundButton: React.FC<RoundButtonProps> = ({ text, className = '' }) => {
+export const RoundButton: React.FC<RoundButtonProps> = ({ text, onClick = () => { }, className = '' }) => {
   return (
-    <TextDisplay className={`flex justify-center items-center h-10 w-full my-2 px-4 rounded-full text-sm ${className}`}>
-      {text}
-    </TextDisplay>
+    <button onClick={onClick} className='w-full'>
+      <TextDisplay className={`flex justify-center items-center h-10 w-full my-2 px-4 rounded-full text-sm ${className}`}>
+        {text}
+      </TextDisplay>
+    </button>
   )
 }

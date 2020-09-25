@@ -3,10 +3,13 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface InputProps {
+  value: string
+  onChange: (value: string) => void
   placeholder?: string
   faIcon?: IconDefinition
+  type?: string
 }
-export const RoundInput: React.FC<InputProps> = ({ placeholder, faIcon }) => {
+export const RoundInput: React.FC<InputProps> = ({ value, onChange, type = 'text', placeholder, faIcon }) => {
   return (
     <div className='flex items-center border-2 border-gray-300 bg-gray-200 h-10 w-full my-2 px-4 rounded-full text-sm'>
       {faIcon ?
@@ -16,8 +19,10 @@ export const RoundInput: React.FC<InputProps> = ({ placeholder, faIcon }) => {
         : ''}
       <input
         className='ml-2 bg-gray-200 h-full w-full text-gray-600 focus:outline-none'
-        type='text'
+        type={type}
+        value={value}
         placeholder={placeholder}
+        onChange={e => onChange(e.target.value)}
       />
     </div>
   )
