@@ -4,7 +4,7 @@ import { DefaultButton } from 'src/components/Button/DefaultButton'
 import backgroundImage from 'src/images/background.png'
 import styles from './TeamIntroduction.module.scss'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import { navigate } from 'gatsby'
+import {  navigate } from 'gatsby'
 
 interface TeamIntroductionProps {
   teamId?: string
@@ -13,45 +13,35 @@ interface TeamIntroductionProps {
   system?: string
 }
 
-export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({
-  teamId = 'squard',
-  tags = [],
-  leaderName = '',
-  system = '',
-}) => {
+export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({ teamId = 'squard', tags = [], leaderName = '', system = '' }) => {
   return (
     <div style={{ backgroundImage: `url(${backgroundImage})` }}>
-      <div id="introduction" className={styles.content}>
+      <div id='introduction' className={styles.content}>
         <div className={styles.caption}>
-          <TextDisplay className={styles.caption1}>
+          <TextDisplay className={styles.caption1} >
             未来のチームを定義する
           </TextDisplay>
-          <TextDisplay className={styles.caption2}>Squard</TextDisplay>
+          <TextDisplay className={styles.caption2}>
+            Squard
+          </TextDisplay>
         </div>
         <TextDisplay className={styles.description}>
           チーム「Squard（スクアード）」はコラボレーションプラットフォーム「Squard」の企画/開発/運営を目的として集まったチームです。
         </TextDisplay>
         <div>
-          {tags.map((tag) => (
-            <HashTag text={tag} />
-          ))}
+          {tags.map((tag, index) => <HashTag key={index} text={tag} />)}
         </div>
         <div className={styles.attributeContainer}>
           <div className="text-base tracking-wide font-thin">
             <TextDisplay>
-              マネジメントシステム:{' '}
-              <span className="text-yellow-400">{system}</span>
+              マネジメントシステム: <span className="text-yellow">{system}</span>
             </TextDisplay>
             <TextDisplay>
-              チームリーダー:{' '}
-              <span className="text-yellow-400">{leaderName}</span>
+              チームリーダー: <span className="text-yellow">{leaderName}</span>
             </TextDisplay>
           </div>
         </div>
-        <DefaultButton
-          text="Squardに参加してみる？"
-          onClick={() => navigate(`/${teamId}/join`)}
-        />
+        <DefaultButton text='Squardに参加してみる？' onClick={() => navigate(`/${teamId}/join`)} />
       </div>
     </div>
   )

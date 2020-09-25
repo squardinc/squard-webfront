@@ -57,8 +57,9 @@ const Page: React.FC = (props) => {
         </TextDisplay>
       </div>
       <div className={styles.classCardWrapper}>
-        {classes.map((el) => (
+        {classes.map((el, index) => (
           <JoinCard
+            key={index}
             main={el.main}
             sub={el.sub}
             monthlyPrice={el.monthlyPrice}

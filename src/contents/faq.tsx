@@ -1,5 +1,11 @@
 import * as React from 'react'
 
-export const FAQPage: React.FC = () => {
-  return <div>Under constructing...</div>
+import { FAQ } from './faq/FAQ'
+
+export const FAQPage:React.FC = () => {
+  return (
+    <div>
+      <FAQ></FAQ>
+    </div>
+  )
 }

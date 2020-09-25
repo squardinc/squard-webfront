@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="250.785" height="23.913" viewBox="0 0 250.785 23.913">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.252" y1="-0.434" x2="0.79" y2="1.718" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fbe62e"/>
+      <stop offset="1" stop-color="#af1a3d"/>
+    </linearGradient>
+    <filter id="Path_17261" x="0" y="0" width="250.785" height="23.913" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_3630" data-name="Group 3630" transform="translate(9 6)">
+    <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#Path_17261)">
+      <path id="Path_17261-2" data-name="Path 17261" d="M0,0H232.785L0,5.913Z" transform="translate(9 6)" opacity="0.85" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>

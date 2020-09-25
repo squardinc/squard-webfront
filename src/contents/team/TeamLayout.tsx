@@ -22,57 +22,18 @@ const DUMMY_MEMBERS = [
 ]
 
 const DUMMY_CORE_MEMBERS = [
-  {
-    id: 'shunpei_koike',
-    title: 'CEO',
-    age: 27,
-    introduction: '鏡の国から導く技術者',
-    name: '小池駿平',
-    imageUrl: DummyImage,
-    color: 'red',
-  },
-  {
-    id: 'hiroki_matsui',
-    title: 'COO',
-    age: 25,
-    introduction: 'アートを論理で切り取る教祖',
-    name: '松井大樹',
-    imageUrl: DummyImage,
-    color: 'blue',
-  },
-  {
-    id: 'akihiro_kimura',
-    title: 'CFO',
-    age: 29,
-    introduction: 'ゴリラ界最強の頭脳',
-    name: '木村明寛',
-    imageUrl: DummyImage,
-    color: 'green',
-  },
-  {
-    id: 'shoya_yanagisawa',
-    title: 'CTO',
-    age: 27,
-    introduction: '時代を愛するエンジニア侍',
-    name: '柳澤翔矢',
-    imageUrl: DummyImage,
-    color: 'yellow',
-  },
+  { id: 'shunpei_koike', title: 'CEO', age: 27, introduction: '鏡の国から導く技術者', name: '小池駿平', imageUrl: DummyImage, color: 'red' },
+  { id: 'hiroki_matsui', title: 'COO', age: 25, introduction: 'アートを論理で切り取る教祖', name: '松井大樹', imageUrl: DummyImage, color: 'blue' },
+  { id: 'akihiro_kimura', title: 'CFO', age: 29, introduction: 'ゴリラ界最強の頭脳', name: '木村明寛', imageUrl: DummyImage, color: 'green' },
+  { id: 'shoya_yanagisawa', title: 'CTO', age: 27, introduction: '時代を愛するエンジニア侍', name: '柳澤翔矢', imageUrl: DummyImage, color: 'yellow' },
 ]
 
 const Layout = () => {
-  const { loading, error, data } = useQuery<GetTeamQuery>(gql(getTeam), {
-    variables: { id: 'squard' },
-  })
+  const { loading, error, data } = useQuery<GetTeamQuery>(gql(getTeam), { variables: { id: 'squard' } });
   return (
     <>
       <TeamTop />
-      <TeamIntroduction
-        teamId={data?.getTeam?.id}
-        tags={data?.getTeam?.tags}
-        leaderName={data?.getTeam?.leaderName}
-        system={data?.getTeam?.system}
-      />
+      <TeamIntroduction teamId={data?.getTeam?.id} tags={data?.getTeam?.tags} leaderName={data?.getTeam?.leaderName} system={data?.getTeam?.system} />
       <TeamCoreMembers coreMembers={DUMMY_CORE_MEMBERS} />
       <TeamMembers topMember={DUMMY_MEMBERS[0]} members={DUMMY_MEMBERS} />
       <TeamProspects propspects={DUMMY_MEMBERS} />
@@ -85,12 +46,7 @@ const Layout = () => {
           <>
             Webサービス「Squard（スクアード）」は、新時代のチームメイキングソリューションを提供するコラボレーションプラットフォームです。
             <br />
-            チームページから
-            <span className="text-yellow-400">Prospects（プロスペクト）</span>
-            または<span className="text-yellow-400">Angels（エンジェル）</span>
-            としてチームに参加することで、コミュニケーションツールや限定コンテンツのアクセスなど
-            <span className="text-yellow-400">Class（クラス）</span>
-            ごとに定められた各種特典を受け取ることができます。
+            チームページから<span className='text-yellow'>Prospects（プロスペクト）</span>または<span className='text-yellow'>Angels（エンジェル）</span>としてチームに参加することで、コミュニケーションツールや限定コンテンツのアクセスなど<span className='text-yellow'>Class（クラス）</span>ごとに定められた各種特典を受け取ることができます。
           </>
         }
         buttonSub="「Prospects」や「Angels」についてはこちら↓"

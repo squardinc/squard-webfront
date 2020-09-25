@@ -27,8 +27,8 @@ export const TeamProspects: React.FC<TeamPropspectsProps> = ({
         <LeftBorderCaption text="PROSPECTS" color="white" />
       </div>
       <div className="flex overflow-x-auto pl-6 pr-6">
-        {propspects.map((prospect) => (
-          <Prospect prospect={prospect} />
+        {propspects.map((prospect, index) => (
+          <Prospect key={index} prospect={prospect} />
         ))}
       </div>
     </div>

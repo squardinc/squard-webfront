@@ -27,8 +27,10 @@ export const JoinCard: React.FC<JoinCardProps> = (props) => {
         </div>
       </div>
       <div className={styles.entitlements}>
-        {props.entitlements.map((el) => (
-          <TextDisplay className={styles.entitlement}>{el}</TextDisplay>
+        {props.entitlements.map((el, index) => (
+          <TextDisplay key={index} className={styles.entitlement}>
+            {el}
+          </TextDisplay>
         ))}
       </div>
       <div className={styles.joinNowWrapper}>

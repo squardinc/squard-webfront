@@ -57,8 +57,9 @@ export const TeamVIP: React.FC<TeamVIPProps> = ({ vips }) => {
         <LeftBorderCaption text="V.I.P." />
       </div>
       <div className="flex overflow-x-auto overflow-y-hidden pl-6 pr-6">
-        {vips.map((vip) => (
+        {vips.map((vip, index) => (
           <VIP
+            key={index}
             vip={vip}
             name="Shunpei Koike"
             introduction={trim(

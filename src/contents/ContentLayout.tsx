@@ -1,16 +1,19 @@
 import * as React from 'react'
 import { AboutPage } from './about/AboutPage'
-import { CompanyPage } from './company'
+import { CompanyPage } from './company/company'
 import { FAQPage } from './faq'
-import { PrivacyPolicyPage } from './privacypolicy'
+import { PrivacyPolicyPage } from './privacypolicy/privacypolicy'
 import { TeamLayout } from './team/TeamLayout'
 import { PersonLayout } from './person/PersonLayout'
+import { TopLayout } from './top'
+import { SignUpLayout } from './SignUp'
 
 export const StaticPagePaths = [
   'about',
   'company',
   'faq',
   'privacypolicy',
+  'signup'
 ] as const
 
 type StaticPageType = typeof StaticPagePaths[number]
@@ -29,6 +32,8 @@ export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId }) => {
       return <FAQPage />
     case 'privacypolicy':
       return <PrivacyPolicyPage />
+    case 'signup':
+      return <SignUpLayout />
   }
   if (contentId === 'squard') {
     return <TeamLayout />
