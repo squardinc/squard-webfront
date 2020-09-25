@@ -7,12 +7,17 @@ import { Heading3 } from 'src/components/Heading3/Heading3'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { ThemeContext, withTheme } from 'src/context/ThemeContext'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { SignUpLoginLayout } from 'src/components/Modal/SignUpLoginModal'
+import { UserContext } from 'src/context/UserContext'
 
 const Page: React.FC = (props) => {
   React.useContext(ThemeContext).setTheme('light')
+  const { user } = React.useContext(UserContext)
+  const [showLoginModal, setShowLoginModal] = React.useState(false)
+  const [showSignUpModal, setShowSignUpModal] = React.useState(false)
   const classes = [
     {
-      main: 'ANGELS',
+      roleId: 'ANGELS',
       sub: 'エンジェル',
       monthlyPrice: 1000,
       entitlements: [
@@ -22,7 +27,7 @@ const Page: React.FC = (props) => {
       ],
     },
     {
-      main: 'PROSPECTS',
+      roleId: 'PROSPECTS',
       sub: 'プロスペクト',
       monthlyPrice: 15000,
       entitlements: [
@@ -32,7 +37,7 @@ const Page: React.FC = (props) => {
       ],
     },
     {
-      main: 'GALLERIES',
+      roleId: 'GALLERIES',
       sub: 'ギャラリー',
       monthlyPrice: 0,
       entitlements: [
@@ -60,14 +65,23 @@ const Page: React.FC = (props) => {
         {classes.map((el, index) => (
           <JoinCard
             key={index}
-            main={el.main}
+            roleId={el.roleId}
             sub={el.sub}
             monthlyPrice={el.monthlyPrice}
             entitlements={el.entitlements}
+            login={() => { setShowLoginModal(true) }}
+            join={async (roleId: string) => { }}
+            loggedIn={user.loggedIn}
           />
         ))}
       </div>
       <DefaultFooter />
+      <SignUpLoginLayout
+        showSignUpModal={showSignUpModal}
+        showLoginModal={showLoginModal}
+        setShowSignUpModal={setShowSignUpModal}
+        setShowLoginModal={setShowLoginModal}
+      />
     </div>
   )
 }
