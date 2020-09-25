@@ -22,7 +22,7 @@ $image-container-width: 188px;
   width: $image-container-width;
   height: 420px;
   border: 0px;
-  border-radius: 20px;
+  border-radius: 10px;
   -webkit-filter: invert(40%) grayscale(100%) brightness(50%) sepia(100%)
     hue-rotate(-70deg) saturate(400%) contrast(0.8) blur(0.6px);
   filter: grayscale(100%) brightness(50%) sepia(100%) hue-rotate(-70deg)
@@ -33,7 +33,7 @@ $image-container-width: 188px;
   width: $image-container-width;
   height: 420px;
   border: 0px;
-  border-radius: 20px;
+  border-radius: 10px;
   -webkit-filter: grayscale(100%) brightness(50%) sepia(100%)
     hue-rotate(-210deg) saturate(1000%) contrast(0.7) blur(0.6px);
   filter: grayscale(100%) brightness(50%) sepia(100%) hue-rotate(-205deg)
@@ -44,7 +44,7 @@ $image-container-width: 188px;
   width: $image-container-width;
   height: 420px;
   border: 0px;
-  border-radius: 20px;
+  border-radius: 10px;
   -webkit-filter: grayscale(100%) brightness(50%) sepia(100%) hue-rotate(120deg)
     saturate(1000%) contrast(0.8) blur(0.6px);
   filter: grayscale(100%) brightness(50%) sepia(100%) hue-rotate(120deg)
@@ -55,7 +55,7 @@ $image-container-width: 188px;
   width: $image-container-width;
   height: 420px;
   border: 0px;
-  border-radius: 20px;
+  border-radius: 10px;
   -webkit-filter: grayscale(90%) brightness(80%) sepia(90%) hue-rotate(5deg)
     saturate(500%) contrast(0.8) blur(0.6px);
   filter: grayscale(90%) brightness(80%) sepia(90%) hue-rotate(5deg)

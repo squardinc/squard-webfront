@@ -13,7 +13,7 @@
 
 .topMemberContainer {
   position: relative;
-  margin: 15px 5px;
+  margin: 10px 0px;
 }
 
 .topMember {
@@ -36,7 +36,7 @@
 .memberCaption {
   position: absolute;
   width: 50%;
-  top: 70%;
+  top: 65%;
   padding: 2px 0px;
   color: white;
   display: flex;
@@ -59,7 +59,7 @@
   margin-bottom: 10px;
 }
 .member {
-  @include personIcon(170px, 150px, 5px);
+  @include personIcon(175px, 150px, 5px);
 }
 .memberName {
   font-size: small;

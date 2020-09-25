@@ -1,7 +1,7 @@
 @import './team-mixins';
 
 .container {
-  padding: 20px 0;
+  @include team-content-container();
 }
 
 .prospectContainer {

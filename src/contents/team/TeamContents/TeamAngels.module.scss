@@ -14,5 +14,5 @@
   padding: 5px 13px;
 }
 .angel {
-  @include personIcon(100px, 100px);
+  @include personIcon(100px, 100px, 10px);
 }

@@ -9,7 +9,7 @@ interface MemberProps {
 }
 const Member: React.FC<MemberProps> = ({ member, name}) => {
   return (
-    <div className="relative mt-4 pr-3 pl-2">
+    <div className="relative mt-2 pr-2 pl-2">
       <img src={member} className={styles.member} />
       <div className={styles.memberCaption}>
         <TextDisplay className={styles.memberName}>{name}</TextDisplay>

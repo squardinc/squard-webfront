@@ -3,7 +3,7 @@
 $border-radius: 20px;
 
 @mixin team-content-container($color: $background-color) {
-  padding: 20px;
+  padding: 10px 20px;
   background-color: $color;
 }
 @mixin personIconDisplayWrap {

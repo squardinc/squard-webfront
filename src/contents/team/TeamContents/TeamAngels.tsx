@@ -23,7 +23,8 @@ export const TeamAngels: React.FC<TeamAngelsProps> = ({
   angels,
   numOfAngels,
 }) => {
-
+  angels.push('images/raw.jpg')
+  angels.push('images/raw.jpg')
   return (
     <div className={styles.container}>
       <div className="pl-2 pr-2">
@@ -31,7 +32,7 @@ export const TeamAngels: React.FC<TeamAngelsProps> = ({
           sub="And we have"
           main={`${numOfAngels} Angels`}
           style="medium"
-          subFontWeight=''
+          subFontWeight=""
         />
       </div>
       <div className="pt-6">
