@@ -11,7 +11,7 @@ interface MenuItemProps {
 export const MenuItem: React.FC<MenuItemProps> = ({ text, SVGIcon, onClick }) => {
   return (
     <div
-      className={`flex w-full cursor-pointer ${onClick ? '' : 'opacity-50 cursor-not-allowed'}`}
+      className={`flex cursor-pointer ${onClick ? '' : 'opacity-50 cursor-not-allowed'}`}
       onClick={onClick || (() => { })}
     >
       <SVGIcon className="h-16 w-auto" />
