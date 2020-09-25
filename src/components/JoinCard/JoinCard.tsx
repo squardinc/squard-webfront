@@ -21,7 +21,9 @@ export const JoinCard: React.FC<JoinCardProps> = (props) => {
         <div className={styles.flag}>
           <TextDisplay className={styles.nameMain}>{props.main}</TextDisplay>
           <TextDisplay className={styles.nameSub}>（{props.sub}）</TextDisplay>
-          <TextDisplay className={styles.price}>￥{formattedPrice} / 月額</TextDisplay>
+          <TextDisplay className={styles.price}>
+            ￥{formattedPrice} / 月額
+          </TextDisplay>
         </div>
       </div>
       <div className={styles.entitlements}>

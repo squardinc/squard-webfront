@@ -10,11 +10,11 @@ export const asModal = <T extends ModalProps>(Component: React.FC<T>) => {
     <Modal
       isOpen
       onRequestClose={props.closeModal}
-      portalClassName='relative'
-      overlayClassName='fixed top-0 left-0 right-0 bottom-0 z-50 bg-gray-800 bg-opacity-50 blur-3'
-      className='flex justify-center items-center w-full h-full'
+      portalClassName="relative"
+      overlayClassName="fixed top-0 left-0 right-0 bottom-0 z-50 bg-gray-800 bg-opacity-50 blur-3"
+      className="flex justify-center items-center w-full h-full"
     >
-      <div className='max-w-xs w-full flex justify-center'>
+      <div className="max-w-xs w-full flex justify-center">
         <Component {...props} />
       </div>
     </Modal>

@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build --prefix-paths",
-    "dev": "gatsby develop --https",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "dev": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,tsx,ts,json,md}\"",
     "tslint": "tslint \"src/**/*.ts[x]\" --fix",
     "lint": "npm run format && npm run tslint",
     "start": "npm run dev",
@@ -27,6 +27,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
+    "@types/styled-components": "^5.1.3",
     "aws-sdk": "^2.756.0",
     "cross-fetch": "^3.0.6",
     "gatsby": "^2.24.52",
@@ -51,6 +52,7 @@
     "react-helmet": "^6.1.0",
     "react-innertext": "^1.1.5",
     "react-modal": "^3.11.2",
+    "styled-components": "^5.2.0",
     "tailwindcss": "^1.8.10"
   },
   "devDependencies": {

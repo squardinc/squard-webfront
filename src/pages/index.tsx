@@ -14,8 +14,12 @@ const IndexPage: React.FC = () => {
       <PageWrapper>
         <Router>
           <TopLayout path="/" />
-          <ContentLayout path=':contentId' contentId='' />
-          <ContentSubLayout path=':contentId/:subContentId' contentId='' subContentId='' />
+          <ContentLayout path=":contentId" contentId="" />
+          <ContentSubLayout
+            path=":contentId/:subContentId"
+            contentId=""
+            subContentId=""
+          />
           <Redirect default />
         </Router>
       </PageWrapper>

@@ -1,7 +1,9 @@
 const dotenv = require('dotenv')
 const path = require('path')
 
-dotenv.config({ path: `env/.${process.env.BRANCH === 'master' ? 'master' : 'develop'}` })
+dotenv.config({
+  path: `env/.${process.env.BRANCH === 'master' ? 'master' : 'develop'}`,
+})
 
 module.exports = {
   siteMetadata: {
@@ -13,8 +15,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-root-import',
       options: {
-        src: path.resolve(__dirname, 'src')
-      }
+        src: path.resolve(__dirname, 'src'),
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
@@ -39,26 +41,26 @@ module.exports = {
     },
     `gatsby-plugin-typescript`,
     {
-      resolve: "gatsby-plugin-react-svg",
+      resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
-          include: /assets/ 
-        }
-      }
+          include: /assets/,
+        },
+      },
     },
     `gatsby-plugin-postcss`,
     {
       resolve: `gatsby-plugin-sass`,
       options: {
         postCssPlugins: [
-          require("tailwindcss"),
-          require("./tailwind.config.js"),
+          require('tailwindcss'),
+          require('./tailwind.config.js'),
         ],
       },
     },
     {
       resolve: `gatsby-plugin-create-client-paths`,
-      options: { prefixes: ['/*'] }
+      options: { prefixes: ['/*'] },
     },
   ],
 }

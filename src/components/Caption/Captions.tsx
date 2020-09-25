@@ -7,12 +7,18 @@ interface CaptionProps {
   color?: 'black' | 'white'
   fontWeight?: 'bold' | ''
 }
-export const LeftBorderCaption: React.FC<CaptionProps> = ({ text, color = 'black', fontWeight = 'bold' }) => {
+export const LeftBorderCaption: React.FC<CaptionProps> = ({
+  text,
+  color = 'black',
+  fontWeight = 'bold',
+}) => {
   return (
-    <div className={styles.withLeftBorder} color={color} data-font-weight={fontWeight}>
-      <TextDisplay>
-        {text}
-      </TextDisplay>
+    <div
+      className={styles.withLeftBorder}
+      color={color}
+      data-font-weight={fontWeight}
+    >
+      <TextDisplay>{text}</TextDisplay>
     </div>
   )
 }
@@ -23,13 +29,16 @@ interface TwoStagedCaptionProps {
   style?: 'large' | 'medium'
   subFontWeight?: 'bold' | ''
 }
-export const TwoStagedCaption: React.FC<TwoStagedCaptionProps> = ({ sub, main, style = 'large', subFontWeight = 'bold' }) => {
+export const TwoStagedCaption: React.FC<TwoStagedCaptionProps> = ({
+  sub,
+  main,
+  style = 'large',
+  subFontWeight = 'bold',
+}) => {
   return (
     <>
       <LeftBorderCaption text={sub} fontWeight={subFontWeight} />
-      <TextDisplay className={styles[style]}>
-        {main}
-      </TextDisplay>
+      <TextDisplay className={styles[style]}>{main}</TextDisplay>
     </>
   )
 }

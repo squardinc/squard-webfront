@@ -17,4 +17,3 @@ export const PageWrapper: React.FC = ({ children }) => {
     </>
   )
 }
-

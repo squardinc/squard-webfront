@@ -10,7 +10,7 @@ export const StaticPagePaths = [
   'about',
   'company',
   'faq',
-  'privacypolicy'
+  'privacypolicy',
 ] as const
 
 type StaticPageType = typeof StaticPagePaths[number]

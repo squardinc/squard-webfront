@@ -20,7 +20,9 @@ const VIP: React.FC<VIPProps> = ({ vip, name, introduction }) => {
           <div className={styles.vipCaption}>
             <div className={styles.vipCaptionTop}>
               <TextDisplay className={styles.vipName}>{name}</TextDisplay>
-              <TextDisplay className={styles.vipIntroduction}>{introduction}</TextDisplay>
+              <TextDisplay className={styles.vipIntroduction}>
+                {introduction}
+              </TextDisplay>
             </div>
             <div className={styles.vipLinks}>
               <div className="bg-yellow text-black rounded-full h-12 w-12 flex items-center justify-center mr-2">
@@ -31,16 +33,12 @@ const VIP: React.FC<VIPProps> = ({ vip, name, introduction }) => {
                 />
               </div>
               <div className="bg-yellow text-black rounded-full h-12 w-12 flex items-center justify-center mr-2">
-                <FontAwesomeIcon
-                  icon={faLink}
-                  size="1x"
-                  cursor="pointer"
-                />
+                <FontAwesomeIcon icon={faLink} size="1x" cursor="pointer" />
               </div>
               <div className="bg-yellow text-black rounded-full h-12 w-40 flex items-center justify-center mr-2">
-              <TextDisplay>
-                <span className="font-bold text-lg">Read More</span>
-              </TextDisplay>
+                <TextDisplay>
+                  <span className="font-bold text-lg">Read More</span>
+                </TextDisplay>
               </div>
             </div>
           </div>
