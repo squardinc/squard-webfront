@@ -27,6 +27,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
+    "amazon-cognito-identity-js": "^4.4.0",
     "aws-sdk": "^2.756.0",
     "cross-fetch": "^3.0.6",
     "gatsby": "^2.24.52",
@@ -51,7 +52,8 @@
     "react-helmet": "^6.1.0",
     "react-innertext": "^1.1.5",
     "react-modal": "^3.11.2",
-    "tailwindcss": "^1.8.10"
+    "tailwindcss": "^1.8.10",
+    "uuidv4": "^6.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",
