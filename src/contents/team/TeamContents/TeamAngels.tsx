@@ -42,7 +42,7 @@ export const TeamAngels: React.FC<TeamAngelsProps> = ({
         </div>
       </div>
       <div className="pt-5">
-        <DefaultButton size="small" text="Show All Angels" />
+        <DefaultButton size="small" text="Angelとして参加する" />
       </div>
     </div>
   )
