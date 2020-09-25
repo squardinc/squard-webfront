@@ -5,23 +5,43 @@ import { RoundButton } from 'src/components/Button/DefaultButton'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { asModal, ModalProps } from './asModal'
 import { DefaultModalContainer } from './ModalContainer'
+import { AuthService } from 'src/services/AuthService'
+import { CompleteModal } from './CompleteModal'
 
 type LoginComponentProps = ModalProps & {
   showSignUpModal: VoidFunction
 }
 const LoginComponent: React.FC<LoginComponentProps> = ({ closeModal, showSignUpModal }) => {
+  const [email, setEmail] = React.useState('')
+  const [password, setPassword] = React.useState('')
+  const [succeeded, setSucceeded] = React.useState(false)
   return (
     <DefaultModalContainer closeModal={closeModal}>
-      <TextDisplay className='text-4xl font-semibold'>Login</TextDisplay>
-      <TextDisplay className='mb-8 text-sm'>ログイン情報を入力してください</TextDisplay>
-      <RoundInput placeholder='メールアドレス' faIcon={faEnvelope} />
-      <RoundInput placeholder='パスワード' faIcon={faLock} />
-      <TextDisplay className='flex justify-end w-full text-sm mb-4'>パスワードを忘れた方はこちら</TextDisplay>
-      <RoundButton className='text-black bg-white' text='ログイン' />
-      <RoundButton className='text-white bg-blue-700' text='Facebookでログイン' />
-      <TextDisplay className='mt-10 flex justify-center text-sm'>まだ登録していませんか？新規登録は
+      {!succeeded ?
+        <>
+          <TextDisplay className='text-4xl font-semibold'>Login</TextDisplay>
+          <TextDisplay className='mb-8 text-sm'>ログイン情報を入力してください</TextDisplay>
+          <RoundInput value={email} onChange={setEmail} placeholder='メールアドレス' faIcon={faEnvelope} />
+          <RoundInput value={password} onChange={setPassword} placeholder='パスワード' type='password' faIcon={faLock} />
+          <TextDisplay className='flex justify-end w-full text-sm mb-4'>パスワードを忘れた方はこちら</TextDisplay>
+          <div className='flex flex-col'>
+            <RoundButton className='text-black bg-white' text='ログイン' onClick={async () => {
+              const credential = await new AuthService().login(email, password)
+                setSucceeded(!!credential)
+            }} />
+            <RoundButton className='text-white bg-blue-700' text='Facebookでログイン' />
+          </div>
+          <TextDisplay className='mt-10 flex justify-center text-sm'>まだ登録していませんか？新規登録は
         <div className='underline cursor-pointer' onClick={() => showSignUpModal()}>こちら</div>
-      </TextDisplay>
+          </TextDisplay>
+        </>
+        :
+        <CompleteModal
+          title='SignUp'
+          headerDescription='Login Completed!'
+          footerDescription='ログインしました'
+          closeModal={closeModal}
+        />}
     </DefaultModalContainer>
   )
 }
