@@ -1,21 +1,19 @@
 import * as Cognito from 'src/external/aws/cognito'
+import { LoginUserModel } from './LoginUserModel'
 
-interface LoginUser {
-  userId: string
-}
-
-export class AuthService {
-  signUp = async (email: string, password: string): Promise<LoginUser> => {
+class Service {
+  signUp = async (email: string, password: string) => {
     const user = await Cognito.signUp(email, password)
-    return {
-      userId: user.getUsername()
-    }
+    return user.getUsername()
   }
   signUpConfirmation = async (username: string, code: string) => {
     return Cognito.confirmSignUp(username, code)
   }
 
   login = async (email: string, password: string) => {
-    return await Cognito.login(email, password)
+    const credential = await Cognito.login(email, password)
+    return new LoginUserModel(email, credential.getIdToken().getJwtToken())
   }
 }
+
+export const AuthService = new Service()

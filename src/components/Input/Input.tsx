@@ -8,8 +8,9 @@ interface InputProps {
   placeholder?: string
   faIcon?: IconDefinition
   type?: string
+  autoComplete?: string
 }
-export const RoundInput: React.FC<InputProps> = ({ value, onChange, type = 'text', placeholder, faIcon }) => {
+export const RoundInput: React.FC<InputProps> = ({ value, onChange, type = 'text', placeholder, faIcon, autoComplete }) => {
   return (
     <div className='flex items-center border-2 border-gray-300 bg-gray-200 h-10 w-full my-2 px-4 rounded-full text-sm'>
       {faIcon ?
@@ -23,6 +24,7 @@ export const RoundInput: React.FC<InputProps> = ({ value, onChange, type = 'text
         value={value}
         placeholder={placeholder}
         onChange={e => onChange(e.target.value)}
+        autoComplete={autoComplete}
       />
     </div>
   )

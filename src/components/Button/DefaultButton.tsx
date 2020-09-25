@@ -35,13 +35,14 @@ export const IconButton: React.FC<FontAwesomeIconButtonProps> = ({ ...props }) =
 }
 interface RoundButtonProps {
   text: string
-  onClick?: VoidFunction
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   className?: string
+  type?: 'button' | 'submit'
 }
-export const RoundButton: React.FC<RoundButtonProps> = ({ text, onClick = () => { }, className = '' }) => {
+export const RoundButton: React.FC<RoundButtonProps> = ({ text, type = 'button', onClick = () => { }, className = '' }) => {
   return (
-    <button onClick={onClick} className='w-full'>
-      <TextDisplay className={`flex justify-center items-center h-10 w-full my-2 px-4 rounded-full text-sm ${className}`}>
+    <button type={type} onClick={onClick} className='w-full'>
+      <TextDisplay className={`flex justify-center items-center h-10 w-full my-2 rounded-full text-sm ${className}`}>
         {text}
       </TextDisplay>
     </button>

@@ -31,10 +31,10 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
           <TextDisplay className='flex justify-end w-full text-sm mb-4'>※8文字以上16文字以内</TextDisplay>
           <div className='flex flex-col'>
             <RoundButton className='text-black bg-white' text='新規登録' onClick={async () => {
-              const registrationUser = await new AuthService().signUp(email, password).catch((err) => { setErrorMessage(err) })
-              if (registrationUser) {
-                setRegistrationUserId(registrationUser.userId)
-              }
+              AuthService.signUp(email, password).then(
+                (userId) => { setRegistrationUserId(userId) },
+                (err) => { setErrorMessage(err) }
+              )
             }} />
             <RoundButton className='text-white bg-blue-700' text='Facebookアカウントで登録' />
           </div>
@@ -49,8 +49,7 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
           <TextDisplay className='mb-8 text-sm'>ご登録のメールアドレスに送られた認証コードを入力してください。</TextDisplay>
           <RoundInput value={verificationCode} onChange={setVerificationCode} placeholder='認証コード' faIcon={faCheck} />
           <RoundButton className='text-black bg-white' text='認証' onClick={async () => {
-            new AuthService().signUpConfirmation(registrationUserId, verificationCode)
-              .then(
+            AuthService.signUpConfirmation(registrationUserId, verificationCode).then(
                 () => { setSucceeded(true) },
                 (err) => { setErrorMessage(err) }
               )

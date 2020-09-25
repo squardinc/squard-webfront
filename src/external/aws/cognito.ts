@@ -41,7 +41,6 @@ export const confirmSignUp = async (username: string, code: string) => {
       Username: username,
       Pool: userPool
     }).confirmRegistration(code, true, (err, result) => {
-      console.log()
       if (err || !result) {
         reject(confirmSignUpErrorMessage(err?.code))
         return
@@ -53,7 +52,7 @@ export const confirmSignUp = async (username: string, code: string) => {
 
 export const login = async (email: string, password: string) => {
   const cognitoUser = new CognitoUser({ Username: email, Pool: userPool });
-  return new Promise((resolve, reject) => {
+  return new Promise<CognitoUserSession>((resolve, reject) => {
     cognitoUser.authenticateUser(
       new AuthenticationDetails({ Username: email, Password: password }),
       {
