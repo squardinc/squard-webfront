@@ -34,10 +34,10 @@ export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({ teamId = 'sq
         <div className={styles.attributeContainer}>
           <div className="text-base tracking-wide font-thin">
             <TextDisplay>
-              マネジメントシステム: <span className="text-yellow-400">{system}</span>
+              マネジメントシステム: <span className="text-yellow">{system}</span>
             </TextDisplay>
             <TextDisplay>
-              チームリーダー: <span className="text-yellow-400">{leaderName}</span>
+              チームリーダー: <span className="text-yellow">{leaderName}</span>
             </TextDisplay>
           </div>
         </div>
