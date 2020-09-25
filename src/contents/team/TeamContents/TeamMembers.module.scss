@@ -7,48 +7,55 @@
 
 .members {
   display: flex;
-  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
+}
+
+.topMemberRow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .topMemberContainer {
   position: relative;
-  margin: 10px 0px;
+  width: 330px;
 }
 
 .topMember {
-  @include personIcon(100%, 240px, 5px);
+  @include personIcon(100%, 204px, 5px);
 }
 
 .topMemberCaption {
   position: absolute;
-  width: 80%;
-  top: 70%;
-  padding: 2px 0px;
   color: white;
   display: flex;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(24px);
   border-radius: 0 10px 10px 0;
+  font-size: 12px;
+  top: 143px;
+  height: 43px;
+  width: 235px;
 }
 
 .memberCaption {
   position: absolute;
-  width: 50%;
-  top: 65%;
-  padding: 2px 0px;
   color: white;
   display: flex;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(24px);
   border-radius: 0 10px 10px 0;
+  top: 100px;
+  height: 31px;
+  width: 100px;
 }
 
 .topMemberName {
   line-height: 3rem;
-  font-size: 1.4rem;
+  font-size: 22px;
 }
 
 .topMemberTitle {
@@ -57,11 +64,13 @@
   justify-content: center;
   align-items: flex-end;
   margin-bottom: 10px;
+  font-size: 12px;
 }
 .member {
-  @include personIcon(175px, 150px, 5px);
+  @include personIcon(154px, 143px, 5px);
+  margin: 12.5px 11px;
 }
 .memberName {
-  font-size: small;
+  font-size: 14px;
   line-height: 2rem;
 }

@@ -7,9 +7,9 @@ interface MemberProps {
   member: string
   name: string
 }
-const Member: React.FC<MemberProps> = ({ member, name}) => {
+const Member: React.FC<MemberProps> = ({ member, name }) => {
   return (
-    <div className="relative mt-2 pr-2 pl-2">
+    <div className="relative">
       <img src={member} className={styles.member} />
       <div className={styles.memberCaption}>
         <TextDisplay className={styles.memberName}>{name}</TextDisplay>
@@ -23,12 +23,14 @@ type TopMemberProps = MemberProps & {
 }
 const TopMember: React.FC<TopMemberProps> = ({ member, name, title }) => {
   return (
-    <div className={styles.topMemberContainer} >
-      <img src={member} className={styles.topMember} />
-      <TextDisplay className={styles.topMemberCaption}>
-        <div className={styles.topMemberName}>{name}</div>
-        <div className={styles.topMemberTitle}> &nbsp;/ {title}</div>
-      </TextDisplay>
+    <div className={styles.topMemberRow} >
+      <div className={styles.topMemberContainer} >
+        <img src={member} className={styles.topMember} />
+        <TextDisplay className={styles.topMemberCaption}>
+          <div className={styles.topMemberName}>{name}</div>
+          <div className={styles.topMemberTitle}> &nbsp;/ {title}</div>
+        </TextDisplay>
+      </div>
     </div>
   )
 }
@@ -45,7 +47,7 @@ export const TeamMembers: React.FC<TeamMembersProps> = ({ topMember, members }) 
       <TopMember member={topMember} name='小池駿平' title='Blockchain Engineer' />
       <div className={styles.members}>
         {members.filter(member => member != topMember).map((member, index) =>
-          <Member key={index} member={member} name={`舎弟${index+1}`} />
+          <Member key={index} member={member} name={`舎弟${index + 1}`} />
         )}
       </div>
     </div >

@@ -51,7 +51,7 @@
 @mixin leftBorder($color: black) {
   content: '';
   flex-grow: 1;
-  height: 6px;
+  height: 4.5px;
   display: block;
   background: $color;
 }
@@ -59,7 +59,7 @@
 @mixin leftBorderWithShadow($color: black) {
   content: '';
   flex-grow: 1;
-  height: 6px;
+  height: 4.5px;
   display: block;
   background: $color;
   box-shadow: 4px 5px lightgrey;
@@ -94,8 +94,9 @@
   justify-content: center;
   font-weight: 800;
   font-style: italic;
-  font-size: 4.5em;
+  font-size: 60px;
   line-height: 2.5rem;
+  white-space: nowrap;
 }
 .medium {
   display: flex;
@@ -105,6 +106,7 @@
   font-size: 3em;
   line-height: 2.5rem;
   letter-spacing: 0.03em;
+  white-space: nowrap;
 }
 .textShadow {
   text-shadow: 5px 5px 0 lightgrey;

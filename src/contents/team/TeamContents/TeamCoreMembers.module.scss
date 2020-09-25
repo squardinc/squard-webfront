@@ -1,6 +1,7 @@
 @import './team-mixins';
 
-$image-container-width: 188px;
+$image-container-width: 164px;
+$image-container-height: 344px;
 
 .container {
   @include team-content-container(white);
@@ -8,21 +9,22 @@ $image-container-width: 188px;
 
 .members {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   margin-top: 30px;
 }
 
-.member {
-  @include personIcon(200px, 420px);
+@mixin member {
+  width: $image-container-width;
+  height: $image-container-height;
+  border: 0px;
+  border-radius: 10px;
+  margin: 6.5px 5px;
 }
 
 .redImageContainer {
-  width: $image-container-width;
-  height: 420px;
-  border: 0px;
-  border-radius: 10px;
+  @include member;
   -webkit-filter: invert(40%) grayscale(100%) brightness(50%) sepia(100%)
     hue-rotate(-70deg) saturate(400%) contrast(0.8) blur(0.6px);
   filter: grayscale(100%) brightness(50%) sepia(100%) hue-rotate(-70deg)
@@ -30,10 +32,7 @@ $image-container-width: 188px;
 }
 
 .blueImageContainer {
-  width: $image-container-width;
-  height: 420px;
-  border: 0px;
-  border-radius: 10px;
+  @include member;
   -webkit-filter: grayscale(100%) brightness(50%) sepia(100%)
     hue-rotate(-210deg) saturate(1000%) contrast(0.7) blur(0.6px);
   filter: grayscale(100%) brightness(50%) sepia(100%) hue-rotate(-205deg)
@@ -41,10 +40,7 @@ $image-container-width: 188px;
 }
 
 .greenImageContainer {
-  width: $image-container-width;
-  height: 420px;
-  border: 0px;
-  border-radius: 10px;
+  @include member;
   -webkit-filter: grayscale(100%) brightness(50%) sepia(100%) hue-rotate(120deg)
     saturate(1000%) contrast(0.8) blur(0.6px);
   filter: grayscale(100%) brightness(50%) sepia(100%) hue-rotate(120deg)
@@ -52,10 +48,7 @@ $image-container-width: 188px;
 }
 
 .yellowImageContainer {
-  width: $image-container-width;
-  height: 420px;
-  border: 0px;
-  border-radius: 10px;
+  @include member;
   -webkit-filter: grayscale(90%) brightness(80%) sepia(90%) hue-rotate(5deg)
     saturate(500%) contrast(0.8) blur(0.6px);
   filter: grayscale(90%) brightness(80%) sepia(90%) hue-rotate(5deg)

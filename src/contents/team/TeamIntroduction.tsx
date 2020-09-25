@@ -32,7 +32,7 @@ export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({ teamId = 'sq
           {tags.map((tag, index) => <HashTag key={index} text={tag} />)}
         </div>
         <div className={styles.attributeContainer}>
-          <div className="text-base tracking-wide font-thin">
+          <div className="text-base tracking-wide font-thin small">
             <TextDisplay>
               マネジメントシステム: <span className="text-yellow">{system}</span>
             </TextDisplay>
