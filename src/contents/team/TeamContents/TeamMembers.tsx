@@ -45,7 +45,7 @@ export const TeamMembers: React.FC<TeamMembersProps> = ({ topMember, members }) 
       <TopMember member={topMember} name='小池駿平' title='Blockchain Engineer' />
       <div className={styles.members}>
         {members.filter(member => member != topMember).map((member, index) =>
-          <Member member={member} name={`舎弟${index+1}`} />
+          <Member key={index} member={member} name={`舎弟${index+1}`} />
         )}
       </div>
     </div >
