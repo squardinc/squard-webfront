@@ -26,14 +26,12 @@ export const TeamAngels: React.FC<TeamAngelsProps> = ({
 
   return (
     <div className={styles.container}>
-      <div className="pl-2 pr-2">
-        <TwoStagedCaption
-          sub="And we have"
-          main={`${numOfAngels} Angels`}
-          style="medium"
-          subFontWeight=''
-        />
-      </div>
+      <TwoStagedCaption
+        sub="And we have"
+        main={`${numOfAngels} Angels`}
+        style="medium"
+        subFontWeight=''
+      />
       <div className="pt-6">
         <div className={styles.angels}>
           {angels.map((angel, index) => (
