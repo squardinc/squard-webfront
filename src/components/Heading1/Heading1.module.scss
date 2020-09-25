@@ -14,10 +14,10 @@
   padding: 0 10px 8px;
 
   &::after {
-    margin: 10px -20px 0;
+    margin: 10px -40px 0 -20px;
     content: '';
     display: block;
-    height: 8px;
+    height: 6px;
     background-image: linear-gradient(to right bottom, transparent 0% 45%, black 50% 100%), linear-gradient(to right, $gradient-yellow 0%, $gradient-red 100%);
   }
 }
