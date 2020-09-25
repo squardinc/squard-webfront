@@ -11,6 +11,7 @@ import { withTheme } from 'src/context/ThemeContext'
 
 const Page: React.FC = () => {
   const [showLoginModal, setShowLoginModal] = React.useState(false)
+  const [showSignUpModal, setShowSignUpModal] = React.useState(false)
   return (
     <div>
       <Heading1>About</Heading1>
@@ -25,7 +26,10 @@ const Page: React.FC = () => {
         buttonText='事前登録フォームに進む'
         onButtonClick={() => setShowLoginModal(true)}
       />
-      <div>{showLoginModal ? <LoginModal closeModal={() => setShowLoginModal(false)} /> : <></>}</div>
+      <div>{showLoginModal ? <LoginModal closeModal={() => setShowLoginModal(false)} showSignUpModal={() => {
+        setShowLoginModal(false)
+        setShowSignUpModal(true)
+      }}/> : <></>}</div>
     </div>
   )
 }
