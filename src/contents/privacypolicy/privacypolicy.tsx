@@ -13,11 +13,11 @@ interface PolicySectionProps {
 interface PolicySectionWithSubSectionsProps {
   sections: PolicySectionContent[]
 }
-const PolicySection: React.FC<PolicySectionProps> = ({ sections }) => <>{sections.map(section => <div className='py-2'>{section}</div>)}</>
+const PolicySection: React.FC<PolicySectionProps> = ({ sections }) => <>{sections.map((section, index) => <div className='py-2' key={index}>{section}</div>)}</>
 const PolicySectionWithSubSections: React.FC<PolicySectionWithSubSectionsProps> = ({ sections }) =>
   <>
-    {sections.map(section => (
-      <div className='py-2'>
+    {sections.map((section, index) => (
+      <div className='py-2' key={index}>
         {section.section}
         {section.subsections ?
           <div className='px-4'>
