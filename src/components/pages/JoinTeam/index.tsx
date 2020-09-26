@@ -41,22 +41,24 @@ const CardWrapper = styled.div`
 
 const JoinTeam = (props: JoinTeamProps) => {
   return (
-    <JoinTeamWrapper>
-      <Heading3>Join The Team</Heading3>
-      <JoinInfoWrapper>
-        <TextJoinTeam>
-          <TextTeamName>Squard</TextTeamName>に参加する
+    <div className='theme-light'>
+      <JoinTeamWrapper>
+        <Heading3>Join The Team</Heading3>
+        <JoinInfoWrapper>
+          <TextJoinTeam>
+            <TextTeamName>Squard</TextTeamName>に参加する
         </TextJoinTeam>
-        <TextDesciption>
-          チームが設定した月々のサブスクリプション料金を支払いProspectsやAngelsとしてチームに参加することで、様々な特典を受け取ることができます。
+          <TextDesciption>
+            チームが設定した月々のサブスクリプション料金を支払いProspectsやAngelsとしてチームに参加することで、様々な特典を受け取ることができます。
         </TextDesciption>
-      </JoinInfoWrapper>
-      <CardWrapper>
-        {props.teamData.map((team: ITeam, i) => {
-          return <JoinCard key={i} team={team} />
-        })}
-      </CardWrapper>
-    </JoinTeamWrapper>
+        </JoinInfoWrapper>
+        <CardWrapper>
+          {props.teamData.map((team: ITeam, i) => {
+            return <JoinCard key={i} team={team} />
+          })}
+        </CardWrapper>
+      </JoinTeamWrapper>
+    </div>
   )
 }
 
