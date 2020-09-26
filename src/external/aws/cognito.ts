@@ -1,12 +1,21 @@
 import * as AWS from 'aws-sdk'
-import { CognitoUserPool, CognitoUser, CognitoUserAttribute, AuthenticationDetails, CognitoUserSession } from 'amazon-cognito-identity-js'
+import {
+  CognitoUserPool,
+  CognitoUser,
+  CognitoUserAttribute,
+  AuthenticationDetails,
+  CognitoUserSession,
+} from 'amazon-cognito-identity-js'
 import * as uuid from 'uuid'
-import { AWS_COGNITO_USERPOOL_ID, AWS_COGNITO_USERPOOL_CLIENT_ID } from 'src/utils/env'
+import {
+  AWS_COGNITO_USERPOOL_ID,
+  AWS_COGNITO_USERPOOL_CLIENT_ID,
+} from 'src/utils/env'
 
 AWS.config.region = 'ap-northeast-1'
 const userPool = new CognitoUserPool({
   UserPoolId: AWS_COGNITO_USERPOOL_ID,
-  ClientId: AWS_COGNITO_USERPOOL_CLIENT_ID
+  ClientId: AWS_COGNITO_USERPOOL_CLIENT_ID,
 })
 const signUpErrorMessage = (code: string) => {
   switch (code) {
@@ -16,15 +25,24 @@ const signUpErrorMessage = (code: string) => {
   return 'エラーが発生しました。入力内容を確認し、再度やり直して下さい'
 }
 
-export const signUp = async (email: string, password: string): Promise<CognitoUser> => {
+export const signUp = async (
+  email: string,
+  password: string
+): Promise<CognitoUser> => {
   return new Promise<CognitoUser>((resolve, reject) => {
-    userPool.signUp(uuid.v4(), password, [new CognitoUserAttribute({ Name: 'email', Value: email })], [], (err, result) => {
-      if (err || !result) {
-        reject(signUpErrorMessage(err?.__type))
-        return
+    userPool.signUp(
+      uuid.v4(),
+      password,
+      [new CognitoUserAttribute({ Name: 'email', Value: email })],
+      [],
+      (err, result) => {
+        if (err || !result) {
+          reject(signUpErrorMessage(err?.__type))
+          return
+        }
+        resolve(result.user)
       }
-      resolve(result.user)
-    });
+    )
   })
 }
 
@@ -39,7 +57,7 @@ export const confirmSignUp = async (username: string, code: string) => {
   return new Promise((resolve, reject) => {
     new CognitoUser({
       Username: username,
-      Pool: userPool
+      Pool: userPool,
     }).confirmRegistration(code, true, (err, result) => {
       if (err || !result) {
         reject(confirmSignUpErrorMessage(err?.code))
@@ -51,7 +69,7 @@ export const confirmSignUp = async (username: string, code: string) => {
 }
 
 export const login = async (email: string, password: string) => {
-  const cognitoUser = new CognitoUser({ Username: email, Pool: userPool });
+  const cognitoUser = new CognitoUser({ Username: email, Pool: userPool })
   return new Promise<CognitoUserSession>((resolve, reject) => {
     cognitoUser.authenticateUser(
       new AuthenticationDetails({ Username: email, Password: password }),
@@ -60,8 +78,11 @@ export const login = async (email: string, password: string) => {
           resolve(session)
         },
         onFailure: () => {
-          reject('ログインできませんでした。入力内容を確認して再度やり直してください。')
-        }
-      })
+          reject(
+            'ログインできませんでした。入力内容を確認して再度やり直してください。'
+          )
+        },
+      }
+    )
   })
 }

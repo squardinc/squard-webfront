@@ -18,16 +18,15 @@ export const Header = () => {
 
   return (
     <React.Fragment>
-      <div className={`${styles.container} bg-theme-bg-main text-theme-text-main`}>
+      <div
+        className={`${styles.container} bg-theme-bg-main text-theme-text-main`}
+      >
         <div className={styles.header}>
-          <Menu
-            cursor="pointer"
-            onClick={() => setShowNavMenu(!showNavMenu)}
-          />
+          <Menu cursor="pointer" onClick={() => setShowNavMenu(!showNavMenu)} />
           <TextDisplay>
             <span className="text-2xl font-bold">
               Squard
-            <span className="text-xl font-bold text-red-600">.</span>
+              <span className="text-xl font-bold text-red-600">.</span>
             </span>
           </TextDisplay>
           <div className="w-6">

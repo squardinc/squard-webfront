@@ -1,7 +1,9 @@
 const dotenv = require('dotenv')
 const path = require('path')
 
-dotenv.config({ path: `env/.${process.env.BRANCH === 'master' ? 'master' : 'master'}` })
+dotenv.config({
+  path: `env/.${process.env.BRANCH === 'master' ? 'master' : 'master'}`,
+})
 
 module.exports = {
   siteMetadata: {

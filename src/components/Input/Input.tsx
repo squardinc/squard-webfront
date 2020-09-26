@@ -10,7 +10,14 @@ interface InputProps {
   type?: string
   autoComplete?: string
 }
-export const RoundInput: React.FC<InputProps> = ({ value, onChange, type = 'text', placeholder, faIcon, autoComplete }) => {
+export const RoundInput: React.FC<InputProps> = ({
+  value,
+  onChange,
+  type = 'text',
+  placeholder,
+  faIcon,
+  autoComplete,
+}) => {
   return (
     <div className="flex items-center border-2 border-gray-300 bg-gray-200 h-10 w-full my-2 px-4 rounded-full text-sm">
       {faIcon ? (
@@ -21,11 +28,11 @@ export const RoundInput: React.FC<InputProps> = ({ value, onChange, type = 'text
         ''
       )}
       <input
-        className='ml-2 bg-gray-200 h-full w-full text-gray-600 focus:outline-none'
+        className="ml-2 bg-gray-200 h-full w-full text-gray-600 focus:outline-none"
         type={type}
         value={value}
         placeholder={placeholder}
-        onChange={e => onChange(e.target.value)}
+        onChange={(e) => onChange(e.target.value)}
         autoComplete={autoComplete}
       />
     </div>

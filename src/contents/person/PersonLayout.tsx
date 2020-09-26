@@ -20,14 +20,15 @@ import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 export const PersonLayout = () => {
   React.useContext(ThemeContext).setTheme('gray')
   return (
-    <div className={`${styles.container} bg-theme-bg-main`} >
+    <div className={`${styles.container} bg-theme-bg-main`}>
       <div className="pb-0">
-        <div  style={{
-                background: `url(${UserProfile})`,
-                backgroundSize: 'contain',
-              }} className={styles.cover}>
-
-        </div>
+        <div
+          style={{
+            background: `url(${UserProfile})`,
+            backgroundSize: 'contain',
+          }}
+          className={styles.cover}
+        ></div>
         <div className={styles.profileContainer}>
           <div className={styles.profilerImageContainer}>
             <div
@@ -65,7 +66,9 @@ export const PersonLayout = () => {
             <div className="pl-6 flex items-center h-full">
               <SquardLeader className="h-12 w-auto" />
               <span className="pl-8 pt-1 text-white leading-6">
-                <TextDisplay className="text-2xl font-semibold">Squard</TextDisplay>
+                <TextDisplay className="text-2xl font-semibold">
+                  Squard
+                </TextDisplay>
                 <TextDisplay>- Leader</TextDisplay>
               </span>
               <div className="absolute right-0 pt-1">
@@ -84,7 +87,9 @@ export const PersonLayout = () => {
             <div className="pl-6 flex items-center h-full">
               <CoreMembers className="h-12 w-auto" />
               <span className="pl-8 pt-1 text-white leading-6">
-                <TextDisplay className="text-2xl font-semibold">Cheerfully</TextDisplay>
+                <TextDisplay className="text-2xl font-semibold">
+                  Cheerfully
+                </TextDisplay>
                 <TextDisplay>- Core Members</TextDisplay>
               </span>
               <div className="absolute right-0 pt-1">
@@ -93,7 +98,9 @@ export const PersonLayout = () => {
             </div>
           </div>
           <div className={styles.profilerDesignation}>
-            <TextDisplay className="text-black font-thin pl-5 pt-2 pr-5">Manager</TextDisplay>
+            <TextDisplay className="text-black font-thin pl-5 pt-2 pr-5">
+              Manager
+            </TextDisplay>
           </div>
         </div>
       </div>

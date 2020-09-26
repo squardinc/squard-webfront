@@ -69,8 +69,10 @@ const Page: React.FC = (props) => {
             sub={el.sub}
             monthlyPrice={el.monthlyPrice}
             entitlements={el.entitlements}
-            login={() => { setShowLoginModal(true) }}
-            join={async (roleId: string) => { }}
+            login={() => {
+              setShowLoginModal(true)
+            }}
+            join={async (roleId: string) => {}}
             loggedIn={user.loggedIn}
           />
         ))}

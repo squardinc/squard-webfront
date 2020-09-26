@@ -7,13 +7,20 @@ import { DefaultModalContainer } from './ModalContainer'
 type ErrorComponentProps = ModalProps & {
   message: string
 }
-export const ErrorCompoenent: React.FC<ErrorComponentProps> = ({ closeModal, message}) => {
+export const ErrorCompoenent: React.FC<ErrorComponentProps> = ({
+  closeModal,
+  message,
+}) => {
   return (
-    <DefaultModalContainer closeModal={closeModal} >
-      <div className='flex flex-col justify-center items-center font-semibold'>
-        <TextDisplay className='text-3xl'>{}</TextDisplay>
-        <TextDisplay className='mb-8 text-lg'>{message}</TextDisplay>
-        <RoundButton className='border-2 text-lg' text='Close' onClick={closeModal}/>
+    <DefaultModalContainer closeModal={closeModal}>
+      <div className="flex flex-col justify-center items-center font-semibold">
+        <TextDisplay className="text-3xl">{}</TextDisplay>
+        <TextDisplay className="mb-8 text-lg">{message}</TextDisplay>
+        <RoundButton
+          className="border-2 text-lg"
+          text="Close"
+          onClick={closeModal}
+        />
       </div>
     </DefaultModalContainer>
   )

@@ -13,46 +13,89 @@ import { AuthService } from 'src/services/AuthService'
 type LoginComponentProps = ModalProps & {
   showSignUpModal: VoidFunction
 }
-const LoginComponent: React.FC<LoginComponentProps> = ({ closeModal, showSignUpModal }) => {
+const LoginComponent: React.FC<LoginComponentProps> = ({
+  closeModal,
+  showSignUpModal,
+}) => {
   const { user, setUser } = React.useContext(UserContext)
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [errorMesasge, setErrorMessage] = React.useState('')
   return (
     <DefaultModalContainer closeModal={closeModal}>
-      {!user.loggedIn ?
+      {!user.loggedIn ? (
         <>
-          <TextDisplay className='text-4xl font-semibold'>Login</TextDisplay>
-          <TextDisplay className='mb-8 text-sm'>ログイン情報を入力してください</TextDisplay>
+          <TextDisplay className="text-4xl font-semibold">Login</TextDisplay>
+          <TextDisplay className="mb-8 text-sm">
+            ログイン情報を入力してください
+          </TextDisplay>
           <form>
-            <RoundInput autoComplete='email' value={email} onChange={setEmail} placeholder='メールアドレス' faIcon={faEnvelope} />
-            <RoundInput autoComplete='password' value={password} onChange={setPassword} placeholder='パスワード' type='password' faIcon={faLock} />
-            <TextDisplay className='flex justify-end w-full text-sm mb-4'>パスワードを忘れた方はこちら</TextDisplay>
-            <div className='flex flex-col'>
-              <RoundButton className='text-black bg-white'
-                text='ログイン'
-                type='submit'
+            <RoundInput
+              autoComplete="email"
+              value={email}
+              onChange={setEmail}
+              placeholder="メールアドレス"
+              faIcon={faEnvelope}
+            />
+            <RoundInput
+              autoComplete="password"
+              value={password}
+              onChange={setPassword}
+              placeholder="パスワード"
+              type="password"
+              faIcon={faLock}
+            />
+            <TextDisplay className="flex justify-end w-full text-sm mb-4">
+              パスワードを忘れた方はこちら
+            </TextDisplay>
+            <div className="flex flex-col">
+              <RoundButton
+                className="text-black bg-white"
+                text="ログイン"
+                type="submit"
                 onClick={async (e) => {
                   AuthService.login(email, password).then(
-                    (user) => { setUser(user) },
-                    (err) => { setErrorMessage(err) }
+                    (user) => {
+                      setUser(user)
+                    },
+                    (err) => {
+                      setErrorMessage(err)
+                    }
                   )
                   e.preventDefault()
-                }} />
-              <RoundButton className='text-white bg-blue-700' text='Facebookでログイン' />
+                }}
+              />
+              <RoundButton
+                className="text-white bg-blue-700"
+                text="Facebookでログイン"
+              />
             </div>
           </form>
-          <TextDisplay className='mt-10 flex justify-center text-sm'>まだ登録していませんか？新規登録は
-        <div className='underline cursor-pointer' onClick={() => showSignUpModal()}>こちら</div>
+          <TextDisplay className="mt-10 flex justify-center text-sm">
+            まだ登録していませんか？新規登録は
+            <div
+              className="underline cursor-pointer"
+              onClick={() => showSignUpModal()}
+            >
+              こちら
+            </div>
           </TextDisplay>
         </>
-        :
+      ) : (
         <CompleteModal
-          title='Login Completed!'
-          footerDescription='ログインしました'
+          title="Login Completed!"
+          footerDescription="ログインしました"
           closeModal={closeModal}
-        />}
-      {errorMesasge ? <ErrorModal message={errorMesasge} closeModal={() => setErrorMessage('')} /> : ''}
+        />
+      )}
+      {errorMesasge ? (
+        <ErrorModal
+          message={errorMesasge}
+          closeModal={() => setErrorMessage('')}
+        />
+      ) : (
+        ''
+      )}
     </DefaultModalContainer>
   )
 }

@@ -12,7 +12,7 @@ export const PageWrapper: React.FC = ({ children }) => {
       <MetaData />
       <div className={`theme-${theme || 'dark'}`}>
         <div className="page-base-container">
-          <UserContextProvider >
+          <UserContextProvider>
             <Header />
             {children}
             <Footer />
