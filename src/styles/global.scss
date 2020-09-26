@@ -30,6 +30,14 @@
   --background-theme-button: linear-gradient(70deg, #AF1A3D, #FBE62E);
 }
 
+.theme-gray {
+  --text-color-theme-main: #262626;
+  --text-color-theme-sub: #FFFFFF;
+  --bg-color-theme-main: #EBEBEB;
+  --background-theme-footer: linear-gradient(70deg, #AF1A3D, #FBE62E);
+  --background-theme-button: linear-gradient(70deg, #AF1A3D, #FBE62E);
+}
+
 .theme-dark {
   --text-color-theme-main: #ffffff;
   --text-color-theme-sub: #FBE62E;
