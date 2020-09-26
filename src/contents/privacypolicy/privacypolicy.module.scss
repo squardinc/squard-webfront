@@ -3,7 +3,6 @@
 .container {
   position: relative;
   background-color: #051026;
-  font-family: 'montserrat', sans-serif;
 }
 
 .sharpUnderLiner {
@@ -26,7 +25,7 @@
 }
 
 .underLiner {
-  margin-top: 5px;
+  margin: 5px auto;
   height: 2px;
   background-image: linear-gradient(to right, #fbe62e, #af1a3d);
 }
