@@ -31,14 +31,14 @@ export const Header = () => {
             </Link>
           </TextDisplay>
           <div className="w-6">
-            {showSearchBar ? (
+            {/* {showSearchBar ? (
               <Cross cursor="pointer" onClick={() => setShowSearchBar(false)} />
             ) : (
-              <Search cursor="pointer" onClick={() => setShowSearchBar(true)} />
-            )}
+                <Search cursor="pointer" onClick={() => setShowSearchBar(true)} />
+              )} */}
           </div>
         </div>
-        {<SearchBar show={showSearchBar} />}
+        {/* <SearchBar show={showSearchBar} /> */}
       </div>
       <NavMenu
         show={showNavMenu}
