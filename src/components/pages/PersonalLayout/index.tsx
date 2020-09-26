@@ -17,6 +17,7 @@ type StyleCssProps = {
   profileImg?: string
   coverImg?: string
   isYoutubeIcon?: boolean
+  width?: number
   backgroundColor?: string
   profileHeight?: number
   oppositeTopOffset?: number
@@ -35,6 +36,7 @@ const ContentWrapper = styled.div`
 `
 
 const ProfileContainerWrapper = styled.div`
+  background-color: red;
   position: relative;
   bottom: 150px;
   z-index: 1;
@@ -45,6 +47,7 @@ const ProfileContainerWrapper = styled.div`
   border-radius: 10px;
 
   :before {
+    z-index: 1;
     content: '';
     position: absolute;
     margin-left: ${(props: StyleCssProps) =>
@@ -53,7 +56,7 @@ const ProfileContainerWrapper = styled.div`
       props.oppositeTopOffset ? props.oppositeTopOffset : 0}px;
     border-bottom: ${(props: StyleCssProps) =>
         props.profileHeight ? props.profileHeight : 0}px
-      solid blue;
+      solid rgba(255, 255, 255, 0.2);
     border-left: ${(props: StyleCssProps) =>
         props.profileBorderLeft ? props.profileBorderLeft : 0}px
       solid transparent;
@@ -62,7 +65,7 @@ const ProfileContainerWrapper = styled.div`
 `
 
 const UserCoverWrapper = styled.div`
-  width: ${sizes.windowWidth};
+  width: ${(props: StyleCssProps) => (props.width ? props.width : 0)}px;
   height: 500px;
   box-sizing: content-box;
   padding-top: 15px;
@@ -86,7 +89,8 @@ const UserCoverWrapper = styled.div`
     width: 0;
     height: 0;
     border-bottom: 100px solid #eee;
-    border-left: ${sizes.windowWidth} solid transparent;
+    border-left: ${(props: StyleCssProps) => (props.width ? props.width : 0)}px
+      solid transparent;
     border-right: 0px solid transparent;
   }
 `
@@ -145,6 +149,7 @@ const NameDescription = styled.div`
 `
 
 const SocialMediaWrapper = styled.div`
+  z-index: 100;
   display: flex;
   flex-wrap: wrap;
   width: 320px;
@@ -234,38 +239,52 @@ const TeamRoleText = styled.div`
 
 const PersonalLayout = (props: PersonalLayoutProps) => {
   const { personal } = props
-  const profileMarginLeft = 20
-  const coverOffset = 100
-  const profileContainerMargin = 20
-  const windowWidth = window.innerWidth > 640 ? 640 : window.innerWidth
-  const prfileContainerWidth = windowWidth - profileContainerMargin * 2
-
-  const tanOffset = coverOffset / windowWidth
-  const profileContainerOffset = windowWidth - profileContainerMargin
-  const opposite =
-    coverOffset - tanOffset * profileContainerOffset + coverOffset / 2
   const [profileHeight, setProfileHeight] = React.useState(0)
+  const [opposite, setOposite] = React.useState(0)
+  const [profileMarginLeft, setProfileMarginLeft] = React.useState(0)
+  const [profileBorderLeft, setProfileBorderLeft] = React.useState(0)
+  const profileContainer = document.getElementById(
+    'ProfileContainerWrapper'
+  ) as HTMLElement
 
   React.useEffect(() => {
+    const profileMarginLeft = 20
+    const coverOffset = 100
+    const profileContainerMargin = 20
+    const windowWidth = window.innerWidth > 640 ? 640 : window.innerWidth - 10
+    const profileContainerWidth = windowWidth - profileContainerMargin * 2
+
+    const tanOffset = coverOffset / windowWidth
+    const profileContainerOffset = windowWidth - profileContainerMargin
+    const opposite =
+      coverOffset - tanOffset * profileContainerOffset + coverOffset / 2
+
+    setOposite(opposite)
+    setProfileMarginLeft(profileMarginLeft)
+    setProfileBorderLeft(profileContainerWidth - profileMarginLeft)
     if (document && document.getElementById('ProfileContainerWrapper')) {
-      const elementId: Document = document.getElementById(
+      const elementId: HTMLElement = document.getElementById(
         'ProfileContainerWrapper'
-      )
+      ) as HTMLElement
       const elHeight = elementId.clientHeight
-      setProfileHeight(elHeight)
+     
+      setProfileHeight(elHeight - opposite)
     }
-  })
+  }, [profileContainer])
 
   return (
     <PersonalLayoutWrapper backgroundColor={'#ebebeb'}>
       <ContentWrapper>
-        <UserCoverWrapper coverImg={ProfileImg} />
+        <UserCoverWrapper
+          width={window.innerWidth > 640 ? 640 : window.innerWidth - 10}
+          coverImg={ProfileImg}
+        />
         <ProfileContainerWrapper
           id={'ProfileContainerWrapper'}
           profileHeight={profileHeight}
           oppositeTopOffset={opposite}
           profileMarginLeft={profileMarginLeft}
-          profileBorderLeft={prfileContainerWidth - profileMarginLeft}
+          profileBorderLeft={profileBorderLeft}
         >
           <ProfilerImageContainer>
             <ProfileImage profileImg={ProfileImg} />
