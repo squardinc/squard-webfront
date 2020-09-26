@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build --prefix-paths",
-    "dev": "gatsby develop",
+    "dev": "gatsby develop --https",
     "format": "prettier --write \"**/*.{js,jsx,tsx,ts,json,md}\"",
     "tslint": "tslint \"src/**/*.ts[x]\" --fix",
     "lint": "npm run format && npm run tslint",
