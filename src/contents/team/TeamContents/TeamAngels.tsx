@@ -23,7 +23,6 @@ export const TeamAngels: React.FC<TeamAngelsProps> = ({
   angels,
   numOfAngels,
 }) => {
-
   return (
     <div className={styles.container}>
       <TwoStagedCaption

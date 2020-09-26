@@ -43,6 +43,16 @@
   border-radius: 10px;
 }
 
+.profileContainer:before {
+  content: '';
+  position: absolute;
+  margin-left: 20px;
+  top: 50px;
+  border-bottom: 395px solid blue;
+  border-left: 387px solid red;
+  border-right: 0px solid transparent;
+}
+
 .profilerImageContainer {
   position: absolute;
   top: -20px;

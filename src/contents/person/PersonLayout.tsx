@@ -11,6 +11,8 @@ import Zoom from 'src/assets/zoom_icon.svg'
 import SquardLeader from 'src/assets/squard_leader.svg'
 import CoreMembers from 'src/assets/core_members.svg'
 import ProfileLink from 'src/assets/profile_link_icon.svg'
+import UserProfile from 'src/images/user.png'
+
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { ThemeContext } from 'src/context/ThemeContext'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
@@ -21,8 +23,8 @@ export const PersonLayout = () => {
     <div className={`${styles.container} bg-theme-bg-main`} >
       <div className="pb-0">
         <div  style={{
-                background: `url("images/Person_1.png") no-repeat center center `,
-                backgroundSize: 'cover',
+                background: `url(${UserProfile})`,
+                backgroundSize: 'contain',
               }} className={styles.cover}>
 
         </div>
@@ -30,7 +32,7 @@ export const PersonLayout = () => {
           <div className={styles.profilerImageContainer}>
             <div
               style={{
-                background: `url("images/user.png") no-repeat center center `,
+                background: `url(${UserProfile}) no-repeat center center `,
                 backgroundSize: 'cover',
               }}
               className={styles.profilerImage}

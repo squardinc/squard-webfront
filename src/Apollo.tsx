@@ -3,40 +3,37 @@ import fetch from 'cross-fetch'
 import { ApolloProvider } from '@apollo/client'
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
-import { AWS_APPSYNC_GRAPHQL_ENDPOINT, AWS_APPSYNC_API_KEY } from './utils/env';
+import { AWS_APPSYNC_GRAPHQL_ENDPOINT, AWS_APPSYNC_API_KEY } from './utils/env'
 
 const httpLink = createHttpLink({
   uri: AWS_APPSYNC_GRAPHQL_ENDPOINT,
   fetch,
-});
+})
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token')
   if (token) {
     return {
       headers: {
         ...headers,
-        authorization: token ? `Bearer ${token}` : "",
-      }
+        authorization: token ? `Bearer ${token}` : '',
+      },
     }
   }
   return {
     headers: {
       ...headers,
-      'x-api-key': AWS_APPSYNC_API_KEY
-    }
+      'x-api-key': AWS_APPSYNC_API_KEY,
+    },
   }
-
-});
+})
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache()
-});
+  cache: new InMemoryCache(),
+})
 
-export const WithApolloProvider = (Component: React.FC) => (
-  () => (
-    <ApolloProvider client={client}>
-      <Component />
-    </ApolloProvider>
-  )
+export const WithApolloProvider = (Component: React.FC) => () => (
+  <ApolloProvider client={client}>
+    <Component />
+  </ApolloProvider>
 )

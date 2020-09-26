@@ -10,7 +10,7 @@ interface CoreMember {
   age: string
   title: string
   introduction: string
-  name:string
+  name: string
   color: string
 }
 interface TeamCoreMembersProps {
@@ -37,8 +37,8 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
       <TwoStagedCaption sub="CORE" main="MEMBERS" />
       <div className={styles.members}>
         {coreMembers.map((member: any) => (
-          <Link key={member.id} to={`/${member.id}`} >
-          <div className="relative mt-3">
+          <Link key={member.id} to={`/${member.id}`}>
+            <div className="relative mt-3">
               <div
                 style={{
                   background: `url("${member.imageUrl}") no-repeat center center `,
@@ -47,14 +47,22 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
                 className={getImageTheme(member.color)}
               ></div>
               <TextDisplay className={styles.ageTag}>
-              <p className="ml-2 mr-2 pl-1 leading-9 text-xs font-semibold text-white border-b border-dashed">
+                <p className="ml-2 mr-2 pl-1 leading-9 text-xs font-semibold text-white border-b border-dashed">
                   Age
-              </p>
-                <p className="pl-3 text-2xl font-bold text-white">{member.age}</p>
+                </p>
+                <p className="pl-3 text-2xl font-bold text-white">
+                  {member.age}
+                </p>
               </TextDisplay>
-              <TextDisplay className={styles.designationText}>{member.title}</TextDisplay>
-              <TextDisplay className={styles.titleSM}>{member.introduction}</TextDisplay>
-              <TextDisplay className={styles.titleLG}>{member.name}</TextDisplay>
+              <TextDisplay className={styles.designationText}>
+                {member.title}
+              </TextDisplay>
+              <TextDisplay className={styles.titleSM}>
+                {member.introduction}
+              </TextDisplay>
+              <TextDisplay className={styles.titleLG}>
+                {member.name}
+              </TextDisplay>
             </div>
           </Link>
         ))}

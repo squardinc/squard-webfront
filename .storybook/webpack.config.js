@@ -8,12 +8,12 @@ module.exports = ({ config }) => {
     options: {
       presets: [['react-app', { flow: false, typescript: true }]],
       plugins: [
-        require.resolve("@babel/plugin-proposal-class-properties"),
+        require.resolve('@babel/plugin-proposal-class-properties'),
         // use babel-plugin-remove-graphql-queries to remove static queries from components when rendering in storybook
-        require.resolve("babel-plugin-remove-graphql-queries"),
+        require.resolve('babel-plugin-remove-graphql-queries'),
       ],
     },
-  });
-  config.resolve.extensions.push('.ts', '.tsx');
+  })
+  config.resolve.extensions.push('.ts', '.tsx')
   return config
 }

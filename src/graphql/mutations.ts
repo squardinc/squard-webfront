@@ -17,7 +17,7 @@ export const createTeam = /* GraphQL */ `
       vips
     }
   }
-`;
+`
 export const updateTeam = /* GraphQL */ `
   mutation UpdateTeam($input: UpdateTeamInput!) {
     updateTeam(input: $input) {
@@ -33,7 +33,7 @@ export const updateTeam = /* GraphQL */ `
       vips
     }
   }
-`;
+`
 export const deleteTeam = /* GraphQL */ `
   mutation DeleteTeam($input: DeleteTeamInput!) {
     deleteTeam(input: $input) {
@@ -49,4 +49,4 @@ export const deleteTeam = /* GraphQL */ `
       vips
     }
   }
-`;
+`

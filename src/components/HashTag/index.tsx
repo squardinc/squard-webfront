@@ -8,9 +8,7 @@ interface HashTagProps {
 export const HashTag: React.FC<HashTagProps> = ({ text }) => {
   return (
     <div className={styles.container}>
-      <TextDisplay>
-        {`#${text}`}
-      </TextDisplay>
+      <TextDisplay>{`#${text}`}</TextDisplay>
     </div>
   )
 }

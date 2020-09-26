@@ -6,11 +6,24 @@ const REGEX = /^[a-zA-Z0-9!-/:-@¥[-`{-~'? "©]*$/
 const onlyAlphanumeric = (text: string) => REGEX.test(text)
 interface TextDisplayProps {
   className?: string
-  alphanumericFont?: 'montserrat' | 'livermore' | 'raleway' | 'raleway-v2.0' | 'lato'
+  alphanumericFont?:
+    | 'montserrat'
+    | 'livermore'
+    | 'raleway'
+    | 'raleway-v2.0'
+    | 'lato'
 }
-export const TextDisplay: React.FC<TextDisplayProps> = ({ children, className = '', alphanumericFont = 'montserrat' }) => {
+export const TextDisplay: React.FC<TextDisplayProps> = ({
+  children,
+  className = '',
+  alphanumericFont = 'montserrat',
+}) => {
   return (
-    <div className={`${className} ${onlyAlphanumeric(innerText(children)) ? styles[alphanumericFont] : ''}`} >
+    <div
+      className={`${className} ${
+        onlyAlphanumeric(innerText(children)) ? styles[alphanumericFont] : ''
+      }`}
+    >
       {children}
     </div>
   )
