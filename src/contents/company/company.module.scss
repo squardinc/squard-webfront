@@ -5,48 +5,74 @@
   position: relative;
   margin-bottom: 50px;
   background-color: #fafafa;
+  font-family: 'montserrat', sans-serif;
 }
 
 .companyImageContainer {
-  height: $window-width;
-  width: $window-width;
+  height: 400px;
 }
 
 .contactInfo {
   position: relative;
-  top: 70px;
-  height: 150px;
+  height: 200px;
   background-image: linear-gradient(#051026, transparent);
+  padding-top: 20px;
+  font-weight: 100;
 }
 
 .companyInfo {
   position: relative;
-  top: 125px;
-  height: 150px;
+  height: 200px;
   background-image: linear-gradient(transparent, #051026);
 }
 
 .labelHeaderBox {
   height: 45px;
-  width: 370px;
+  width: 90%;
+  margin: auto;
   background-image: linear-gradient(to right, #27d8df, #3b4491);
   box-shadow: 5px 7px lightgrey;
 }
 
+$member-width: 164px;
+
 .members {
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  width: 370px;
 }
 
 .member {
-  @include personIcon(185px, 155px, 5px);
+  @include personIcon($member-width, 152px, 3.5px);
+}
+
+.redFilter {
+  -webkit-filter: invert(40%) grayscale(100%) brightness(45%) sepia(100%) hue-rotate(-70deg) saturate(400%) contrast(0.8) blur(0.6px);
+  filter: grayscale(100%) brightness(45%) sepia(100%) hue-rotate(-70deg) saturate(500%) contrast(0.8) blur(0.6px);
+}
+
+.blueFilter {
+  -webkit-filter: grayscale(100%) brightness(50%) sepia(100%) hue-rotate(-210deg) saturate(1000%) contrast(0.7) blur(0.6px);
+  filter: grayscale(100%) brightness(50%) sepia(100%) hue-rotate(-205deg) saturate(1000%) contrast(0.7) blur(0.6px);
+}
+
+.greenFilter {
+  -webkit-filter: grayscale(100%) brightness(50%) sepia(100%) hue-rotate(120deg) saturate(1000%) contrast(0.8) blur(0.6px);
+  filter: grayscale(100%) brightness(50%) sepia(100%) hue-rotate(120deg) saturate(1000%) contrast(0.8) blur(0.6px);
+}
+
+.yellowFilter {
+  -webkit-filter: grayscale(90%) brightness(80%) sepia(90%) hue-rotate(5deg) saturate(500%) contrast(0.8) blur(0.6px);
+  filter: grayscale(90%) brightness(80%) sepia(90%) hue-rotate(5deg) saturate(500%) contrast(0.8) blur(0.6px);
 }
 
 .memberCaption {
   position: absolute;
-  width: 50%;
-  top: 67%;
+  width: 124px;
+  height: 32px;
+  top: 106px;
   padding: 2px 0px;
   color: white;
   display: flex;
