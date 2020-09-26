@@ -13,6 +13,7 @@ import CoreMembers from 'src/assets/core_members.svg'
 import ProfileLink from 'src/assets/profile_link_icon.svg'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { ThemeContext } from 'src/context/ThemeContext'
+import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 
 export const PersonLayout = () => {
   React.useContext(ThemeContext).setTheme('gray')
@@ -94,6 +95,7 @@ export const PersonLayout = () => {
           </div>
         </div>
       </div>
+      <DefaultFooter />
     </div>
   )
 }
