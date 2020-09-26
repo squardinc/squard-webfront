@@ -6,7 +6,7 @@ interface RedirectProps {
 }
 export const Redirect: React.FC<RedirectProps> = () => {
   // TODO Loading
-  if (typeof window !== undefined) {
+  if (typeof window !== 'undefined') {
     navigate('/squard')
   }
   return <></>
