@@ -91,55 +91,55 @@ export const CompanyPage: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="pl-6 pr-6 pb-16">
+      <div className="pb-16">
         <div className={styles.labelHeaderBox}>
-          <div className="text-white text-lg font-medium text-center tracking-wider pt-2">
+          <TextDisplay className="text-white text-lg font-medium text-center tracking-wider pt-2">
             社名 / Corporate Name
-          </div>
-          <div className="text-black text-lg font-thin text-center tracking-wider pt-6">
+          </TextDisplay>
+          <TextDisplay className="text-black text-lg font-thin text-center tracking-wider pt-6">
             スクアード株式会社 / Squard, Inc.
-          </div>
+          </TextDisplay>
         </div>
       </div>
-      <div className="pl-6 pr-6 pb-16">
+      <div className="pb-16">
         <div className={styles.labelHeaderBox}>
-          <div className="text-white text-lg font-medium text-center tracking-wider pt-2">
+          <TextDisplay className="text-white text-lg font-medium text-center tracking-wider pt-2">
             代表取締役 / CEO
-          </div>
-          <div className="text-black text-lg font-thin text-center tracking-wider pt-6">
+          </TextDisplay>
+          <TextDisplay className="text-black text-lg font-thin text-center tracking-wider pt-6">
             小池駿平 / Shunpei Koike
-          </div>
+          </TextDisplay>
         </div>
       </div>
-      <div className="pl-6 pr-6 pb-16">
+      <div className="pb-16">
         <div className={styles.labelHeaderBox}>
-          <div className="text-white text-lg font-medium text-center tracking-wider pt-2">
+          <TextDisplay className="text-white text-lg font-medium text-center tracking-wider pt-2">
             設立 / Founded
-          </div>
-          <div className="text-black text-lg font-thin text-center tracking-wider pt-6">
+          </TextDisplay>
+          <TextDisplay className="text-black text-lg font-thin text-center tracking-wider pt-6">
             2020年8月 / August 2020
-          </div>
+          </TextDisplay>
         </div>
       </div>
-      <div className="pl-6 pr-6 pb-16">
+      <div className="pb-16">
         <div className={styles.labelHeaderBox}>
-          <div className="text-white text-lg font-medium text-center tracking-wider pt-2">
+          <TextDisplay className="text-white text-lg font-medium text-center tracking-wider pt-2">
             資本金 / Capital
-          </div>
-          <div className="text-black text-lg font-thin text-center tracking-wider pt-6">
+          </TextDisplay>
+          <TextDisplay className="text-black text-lg font-thin text-center tracking-wider pt-6">
             10,000,000円 / 10,000,000 yen
-          </div>
+          </TextDisplay>
         </div>
       </div>
-      <div className="pl-6 pr-6 pb-24">
+      <div className="pb-24">
         <div className={styles.labelHeaderBox}>
-          <div className="text-white text-lg font-medium text-center tracking-wider pt-2">
+          <TextDisplay className="text-white text-lg font-medium text-center tracking-wider pt-2">
             所在地 / Address
-          </div>
-          <div className="text-black text-sm font-thin text-center tracking-wider pt-6">
+          </TextDisplay>
+          <TextDisplay className="text-black text-sm font-thin text-center tracking-wider pt-6">
             <p>〒135-0064 東京都江東区青海2-7-4 the SOHO 1310 </p>
             <p>the SOHO 1310, 2-7-4, Aomi, Koto-ku, Tokyo</p>
-          </div>
+          </TextDisplay>
         </div>
       </div>
     </div>
