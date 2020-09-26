@@ -2,7 +2,7 @@ import * as React from 'react'
 import PersonalLayout from '../../../components/pages/PersonalLayout'
 import { IPersonal } from '../../../models/personal'
 
-export const PersonalLayoutContainer = () => {
+export const PersonalLayoutContainer: React.FC = () => {
   const [isLoading, setIsLoading] = React.useState<boolean>(true)
 
   const personal: IPersonal = {
@@ -44,7 +44,7 @@ export const PersonalLayoutContainer = () => {
   }, [])
 
   if (isLoading) {
-    return ''
+    return <></>
   }
 
   return <PersonalLayout isLoading={false} personal={personal} />

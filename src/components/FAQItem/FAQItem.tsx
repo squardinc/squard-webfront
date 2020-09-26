@@ -7,7 +7,7 @@ import Quote from 'src/assets/faq/quote.svg'
 interface FAQItemProps {
   num: number
   question: string
-  answer: string
+  answer: string | JSX.Element
 }
 
 export const FAQItem: React.FC<FAQItemProps> = ({ num, question, answer }) => {
