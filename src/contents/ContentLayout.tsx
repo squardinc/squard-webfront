@@ -5,7 +5,6 @@ import { FAQPage } from './faq'
 import { PrivacyPolicyPage } from './privacypolicy/privacypolicy'
 import { TeamLayout } from './team/TeamLayout'
 import { PersonLayout } from './person/PersonLayout'
-import { TopLayout } from './top'
 import { SignUpLayout } from './SignUp'
 
 export const StaticPagePaths = [

@@ -29,9 +29,9 @@ const Page: React.FC = () => {
       <div>{showLoginModal ? <LoginModal closeModal={() => setShowLoginModal(false)} showSignUpModal={() => {
         setShowLoginModal(false)
         setShowSignUpModal(true)
-      }}/> : <></>}</div>
+      }} /> : <></>}</div>
     </div>
   )
 }
 
-export const AboutPage = withTheme(Page, 'dark')
+export const AboutPage =  withTheme(Page, 'dark')

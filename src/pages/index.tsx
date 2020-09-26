@@ -2,7 +2,6 @@ import * as React from 'react'
 import { Router } from '@reach/router'
 import { WithApolloProvider } from 'src/Apollo'
 import { PageWrapper } from 'src/components/PageWrapper'
-import { TopLayout } from 'src/contents/top'
 import { ContentLayout } from 'src/contents/ContentLayout'
 import { ContentSubLayout } from 'src/contents/ContentSubLayout'
 import { ThemeContextProvider } from 'src/context/ThemeContext'
@@ -13,7 +12,6 @@ const IndexPage: React.FC = () => {
     <ThemeContextProvider>
       <PageWrapper>
         <Router>
-          <TopLayout path="/" />
           <ContentLayout path=":contentId" contentId="" />
           <ContentSubLayout
             path=":contentId/:subContentId"
