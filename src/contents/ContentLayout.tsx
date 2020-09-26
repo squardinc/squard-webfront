@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { AboutPage } from './about/AboutPage'
 import { CompanyPage } from './company/company'
-import { FAQPage } from './faq'
+import { FAQPage } from './faq/FAQ'
 import { PrivacyPolicyPage } from './privacypolicy/privacypolicy'
 import { TeamLayout } from './team/TeamLayout'
 import { PersonLayout } from './person/PersonLayout'
