@@ -11,29 +11,29 @@ import Complete from 'src/assets/status/complete.svg'
 import { Heading2 } from 'src/components/Heading2/Heading2'
 import { Description } from 'src/components/Description/Description'
 
-interface StatusProps {}
+interface StatusProps { }
 
 export const Status: React.FC<StatusProps> = (props) => {
   const statusList = [
     {
-      logo: <Ready></Ready>,
+      logo: <Ready />,
       description:
-        'Ready（レディー）はプロジェクトが準備段階であることを表します。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください(120文字程度)',
+        'チームを組成した時点でSTATUSは「Ready」となります。「Ready」の状態ではCore Membersの人員に不足がある場合があります。人員の構成が期待値を超えた場合、かつマイルストーンを始められる条件が整ったと発起人（Leader）が判断した場合、STATUSは「Drive」状態となります',
     },
     {
-      logo: <Drive></Drive>,
+      logo: <Drive />,
       description:
-        'Drive（ドライブ）はプロジェクトが進行中であることを表します。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください(120文字程度)',
+        '「Drive」状態のチームにはサブスクリプション課金が発生し、設定したマイルストーンの達成が期待されます。マイルストーンとはそのチームにおける中間目標であり、達成までの期間をイベントとして登録することで、チームが前に進む原動力に繋がります。各マイルストーンの達成状況は「Success(サクセス)」「Failure(フェイリア)」としてカウントされ、活動状況が外部からも確認できます。',
     },
     {
-      logo: <Breakup></Breakup>,
+      logo: <Breakup />,
       description:
-        'Breakup（ブレイクアップ）はプロジェクトが完遂することなく解散したことを表します。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください(120文字程度)',
+        '「Complete」はプロジェクトが完遂したことを表します。チームは解散され、関与した全ての人員にはチームの成功に対する勲章が与えられます。',
     },
     {
-      logo: <Complete></Complete>,
+      logo: <Complete />,
       description:
-        'Complete（コンプリート）はチームがプロジェクトを完遂したことを表します。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください(120文字程度)',
+        '「Breakup」はプロジェクトが完遂することなくチームが解散したことを表します。挑戦は失敗に終わりましたが、挑戦したこと自体への勲章が与えられます。',
     },
   ]
 

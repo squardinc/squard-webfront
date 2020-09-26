@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build --prefix-paths",
-    "dev": "gatsby develop",
+    "dev": "gatsby develop --https",
     "format": "prettier --write \"**/*.{js,jsx,tsx,ts,json,md}\"",
     "tslint": "tslint \"src/**/*.ts[x]\" --fix",
     "lint": "npm run format && npm run tslint",
@@ -43,6 +43,7 @@
     "gatsby-plugin-sass": "^2.3.12",
     "gatsby-plugin-sharp": "^2.6.30",
     "gatsby-plugin-typescript": "^2.4.18",
+    "gatsby-remark-external-links": "^0.0.4",
     "gatsby-source-filesystem": "^2.3.27",
     "gatsby-transformer-sharp": "^2.5.13",
     "graphql": "^15.3.0",
