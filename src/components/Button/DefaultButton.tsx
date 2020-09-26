@@ -42,7 +42,7 @@ interface RoundButtonProps {
 export const RoundButton: React.FC<RoundButtonProps> = ({ text, type = 'button', onClick = () => { }, className = '' }) => {
   return (
     <button type={type} onClick={onClick} className='w-full'>
-      <TextDisplay className={`flex justify-center items-center h-10 w-full my-2 rounded-full text-sm ${className}`}>
+      <TextDisplay className={`flex justify-center items-center h-10 w-full my-1 rounded-full text-sm ${className}`}>
         {text}
       </TextDisplay>
     </button>
