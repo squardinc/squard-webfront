@@ -21,15 +21,15 @@ export const Page: React.FC = (props) => {
     },
     {
       question: 'チームページはどうやって作れますか？',
-      answer: <div>現在はチーム作成機能を一般開放しておりません。弊社にて厳選したチームのみを作成させていただいております。チーム作成のお問い合わせはお手数ですが<a href='mailto:contact@squard.jp'>contact@squard.jp</a>までご連絡ください。</div>
+      answer: <div>現在はチーム作成機能を一般開放しておりません。弊社にて厳選したチームのみを作成させていただいております。チーム作成のお問い合わせはお手数ですが<a href='mailto:contact@squard.jp' className={styles.link}>contact@squard.jp</a>までご連絡ください。</div>
     },
     {
       question: 'CLASSやSTATUSについてもっと詳しく知りたいです。',
-      answer: <div><Link to='/about'>Aboutページ</Link>にて詳しく解説しております。</div>
+      answer: <div><Link className={styles.link} to='/about'>Aboutページ</Link>にて詳しく解説しております。</div>
     },
     {
       question: 'Squardのチームに加わってみたいです。',
-      answer: <div><Link to='/squard/join'>こちら</Link>から参加できます。ご質問は<a href='mailto:contact@squard.jp'>contact@squard.jp</a>までご連絡ください。</div>
+      answer: <div><Link className={styles.link} to='/squard/join'>こちら</Link>から参加できます。ご質問は<a href='mailto:contact@squard.jp' className={styles.link} >contact@squard.jp</a>までご連絡ください。</div>
     }
   ]
 
