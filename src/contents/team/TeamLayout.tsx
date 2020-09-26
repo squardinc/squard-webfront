@@ -61,10 +61,7 @@ const DUMMY_CORE_MEMBERS = [
 ]
 
 const Layout = () => {
-  console.log('layout ----')
-  const { loading, error, data } = useQuery<GetTeamQuery>(gql(getTeam), {
-    variables: { id: 'squard' },
-  })
+  const { loading, error, data } = useQuery<GetTeamQuery>(gql(getTeam), { variables: { id: 'squard' } });
   return (
     <>
       <TeamTop />
@@ -75,9 +72,9 @@ const Layout = () => {
         system={data?.getTeam?.system}
       />
       <TeamCoreMembers coreMembers={DUMMY_CORE_MEMBERS} />
-      <TeamMembers topMember={DUMMY_MEMBERS[0]} members={DUMMY_MEMBERS} />
+      <TeamMembers topMember={DUMMY_MEMBERS[0]} members={[...DUMMY_MEMBERS]} />
       <TeamProspects propspects={DUMMY_MEMBERS} />
-      <TeamAngels angels={DUMMY_MEMBERS} numOfAngels={65535} />
+      <TeamAngels angels={[...DUMMY_MEMBERS]} numOfAngels={65535} />
       <TeamVIP vips={DUMMY_MEMBERS} />
       <ContentFooter
         titleSub="What's the"

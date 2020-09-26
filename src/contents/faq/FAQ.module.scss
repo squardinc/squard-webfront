@@ -1,3 +1,10 @@
+@import 'src/styles/variables.scss';
+
 .pageWrapper {
   padding: 0 40px 20px;
+  background-color: $black;
+}
+
+.link {
+  text-decoration: underline;
 }

@@ -36,16 +36,13 @@ export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({
             <HashTag key={index} text={tag} />
           ))}
         </div>
-        <div className={styles.attributeContainer}>
-          <div className="text-base tracking-wide font-thin small">
-            <TextDisplay>
-              マネジメントシステム:{' '}
-              <span className="text-yellow">{system}</span>
-            </TextDisplay>
-            <TextDisplay>
-              チームリーダー: <span className="text-yellow">{leaderName}</span>
-            </TextDisplay>
-          </div>
+        <div className={`${styles.attributeContainer} tracking-wide`}>
+          <TextDisplay>
+            マネジメントシステム: <span className="text-yellow">{system}</span>
+          </TextDisplay>
+          <TextDisplay>
+            チームリーダー: <span className="text-yellow">{leaderName}</span>
+          </TextDisplay>
         </div>
         <DefaultButton
           text="Squardに参加してみる？"
