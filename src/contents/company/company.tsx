@@ -54,10 +54,10 @@ export const CompanyPage: React.FC = () => {
       >
         <div className={styles.contactInfo}>
           <p className="pl-10 text-white text-sm text-opacity-75 tracking-widest">
-            Web : www.squard.co.jp
+            Web : <a href='https://www.squard.co.jp' target='_blank' rel='noopener noreferrer'>www.squard.co.jp</a>
           </p>
           <p className="pt-2 pl-10 text-white text-sm text-opacity-75 tracking-widest">
-            Mail : contact@squared.co.jp
+            Mail : <a href='mailto:contact@squared.co.jp' >contact@squared.co.jp</a>
           </p>
         </div>
         <div className={styles.companyInfo}>
@@ -75,15 +75,17 @@ export const CompanyPage: React.FC = () => {
         </div>
       </div>
       <div className="pt-2 pb-8">
-        <div className="pl-4 pr-4">
-          <TwoStagedCaption
-            style="medium"
-            sub="About"
-            main="Our Company"
-            shadow={true}
-          />
+        <div className="flex flex-col justify-center items-center">
+          <div>
+            <TwoStagedCaption
+              style="medium"
+              sub="About"
+              main="Our Company"
+              shadow={true}
+            />
+          </div>
         </div>
-        <div className="pl-3 pt-8">
+        <div className="pt-8 flex justify-center">
           <div className={styles.members}>
             {members.map((member, index) => (
               <Member key={index} member={member} />

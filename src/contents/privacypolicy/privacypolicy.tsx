@@ -236,7 +236,7 @@ export const PrivacyPolicyPage: React.FC = () => {
             </p>
           </div>
           <div className="pt-8 pl-16 pr-16 text-center text-white text-2xl underline font-medium tracking-widest">
-            contact@squard.jp
+            <a href='mailto:contact@squared.co.jp' >contact@squared.co.jp</a>
           </div>
           <div className="pt-16 pl-16 pr-12 text-right text-white text-xl font-medium tracking-widest">
             以上
