@@ -41,7 +41,6 @@ const CardWrapper = styled.div`
 
 const JoinTeam = (props: JoinTeamProps) => {
   return (
-    <div className='theme-light'>
       <JoinTeamWrapper>
         <Heading3>Join The Team</Heading3>
         <JoinInfoWrapper>
@@ -58,7 +57,6 @@ const JoinTeam = (props: JoinTeamProps) => {
           })}
         </CardWrapper>
       </JoinTeamWrapper>
-    </div>
   )
 }
 
