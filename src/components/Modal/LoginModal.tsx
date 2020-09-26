@@ -7,6 +7,7 @@ import { asModal, ModalProps } from './asModal'
 import { DefaultModalContainer } from './ModalContainer'
 import { CompleteModal } from './CompleteModal'
 import { ErrorModal } from './ErrorModal'
+import { PasswordResetRequestModal } from './PasswordResetRequestModal'
 import { UserContext } from 'src/context/UserContext'
 import { AuthService } from 'src/services/AuthService'
 
@@ -18,6 +19,7 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ closeModal, showSignUpM
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [errorMesasge, setErrorMessage] = React.useState('')
+  const [showPasswordResetRequestModal, setShowPasswordResetRequestModal] = React.useState(false)
   return (
     <DefaultModalContainer closeModal={closeModal}>
       {!user.loggedIn ?
@@ -27,7 +29,9 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ closeModal, showSignUpM
           <form>
             <RoundInput autoComplete='email' value={email} onChange={setEmail} placeholder='メールアドレス' faIcon={faEnvelope} />
             <RoundInput autoComplete='password' value={password} onChange={setPassword} placeholder='パスワード' type='password' faIcon={faLock} />
-            <TextDisplay className='flex justify-end w-full text-sm mb-4'>パスワードを忘れた方はこちら</TextDisplay>
+            <TextDisplay className='flex justify-end w-full text-sm mb-4'>パスワードを忘れた方は
+              <div className='underline cursor-pointer' onClick={() => setShowPasswordResetRequestModal(true)}>こちら</div>
+            </TextDisplay>
             <div className='flex flex-col'>
               <RoundButton className='text-black bg-white'
                 text='ログイン'
@@ -52,6 +56,7 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ closeModal, showSignUpM
           footerDescription='ログインしました'
           closeModal={closeModal}
         />}
+      {showPasswordResetRequestModal ? <PasswordResetRequestModal closeModal={() => setShowPasswordResetRequestModal(false)} /> : ''}
       {errorMesasge ? <ErrorModal message={errorMesasge} closeModal={() => setErrorMessage('')} /> : ''}
     </DefaultModalContainer>
   )

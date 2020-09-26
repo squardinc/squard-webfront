@@ -14,6 +14,9 @@ class Service {
     const credential = await Cognito.login(email, password)
     return new LoginUserModel(email, credential.getIdToken().getJwtToken())
   }
+  resetPassword = async (email: string) => {
+    return Cognito.resetPassword(email)
+  }
 }
 
 export const AuthService = new Service()
