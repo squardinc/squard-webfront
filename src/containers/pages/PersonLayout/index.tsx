@@ -3,6 +3,8 @@ import PersonalLayout from '../../../components/pages/PersonalLayout'
 import { IPersonal } from '../../../models/personal'
 
 export const PersonalLayoutContainer = () => {
+  const [isLoading, setIsLoading] = React.useState<boolean>(true)
+
   const personal: IPersonal = {
     name: '小池駿平',
     subName: 'Shunpei Koike',
@@ -32,6 +34,17 @@ export const PersonalLayoutContainer = () => {
         role: 'Manager',
       },
     ],
+  }
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 400)
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (isLoading) {
+    return ''
   }
 
   return <PersonalLayout isLoading={false} personal={personal} />

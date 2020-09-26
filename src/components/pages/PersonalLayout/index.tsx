@@ -2,7 +2,6 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { IPersonal } from '../../../models/personal'
 import * as colors from '../../../styles/colors'
-import * as sizes from '../../../styles/sizes'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import ProfileImg from 'src/images/user.png'
 import ProfileLink from 'src/assets/profile_link_icon.svg'
@@ -45,6 +44,7 @@ const ProfileContainerWrapper = styled.div`
   margin: 0px 20px 0px 20px;
   padding-bottom: 10px;
   border-radius: 10px;
+  min-height: 10px;
 
   :before {
     z-index: 1;
@@ -239,38 +239,37 @@ const TeamRoleText = styled.div`
 
 const PersonalLayout = (props: PersonalLayoutProps) => {
   const { personal } = props
+  const profileContainerRef = React.useRef<HTMLDivElement>(null)
   const [profileHeight, setProfileHeight] = React.useState(0)
   const [opposite, setOposite] = React.useState(0)
   const [profileMarginLeft, setProfileMarginLeft] = React.useState(0)
   const [profileBorderLeft, setProfileBorderLeft] = React.useState(0)
-  const profileContainer = document.getElementById(
-    'ProfileContainerWrapper'
-  ) as HTMLElement
 
   React.useEffect(() => {
-    const profileMarginLeft = 20
-    const coverOffset = 100
-    const profileContainerMargin = 20
-    const windowWidth = window.innerWidth > 640 ? 640 : window.innerWidth - 10
-    const profileContainerWidth = windowWidth - profileContainerMargin * 2
+    if (profileContainerRef.current) {
+      const profileMarginLeft = 20
+      const coverOffset = 100
+      const profileContainerMargin = 20
+      const windowWidth = window.innerWidth > 640 ? 640 : window.innerWidth - 10
+      const profileContainerWidth = windowWidth - profileContainerMargin * 2
 
-    const tanOffset = coverOffset / windowWidth
-    const profileContainerOffset = windowWidth - profileContainerMargin
-    const opposite =
-      coverOffset - tanOffset * profileContainerOffset + coverOffset / 2
+      const tanOffset = coverOffset / windowWidth
+      const profileContainerOffset = windowWidth - profileContainerMargin
+      const opposite =
+        coverOffset - tanOffset * profileContainerOffset + coverOffset / 2
 
-    setOposite(opposite)
-    setProfileMarginLeft(profileMarginLeft)
-    setProfileBorderLeft(profileContainerWidth - profileMarginLeft)
-    if (document && document.getElementById('ProfileContainerWrapper')) {
-      const elementId: HTMLElement = document.getElementById(
-        'ProfileContainerWrapper'
-      ) as HTMLElement
-      const elHeight = elementId.clientHeight
-     
-      setProfileHeight(elHeight - opposite)
+      setOposite(opposite)
+      setProfileMarginLeft(profileMarginLeft)
+      setProfileBorderLeft(profileContainerWidth - profileMarginLeft)
+      if (document && document.getElementById('ProfileContainerWrapper')) {
+        const elementId: HTMLElement = document.getElementById(
+          'ProfileContainerWrapper'
+        ) as HTMLElement
+        const elHeight = elementId.clientHeight
+        setProfileHeight(elHeight - opposite)
+      }
     }
-  }, [profileContainer])
+  })
 
   return (
     <PersonalLayoutWrapper backgroundColor={'#ebebeb'}>
@@ -280,6 +279,7 @@ const PersonalLayout = (props: PersonalLayoutProps) => {
           coverImg={ProfileImg}
         />
         <ProfileContainerWrapper
+          ref={profileContainerRef}
           id={'ProfileContainerWrapper'}
           profileHeight={profileHeight}
           oppositeTopOffset={opposite}
