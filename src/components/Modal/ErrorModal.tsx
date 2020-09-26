@@ -3,6 +3,7 @@ import { RoundButton } from 'src/components/Button/DefaultButton'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { ModalProps, asModal } from './asModal'
 import { DefaultModalContainer } from './ModalContainer'
+import { fadeOut } from '../../utils/Modal'
 
 type ErrorComponentProps = ModalProps & {
   message: string
@@ -11,14 +12,7 @@ export const ErrorCompoenent: React.FC<ErrorComponentProps> = ({ closeModal, mes
 
   function closeModalHandler(e: any) {
     e.stopPropagation()
-    let element = document.getElementsByClassName('modal-transition')[1]
-    if (!element) {
-      element = document.getElementsByClassName('modal-transition')[0]
-    }
-    if (element) {
-      element.classList.remove('open')
-      element.classList.add('close')
-    }
+   fadeOut()
     setTimeout(() => {
       closeModal()
     }, 500)

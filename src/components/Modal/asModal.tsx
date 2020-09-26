@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Modal from 'react-modal'
 import styles from './modal.module.scss'
+import { fadeOut } from '../../utils/Modal'
 
 Modal.setAppElement('body')
 
@@ -13,14 +14,7 @@ export const asModal = <T extends ModalProps>(Component: React.FC<T>) => {
       isOpen
       onRequestClose={(e) => {
         e.stopPropagation()
-        let element = document.getElementsByClassName('modal-transition')[1]
-        if (!element) {
-          element = document.getElementsByClassName('modal-transition')[0]
-        }
-        if (element) {
-          element.classList.remove('open')
-          element.classList.add('close')
-        }
+        fadeOut()
         setTimeout(() => {
           props.closeModal()
         }, 500)

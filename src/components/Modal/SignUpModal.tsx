@@ -8,6 +8,7 @@ import { DefaultModalContainer } from './ModalContainer'
 import { AuthService } from 'src/services/AuthService'
 import { CompleteModal } from './CompleteModal'
 import { ErrorModal } from './ErrorModal'
+import { fadeIn } from '../../utils/Modal'
 
 type SignUpComponentProps = ModalProps & {
   showLoginModal: VoidFunction
@@ -21,13 +22,7 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
   const [errorMesasge, setErrorMessage] = React.useState('')
 
   React.useEffect(() => {
-    setTimeout(() => {
-      const element = document.getElementsByClassName('modal-transition')[1]
-      if (element) {
-        element.classList.remove('close')
-        element.classList.add('open')
-      }
-    }, 100)
+      fadeIn()
   }, [registrationUserId, errorMesasge])
 
   return (

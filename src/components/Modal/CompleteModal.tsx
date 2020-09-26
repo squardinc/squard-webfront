@@ -4,6 +4,7 @@ import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { ModalProps, asModal } from './asModal'
 import { DefaultModalContainer } from './ModalContainer'
 import Complete from 'src/assets/payment.svg'
+import { fadeOut } from '../../utils/Modal'
 
 type CompleteComponentProps = ModalProps & {
   title: string
@@ -14,14 +15,7 @@ export const CompleteCompoenent: React.FC<CompleteComponentProps> = ({ closeModa
 
   function closeModalHandler(e: any) {
     e.stopPropagation()
-    let element = document.getElementsByClassName('modal-transition')[1]
-    if (!element) {
-      element = document.getElementsByClassName('modal-transition')[0]
-    }
-    if (element) {
-      element.classList.remove('open')
-      element.classList.add('close')
-    }
+   fadeOut()
     setTimeout(() => {
       closeModal()
     }, 500)

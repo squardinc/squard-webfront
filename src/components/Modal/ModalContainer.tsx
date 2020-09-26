@@ -2,6 +2,7 @@ import * as React from 'react'
 import { ModalProps } from './asModal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { fadeOut } from '../../utils/Modal'
 
 export const DefaultModalContainer: React.FC<ModalProps> = ({
   children,
@@ -9,14 +10,7 @@ export const DefaultModalContainer: React.FC<ModalProps> = ({
 }) => {
   function closeModalHandler(e: any) {
     e.stopPropagation()
-    let element = document.getElementsByClassName('modal-transition')[1]
-    if (!element) {
-      element = document.getElementsByClassName('modal-transition')[0]
-    }
-    if (element) {
-      element.classList.remove('open')
-      element.classList.add('close')
-    }
+    fadeOut()
     setTimeout(() => {
       closeModal()
     }, 500)
