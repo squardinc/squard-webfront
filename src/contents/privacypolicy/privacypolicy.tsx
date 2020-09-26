@@ -1,7 +1,8 @@
 import * as React from 'react'
 import styles from './privacypolicy.module.scss'
+import { withTheme } from 'src/context/ThemeContext'
 
-export const PrivacyPolicyPage: React.FC = () => {
+const Page: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className="pt-24 text-center text-white text-3xl font-bold tracking-wider">
@@ -270,3 +271,5 @@ export const PrivacyPolicyPage: React.FC = () => {
     </div>
   )
 }
+
+export const PrivacyPolicyPage = withTheme(Page, 'dark')

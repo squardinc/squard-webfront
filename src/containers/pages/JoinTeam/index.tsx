@@ -1,8 +1,9 @@
 import * as React from 'react'
-import JoinTeam from '../../../components/pages/JoinTeam'
-import { ITeam } from '../../../models/team'
+import JoinTeam from 'src/components/pages/JoinTeam'
+import { ITeam } from 'src/models/team'
+import { withTheme } from 'src/context/ThemeContext'
 
-export const JoinTeamContainer = () => {
+const JoinTeamContainer = () => {
   const teamData: ITeam[] = [
     {
       main: 'ANGELS',
@@ -38,4 +39,4 @@ export const JoinTeamContainer = () => {
   return <JoinTeam isLoading={false} teamData={teamData} />
 }
 
-export default JoinTeamContainer
+export default withTheme(JoinTeamContainer, 'light')

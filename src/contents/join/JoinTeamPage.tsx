@@ -5,12 +5,12 @@ import styles from './JoinTeam.module.scss'
 import { JoinCard } from 'src/components/JoinCard/JoinCard'
 import { Heading3 } from 'src/components/Heading3/Heading3'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
-import { ThemeContext, withTheme } from 'src/context/ThemeContext'
+import { ThemeContext } from 'src/context/ThemeContext'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { SignUpLoginLayout } from 'src/components/Modal/SignUpLoginModal'
 import { UserContext } from 'src/context/UserContext'
 
-const Page: React.FC = (props) => {
+export const JoinTeamPage: React.FC = (props) => {
   React.useContext(ThemeContext).setTheme('light')
   const { user } = React.useContext(UserContext)
   const [showLoginModal, setShowLoginModal] = React.useState(false)
@@ -86,4 +86,4 @@ const Page: React.FC = (props) => {
   )
 }
 
-export const JoinTeamPage = withTheme(Page, 'light')
+// export const JoinTeamPage = withTheme(Page, 'light')

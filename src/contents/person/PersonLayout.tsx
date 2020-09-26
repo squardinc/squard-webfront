@@ -14,18 +14,17 @@ import ProfileLink from 'src/assets/profile_link_icon.svg'
 import UserProfile from 'src/images/user.png'
 
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import { ThemeContext } from 'src/context/ThemeContext'
+import {  withTheme } from 'src/context/ThemeContext'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 
-export const PersonLayout = () => {
-  React.useContext(ThemeContext).setTheme('gray')
+const Layout = () => {
   return (
-    <div className={`${styles.container} bg-theme-bg-main`} >
+    <div className={`${styles.container} theme-gray bg-theme-bg-main`} >
       <div className="pb-0">
-        <div  style={{
-                background: `url(${UserProfile})`,
-                backgroundSize: 'contain',
-              }} className={styles.cover}>
+        <div style={{
+          background: `url(${UserProfile})`,
+          backgroundSize: 'contain',
+        }} className={styles.cover}>
 
         </div>
         <div className={styles.profileContainer}>
@@ -101,3 +100,5 @@ export const PersonLayout = () => {
     </div>
   )
 }
+
+export const PersonLayout = withTheme(Layout, 'gray')

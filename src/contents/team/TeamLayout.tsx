@@ -29,7 +29,6 @@ const DUMMY_CORE_MEMBERS = [
 ]
 
 const Layout = () => {
-  console.log("layout ----")
   const { loading, error, data } = useQuery<GetTeamQuery>(gql(getTeam), { variables: { id: 'squard' } });
   return (
     <>

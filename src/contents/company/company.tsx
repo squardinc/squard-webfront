@@ -2,6 +2,7 @@ import * as React from 'react'
 import styles from './company.module.scss'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { withTheme } from 'src/context/ThemeContext'
 
 interface MemberProps {
   member: string
@@ -19,7 +20,7 @@ const Member: React.FC<MemberProps> = ({ member, name }) => {
   )
 }
 
-export const CompanyPage: React.FC = () => {
+const Page: React.FC = () => {
   const members = [
     'images/raw.jpg',
     'images/raw.jpg',
@@ -128,3 +129,5 @@ export const CompanyPage: React.FC = () => {
     </div>
   )
 }
+
+export const CompanyPage = withTheme(Page, 'light')

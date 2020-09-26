@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { StaticPagePaths } from './ContentLayout'
 import { navigate } from 'gatsby'
-import JoinTeamContainer from '../containers/pages/JoinTeam'
+import JoinTeamContainer from 'src/containers/pages/JoinTeam'
 
 interface ContentSubLayoutProps {
   path: string
