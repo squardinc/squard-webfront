@@ -51,8 +51,12 @@ body {
   max-width: $window-width;
   margin-right: auto;
   margin-left: auto;
-  background-color: $black;
+  background-color: black;
   font-family: "Noto Sans", "Noto Sans CJK JP", sans-serif;
+}
+
+.page-base-container {
+  background-color: $black;
 }
 
 ::-webkit-scrollbar-track {
@@ -78,6 +82,14 @@ body {
   -webkit-box-shadow: inset 0 0 6px rgb(5, 16, 38);
   background-color: #555;
   scrollbar-width: thin;
+}
+
+button:focus {
+  outline: none;
+
+  div {
+    box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
+  }
 }
 
 .page-base-container {
