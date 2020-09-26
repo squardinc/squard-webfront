@@ -17,6 +17,9 @@ class Service {
   resetPassword = async (email: string) => {
     return Cognito.resetPassword(email)
   }
+  loginWithFacebook = () => {
+    Cognito.loginWithFacebook()
+  }
 }
 
 export const AuthService = new Service()

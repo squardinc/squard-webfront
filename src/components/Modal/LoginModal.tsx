@@ -43,7 +43,7 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ closeModal, showSignUpM
                   )
                   e.preventDefault()
                 }} />
-              <RoundButton className='text-white bg-blue-700' text='Facebookでログイン' />
+              <RoundButton className='text-white bg-blue-700' text='Facebookでログイン'  onClick={AuthService.loginWithFacebook}/>
             </div>
           </form>
           <TextDisplay className='mt-10 flex justify-center text-sm'>まだ登録していませんか？新規登録は

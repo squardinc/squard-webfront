@@ -1,13 +1,33 @@
+import Amplify, { Auth } from 'aws-amplify'
 import * as AWS from 'aws-sdk'
 import { CognitoUserPool, CognitoUser, CognitoUserAttribute, AuthenticationDetails, CognitoUserSession } from 'amazon-cognito-identity-js'
 import * as uuid from 'uuid'
-import { AWS_COGNITO_USERPOOL_ID, AWS_COGNITO_USERPOOL_CLIENT_ID } from 'src/utils/env'
+import { AWS_COGNITO_USERPOOL_ID, AWS_COGNITO_USERPOOL_CLIENT_ID, AWS_COGNITO_USERPOOL_DOMAIN } from 'src/utils/env'
 
 AWS.config.region = 'ap-northeast-1'
+const configure = (origin: string) => {
+  Amplify.configure({
+    Auth: {
+      region: 'ap-northeast-1',
+      userPoolId: AWS_COGNITO_USERPOOL_ID,
+      userPoolWebClientId: AWS_COGNITO_USERPOOL_CLIENT_ID,
+      mandatorySignIn: true,
+      oauth: {
+        domain: AWS_COGNITO_USERPOOL_DOMAIN,
+        scope: ['email', 'profile', 'openid'],
+        redirectSignIn: `${origin}/socialSignIn`,
+        redirectSignOut: `${origin}/socialSignIn`,
+        clientId: AWS_COGNITO_USERPOOL_CLIENT_ID,
+        responseType: 'code'
+      }
+    }
+  })
+}
 const userPool = new CognitoUserPool({
   UserPoolId: AWS_COGNITO_USERPOOL_ID,
   ClientId: AWS_COGNITO_USERPOOL_CLIENT_ID
 })
+
 const signUpErrorMessage = (code: string) => {
   switch (code) {
     case 'UsernameExistsException':
@@ -17,15 +37,11 @@ const signUpErrorMessage = (code: string) => {
 }
 
 export const signUp = async (email: string, password: string): Promise<CognitoUser> => {
-  return new Promise<CognitoUser>((resolve, reject) => {
-    userPool.signUp(uuid.v4(), password, [new CognitoUserAttribute({ Name: 'email', Value: email })], [], (err, result) => {
-      if (err || !result) {
-        reject(signUpErrorMessage(err?.__type))
-        return
-      }
-      resolve(result.user)
-    });
-  })
+  configure(window.location.origin)
+  return Auth.signUp({ username: email, password: password }).then(
+    result => result.user,
+    err => Promise.reject(signUpErrorMessage(err?.__type))
+  )
 }
 
 const confirmSignUpErrorMessage = (code: string) => {
@@ -36,6 +52,7 @@ const confirmSignUpErrorMessage = (code: string) => {
 }
 
 export const confirmSignUp = async (username: string, code: string) => {
+  configure(window.location.origin)
   return new Promise((resolve, reject) => {
     new CognitoUser({
       Username: username,
@@ -78,4 +95,9 @@ export const resetPassword = async (email: string) => {
       }
     })
   })
+}
+
+export const loginWithFacebook = () => {
+  configure(window.location.origin)
+  Auth.federatedSignIn({ provider: 'Facebook' })
 }
