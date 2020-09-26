@@ -17,6 +17,16 @@ export const Header = () => {
   const [showLoginModal, setShowLoginModal] = React.useState(false)
   const [showSignUpModal, setShowSignUpModal] = React.useState(false)
 
+  React.useEffect(() => {
+    setTimeout(() => {
+      const element = document.getElementsByClassName('modal-transition')[0]
+      if (element) {
+        element.classList.remove('close')
+        element.classList.add('open')
+      }
+    }, 100)
+  }, [showLoginModal])
+
   return (
     <React.Fragment>
       <div

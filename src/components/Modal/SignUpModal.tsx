@@ -20,6 +20,16 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
   const [succeeded, setSucceeded] = React.useState(false)
   const [errorMesasge, setErrorMessage] = React.useState('')
 
+  React.useEffect(() => {
+    setTimeout(() => {
+      const element = document.getElementsByClassName('modal-transition')[1]
+      if (element) {
+        element.classList.remove('close')
+        element.classList.add('open')
+      }
+    }, 100)
+  }, [registrationUserId, errorMesasge])
+
   return (
     <DefaultModalContainer closeModal={closeModal} >
       {!registrationUserId ?
@@ -35,6 +45,7 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
                 (userId) => { setRegistrationUserId(userId) },
                 (err) => { setErrorMessage(err) }
               )
+              setErrorMessage('')
             }} />
             <RoundButton className='text-white bg-blue-700' text='Facebookアカウントで登録' />
           </div>

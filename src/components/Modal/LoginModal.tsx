@@ -18,6 +18,17 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ closeModal, showSignUpM
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [errorMesasge, setErrorMessage] = React.useState('')
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      const element = document.getElementsByClassName('modal-transition')[1]
+      if (element) {
+        element.classList.remove('close')
+        element.classList.add('open')
+      }
+    }, 100)
+  }, [user, errorMesasge])
+
   return (
     <DefaultModalContainer closeModal={closeModal}>
       {!user.loggedIn ?
@@ -38,6 +49,7 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ closeModal, showSignUpM
                     (err) => { setErrorMessage(err) }
                   )
                   e.preventDefault()
+                  setErrorMessage('')
                 }} />
               <RoundButton className='text-white bg-blue-700' text='Facebookでログイン' />
             </div>
