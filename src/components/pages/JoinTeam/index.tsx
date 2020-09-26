@@ -1,9 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { Heading3 } from '../../../vendor/heading3'
-import { ITeam } from '../../../models/team'
+import { Heading3 } from 'src/vendor/heading3'
+import { ITeam } from 'src/models/team'
 import JoinCard from './joinCard'
-import * as colors from '../../../styles/colors'
+import * as colors from 'src/styles/colors'
+import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 
 type JoinTeamProps = {
   isLoading: boolean
@@ -56,6 +57,7 @@ const JoinTeam = (props: JoinTeamProps) => {
             return <JoinCard key={i} team={team} />
           })}
         </CardWrapper>
+        <DefaultFooter />
       </JoinTeamWrapper>
   )
 }
