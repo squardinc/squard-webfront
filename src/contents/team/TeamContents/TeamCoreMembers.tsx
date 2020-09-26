@@ -47,10 +47,10 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
                 className={getImageTheme(member.color)}
               ></div>
               <TextDisplay className={styles.ageTag}>
-                <p className="ml-2 mr-2 pl-1 leading-9 text-xs font-semibold text-white border-b border-dashed">
+                <p className={`${styles.ageTitle} leading-9 font-semibold text-white border-b border-dashed`}>
                   Age
                 </p>
-                <p className="pl-3 text-2xl font-bold text-white">
+                <p className="font-bold text-white">
                   {member.age}
                 </p>
               </TextDisplay>
