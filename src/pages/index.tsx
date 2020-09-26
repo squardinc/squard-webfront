@@ -13,7 +13,6 @@ const IndexPage: React.FC = () => {
     <ThemeContextProvider>
       <PageWrapper>
         <Router>
-          <TopLayout path="/" />
           <ContentLayout path=":contentId" contentId="" />
           <ContentSubLayout
             path=":contentId/:subContentId"

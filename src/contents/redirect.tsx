@@ -5,6 +5,7 @@ interface RedirectProps {
   default: boolean
 }
 export const Redirect: React.FC<RedirectProps> = () => {
-  navigate('/')
+  // TODO Loading
+  navigate('/squard')
   return <></>
 }
