@@ -1,9 +1,9 @@
 @import "../../styles/const";
 
 .wrapper {
-  margin: 20px;
+  margin: 10px 0;
   text-align: center;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   font-weight: 700;
   color: $text-black;
   text-align: center;
@@ -11,13 +11,13 @@
 
 .heading {
   display: inline-block;
-  padding: 0 10px 8px;
+  padding: 0 0 8px;
 
   &::after {
     margin: 0px -40px 0 -20px;
     content: '';
     display: block;
     height: 8px;
-    background-image: linear-gradient(to right bottom, transparent 0% 45%, #ddd 50%, white 60% 100%), linear-gradient(to right, $gradient-yellow 0%, $gradient-red 100%);
+    background-image: linear-gradient(to right bottom, rgba(#fff, 0) 0% 45%, #ddd 50%, white 60% 100%), linear-gradient(to right, $gradient-yellow 0%, $gradient-red 100%);
   }
 }

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-type ThemeType = 'dark' | 'light'
+type ThemeType = 'dark' | 'light' | 'gray'
 
 interface ThemeContextInterface {
   theme: ThemeType

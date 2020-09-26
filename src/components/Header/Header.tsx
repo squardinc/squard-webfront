@@ -7,8 +7,10 @@ import Search from 'src/assets/search.svg'
 import Menu from 'src/assets/menu.svg'
 import styles from './Header.module.scss'
 import { SignUpLoginLayout } from '../Modal/SignUpLoginModal'
+import { UserContext } from 'src/context/UserContext'
 
 export const Header = () => {
+  const { user } = React.useContext(UserContext)
   const [showSearchBar, setShowSearchBar] = React.useState(false)
   const [showNavMenu, setShowNavMenu] = React.useState(false)
   const [showLoginModal, setShowLoginModal] = React.useState(false)
@@ -29,13 +31,13 @@ export const Header = () => {
             </span>
           </TextDisplay>
           <div className="w-6">
-            {showSearchBar
+            {/* {showSearchBar
               ? <Cross cursor="pointer" onClick={() => setShowSearchBar(false)} />
               : <Search cursor="pointer" onClick={() => setShowSearchBar(true)} />
-            }
+            } */}
           </div>
         </div>
-        <SearchBar show={showSearchBar} />
+        {/* <SearchBar show={showSearchBar} /> */}
       </div>
       <NavMenu
         show={showNavMenu}

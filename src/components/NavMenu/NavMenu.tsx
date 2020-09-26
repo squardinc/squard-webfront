@@ -27,18 +27,8 @@ export const NavMenu: React.FC<NavMenuProps> = ({
   }
   return (
     <>
-      {show ? (
-        <div
-          className={`fixed top-0 left-0 w-full h-screen bg-gray-800 bg-opacity-50 blur-3 z-10`}
-        />
-      ) : (
-        ''
-      )}
-      <div
-        className={`${styles.navMenu} ${
-          show ? styles.open : styles.close
-        } bg-v-gradient`}
-      >
+      {show ? <div className={`fixed top-0 left-0 w-full h-screen bg-gray-800 bg-opacity-50 blur-3 z-10`} onClick={hideNavMenu}/> : ''}
+      <div className={`${styles.navMenu} ${show ? styles.open : styles.close} bg-v-gradient`}>
         <div className={styles.navToggleBtn} onClick={hideNavMenu}></div>
         <div className="flex flex-col mt-6 mr-4">
           <MenuItem text="設定" SVGIcon={Setting} />

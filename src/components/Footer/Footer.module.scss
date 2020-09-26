@@ -1,5 +1,5 @@
 .content {
-  padding: 0px 40px;
+  padding: 20px 38px;
 }
 .titleSub {
   font-weight: bold;
@@ -14,7 +14,7 @@
   line-height: normal;
 }
 .description {
-  font-size: larger;
+  font-size: 18px;
   font-weight: 200;
   margin: 20px 0px;
 }
@@ -23,20 +23,21 @@
   font-size: small;
 }
 .sitemap {
-  padding: 40px 0px;
+  padding: 20px 0px;
   display: flex;
   justify-content: space-around;
+  width: 100%;
 }
 .links {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-size: large;
+  font-size: 18px;
   font-weight: bold;
 }
 .logo {
   width: auto;
-  height: 100px;
+  height: 108px;
 }
 .copyright {
   text-align: center;

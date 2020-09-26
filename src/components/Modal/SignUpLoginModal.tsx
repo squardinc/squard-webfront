@@ -7,8 +7,9 @@ interface SignUpLoginLayoutProps {
   setShowSignUpModal: React.Dispatch<React.SetStateAction<boolean>>
   showLoginModal: boolean
   setShowLoginModal: React.Dispatch<React.SetStateAction<boolean>>
+  // setLoginUser: React.Dispatch<React.SetStateAction<any>> // FIXME
 }
-export const SignUpLoginLayout: React.FC<SignUpLoginLayoutProps> = ({ showSignUpModal, setShowSignUpModal, showLoginModal, setShowLoginModal }) => {
+export const SignUpLoginLayout: React.FC<SignUpLoginLayoutProps> = ({ showSignUpModal, setShowSignUpModal, showLoginModal, setShowLoginModal, setLoginUser }) => {
   return (
     <>
       {

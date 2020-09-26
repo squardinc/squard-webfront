@@ -6,13 +6,14 @@
 
 .angels {
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
 .angelContainer {
   position: relative;
-  padding: 5px 13px;
 }
 .angel {
-  @include personIcon(100px, 100px);
+  @include personIcon(95px, 95px, 5px);
+  margin: 9.5px;
 }

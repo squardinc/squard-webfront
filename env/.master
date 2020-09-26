@@ -1,2 +1,4 @@
 GATSBY_AWS_APPSYNC_GRAPHQL_ENDPOINT=https://3y25ih2ugveqrcdq6wxe4cmety.appsync-api.ap-northeast-1.amazonaws.com/graphql
 GATSBY_AWS_APPSYNC_API_KEY=da2-4367qvzqkfduneij7447tttux4
+GATSBY_AWS_COGNITO_USERPOOL_ID=ap-northeast-1_GiLYev64V
+GATSBY_AWS_COGNITO_USERPOOL_CLIENT_ID=195l4jn3bpm81e0paim8bb1d56
