@@ -58,7 +58,7 @@ const Page: React.FC = () => {
             Web : <a href='https://www.squard.co.jp'>www.squard.co.jp</a>
           </p>
           <p className="pt-2 pl-10 text-white text-sm text-opacity-75 tracking-widest">
-            Mail : <a href='mailto:contact@squared.co.jp' >contact@squard.co.jp</a>
+            Mail : <a href='mailto:contact@squard.co.jp' >contact@squard.co.jp</a>
           </p>
         </div>
         <div className={styles.companyInfo}>
