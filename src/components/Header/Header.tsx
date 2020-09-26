@@ -8,6 +8,7 @@ import Menu from 'src/assets/menu.svg'
 import styles from './Header.module.scss'
 import { SignUpLoginLayout } from '../Modal/SignUpLoginModal'
 import { UserContext } from 'src/context/UserContext'
+import { Link } from 'gatsby'
 
 export const Header = () => {
   const { user } = React.useContext(UserContext)
@@ -18,23 +19,23 @@ export const Header = () => {
 
   return (
     <React.Fragment>
-      <div className={`${styles.container} bg-theme-bg-main text-theme-text-main`}>
+      <div
+        className={`${styles.container} bg-theme-bg-main text-theme-text-main`}
+      >
         <div className={styles.header}>
-          <Menu
-            cursor="pointer"
-            onClick={() => setShowNavMenu(!showNavMenu)}
-          />
+          <Menu cursor="pointer" onClick={() => setShowNavMenu(!showNavMenu)} />
           <TextDisplay>
-            <span className="text-2xl font-bold">
+            <Link to="/" className="text-2xl font-bold">
               Squard
-            <span className="text-xl font-bold text-red-600">.</span>
-            </span>
+              <span className="text-xl font-bold text-red-600">.</span>
+            </Link>
           </TextDisplay>
           <div className="w-6">
-            {/* {showSearchBar
-              ? <Cross cursor="pointer" onClick={() => setShowSearchBar(false)} />
-              : <Search cursor="pointer" onClick={() => setShowSearchBar(true)} />
-            } */}
+            {/* {showSearchBar ? (
+              <Cross cursor="pointer" onClick={() => setShowSearchBar(false)} />
+            ) : (
+                <Search cursor="pointer" onClick={() => setShowSearchBar(true)} />
+              )} */}
           </div>
         </div>
         {/* <SearchBar show={showSearchBar} /> */}
