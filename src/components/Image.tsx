@@ -37,7 +37,7 @@ const query = graphql`
         }
       }
     }
-    top: file(relativePath: { eq: "top.png" }) {
+    top: file(relativePath: { eq: "top.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 1000) {
           ...GatsbyImageSharpFluid
