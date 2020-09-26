@@ -40,18 +40,6 @@
   width: 235px;
 }
 
-.memberCaption {
-  position: absolute;
-  color: white;
-  display: flex;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(24px);
-  border-radius: 0 10px 10px 0;
-  top: 100px;
-  height: 31px;
-  width: 100px;
-}
 
 .topMemberName {
   line-height: 3rem;
@@ -66,10 +54,27 @@
   margin-bottom: 10px;
   font-size: 12px;
 }
+
+$member-icon-margin-left: 11px;
 .member {
   @include personIcon(154px, 143px, 5px);
-  margin: 12.5px 11px;
+  margin: 12.5px $member-icon-margin-left;
 }
+
+.memberCaption {
+  position: absolute;
+  color: white;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(24px);
+  border-radius: 0 10px 10px 0;
+  top: 100px;
+  left: $member-icon-margin-left;
+  height: 31px;
+  width: 100px;
+}
+
 .memberName {
   font-size: 14px;
   line-height: 2rem;

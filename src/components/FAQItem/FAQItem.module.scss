@@ -1,3 +1,4 @@
+@import 'src/styles/variables.scss';
 @import "../../styles/const";
 
 $gradient-middle: #90352b;
@@ -30,14 +31,14 @@ $gradient-middle: #90352b;
     display: block;
     bottom: -40px;
     left: 60px;
-    border-left: 40px solid #000;
+    border-left: 40px solid $black;
     border-top: 40px solid transparent;
   }
 }
 
 .questionContent {
   position: relative;
-  background: #000;
+  background: $black;
   border-radius: 16px;
   padding: 20px;
 
@@ -48,7 +49,7 @@ $gradient-middle: #90352b;
     bottom: -36px;
     left: 55px;
     border-left: 38px solid transparent;
-    border-top: 38px solid #000;
+    border-top: 38px solid $black;
   }
 }
 
@@ -66,7 +67,7 @@ $gradient-middle: #90352b;
   position: absolute;
   bottom: -30px;
   right: 50px;
-  background: #000;
+  background: $black;
   padding: 0 4px;
 }
 
