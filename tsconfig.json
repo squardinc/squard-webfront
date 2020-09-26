@@ -3,12 +3,7 @@
     "module": "commonjs",
     "target": "es2019",
     "jsx": "preserve",
-    "lib": [
-      "dom",
-      "es2015",
-      "es2017",
-      "es2019",
-    ],
+    "lib": ["dom", "es2015", "es2017", "es2019"],
     "strict": true,
     "noEmit": true,
     "isolatedModules": true,
@@ -20,20 +15,10 @@
     "preserveConstEnums": true,
     "baseUrl": ".",
     "paths": {
-      "src": [
-        "src"
-      ],
-      "test": [
-        "test"
-      ],
-      "stories": [
-        "stories"
-      ]
+      "src": ["src"],
+      "test": ["test"],
+      "stories": ["stories"]
     }
   },
-  "include": [
-    "./src/**/*",
-    "./stories/**/*",
-    "./test/**/*"
-  ]
+  "include": ["./src/**/*", "./stories/**/*", "./test/**/*"]
 }

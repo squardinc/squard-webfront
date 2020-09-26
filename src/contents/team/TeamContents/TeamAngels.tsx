@@ -23,8 +23,6 @@ export const TeamAngels: React.FC<TeamAngelsProps> = ({
   angels,
   numOfAngels,
 }) => {
-  angels.push('images/raw.jpg')
-  angels.push('images/raw.jpg')
   return (
     <div className={styles.container}>
       <TwoStagedCaption

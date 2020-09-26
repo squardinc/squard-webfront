@@ -11,15 +11,20 @@ import Zoom from 'src/assets/zoom_icon.svg'
 import SquardLeader from 'src/assets/squard_leader.svg'
 import CoreMembers from 'src/assets/core_members.svg'
 import ProfileLink from 'src/assets/profile_link_icon.svg'
+import UserProfile from 'src/images/user.png'
+
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { ThemeContext } from 'src/context/ThemeContext'
+import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 
 export const PersonLayout = () => {
+  React.useContext(ThemeContext).setTheme('gray')
   return (
-    <div className={styles.container} style={{ backgroundColor: '#e2e2e2' }}>
+    <div className={`${styles.container} bg-theme-bg-main`} >
       <div className="pb-0">
         <div  style={{
-                background: `url("images/Person_1.png") no-repeat center center `,
-                backgroundSize: 'cover',
+                background: `url(${UserProfile})`,
+                backgroundSize: 'contain',
               }} className={styles.cover}>
 
         </div>
@@ -27,7 +32,7 @@ export const PersonLayout = () => {
           <div className={styles.profilerImageContainer}>
             <div
               style={{
-                background: `url("images/user.png") no-repeat center center `,
+                background: `url(${UserProfile}) no-repeat center center `,
                 backgroundSize: 'cover',
               }}
               className={styles.profilerImage}
@@ -57,7 +62,7 @@ export const PersonLayout = () => {
         </div>
         <div id="profile-link-squard">
           <div className={styles.profilerLink}>
-            <div className="pl-6 pt-4 inline-flex">
+            <div className="pl-6 flex items-center h-full">
               <SquardLeader className="h-12 w-auto" />
               <span className="pl-8 pt-1 text-white leading-6">
                 <TextDisplay className="text-2xl font-semibold">Squard</TextDisplay>
@@ -76,7 +81,7 @@ export const PersonLayout = () => {
         </div>
         <div id="profile-link-member" className="pt-10">
           <div className={styles.profilerLink}>
-            <div className="pl-6 inline-flex">
+            <div className="pl-6 flex items-center h-full">
               <CoreMembers className="h-12 w-auto" />
               <span className="pl-8 pt-1 text-white leading-6">
                 <TextDisplay className="text-2xl font-semibold">Cheerfully</TextDisplay>
@@ -92,6 +97,7 @@ export const PersonLayout = () => {
           </div>
         </div>
       </div>
+      <DefaultFooter />
     </div>
   )
 }

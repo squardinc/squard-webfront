@@ -1,3 +1,3 @@
 export class SampleService {
-    hello = () => 'Hello, world.'
+  hello = () => 'Hello, world.'
 }

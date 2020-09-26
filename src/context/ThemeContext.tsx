@@ -1,6 +1,6 @@
-import * as React from 'react';
+import * as React from 'react'
 
-type ThemeType = 'dark' | 'light'
+type ThemeType = 'dark' | 'light' | 'gray'
 
 interface ThemeContextInterface {
   theme: ThemeType
@@ -8,7 +8,7 @@ interface ThemeContextInterface {
 }
 export const ThemeContext = React.createContext<ThemeContextInterface>({
   theme: 'dark',
-  setTheme: (theme: ThemeType) => { },
+  setTheme: (theme: ThemeType) => {},
 })
 
 export const ThemeContextProvider: React.FC = ({ children }) => {
@@ -20,8 +20,7 @@ export const ThemeContextProvider: React.FC = ({ children }) => {
   )
 }
 
-export const withTheme = (Component: React.FC, theme: ThemeType) =>
-  () => {
-    React.useContext(ThemeContext).setTheme(theme)
-    return <Component />
-  }
+export const withTheme = (Component: React.FC, theme: ThemeType) => () => {
+  React.useContext(ThemeContext).setTheme(theme)
+  return <Component />
+}

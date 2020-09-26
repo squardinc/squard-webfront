@@ -17,7 +17,7 @@ export const getTeam = /* GraphQL */ `
       vips
     }
   }
-`;
+`
 export const listTeams = /* GraphQL */ `
   query ListTeams(
     $filter: TableTeamFilterInput
@@ -40,4 +40,4 @@ export const listTeams = /* GraphQL */ `
       nextToken
     }
   }
-`;
+`

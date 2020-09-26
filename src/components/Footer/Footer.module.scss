@@ -1,5 +1,5 @@
 .content {
-  padding: 0px 38px;
+  padding: 20px 38px;
 }
 .titleSub {
   font-weight: bold;
@@ -23,9 +23,10 @@
   font-size: small;
 }
 .sitemap {
-  padding: 40px 0px;
+  padding: 20px 0px;
   display: flex;
   justify-content: space-around;
+  width: 100%;
 }
 .links {
   display: flex;

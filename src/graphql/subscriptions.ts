@@ -29,7 +29,7 @@ export const onCreateTeam = /* GraphQL */ `
       vips
     }
   }
-`;
+`
 export const onUpdateTeam = /* GraphQL */ `
   subscription OnUpdateTeam(
     $id: ID
@@ -57,7 +57,7 @@ export const onUpdateTeam = /* GraphQL */ `
       vips
     }
   }
-`;
+`
 export const onDeleteTeam = /* GraphQL */ `
   subscription OnDeleteTeam(
     $id: ID
@@ -85,4 +85,4 @@ export const onDeleteTeam = /* GraphQL */ `
       vips
     }
   }
-`;
+`
