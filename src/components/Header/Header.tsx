@@ -25,7 +25,7 @@ export const Header = () => {
   return (
     <React.Fragment>
       <div
-        className={`${styles.container} bg-theme-bg-main text-theme-text-main`}
+        className={`${styles.container} bg-theme-bg-header text-theme-text-header box-shadow-theme-header`}
       >
         <div className={styles.header}>
           <Menu cursor="pointer" onClick={() => setShowNavMenu(!showNavMenu)} />
