@@ -22,11 +22,7 @@ const configure = (origin: string) => {
     }
   })
 }
-const userPool = new CognitoUserPool({
-  UserPoolId: AWS_COGNITO_USERPOOL_ID,
-  ClientId: AWS_COGNITO_USERPOOL_CLIENT_ID
-})
-
+configure('')
 const signUpErrorMessage = (code: string) => {
   switch (code) {
     case 'UsernameExistsException':
@@ -82,5 +78,7 @@ export const resetPassword = async (email: string, code: string, newPassword: st
 }
 export const loginWithFacebook = () => {
   configure(window.location.origin)
-  Auth.federatedSignIn({ provider: 'Facebook' })
+  return Auth.federatedSignIn({ provider: 'Facebook' })
 }
+
+export const loadStoredUser = async () => Auth.currentSession()

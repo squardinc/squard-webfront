@@ -12,7 +12,7 @@ class Service {
 
   login = async (email: string, password: string) => {
     const credential = await Cognito.login(email, password)
-    return new LoginUserModel(email, credential.getIdToken().getJwtToken())
+    return new LoginUserModel(credential.getIdToken().getJwtToken())
   }
   resetPasswordRequest = async (email: string, origin: string, currentPath: string) => {
     return Cognito.resetPasswordRequest(email, origin, currentPath)
@@ -22,6 +22,12 @@ class Service {
   }
   loginWithFacebook = () => {
     Cognito.loginWithFacebook()
+  }
+  loadStoredUser = async () => {
+    return Cognito.loadStoredUser().then(
+      credential => new LoginUserModel(credential.getIdToken().getJwtToken()),
+      () => LoginUserModel.guest()
+    )
   }
 }
 
