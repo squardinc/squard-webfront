@@ -34,7 +34,7 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
   }
   return (
     <div className={styles.container}>
-      <TwoStagedCaption sub="CORE" main="MEMBERS" color='black' />
+      <TwoStagedCaption sub="CORE" main="MEMBERS" />
       <div className={styles.members}>
         {coreMembers.map((member: any) => (
           <Link key={member.id} to={`/${member.id}`}>
