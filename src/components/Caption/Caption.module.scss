@@ -1,6 +1,7 @@
+@import 'src/styles/variables.scss';
 $caption-margin: 10px 10px 10px 5px;
 
-@mixin withLeftBorder($color: black, $font-weight: '') {
+@mixin withLeftBorder($color: $black, $font-weight: '') {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -11,11 +12,11 @@ $caption-margin: 10px 10px 10px 5px;
 }
 
 .withLeftBorder[color='black'] {
-  @include withLeftBorder(black);
+  @include withLeftBorder($black);
 }
 
 .withLeftBorder[color='black'][data-font-weight='bold'] {
-  @include withLeftBorder(black, bold);
+  @include withLeftBorder($black, bold);
 }
 
 .withLeftBorder[color='white'] {
@@ -25,7 +26,7 @@ $caption-margin: 10px 10px 10px 5px;
   @include withLeftBorder(white, bold);
 }
 
-@mixin withLeftBorderAndShadow($color: black, $font-weight: '') {
+@mixin withLeftBorderAndShadow($color: $black, $font-weight: '') {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -36,11 +37,11 @@ $caption-margin: 10px 10px 10px 5px;
 }
 
 .withLeftBorderAndShadow[color='black'] {
-  @include withLeftBorder(black);
+  @include withLeftBorder($black);
 }
 
 .withLeftBorderAndShadow[color='black'][data-font-weight='bold'] {
-  @include withLeftBorder(black, bold);
+  @include withLeftBorder($black, bold);
 }
 
 .withLeftBorderAndShadow[color='white'] {
@@ -50,7 +51,7 @@ $caption-margin: 10px 10px 10px 5px;
   @include withLeftBorder(white, bold);
 }
 
-@mixin leftBorder($color: black) {
+@mixin leftBorder($color: $black) {
   content: '';
   flex-grow: 1;
   height: 4.5px;
@@ -58,7 +59,7 @@ $caption-margin: 10px 10px 10px 5px;
   background: $color;
 }
 
-@mixin leftBorderWithShadow($color: black) {
+@mixin leftBorderWithShadow($color: $black) {
   content: '';
   flex-grow: 1;
   height: 4.5px;
@@ -68,7 +69,7 @@ $caption-margin: 10px 10px 10px 5px;
 }
 
 .withLeftBorder[color='black']:before {
-  @include leftBorder(black);
+  @include leftBorder($black);
 }
 
 .withLeftBorder[color='white']:before {
@@ -76,7 +77,7 @@ $caption-margin: 10px 10px 10px 5px;
 }
 
 .withLeftBorderAndShadow[color='black']:before {
-  @include leftBorderWithShadow(black);
+  @include leftBorderWithShadow($black);
 }
 
 .withLeftBorderAndShadow[color='white']:before {

@@ -11,6 +11,8 @@ module.exports = {
         'theme-text-main': 'var(--text-color-theme-main)',
         'theme-text-sub': 'var(--text-color-theme-sub)',
         'theme-bg-main': 'var(--bg-color-theme-main)',
+        'theme-text-header': 'var(--text-color-theme-header)',
+        'theme-bg-header': 'var(--bg-color-theme-header)',
         black: '#051026',
         yellow: '#FBE62E',
       },
