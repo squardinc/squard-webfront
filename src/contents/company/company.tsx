@@ -4,11 +4,6 @@ import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { withTheme } from 'src/context/ThemeContext'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
-import CompanyImage from 'src/images/company.jpg'
-import CEO from 'src/images/ceo.jpg'
-import COO from 'src/images/coo.jpg'
-import CFO from 'src/images/cfo.jpg'
-import CTO from 'src/images/cto.jpg'
 
 interface MemberProps {
   member: { imageUrl: string; color: string; title: string }
@@ -44,17 +39,17 @@ const Member: React.FC<MemberProps> = ({ member }) => {
 
 const Page: React.FC = () => {
   const members = [
-    { imageUrl: CEO, color: 'red', title: 'CEO / 小池駿平' },
-    { imageUrl: COO, color: 'blue', title: 'COO / 松井大樹' },
-    { imageUrl: CFO, color: 'green', title: 'CFO / 木村明寛' },
-    { imageUrl: CTO, color: 'yello', title: 'CTO / 柳澤翔矢' },
+    { imageUrl: 'images/raw.jpg', color: 'red', title: 'CEO / 小池駿平' },
+    { imageUrl: 'images/raw.jpg', color: 'blue', title: 'COO / 松井大樹' },
+    { imageUrl: 'images/raw.jpg', color: 'green', title: 'CFO / 木村明寛' },
+    { imageUrl: 'images/raw.jpg', color: 'yello', title: 'CTO / 柳澤翔矢' },
   ]
 
   return (
     <div className={styles.container}>
       <div
         style={{
-          background: `url(${CompanyImage}) no-repeat center center `,
+          background: `url("images/company.png") no-repeat center center `,
           backgroundSize: 'cover',
         }}
         className={styles.companyImageContainer}
