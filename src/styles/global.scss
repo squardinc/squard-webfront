@@ -120,3 +120,15 @@ button:focus {
   padding-top: 70px;
   overflow: hidden;
 }
+ 
+.modal-transition {
+  transition: all 0.7s ease-out;
+}
+
+.close {
+  opacity: 0;
+}
+
+.open {
+  opacity: 1;
+}
