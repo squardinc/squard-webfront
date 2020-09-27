@@ -8,6 +8,7 @@ import { DefaultModalContainer } from './ModalContainer'
 import { AuthService } from 'src/services/AuthService'
 import { CompleteModal } from './CompleteModal'
 import { ErrorModal } from './ErrorModal'
+import { fadeIn } from '../../utils/Modal'
 
 type SignUpComponentProps = ModalProps & {
   showLoginModal: VoidFunction
@@ -19,6 +20,10 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
   const [verificationCode, setVerificationCode] = React.useState('')
   const [succeeded, setSucceeded] = React.useState(false)
   const [errorMesasge, setErrorMessage] = React.useState('')
+
+  React.useEffect(() => {
+      fadeIn()
+  }, [registrationUserId, errorMesasge])
 
   return (
     <DefaultModalContainer closeModal={closeModal} >
@@ -35,6 +40,7 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
                 (userId) => { setRegistrationUserId(userId) },
                 (err) => { setErrorMessage(err) }
               )
+              setErrorMessage('')
             }} />
             <RoundButton className='text-white bg-blue-700' text='Facebookアカウントで登録' />
           </div>

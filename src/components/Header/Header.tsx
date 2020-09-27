@@ -9,6 +9,7 @@ import styles from './Header.module.scss'
 import { SignUpLoginLayout } from '../Modal/SignUpLoginModal'
 import { UserContext } from 'src/context/UserContext'
 import { Link } from 'gatsby'
+import { fadeIn } from '../../utils/Modal'
 
 export const Header = () => {
   const { user } = React.useContext(UserContext)
@@ -16,6 +17,10 @@ export const Header = () => {
   const [showNavMenu, setShowNavMenu] = React.useState(false)
   const [showLoginModal, setShowLoginModal] = React.useState(false)
   const [showSignUpModal, setShowSignUpModal] = React.useState(false)
+
+  React.useEffect(() => {
+    fadeIn()
+  }, [showLoginModal])
 
   return (
     <React.Fragment>
