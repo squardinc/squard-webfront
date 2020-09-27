@@ -4,17 +4,17 @@ import { CompanyPage } from './company/company'
 import { FAQPage } from './faq/FAQ'
 import { PrivacyPolicyPage } from './privacypolicy/privacypolicy'
 import { TeamLayout } from './team/TeamLayout'
-import { PersonLayout } from './person/PersonLayout'
 import { SignUpLayout } from './SignUp'
 import { ConfirmSignUpLayout } from './callback/ConfirmSignUp'
 import { ResetPasswordLayout } from './callback/ResetPassword'
+import { PersonalLayoutContainer } from '../containers/pages/PersonLayout'
 
 export const StaticPagePaths = [
   'about',
   'company',
   'faq',
   'privacypolicy',
-  'signup'
+  'signup',
 ] as const
 
 type StaticPageType = typeof StaticPagePaths[number]
@@ -43,5 +43,5 @@ export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId }) => {
   if (contentId === 'squard') {
     return <TeamLayout />
   }
-  return <PersonLayout />
+  return <PersonalLayoutContainer />
 }

@@ -16,7 +16,15 @@ interface JoinCardProps {
   join: (roleId: string) => Promise<void>
 }
 
-export const JoinCard: React.FC<JoinCardProps> = ({ roleId, sub, monthlyPrice, entitlements, loggedIn, login, join }) => {
+export const JoinCard: React.FC<JoinCardProps> = ({
+  roleId,
+  sub,
+  monthlyPrice,
+  entitlements,
+  loggedIn,
+  login,
+  join,
+}) => {
   const formattedPrice = addComma(monthlyPrice)
 
   return (
@@ -40,8 +48,8 @@ export const JoinCard: React.FC<JoinCardProps> = ({ roleId, sub, monthlyPrice, e
       <div className={styles.joinNowWrapper}>
         <RoundButton
           className={styles.joinNow}
-          text='今すぐ参加する'
-          onClick={() => loggedIn ? join(roleId) : login()}
+          text="今すぐ参加する"
+          onClick={() => (loggedIn ? join(roleId) : login())}
         />
       </div>
     </div>

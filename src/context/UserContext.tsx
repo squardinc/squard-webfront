@@ -9,7 +9,7 @@ interface UserContextInterface {
 }
 export const UserContext = React.createContext<UserContextInterface>({
   user: LoginUserModel.guest(),
-  setUser: (user: LoginUser) => { },
+  setUser: (user: LoginUser) => {},
 })
 
 export const UserContextProvider: React.FC = ({ children }) => {
