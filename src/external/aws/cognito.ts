@@ -71,20 +71,15 @@ export const login = async (email: string, password: string) => {
   )
 }
 
-export const resetPassword = async (email: string) => {
-  const cognitoUser = new CognitoUser({ Username: email, Pool: userPool })
-  return new Promise((resolve, reject) => {
-    cognitoUser.forgotPassword({
-      onSuccess: (data) => {
-        resolve()
-      },
-      onFailure: () => {
-        reject('エラーが発生しました。入力内容を確認して再度やり直してください。')
-      }
-    })
-  })
+export const resetPasswordRequest = async (email: string, origin: string, currentPath: string) => {
+  return await Auth.forgotPassword(email, { origin, currentPath })
+    .catch(() => Promise.reject('エラーが発生しました。入力内容を確認して再度やり直してください。'))
 }
 
+export const resetPassword = async (email: string, code: string, newPassword: string) => {
+  return await Auth.forgotPasswordSubmit(email, code, newPassword)
+    .catch(() => Promise.reject('エラーが発生しました。入力内容を確認して再度やり直してください。'))
+}
 export const loginWithFacebook = () => {
   configure(window.location.origin)
   Auth.federatedSignIn({ provider: 'Facebook' })
