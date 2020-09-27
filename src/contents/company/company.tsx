@@ -3,6 +3,7 @@ import styles from './company.module.scss'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { withTheme } from 'src/context/ThemeContext'
+import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 
 interface MemberProps {
   member: { imageUrl: string; color: string; title: string }
@@ -145,6 +146,7 @@ const Page: React.FC = () => {
           </TextDisplay>
         </div>
       </div>
+      <DefaultFooter />
     </div>
   )
 }
