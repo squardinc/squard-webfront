@@ -3,6 +3,7 @@ import styles from './company.module.scss'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { withTheme } from 'src/context/ThemeContext'
+import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 
 interface MemberProps {
   member: { imageUrl: string; color: string; title: string }
@@ -58,7 +59,7 @@ const Page: React.FC = () => {
             Web : <a href='https://www.squard.co.jp'>www.squard.co.jp</a>
           </p>
           <p className="pt-2 pl-10 text-white text-sm text-opacity-75 tracking-widest">
-            Mail : <a href='mailto:contact@squared.co.jp' >contact@squard.co.jp</a>
+            Mail : <a href='mailto:contact@squard.co.jp' >contact@squard.co.jp</a>
           </p>
         </div>
         <div className={styles.companyInfo}>
@@ -145,8 +146,9 @@ const Page: React.FC = () => {
           </TextDisplay>
         </div>
       </div>
+      <DefaultFooter />
     </div>
   )
 }
 
-export const CompanyPage = withTheme(Page, 'light')
+export const CompanyPage = withTheme(Page, 'light-gray')

@@ -1,3 +1,4 @@
+@import 'src/styles/variables.scss';
 @import './team-mixins';
 
 $image-container-width: 164px;
@@ -63,15 +64,23 @@ $member-border-radius: 10px;
   position: absolute;
   top: 0px;
   right: 20px;
-  background-color: black;
+  background-color: $black;
   height: 67px;
   width: 40px;
   font-size: 18px;
   border-radius: 0 0 10px 10px;
   text-align: center;
 }
+.ageTagContainer {
+  margin: 0px 6.5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+}
 .ageTitle {
-  font-size: 11px;
+  font-size: 10px;
 }
 .titleSM {
   position: absolute;
