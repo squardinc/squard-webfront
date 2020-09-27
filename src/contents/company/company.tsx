@@ -54,7 +54,7 @@ const Page: React.FC = () => {
     <div className={styles.container}>
       <div
         style={{
-          background: `url(${CompanyImage}) no-repeat center center `,
+          background: `url(${CompanyImage}) no-repeat center`,
           backgroundSize: 'cover',
         }}
         className={styles.companyImageContainer}
