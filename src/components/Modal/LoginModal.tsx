@@ -24,48 +24,50 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ closeModal, showSignUpM
 
   React.useEffect(() => {
     fadeIn();
-  }, [user, errorMesasge])
+  }, [user, showPasswordResetRequestModal, errorMesasge])
 
   return (
-    <DefaultModalContainer closeModal={closeModal}>
-      {!user.loggedIn ?
-        <>
-          <TextDisplay className='text-4xl font-semibold'>Login</TextDisplay>
-          <TextDisplay className='mb-8 text-sm'>ログイン情報を入力してください</TextDisplay>
-          <form>
-            <RoundInput autoComplete='email' value={email} onChange={setEmail} placeholder='メールアドレス' faIcon={faEnvelope} />
-            <RoundInput autoComplete='password' value={password} onChange={setPassword} placeholder='パスワード' type='password' faIcon={faLock} />
-            <TextDisplay className='flex justify-end w-full text-sm mb-4'>パスワードを忘れた方は
+    <>
+      <DefaultModalContainer closeModal={closeModal}>
+        {!user.loggedIn ?
+          <>
+            <TextDisplay className='text-4xl font-semibold'>Login</TextDisplay>
+            <TextDisplay className='mb-8 text-sm'>ログイン情報を入力してください</TextDisplay>
+            <form>
+              <RoundInput autoComplete='email' value={email} onChange={setEmail} placeholder='メールアドレス' faIcon={faEnvelope} />
+              <RoundInput autoComplete='password' value={password} onChange={setPassword} placeholder='パスワード' type='password' faIcon={faLock} />
+              <TextDisplay className='flex justify-end w-full text-sm mb-4'>パスワードを忘れた方は
               <div className='underline cursor-pointer' onClick={() => setShowPasswordResetRequestModal(true)}>こちら</div>
+              </TextDisplay>
+              <div className='flex flex-col'>
+                <RoundButton className='text-black bg-white'
+                  text='ログイン'
+                  type='submit'
+                  onClick={async (e) => {
+                    AuthService.login(email, password).then(
+                      (user) => { setUser(user) },
+                      (err) => { setErrorMessage(err) }
+                    )
+                    e.preventDefault()
+                    setErrorMessage('')
+                  }} />
+                <RoundButton className='text-white bg-blue-700' text='Facebookでログイン' onClick={AuthService.loginWithFacebook} />
+              </div>
+            </form>
+            <TextDisplay className='mt-10 flex justify-center text-sm'>まだ登録していませんか？新規登録は
+        <button tabIndex={0} className='underline cursor-pointer' onClick={() => showSignUpModal()}>こちら</button>
             </TextDisplay>
-            <div className='flex flex-col'>
-              <RoundButton className='text-black bg-white'
-                text='ログイン'
-                type='submit'
-                onClick={async (e) => {
-                  AuthService.login(email, password).then(
-                    (user) => { setUser(user) },
-                    (err) => { setErrorMessage(err) }
-                  )
-                  e.preventDefault()
-                  setErrorMessage('')
-                }} />
-              <RoundButton className='text-white bg-blue-700' text='Facebookでログイン'  onClick={AuthService.loginWithFacebook}/>
-            </div>
-          </form>
-          <TextDisplay className='mt-10 flex justify-center text-sm'>まだ登録していませんか？新規登録は
-        <div className='underline cursor-pointer' onClick={() => showSignUpModal()}>こちら</div>
-          </TextDisplay>
-        </>
-        :
-        <CompleteModal
-          title='Login Completed!'
-          footerDescription='ログインしました'
-          closeModal={closeModal}
-        />}
+          </>
+          :
+          <CompleteModal
+            title='Login Completed!'
+            footerDescription='ログインしました'
+            closeModal={closeModal}
+          />}
+      </DefaultModalContainer>
       {showPasswordResetRequestModal ? <PasswordResetRequestModal closeModal={() => setShowPasswordResetRequestModal(false)} /> : ''}
       {errorMesasge ? <ErrorModal message={errorMesasge} closeModal={() => setErrorMessage('')} /> : ''}
-    </DefaultModalContainer>
+    </>
   )
 }
 
