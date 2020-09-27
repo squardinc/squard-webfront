@@ -6,6 +6,7 @@ import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import ProfileImg from 'src/images/user.png'
 import ProfileLink from 'src/assets/profile_link_icon.svg'
 import { getSocialMediaIcon, getTeamIcon } from './utils'
+import { withTheme } from 'src/context/ThemeContext'
 
 type PersonalLayoutProps = {
   isLoading: boolean
@@ -331,4 +332,4 @@ const PersonalLayout = (props: PersonalLayoutProps) => {
   )
 }
 
-export default React.memo(PersonalLayout)
+export default React.memo(withTheme(PersonalLayout, 'gray'))

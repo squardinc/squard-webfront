@@ -18,11 +18,11 @@ export const ThemeContextProvider: React.FC = ({ children }) => {
     </ThemeContext.Provider>
   )
 }
-export const withTheme = (Component: React.FC, componentTheme: ThemeType) =>
-  () => {
+export const withTheme = (Component: React.FC<any>, componentTheme: ThemeType) =>
+  (props: any) => {
     const { theme, setTheme } = React.useContext(ThemeContext)
     React.useEffect(() => {
       setTheme(componentTheme)
     }, [theme])
-    return < Component />
+    return < Component {...props} />
   }

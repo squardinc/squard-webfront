@@ -1,6 +1,7 @@
 import * as React from 'react'
 import PersonalLayout from 'src/components/pages/PersonalLayout'
 import { IPersonal } from 'src/models/personal'
+import { withTheme } from 'src/context/ThemeContext'
 
 export const PersonalLayoutContainer: React.FC = () => {
   const [isLoading, setIsLoading] = React.useState<boolean>(true)
@@ -36,18 +37,18 @@ export const PersonalLayoutContainer: React.FC = () => {
     ],
   }
 
-  React.useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 400)
-    return () => clearTimeout(timer)
-  }, [])
+  // React.useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setIsLoading(false)
+  //   }, 400)
+  //   return () => clearTimeout(timer)
+  // }, [])
 
-  if (isLoading) {
-    return <></>
-  }
+  // if (isLoading) {
+  //   return <></>
+  // }
 
   return <PersonalLayout isLoading={false} personal={personal} />
 }
 
-export default PersonalLayoutContainer
+export default withTheme(PersonalLayoutContainer, 'gray')
