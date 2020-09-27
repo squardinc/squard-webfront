@@ -1,7 +1,6 @@
 import Amplify, { Auth } from 'aws-amplify'
 import * as AWS from 'aws-sdk'
-import { CognitoUserPool, CognitoUser, CognitoUserAttribute, AuthenticationDetails, CognitoUserSession } from 'amazon-cognito-identity-js'
-import * as uuid from 'uuid'
+import { CognitoUserPool, CognitoUser, AuthenticationDetails, CognitoUserSession } from 'amazon-cognito-identity-js'
 import { AWS_COGNITO_USERPOOL_ID, AWS_COGNITO_USERPOOL_CLIENT_ID, AWS_COGNITO_USERPOOL_DOMAIN } from 'src/utils/env'
 
 AWS.config.region = 'ap-northeast-1'
@@ -36,35 +35,33 @@ const signUpErrorMessage = (code: string) => {
   return 'エラーが発生しました。入力内容を確認し、再度やり直して下さい。'
 }
 
-export const signUp = async (email: string, password: string): Promise<CognitoUser> => {
+export const signUp = async (email: string, password: string, origin: string, currentPath: string): Promise<CognitoUser> => {
   configure(window.location.origin)
-  return Auth.signUp({ username: email, password: password }).then(
+  return Auth.signUp({
+    username: email,
+    password,
+    clientMetadata: { origin, currentPath }
+  }).then(
     result => result.user,
     err => Promise.reject(signUpErrorMessage(err?.code))
   )
 }
 
-const confirmSignUpErrorMessage = (code: string) => {
-  if (code === 'CodeMismatchException') {
-    return '認証コードが一致しません'
+const confirmSignUpErrorMessage = (code: string, username: string) => {
+  if (code === 'ExpiredCodeException') {
+    Auth.resendSignUp(username)
+    return 'リンクの有効期限が切れています。新しいリンクを送信しましたので、再度アクセスをお願いします。'
   }
   return 'エラーが発生しました。再度登録からやり直してください。'
 }
 
 export const confirmSignUp = async (username: string, code: string) => {
   configure(window.location.origin)
-  return new Promise((resolve, reject) => {
-    new CognitoUser({
-      Username: username,
-      Pool: userPool
-    }).confirmRegistration(code, true, (err, result) => {
-      if (err || !result) {
-        reject(confirmSignUpErrorMessage(err?.code))
-        return
-      }
-      resolve()
-    })
-  })
+  return await Auth.confirmSignUp(username, code).catch(
+    async (err) => {
+      return Promise.reject(confirmSignUpErrorMessage(err?.code, username))
+    }
+  )
 }
 
 export const login = async (email: string, password: string) => {

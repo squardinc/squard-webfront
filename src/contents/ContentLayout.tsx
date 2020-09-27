@@ -6,6 +6,7 @@ import { PrivacyPolicyPage } from './privacypolicy/privacypolicy'
 import { TeamLayout } from './team/TeamLayout'
 import { PersonLayout } from './person/PersonLayout'
 import { SignUpLayout } from './SignUp'
+import { ConfirmSignUpLayout } from './callback/ConfirmSignUp'
 
 export const StaticPagePaths = [
   'about',
@@ -33,6 +34,8 @@ export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId }) => {
       return <PrivacyPolicyPage />
     case 'signup':
       return <SignUpLayout />
+    case 'confirmSignUp':
+      return <ConfirmSignUpLayout />
   }
   if (contentId === 'squard') {
     return <TeamLayout />

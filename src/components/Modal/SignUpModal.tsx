@@ -18,7 +18,6 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
   const [password, setPassword] = React.useState('')
   const [registrationUserId, setRegistrationUserId] = React.useState('')
   const [verificationCode, setVerificationCode] = React.useState('')
-  const [succeeded, setSucceeded] = React.useState(false)
   const [errorMesasge, setErrorMessage] = React.useState('')
 
   React.useEffect(() => {
@@ -37,7 +36,8 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
             <TextDisplay className='flex justify-end w-full text-sm mb-4'>※8文字以上16文字以内</TextDisplay>
             <div className='flex flex-col'>
               <RoundButton className='text-black bg-white' text='新規登録' onClick={async () => {
-                AuthService.signUp(email, password).then(
+                const { host, pathname } = window.location
+                AuthService.signUp(email, password, host, pathname).then(
                   (userId) => { setRegistrationUserId(userId) },
                   (err) => { setErrorMessage(err) }
                 )
@@ -52,27 +52,9 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
           :
           <>
             <TextDisplay className='text-4xl font-semibold'>SignUp</TextDisplay>
-            <TextDisplay className='mb-8 text-sm'>ご登録のメールアドレスに送られた認証コードを入力してください。</TextDisplay>
-            <RoundInput value={verificationCode} onChange={setVerificationCode} placeholder='認証コード' faIcon={faCheck} />
-            <RoundButton className='text-black bg-white' text='認証' onClick={async () => {
-              AuthService.signUpConfirmation(registrationUserId, verificationCode).then(
-                () => { setSucceeded(true) },
-                (err) => { setErrorMessage(err) }
-              )
-            }} />
+            <TextDisplay className='mb-8 text-sm'>ご確認のメールを送信しました。メッセージ内リンクから登録を完了してください。</TextDisplay>
           </>
         }
-        {succeeded
-          ?
-          <CompleteModal
-            title='Registered!'
-            footerDescription='登録が完了しました'
-            closeModal={() => {
-              setSucceeded(false)
-              closeModal()
-            }}
-          />
-          : ''}
       </DefaultModalContainer >
       {errorMesasge ? <ErrorModal message={errorMesasge} closeModal={() => setErrorMessage('')} /> : ''}
     </>
