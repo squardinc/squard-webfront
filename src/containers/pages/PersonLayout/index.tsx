@@ -1,6 +1,6 @@
 import * as React from 'react'
-import PersonalLayout from '../../../components/pages/PersonalLayout'
-import { IPersonal } from '../../../models/personal'
+import PersonalLayout from 'src/components/pages/PersonalLayout'
+import { IPersonal } from 'src/models/personal'
 
 export const PersonalLayoutContainer: React.FC = () => {
   const [isLoading, setIsLoading] = React.useState<boolean>(true)

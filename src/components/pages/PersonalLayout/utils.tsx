@@ -11,7 +11,7 @@ import Zoom from 'src/assets/zoom_icon.svg'
 import SquardLeader from 'src/assets/squard_leader.svg'
 import CoreMembers from 'src/assets/core_members.svg'
 
-import { SocialMediaType, TeamType } from '../../../models/personal'
+import { SocialMediaType, TeamType } from 'src/models/personal'
 
 export function getSocialMediaIcon(name: SocialMediaType) {
   if (name === 'email') {
