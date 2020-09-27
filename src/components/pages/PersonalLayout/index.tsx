@@ -223,7 +223,7 @@ const TeamRole = styled.div`
   bottom: px;
   float: right;
   height: 35px;
-  margin: 0px 30px 20px 20px;
+  margin-right: 16px;
   background-color: #fff;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
