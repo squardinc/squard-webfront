@@ -31,16 +31,16 @@ const userPool = new CognitoUserPool({
 const signUpErrorMessage = (code: string) => {
   switch (code) {
     case 'UsernameExistsException':
-      return 'メールアドレスは既に登録されています'
+      return 'このメールアドレスは既に登録されています。'
   }
-  return 'エラーが発生しました。入力内容を確認し、再度やり直して下さい'
+  return 'エラーが発生しました。入力内容を確認し、再度やり直して下さい。'
 }
 
 export const signUp = async (email: string, password: string): Promise<CognitoUser> => {
   configure(window.location.origin)
   return Auth.signUp({ username: email, password: password }).then(
     result => result.user,
-    err => Promise.reject(signUpErrorMessage(err?.__type))
+    err => Promise.reject(signUpErrorMessage(err?.code))
   )
 }
 
