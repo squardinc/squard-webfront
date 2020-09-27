@@ -7,6 +7,7 @@ import ProfileImg from 'src/images/user.png'
 import ProfileLink from 'src/assets/profile_link_icon.svg'
 import { getSocialMediaIcon, getTeamIcon } from './utils'
 import { withTheme } from 'src/context/ThemeContext'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 
 type PersonalLayoutProps = {
   isLoading: boolean
@@ -52,14 +53,14 @@ const ProfileContainerWrapper = styled.div`
     content: '';
     position: absolute;
     margin-left: ${(props: StyleCssProps) =>
-      props.profileMarginLeft ? props.profileMarginLeft : 20}px;
+    props.profileMarginLeft ? props.profileMarginLeft : 20}px;
     top: ${(props: StyleCssProps) =>
-      props.oppositeTopOffset ? props.oppositeTopOffset : 0}px;
+    props.oppositeTopOffset ? props.oppositeTopOffset : 0}px;
     border-bottom: ${(props: StyleCssProps) =>
-        props.profileHeight ? props.profileHeight : 0}px
+    props.profileHeight ? props.profileHeight : 0}px
       solid rgba(255, 255, 255, 0.2);
     border-left: ${(props: StyleCssProps) =>
-        props.profileBorderLeft ? props.profileBorderLeft : 0}px
+    props.profileBorderLeft ? props.profileBorderLeft : 0}px
       solid transparent;
     border-right: 0px solid transparent;
   }
@@ -78,7 +79,7 @@ const UserCoverWrapper = styled.div`
   text-align: center;
   text-transform: uppercase;
   background: url(${(props: StyleCssProps) =>
-      props.coverImg ? props.coverImg : ''})
+    props.coverImg ? props.coverImg : ''})
     no-repeat center center;
   background-size: cover;
 
@@ -115,7 +116,7 @@ const ProfileImage = styled.div`
   border-radius: 10px;
   margin: 3px 0px 0px 3px;
   background: url(${(props: StyleCssProps) =>
-      props.profileImg ? props.profileImg : ''})
+    props.profileImg ? props.profileImg : ''})
     no-repeat center center;
   background-size: cover;
 `
@@ -132,7 +133,6 @@ const NameText = styled.div`
 `
 
 const NameSubText = styled.div`
-  font-family: montserrat, sans-serif;
   letter-spacing: 0.1em;
   color: #fff;
   padding-left: 8rem;
@@ -168,7 +168,6 @@ const SocialMediaIcon = styled.div`
 const TeamWrapper = styled.div``
 
 const TeamItemWrapper = styled.div`
-  font-family: montserrat, sans-serif;
   position: relative;
   bottom: 120px;
   height: 80px;
@@ -312,15 +311,21 @@ const PersonalLayout = (props: PersonalLayoutProps) => {
                 <TeamInfo>
                   <TeamIconWrapper>{getTeamIcon(team.type)}</TeamIconWrapper>
                   <TeamTextWrapper>
-                    <TeamNameText>{team.name}</TeamNameText>
-                    <TeamPositionText>{`-${team.position}`}</TeamPositionText>
+                    <TeamNameText>
+                      <TextDisplay>{team.name}</TextDisplay>
+                    </TeamNameText>
+                    <TeamPositionText>
+                      <TextDisplay>{`- ${team.position}`}</TextDisplay>
+                    </TeamPositionText>
                   </TeamTextWrapper>
                   <TeamLinkWrapper>
                     <ProfileLink />
                   </TeamLinkWrapper>
                 </TeamInfo>
                 <TeamRole>
-                  <TeamRoleText>{team.role}</TeamRoleText>
+                  <TeamRoleText>
+                    <TextDisplay>{team.role}</TextDisplay>
+                  </TeamRoleText>
                 </TeamRole>
               </TeamItemWrapper>
             )
