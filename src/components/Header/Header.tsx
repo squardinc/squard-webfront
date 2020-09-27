@@ -1,6 +1,9 @@
 import * as React from 'react'
 import { NavMenu } from 'src/components/NavMenu/NavMenu'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { SearchBar } from './SearchBar'
+import Cross from 'src/assets/cross.svg'
+import Search from 'src/assets/search.svg'
 import Menu from 'src/assets/menu.svg'
 import styles from './Header.module.scss'
 import { SignUpLoginLayout } from '../Modal/SignUpLoginModal'
@@ -9,7 +12,8 @@ import { Link } from 'gatsby'
 import { fadeIn } from '../../utils/Modal'
 
 export const Header = () => {
-  const [] = React.useState(false)
+  const { user } = React.useContext(UserContext)
+  const [showSearchBar, setShowSearchBar] = React.useState(false)
   const [showNavMenu, setShowNavMenu] = React.useState(false)
   const [showLoginModal, setShowLoginModal] = React.useState(false)
   const [showSignUpModal, setShowSignUpModal] = React.useState(false)
