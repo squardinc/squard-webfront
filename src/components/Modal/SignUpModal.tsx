@@ -1,12 +1,11 @@
 import * as React from 'react'
-import { faEnvelope, faLock, faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
 import { RoundInput } from 'src/components/Input/Input'
 import { RoundButton } from 'src/components/Button/DefaultButton'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { asModal, ModalProps } from './asModal'
 import { DefaultModalContainer } from './ModalContainer'
 import { AuthService } from 'src/services/AuthService'
-import { CompleteModal } from './CompleteModal'
 import { ErrorModal } from './ErrorModal'
 import { fadeIn } from '../../utils/Modal'
 

@@ -5,13 +5,7 @@ import { parseSearchParams } from 'src/utils/UrlParser'
 import { AuthService } from 'src/services/AuthService'
 import { fadeIn } from 'src/utils/Modal'
 
-interface ConfirmSignUpModalProps {
-  showSignUpCompleteModal: boolean
-  showErrorMessage: boolean
-  closeSignUpCompleteModal: VoidFunction
-  closeErrorMessageModal: VoidFunction
-}
-export const ConfirmSignUpModal: React.FC<ConfirmSignUpModalProps> = ({  }) => {
+export const ConfirmSignUpModal: React.FC = () => {
   const [showSignUpCompleteModal, setShowSignUpCompleteModal] = React.useState(false)
   const [showErrorMessage, setShowErrorMessage] = React.useState(false)
   const params = parseSearchParams(window.location.search)

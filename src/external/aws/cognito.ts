@@ -1,6 +1,6 @@
 import Amplify, { Auth } from 'aws-amplify'
 import * as AWS from 'aws-sdk'
-import { CognitoUserPool, CognitoUser, AuthenticationDetails, CognitoUserSession } from 'amazon-cognito-identity-js'
+import { CognitoUser } from 'amazon-cognito-identity-js'
 import { AWS_COGNITO_USERPOOL_ID, AWS_COGNITO_USERPOOL_CLIENT_ID, AWS_COGNITO_USERPOOL_DOMAIN } from 'src/utils/env'
 
 AWS.config.region = 'ap-northeast-1'
