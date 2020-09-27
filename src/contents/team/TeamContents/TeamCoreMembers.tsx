@@ -47,12 +47,16 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
                 className={getImageTheme(member.color)}
               ></div>
               <TextDisplay className={styles.ageTag}>
-                <p className="ml-2 mr-2 pl-1 leading-9 text-xs font-semibold text-white border-b border-dashed">
-                  Age
-                </p>
-                <p className="pl-3 text-2xl font-bold text-white">
-                  {member.age}
-                </p>
+                <div className={styles.ageTagContainer} >
+                  <p className={`${styles.ageTitle} font-semibold text-white`}>
+                    Age
+                  </p>
+                  <p className={`border-b border-dashed w-full border-yellow`}>
+                  </p>
+                  <p className="font-bold text-white">
+                    {member.age}
+                  </p>
+                </div>
               </TextDisplay>
               <TextDisplay className={styles.designationText}>
                 {member.title}

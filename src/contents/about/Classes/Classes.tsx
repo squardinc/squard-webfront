@@ -14,51 +14,51 @@ import { Heading2 } from 'src/components/Heading2/Heading2'
 import { Description } from 'src/components/Description/Description'
 import { ClassCard } from 'src/components/ClassCard/ClassCard'
 
-interface ClassesProps {}
+interface ClassesProps { }
 
 export const Classes: React.FC<ClassesProps> = (props) => {
   const classes = [
     {
-      logo: <Leader></Leader>,
-      title: 'LEADER',
+      logo: <Leader />,
+      title: 'Leader（リーダー）',
       description:
-        'Leader（リーダー）はテキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください(80文字程度)',
+        '文字通りチームの代表者であり多くの場合発起人でもあるリーダーは、「Topdown方式」の場合はチームにおける意思決定の全権を持ちます。「DAO方式」の場合はチームの代表者ではあるものの、権限に関してはCore Members及びMembersの人員と同等となります。',
     },
     {
-      logo: <CoreMembers></CoreMembers>,
-      title: 'CORE MEMBERS',
+      logo: <CoreMembers />,
+      title: 'Core Members（コアメンバー）',
       description:
-        'Core Members（コアメンバー）はテキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力して(80文字程度)',
+        'チームの根幹であり、責任と労働を伴うCore Membersは、プロジェクトの原動力となるモチベーションやスキル、生産性を要求される存在です。また「Topdown方式」の場合はLeaderの次に強い権限を持ちます。「DAO方式」のチームの場合はMembersと同様の権限となります。',
     },
     {
-      logo: <Members></Members>,
-      title: 'MEMBERS',
+      logo: <Members />,
+      title: 'Members（メンバー）',
       description:
-        'Members（メンバー）はテキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください(80文字程度)',
+        '責任と労働を伴うMemberは、法人でいうところの「社員」にあたり、各人員種別の中で中間に位置する存在であります。Leader〜Memberまでに該当する人員は、個別に設定しない限り基本的にチームで共有されている全てのファイル及びトークルームへのアクセスが可能であり、労働の対価を享受する立場にあります。',
     },
     {
-      logo: <Prospects></Prospects>,
-      title: 'PROSPECTS',
+      logo: <Prospects />,
+      title: 'Prospects（プロスペクト）',
       description:
-        'Prospect（プロスペクト）はテキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してくださ(80文字程度)',
+        '責任と労働を伴わないProspectsは、法人でいうところの「学生インターン（無給）」や「新卒研修/見習い」にあたり、指定された労働をこなす義務や行動への責任はありません。プロジェクトに参加したいがチームに貢献できるスキルや時間的リソースなどが不十分である場合に該当する人員種別です。基本的に月々のサブスクリプションが必須となります。',
     },
     {
-      logo: <Angels></Angels>,
-      title: 'ANGELS',
+      logo: <Angels />,
+      title: 'Angels（エンジェル）',
       description:
-        'Angels（エンジェル）はテキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください(80文字程度)',
+        '責任と労働を伴わないAngelsは、オンラインサロンでいうところのサロンメンバーにあたり、指定された労働をこなす義務や行動への責任はありません。プロジェクトに参加したいがプロジェクト内での作業に従事することができない、または従事する意思がない場合に該当する人員種別となります。基本的にプロスペクトよりも低価格な月々のサブスクリプションが必須となります。',
     },
     {
-      logo: <Galleries></Galleries>,
-      title: 'GALLERIES',
+      logo: <Galleries />,
+      title: 'Galleries（ギャラリー）',
       description:
-        'Galleries（ギャラリー）はテキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください(80文字程度)',
+        'チームのが取り組むプロジェクトを見守るGalleriesは、いわゆる「チームに対するフォロワー」のような存在で、経済的な支援や労働、責任などとは無縁の存在です。チームの進捗情報やキャリアサマリー更新などがリーチする他、チームがGalleriesへのファイル及びトークルームの閲覧許可を設定している場合はそれらへのアクセスが可能となります。',
     },
     {
-      logo: <VIP></VIP>,
-      title: 'V.I.P.',
+      logo: <VIP />,
+      title: 'V.I.P.（ビップ）',
       description:
-        'V.I.P.（ビップ）はテキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください。テキストを入力してください(80文字程度)',
+        'チームの後援者であるV.I.P.は、チームに対して経済的な支援やリソース及びネットワークを提供することを目的とした特別枠の人員です。チーム内で設定された権限に応じてファイルやトークルームの閲覧が可能ですが、Vote機能における投票権は基本的に持ちません。月々のサブスクリプションを個別に設定できます。',
     },
   ]
 

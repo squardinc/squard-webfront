@@ -4,7 +4,7 @@ import { DefaultButton } from 'src/components/Button/DefaultButton'
 import backgroundImage from 'src/images/background.png'
 import styles from './TeamIntroduction.module.scss'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import {  navigate } from 'gatsby'
+import { navigate } from 'gatsby'
 
 interface TeamIntroductionProps {
   teamId?: string
@@ -31,15 +31,13 @@ export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({ teamId = 'sq
         <div>
           {tags.map((tag, index) => <HashTag key={index} text={tag} />)}
         </div>
-        <div className={styles.attributeContainer}>
-          <div className="text-base tracking-wide font-thin small">
-            <TextDisplay>
-              マネジメントシステム: <span className="text-yellow">{system}</span>
-            </TextDisplay>
-            <TextDisplay>
-              チームリーダー: <span className="text-yellow">{leaderName}</span>
-            </TextDisplay>
-          </div>
+        <div className={`${styles.attributeContainer} tracking-wide`}>
+          <TextDisplay>
+            マネジメントシステム: <span className="text-yellow">{system}</span>
+          </TextDisplay>
+          <TextDisplay>
+            チームリーダー: <span className="text-yellow">{leaderName}</span>
+          </TextDisplay>
         </div>
         <DefaultButton text='Squardに参加してみる？' onClick={() => navigate(`/${teamId}/join`)} />
       </div>

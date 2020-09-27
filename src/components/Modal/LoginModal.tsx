@@ -10,6 +10,7 @@ import { ErrorModal } from './ErrorModal'
 import { PasswordResetRequestModal } from './PasswordResetRequestModal'
 import { UserContext } from 'src/context/UserContext'
 import { AuthService } from 'src/services/AuthService'
+import { fadeIn } from '../../utils/Modal'
 
 type LoginComponentProps = ModalProps & {
   showSignUpModal: VoidFunction
@@ -20,6 +21,11 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ closeModal, showSignUpM
   const [password, setPassword] = React.useState('')
   const [errorMesasge, setErrorMessage] = React.useState('')
   const [showPasswordResetRequestModal, setShowPasswordResetRequestModal] = React.useState(false)
+
+  React.useEffect(() => {
+    fadeIn();
+  }, [user, errorMesasge])
+
   return (
     <DefaultModalContainer closeModal={closeModal}>
       {!user.loggedIn ?
@@ -42,6 +48,7 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ closeModal, showSignUpM
                     (err) => { setErrorMessage(err) }
                   )
                   e.preventDefault()
+                  setErrorMessage('')
                 }} />
               <RoundButton className='text-white bg-blue-700' text='Facebookでログイン'  onClick={AuthService.loginWithFacebook}/>
             </div>

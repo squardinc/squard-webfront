@@ -16,7 +16,7 @@ export const FAQItem: React.FC<FAQItemProps> = ({ num, question, answer }) => {
       <div className={styles.questionWrapper}>
         <div className={styles.questionContent}>
           <div className={styles.questionTitle}>Question. {num}</div>
-          <p className={styles.questionText}>{question}</p>
+          <div className={styles.questionText}>{question}</div>
           <div className={styles.questionQuote}>
             <Quote />
           </div>
@@ -24,7 +24,7 @@ export const FAQItem: React.FC<FAQItemProps> = ({ num, question, answer }) => {
       </div>
       <div className={styles.answerWrapper}>
         <div className={styles.answerTitle}>Answer. {num}</div>
-        <p className={styles.answerText}>{answer}</p>
+        <div className={styles.answerText}>{answer}</div>
       </div>
     </div>
   )

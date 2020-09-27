@@ -13,6 +13,10 @@
     backdrop-filter: blur(3px);
   }
 
+  .box-shadow-theme-header {
+    box-shadow: var(--box-shadow-theme-header);
+  }
+
   .background-theme-footer {
     background: var(--background-theme-footer);
   }
@@ -25,15 +29,32 @@
 .theme-light {
   --text-color-theme-main: #262626;
   --text-color-theme-sub: #FFFFFF;
+  --text-color-theme-header: #262626;
   --bg-color-theme-main: #FFFFFF;
+  --bg-color-theme-header: #FFFFFF;
+  --box-shadow-theme-header: 0 3px 6px rgba(0, 0, 0, 0.16);
   --background-theme-footer: linear-gradient(70deg, #AF1A3D, #FBE62E);
   --background-theme-button: linear-gradient(70deg, #AF1A3D, #FBE62E);
 }
 
 .theme-gray {
-  --text-color-theme-main: #262626;
+  --text-color-theme-main: #050126;
   --text-color-theme-sub: #FFFFFF;
   --bg-color-theme-main: #EBEBEB;
+  --text-color-theme-header: #050126;
+  --bg-color-theme-header: #FFFFFF;
+  --box-shadow-theme-header: 0;
+  --background-theme-footer: linear-gradient(70deg, #AF1A3D, #FBE62E);
+  --background-theme-button: linear-gradient(70deg, #AF1A3D, #FBE62E);
+}
+
+.theme-light-gray {
+  --text-color-theme-main: #050126;
+  --text-color-theme-sub: #FFFFFF;
+  --bg-color-theme-main: #FAFAFA;
+  --text-color-theme-header: #FFFFFF;
+  --bg-color-theme-header: #050126;
+  --box-shadow-theme-header: 0;
   --background-theme-footer: linear-gradient(70deg, #AF1A3D, #FBE62E);
   --background-theme-button: linear-gradient(70deg, #AF1A3D, #FBE62E);
 }
@@ -42,6 +63,9 @@
   --text-color-theme-main: #ffffff;
   --text-color-theme-sub: #FBE62E;
   --bg-color-theme-main: #051026;
+  --text-color-theme-header: #ffffff;
+  --bg-color-theme-header: #051026;
+  --box-shadow-theme-header: 0;
   --background-theme-footer: #051026;
   --background-theme-button: #FBE62E;
 }
@@ -53,6 +77,10 @@ body {
   margin-left: auto;
   background-color: black;
   font-family: "Noto Sans", "Noto Sans CJK JP", sans-serif;
+}
+
+.page-base-container {
+  background-color: $black;
 }
 
 ::-webkit-scrollbar-track {
@@ -80,7 +108,27 @@ body {
   scrollbar-width: thin;
 }
 
+button:focus {
+  outline: none;
+
+  div {
+    box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
+  }
+}
+
 .page-base-container {
   padding-top: 70px;
   overflow: hidden;
+}
+ 
+.modal-transition {
+  transition: all 0.7s ease-out;
+}
+
+.close {
+  opacity: 0;
+}
+
+.open {
+  opacity: 1;
 }

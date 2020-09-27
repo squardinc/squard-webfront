@@ -32,3 +32,15 @@
   background-color: #f8e32d;
   border-radius: 50%;
 }
+
+.searchTransition {
+  transition: all 0.7s ease-in-out;
+}
+
+.close {
+  opacity: 0;
+}
+
+.open {
+  opacity: 1;
+}
