@@ -43,7 +43,7 @@ const ProfileContainerWrapper = styled.div`
   z-index: 1;
   background: #051026;
   opacity: 0.85;
-  margin: 0px 20px 0px 20px;
+  margin: 0px 20px -150px 20px;
   padding-bottom: 10px;
   border-radius: 10px;
   min-height: 10px;
@@ -165,18 +165,15 @@ const SocialMediaIcon = styled.div`
   width: auto;
 `
 
-const TeamWrapper = styled.div``
+const TeamWrapper = styled.div`
+    margin: 30px 0 0 0;
+`
 
 const TeamItemWrapper = styled.div`
   position: relative;
-  bottom: 120px;
   height: 80px;
-  margin: 0px 20px 20px 20px;
-  background-image: linear-gradient(to right, #bc4c49, #edc74c);
+  margin: 0px 20px 65px 20px;
   border-radius: 10px;
-  z-index: 1;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
-  margin-bottom: 65px;
 
   :last-child {
     margin-bottom: 0px;
@@ -184,10 +181,14 @@ const TeamItemWrapper = styled.div`
 `
 const TeamInfo = styled.div`
   display: flex;
+  background-image: linear-gradient(to right, #bc4c49, #edc74c);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
+  border-radius: 10px;
   color: #fff;
   padding-left: 1.5rem;
   height: 100%;
   align-items: center;
+  position: relative;
 `
 
 const TeamIconWrapper = styled.div`
@@ -218,11 +219,11 @@ const TeamLinkWrapper = styled.div`
 `
 
 const TeamRole = styled.div`
-  position: relative;
-  bottom: px;
-  float: right;
+  display: inline-block;
+  position: absolute;
+  bottom: -35px;
+  right: 16px;
   height: 35px;
-  margin-right: 16px;
   background-color: #fff;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -308,6 +309,11 @@ const PersonalLayout = (props: PersonalLayoutProps) => {
           {personal.teams.map((team, i) => {
             return (
               <TeamItemWrapper key={i}>
+                <TeamRole>
+                  <TeamRoleText>
+                    <TextDisplay>{team.role}</TextDisplay>
+                  </TeamRoleText>
+                </TeamRole>
                 <TeamInfo>
                   <TeamIconWrapper>{getTeamIcon(team.type)}</TeamIconWrapper>
                   <TeamTextWrapper>
@@ -322,11 +328,6 @@ const PersonalLayout = (props: PersonalLayoutProps) => {
                     <ProfileLink />
                   </TeamLinkWrapper>
                 </TeamInfo>
-                <TeamRole>
-                  <TeamRoleText>
-                    <TextDisplay>{team.role}</TextDisplay>
-                  </TeamRoleText>
-                </TeamRole>
               </TeamItemWrapper>
             )
           })}
