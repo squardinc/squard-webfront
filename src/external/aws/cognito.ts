@@ -65,19 +65,10 @@ export const confirmSignUp = async (username: string, code: string) => {
 }
 
 export const login = async (email: string, password: string) => {
-  const cognitoUser = new CognitoUser({ Username: email, Pool: userPool })
-  return new Promise<CognitoUserSession>((resolve, reject) => {
-    cognitoUser.authenticateUser(
-      new AuthenticationDetails({ Username: email, Password: password }),
-      {
-        onSuccess: (session: CognitoUserSession) => {
-          resolve(session)
-        },
-        onFailure: () => {
-          reject('ログインできませんでした。入力内容を確認して再度やり直してください。')
-        }
-      })
-  })
+  return Auth.signIn(email, password).then(
+    async () => Auth.currentSession(),
+    () => Promise.reject('ログインできませんでした。入力内容を確認して再度やり直してください。')
+  )
 }
 
 export const resetPassword = async (email: string) => {
