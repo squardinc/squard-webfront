@@ -29,7 +29,7 @@ export const TeamAngels: React.FC<TeamAngelsProps> = ({
         sub="And we have"
         main={`${numOfAngels} Angels`}
         style="medium"
-        subFontWeight=''
+        subFontWeight=""
       />
       <div className="pt-6">
         <div className={styles.angels}>

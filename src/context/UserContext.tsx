@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { LoginUser } from 'src/services/AuthService/interfaces';
-import { LoginUserModel } from 'src/services/AuthService/LoginUserModel';
+import * as React from 'react'
+import { LoginUser } from 'src/services/AuthService/interfaces'
+import { LoginUserModel } from 'src/services/AuthService/LoginUserModel'
 
 interface UserContextInterface {
   user: LoginUser
@@ -8,7 +8,7 @@ interface UserContextInterface {
 }
 export const UserContext = React.createContext<UserContextInterface>({
   user: LoginUserModel.guest(),
-  setUser: (user: LoginUser) => { },
+  setUser: (user: LoginUser) => {},
 })
 
 export const UserContextProvider: React.FC = ({ children }) => {

@@ -13,23 +13,28 @@ interface TeamIntroductionProps {
   system?: string
 }
 
-export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({ teamId = 'squard', tags = [], leaderName = '', system = '' }) => {
+export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({
+  teamId = 'squard',
+  tags = [],
+  leaderName = '',
+  system = '',
+}) => {
   return (
     <div style={{ backgroundImage: `url(${backgroundImage})` }}>
-      <div id='introduction' className={styles.content}>
+      <div id="introduction" className={styles.content}>
         <div className={styles.caption}>
-          <TextDisplay className={styles.caption1} >
+          <TextDisplay className={styles.caption1}>
             未来のチームを定義する
           </TextDisplay>
-          <TextDisplay className={styles.caption2}>
-            Squard
-          </TextDisplay>
+          <TextDisplay className={styles.caption2}>Squard</TextDisplay>
         </div>
         <TextDisplay className={styles.description}>
           チーム「Squard（スクアード）」はコラボレーションプラットフォーム「Squard」の企画/開発/運営を目的として集まったチームです。
         </TextDisplay>
         <div>
-          {tags.map((tag, index) => <HashTag key={index} text={tag} />)}
+          {tags.map((tag, index) => (
+            <HashTag key={index} text={tag} />
+          ))}
         </div>
         <div className={`${styles.attributeContainer} tracking-wide`}>
           <TextDisplay>
@@ -39,7 +44,10 @@ export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({ teamId = 'sq
             チームリーダー: <span className="text-yellow">{leaderName}</span>
           </TextDisplay>
         </div>
-        <DefaultButton text='Squardに参加してみる？' onClick={() => navigate(`/${teamId}/join`)} />
+        <DefaultButton
+          text="Squardに参加してみる？"
+          onClick={() => navigate(`/${teamId}/join`)}
+        />
       </div>
     </div>
   )

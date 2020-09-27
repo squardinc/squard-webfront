@@ -23,8 +23,8 @@ type TopMemberProps = MemberProps & {
 }
 const TopMember: React.FC<TopMemberProps> = ({ member, name, title }) => {
   return (
-    <div className={styles.topMemberRow} >
-      <div className={styles.topMemberContainer} >
+    <div className={styles.topMemberRow}>
+      <div className={styles.topMemberContainer}>
         <img src={member} className={styles.topMember} />
         <TextDisplay className={styles.topMemberCaption}>
           <div className={styles.topMemberName}>{name}</div>
@@ -39,17 +39,26 @@ interface TeamMembersProps {
   topMember: string
   members: string[]
 }
-export const TeamMembers: React.FC<TeamMembersProps> = ({ topMember, members }) => {
-  members.push('images/raw.jpg');
+export const TeamMembers: React.FC<TeamMembersProps> = ({
+  topMember,
+  members,
+}) => {
+  members.push('images/raw.jpg')
   return (
     <div className={styles.container}>
-      <LeftBorderCaption text='MEMBERS' color='white' />
-      <TopMember member={topMember} name='小池駿平' title='Blockchain Engineer' />
+      <LeftBorderCaption text="MEMBERS" color="white" />
+      <TopMember
+        member={topMember}
+        name="小池駿平"
+        title="Blockchain Engineer"
+      />
       <div className={styles.members}>
-        {members.filter(member => member != topMember).map((member, index) =>
-          <Member key={index} member={member} name={`舎弟${index + 1}`} />
-        )}
+        {members
+          .filter((member) => member != topMember)
+          .map((member, index) => (
+            <Member key={index} member={member} name={`舎弟${index + 1}`} />
+          ))}
       </div>
-    </div >
+    </div>
   )
 }
