@@ -151,4 +151,4 @@ const Page: React.FC = () => {
   )
 }
 
-export const CompanyPage = withTheme(Page, 'light')
+export const CompanyPage = withTheme(Page, 'light-gray')
