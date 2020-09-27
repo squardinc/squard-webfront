@@ -37,63 +37,64 @@ const ContentWrapper = styled.div`
 `
 
 const ProfileContainerWrapper = styled.div`
-  background-color: red;
   position: relative;
-  bottom: 150px;
-  z-index: 1;
+  top: -120px;
   background: #051026;
   opacity: 0.85;
-  margin: 0px 20px 0px 20px;
+  margin: 0px 20px -120px 20px;
   padding-bottom: 10px;
   border-radius: 10px;
   min-height: 10px;
 
   :before {
-    z-index: 1;
     content: '';
     position: absolute;
-    margin-left: ${(props: StyleCssProps) =>
-    props.profileMarginLeft ? props.profileMarginLeft : 20}px;
-    top: ${(props: StyleCssProps) =>
-    props.oppositeTopOffset ? props.oppositeTopOffset : 0}px;
-    border-bottom: ${(props: StyleCssProps) =>
-    props.profileHeight ? props.profileHeight : 0}px
-      solid rgba(255, 255, 255, 0.2);
-    border-left: ${(props: StyleCssProps) =>
-    props.profileBorderLeft ? props.profileBorderLeft : 0}px
-      solid transparent;
-    border-right: 0px solid transparent;
+    left: 20px;
+    right: 0;
+    bottom: 0;
+    top: 20px;
+    background: linear-gradient(
+      to right bottom,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(255, 255, 255, 0.1) 50%
+    );
   }
 `
 
 const UserCoverWrapper = styled.div`
-  width: ${(props: StyleCssProps) => (props.width ? props.width : 0)}px;
-  height: 500px;
   box-sizing: content-box;
-  padding-top: 15px;
   position: relative;
-  background: red;
   color: white;
   font-size: 11px;
   letter-spacing: 0.2em;
   text-align: center;
   text-transform: uppercase;
+`
+
+const UserCover = styled.div`
+  height: 500px;
+  position: relative;
   background: url(${(props: StyleCssProps) =>
-    props.coverImg ? props.coverImg : ''})
+      props.coverImg ? props.coverImg : ''})
     no-repeat center center;
   background-size: cover;
 
   :after {
     content: '';
     position: absolute;
-    left: 0;
     bottom: 0;
-    width: 0;
-    height: 0;
-    border-bottom: 100px solid #eee;
-    border-left: ${(props: StyleCssProps) => (props.width ? props.width : 0)}px
-      solid transparent;
-    border-right: 0px solid transparent;
+    left: 0;
+    right: 20px;
+    height: 100px;
+    background: linear-gradient(
+      to right bottom,
+      rgba(0, 0, 0, 0) 50%,
+      ${(props: StyleCssProps) =>
+        props.backgroundColor ? props.backgroundColor : colors.textWhite} 50%
+    );
+    transform: scale(1.1);
+    display: block;
+    transform-origin: left bottom;
   }
 `
 
@@ -105,7 +106,6 @@ const ProfilerImageContainer = styled.div`
   margin: 0px 20px 20px 20px;
   background-image: linear-gradient(#edc74c, #bc4c49);
   border-radius: 10px;
-  z-index: 1;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
 `
@@ -116,12 +116,15 @@ const ProfileImage = styled.div`
   border-radius: 10px;
   margin: 3px 0px 0px 3px;
   background: url(${(props: StyleCssProps) =>
-    props.profileImg ? props.profileImg : ''})
+      props.profileImg ? props.profileImg : ''})
     no-repeat center center;
   background-size: cover;
 `
 
-const NameWrapper = styled.div``
+const NameWrapper = styled.div`
+  position: relative;
+  text-align: left;
+`
 
 const NameText = styled.div`
   letter-spacing: 0.1em;
@@ -150,6 +153,7 @@ const NameDescription = styled.div`
 `
 
 const SocialMediaWrapper = styled.div`
+  position: relative;
   z-index: 100;
   display: flex;
   flex-wrap: wrap;
@@ -165,18 +169,15 @@ const SocialMediaIcon = styled.div`
   width: auto;
 `
 
-const TeamWrapper = styled.div``
+const TeamWrapper = styled.div`
+  margin: 48px 0 38px 0;
+`
 
 const TeamItemWrapper = styled.div`
   position: relative;
-  bottom: 120px;
   height: 80px;
-  margin: 0px 20px 20px 20px;
-  background-image: linear-gradient(to right, #bc4c49, #edc74c);
+  margin: 0px 20px 65px 20px;
   border-radius: 10px;
-  z-index: 1;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
-  margin-bottom: 65px;
 
   :last-child {
     margin-bottom: 0px;
@@ -184,10 +185,14 @@ const TeamItemWrapper = styled.div`
 `
 const TeamInfo = styled.div`
   display: flex;
+  background-image: linear-gradient(to right, #bc4c49, #edc74c);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
+  border-radius: 10px;
   color: #fff;
   padding-left: 1.5rem;
   height: 100%;
   align-items: center;
+  position: relative;
 `
 
 const TeamIconWrapper = styled.div`
@@ -218,11 +223,11 @@ const TeamLinkWrapper = styled.div`
 `
 
 const TeamRole = styled.div`
-  position: relative;
-  bottom: px;
-  float: right;
+  display: inline-block;
+  position: absolute;
+  bottom: -35px;
+  right: 16px;
   height: 35px;
-  margin-right: 16px;
   background-color: #fff;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -239,75 +244,41 @@ const TeamRoleText = styled.div`
 
 const PersonalLayout = (props: PersonalLayoutProps) => {
   const { personal } = props
-  const profileContainerRef = React.useRef<HTMLDivElement>(null)
-  const [profileHeight, setProfileHeight] = React.useState(0)
-  const [opposite, setOposite] = React.useState(0)
-  const [profileMarginLeft, setProfileMarginLeft] = React.useState(0)
-  const [profileBorderLeft, setProfileBorderLeft] = React.useState(0)
-
-  React.useEffect(() => {
-    if (profileContainerRef.current) {
-      const profileMarginLeft = 20
-      const coverOffset = 100
-      const profileContainerMargin = 20
-      const windowWidth = window.innerWidth > 640 ? 640 : window.innerWidth - 10
-      const profileContainerWidth = windowWidth - profileContainerMargin * 2
-
-      const tanOffset = coverOffset / windowWidth
-      const profileContainerOffset = windowWidth - profileContainerMargin
-      const opposite =
-        coverOffset - tanOffset * profileContainerOffset + coverOffset / 2
-
-      setOposite(opposite)
-      setProfileMarginLeft(profileMarginLeft)
-      setProfileBorderLeft(profileContainerWidth - profileMarginLeft)
-      if (document && document.getElementById('ProfileContainerWrapper')) {
-        const elementId: HTMLElement = document.getElementById(
-          'ProfileContainerWrapper'
-        ) as HTMLElement
-        const elHeight = elementId.clientHeight
-        setProfileHeight(elHeight - opposite)
-      }
-    }
-  })
 
   return (
     <PersonalLayoutWrapper backgroundColor={'#ebebeb'}>
       <ContentWrapper>
-        <UserCoverWrapper
-          width={window.innerWidth > 640 ? 640 : window.innerWidth - 10}
-          coverImg={ProfileImg}
-        />
-        <ProfileContainerWrapper
-          ref={profileContainerRef}
-          id={'ProfileContainerWrapper'}
-          profileHeight={profileHeight}
-          oppositeTopOffset={opposite}
-          profileMarginLeft={profileMarginLeft}
-          profileBorderLeft={profileBorderLeft}
-        >
-          <ProfilerImageContainer>
-            <ProfileImage profileImg={ProfileImg} />
-          </ProfilerImageContainer>
-          <NameWrapper>
-            <NameText>{personal.name}</NameText>
-            <NameSubText>{personal.subName}</NameSubText>
-            <NameDescription>{personal.description}</NameDescription>
-          </NameWrapper>
-          <SocialMediaWrapper>
-            {personal.socialMedia.map((sm, i) => {
-              return (
-                <SocialMediaIcon key={i} isYoutubeIcon={sm === 'youtube'}>
-                  {getSocialMediaIcon(sm)}
-                </SocialMediaIcon>
-              )
-            })}
-          </SocialMediaWrapper>
-        </ProfileContainerWrapper>
+        <UserCoverWrapper>
+          <UserCover coverImg={ProfileImg} backgroundColor={'#ebebeb'}></UserCover>
+          <ProfileContainerWrapper>
+            <ProfilerImageContainer>
+              <ProfileImage profileImg={ProfileImg} />
+            </ProfilerImageContainer>
+            <NameWrapper>
+              <NameText>{personal.name}</NameText>
+              <NameSubText>{personal.subName}</NameSubText>
+              <NameDescription>{personal.description}</NameDescription>
+            </NameWrapper>
+            <SocialMediaWrapper>
+              {personal.socialMedia.map((sm, i) => {
+                return (
+                  <SocialMediaIcon key={i} isYoutubeIcon={sm === 'youtube'}>
+                    {getSocialMediaIcon(sm)}
+                  </SocialMediaIcon>
+                )
+              })}
+            </SocialMediaWrapper>
+          </ProfileContainerWrapper>
+        </UserCoverWrapper>
         <TeamWrapper>
           {personal.teams.map((team, i) => {
             return (
               <TeamItemWrapper key={i}>
+                <TeamRole>
+                  <TeamRoleText>
+                    <TextDisplay>{team.role}</TextDisplay>
+                  </TeamRoleText>
+                </TeamRole>
                 <TeamInfo>
                   <TeamIconWrapper>{getTeamIcon(team.type)}</TeamIconWrapper>
                   <TeamTextWrapper>
@@ -322,11 +293,6 @@ const PersonalLayout = (props: PersonalLayoutProps) => {
                     <ProfileLink />
                   </TeamLinkWrapper>
                 </TeamInfo>
-                <TeamRole>
-                  <TeamRoleText>
-                    <TextDisplay>{team.role}</TextDisplay>
-                  </TeamRoleText>
-                </TeamRole>
               </TeamItemWrapper>
             )
           })}
