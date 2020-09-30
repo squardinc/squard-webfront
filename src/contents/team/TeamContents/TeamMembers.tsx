@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { LeftBorderCaption } from 'src/components/Caption/Captions'
-import styles from './TeamMembers.module.scss'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import ComingSoon from 'src/images/ComingSoon.jpg'
+import styles from './TeamMembers.module.scss'
 
 interface MemberProps {
   member: string
@@ -25,11 +26,14 @@ const TopMember: React.FC<TopMemberProps> = ({ member, name, title }) => {
   return (
     <div className={styles.topMemberRow}>
       <div className={styles.topMemberContainer}>
-        <img src={member} className={styles.topMember} />
-        <TextDisplay className={styles.topMemberCaption}>
-          <div className={styles.topMemberName}>{name}</div>
-          <div className={styles.topMemberTitle}> &nbsp;/ {title}</div>
-        </TextDisplay>
+        <img src={member || ComingSoon} className={styles.topMember} />
+        {member ?
+          <TextDisplay className={styles.topMemberCaption}>
+            <div className={styles.topMemberName}>{name}</div>
+            <div className={styles.topMemberTitle}> &nbsp;/ {title}</div>
+          </TextDisplay>
+          : ''
+        }
       </div>
     </div>
   )
@@ -43,7 +47,6 @@ export const TeamMembers: React.FC<TeamMembersProps> = ({
   topMember,
   members,
 }) => {
-  members.push('images/raw.jpg')
   return (
     <div className={styles.container}>
       <LeftBorderCaption text="MEMBERS" color="white" />

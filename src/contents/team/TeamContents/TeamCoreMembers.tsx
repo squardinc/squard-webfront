@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { Link } from 'gatsby'
-import styles from './TeamCoreMembers.module.scss'
+import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import styles from './TeamCoreMembers.module.scss'
 
 interface CoreMember {
   id: string

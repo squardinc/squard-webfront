@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { IPersonal } from 'src/models/personal'
 import * as colors from 'src/styles/colors'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
-import ProfileImg from 'src/images/user.png'
 import ProfileLink from 'src/assets/profile_link_icon.svg'
 import { getSocialMediaIcon, getTeamIcon } from './utils'
 import { withTheme } from 'src/context/ThemeContext'
@@ -15,9 +14,8 @@ type PersonalLayoutProps = {
 }
 
 type StyleCssProps = {
-  profileImg?: string
-  coverImg?: string
-  isYoutubeIcon?: boolean
+  icon?: string
+  topImage?: string
   width?: number
   backgroundColor?: string
   profileHeight?: number
@@ -69,14 +67,11 @@ const UserCoverWrapper = styled.div`
   letter-spacing: 0.2em;
   text-align: center;
   text-transform: uppercase;
+  width: 100%;
 `
 
 const UserCover = styled.div`
-  height: 500px;
   position: relative;
-  background: url(${(props: StyleCssProps) =>
-      props.coverImg ? props.coverImg : ''})
-    no-repeat center center;
   background-size: cover;
 
   :after {
@@ -90,7 +85,7 @@ const UserCover = styled.div`
       to right bottom,
       rgba(0, 0, 0, 0) 50%,
       ${(props: StyleCssProps) =>
-        props.backgroundColor ? props.backgroundColor : colors.textWhite} 50%
+    props.backgroundColor ? props.backgroundColor : colors.textWhite} 50%
     );
     transform: scale(1.1);
     display: block;
@@ -116,7 +111,7 @@ const ProfileImage = styled.div`
   border-radius: 10px;
   margin: 3px 0px 0px 3px;
   background: url(${(props: StyleCssProps) =>
-      props.profileImg ? props.profileImg : ''})
+    props.icon ? props.icon : ''})
     no-repeat center center;
   background-size: cover;
 `
@@ -150,22 +145,21 @@ const NameDescription = styled.div`
   text-align: justify;
   color: #fff;
   letter-spacing: 0.1em;
+  white-space: pre-wrap;
 `
 
 const SocialMediaWrapper = styled.div`
   position: relative;
+  margin: 0px 10px;
   z-index: 100;
   display: flex;
   flex-wrap: wrap;
-  width: 320px;
-  justify-content: space-between;
-  margin: auto;
+  justify-content: center;
 `
 
 const SocialMediaIcon = styled.div`
-  margin-right: 1rem;
+  margin: 0px 5px;
   height: 4rem;
-  margin-top: ${(props: StyleCssProps) => (props.isYoutubeIcon ? 0.3 : 0)}rem;
   width: auto;
 `
 
@@ -249,22 +243,24 @@ const PersonalLayout = (props: PersonalLayoutProps) => {
     <PersonalLayoutWrapper backgroundColor={'#ebebeb'}>
       <ContentWrapper>
         <UserCoverWrapper>
-          <UserCover coverImg={ProfileImg} backgroundColor={'#ebebeb'}></UserCover>
+          <UserCover backgroundColor={'#ebebeb'}><img src={personal.topImage} /></UserCover>
           <ProfileContainerWrapper>
             <ProfilerImageContainer>
-              <ProfileImage profileImg={ProfileImg} />
+              <ProfileImage icon={personal.icon} />
             </ProfilerImageContainer>
             <NameWrapper>
-              <NameText>{personal.name}</NameText>
-              <NameSubText>{personal.subName}</NameSubText>
-              <NameDescription>{personal.description}</NameDescription>
+              <NameText><TextDisplay>{personal.nameJp}</TextDisplay></NameText>
+              <NameSubText><TextDisplay>{personal.nameEn}</TextDisplay></NameSubText>
+              <NameDescription><TextDisplay>{personal.description}</TextDisplay></NameDescription>
             </NameWrapper>
             <SocialMediaWrapper>
-              {personal.socialMedia.map((sm, i) => {
+              {personal.socialMedia.map((sm) => {
                 return (
-                  <SocialMediaIcon key={i} isYoutubeIcon={sm === 'youtube'}>
-                    {getSocialMediaIcon(sm)}
-                  </SocialMediaIcon>
+                  <a href={sm.url} >
+                    <SocialMediaIcon key={sm.url}>
+                      {getSocialMediaIcon(sm.type)}
+                    </SocialMediaIcon>
+                  </a>
                 )
               })}
             </SocialMediaWrapper>
@@ -280,13 +276,13 @@ const PersonalLayout = (props: PersonalLayoutProps) => {
                   </TeamRoleText>
                 </TeamRole>
                 <TeamInfo>
-                  <TeamIconWrapper>{getTeamIcon(team.type)}</TeamIconWrapper>
+                  <TeamIconWrapper>{getTeamIcon(team.classType)}</TeamIconWrapper>
                   <TeamTextWrapper>
                     <TeamNameText>
                       <TextDisplay>{team.name}</TextDisplay>
                     </TeamNameText>
                     <TeamPositionText>
-                      <TextDisplay>{`- ${team.position}`}</TextDisplay>
+                      <TextDisplay>{`- ${team.classType}`}</TextDisplay>
                     </TeamPositionText>
                   </TeamTextWrapper>
                   <TeamLinkWrapper>

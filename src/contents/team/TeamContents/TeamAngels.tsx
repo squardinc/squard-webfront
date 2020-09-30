@@ -3,6 +3,7 @@ import { DefaultButton } from 'src/components/Button/DefaultButton'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
 
 import styles from './TeamAngels.module.scss'
+import { navigate } from 'gatsby'
 
 interface AngelProps {
   angel: string
@@ -20,7 +21,7 @@ interface TeamAngelsProps {
   numOfAngels: number
 }
 export const TeamAngels: React.FC<TeamAngelsProps> = ({
-  angels,
+  angels = [],
   numOfAngels,
 }) => {
   return (
@@ -31,15 +32,17 @@ export const TeamAngels: React.FC<TeamAngelsProps> = ({
         style="medium"
         subFontWeight=""
       />
-      <div className="pt-6">
-        <div className={styles.angels}>
-          {angels.map((angel, index) => (
-            <Angel key={index} angel={angel} />
-          ))}
+      {angels.length ?
+        <div className="pt-6">
+          <div className={styles.angels}>
+            {angels.map((angel, index) => (
+              <Angel key={index} angel={angel} />
+            ))}
+          </div>
         </div>
-      </div>
+        : ''}
       <div className="pt-5">
-        <DefaultButton size="small" text="Angelとして参加する" />
+        <DefaultButton size="small" text="Angelsとして参加する" onClick={() => { navigate('join#ANGELS') }} />
       </div>
     </div>
   )

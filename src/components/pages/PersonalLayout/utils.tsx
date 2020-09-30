@@ -1,42 +1,62 @@
 import * as React from 'react'
-import Facebook from 'src/assets/facebook_icon.svg'
-import Instagram from 'src/assets/instagram_icon.svg'
-import Twitter from 'src/assets/twitter_icon.svg'
-import Youtube from 'src/assets/youtube_icon.svg'
-import Email from 'src/assets/email_icon.svg'
-import Phone from 'src/assets/phone_icon.svg'
-import Link from 'src/assets/link_icon.svg'
-import Zoom from 'src/assets/zoom_icon.svg'
+import Facebook from 'src/assets/social_media/facebook.svg'
+import Instagram from 'src/assets/social_media/instagram.svg'
+import Twitter from 'src/assets/social_media/twitter.svg'
+import Youtube from 'src/assets/social_media/youtube.svg'
+import Email from 'src/assets/social_media/email.svg'
+import Phone from 'src/assets/social_media/phone.svg'
+import Link from 'src/assets/social_media/link.svg'
+import Zoom from 'src/assets/social_media/zoom.svg'
+import Linkedin from 'src/assets/social_media/linkedin.svg'
+import GitHub from 'src/assets/social_media/github.svg'
 
-import SquardLeader from 'src/assets/squard_leader.svg'
-import CoreMembers from 'src/assets/core_members.svg'
+import Leader from 'src/assets/classes/leader.svg'
+import CoreMembers from 'src/assets/classes/core_members.svg'
+import Members from 'src/assets/classes/members.svg'
+import Prospects from 'src/assets/classes/prospects.svg'
+import Angels from 'src/assets/classes/angels.svg'
+import Galleries from 'src/assets/classes/galleries.svg'
+import VIP from 'src/assets/classes/vip.svg'
 
-import { SocialMediaType, TeamType } from 'src/models/personal'
+import { SocialMediaType, ClassType } from 'src/models/personal'
 
-export function getSocialMediaIcon(name: SocialMediaType) {
-  if (name === 'email') {
-    return <Email />
-  } else if (name === 'facebook') {
-    return <Facebook />
-  } else if (name === 'instagram') {
-    return <Instagram />
-  } else if (name === 'twitter') {
-    return <Twitter />
-  } else if (name === 'youtube') {
-    return <Youtube />
-  } else if (name === 'phone') {
-    return <Phone />
-  } else if (name === 'zoom') {
-    return <Zoom />
-  } else if (name === 'link') {
-    return <Link />
-  }
+const MEDIA_MAP: { [key in SocialMediaType]: JSX.Element } = {
+  email: Email,
+  phone: Phone,
+  twitter: Twitter,
+  facebook: Facebook,
+  instagram: Instagram,
+  linkedin: Link,
+  youtube: Youtube,
+  zoom: Zoom,
+  github: Link,
+  link: Link,
 }
 
-export function getTeamIcon(name: TeamType) {
-  if (name === 'squard') {
-    return <SquardLeader width="3rem" height="3rem" />
-  } else if (name === 'cheerfully') {
-    return <CoreMembers width="3rem" height="3rem" />
+export const getSocialMediaIcon = (name: SocialMediaType) => {
+  const MediaIcon = MEDIA_MAP[name]
+  return <MediaIcon width='42px' height='42px' />
+}
+
+const teamIconProps = {
+  width: '3rem',
+  height: '3rem'
+}
+export const getTeamIcon = (classType: ClassType) => {
+  switch (classType) {
+    case 'Leader':
+      return <Leader {...teamIconProps} />
+    case 'Core Members':
+      return <CoreMembers {...teamIconProps} />
+    case 'Members':
+      return <Members {...teamIconProps} />
+    case 'Prospects':
+      return <Prospects {...teamIconProps} />
+    case 'Angels':
+      return <Angels {...teamIconProps} />
+    case 'VIP':
+      return <VIP {...teamIconProps} />
+    default:
+      return <Galleries {...teamIconProps} />
   }
 }

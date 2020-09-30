@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { LeftBorderCaption } from 'src/components/Caption/Captions'
 import styles from './TeamProspects.module.scss'
+import { DefaultButton } from 'src/components/Button/DefaultButton'
+import { navigate } from 'gatsby'
 
 interface ProspectProps {
   prospect: string
@@ -28,6 +30,9 @@ export const TeamProspects: React.FC<TeamPropspectsProps> = ({
         {propspects.map((prospect, index) => (
           <Prospect key={index} prospect={prospect} />
         ))}
+      </div>
+      <div className="py-5">
+        <DefaultButton size="small" text="Prospectsとして参加する" onClick={() => { navigate('join/#PROSPECTS') }} />
       </div>
     </div>
   )

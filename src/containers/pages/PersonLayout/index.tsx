@@ -2,41 +2,24 @@ import * as React from 'react'
 import PersonalLayout from 'src/components/pages/PersonalLayout'
 import { IPersonal } from 'src/models/personal'
 import { withTheme } from 'src/context/ThemeContext'
+import { shunpei, hiroki, akihiro, shoya } from './personalData'
+import { navigate } from 'gatsby'
 
-export const PersonalLayoutContainer: React.FC = () => {
+interface PersonalLayoutContainerProps {
+  id: string
+}
+const getPersonData = (id: string): IPersonal | undefined => {
+  if (id === 'shunpei_koike')
+    return shunpei
+  if (id === 'hiroki_matsui')
+    return hiroki
+  if (id === 'akihiro_kimura')
+    return akihiro
+  if (id === 'shoya_yanagisawa')
+    return shoya
+}
+export const PersonalLayoutContainer: React.FC<PersonalLayoutContainerProps> = ({ id }) => {
   const [isLoading, setIsLoading] = React.useState<boolean>(true)
-
-  const personal: IPersonal = {
-    name: '小池駿平',
-    subName: 'Shunpei Koike',
-    description:
-      'プログラミングにのめり込み、研修時代ついたあだ名はJava(ジャバ)くん。英語力ゼロなのにラスベガスで恐れずスピーチ、金欠なのに世界各国で海外生活。多くの応援により香港科技大学で研究をはじめ、同時にSquard株式会社を設立。ブロックチェーンとバナナシェイクをこよなく愛する男。',
-    socialMedia: [
-      'facebook',
-      'twitter',
-      'youtube',
-      'email',
-      'zoom',
-      'link',
-      'phone',
-      'instagram',
-    ],
-    teams: [
-      {
-        type: 'squard',
-        name: 'Squard',
-        position: 'Leader',
-        role: 'iOS Engineer',
-      },
-      {
-        type: 'cheerfully',
-        name: 'Cheerfully',
-        position: 'Core Members',
-        role: 'Manager',
-      },
-    ],
-  }
-
   // React.useEffect(() => {
   //   const timer = setTimeout(() => {
   //     setIsLoading(false)
@@ -47,8 +30,12 @@ export const PersonalLayoutContainer: React.FC = () => {
   // if (isLoading) {
   //   return <></>
   // }
-
-  return <PersonalLayout isLoading={false} personal={personal} />
+  const personData = getPersonData(id)
+  if (!personData) {
+    navigate('/')
+    return <></>
+  }
+  return <PersonalLayout isLoading={false} personal={personData} />
 }
 
 export default withTheme(PersonalLayoutContainer, 'gray')

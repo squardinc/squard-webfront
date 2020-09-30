@@ -5,6 +5,7 @@ import { ITeam } from 'src/models/team'
 import JoinCard from './joinCard'
 import * as colors from 'src/styles/colors'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 
 type JoinTeamProps = {
   isLoading: boolean
@@ -14,6 +15,11 @@ type JoinTeamProps = {
 const JoinTeamWrapper = styled.div`
   background: ${colors.textWhite};
   padding: 80px 20px 20px;
+`
+
+
+const JoinTeamTitle = styled.div`
+  white-space: nowrap;
 `
 
 const JoinInfoWrapper = styled.div`
@@ -42,23 +48,25 @@ const CardWrapper = styled.div`
 
 const JoinTeam = (props: JoinTeamProps) => {
   return (
-      <JoinTeamWrapper>
-        <Heading3>Join The Team</Heading3>
-        <JoinInfoWrapper>
-          <TextJoinTeam>
-            <TextTeamName>Squard</TextTeamName>に参加する
+    <JoinTeamWrapper>
+      <JoinTeamTitle>
+        <Heading3><TextDisplay>Join The Team</TextDisplay></Heading3>
+      </JoinTeamTitle>
+      <JoinInfoWrapper>
+        <TextJoinTeam>
+          <TextTeamName>Squard</TextTeamName>に参加する
         </TextJoinTeam>
-          <TextDesciption>
-            チームが設定した月々のサブスクリプション料金を支払いProspectsやAngelsとしてチームに参加することで、様々な特典を受け取ることができます。
+        <TextDesciption>
+          チームが設定した月々のサブスクリプション料金を支払いProspectsやAngelsとしてチームに参加することで、様々な特典を受け取ることができます。
         </TextDesciption>
-        </JoinInfoWrapper>
-        <CardWrapper>
-          {props.teamData.map((team: ITeam, i) => {
-            return <JoinCard key={i} team={team} />
-          })}
-        </CardWrapper>
-        <DefaultFooter />
-      </JoinTeamWrapper>
+      </JoinInfoWrapper>
+      <CardWrapper>
+        {props.teamData.map((team: ITeam, i) => {
+          return <JoinCard key={i} team={team} />
+        })}
+      </CardWrapper>
+      <DefaultFooter />
+    </JoinTeamWrapper>
   )
 }
 
