@@ -10,6 +10,10 @@ type JoinCardProps = {
   team: ITeam
 }
 
+const JoinCardAnchor = styled.div`
+    padding-top: 70px;
+    margin-top: -70px;
+`
 const JoinCardWrapper = styled.div`
   margin: 60px auto;
   width: ${sizes.cardWidth};
@@ -138,23 +142,25 @@ const JoinCard = (props: JoinCardProps) => {
   const formattedPrice = addComma(team.monthlyPrice)
 
   return (
-    <JoinCardWrapper>
-      <FlagWrapper>
-        <Flag>
-          <MainNameText><TextDisplay>{team.main}</TextDisplay></MainNameText>
-          <SubNameText>{team.sub}</SubNameText>
-          <PriceText>￥{formattedPrice} / 月額</PriceText>
-        </Flag>
-      </FlagWrapper>
-      <EntitlementsWrapper>
-        {team.entitlements.map((el, i) => (
-          <EntitlementText key={i}>{el}</EntitlementText>
-        ))}
-      </EntitlementsWrapper>
-      <JoinNowWrapper>
-        <JoinNowText>今すぐ参加する</JoinNowText>
-      </JoinNowWrapper>
-    </JoinCardWrapper>
+    <JoinCardAnchor id={team.main}>
+      <JoinCardWrapper>
+        <FlagWrapper>
+          <Flag>
+            <MainNameText><TextDisplay>{team.main}</TextDisplay></MainNameText>
+            <SubNameText>{team.sub}</SubNameText>
+            <PriceText>￥{formattedPrice} / 月額</PriceText>
+          </Flag>
+        </FlagWrapper>
+        <EntitlementsWrapper>
+          {team.entitlements.map((el, i) => (
+            <EntitlementText key={i}>{el}</EntitlementText>
+          ))}
+        </EntitlementsWrapper>
+        <JoinNowWrapper>
+          <JoinNowText>今すぐ参加する</JoinNowText>
+        </JoinNowWrapper>
+      </JoinCardWrapper>
+    </JoinCardAnchor>
   )
 }
 

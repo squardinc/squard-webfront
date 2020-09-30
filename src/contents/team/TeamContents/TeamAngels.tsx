@@ -40,7 +40,7 @@ export const TeamAngels: React.FC<TeamAngelsProps> = ({
         </div>
       </div>
       <div className="pt-5">
-        <DefaultButton size="small" text="Angelとして参加する" onClick={() => {navigate('join#ANGELS')}}/>
+        <DefaultButton size="small" text="Angelsとして参加する" onClick={() => {navigate('join#ANGELS')}}/>
       </div>
     </div>
   )

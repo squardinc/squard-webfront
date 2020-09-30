@@ -2,6 +2,7 @@ import * as React from 'react'
 import { LeftBorderCaption } from 'src/components/Caption/Captions'
 import styles from './TeamProspects.module.scss'
 import { DefaultButton } from 'src/components/Button/DefaultButton'
+import { navigate } from 'gatsby'
 
 interface ProspectProps {
   prospect: string
@@ -31,7 +32,7 @@ export const TeamProspects: React.FC<TeamPropspectsProps> = ({
         ))}
       </div>
       <div className="py-5">
-        <DefaultButton size="small" text="Prospectとして参加する" />
+        <DefaultButton size="small" text="Prospectsとして参加する" onClick={() => { navigate('join/#PROSPECTS') }} />
       </div>
     </div>
   )
