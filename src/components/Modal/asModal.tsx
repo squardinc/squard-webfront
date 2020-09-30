@@ -19,7 +19,6 @@ export const asModal = <T extends ModalProps>(Component: React.FC<T>) => {
           props.closeModal()
         }, 500)
       }}
-      shouldFocusAfterRender={false}
       shouldCloseOnEsc
       shouldCloseOnOverlayClick
       portalClassName="relative"

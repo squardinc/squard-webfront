@@ -5,6 +5,8 @@ import { FAQPage } from './faq/FAQ'
 import { PrivacyPolicyPage } from './privacypolicy/privacypolicy'
 import { TeamLayout } from './team/TeamLayout'
 import { SignUpLayout } from './SignUp'
+import { ConfirmSignUpLayout } from './callback/ConfirmSignUp'
+import { ResetPasswordLayout } from './callback/ResetPassword'
 import { PersonalLayoutContainer } from '../containers/pages/PersonLayout'
 
 export const StaticPagePaths = [
@@ -33,6 +35,10 @@ export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId }) => {
       return <PrivacyPolicyPage />
     case 'signup':
       return <SignUpLayout />
+    case 'confirmSignUp':
+      return <ConfirmSignUpLayout />
+    case 'resetPassword':
+      return <ResetPasswordLayout />
   }
   if (contentId === 'squard') {
     return <TeamLayout />

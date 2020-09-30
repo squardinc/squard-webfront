@@ -6,21 +6,24 @@ import { ContentLayout } from 'src/contents/ContentLayout'
 import { ContentSubLayout } from 'src/contents/ContentSubLayout'
 import { ThemeContextProvider } from 'src/context/ThemeContext'
 import { Redirect } from 'src/contents/redirect'
+import { UserContextProvider } from 'src/context/UserContext'
 
 const IndexPage: React.FC = () => {
   return (
     <ThemeContextProvider>
-      <PageWrapper>
-        <Router>
-          <ContentLayout path=":contentId" contentId="" />
-          <ContentSubLayout
-            path=":contentId/:subContentId"
-            contentId=""
-            subContentId=""
-          />
-          <Redirect default />
-        </Router>
-      </PageWrapper>
+      <UserContextProvider >
+        <PageWrapper>
+          <Router>
+            <ContentLayout path=":contentId" contentId="" />
+            <ContentSubLayout
+              path=":contentId/:subContentId"
+              contentId=""
+              subContentId=""
+            />
+            <Redirect default />
+          </Router>
+        </PageWrapper>
+      </UserContextProvider >
     </ThemeContextProvider>
   )
 }

@@ -1,45 +1,34 @@
 import * as React from 'react'
 import { SignUpModal } from './SignUpModal'
 import { LoginModal } from './LoginModal'
+import { PasswordResetRequestModal } from './PasswordResetRequestModal'
 
 interface SignUpLoginLayoutProps {
-  showSignUpModal: boolean
-  setShowSignUpModal: React.Dispatch<React.SetStateAction<boolean>>
-  showLoginModal: boolean
-  setShowLoginModal: React.Dispatch<React.SetStateAction<boolean>>
-  // setLoginUser: React.Dispatch<React.SetStateAction<any>> // FIXME
+  openModal: ModalType
+  setOpenModal: React.Dispatch<React.SetStateAction<ModalType>>
 }
-export const SignUpLoginLayout: React.FC<SignUpLoginLayoutProps> = ({
-  showSignUpModal,
-  setShowSignUpModal,
-  showLoginModal,
-  setShowLoginModal,
-  setLoginUser,
-}) => {
+export type ModalType = 'SignUp' | 'Login' | 'PasswordResetRequest' | 'Closed'
+export const SignUpLoginLayout: React.FC<SignUpLoginLayoutProps> = ({ openModal, setOpenModal }) => {
   return (
     <>
-      {showSignUpModal ? (
+      {openModal === 'SignUp' ?
         <SignUpModal
-          closeModal={() => setShowSignUpModal(false)}
-          showLoginModal={() => {
-            setShowSignUpModal(false)
-            setShowLoginModal(true)
-          }}
+          closeModal={() => setOpenModal('Closed')}
+          showLoginModal={() => setOpenModal('Login')}
         />
-      ) : (
-        ''
-      )}
-      {showLoginModal ? (
+        : ''}
+      {openModal === 'Login' ?
         <LoginModal
-          closeModal={() => setShowLoginModal(false)}
-          showSignUpModal={() => {
-            setShowLoginModal(false)
-            setShowSignUpModal(true)
-          }}
+          closeModal={() => setOpenModal('Closed')}
+          showSignUpModal={() => setOpenModal('SignUp')}
+          showPasswordResetRequestModal={() => setOpenModal('PasswordResetRequest')}
         />
-      ) : (
-        ''
-      )}
+        : ''}
+      {openModal === 'PasswordResetRequest' ?
+        <PasswordResetRequestModal
+          closeModal={() => setOpenModal('Closed')}
+        />
+        : ''}
     </>
   )
 }

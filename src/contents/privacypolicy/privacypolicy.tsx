@@ -163,7 +163,7 @@ const Page: React.FC = () => {
       </PolicyChapter>
       <PolicyChapter chapter='第10条（お問合せ窓口）'>
         <PolicySection sections={['本ポリシーに関するお問い合わせは，下記の窓口までお願いいたします。']} />
-        <div className="pt-8 text-center text-white text-2xl underline font-medium tracking-widest">
+        <div className="pt-8 flex justify-center text-white text-2xl underline font-medium tracking-widest">
           <a href='mailto:contact@squard.co.jp' >contact@squard.co.jp</a>
         </div>
       </PolicyChapter>

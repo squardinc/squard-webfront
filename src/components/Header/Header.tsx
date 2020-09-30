@@ -6,21 +6,19 @@ import Cross from 'src/assets/cross.svg'
 import Search from 'src/assets/search.svg'
 import Menu from 'src/assets/menu.svg'
 import styles from './Header.module.scss'
-import { SignUpLoginLayout } from '../Modal/SignUpLoginModal'
+import { SignUpLoginLayout, ModalType } from '../Modal/SignUpLoginModal'
 import { UserContext } from 'src/context/UserContext'
 import { Link } from 'gatsby'
 import { fadeIn } from '../../utils/Modal'
 
 export const Header = () => {
   const { user } = React.useContext(UserContext)
-  const [showSearchBar, setShowSearchBar] = React.useState(false)
+  const [openModal, setOpenModal] = React.useState<ModalType>('Closed')
   const [showNavMenu, setShowNavMenu] = React.useState(false)
-  const [showLoginModal, setShowLoginModal] = React.useState(false)
-  const [showSignUpModal, setShowSignUpModal] = React.useState(false)
 
   React.useEffect(() => {
     fadeIn()
-  }, [showLoginModal])
+  }, [openModal])
 
   return (
     <React.Fragment>
@@ -48,13 +46,11 @@ export const Header = () => {
       <NavMenu
         show={showNavMenu}
         hideNavMenu={() => setShowNavMenu(false)}
-        showLoginModal={() => setShowLoginModal(true)}
+        showLoginModal={() => setOpenModal('Login')}
       />
       <SignUpLoginLayout
-        showSignUpModal={showSignUpModal}
-        showLoginModal={showLoginModal}
-        setShowSignUpModal={setShowSignUpModal}
-        setShowLoginModal={setShowLoginModal}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
       />
     </React.Fragment>
   )
