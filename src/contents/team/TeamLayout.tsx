@@ -82,7 +82,7 @@ const Layout = () => {
         system={data?.getTeam?.system}
       />
       <TeamCoreMembers coreMembers={DUMMY_CORE_MEMBERS} />
-      <TeamMembers topMember={{}} members={[]} />
+      <TeamMembers members={[]} />
       <TeamProspects propspects={[]} />
       <TeamAngels angels={[]} numOfAngels={0} />
       <TeamVIP vips={[]} />
