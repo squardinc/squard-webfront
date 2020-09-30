@@ -7,8 +7,6 @@ import ProfileLink from 'src/assets/profile_link_icon.svg'
 import { getSocialMediaIcon, getTeamIcon } from './utils'
 import { withTheme } from 'src/context/ThemeContext'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import ShunpeiTop from 'src/images/shunpei_top.jpg'
-import ShunpeiIcon from 'src/images/shunpei_icon.jpg'
 
 type PersonalLayoutProps = {
   isLoading: boolean
@@ -16,9 +14,8 @@ type PersonalLayoutProps = {
 }
 
 type StyleCssProps = {
-  profileImg?: string
-  coverImg?: string
-  isYoutubeIcon?: boolean
+  icon?: string
+  topImage?: string
   width?: number
   backgroundColor?: string
   profileHeight?: number
@@ -114,7 +111,7 @@ const ProfileImage = styled.div`
   border-radius: 10px;
   margin: 3px 0px 0px 3px;
   background: url(${(props: StyleCssProps) =>
-    props.profileImg ? props.profileImg : ''})
+    props.icon ? props.icon : ''})
     no-repeat center center;
   background-size: cover;
 `
@@ -152,18 +149,16 @@ const NameDescription = styled.div`
 
 const SocialMediaWrapper = styled.div`
   position: relative;
+  margin: 0px 10px;
   z-index: 100;
   display: flex;
   flex-wrap: wrap;
-  width: 320px;
-  justify-content: space-between;
-  margin: auto;
+  justify-content: center;
 `
 
 const SocialMediaIcon = styled.div`
-  margin-right: 1rem;
+  margin: 0px 5px;
   height: 4rem;
-  margin-top: ${(props: StyleCssProps) => (props.isYoutubeIcon ? 0.3 : 0)}rem;
   width: auto;
 `
 
@@ -247,22 +242,24 @@ const PersonalLayout = (props: PersonalLayoutProps) => {
     <PersonalLayoutWrapper backgroundColor={'#ebebeb'}>
       <ContentWrapper>
         <UserCoverWrapper>
-          <UserCover backgroundColor={'#ebebeb'}><img src={ShunpeiTop} /></UserCover>
+          <UserCover backgroundColor={'#ebebeb'}><img src={personal.topImage} /></UserCover>
           <ProfileContainerWrapper>
             <ProfilerImageContainer>
-              <ProfileImage profileImg={ShunpeiIcon} />
+              <ProfileImage icon={personal.icon} />
             </ProfilerImageContainer>
             <NameWrapper>
-              <NameText>{personal.name}</NameText>
-              <NameSubText>{personal.subName}</NameSubText>
-              <NameDescription>{personal.description}</NameDescription>
+              <NameText><TextDisplay>{personal.nameJp}</TextDisplay></NameText>
+              <NameSubText><TextDisplay>{personal.nameEn}</TextDisplay></NameSubText>
+              <NameDescription><TextDisplay>{personal.description}</TextDisplay></NameDescription>
             </NameWrapper>
             <SocialMediaWrapper>
-              {personal.socialMedia.map((sm, i) => {
+              {personal.socialMedia.map((sm) => {
                 return (
-                  <SocialMediaIcon key={i} isYoutubeIcon={sm === 'youtube'}>
-                    {getSocialMediaIcon(sm)}
-                  </SocialMediaIcon>
+                  <a href={sm.url} >
+                    <SocialMediaIcon key={sm.url}>
+                      {getSocialMediaIcon(sm.type)}
+                    </SocialMediaIcon>
+                  </a>
                 )
               })}
             </SocialMediaWrapper>
@@ -278,13 +275,13 @@ const PersonalLayout = (props: PersonalLayoutProps) => {
                   </TeamRoleText>
                 </TeamRole>
                 <TeamInfo>
-                  <TeamIconWrapper>{getTeamIcon(team.type)}</TeamIconWrapper>
+                  <TeamIconWrapper>{getTeamIcon(team.classType)}</TeamIconWrapper>
                   <TeamTextWrapper>
                     <TeamNameText>
                       <TextDisplay>{team.name}</TextDisplay>
                     </TeamNameText>
                     <TeamPositionText>
-                      <TextDisplay>{`- ${team.position}`}</TextDisplay>
+                      <TextDisplay>{`- ${team.classType}`}</TextDisplay>
                     </TeamPositionText>
                   </TeamTextWrapper>
                   <TeamLinkWrapper>

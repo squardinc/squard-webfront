@@ -43,5 +43,5 @@ export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId }) => {
   if (contentId === 'squard') {
     return <TeamLayout />
   }
-  return <PersonalLayoutContainer />
+  return <PersonalLayoutContainer id={contentId} />
 }

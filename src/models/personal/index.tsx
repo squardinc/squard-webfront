@@ -1,28 +1,44 @@
-export type SocialMediaType =
-  | 'facebook'
-  | 'twitter'
-  | 'phone'
-  | 'email'
-  | 'zoom'
-  | 'link'
-  | 'instagram'
-  | 'youtube'
+const SOCIAL_MEDIA = [
+  'facebook',
+  'twitter',
+  'youtube',
+  'email',
+  'zoom',
+  'link',
+  'phone',
+  'instagram',
+  'linkedin',
+  'github',
+] as const
 
-export type TeamType = 'squard' | 'cheerfully'
+export type SocialMediaType = typeof SOCIAL_MEDIA[number]
+interface SocialMediaLink {
+  type: SocialMediaType
+  url: string
+}
+
+const CLASSES = [
+  'Leader',
+  'Core Members',
+  'Members',
+  'Prospects',
+  'Angels',
+  'VIP',
+]
+export type ClassType = typeof CLASSES[number]
 
 export type ITeam = {
-  type: TeamType
   name: string
-  position: string
+  classType: ClassType
   role: string
 }
 
 export type IPersonal = {
-  coverImg?: string
-  profileImg?: string
-  name: string
-  subName: string
+  topImage?: string
+  icon?: string
+  nameJp: string
+  nameEn: string
   description: string
-  socialMedia: SocialMediaType[]
+  socialMedia: SocialMediaLink[]
   teams: ITeam[]
 }
