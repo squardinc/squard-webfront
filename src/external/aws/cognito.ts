@@ -22,7 +22,6 @@ const configure = (origin: string) => {
     }
   })
 }
-configure('')
 const signUpErrorMessage = (code: string) => {
   switch (code) {
     case 'UsernameExistsException':
@@ -61,6 +60,7 @@ export const confirmSignUp = async (username: string, code: string) => {
 }
 
 export const login = async (email: string, password: string) => {
+  configure(window.location.origin)
   return Auth.signIn(email, password).then(
     async () => Auth.currentSession(),
     () => Promise.reject('ログインできませんでした。入力内容を確認して再度やり直してください。')
@@ -68,11 +68,13 @@ export const login = async (email: string, password: string) => {
 }
 
 export const resetPasswordRequest = async (email: string, origin: string, currentPath: string) => {
+  configure(window.location.origin)
   return await Auth.forgotPassword(email, { origin, currentPath })
     .catch(() => Promise.reject('エラーが発生しました。入力内容を確認して再度やり直してください。'))
 }
 
 export const resetPassword = async (email: string, code: string, newPassword: string) => {
+  configure(window.location.origin)
   return await Auth.forgotPasswordSubmit(email, code, newPassword)
     .catch(() => Promise.reject('エラーが発生しました。入力内容を確認して再度やり直してください。'))
 }
