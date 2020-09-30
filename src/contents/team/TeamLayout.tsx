@@ -12,10 +12,10 @@ import { GetTeamQuery } from 'src/types/API'
 import { ContentFooter } from 'src/components/Footer/ContentFooter'
 import { navigateTo } from 'gatsby'
 import { ThemeContext, withTheme } from 'src/context/ThemeContext'
-import shunpei from 'src/images/shunpei.jpg'
-import hiroki from 'src/images/hiroki.jpg'
-import akihiro from 'src/images/akihiro.jpg'
-import shoya from 'src/images/shoya.jpg'
+import shunpei from 'src/images/temp/team/shunpei.jpg'
+import hiroki from 'src/images/temp/team/hiroki.jpg'
+import akihiro from 'src/images/temp/team/akihiro.jpg'
+import shoya from 'src/images/temp/team/shoya.jpg'
 
 const DUMMY_CORE_MEMBERS = [
   {

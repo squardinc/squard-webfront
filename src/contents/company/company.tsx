@@ -4,11 +4,11 @@ import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { withTheme } from 'src/context/ThemeContext'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
-import CompanyImage from 'src/images/company.jpg'
-import CEO from 'src/images/ceo.jpg'
-import COO from 'src/images/coo.jpg'
-import CFO from 'src/images/cfo.jpg'
-import CTO from 'src/images/cto.jpg'
+import CompanyImage from 'src/images/temp/company/company.jpg'
+import CEO from 'src/images/temp/company/ceo.jpg'
+import COO from 'src/images/temp/company/coo.jpg'
+import CFO from 'src/images/temp/company/cfo.jpg'
+import CTO from 'src/images/temp/company/cto.jpg'
 
 interface MemberProps {
   member: { imageUrl: string; color: string; title: string }
