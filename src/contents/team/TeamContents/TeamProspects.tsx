@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { LeftBorderCaption } from 'src/components/Caption/Captions'
 import styles from './TeamProspects.module.scss'
+import { DefaultButton } from 'src/components/Button/DefaultButton'
 
 interface ProspectProps {
   prospect: string
@@ -28,6 +29,9 @@ export const TeamProspects: React.FC<TeamPropspectsProps> = ({
         {propspects.map((prospect, index) => (
           <Prospect key={index} prospect={prospect} />
         ))}
+      </div>
+      <div className="py-5">
+        <DefaultButton size="small" text="Prospectとして参加する" />
       </div>
     </div>
   )

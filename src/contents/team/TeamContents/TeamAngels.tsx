@@ -3,6 +3,7 @@ import { DefaultButton } from 'src/components/Button/DefaultButton'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
 
 import styles from './TeamAngels.module.scss'
+import { navigate } from 'gatsby'
 
 interface AngelProps {
   angel: string
@@ -39,7 +40,7 @@ export const TeamAngels: React.FC<TeamAngelsProps> = ({
         </div>
       </div>
       <div className="pt-5">
-        <DefaultButton size="small" text="Angelとして参加する" />
+        <DefaultButton size="small" text="Angelとして参加する" onClick={() => {navigate('join#ANGELS')}}/>
       </div>
     </div>
   )

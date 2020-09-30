@@ -43,15 +43,16 @@ export const TeamMembers: React.FC<TeamMembersProps> = ({
   topMember,
   members,
 }) => {
-  members.push('images/raw.jpg')
   return (
     <div className={styles.container}>
       <LeftBorderCaption text="MEMBERS" color="white" />
-      <TopMember
-        member={topMember}
-        name="小池駿平"
-        title="Blockchain Engineer"
-      />
+      {members.length ?
+        <TopMember
+          member={topMember}
+          name="小池駿平"
+          title="Blockchain Engineer"
+        />
+        : ''}
       <div className={styles.members}>
         {members
           .filter((member) => member != topMember)
