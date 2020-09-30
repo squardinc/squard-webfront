@@ -4,6 +4,7 @@ import { ITeam } from '../../../models/team'
 import * as colors from '../../../styles/colors'
 import * as sizes from '../../../styles/sizes'
 import { addComma } from 'src/utils/NumberFormatter'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 
 type JoinCardProps = {
   team: ITeam
@@ -140,7 +141,7 @@ const JoinCard = (props: JoinCardProps) => {
     <JoinCardWrapper>
       <FlagWrapper>
         <Flag>
-          <MainNameText>{team.main}</MainNameText>
+          <MainNameText><TextDisplay>{team.main}</TextDisplay></MainNameText>
           <SubNameText>{team.sub}</SubNameText>
           <PriceText>￥{formattedPrice} / 月額</PriceText>
         </Flag>
