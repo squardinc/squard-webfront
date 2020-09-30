@@ -26,10 +26,10 @@ const MEDIA_MAP: { [key in SocialMediaType]: JSX.Element } = {
   twitter: Twitter,
   facebook: Facebook,
   instagram: Instagram,
-  linkedin: Linkedin,
+  linkedin: Link,
   youtube: Youtube,
   zoom: Zoom,
-  github: GitHub,
+  github: Link,
   link: Link,
 }
 
