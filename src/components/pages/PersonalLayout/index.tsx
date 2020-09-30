@@ -3,11 +3,12 @@ import styled from 'styled-components'
 import { IPersonal } from 'src/models/personal'
 import * as colors from 'src/styles/colors'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
-import ProfileImg from 'src/images/user.png'
 import ProfileLink from 'src/assets/profile_link_icon.svg'
 import { getSocialMediaIcon, getTeamIcon } from './utils'
 import { withTheme } from 'src/context/ThemeContext'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import ShunpeiTop from 'src/images/shunpei_top.jpg'
+import ShunpeiIcon from 'src/images/shunpei_icon.jpg'
 
 type PersonalLayoutProps = {
   isLoading: boolean
@@ -69,14 +70,11 @@ const UserCoverWrapper = styled.div`
   letter-spacing: 0.2em;
   text-align: center;
   text-transform: uppercase;
+  width: 100%;
 `
 
 const UserCover = styled.div`
-  height: 500px;
   position: relative;
-  background: url(${(props: StyleCssProps) =>
-      props.coverImg ? props.coverImg : ''})
-    no-repeat center center;
   background-size: cover;
 
   :after {
@@ -90,7 +88,7 @@ const UserCover = styled.div`
       to right bottom,
       rgba(0, 0, 0, 0) 50%,
       ${(props: StyleCssProps) =>
-        props.backgroundColor ? props.backgroundColor : colors.textWhite} 50%
+    props.backgroundColor ? props.backgroundColor : colors.textWhite} 50%
     );
     transform: scale(1.1);
     display: block;
@@ -116,7 +114,7 @@ const ProfileImage = styled.div`
   border-radius: 10px;
   margin: 3px 0px 0px 3px;
   background: url(${(props: StyleCssProps) =>
-      props.profileImg ? props.profileImg : ''})
+    props.profileImg ? props.profileImg : ''})
     no-repeat center center;
   background-size: cover;
 `
@@ -249,10 +247,10 @@ const PersonalLayout = (props: PersonalLayoutProps) => {
     <PersonalLayoutWrapper backgroundColor={'#ebebeb'}>
       <ContentWrapper>
         <UserCoverWrapper>
-          <UserCover coverImg={ProfileImg} backgroundColor={'#ebebeb'}></UserCover>
+          <UserCover backgroundColor={'#ebebeb'}><img src={ShunpeiTop} /></UserCover>
           <ProfileContainerWrapper>
             <ProfilerImageContainer>
-              <ProfileImage profileImg={ProfileImg} />
+              <ProfileImage profileImg={ShunpeiIcon} />
             </ProfilerImageContainer>
             <NameWrapper>
               <NameText>{personal.name}</NameText>
