@@ -145,6 +145,7 @@ const NameDescription = styled.div`
   text-align: justify;
   color: #fff;
   letter-spacing: 0.1em;
+  white-space: pre-wrap;
 `
 
 const SocialMediaWrapper = styled.div`

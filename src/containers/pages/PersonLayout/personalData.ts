@@ -91,7 +91,7 @@ export const akihiro: IPersonal = {
   topImage: HirokiTop,
   icon: AkihiroIcon,
   description:
-    '人の考え方に好奇心をそそられ大学で心理学を学び、卒業後にはロックバンドのドラマーとして活動。現在ではSquard,Inc.でCFOを務め、MONSTER MUSICという会社の取締役も務めています。',
+    'Squard, Inc. CFO\r\n182cm130kgの巨体で愛称はゴリラ。外見に反して心理学を専攻。ロックバンドのドラマーとして4年間活動、その後株式会社MONSTER MUSICを立ち上げ営業部門を牽引。1ヶ月前の出来事を事細かに思い出せる超記憶力を持つ。頭がちょっとでかい。',
   socialMedia: [
     {
       type: 'facebook',
@@ -121,7 +121,7 @@ export const shoya: IPersonal = {
   topImage: HirokiTop,
   icon: ShoyaIcon,
   description:
-    'Squard, Inc. CTO. 在学時代は日本酒とビールを片手に言語哲学をめくり、今ではウイスキーとブランデーを傍らに加えて鍵盤を叩いています。',
+    'Squard, Inc. CTO\r\n在学時代は日本酒とビールを片手に言語哲学をめくり、今ではウイスキーとブランデーを傍らに加えて鍵盤を叩いています。',
   socialMedia: [
     {
       type: 'facebook',
