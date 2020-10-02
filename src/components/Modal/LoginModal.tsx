@@ -7,24 +7,18 @@ import { CompleteModal } from './CompleteModal'
 import { ErrorModal } from './ErrorModal'
 import { UserContext } from 'src/context/UserContext'
 import { AuthService } from 'src/services/AuthService'
-import { fadeIn } from '../../utils/Modal'
 import { EMailAddressInput } from '../Input/EMailAddressInput'
 import { PasswordInput } from '../Input/PasswordInput'
 
 type LoginComponentProps = ModalProps & {
-  showSignUpModal: VoidFunction
-  showPasswordResetRequestModal: VoidFunction
+  showSignUpModal: (e: React.MouseEvent) => void
+  showPasswordResetRequestModal: (e: React.MouseEvent) => void
 }
 const LoginComponent: React.FC<LoginComponentProps> = ({ closeModal, showSignUpModal, showPasswordResetRequestModal }) => {
   const { user, setUser } = React.useContext(UserContext)
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [errorMesasge, setErrorMessage] = React.useState('')
-
-  React.useEffect(() => {
-    fadeIn();
-  }, [user, errorMesasge])
-console.log(user)
   return (
     <>
       {!errorMesasge ?

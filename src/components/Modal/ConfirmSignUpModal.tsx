@@ -3,7 +3,6 @@ import { CompleteModal } from 'src/components/Modal/CompleteModal'
 import { ErrorModal } from 'src/components/Modal/ErrorModal'
 import { parseSearchParams } from 'src/utils/UrlParser'
 import { AuthService } from 'src/services/AuthService'
-import { fadeIn } from 'src/utils/Modal'
 
 export const ConfirmSignUpModal: React.FC = () => {
   const [showSignUpCompleteModal, setShowSignUpCompleteModal] = React.useState(false)
@@ -17,9 +16,6 @@ export const ConfirmSignUpModal: React.FC = () => {
       )
     }
   }, [])
-  React.useEffect(() => {
-    fadeIn()
-  }, [showSignUpCompleteModal, showErrorMessage])
   return (
     <>
       {showSignUpCompleteModal

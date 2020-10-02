@@ -42,7 +42,7 @@ const PasswordResetComponent: React.FC<PasswordResetComponentProps> = ({ usernam
             :
             <>
               <TextDisplay className='mb-8 text-sm'>パスワードの再設定が完了しました。</TextDisplay>
-              <RoundButton className='border-2 text-lg' text='OK' onClick={() => { closeModal() }} />
+              <RoundButton className='border-2 text-lg' text='OK' onClick={closeModal} />
             </>
           }
         </DefaultModalContainer >

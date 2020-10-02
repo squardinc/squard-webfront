@@ -3,6 +3,7 @@ import { SignUpModal } from './SignUpModal'
 import { LoginModal } from './LoginModal'
 import { LogoutModal } from './LogoutModal'
 import { PasswordResetRequestModal } from './PasswordResetRequestModal'
+import { withFadeOut } from 'src/utils/Modal'
 
 interface SignUpLoginLayoutProps {
   openModal: ModalType
@@ -15,14 +16,14 @@ export const SignUpLoginLayout: React.FC<SignUpLoginLayoutProps> = ({ openModal,
       {openModal === 'SignUp' ?
         <SignUpModal
           closeModal={() => setOpenModal('Closed')}
-          showLoginModal={() => setOpenModal('Login')}
+          showLoginModal={withFadeOut(() => setOpenModal('Login'))}
         />
         : ''}
       {openModal === 'Login' ?
         <LoginModal
           closeModal={() => setOpenModal('Closed')}
-          showSignUpModal={() => setOpenModal('SignUp')}
-          showPasswordResetRequestModal={() => setOpenModal('PasswordResetRequest')}
+          showSignUpModal={withFadeOut(() => setOpenModal('SignUp'))}
+          showPasswordResetRequestModal={withFadeOut(() => setOpenModal('PasswordResetRequest'))}
         />
         : ''}
       {openModal === 'PasswordResetRequest' ?

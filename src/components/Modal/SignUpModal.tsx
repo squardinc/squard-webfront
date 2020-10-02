@@ -5,22 +5,17 @@ import { asModal, ModalProps } from './asModal'
 import { DefaultModalContainer } from './ModalContainer'
 import { AuthService } from 'src/services/AuthService'
 import { ErrorModal } from './ErrorModal'
-import { fadeIn } from '../../utils/Modal'
 import { EMailAddressInput } from '../Input/EMailAddressInput'
 import { PasswordInput } from '../Input/PasswordInput'
 
 type SignUpComponentProps = ModalProps & {
-  showLoginModal: VoidFunction
+  showLoginModal: (e: React.MouseEvent) => void
 }
 const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLoginModal }) => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [registrationUserId, setRegistrationUserId] = React.useState('')
   const [errorMesasge, setErrorMessage] = React.useState('')
-
-  React.useEffect(() => {
-    fadeIn()
-  }, [registrationUserId, errorMesasge])
 
   return (
     <>
@@ -45,7 +40,7 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
               </div>
               <TextDisplay className='mt-10 flex justify-center text-sm'>
                 アカウントをお持ちですか？ログインは
-          <div className='underline cursor-pointer' onClick={() => showLoginModal()}>こちら</div>
+          <div className='underline cursor-pointer' onClick={showLoginModal}>こちら</div>
               </TextDisplay>
             </>
             :
