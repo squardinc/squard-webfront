@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Modal from 'react-modal'
-import styles from './modal.module.scss'
 import { withFadeOut } from 'src/utils/Modal'
+import styles from './modal.module.scss'
 
 Modal.setAppElement('body')
 

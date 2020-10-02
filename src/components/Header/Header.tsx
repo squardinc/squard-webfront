@@ -6,7 +6,7 @@ import Cross from 'src/assets/cross.svg'
 import Search from 'src/assets/search.svg'
 import Menu from 'src/assets/menu.svg'
 import styles from './Header.module.scss'
-import { SignUpLoginLayout, ModalType } from '../Modal/SignUpLoginModal'
+import { AuthModal, ModalType } from 'src/components/Modal/AuthModal'
 import { UserContext } from 'src/context/UserContext'
 import { Link } from 'gatsby'
 import { AuthService } from 'src/services/AuthService'
@@ -49,7 +49,7 @@ export const Header = () => {
           setOpenModal('Logout')
         }}
       />
-      <SignUpLoginLayout
+      <AuthModal
         openModal={openModal}
         setOpenModal={setOpenModal}
       />

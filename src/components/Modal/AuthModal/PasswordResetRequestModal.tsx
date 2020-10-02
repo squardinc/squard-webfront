@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { RoundButton } from 'src/components/Button/DefaultButton'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import { asModal, ModalProps } from './asModal'
-import { DefaultModalContainer } from './ModalContainer'
+import { asModal, ModalProps } from '../asModal'
+import { DefaultModalContainer } from '../ModalContainer'
 import { AuthService } from 'src/services/AuthService'
-import { ErrorModal } from './ErrorModal'
-import { EMailAddressInput } from '../Input/EMailAddressInput'
+import { ErrorModal } from '../ErrorModal'
+import { EMailAddressInput } from '../../Input/EMailAddressInput'
 
 type PasswordResetRequestComponentProps = ModalProps & {}
 const PasswordResetRequestComponent: React.FC<PasswordResetRequestComponentProps> = ({ closeModal }) => {

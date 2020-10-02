@@ -1,14 +1,14 @@
 import * as React from 'react'
 import { RoundButton } from 'src/components/Button/DefaultButton'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import { asModal, ModalProps } from './asModal'
-import { DefaultModalContainer } from './ModalContainer'
-import { CompleteModal } from './CompleteModal'
-import { ErrorModal } from './ErrorModal'
+import { asModal, ModalProps } from 'src/components/modal/asModal'
+import { DefaultModalContainer } from 'src/components/modal/ModalContainer'
+import { CompleteModal } from 'src/components/modal/CompleteModal'
+import { ErrorModal } from 'src/components/modal/ErrorModal'
 import { UserContext } from 'src/context/UserContext'
 import { AuthService } from 'src/services/AuthService'
-import { EMailAddressInput } from '../Input/EMailAddressInput'
-import { PasswordInput } from '../Input/PasswordInput'
+import { EMailAddressInput } from 'src/components/Input/EMailAddressInput'
+import { PasswordInput } from 'src/components/Input/PasswordInput'
 
 type LoginComponentProps = ModalProps & {
   showSignUpModal: (e: React.MouseEvent) => void
