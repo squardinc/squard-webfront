@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { RoundButton } from 'src/components/Button/DefaultButton'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import { ModalProps, asModal } from './asModal'
-import { DefaultModalContainer } from './ModalContainer'
+import { ModalProps, asModal } from 'src/components/Modal/asModal'
+import { DefaultModalContainer } from 'src/components/Modal/ModalContainer'
 
 type LogoutComponentProps = ModalProps & {}
 export const LogoutCompoenent: React.FC<LogoutComponentProps> = ({ closeModal }) => (

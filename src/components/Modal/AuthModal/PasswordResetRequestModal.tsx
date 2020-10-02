@@ -6,11 +6,13 @@ import { DefaultModalContainer } from '../ModalContainer'
 import { AuthService } from 'src/services/AuthService'
 import { ErrorModal } from '../ErrorModal'
 import { EMailAddressInput } from '../../Input/EMailAddressInput'
+import { validEmaliAddress } from 'src/utils/StringValidator'
 
 type PasswordResetRequestComponentProps = ModalProps & {}
 const PasswordResetRequestComponent: React.FC<PasswordResetRequestComponentProps> = ({ closeModal }) => {
   const [email, setEmail] = React.useState('')
   const [succeeded, setSucceeded] = React.useState(false)
+  const isSubmittable = React.useMemo(() => validEmaliAddress(email), [email])
   const [errorMesasge, setErrorMessage] = React.useState('')
 
   return (
@@ -23,13 +25,17 @@ const PasswordResetRequestComponent: React.FC<PasswordResetRequestComponentProps
               <TextDisplay className='mb-8 text-sm'>ご登録のメールアドレスを入力してください</TextDisplay>
               <EMailAddressInput value={email} onChange={setEmail} />
               <div className='flex flex-col'>
-                <RoundButton className='text-black bg-white' text='送信' onClick={async () => {
-                  const { host, pathname } = window.location
-                  AuthService.resetPasswordRequest(email, host, pathname).then(
-                    () => setSucceeded(true),
-                    (err) => setErrorMessage(err)
-                  )
-                }} />
+                <RoundButton
+                  className={isSubmittable ? 'text-black bg-white' : 'text-gray-600 bg-gray-500'}
+                  text='送信'
+                  disabled={!isSubmittable}
+                  onClick={async () => {
+                    const { host, pathname } = window.location
+                    AuthService.resetPasswordRequest(email, host, pathname).then(
+                      () => setSucceeded(true),
+                      (err) => setErrorMessage(err)
+                    )
+                  }} />
               </div>
             </>
             :

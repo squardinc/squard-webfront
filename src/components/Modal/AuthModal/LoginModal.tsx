@@ -9,6 +9,7 @@ import { UserContext } from 'src/context/UserContext'
 import { AuthService } from 'src/services/AuthService'
 import { EMailAddressInput } from 'src/components/Input/EMailAddressInput'
 import { PasswordInput } from 'src/components/Input/PasswordInput'
+import { validEmaliAddress } from 'src/utils/StringValidator'
 
 type LoginComponentProps = ModalProps & {
   showSignUpModal: (e: React.MouseEvent) => void
@@ -18,6 +19,7 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ closeModal, showSignUpM
   const { user, setUser } = React.useContext(UserContext)
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
+  const isSubmittable = React.useMemo(() => (validEmaliAddress(email) && password.length >= 8), [email, password])
   const [errorMesasge, setErrorMessage] = React.useState('')
   return (
     <>
@@ -34,9 +36,11 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ closeModal, showSignUpM
               <div className='underline cursor-pointer' onClick={showPasswordResetRequestModal}>こちら</div>
                 </TextDisplay>
                 <div className='flex flex-col'>
-                  <RoundButton className='text-black bg-white'
+                  <RoundButton
+                    className={isSubmittable ? 'text-black bg-white' : 'text-gray-600 bg-gray-500'}
                     text='ログイン'
                     type='submit'
+                    disabled={!isSubmittable}
                     onClick={async (e) => {
                       AuthService.login(email, password).then(
                         (user) => { setUser(user) },

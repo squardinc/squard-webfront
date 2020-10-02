@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { SignUpLoginLayout, ModalType } from 'src/components/Modal/SignUpLoginModal'
+import { AuthModal, ModalType } from 'src/components/Modal/AuthModal'
 import { TeamLayout } from './team/TeamLayout'
 
 export const SignUpLayout: React.FC = () => {
@@ -7,7 +7,7 @@ export const SignUpLayout: React.FC = () => {
   return (
     <>
       <TeamLayout />
-      <SignUpLoginLayout
+      <AuthModal
         openModal={openModal}
         setOpenModal={setOpenModal}
       />

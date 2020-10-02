@@ -7,6 +7,7 @@ import { AuthService } from 'src/services/AuthService'
 import { ErrorModal } from 'src/components/modal/ErrorModal'
 import { EMailAddressInput } from 'src/components/Input/EMailAddressInput'
 import { PasswordInput } from 'src/components/Input/PasswordInput'
+import { validEmaliAddress } from 'src/utils/StringValidator'
 
 type SignUpComponentProps = ModalProps & {
   showLoginModal: (e: React.MouseEvent) => void
@@ -14,6 +15,7 @@ type SignUpComponentProps = ModalProps & {
 const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLoginModal }) => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
+  const isSubmittable = React.useMemo(() => (validEmaliAddress(email) && password.length >= 8), [email, password])
   const [registrationUserId, setRegistrationUserId] = React.useState('')
   const [errorMesasge, setErrorMessage] = React.useState('')
 
@@ -29,18 +31,22 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
               <PasswordInput value={password} onChange={setPassword} />
               <TextDisplay className='flex justify-end w-full text-sm mb-4'>※8文字以上16文字以内</TextDisplay>
               <div className='flex flex-col'>
-                <RoundButton className='text-black bg-white' text='新規登録' onClick={async () => {
-                  const { host, pathname } = window.location
-                  AuthService.signUp(email, password, host, pathname).then(
-                    (userId) => { setRegistrationUserId(userId) },
-                    (err) => { setErrorMessage(err) }
-                  )
-                  setErrorMessage('')
-                }} />
+                <RoundButton
+                  className={isSubmittable ? 'text-black bg-white' : 'text-gray-600 bg-gray-500'}
+                  text='新規登録'
+                  disabled={!isSubmittable}
+                  onClick={async () => {
+                    const { host, pathname } = window.location
+                    AuthService.signUp(email, password, host, pathname).then(
+                      (userId) => { setRegistrationUserId(userId) },
+                      (err) => { setErrorMessage(err) }
+                    )
+                    setErrorMessage('')
+                  }} />
               </div>
               <TextDisplay className='mt-10 flex justify-center text-sm'>
                 アカウントをお持ちですか？ログインは
-          <div className='underline cursor-pointer' onClick={showLoginModal}>こちら</div>
+                <div className='underline cursor-pointer' onClick={showLoginModal}>こちら</div>
               </TextDisplay>
             </>
             :
