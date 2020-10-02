@@ -23,10 +23,13 @@ class Service {
   loginWithFacebook = () => {
     Cognito.loginWithFacebook()
   }
-  loadStoredUser = async () => {
-    return Cognito.loadStoredUser().then(
+  intialize = async () => {
+    return Cognito.intialize().then(
       credential => new LoginUserModel(credential.getIdToken().getJwtToken()),
-      () => LoginUserModel.guest()
+      (err) => {
+        console.log(err)
+        return LoginUserModel.guest()
+      }
     )
   }
 }
