@@ -8,23 +8,28 @@ import { fadeOut } from '../../utils/Modal'
 type ErrorComponentProps = ModalProps & {
   message: string
 }
-export const ErrorCompoenent: React.FC<ErrorComponentProps> = ({ closeModal, message}) => {
-
+export const ErrorCompoenent: React.FC<ErrorComponentProps> = ({
+  closeModal,
+  message,
+}) => {
   function closeModalHandler(e: any) {
     e.stopPropagation()
-   fadeOut()
+    fadeOut()
     setTimeout(() => {
       closeModal()
     }, 500)
   }
 
-
   return (
-    <DefaultModalContainer closeModal={closeModal} >
-      <div className='flex flex-col justify-center items-center font-semibold'>
-        <TextDisplay className='text-3xl'>{}</TextDisplay>
-        <TextDisplay className='mb-8 text-lg'>{message}</TextDisplay>
-        <RoundButton className='border-2 text-lg' text='Close' onClick={closeModalHandler}/>
+    <DefaultModalContainer closeModal={closeModal}>
+      <div className="flex flex-col justify-center items-center font-semibold">
+        <TextDisplay className="text-3xl">{}</TextDisplay>
+        <TextDisplay className="mb-8 text-lg">{message}</TextDisplay>
+        <RoundButton
+          className="border-2 text-lg"
+          text="Close"
+          onClick={closeModalHandler}
+        />
       </div>
     </DefaultModalContainer>
   )

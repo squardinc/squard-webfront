@@ -14,7 +14,7 @@ import { Heading2 } from 'src/components/Heading2/Heading2'
 import { Description } from 'src/components/Description/Description'
 import { ClassCard } from 'src/components/ClassCard/ClassCard'
 
-interface ClassesProps { }
+interface ClassesProps {}
 
 export const Classes: React.FC<ClassesProps> = (props) => {
   const classes = [

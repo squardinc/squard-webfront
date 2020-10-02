@@ -1,8 +1,9 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import * as personal from '../personalData'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { getTeamIcon } from '../../../../components/pages/PersonalLayout/utils'
+import { withTheme } from 'src/context/ThemeContext'
+import { IPersonal } from 'src/models/personal'
 
 import {
   LayoutHorizontal,
@@ -13,11 +14,14 @@ import { TabMenuBar, ItemProps } from 'src/components/TabMenu'
 import { ImageProfile } from 'src/components/ImageProfile'
 
 const PersonalEditProfileWrapper = styled.div`
-  padding-bottom: 140px;
+  padding-bottom: 0px;
+  background: black;
 `
 
 interface PersonalEditProfileProps {
   isLoading: boolean
+  personal: IPersonal
+  onClose: (value: boolean) => void
 }
 
 const tabMenuData = [
@@ -41,13 +45,9 @@ const Label = styled.div`
   margin-right: 10px;
   color: gray;
 `
-const Input = styled.input`
+const Input = styled.div`
   width: calc(100% - 120px);
   display: block;
-  overflow: hidden;
-  resize: both;
-  min-height: 40px;
-  line-height: 20px;
   background: none;
   color: white;
 `
@@ -87,39 +87,46 @@ const TeamIconWrapper = styled.div`
 `
 
 const TeamTextWrapper = styled.span`
-  padding-left: 2rem;
+  padding-left: 15px;
   padding-top: 0.25rem;
   line-height: 1.5rem;
 `
 
 const TeamNameText = styled.div`
-  font-size: 1.5rem;
+  font-size: 17px;
   font-weight: 600;
 `
 const TeamPositionText = styled.div`
   line-height: 1.5rem;
+  font-size: 13px;
 `
 
-const TeamLinkWrapper = styled.div`
-  position: absolute;
-  padding-top: 0.25rem;
-  right: 0;
-  padding-right: 0.5rem;
-  height: 3rem;
+const TeamDisplayButton = styled.div`
+  text-align: center;
+  padding-top: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 10px;
+  background: white;
+  color: gray;
+  width: 100px;
+  font-size: 13px;
+  border-radius: 8px;
+  margin-right: 10px;
 `
 
 const BottomWrapper = styled.div`
   width: 100%;
   padding: 20px;
 `
-const RoundButton = styled.div`
+const RoundButton = styled.button`
   text-align: center;
   padding: 10px;
   border: 1px solid white;
   border-radius: 50vh;
   width: 200px;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin-top: 15px;
+  margin-bottom: 0px;
 `
 
 interface RowInformationProps {
@@ -142,7 +149,15 @@ const RowInformation = (props: RowInformationProps) => {
       }}
     >
       <Label>{props.label}</Label>
-      <Input type={props.type ? props.type : 'input'} value={props.value} />
+      <Input
+        contentEditable={true}
+        suppressContentEditableWarning={true}
+        onInput={(e) => {
+          console.log(e.currentTarget.textContent)
+        }}
+      >
+        {props.value}
+      </Input>
     </LayoutHorizontal>
   )
 }
@@ -150,6 +165,8 @@ const RowInformation = (props: RowInformationProps) => {
 export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
   props
 ) => {
+  const personal = props.personal
+
   return (
     <PersonalEditProfileWrapper>
       <LayoutVertical layoutType={LayoutType.topCenter}>
@@ -157,24 +174,24 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
           items={tabMenuData as [ItemProps]}
           onClick={(itemMenu) => {
             console.log(itemMenu)
+            if (itemMenu.title !== 'プロフィールを編集') {
+              props.onClose(false)
+            }
           }}
         />
-        <ImageProfile
-          cover={personal.hiroki.topImage}
-          avatar={personal.hiroki.icon}
-        />
+        <ImageProfile cover={personal.topImage} avatar={personal.icon} />
         <InformationWrapper style={{ width: '100%' }}>
-          <RowInformation label={'名前'} value={personal.hiroki.nameJp} />
-          <RowInformation label={'英語表記'} value={personal.hiroki.nameEn} />
-          <RowInformation label={'ID'} value={personal.hiroki.id} />
+          <RowInformation label={'名前'} value={personal.nameJp} />
+          <RowInformation label={'英語表記'} value={personal.nameEn} />
+          <RowInformation label={'ID'} value={personal.id} />
 
           <RowInformation
             type="text"
             label={'自己紹介'}
-            value={personal.hiroki.description}
+            value={personal.description}
           />
 
-          {personal.hiroki.socialMedia.map((socialMedia, index) => {
+          {personal.socialMedia.map((socialMedia, index) => {
             return (
               <RowInformation
                 key={index}
@@ -188,7 +205,7 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
         <TeamWrapper>
           <Label style={{ width: '100%' }}>所属チーム表示切り替え</Label>
 
-          {personal.hiroki.teams.map((team, i) => {
+          {personal.teams.map((team, i) => {
             return (
               <TeamItemWrapper key={i}>
                 <TeamInfo>
@@ -209,17 +226,9 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
                         </TeamPositionText>
                       </TeamTextWrapper>
                     </LayoutHorizontal>
-                    <RoundButton
-                      style={{
-                        background: 'white',
-                        color: 'black',
-                        width: '100px',
-                        borderRadius: '8px',
-                        marginRight: '10px',
-                      }}
-                    >
-                      保存
-                    </RoundButton>
+                    <TeamDisplayButton>
+                      {team.classType === 'Leader' ? '表示中' : '非表示中'}
+                    </TeamDisplayButton>
                   </LayoutHorizontal>
                 </TeamInfo>
               </TeamItemWrapper>
@@ -232,13 +241,27 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
             layoutType={LayoutType.center}
             style={{ margin: 'auto' }}
           >
-            <RoundButton style={{ background: 'white', color: 'black' }}>
+            <RoundButton
+              style={{ background: 'white', color: 'black' }}
+              onClick={() => {
+                props.onClose(false)
+              }}
+            >
               保存
             </RoundButton>
-            <RoundButton style={{ color: 'white' }}>キャンセル</RoundButton>
+            <RoundButton
+              style={{ color: 'white' }}
+              onClick={() => {
+                props.onClose(false)
+              }}
+            >
+              キャンセル
+            </RoundButton>
           </LayoutVertical>
         </BottomWrapper>
       </LayoutVertical>
     </PersonalEditProfileWrapper>
   )
 }
+
+export default React.memo(withTheme(PersonalEditProfile, 'gray'))

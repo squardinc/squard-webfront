@@ -9,16 +9,14 @@ interface PersonalLayoutContainerProps {
   id: string
 }
 const getPersonData = (id: string): IPersonal | undefined => {
-  if (id === 'shunpei_koike')
-    return shunpei
-  if (id === 'hiroki_matsui')
-    return hiroki
-  if (id === 'akihiro_kimura')
-    return akihiro
-  if (id === 'shoya_yanagisawa')
-    return shoya
+  if (id === 'shunpei_koike') return shunpei
+  if (id === 'hiroki_matsui') return hiroki
+  if (id === 'akihiro_kimura') return akihiro
+  if (id === 'shoya_yanagisawa') return shoya
 }
-export const PersonalLayoutContainer: React.FC<PersonalLayoutContainerProps> = ({ id }) => {
+export const PersonalLayoutContainer: React.FC<PersonalLayoutContainerProps> = ({
+  id,
+}) => {
   const [isLoading, setIsLoading] = React.useState<boolean>(true)
   // React.useEffect(() => {
   //   const timer = setTimeout(() => {
@@ -30,11 +28,13 @@ export const PersonalLayoutContainer: React.FC<PersonalLayoutContainerProps> = (
   // if (isLoading) {
   //   return <></>
   // }
-  const personData = getPersonData('shunpei_koike')
+  const personData = getPersonData(id)
   if (!personData) {
     navigate('/')
     return <></>
   }
+  personData.id = id
+
   return <PersonalLayout isLoading={false} personal={personData} />
 }
 

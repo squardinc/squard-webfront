@@ -8,7 +8,7 @@ interface ThemeContextInterface {
 }
 export const ThemeContext = React.createContext<ThemeContextInterface>({
   theme: 'dark',
-  setTheme: (theme: ThemeType) => { },
+  setTheme: (theme: ThemeType) => {},
 })
 export const ThemeContextProvider: React.FC = ({ children }) => {
   const [theme, setTheme] = React.useState<ThemeType>('dark')
@@ -18,11 +18,13 @@ export const ThemeContextProvider: React.FC = ({ children }) => {
     </ThemeContext.Provider>
   )
 }
-export const withTheme = (Component: React.FC<any>, componentTheme: ThemeType) =>
-  (props: any) => {
-    const { theme, setTheme } = React.useContext(ThemeContext)
-    React.useEffect(() => {
-      setTheme(componentTheme)
-    }, [theme])
-    return < Component {...props} />
-  }
+export const withTheme = (
+  Component: React.FC<any>,
+  componentTheme: ThemeType
+) => (props: any) => {
+  const { theme, setTheme } = React.useContext(ThemeContext)
+  React.useEffect(() => {
+    setTheme(componentTheme)
+  }, [theme])
+  return <Component {...props} />
+}

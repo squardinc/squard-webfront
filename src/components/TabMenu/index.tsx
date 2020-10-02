@@ -15,6 +15,7 @@ const ItemWrapper = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  min-width: 100px;
 `
 const IconWrapper = styled.div``
 const TitleWrapper = styled.div`

@@ -12,16 +12,11 @@ export interface ImageProps {
 const ImageWrapper = styled.img``
 
 export const Image = React.memo((props: ImageProps) => {
-    const style = props.style ? {...props.style} : {}
-    style.objectFit = props.objectFit || 'contain'
-    style.width = props.width || 'auto'
-    style.height = props.height || 'auto'
-    console.log(props)
+  const style = props.style ? { ...props.style } : {}
+  style.objectFit = props.objectFit || 'contain'
+  style.width = props.width || 'auto'
+  style.height = props.height || 'auto'
+  console.log(props)
 
-  return (
-    <ImageWrapper
-      src={props.src}
-      style={style}
-    />
-  )
+  return <ImageWrapper src={props.src} style={style} />
 })

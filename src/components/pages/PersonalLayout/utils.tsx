@@ -35,12 +35,12 @@ const MEDIA_MAP: { [key in SocialMediaType]: JSX.Element } = {
 
 export const getSocialMediaIcon = (name: SocialMediaType) => {
   const MediaIcon = MEDIA_MAP[name]
-  return <MediaIcon width='42px' height='42px' />
+  return <MediaIcon width="42px" height="42px" />
 }
 
 const teamIconProps = {
   width: '3rem',
-  height: '3rem'
+  height: '3rem',
 }
 export const getTeamIcon = (classType: ClassType) => {
   switch (classType) {

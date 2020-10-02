@@ -17,7 +17,6 @@ const JoinTeamWrapper = styled.div`
   padding: 80px 20px 20px;
 `
 
-
 const JoinTeamTitle = styled.div`
   white-space: nowrap;
 `
@@ -50,7 +49,9 @@ const JoinTeam = (props: JoinTeamProps) => {
   return (
     <JoinTeamWrapper>
       <JoinTeamTitle>
-        <Heading3><TextDisplay>Join The Team</TextDisplay></Heading3>
+        <Heading3>
+          <TextDisplay>Join The Team</TextDisplay>
+        </Heading3>
       </JoinTeamTitle>
       <JoinInfoWrapper>
         <TextJoinTeam>

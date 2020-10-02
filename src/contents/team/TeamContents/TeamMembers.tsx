@@ -27,13 +27,14 @@ const TopMember: React.FC<TopMemberProps> = ({ member, name, title }) => {
     <div className={styles.topMemberRow}>
       <div className={styles.topMemberContainer}>
         <img src={member || ComingSoon} className={styles.topMember} />
-        {member ?
+        {member ? (
           <TextDisplay className={styles.topMemberCaption}>
             <div className={styles.topMemberName}>{name}</div>
             <div className={styles.topMemberTitle}> &nbsp;/ {title}</div>
           </TextDisplay>
-          : ''
-        }
+        ) : (
+          ''
+        )}
       </div>
     </div>
   )

@@ -1,13 +1,14 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { IPersonal } from 'src/models/personal'
 import * as colors from 'src/styles/colors'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import ProfileLink from 'src/assets/profile_link_icon.svg'
+import EditProfileIcon from 'src/assets/setting.svg'
 import { getSocialMediaIcon, getTeamIcon } from './utils'
 import { withTheme } from 'src/context/ThemeContext'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-
+import { PersonalEditProfile } from '../../../contents/personal/edit/component/index'
 type PersonalLayoutProps = {
   isLoading: boolean
   personal: IPersonal
@@ -85,7 +86,8 @@ const UserCover = styled.div`
       to right bottom,
       rgba(0, 0, 0, 0) 50%,
       ${(props: StyleCssProps) =>
-    props.backgroundColor ? props.backgroundColor : colors.textWhite} 50%
+          props.backgroundColor ? props.backgroundColor : colors.textWhite}
+        50%
     );
     transform: scale(1.1);
     display: block;
@@ -110,8 +112,7 @@ const ProfileImage = styled.div`
   width: 74px;
   border-radius: 10px;
   margin: 3px 0px 0px 3px;
-  background: url(${(props: StyleCssProps) =>
-    props.icon ? props.icon : ''})
+  background: url(${(props: StyleCssProps) => (props.icon ? props.icon : '')})
     no-repeat center center;
   background-size: cover;
 `
@@ -236,27 +237,63 @@ const TeamRoleText = styled.div`
   font-weight: 200;
 `
 
+const ButtonEditWrapper = styled.div`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #white;
+  cursor: pointer;
+  :hover {
+  }
+`
+const EditProfileWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+`
+
 const PersonalLayout = (props: PersonalLayoutProps) => {
   const { personal } = props
+
+  const [openEditProfile, setOpenEditProfile] = useState(false)
 
   return (
     <PersonalLayoutWrapper backgroundColor={'#ebebeb'}>
       <ContentWrapper>
         <UserCoverWrapper>
-          <UserCover backgroundColor={'#ebebeb'}><img src={personal.topImage} /></UserCover>
+          <UserCover backgroundColor={'#ebebeb'}>
+            <img src={personal.topImage} />
+            <ButtonEditWrapper
+              onClick={() => {
+                setOpenEditProfile(true)
+              }}
+            >
+              <EditProfileIcon />
+            </ButtonEditWrapper>
+          </UserCover>
           <ProfileContainerWrapper>
             <ProfilerImageContainer>
               <ProfileImage icon={personal.icon} />
             </ProfilerImageContainer>
             <NameWrapper>
-              <NameText><TextDisplay>{personal.nameJp}</TextDisplay></NameText>
-              <NameSubText><TextDisplay>{personal.nameEn}</TextDisplay></NameSubText>
-              <NameDescription><TextDisplay>{personal.description}</TextDisplay></NameDescription>
+              <NameText>
+                <TextDisplay>{personal.nameJp}</TextDisplay>
+              </NameText>
+              <NameSubText>
+                <TextDisplay>{personal.nameEn}</TextDisplay>
+              </NameSubText>
+              <NameDescription>
+                <TextDisplay>{personal.description}</TextDisplay>
+              </NameDescription>
             </NameWrapper>
             <SocialMediaWrapper>
-              {personal.socialMedia.map((sm) => {
+              {personal.socialMedia.map((sm, index) => {
                 return (
-                  <a href={sm.url} >
+                  <a href={sm.url} key={index}>
                     <SocialMediaIcon key={sm.url}>
                       {getSocialMediaIcon(sm.type)}
                     </SocialMediaIcon>
@@ -276,7 +313,9 @@ const PersonalLayout = (props: PersonalLayoutProps) => {
                   </TeamRoleText>
                 </TeamRole>
                 <TeamInfo>
-                  <TeamIconWrapper>{getTeamIcon(team.classType)}</TeamIconWrapper>
+                  <TeamIconWrapper>
+                    {getTeamIcon(team.classType)}
+                  </TeamIconWrapper>
                   <TeamTextWrapper>
                     <TeamNameText>
                       <TextDisplay>{team.name}</TextDisplay>
@@ -295,6 +334,15 @@ const PersonalLayout = (props: PersonalLayoutProps) => {
         </TeamWrapper>
       </ContentWrapper>
       <DefaultFooter />
+      {openEditProfile && (
+        <EditProfileWrapper>
+          <PersonalEditProfile
+            isLoading={false}
+            personal={personal}
+            onClose={setOpenEditProfile}
+          />
+        </EditProfileWrapper>
+      )}
     </PersonalLayoutWrapper>
   )
 }

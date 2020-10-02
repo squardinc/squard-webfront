@@ -11,7 +11,7 @@ import { UserContextProvider } from 'src/context/UserContext'
 const IndexPage: React.FC = () => {
   return (
     <ThemeContextProvider>
-      <UserContextProvider >
+      <UserContextProvider>
         <PageWrapper>
           <Router>
             <ContentLayout path=":contentId" contentId="" />
@@ -23,7 +23,7 @@ const IndexPage: React.FC = () => {
             <Redirect default />
           </Router>
         </PageWrapper>
-      </UserContextProvider >
+      </UserContextProvider>
     </ThemeContextProvider>
   )
 }

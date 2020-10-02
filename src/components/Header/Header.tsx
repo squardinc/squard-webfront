@@ -48,10 +48,7 @@ export const Header = () => {
         hideNavMenu={() => setShowNavMenu(false)}
         showLoginModal={() => setOpenModal('Login')}
       />
-      <SignUpLoginLayout
-        openModal={openModal}
-        setOpenModal={setOpenModal}
-      />
+      <SignUpLoginLayout openModal={openModal} setOpenModal={setOpenModal} />
     </React.Fragment>
   )
 }

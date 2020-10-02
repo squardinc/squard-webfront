@@ -288,9 +288,7 @@ export function getLayoutStyle(props: FlexBoxProps) {
   }
 
   let layoutStyle =
-    FlexLayoutRowValue[
-      props.layoutType ? props.layoutType : LayoutType.topLeft
-    ]
+    FlexLayoutRowValue[props.layoutType ? props.layoutType : LayoutType.topLeft]
   if (props.direction === DirectionType.column) {
     layoutStyle =
       FlexLayoutColumnValue[
@@ -308,15 +306,15 @@ export const FlexBox = (props: FlexBoxProps) => {
 }
 
 export const LayoutHorizontal = (props: FlexBoxProps) => {
-  const config = {...props}
+  const config = { ...props }
   config.direction = DirectionType.row
   return <FlexBox {...config} />
 }
 
 export const LayoutVertical = (props: FlexBoxProps) => {
-  const config = {...props}
+  const config = { ...props }
   config.direction = DirectionType.column
-  console.log("config ",config)
+  console.log('config ', config)
   return <FlexBox {...config} />
 }
 

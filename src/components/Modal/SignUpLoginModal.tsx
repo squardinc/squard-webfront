@@ -8,27 +8,36 @@ interface SignUpLoginLayoutProps {
   setOpenModal: React.Dispatch<React.SetStateAction<ModalType>>
 }
 export type ModalType = 'SignUp' | 'Login' | 'PasswordResetRequest' | 'Closed'
-export const SignUpLoginLayout: React.FC<SignUpLoginLayoutProps> = ({ openModal, setOpenModal }) => {
+export const SignUpLoginLayout: React.FC<SignUpLoginLayoutProps> = ({
+  openModal,
+  setOpenModal,
+}) => {
   return (
     <>
-      {openModal === 'SignUp' ?
+      {openModal === 'SignUp' ? (
         <SignUpModal
           closeModal={() => setOpenModal('Closed')}
           showLoginModal={() => setOpenModal('Login')}
         />
-        : ''}
-      {openModal === 'Login' ?
+      ) : (
+        ''
+      )}
+      {openModal === 'Login' ? (
         <LoginModal
           closeModal={() => setOpenModal('Closed')}
           showSignUpModal={() => setOpenModal('SignUp')}
-          showPasswordResetRequestModal={() => setOpenModal('PasswordResetRequest')}
+          showPasswordResetRequestModal={() =>
+            setOpenModal('PasswordResetRequest')
+          }
         />
-        : ''}
-      {openModal === 'PasswordResetRequest' ?
-        <PasswordResetRequestModal
-          closeModal={() => setOpenModal('Closed')}
-        />
-        : ''}
+      ) : (
+        ''
+      )}
+      {openModal === 'PasswordResetRequest' ? (
+        <PasswordResetRequestModal closeModal={() => setOpenModal('Closed')} />
+      ) : (
+        ''
+      )}
     </>
   )
 }

@@ -26,14 +26,14 @@ export const SearchBar: React.FC<SearchBarProps> = ({ show }) => {
           />
           <div className="absolute right-0 top-0 mt-2 ml-4">
             <div className={styles.searchBtn}>
-            <FontAwesomeIcon
-              icon={faSearch}
-              size="lg"
-              color="black"
-              cursor="pointer"
-              style={{ marginTop: '15px' }}
-              className="ml-4"
-            />
+              <FontAwesomeIcon
+                icon={faSearch}
+                size="lg"
+                color="black"
+                cursor="pointer"
+                style={{ marginTop: '15px' }}
+                className="ml-4"
+              />
             </div>
           </div>
         </div>

@@ -25,7 +25,6 @@ interface ContentLayoutProps {
   contentId: StaticPageType | string
 }
 export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId }) => {
-
   switch (contentId) {
     case 'about':
       return <AboutPage />

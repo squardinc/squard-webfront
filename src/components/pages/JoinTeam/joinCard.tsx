@@ -11,8 +11,8 @@ type JoinCardProps = {
 }
 
 const JoinCardAnchor = styled.div`
-    padding-top: 70px;
-    margin-top: -70px;
+  padding-top: 70px;
+  margin-top: -70px;
 `
 const JoinCardWrapper = styled.div`
   margin: 60px auto;
@@ -146,7 +146,9 @@ const JoinCard = (props: JoinCardProps) => {
       <JoinCardWrapper>
         <FlagWrapper>
           <Flag>
-            <MainNameText><TextDisplay>{team.main}</TextDisplay></MainNameText>
+            <MainNameText>
+              <TextDisplay>{team.main}</TextDisplay>
+            </MainNameText>
             <SubNameText>{team.sub}</SubNameText>
             <PriceText>￥{formattedPrice} / 月額</PriceText>
           </Flag>
