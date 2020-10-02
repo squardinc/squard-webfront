@@ -34,6 +34,7 @@ export type ITeam = {
 }
 
 export type IPersonal = {
+  id?: string
   topImage?: string
   icon?: string
   nameJp: string

@@ -30,7 +30,7 @@ export const PersonalLayoutContainer: React.FC<PersonalLayoutContainerProps> = (
   // if (isLoading) {
   //   return <></>
   // }
-  const personData = getPersonData(id)
+  const personData = getPersonData('shunpei_koike')
   if (!personData) {
     navigate('/')
     return <></>
