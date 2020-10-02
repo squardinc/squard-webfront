@@ -1,6 +1,4 @@
 import * as React from 'react'
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import { RoundInput } from 'src/components/Input/Input'
 import { RoundButton } from 'src/components/Button/DefaultButton'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { asModal, ModalProps } from './asModal'
@@ -8,6 +6,7 @@ import { DefaultModalContainer } from './ModalContainer'
 import { AuthService } from 'src/services/AuthService'
 import { ErrorModal } from './ErrorModal'
 import { UserContext } from 'src/context/UserContext'
+import { PasswordInput } from '../Input/PasswordInput'
 
 type PasswordResetComponentProps = ModalProps & {
   username: string
@@ -27,7 +26,7 @@ const PasswordResetComponent: React.FC<PasswordResetComponentProps> = ({ usernam
           {!succeeded ?
             <>
               <TextDisplay className='mb-8 text-sm'>再設定するパスワードを入力してください</TextDisplay>
-              <RoundInput value={password} onChange={setPassword} placeholder='パスワード' faIcon={faEnvelope} type='password' />
+              <PasswordInput value={password} onChange={setPassword} />
               <div className='flex flex-col'>
                 <RoundButton className='text-black bg-white' text='送信' onClick={async () => {
                   AuthService.resetPassword(username, code, password).then(

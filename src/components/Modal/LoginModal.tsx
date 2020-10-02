@@ -1,16 +1,15 @@
 import * as React from 'react'
-import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
-import { RoundInput } from 'src/components/Input/Input'
 import { RoundButton } from 'src/components/Button/DefaultButton'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { asModal, ModalProps } from './asModal'
 import { DefaultModalContainer } from './ModalContainer'
 import { CompleteModal } from './CompleteModal'
 import { ErrorModal } from './ErrorModal'
-import { PasswordResetRequestModal } from './PasswordResetRequestModal'
 import { UserContext } from 'src/context/UserContext'
 import { AuthService } from 'src/services/AuthService'
 import { fadeIn } from '../../utils/Modal'
+import { EMailAddressInput } from '../Input/EMailAddressInput'
+import { PasswordInput } from '../Input/PasswordInput'
 
 type LoginComponentProps = ModalProps & {
   showSignUpModal: VoidFunction
@@ -35,8 +34,8 @@ console.log(user)
               <TextDisplay className='text-4xl font-semibold'>Login</TextDisplay>
               <TextDisplay className='mb-8 text-sm'>ログイン情報を入力してください</TextDisplay>
               <form>
-                <RoundInput autoComplete='email' value={email} onChange={setEmail} placeholder='メールアドレス' faIcon={faEnvelope} />
-                <RoundInput autoComplete='password' value={password} onChange={setPassword} placeholder='パスワード' type='password' faIcon={faLock} />
+                <EMailAddressInput value={email} onChange={setEmail} />
+                <PasswordInput value={password} onChange={setPassword} />
                 <TextDisplay className='flex justify-end w-full text-sm mb-4'>パスワードを忘れた方は
               <div className='underline cursor-pointer' onClick={showPasswordResetRequestModal}>こちら</div>
                 </TextDisplay>

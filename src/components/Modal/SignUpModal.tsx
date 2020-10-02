@@ -1,6 +1,4 @@
 import * as React from 'react'
-import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
-import { RoundInput } from 'src/components/Input/Input'
 import { RoundButton } from 'src/components/Button/DefaultButton'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { asModal, ModalProps } from './asModal'
@@ -8,6 +6,8 @@ import { DefaultModalContainer } from './ModalContainer'
 import { AuthService } from 'src/services/AuthService'
 import { ErrorModal } from './ErrorModal'
 import { fadeIn } from '../../utils/Modal'
+import { EMailAddressInput } from '../Input/EMailAddressInput'
+import { PasswordInput } from '../Input/PasswordInput'
 
 type SignUpComponentProps = ModalProps & {
   showLoginModal: VoidFunction
@@ -30,8 +30,8 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
             <>
               <TextDisplay className='text-4xl font-semibold'>SignUp</TextDisplay>
               <TextDisplay className='mb-8 text-sm'>アカウント情報を入力してください</TextDisplay>
-              <RoundInput value={email} onChange={setEmail} placeholder='メールアドレス' faIcon={faEnvelope} />
-              <RoundInput value={password} onChange={setPassword} placeholder='パスワード' type='password' faIcon={faLock} />
+              <EMailAddressInput value={email} onChange={setEmail} />
+              <PasswordInput value={password} onChange={setPassword} />
               <TextDisplay className='flex justify-end w-full text-sm mb-4'>※8文字以上16文字以内</TextDisplay>
               <div className='flex flex-col'>
                 <RoundButton className='text-black bg-white' text='新規登録' onClick={async () => {
