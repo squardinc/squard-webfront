@@ -10,6 +10,7 @@ import { SignUpLoginLayout, ModalType } from '../Modal/SignUpLoginModal'
 import { UserContext } from 'src/context/UserContext'
 import { Link } from 'gatsby'
 import { fadeIn } from '../../utils/Modal'
+import { AuthService } from 'src/services/AuthService'
 
 export const Header = () => {
   const { user } = React.useContext(UserContext)
@@ -45,8 +46,13 @@ export const Header = () => {
       </div>
       <NavMenu
         show={showNavMenu}
+        loggedIn={user.loggedIn}
         hideNavMenu={() => setShowNavMenu(false)}
         showLoginModal={() => setOpenModal('Login')}
+        logout={async () => {
+          await AuthService.logout()
+          setOpenModal('Logout')
+        }}
       />
       <SignUpLoginLayout
         openModal={openModal}

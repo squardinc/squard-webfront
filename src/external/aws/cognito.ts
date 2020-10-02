@@ -77,6 +77,8 @@ export const loginWithFacebook = () => {
   return Auth.federatedSignIn({ provider: 'Facebook' })
 }
 
+export const logout = async () => Auth.signOut()
+
 export const intialize = async () => {
   configure(window.location.origin)
   return Auth.currentSession()
