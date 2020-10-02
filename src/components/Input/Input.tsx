@@ -2,7 +2,7 @@ import * as React from 'react'
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-interface InputProps {
+export interface InputProps {
   value: string
   onChange: (value: string) => void
   placeholder?: string

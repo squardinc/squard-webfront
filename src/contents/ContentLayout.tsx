@@ -39,6 +39,8 @@ export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId }) => {
       return <ConfirmSignUpLayout />
     case 'resetPassword':
       return <ResetPasswordLayout />
+    case 'socialSignIn':
+      return <TeamLayout />
   }
   if (contentId === 'squard') {
     return <TeamLayout />

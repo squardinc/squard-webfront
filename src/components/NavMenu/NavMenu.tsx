@@ -10,16 +10,21 @@ import CompanyIcon from 'src/assets/company_icon.svg'
 import LegalInfo from 'src/assets/legal_information_icon.svg'
 import PrivacyPolicy from 'src/assets/privacy_policy_icon_jp.svg'
 import About from 'src/assets/about_icon.svg'
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
 interface NavMenuProps {
   show: boolean
+  loggedIn: boolean
   hideNavMenu: VoidFunction
   showLoginModal: VoidFunction
+  logout: VoidFunction
 }
 export const NavMenu: React.FC<NavMenuProps> = ({
   show,
+  loggedIn,
   hideNavMenu,
   showLoginModal,
+  logout,
 }) => {
   const navigateWithMenuClose = (to: string) => () => {
     hideNavMenu()
@@ -33,16 +38,16 @@ export const NavMenu: React.FC<NavMenuProps> = ({
           onClick={hideNavMenu}
         />
       ) : (
-        ''
-      )}
+          ''
+        )}
       <div
         className={`${styles.navMenu} ${
           show ? styles.open : styles.close
-        } bg-v-gradient`}
+          } bg-v-gradient`}
       >
         <div className={styles.navToggleBtn} onClick={hideNavMenu}></div>
         <div className="flex flex-col mt-6 mr-4">
-          <MenuItem text="設定" SVGIcon={Setting} />
+          {/* <MenuItem text="設定" SVGIcon={Setting} /> */}
           <MenuItem
             text="マイページ"
             SVGIcon={MyPage}
@@ -70,6 +75,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
             onClick={navigateWithMenuClose('/privacypolicy')}
           />
           <MenuItem text={'特定商取引法に基づく表記'} SVGIcon={LegalInfo} />
+          <MenuItem text={'ログアウト'} faIcon={faSignOutAlt} onClick={loggedIn ? logout : undefined} />
         </div>
       </div>
     </>

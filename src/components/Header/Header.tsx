@@ -6,19 +6,15 @@ import Cross from 'src/assets/cross.svg'
 import Search from 'src/assets/search.svg'
 import Menu from 'src/assets/menu.svg'
 import styles from './Header.module.scss'
-import { SignUpLoginLayout, ModalType } from '../Modal/SignUpLoginModal'
+import { AuthModal, ModalType } from 'src/components/Modal/AuthModal'
 import { UserContext } from 'src/context/UserContext'
 import { Link } from 'gatsby'
-import { fadeIn } from '../../utils/Modal'
+import { AuthService } from 'src/services/AuthService'
 
 export const Header = () => {
   const { user } = React.useContext(UserContext)
   const [openModal, setOpenModal] = React.useState<ModalType>('Closed')
   const [showNavMenu, setShowNavMenu] = React.useState(false)
-
-  React.useEffect(() => {
-    fadeIn()
-  }, [openModal])
 
   return (
     <React.Fragment>
@@ -45,10 +41,15 @@ export const Header = () => {
       </div>
       <NavMenu
         show={showNavMenu}
+        loggedIn={user.loggedIn}
         hideNavMenu={() => setShowNavMenu(false)}
         showLoginModal={() => setOpenModal('Login')}
+        logout={async () => {
+          await AuthService.logout()
+          setOpenModal('Logout')
+        }}
       />
-      <SignUpLoginLayout
+      <AuthModal
         openModal={openModal}
         setOpenModal={setOpenModal}
       />
