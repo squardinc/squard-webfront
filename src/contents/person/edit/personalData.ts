@@ -1,10 +1,10 @@
-import { IPersonal } from 'src/models/personal'
-import ShunpeiIcon from 'src/images/temp/personal/shunpei_icon.jpg'
-import ShunpeiTop from 'src/images/temp/personal/shunpei_top.jpg'
-import HirokiIcon from 'src/images/temp/personal/hiroki_icon.png'
-import HirokiTop from 'src/images/temp/personal/hiroki_top.jpg'
-import AkihiroIcon from 'src/images/temp/personal/akihiro_icon.png'
-import ShoyaIcon from 'src/images/temp/personal/shoya_icon.png'
+import { IPersonal } from 'src/models/person'
+import ShunpeiIcon from 'src/images/temp/person/shunpei_icon.jpg'
+import ShunpeiTop from 'src/images/temp/person/shunpei_top.jpg'
+import HirokiIcon from 'src/images/temp/person/hiroki_icon.png'
+import HirokiTop from 'src/images/temp/person/hiroki_top.jpg'
+import AkihiroIcon from 'src/images/temp/person/akihiro_icon.png'
+import ShoyaIcon from 'src/images/temp/person/shoya_icon.png'
 
 export const shunpei: IPersonal = {
   nameJp: '小池駿平',

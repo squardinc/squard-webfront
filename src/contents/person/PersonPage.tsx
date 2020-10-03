@@ -1,18 +1,17 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { IPersonal } from 'src/models/personal'
+import { IPersonal } from 'src/models/person'
 import * as colors from 'src/styles/colors'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import ProfileLink from 'src/assets/profile_link_icon.svg'
 import EditProfileIcon from 'src/assets/edit.svg'
 import { getSocialMediaIcon, getTeamIcon } from './utils'
-import { withTheme } from 'src/context/ThemeContext'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import { PersonalEditProfile } from '../../../contents/personal/edit/component/index'
 
-type PersonalLayoutProps = {
+type PersonPageProps = {
   isLoading: boolean
   personal: IPersonal
+  editProfile: VoidFunction
 }
 
 type StyleCssProps = {
@@ -25,12 +24,6 @@ type StyleCssProps = {
   profileMarginLeft?: number
   profileBorderLeft?: number
 }
-
-const PersonalLayoutWrapper = styled.div`
-  position: relative;
-  background-color: ${(props: StyleCssProps) =>
-    props.backgroundColor ? props.backgroundColor : colors.textWhite};
-`
 
 const ContentWrapper = styled.div`
   padding-bottom: 0;
@@ -87,7 +80,7 @@ const UserCover = styled.div`
       to right bottom,
       rgba(0, 0, 0, 0) 50%,
       ${(props: StyleCssProps) =>
-          props.backgroundColor ? props.backgroundColor : colors.textWhite}
+    props.backgroundColor ? props.backgroundColor : colors.textWhite}
         50%
     );
     transform: scale(1.1);
@@ -250,29 +243,17 @@ const ButtonEditWrapper = styled.div`
   :hover {
   }
 `
-const EditProfileWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-`
 
-const PersonalLayout = (props: PersonalLayoutProps) => {
-  const { personal } = props
-
-  const [openEditProfile, setOpenEditProfile] = useState(false)
+export const PersonPage = (props: PersonPageProps) => {
+  const { personal, editProfile } = props
 
   return (
-    <PersonalLayoutWrapper backgroundColor={'#ebebeb'}>
+    <>
       <ContentWrapper>
         <UserCoverWrapper>
           <UserCover backgroundColor={'#ebebeb'}>
             <img src={personal.topImage} />
-            <ButtonEditWrapper
-              onClick={() => {
-                setOpenEditProfile(true)
-              }}
-            >
+            <ButtonEditWrapper onClick={editProfile}>
               <EditProfileIcon />
             </ButtonEditWrapper>
           </UserCover>
@@ -335,17 +316,6 @@ const PersonalLayout = (props: PersonalLayoutProps) => {
         </TeamWrapper>
       </ContentWrapper>
       <DefaultFooter />
-      {openEditProfile && (
-        <EditProfileWrapper>
-          <PersonalEditProfile
-            isLoading={false}
-            personal={personal}
-            onClose={setOpenEditProfile}
-          />
-        </EditProfileWrapper>
-      )}
-    </PersonalLayoutWrapper>
+    </>
   )
 }
-
-export default React.memo(withTheme(PersonalLayout, 'gray'))

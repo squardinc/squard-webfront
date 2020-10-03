@@ -18,7 +18,7 @@ import Angels from 'src/assets/classes/angels.svg'
 import Galleries from 'src/assets/classes/galleries.svg'
 import VIP from 'src/assets/classes/vip.svg'
 
-import { SocialMediaType, ClassType } from 'src/models/personal'
+import { SocialMediaType, ClassType } from 'src/models/person'
 
 const MEDIA_MAP: { [key in SocialMediaType]: JSX.Element } = {
   email: Email,

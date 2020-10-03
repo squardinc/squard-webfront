@@ -1,9 +1,9 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import { getTeamIcon } from '../../../../components/pages/PersonalLayout/utils'
+import { getTeamIcon } from 'src/contents/person/utils'
 import { withTheme } from 'src/context/ThemeContext'
-import { IPersonal } from 'src/models/personal'
+import { IPersonal } from 'src/models/person'
 import { ImageEditModal } from 'src/components/Modal/ImageEditModal'
 
 import {
@@ -22,7 +22,7 @@ const PersonalEditProfileWrapper = styled.div`
 interface PersonalEditProfileProps {
   isLoading: boolean
   personal: IPersonal
-  onClose: (value: boolean) => void
+  close: VoidFunction
 }
 
 const tabMenuData = [
@@ -259,7 +259,7 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
             <RoundButton
               style={{ background: 'white', color: 'black' }}
               onClick={() => {
-                props.onClose(false)
+                props.close()
               }}
             >
               <TextDisplay>保存</TextDisplay>
@@ -267,7 +267,7 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
             <RoundButton
               style={{ color: 'white' }}
               onClick={() => {
-                props.onClose(false)
+                props.close()
               }}
             >
               <TextDisplay>キャンセル</TextDisplay>

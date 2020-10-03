@@ -73,14 +73,6 @@ const ImageEditComponent: React.FC<ImageEditComponentProps> = ({
     []
   )
 
-  function closeModalHandler(e: any) {
-    e.stopPropagation()
-    fadeOut()
-    setTimeout(() => {
-      closeModal()
-    }, 500)
-  }
-
   function saveCroppedImage(crop: Area): Promise<Blob | null> {
     const canvas = document.createElement('canvas')
     canvas.width = crop.width
@@ -131,7 +123,7 @@ const ImageEditComponent: React.FC<ImageEditComponentProps> = ({
           <FontAwesomeIcon
             icon={faTimes}
             className="text-white cursor-pointer"
-            onClick={closeModalHandler}
+            onClick={closeModal}
           />
         </CloseIcon>
       </ModalHeader>

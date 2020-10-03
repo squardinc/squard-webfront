@@ -2,6 +2,7 @@ import * as React from 'react'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import styles from './privacypolicy.module.scss'
 import { withTheme } from 'src/context/ThemeContext'
+import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 
 interface PolicySectionContent {
   section: string
@@ -25,21 +26,21 @@ const PolicySection: React.FC<PolicySectionProps> = ({ sections }) => (
 const PolicySectionWithSubSections: React.FC<PolicySectionWithSubSectionsProps> = ({
   sections,
 }) => (
-  <>
-    {sections.map((section, index) => (
-      <div className="py-2" key={index}>
-        {section.section}
-        {section.subsections ? (
-          <div className="px-4">
-            <PolicySection sections={section.subsections} />
-          </div>
-        ) : (
-          ''
-        )}
-      </div>
-    ))}
-  </>
-)
+    <>
+      {sections.map((section, index) => (
+        <div className="py-2" key={index}>
+          {section.section}
+          {section.subsections ? (
+            <div className="px-4">
+              <PolicySection sections={section.subsections} />
+            </div>
+          ) : (
+              ''
+            )}
+        </div>
+      ))}
+    </>
+  )
 
 interface PolicyChapterProps {
   chapter: string
@@ -188,6 +189,7 @@ const Page: React.FC = () => {
           2020年8月1日制定・施行
         </div>
       </TextDisplay>
+      <DefaultFooter />
     </div>
   )
 }
