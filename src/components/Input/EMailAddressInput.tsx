@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { RoundInput } from './Input'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import { emaliAvaliableChars } from 'src/utils/StringValidator'
 
 interface EMailAddressInput {
   value: string
@@ -13,7 +12,7 @@ export const EMailAddressInput: React.FC<EMailAddressInput> = ({
 }) => {
   return (
     <RoundInput
-      onChange={value => { if (emaliAvaliableChars(value)) onChange(value) }}
+      onChange={value => onChange(value)}
       value={value}
       faIcon={faEnvelope}
       type='email'
