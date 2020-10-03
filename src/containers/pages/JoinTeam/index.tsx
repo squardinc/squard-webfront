@@ -10,9 +10,9 @@ const JoinTeamContainer = () => {
       sub: 'エンジェル',
       monthlyPrice: 1000,
       entitlements: [
-        'Slackワークスペースへの招待',
-        'GitHub, XDファイルへのアクセス',
-        '定例Zoomミーティングへの招待',
+        'Slackワークスペースへの招待します。',
+        'Notionにてチームの情報を一部公開します。',
+        '月1回開催される\r\nZoom定例会にご招待します。',
       ],
     },
     {
@@ -20,9 +20,11 @@ const JoinTeamContainer = () => {
       sub: 'プロスペクト',
       monthlyPrice: 15000,
       entitlements: [
-        'Slackワークスペースへの招待',
-        'GitHub, XDファイルへのアクセス',
-        '定例Zoomミーティングへの招待',
+        'Angelsの特典がすべて利用できます。',
+        'GitHub/XDにアクセスできます。',
+        'Slackでメンバーへの質問を\r\n優先的に受け付けます。',
+        '週1で代表がまとめる\r\nブロックチェーンレポートを共有します。',
+        'その他限定情報へのアクセスが可能です。',   
       ],
     },
     {
@@ -30,9 +32,7 @@ const JoinTeamContainer = () => {
       sub: 'ギャラリー',
       monthlyPrice: 0,
       entitlements: [
-        'Slackワークスペースへの招待',
-        'GitHub, XDファイルへのアクセス',
-        '定例Zoomミーティングへの招待',
+        'フィードにて進捗を方向します。\r\n※フィード機能は現在開発中です',
       ],
     },
   ]
