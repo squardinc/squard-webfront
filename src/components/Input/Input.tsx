@@ -25,10 +25,11 @@ export const RoundInput: React.FC<InputProps> = ({
           <FontAwesomeIcon icon={faIcon} className="text-gray-200" />
         </div>
       ) : (
-        ''
-      )}
+          ''
+        )}
       <input
         className="ml-2 bg-gray-200 h-full w-full text-gray-600 focus:outline-none"
+        style={{ fontSize: '16px' }}
         type={type}
         value={value}
         placeholder={placeholder}
