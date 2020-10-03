@@ -34,17 +34,7 @@ const signUpErrorMessage = (code: string) => {
   return 'エラーが発生しました。入力内容を確認し、再度やり直して下さい。'
 }
 
-<<<<<<< HEAD
-export const signUp = async (
-  email: string,
-  password: string,
-  origin: string,
-  currentPath: string
-): Promise<CognitoUser> => {
-  configure(window.location.origin)
-=======
 export const signUp = async (email: string, password: string, origin: string, currentPath: string): Promise<CognitoUser> => {
->>>>>>> origin/master
   return Auth.signUp({
     username: email,
     password,
