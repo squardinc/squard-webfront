@@ -54,6 +54,7 @@ const confirmSignUpErrorMessage = (code: string, username: string) => {
 }
 
 export const confirmSignUp = async (username: string, code: string) => {
+  configure(window.location.origin)
   return await Auth.confirmSignUp(username, code).catch(
     async (err) => {
       return Promise.reject(confirmSignUpErrorMessage(err?.code, username))

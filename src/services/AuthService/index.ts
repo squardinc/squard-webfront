@@ -41,7 +41,7 @@ class Service {
 
   intialize = async () => {
     return Cognito.intialize().then(
-      credential => new LoginUserModel(credential.getIdToken().getJwtToken()),
+      credential => new LoginUserModel(credential.getIdToken().decodePayload().sub, credential.getIdToken().getJwtToken()),
       () => LoginUserModel.guest()
     )
   }
