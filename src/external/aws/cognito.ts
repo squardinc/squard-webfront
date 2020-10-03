@@ -34,6 +34,7 @@ const signUpErrorMessage = (code: string) => {
   return 'エラーが発生しました。入力内容を確認し、再度やり直して下さい。'
 }
 
+<<<<<<< HEAD
 export const signUp = async (
   email: string,
   password: string,
@@ -41,6 +42,9 @@ export const signUp = async (
   currentPath: string
 ): Promise<CognitoUser> => {
   configure(window.location.origin)
+=======
+export const signUp = async (email: string, password: string, origin: string, currentPath: string): Promise<CognitoUser> => {
+>>>>>>> origin/master
   return Auth.signUp({
     username: email,
     password,
@@ -60,14 +64,14 @@ const confirmSignUpErrorMessage = (code: string, username: string) => {
 }
 
 export const confirmSignUp = async (username: string, code: string) => {
-  configure(window.location.origin)
-  return await Auth.confirmSignUp(username, code).catch(async (err) => {
-    return Promise.reject(confirmSignUpErrorMessage(err?.code, username))
-  })
+  return await Auth.confirmSignUp(username, code).catch(
+    async (err) => {
+      return Promise.reject(confirmSignUpErrorMessage(err?.code, username))
+    }
+  )
 }
 
 export const login = async (email: string, password: string) => {
-  configure(window.location.origin)
   return Auth.signIn(email, password).then(
     async () => Auth.currentSession(),
     () =>
@@ -77,34 +81,22 @@ export const login = async (email: string, password: string) => {
   )
 }
 
-export const resetPasswordRequest = async (
-  email: string,
-  origin: string,
-  currentPath: string
-) => {
-  configure(window.location.origin)
-  return await Auth.forgotPassword(email, { origin, currentPath }).catch(() =>
-    Promise.reject(
-      'エラーが発生しました。入力内容を確認して再度やり直してください。'
-    )
-  )
+export const resetPasswordRequest = async (email: string, origin: string, currentPath: string) => {
+  return await Auth.forgotPassword(email, { origin, currentPath })
+    .catch(() => Promise.reject('エラーが発生しました。入力内容を確認して再度やり直してください。'))
 }
 
-export const resetPassword = async (
-  email: string,
-  code: string,
-  newPassword: string
-) => {
-  configure(window.location.origin)
-  return await Auth.forgotPasswordSubmit(email, code, newPassword).catch(() =>
-    Promise.reject(
-      'エラーが発生しました。入力内容を確認して再度やり直してください。'
-    )
-  )
+export const resetPassword = async (email: string, code: string, newPassword: string) => {
+  return await Auth.forgotPasswordSubmit(email, code, newPassword)
+    .catch(() => Promise.reject('エラーが発生しました。入力内容を確認して再度やり直してください。'))
 }
 export const loginWithFacebook = () => {
-  configure(window.location.origin)
   return Auth.federatedSignIn({ provider: 'Facebook' })
 }
 
-export const loadStoredUser = async () => Auth.currentSession()
+export const logout = async () => Auth.signOut()
+
+export const intialize = async () => {
+  configure(window.location.origin)
+  return Auth.currentSession()
+}

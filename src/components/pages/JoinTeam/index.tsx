@@ -14,10 +14,12 @@ type JoinTeamProps = {
 
 const JoinTeamWrapper = styled.div`
   background: ${colors.textWhite};
-  padding: 80px 20px 20px;
+  padding: 80px 10px 20px;
 `
 
 const JoinTeamTitle = styled.div`
+  display: flex;
+  justify-content: center;
   white-space: nowrap;
 `
 

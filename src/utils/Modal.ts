@@ -1,4 +1,4 @@
-export function fadeIn() {
+export const fadeIn = () => {
   setTimeout(() => {
     let element = document.getElementsByClassName('modal-transition')[1]
     if (!element) {
@@ -8,10 +8,10 @@ export function fadeIn() {
       element.classList.remove('close')
       element.classList.add('open')
     }
-  }, 100)
+  }, 300)
 }
 
-export function fadeOut() {
+const fadeOut = () => {
   let element = document.getElementsByClassName('modal-transition')[1]
   if (!element) {
     element = document.getElementsByClassName('modal-transition')[0]
@@ -19,5 +19,12 @@ export function fadeOut() {
   if (element) {
     element.classList.remove('open')
     element.classList.add('close')
+  }
+}
+export const withFadeOut = (closeModal: VoidFunction) => {
+  return (e: React.MouseEvent) => {
+    e.stopPropagation()
+    fadeOut()
+    setTimeout(() => { closeModal() }, 150)
   }
 }

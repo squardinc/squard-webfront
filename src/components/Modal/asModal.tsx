@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Modal from 'react-modal'
+import { withFadeOut } from 'src/utils/Modal'
 import styles from './modal.module.scss'
-import { fadeOut } from '../../utils/Modal'
 
 Modal.setAppElement('body')
 
@@ -9,16 +9,12 @@ export interface ModalProps {
   closeModal: VoidFunction
 }
 export const asModal = <T extends ModalProps>(Component: React.FC<T>) => {
-  return (props: T) => (
+  return (props: T) => {
+    const closeModal = withFadeOut(props.closeModal)
+  return (
     <Modal
       isOpen
-      onRequestClose={(e) => {
-        e.stopPropagation()
-        fadeOut()
-        setTimeout(() => {
-          props.closeModal()
-        }, 500)
-      }}
+      onRequestClose={closeModal}
       shouldCloseOnEsc
       shouldCloseOnOverlayClick
       portalClassName="relative"
@@ -26,8 +22,9 @@ export const asModal = <T extends ModalProps>(Component: React.FC<T>) => {
       className={`${styles.content} outline-none modal-transition close`}
     >
       <div className="max-w-xs w-full flex justify-center">
-        <Component {...props} />
+        <Component {...props} closeModal={closeModal} />
       </div>
     </Modal>
   )
+}
 }

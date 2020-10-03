@@ -30,7 +30,7 @@ const Member: React.FC<MemberProps> = ({ member }) => {
   }
 
   return (
-    <div className="relative mt-1 pr-1 pl-2">
+    <div className={`relative mt-1 px-1 ${styles.memberContainer}`}>
       <img
         src={member.imageUrl}
         className={styles.member + ' ' + getImageTheme(member.color)}

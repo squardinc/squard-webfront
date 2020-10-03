@@ -42,7 +42,9 @@ $member-width: 164px;
   flex-wrap: wrap;
   width: 370px;
 }
-
+.memberContainer {
+  width: 50%;
+}
 .member {
   @include personIcon($member-width, 152px, 3.5px);
 }

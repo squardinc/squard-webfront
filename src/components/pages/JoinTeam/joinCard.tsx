@@ -16,7 +16,7 @@ const JoinCardAnchor = styled.div`
 `
 const JoinCardWrapper = styled.div`
   margin: 60px auto;
-  width: ${sizes.cardWidth};
+  max-width: ${sizes.cardWidth};
   background: ${colors.bgBlack};
   box-shadow: 0 20px 30px 0px ${colors.bgBlack};
 `
@@ -110,6 +110,7 @@ const EntitlementText = styled.div`
   color: ${colors.textWhite};
   border-top: 1px solid ${colors.borderGray};
   font-size: 0.9rem;
+  white-space: pre-wrap;
 
   &:last-child {
     border-bottom: 1px solid ${colors.borderGray};

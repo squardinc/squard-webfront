@@ -44,16 +44,18 @@ interface RoundButtonProps {
   text: string
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   className?: string
+  disabled?: boolean
   type?: 'button' | 'submit'
 }
 export const RoundButton: React.FC<RoundButtonProps> = ({
   text,
   type = 'button',
-  onClick = () => {},
+  disabled = false,
+  onClick = () => { },
   className = '',
 }) => {
   return (
-    <button type={type} onClick={onClick} className="w-full">
+    <button type={type} onClick={onClick} className="w-full" disabled={disabled} >
       <TextDisplay
         className={`flex justify-center items-center h-10 w-full my-1 rounded-full text-sm ${className}`}
       >

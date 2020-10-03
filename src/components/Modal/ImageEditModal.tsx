@@ -3,7 +3,7 @@ import { RoundButton } from 'src/components/Button/DefaultButton'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { ModalProps, asModal } from './asModal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { fadeOut, fadeIn } from '../../utils/Modal'
+import { fadeIn } from 'src/utils/Modal'
 import styled from 'styled-components'
 import Cropper from 'react-easy-crop'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
@@ -15,10 +15,10 @@ type ImageEditComponentProps = ModalProps & {
 }
 
 type Area = {
-    width: number;
-    height: number;
-    x: number;
-    y: number;
+  width: number;
+  height: number;
+  x: number;
+  y: number;
 };
 
 const ImageEditModalWrapper = styled.div`

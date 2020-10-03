@@ -8,6 +8,7 @@ import { SignUpLayout } from './SignUp'
 import { ConfirmSignUpLayout } from './callback/ConfirmSignUp'
 import { ResetPasswordLayout } from './callback/ResetPassword'
 import { PersonalLayoutContainer } from '../containers/pages/PersonLayout'
+import { SocialSigninLayout } from './SocialSignIn'
 
 export const StaticPagePaths = [
   'about',
@@ -39,6 +40,8 @@ export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId }) => {
       return <ConfirmSignUpLayout />
     case 'resetPassword':
       return <ResetPasswordLayout />
+    case 'socialSignIn':
+      return <SocialSigninLayout />
   }
   if (contentId === 'squard') {
     return <TeamLayout />
