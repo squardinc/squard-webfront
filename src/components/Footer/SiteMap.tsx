@@ -4,11 +4,11 @@ import { Link } from 'gatsby'
 import Logo from 'src/assets/Logo.svg'
 import BlueLogo from 'src/assets/Logo_Blue.svg'
 import styles from './Footer.module.scss'
-import { TextDisplay } from '../TextDisplay/TextDisplay'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { FooterWrapper } from './FooterWrapper'
 import { ThemeContext } from 'src/context/ThemeContext'
 
-export const Footer = () => {
+export const SiteMap = () => {
   const { theme } = React.useContext(ThemeContext)
   return (
     <>
@@ -36,11 +36,6 @@ export const Footer = () => {
           </div>
         </div>
       </FooterWrapper>
-      <TextDisplay
-        className={`${styles.copyright} background-theme-footer text-theme-text-sub`}
-      >
-        Copyright ©2020 Squard, Inc. All Rights Reseverd.
-      </TextDisplay>
     </>
   )
 }

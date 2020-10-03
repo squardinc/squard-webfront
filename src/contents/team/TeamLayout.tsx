@@ -61,15 +61,9 @@ const Layout = () => {
   const data = {
     getTeam: {
       id: 'squard',
-      tags: [
-        'チームメイキング',
-        '働き方3.0',
-        'TopDown',
-        'DAO',
-        '離合集散',
-      ],
+      tags: ['チームメイキング', '働き方3.0', 'TopDown', 'DAO', '離合集散'],
       leaderName: '小池駿平',
-      system: 'トップダウン'
+      system: 'トップダウン',
     },
   }
   return (

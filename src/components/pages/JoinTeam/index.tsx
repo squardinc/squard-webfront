@@ -17,7 +17,6 @@ const JoinTeamWrapper = styled.div`
   padding: 80px 10px 20px;
 `
 
-
 const JoinTeamTitle = styled.div`
   display: flex;
   justify-content: center;
@@ -52,7 +51,9 @@ const JoinTeam = (props: JoinTeamProps) => {
   return (
     <JoinTeamWrapper>
       <JoinTeamTitle>
-        <Heading3><TextDisplay>Join The Team</TextDisplay></Heading3>
+        <Heading3>
+          <TextDisplay>Join The Team</TextDisplay>
+        </Heading3>
       </JoinTeamTitle>
       <JoinInfoWrapper>
         <TextJoinTeam>

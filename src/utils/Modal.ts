@@ -21,10 +21,10 @@ const fadeOut = () => {
     element.classList.add('close')
   }
 }
-export const withFadeOut = (closeModal: VoidFunction) => {
+export const withFadeOut = (closeModal: (e: React.MouseEvent) => void) => {
   return (e: React.MouseEvent) => {
     e.stopPropagation()
     fadeOut()
-    setTimeout(() => { closeModal() }, 150)
+    setTimeout(() => { closeModal(e) }, 150)
   }
 }

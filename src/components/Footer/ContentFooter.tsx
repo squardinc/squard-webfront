@@ -3,6 +3,7 @@ import styles from './Footer.module.scss'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { FooterWrapper } from './FooterWrapper'
 import { ThemeContext } from 'src/context/ThemeContext'
+import { SiteMap } from './SiteMap'
 
 interface ContentFooterProps {
   titleSub: string
@@ -22,50 +23,53 @@ export const ContentFooter: React.FC<ContentFooterProps> = ({
 }) => {
   const { theme } = React.useContext(ThemeContext)
   return (
-    <FooterWrapper>
-      <div className={styles.content}>
-        <div className="py-10">
-          <TextDisplay>
-            <div
-              className={`${styles.titleSub} ${
-                theme === 'dark' ? 'text-theme-text-sub' : ''
-                }`}
+    <>
+      <FooterWrapper>
+        <div className={styles.content}>
+          <div className="py-10">
+            <TextDisplay>
+              <div
+                className={`${styles.titleSub} ${
+                  theme === 'dark' ? 'text-theme-text-sub' : ''
+                  }`}
+              >
+                {titleSub}
+              </div>
+              <div className={styles.titleMain}>{titleMain}</div>
+            </TextDisplay>
+            <TextDisplay className={styles.description}>{text}</TextDisplay>
+          </div>
+          {buttonSub ? (
+            <TextDisplay
+              className={`${styles.question} pb-4 text-theme-text-sub`}
             >
-              {titleSub}
-            </div>
-            <div className={styles.titleMain}>{titleMain}</div>
-          </TextDisplay>
-          <TextDisplay className={styles.description}>{text}</TextDisplay>
+              「Prospects」や「Angels」についてはこちら↓
+            </TextDisplay>
+          ) : (
+              ''
+            )}
+          <div onClick={onButtonClick} className="cursor-pointer">
+            <TextDisplay
+              className={`${
+                theme === 'dark'
+                  ? 'border-2 border-yellow bg-black'
+                  : 'background-theme-button'
+                } rounded-full h-12 w-full flex items-center justify-center mr-2`}
+            >
+              <span className="text-theme-text-sub font-bold text-lg">
+                {buttonText}
+              </span>
+            </TextDisplay>
+          </div>
         </div>
-        {buttonSub ? (
-          <TextDisplay
-            className={`${styles.question} pb-4 text-theme-text-sub`}
-          >
-            「Prospects」や「Angels」についてはこちら↓
-          </TextDisplay>
-        ) : (
-            ''
-          )}
-        <div onClick={onButtonClick} className="cursor-pointer">
-          <TextDisplay
-            className={`${
-              theme === 'dark'
-                ? 'border-2 border-yellow bg-black'
-                : 'background-theme-button'
-              } rounded-full h-12 w-full flex items-center justify-center mr-2`}
-          >
-            <span className="text-theme-text-sub font-bold text-lg">
-              {buttonText}
-            </span>
-          </TextDisplay>
-        </div>
-      </div>
-    </FooterWrapper>
+      </FooterWrapper>
+      <SiteMap />
+    </>
   )
 }
 
 export const DefaultFooter: React.FC = () => (
-  <a href='https://www.squard.co.jp/coming-soon/'>
+  <a href="https://www.squard.co.jp/coming-soon/">
     <ContentFooter
       titleSub="What's  the"
       titleMain="Squard?"

@@ -1,16 +1,19 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { IPersonal } from 'src/models/personal'
+import { IPersonal } from 'src/models/person'
 import * as colors from 'src/styles/colors'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import ProfileLink from 'src/assets/profile_link_icon.svg'
 import { getSocialMediaIcon, getTeamIcon } from './utils'
-import { withTheme } from 'src/context/ThemeContext'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { descriminate, toHref } from 'src/utils/SocialMediaDescriminator'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-type PersonalLayoutProps = {
+type PersonPageProps = {
   isLoading: boolean
   personal: IPersonal
+  editProfile: VoidFunction
 }
 
 type StyleCssProps = {
@@ -23,12 +26,6 @@ type StyleCssProps = {
   profileMarginLeft?: number
   profileBorderLeft?: number
 }
-
-const PersonalLayoutWrapper = styled.div`
-  position: relative;
-  background-color: ${(props: StyleCssProps) =>
-    props.backgroundColor ? props.backgroundColor : colors.textWhite};
-`
 
 const ContentWrapper = styled.div`
   padding-bottom: 0;
@@ -85,7 +82,8 @@ const UserCover = styled.div`
       to right bottom,
       rgba(0, 0, 0, 0) 50%,
       ${(props: StyleCssProps) =>
-    props.backgroundColor ? props.backgroundColor : colors.textWhite} 50%
+    props.backgroundColor ? props.backgroundColor : colors.textWhite}
+        50%
     );
     transform: scale(1.1);
     display: block;
@@ -110,8 +108,7 @@ const ProfileImage = styled.div`
   width: 74px;
   border-radius: 10px;
   margin: 3px 0px 0px 3px;
-  background: url(${(props: StyleCssProps) =>
-    props.icon ? props.icon : ''})
+  background: url(${(props: StyleCssProps) => (props.icon ? props.icon : '')})
     no-repeat center center;
   background-size: cover;
 `
@@ -236,29 +233,54 @@ const TeamRoleText = styled.div`
   font-weight: 200;
 `
 
-const PersonalLayout = (props: PersonalLayoutProps) => {
-  const { personal } = props
+const ButtonEditWrapper = styled.div`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #white;
+  cursor: pointer;
+  :hover {
+  }
+`
+
+export const PersonPage = (props: PersonPageProps) => {
+  const { personal, editProfile } = props
 
   return (
-    <PersonalLayoutWrapper backgroundColor={'#ebebeb'}>
+    <>
       <ContentWrapper>
         <UserCoverWrapper>
-          <UserCover backgroundColor={'#ebebeb'}><img src={personal.topImage} /></UserCover>
+          <UserCover backgroundColor={'#ebebeb'}>
+            <img src={personal.topImage} />
+            <ButtonEditWrapper onClick={editProfile}>
+              <FontAwesomeIcon icon={faEdit} size='2x'/>
+            </ButtonEditWrapper>
+          </UserCover>
           <ProfileContainerWrapper>
             <ProfilerImageContainer>
               <ProfileImage icon={personal.icon} />
             </ProfilerImageContainer>
             <NameWrapper>
-              <NameText><TextDisplay>{personal.nameJp}</TextDisplay></NameText>
-              <NameSubText><TextDisplay>{personal.nameEn}</TextDisplay></NameSubText>
-              <NameDescription><TextDisplay>{personal.description}</TextDisplay></NameDescription>
+              <NameText>
+                <TextDisplay>{personal.nameJp}</TextDisplay>
+              </NameText>
+              <NameSubText>
+                <TextDisplay>{personal.nameEn}</TextDisplay>
+              </NameSubText>
+              <NameDescription>
+                <TextDisplay>{personal.introduction}</TextDisplay>
+              </NameDescription>
             </NameWrapper>
             <SocialMediaWrapper>
-              {personal.socialMedia.map((sm) => {
+              {personal.socialMedia.map((url, index) => {
+                const mediaType = descriminate(url)
                 return (
-                  <a href={sm.url} >
-                    <SocialMediaIcon key={sm.url}>
-                      {getSocialMediaIcon(sm.type)}
+                  <a href={toHref(url, mediaType)} key={`${index}_${url}`}>
+                    <SocialMediaIcon>
+                      {getSocialMediaIcon(mediaType)}
                     </SocialMediaIcon>
                   </a>
                 )
@@ -276,7 +298,9 @@ const PersonalLayout = (props: PersonalLayoutProps) => {
                   </TeamRoleText>
                 </TeamRole>
                 <TeamInfo>
-                  <TeamIconWrapper>{getTeamIcon(team.classType)}</TeamIconWrapper>
+                  <TeamIconWrapper>
+                    {getTeamIcon(team.classType)}
+                  </TeamIconWrapper>
                   <TeamTextWrapper>
                     <TeamNameText>
                       <TextDisplay>{team.name}</TextDisplay>
@@ -295,8 +319,6 @@ const PersonalLayout = (props: PersonalLayoutProps) => {
         </TeamWrapper>
       </ContentWrapper>
       <DefaultFooter />
-    </PersonalLayoutWrapper>
+    </>
   )
 }
-
-export default React.memo(withTheme(PersonalLayout, 'gray'))

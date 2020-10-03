@@ -11,7 +11,7 @@ import Complete from 'src/assets/status/complete.svg'
 import { Heading2 } from 'src/components/Heading2/Heading2'
 import { Description } from 'src/components/Description/Description'
 
-interface StatusProps { }
+interface StatusProps {}
 
 export const Status: React.FC<StatusProps> = (props) => {
   const statusList = [

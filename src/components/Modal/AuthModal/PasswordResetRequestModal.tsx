@@ -9,7 +9,9 @@ import { EMailAddressInput } from '../../Input/EMailAddressInput'
 import { validEmaliAddress } from 'src/utils/StringValidator'
 
 type PasswordResetRequestComponentProps = ModalProps & {}
-const PasswordResetRequestComponent: React.FC<PasswordResetRequestComponentProps> = ({ closeModal }) => {
+const PasswordResetRequestComponent: React.FC<PasswordResetRequestComponentProps> = ({
+  closeModal,
+}) => {
   const [email, setEmail] = React.useState('')
   const [succeeded, setSucceeded] = React.useState(false)
   const isSubmittable = React.useMemo(() => validEmaliAddress(email), [email])
@@ -17,10 +19,12 @@ const PasswordResetRequestComponent: React.FC<PasswordResetRequestComponentProps
 
   return (
     <>
-      {!errorMesasge ?
-        <DefaultModalContainer closeModal={closeModal} >
-          <TextDisplay className='text-4xl font-semibold'>Password Reset</TextDisplay>
-          {!succeeded ?
+      {!errorMesasge ? (
+        <DefaultModalContainer closeModal={closeModal}>
+          <TextDisplay className="text-4xl font-semibold">
+            Password Reset
+          </TextDisplay>
+          {!succeeded ? (
             <>
               <TextDisplay className='mb-8 text-sm'>ご登録のメールアドレスを入力してください</TextDisplay>
               <EMailAddressInput value={email} onChange={setEmail} />
@@ -38,14 +42,25 @@ const PasswordResetRequestComponent: React.FC<PasswordResetRequestComponentProps
                   }} />
               </div>
             </>
-            :
+          ) : (
             <>
-              <TextDisplay className='mb-8 text-sm'>{email} 宛にパスワード再設定用リンクを送信しました。</TextDisplay>
-              <RoundButton className='border-2 text-lg' text='OK' onClick={closeModal} />
+              <TextDisplay className="mb-8 text-sm">
+                {email} 宛にパスワード再設定用リンクを送信しました。
+              </TextDisplay>
+              <RoundButton
+                className="border-2 text-lg"
+                text="OK"
+                onClick={closeModal}
+              />
             </>
-          }
-        </DefaultModalContainer >
-        : <ErrorModal message={errorMesasge} closeModal={() => setErrorMessage('')} />}
+          )}
+        </DefaultModalContainer>
+      ) : (
+        <ErrorModal
+          message={errorMesasge}
+          closeModal={() => setErrorMessage('')}
+        />
+      )}
     </>
   )
 }

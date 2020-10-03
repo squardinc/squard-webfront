@@ -7,12 +7,13 @@ import { fadeIn } from 'src/utils/Modal'
 export const DefaultModalContainer: React.FC<ModalProps> = ({
   children,
   closeModal,
+  backgroundColor = 'bg-v-gradient bg-opacity-25',
 }) => {
   React.useEffect(() => {
     fadeIn()
   }, [])
   return (
-    <div className="bg-v-gradient text-white p-6 rounded-xl w-full bg-opacity-25">
+    <div className={`${backgroundColor} text-white p-6 rounded-xl w-full`}>
       <div className="flex justify-end w-full">
         <FontAwesomeIcon
           icon={faTimes}
