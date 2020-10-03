@@ -43,6 +43,7 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
                     )
                     setErrorMessage('')
                   }} />
+                  <RoundButton className='text-white bg-blue-700' text='Facebookで登録' onClick={AuthService.loginWithFacebook} />
               </div>
               <TextDisplay className='mt-10 flex justify-center text-sm'>
                 アカウントをお持ちですか？ログインは
