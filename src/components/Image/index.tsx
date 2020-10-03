@@ -16,7 +16,6 @@ export const Image = React.memo((props: ImageProps) => {
   style.objectFit = props.objectFit || 'contain'
   style.width = props.width || 'auto'
   style.height = props.height || 'auto'
-  console.log(props)
 
   return <ImageWrapper src={props.src} style={style} />
 })

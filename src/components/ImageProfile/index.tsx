@@ -107,7 +107,6 @@ export const ImageProfile = React.memo((props: ImageProfileProps) => {
         }}
       >
         <Camera />
-        {/* <Icon name={'camera'} color={'white'} size={'40px'}/> */}
       </CameraIconAvatarWrapper>
     </ImageProfileWrapper>
   )

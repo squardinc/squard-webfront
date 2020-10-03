@@ -5,7 +5,6 @@ import { getTeamIcon } from '../../../../components/pages/PersonalLayout/utils'
 import { withTheme } from 'src/context/ThemeContext'
 import { IPersonal } from 'src/models/personal'
 import { ImageEditModal } from 'src/components/Modal/ImageEditModal'
-import { PasswordResetModal } from 'src/components/Modal/PasswordResetModal'
 
 import {
   LayoutHorizontal,
@@ -179,7 +178,6 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
         <TabMenuBar
           items={tabMenuData as [ItemProps]}
           onClick={(itemMenu) => {
-            console.log(itemMenu)
             if (itemMenu.title !== 'プロフィールを編集') {
               props.onClose(false)
             }

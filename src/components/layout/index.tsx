@@ -314,7 +314,6 @@ export const LayoutHorizontal = (props: FlexBoxProps) => {
 export const LayoutVertical = (props: FlexBoxProps) => {
   const config = { ...props }
   config.direction = DirectionType.column
-  console.log('config ', config)
   return <FlexBox {...config} />
 }
 
