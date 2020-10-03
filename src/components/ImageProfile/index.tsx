@@ -39,9 +39,9 @@ const CameraIconCoverWrapper = styled.div`
   margin-right: auto;
   width: 150px;
   height: 150px;
-  display:flex;
+  display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
 `
 
 const CameraIconAvatarWrapper = styled.div`
@@ -53,9 +53,9 @@ const CameraIconAvatarWrapper = styled.div`
   margin-right: auto;
   width: 150px;
   height: 150px;
-  display:flex;
+  display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
 
   :hover {
     opacity: 0.5;
@@ -88,20 +88,26 @@ export const ImageProfile = React.memo((props: ImageProfileProps) => {
           style={{ borderRadius: '75px', overflow: 'hidden' }}
         />
       </ImageAvatarWrapper>
-      <CameraIconCoverWrapper onClick={(e) => { e.preventDefault()
-        if (props.onEditImage) {
-          props.onEditImage('cover')
-        }
-      }}>
-          <Camera/>
+      <CameraIconCoverWrapper
+        onClick={(e) => {
+          e.preventDefault()
+          if (props.onEditImage) {
+            props.onEditImage('cover')
+          }
+        }}
+      >
+        <Camera />
       </CameraIconCoverWrapper>
-      <CameraIconAvatarWrapper onClick={(e) => { e.preventDefault()
-        if (props.onEditImage) {
-          props.onEditImage('avatar')
-        }
-      }}>
-      <Camera/>
-          {/* <Icon name={'camera'} color={'white'} size={'40px'}/> */}
+      <CameraIconAvatarWrapper
+        onClick={(e) => {
+          e.preventDefault()
+          if (props.onEditImage) {
+            props.onEditImage('avatar')
+          }
+        }}
+      >
+        <Camera />
+        {/* <Icon name={'camera'} color={'white'} size={'40px'}/> */}
       </CameraIconAvatarWrapper>
     </ImageProfileWrapper>
   )

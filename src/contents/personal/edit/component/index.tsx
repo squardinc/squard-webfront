@@ -150,7 +150,9 @@ const RowInformation = (props: RowInformationProps) => {
         paddingTop: '10px',
       }}
     >
-      <Label><TextDisplay>{props.label}</TextDisplay></Label>
+      <Label>
+        <TextDisplay>{props.label}</TextDisplay>
+      </Label>
       <Input
         contentEditable={true}
         suppressContentEditableWarning={true}
@@ -183,13 +185,18 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
             }
           }}
         />
-        <ImageProfile cover={personal.topImage} avatar={personal.icon} onEditImage={(type: string) => { 
-          if (type === 'cover') {
-            setEditImage(personal.topImage || null)
-          } else {
-            setEditImage(personal.icon || null)
-          }
-          setShowImageEditModal(true)}}/>
+        <ImageProfile
+          cover={personal.topImage}
+          avatar={personal.icon}
+          onEditImage={(type: string) => {
+            if (type === 'cover') {
+              setEditImage(personal.topImage || null)
+            } else {
+              setEditImage(personal.icon || null)
+            }
+            setShowImageEditModal(true)
+          }}
+        />
         <InformationWrapper style={{ width: '100%' }}>
           <RowInformation label={'名前'} value={personal.nameJp} />
           <RowInformation label={'英語表記'} value={personal.nameEn} />
@@ -205,7 +212,7 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
             return (
               <RowInformation
                 key={`${index}_${socialMedia.url}`}
-                label={`リンクURL${index + 1 }`}
+                label={`リンクURL${index + 1}`}
                 value={socialMedia.url}
               />
             )
@@ -265,16 +272,20 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
                 props.onClose(false)
               }}
             >
-                <TextDisplay>キャンセル</TextDisplay>
+              <TextDisplay>キャンセル</TextDisplay>
             </RoundButton>
           </LayoutVertical>
         </BottomWrapper>
       </LayoutVertical>
-      {showImageEditModal && <ImageEditModal title="イメージ編集"
+      {showImageEditModal && (
+        <ImageEditModal
+          title="イメージ編集"
           closeModal={() => {
             setShowImageEditModal(false)
           }}
-          editImage={editImage}/>}
+          editImage={editImage}
+        />
+      )}
     </PersonalEditProfileWrapper>
   )
 }
