@@ -23,7 +23,7 @@ interface PersonalEditProfileProps {
   isLoading: boolean
   personal: IPersonal
   close: VoidFunction
-  savePofile: Function
+  saveProfile: (data: IPersonal) => Promise<void>
   saveImage: Function
 }
 
@@ -48,7 +48,7 @@ const Label = styled.div`
   margin-right: 10px;
   color: gray;
 `
-const Input = styled.div`
+const Input = styled.input`
   width: calc(100% - 120px);
   display: block;
   background: none;
@@ -104,7 +104,7 @@ const TeamPositionText = styled.div`
   font-size: 13px;
 `
 
-const TeamDisplayButton = styled.div`
+const TeamDisplayToggleButton = styled.button`
   text-align: center;
   padding-top: 10px;
   padding-left: 5px;
@@ -136,6 +136,7 @@ interface RowInformationProps {
   type?: string
   label: string
   value?: string
+  onChange: (value: string) => void
 }
 
 const RowInformation = (props: RowInformationProps) => {
@@ -157,12 +158,9 @@ const RowInformation = (props: RowInformationProps) => {
       <Input
         contentEditable={true}
         suppressContentEditableWarning={true}
-        onInput={(e) => {
-          console.log(e.currentTarget.textContent)
-        }}
-      >
-        <TextDisplay>{props.value}</TextDisplay>
-      </Input>
+        value={props.value}
+        onChange={(e) => props.onChange(e.target.value)}
+      />
     </LayoutHorizontal>
   )
 }
@@ -170,7 +168,7 @@ const RowInformation = (props: RowInformationProps) => {
 export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
   props
 ) => {
-  const { personal, close, saveImage, savePofile } = props
+  const { personal, close, saveImage, saveProfile } = props
   const [showTopImageEditModal, setShowTopImageEditModal] = React.useState(false)
   const [showIconEditModal, setShowIconEditModal] = React.useState(false)
   const [topImage, setTopImage] = React.useState<Blob>()
@@ -178,7 +176,6 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
   const [topImagePreviewUrl, setTopImagePreviewUrl] = React.useState<string>('')
   const [iconPreviewUrl, setIconPreviewUrl] = React.useState<string>('')
   const [profile, setProfile] = React.useState<IPersonal>(personal)
-
   return (
     <PersonalEditProfileWrapper>
       <LayoutVertical layoutType={LayoutType.topCenter}>
@@ -197,28 +194,34 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
           onEditTopImage={() => setShowTopImageEditModal(true)}
         />
         <InformationWrapper style={{ width: '100%' }}>
-          <RowInformation label={'名前'} value={profile.nameJp} />
-          <RowInformation label={'英語表記'} value={profile.nameEn} />
-          <RowInformation label={'ID'} value={profile.id} />
+          <RowInformation label={'名前'} value={profile.nameJp} onChange={(value) => { setProfile(Object.assign({}, personal, { nameJp: value })) }} />
+          <RowInformation label={'英語表記'} value={profile.nameEn} onChange={(value) => { setProfile(Object.assign({}, personal, { nameEn: value })) }} />
+          <RowInformation label={'ID'} value={profile.id} onChange={(value) => { setProfile(Object.assign({}, personal, { id: value })) }} />
 
           <RowInformation
             type="text"
             label={'自己紹介'}
-            value={profile.description}
+            value={profile.introduction}
+            onChange={(value) => { setProfile(Object.assign({}, personal, { introduction: value })) }}
           />
 
-          {profile.socialMedia.map((socialMedia, index) => {
+          {profile.socialMedia.filter(Boolean).concat(['']).map((url, index) => {
             return (
               <RowInformation
-                key={`${index}_${socialMedia.url}`}
+                key={`${index}_${url}`}
                 label={`リンクURL${index + 1}`}
-                value={socialMedia.url}
+                value={url}
+                onChange={(value) => {
+                  const newProfile = Object.assign({}, personal)
+                  newProfile.socialMedia[index] = value
+                  setProfile(newProfile)
+                }}
               />
             )
           })}
         </InformationWrapper>
 
-        <TeamWrapper>
+        {/* <TeamWrapper>
           <Label style={{ width: '100%' }}>所属チーム表示切り替え</Label>
 
           {personal.teams.map((team, i) => {
@@ -242,15 +245,15 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
                         </TeamPositionText>
                       </TeamTextWrapper>
                     </LayoutHorizontal>
-                    <TeamDisplayButton>
+                    <TeamDisplayToggleButton>
                       {team.classType === 'Leader' ? '表示中' : '非表示中'}
-                    </TeamDisplayButton>
+                    </TeamDisplayToggleButton>
                   </LayoutHorizontal>
                 </TeamInfo>
               </TeamItemWrapper>
             )
           })}
-        </TeamWrapper>
+        </TeamWrapper> */}
 
         <BottomWrapper>
           <LayoutVertical layoutType={LayoutType.center} style={{ margin: 'auto' }}>
@@ -263,7 +266,7 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
                 const url = await saveImage('top.jpeg', icon, 'image/jpeg')
                 setProfile(Object.assign(profile, { topImage: url }))
               }
-              await savePofile(profile)
+              await saveProfile(profile)
               close()
             }}>
               <TextDisplay>保存</TextDisplay>

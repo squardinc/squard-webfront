@@ -7,6 +7,7 @@ import ProfileLink from 'src/assets/profile_link_icon.svg'
 import EditProfileIcon from 'src/assets/edit.svg'
 import { getSocialMediaIcon, getTeamIcon } from './utils'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { descriminate, toHref } from 'src/utils/SocialMediaDescriminator'
 
 type PersonPageProps = {
   isLoading: boolean
@@ -269,15 +270,16 @@ export const PersonPage = (props: PersonPageProps) => {
                 <TextDisplay>{personal.nameEn}</TextDisplay>
               </NameSubText>
               <NameDescription>
-                <TextDisplay>{personal.description}</TextDisplay>
+                <TextDisplay>{personal.introduction}</TextDisplay>
               </NameDescription>
             </NameWrapper>
             <SocialMediaWrapper>
-              {personal.socialMedia.map((sm, index) => {
+              {personal.socialMedia.map((url, index) => {
+                const mediaType = descriminate(url)
                 return (
-                  <a href={sm.url} key={`${index}_${sm.url}`}>
-                    <SocialMediaIcon key={sm.url}>
-                      {getSocialMediaIcon(sm.type)}
+                  <a href={toHref(url, mediaType)} key={`${index}_${url}`}>
+                    <SocialMediaIcon>
+                      {getSocialMediaIcon(mediaType)}
                     </SocialMediaIcon>
                   </a>
                 )

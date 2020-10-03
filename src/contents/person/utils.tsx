@@ -33,8 +33,8 @@ const MEDIA_MAP: { [key in SocialMediaType]: JSX.Element } = {
   link: Link,
 }
 
-export const getSocialMediaIcon = (name: SocialMediaType) => {
-  const MediaIcon = MEDIA_MAP[name]
+export const getSocialMediaIcon = (type: SocialMediaType) => {
+  const MediaIcon = MEDIA_MAP[type]
   return <MediaIcon width="42px" height="42px" />
 }
 

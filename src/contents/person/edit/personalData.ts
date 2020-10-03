@@ -11,37 +11,16 @@ export const shunpei: IPersonal = {
   nameEn: 'Shunpei Koike',
   topImage: ShunpeiTop,
   icon: ShunpeiIcon,
-  description:
+  introduction:
     'プログラミングにのめり込み、研修時代ついたあだ名はJava(ジャバ)くん。英語力ゼロなのにラスベガスで恐れずスピーチ、金欠なのに世界各国で海外生活。多くの応援により香港科技大学で研究をはじめ、同時にSquard株式会社を設立。ブロックチェーンとバナナシェイクをこよなく愛する男。',
   socialMedia: [
-    {
-      type: 'twitter',
-      url: 'https://twitter.com/shunpei42ba_',
-    },
-    {
-      type: 'facebook',
-      url: 'https://www.facebook.com/shunpei.koike.9',
-    },
-    {
-      type: 'instagram',
-      url: 'https://www.instagram.com/shunpeikoike/',
-    },
-    {
-      type: 'linkedin',
-      url: 'https://www.linkedin.com/in/shumpeikoike',
-    },
-    {
-      type: 'github',
-      url: 'https://github.com/shunp',
-    },
-    {
-      type: 'youtube',
-      url: 'https://www.youtube.com/channel/UCYtIq93DNJ2ReJoLbR6_oVg/',
-    },
-    {
-      type: 'email',
-      url: 'shunpei.koike@squard.co.jp',
-    },
+    'https://twitter.com/shunpei42ba_',
+    'https://www.facebook.com/shunpei.koike.9',
+    'https://www.instagram.com/shunpeikoike/',
+    'https://www.linkedin.com/in/shumpeikoike',
+    'https://github.com/shunp',
+    'https://www.youtube.com/channel/UCYtIq93DNJ2ReJoLbR6_oVg/',
+    'shunpei.koike@squard.co.jp',
   ],
   teams: [
     {

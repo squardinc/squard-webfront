@@ -36,7 +36,7 @@ const EditProfileWrapper = styled.div`
 
 const PersonPageLayout = (props: PersonPageProps) => {
   const { user } = React.useContext(UserContext)
-  const saveProfie = async (data) => console.log(data)
+  const saveProfie = async (data: IPersonal) => console.log(data)
   const { personal } = props
 
   const [openEditProfile, setOpenEditProfile] = useState(false)
