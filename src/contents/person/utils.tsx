@@ -26,16 +26,16 @@ const MEDIA_MAP: { [key in SocialMediaType]: JSX.Element } = {
   twitter: Twitter,
   facebook: Facebook,
   instagram: Instagram,
-  linkedin: Link,
+  linkedin: Linkedin,
   youtube: Youtube,
   zoom: Zoom,
-  github: Link,
+  github: GitHub,
   link: Link,
 }
 
 export const getSocialMediaIcon = (type: SocialMediaType) => {
   const MediaIcon = MEDIA_MAP[type]
-  return <MediaIcon width="42px" height="42px" />
+  return <MediaIcon width="64px" height="64px" />
 }
 
 const teamIconProps = {

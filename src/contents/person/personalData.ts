@@ -27,6 +27,11 @@ export const shunpei: IPersonal = {
       name: 'Squard',
       classType: 'Leader',
       role: 'CEO',
+      entitlements: [
+        'Slackワークスペースへの招待',
+        'GitHub, XDファイルへのアクセス',
+        '定例Zoomミーティングへの招待',
+      ],
     },
   ],
 }

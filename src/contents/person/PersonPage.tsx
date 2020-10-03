@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { IPersonal } from 'src/models/person'
+import { navigate } from 'gatsby'
+import { IPersonal, ITeam } from 'src/models/person'
 import * as colors from 'src/styles/colors'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
-import ProfileLink from 'src/assets/profile_link_icon.svg'
 import { getSocialMediaIcon, getTeamIcon } from './utils'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { TeamModal } from 'src/components/Modal/TeamModal'
 import { descriminate, toHref } from 'src/utils/SocialMediaDescriminator'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -169,6 +170,7 @@ const TeamItemWrapper = styled.div`
   height: 80px;
   margin: 0px 20px 65px 20px;
   border-radius: 10px;
+  cursor: pointer;
 
   :last-child {
     margin-bottom: 0px;
@@ -248,6 +250,7 @@ const ButtonEditWrapper = styled.div`
 
 export const PersonPage = (props: PersonPageProps) => {
   const { personal, editProfile } = props
+  const [selectedTeam, setSelectedTeam] = React.useState<ITeam | null>(null)
 
   return (
     <>
@@ -256,7 +259,7 @@ export const PersonPage = (props: PersonPageProps) => {
           <UserCover backgroundColor={'#ebebeb'}>
             <img src={personal.topImage} />
             <ButtonEditWrapper onClick={editProfile}>
-              <FontAwesomeIcon icon={faEdit} size='2x'/>
+              <FontAwesomeIcon icon={faEdit} size='2x' />
             </ButtonEditWrapper>
           </UserCover>
           <ProfileContainerWrapper>
@@ -291,7 +294,10 @@ export const PersonPage = (props: PersonPageProps) => {
         <TeamWrapper>
           {personal.teams.map((team, i) => {
             return (
-              <TeamItemWrapper key={i}>
+              <TeamItemWrapper
+                key={i}
+                onClick={() => setSelectedTeam(team)}
+              >
                 <TeamRole>
                   <TeamRoleText>
                     <TextDisplay>{team.role}</TextDisplay>
@@ -310,7 +316,6 @@ export const PersonPage = (props: PersonPageProps) => {
                     </TeamPositionText>
                   </TeamTextWrapper>
                   <TeamLinkWrapper>
-                    <ProfileLink />
                   </TeamLinkWrapper>
                 </TeamInfo>
               </TeamItemWrapper>
@@ -318,6 +323,16 @@ export const PersonPage = (props: PersonPageProps) => {
           })}
         </TeamWrapper>
       </ContentWrapper>
+      {selectedTeam && (
+        <TeamModal
+          team={selectedTeam}
+          closeModal={() => setSelectedTeam(null)}
+          onLeaveTeam={() => {
+            setSelectedTeam(null)
+            navigate(`/squard/leave`) // TODO ID書き換え
+          }}
+        />
+      )}
       <DefaultFooter />
     </>
   )
