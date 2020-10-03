@@ -1,6 +1,6 @@
-GATSBY_AWS_APPSYNC_GRAPHQL_ENDPOINT=https://r2e347pxpnd2vmgj7htjbnogo4.appsync-api.ap-northeast-1.amazonaws.com/graphql
-GATSBY_AWS_APPSYNC_API_KEY=da2-da2-xufye4egvbhy7afdcw2matwcni
-GATSBY_AWS_COGNITO_USERPOOL_ID=ap-northeast-1_qpwSvaVOn
-GATSBY_AWS_COGNITO_USERPOOL_CLIENT_ID=68mra18optre0rdojlk5knqjk7
-GATSBY_AWS_COGNITO_USERPOOL_DOMAIN=squard-dev.auth.ap-northeast-1.amazoncognito.com
+GATSBY_AWS_APPSYNC_GRAPHQL_ENDPOINT=https://4v3gfp354baqrgwph6myxdb4am.appsync-api.ap-northeast-1.amazonaws.com/graphql
+GATSBY_AWS_APPSYNC_API_KEY=da2-lg52ie7oava6ja24hkjryj4qem
+GATSBY_AWS_COGNITO_USERPOOL_ID=ap-northeast-1_dwtT5Fz7i
+GATSBY_AWS_COGNITO_USERPOOL_CLIENT_ID=4tlpolsf2l28tl9705qtq5fbee
+GATSBY_AWS_COGNITO_USERPOOL_DOMAIN=squard-prod.auth.ap-northeast-1.amazoncognito.com
 GATSBY_AWS_S3_BUCKET_NAME=495476032358-dev-images
