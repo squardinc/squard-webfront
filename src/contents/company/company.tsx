@@ -30,7 +30,7 @@ const Member: React.FC<MemberProps> = ({ member }) => {
   }
 
   return (
-    <div className="relative mt-1 pr-1 pl-2">
+    <div className={`relative mt-1 px-1 ${styles.memberContainer}`}>
       <img
         src={member.imageUrl}
         className={styles.member + ' ' + getImageTheme(member.color)}
@@ -61,10 +61,11 @@ const Page: React.FC = () => {
       >
         <div className={styles.contactInfo}>
           <p className="pl-10 text-white text-sm text-opacity-75 tracking-widest">
-            Web : <a href='https://www.squard.co.jp'>www.squard.co.jp</a>
+            Web : <a href="https://www.squard.co.jp">www.squard.co.jp</a>
           </p>
           <p className="pt-2 pl-10 text-white text-sm text-opacity-75 tracking-widest">
-            Mail : <a href='mailto:contact@squard.co.jp' >contact@squard.co.jp</a>
+            Mail :{' '}
+            <a href="mailto:contact@squard.co.jp">contact@squard.co.jp</a>
           </p>
         </div>
         <div className={styles.companyInfo}>

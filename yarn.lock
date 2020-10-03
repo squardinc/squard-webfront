@@ -4866,6 +4866,11 @@
   resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
   integrity sha512-EaObqwIvayI5a8dCzhFrjKzVwKLxjoG9T6Ppd5CEo07LRKfQ8Yokw54r5+Wq7FaBQ+yXRvQAYPrHwya1/UFt9g==
 
+"@types/file-saver@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@types/file-saver/-/file-saver-2.0.1.tgz#e18eb8b069e442f7b956d313f4fadd3ef887354e"
+  integrity sha512-g1QUuhYVVAamfCifK7oB7G3aIl4BbOyzDOqVyUfEr4tfBKrXfeH+M+Tg7HKCXSrbzxYdhyCP7z9WbKo0R2hBCw==
+
 "@types/get-port@^3.2.0":
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@types/get-port/-/get-port-3.2.0.tgz#f9e0a11443cc21336470185eae3dfba4495d29bc"
@@ -5125,6 +5130,13 @@
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/@types/react-helmet/-/react-helmet-6.1.0.tgz#af586ed685f4905e2adc7462d1d65ace52beee7a"
   integrity sha512-PYRoU1XJFOzQ3BHvWL1T8iDNbRjdMDJMT5hFmZKGbsq09kbSqJy61uwEpTrbTNWDopVphUT34zUSVLK9pjsgYQ==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-image-crop@^8.1.2":
+  version "8.1.2"
+  resolved "https://registry.yarnpkg.com/@types/react-image-crop/-/react-image-crop-8.1.2.tgz#9c16d6b0b577a63a854a1a895180cc76800e2988"
+  integrity sha512-K6mbw1Bj/CeePnRa78E3v3gIn/EeqlCof5IVU9IPLdzMjOsf+ccn3Qv/vagsH/6eANGgoDz4hG41eJ2kggiuuw==
   dependencies:
     "@types/react" "*"
 
@@ -8073,6 +8085,11 @@ clone-response@1.0.2, clone-response@^1.0.2:
   dependencies:
     mimic-response "^1.0.0"
 
+clsx@^1.0.4:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.1.1.tgz#98b3134f9abbdf23b2663491ace13c5c03a73188"
+  integrity sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==
+
 co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
@@ -8476,7 +8493,7 @@ core-js@^2.4.0:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.11.tgz#38831469f9922bded8ee21c9dc46985e0399308c"
   integrity sha512-5wjnpaT/3dV+XB4borEsnAYQchn00XSgTAWKDkEqv+K8KevjbzmofK6hfJ9TZIlpj2N0xQpazy7PiRQiWHqzWg==
 
-core-js@^3.0.1, core-js@^3.0.4, core-js@^3.6.5:
+core-js@^3.0.1, core-js@^3.0.4, core-js@^3.4.2, core-js@^3.6.5:
   version "3.6.5"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.5.tgz#7395dc273af37fb2e50e9bd3d9fe841285231d1a"
   integrity sha512-vZVEEwZoIsI+vPEuoF9Iqf5H7/M3eeQqWlQnYa8FSKKePuYTf5MWnxb5SDAzCa60b3JBRS5g9b+Dq7b1y/RCrA==
@@ -10985,6 +11002,11 @@ file-loader@^6.0.0:
   dependencies:
     loader-utils "^2.0.0"
     schema-utils "^2.6.5"
+
+file-saver@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/file-saver/-/file-saver-2.0.2.tgz#06d6e728a9ea2df2cce2f8d9e84dfcdc338ec17a"
+  integrity sha512-Wz3c3XQ5xroCxd1G8b7yL0Ehkf0TC9oYC6buPFkNnU9EnaPlifeAFCyCh+iewXTyFRcg0a6j3J7FmJsIhlhBdw==
 
 file-system-cache@^1.0.5:
   version "1.0.5"
@@ -18760,6 +18782,15 @@ react-icons@^3.0.1:
   integrity sha512-JRgiI/vdF6uyBgyZhVyYJUZAop95Sy4XDe/jmT3R/bKliFWpO/uZBwvSjWEdxwzec7SYbEPNPck0Kff2tUGM2Q==
   dependencies:
     camelcase "^5.0.0"
+
+react-image-crop@^8.6.5:
+  version "8.6.5"
+  resolved "https://registry.yarnpkg.com/react-image-crop/-/react-image-crop-8.6.5.tgz#8b67f3571ab3cf85096d9452b1dc1a05c9659a9e"
+  integrity sha512-IbcB8rPWZRClLfJjsB9de4sa7EwoLGnGSQH8BP+pay5uKkvulY6y3L4BGKhcckOt0NnTdUNAkeKICl9yH3wXuA==
+  dependencies:
+    clsx "^1.0.4"
+    core-js "^3.4.2"
+    prop-types "^15.7.2"
 
 react-innertext@^1.1.5:
   version "1.1.5"

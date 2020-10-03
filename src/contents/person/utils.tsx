@@ -18,7 +18,7 @@ import Angels from 'src/assets/classes/angels.svg'
 import Galleries from 'src/assets/classes/galleries.svg'
 import VIP from 'src/assets/classes/vip.svg'
 
-import { SocialMediaType, ClassType } from 'src/models/personal'
+import { SocialMediaType, ClassType } from 'src/models/person'
 
 const MEDIA_MAP: { [key in SocialMediaType]: JSX.Element } = {
   email: Email,
@@ -26,21 +26,21 @@ const MEDIA_MAP: { [key in SocialMediaType]: JSX.Element } = {
   twitter: Twitter,
   facebook: Facebook,
   instagram: Instagram,
-  linkedin: Link,
+  linkedin: Linkedin,
   youtube: Youtube,
   zoom: Zoom,
-  github: Link,
+  github: GitHub,
   link: Link,
 }
 
-export const getSocialMediaIcon = (name: SocialMediaType) => {
-  const MediaIcon = MEDIA_MAP[name]
-  return <MediaIcon width='42px' height='42px' />
+export const getSocialMediaIcon = (type: SocialMediaType) => {
+  const MediaIcon = MEDIA_MAP[type]
+  return <MediaIcon width="64px" height="64px" />
 }
 
 const teamIconProps = {
   width: '3rem',
-  height: '3rem'
+  height: '3rem',
 }
 export const getTeamIcon = (classType: ClassType) => {
   switch (classType) {

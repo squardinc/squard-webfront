@@ -15,7 +15,11 @@ type LoginComponentProps = ModalProps & {
   showSignUpModal: (e: React.MouseEvent) => void
   showPasswordResetRequestModal: (e: React.MouseEvent) => void
 }
-const LoginComponent: React.FC<LoginComponentProps> = ({ closeModal, showSignUpModal, showPasswordResetRequestModal }) => {
+const LoginComponent: React.FC<LoginComponentProps> = ({
+  closeModal,
+  showSignUpModal,
+  showPasswordResetRequestModal,
+}) => {
   const { user, setUser } = React.useContext(UserContext)
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
@@ -23,12 +27,16 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ closeModal, showSignUpM
   const [errorMesasge, setErrorMessage] = React.useState('')
   return (
     <>
-      {!errorMesasge ?
+      {!errorMesasge ? (
         <DefaultModalContainer closeModal={closeModal}>
-          {!user.loggedIn ?
+          {!user.loggedIn ? (
             <>
-              <TextDisplay className='text-4xl font-semibold'>Login</TextDisplay>
-              <TextDisplay className='mb-8 text-sm'>ログイン情報を入力してください</TextDisplay>
+              <TextDisplay className="text-4xl font-semibold">
+                Login
+              </TextDisplay>
+              <TextDisplay className="mb-8 text-sm">
+                ログイン情報を入力してください
+              </TextDisplay>
               <form>
                 <EMailAddressInput value={email} onChange={setEmail} />
                 <PasswordInput value={password} onChange={setPassword} />
@@ -43,29 +51,49 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ closeModal, showSignUpM
                     disabled={!isSubmittable}
                     onClick={async (e) => {
                       AuthService.login(email, password).then(
-                        (user) => { setUser(user) },
-                        (err) => { setErrorMessage(err) }
+                        (user) => {
+                          setUser(user)
+                        },
+                        (err) => {
+                          setErrorMessage(err)
+                        }
                       )
                       e.preventDefault()
                       setErrorMessage('')
-                    }} />
-                  <RoundButton className='text-white bg-blue-700' text='Facebookでログイン' onClick={AuthService.loginWithFacebook} />
+                    }}
+                  />
+                  <RoundButton
+                    className="text-white bg-blue-700"
+                    text="Facebookでログイン"
+                    onClick={AuthService.loginWithFacebook}
+                  />
                 </div>
               </form>
-              <TextDisplay className='mt-10 flex justify-center text-sm'>まだ登録していませんか？新規登録は
-              <button tabIndex={0} className='underline cursor-pointer' onClick={showSignUpModal}>こちら</button>
+              <TextDisplay className="mt-10 flex justify-center text-sm">
+                まだ登録していませんか？新規登録は
+                <button
+                  tabIndex={0}
+                  className="underline cursor-pointer"
+                  onClick={showSignUpModal}
+                >
+                  こちら
+                </button>
               </TextDisplay>
             </>
-            :
+          ) : (
             <CompleteModal
-              title='Login Completed!'
-              footerDescription='ログインしました'
+              title="Login Completed!"
+              footerDescription="ログインしました"
               closeModal={closeModal}
             />
-          }
+          )}
         </DefaultModalContainer>
-        : <ErrorModal message={errorMesasge} closeModal={() => setErrorMessage('')} />
-      }
+      ) : (
+        <ErrorModal
+          message={errorMesasge}
+          closeModal={() => setErrorMessage('')}
+        />
+      )}
     </>
   )
 }

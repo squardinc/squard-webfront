@@ -12,10 +12,6 @@ const SOCIAL_MEDIA = [
 ] as const
 
 export type SocialMediaType = typeof SOCIAL_MEDIA[number]
-interface SocialMediaLink {
-  type: SocialMediaType
-  url: string
-}
 
 const CLASSES = [
   'Leader',
@@ -36,11 +32,12 @@ export type ITeam = {
 }
 
 export type IPersonal = {
+  id?: string
   topImage?: string
   icon?: string
   nameJp: string
   nameEn: string
-  description: string
-  socialMedia: SocialMediaLink[]
+  introduction: string
+  socialMedia: string[]
   teams: ITeam[]
 }

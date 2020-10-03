@@ -1,18 +1,20 @@
-import * as React from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { navigate } from 'gatsby'
-import { IPersonal, ITeam } from 'src/models/personal'
+import { IPersonal, ITeam } from 'src/models/person'
 import * as colors from 'src/styles/colors'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
-import ProfileLink from 'src/assets/profile_link_icon.svg'
 import { getSocialMediaIcon, getTeamIcon } from './utils'
-import { withTheme } from 'src/context/ThemeContext'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { TeamModal } from 'src/components/Modal/TeamModal'
+import { descriminate, toHref } from 'src/utils/SocialMediaDescriminator'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-type PersonalLayoutProps = {
+type PersonPageProps = {
   isLoading: boolean
   personal: IPersonal
+  editProfile: VoidFunction
 }
 
 type StyleCssProps = {
@@ -25,12 +27,6 @@ type StyleCssProps = {
   profileMarginLeft?: number
   profileBorderLeft?: number
 }
-
-const PersonalLayoutWrapper = styled.div`
-  position: relative;
-  background-color: ${(props: StyleCssProps) =>
-    props.backgroundColor ? props.backgroundColor : colors.textWhite};
-`
 
 const ContentWrapper = styled.div`
   padding-bottom: 0;
@@ -87,7 +83,7 @@ const UserCover = styled.div`
       to right bottom,
       rgba(0, 0, 0, 0) 50%,
       ${(props: StyleCssProps) =>
-          props.backgroundColor ? props.backgroundColor : colors.textWhite}
+    props.backgroundColor ? props.backgroundColor : colors.textWhite}
         50%
     );
     transform: scale(1.1);
@@ -239,100 +235,105 @@ const TeamRoleText = styled.div`
   font-weight: 200;
 `
 
-const PersonalLayout = (props: PersonalLayoutProps) => {
-  const { personal } = props
+const ButtonEditWrapper = styled.div`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #white;
+  cursor: pointer;
+  :hover {
+  }
+`
 
+export const PersonPage = (props: PersonPageProps) => {
+  const { personal, editProfile } = props
   const [selectedTeam, setSelectedTeam] = React.useState<ITeam | null>(null)
 
   return (
     <>
-      <PersonalLayoutWrapper backgroundColor={'#ebebeb'}>
-        <ContentWrapper>
-          <UserCoverWrapper>
-            <UserCover backgroundColor={'#ebebeb'}>
-              <img src={personal.topImage} />
-            </UserCover>
-            <ProfileContainerWrapper>
-              <ProfilerImageContainer>
-                <ProfileImage icon={personal.icon} />
-              </ProfilerImageContainer>
-              <NameWrapper>
-                <NameText>
-                  <TextDisplay>{personal.nameJp}</TextDisplay>
-                </NameText>
-                <NameSubText>
-                  <TextDisplay>{personal.nameEn}</TextDisplay>
-                </NameSubText>
-                <NameDescription>
-                  <TextDisplay>{personal.description}</TextDisplay>
-                </NameDescription>
-              </NameWrapper>
-              <SocialMediaWrapper>
-                {personal.socialMedia.map((sm) => {
-                  return (
-                    <a href={sm.url}>
-                      <SocialMediaIcon key={sm.url}>
-                        {getSocialMediaIcon(sm.type)}
-                      </SocialMediaIcon>
-                    </a>
-                  )
-                })}
-              </SocialMediaWrapper>
-            </ProfileContainerWrapper>
-          </UserCoverWrapper>
-          <TeamWrapper>
-            {personal.teams.map((team, i) => {
-              return (
-                <TeamItemWrapper
-                  key={i}
-                  onClick={() => {
-                    setSelectedTeam(team)
-                  }}
-                >
-                  <TeamRole>
-                    <TeamRoleText>
-                      <TextDisplay>{team.role}</TextDisplay>
-                    </TeamRoleText>
-                  </TeamRole>
-                  <TeamInfo>
-                    <TeamIconWrapper>
-                      {getTeamIcon(team.classType)}
-                    </TeamIconWrapper>
-                    <TeamTextWrapper>
-                      <TeamNameText>
-                        <TextDisplay>{team.name}</TextDisplay>
-                      </TeamNameText>
-                      <TeamPositionText>
-                        <TextDisplay>{`- ${team.classType}`}</TextDisplay>
-                      </TeamPositionText>
-                    </TeamTextWrapper>
-                    <TeamLinkWrapper>
-                      <ProfileLink />
-                    </TeamLinkWrapper>
-                  </TeamInfo>
-                </TeamItemWrapper>
-              )
-            })}
-          </TeamWrapper>
-        </ContentWrapper>
-        <DefaultFooter />
-      </PersonalLayoutWrapper>
-      {selectedTeam ? (
+      <ContentWrapper>
+        <UserCoverWrapper>
+          <UserCover backgroundColor={'#ebebeb'}>
+            <img src={personal.topImage} />
+            <ButtonEditWrapper onClick={editProfile}>
+              <FontAwesomeIcon icon={faEdit} size='2x' />
+            </ButtonEditWrapper>
+          </UserCover>
+          <ProfileContainerWrapper>
+            <ProfilerImageContainer>
+              <ProfileImage icon={personal.icon} />
+            </ProfilerImageContainer>
+            <NameWrapper>
+              <NameText>
+                <TextDisplay>{personal.nameJp}</TextDisplay>
+              </NameText>
+              <NameSubText>
+                <TextDisplay>{personal.nameEn}</TextDisplay>
+              </NameSubText>
+              <NameDescription>
+                <TextDisplay>{personal.introduction}</TextDisplay>
+              </NameDescription>
+            </NameWrapper>
+            <SocialMediaWrapper>
+              {personal.socialMedia.map((url, index) => {
+                const mediaType = descriminate(url)
+                return (
+                  <a href={toHref(url, mediaType)} key={`${index}_${url}`}>
+                    <SocialMediaIcon>
+                      {getSocialMediaIcon(mediaType)}
+                    </SocialMediaIcon>
+                  </a>
+                )
+              })}
+            </SocialMediaWrapper>
+          </ProfileContainerWrapper>
+        </UserCoverWrapper>
+        <TeamWrapper>
+          {personal.teams.map((team, i) => {
+            return (
+              <TeamItemWrapper
+                key={i}
+                onClick={() => setSelectedTeam(team)}
+              >
+                <TeamRole>
+                  <TeamRoleText>
+                    <TextDisplay>{team.role}</TextDisplay>
+                  </TeamRoleText>
+                </TeamRole>
+                <TeamInfo>
+                  <TeamIconWrapper>
+                    {getTeamIcon(team.classType)}
+                  </TeamIconWrapper>
+                  <TeamTextWrapper>
+                    <TeamNameText>
+                      <TextDisplay>{team.name}</TextDisplay>
+                    </TeamNameText>
+                    <TeamPositionText>
+                      <TextDisplay>{`- ${team.classType}`}</TextDisplay>
+                    </TeamPositionText>
+                  </TeamTextWrapper>
+                  <TeamLinkWrapper>
+                  </TeamLinkWrapper>
+                </TeamInfo>
+              </TeamItemWrapper>
+            )
+          })}
+        </TeamWrapper>
+      </ContentWrapper>
+      {selectedTeam && (
         <TeamModal
           team={selectedTeam}
-          closeModal={() => {
-            setSelectedTeam(null)
-          }}
+          closeModal={() => setSelectedTeam(null)}
           onLeaveTeam={() => {
             setSelectedTeam(null)
             navigate(`/squard/leave`) // TODO ID書き換え
           }}
-        ></TeamModal>
-      ) : (
-        <></>
+        />
       )}
+      <DefaultFooter />
     </>
   )
 }
-
-export default React.memo(withTheme(PersonalLayout, 'gray'))

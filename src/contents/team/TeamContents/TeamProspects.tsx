@@ -32,7 +32,13 @@ export const TeamProspects: React.FC<TeamPropspectsProps> = ({
         ))}
       </div>
       <div className="py-5">
-        <DefaultButton size="small" text="Prospectsとして参加する" onClick={() => { navigate('join/#PROSPECTS') }} />
+        <DefaultButton
+          size="small"
+          text="Prospectsとして参加する"
+          onClick={() => {
+            navigate('join/#PROSPECTS')
+          }}
+        />
       </div>
     </div>
   )

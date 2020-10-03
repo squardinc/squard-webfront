@@ -34,10 +34,13 @@
   justify-content: space-between;
   font-size: 18px;
   font-weight: bold;
+  white-space: nowrap;
+  margin: 0px 10px;
 }
 .logo {
   width: auto;
   height: 108px;
+  margin: 0px 10px;
 }
 .copyright {
   text-align: center;

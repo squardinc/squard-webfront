@@ -22,6 +22,7 @@ $caption-margin: 10px 10px 10px 5px;
 .withLeftBorder[color='white'] {
   @include withLeftBorder(white);
 }
+
 .withLeftBorder[color='white'][data-font-weight='bold'] {
   @include withLeftBorder(white, bold);
 }
@@ -47,6 +48,7 @@ $caption-margin: 10px 10px 10px 5px;
 .withLeftBorderAndShadow[color='white'] {
   @include withLeftBorder(white);
 }
+
 .withLeftBorderAndShadow[color='white'][data-font-weight='bold'] {
   @include withLeftBorder(white, bold);
 }
@@ -97,22 +99,24 @@ $caption-margin: 10px 10px 10px 5px;
   justify-content: flex-end;
   font-weight: 800;
   font-style: italic;
-  font-size: 60px;
+  font-size: clamp(52px, 16vw, 60px);
   line-height: 2.5rem;
   white-space: nowrap;
   margin: $caption-margin;
 }
+
 .medium {
   display: flex;
   justify-content: flex-end;
   font-weight: 800;
   font-style: Normal;
-  font-size: 3em;
+  font-size: clamp(40px, 13vw, 3em);
   line-height: 2.5rem;
   letter-spacing: 0.03em;
   white-space: nowrap;
   margin: $caption-margin;
 }
+
 .textShadow {
   text-shadow: 5px 5px 0 lightgrey;
 }

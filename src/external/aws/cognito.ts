@@ -1,7 +1,11 @@
 import Amplify, { Auth } from 'aws-amplify'
 import * as AWS from 'aws-sdk'
 import { CognitoUser } from 'amazon-cognito-identity-js'
-import { AWS_COGNITO_USERPOOL_ID, AWS_COGNITO_USERPOOL_CLIENT_ID, AWS_COGNITO_USERPOOL_DOMAIN } from 'src/utils/env'
+import {
+  AWS_COGNITO_USERPOOL_ID,
+  AWS_COGNITO_USERPOOL_CLIENT_ID,
+  AWS_COGNITO_USERPOOL_DOMAIN,
+} from 'src/utils/env'
 
 AWS.config.region = 'ap-northeast-1'
 const configure = (origin: string) => {
@@ -17,9 +21,9 @@ const configure = (origin: string) => {
         redirectSignIn: `${origin}/socialSignIn`,
         redirectSignOut: `${origin}/socialSignIn`,
         clientId: AWS_COGNITO_USERPOOL_CLIENT_ID,
-        responseType: 'code'
-      }
-    }
+        responseType: 'code',
+      },
+    },
   })
 }
 const signUpErrorMessage = (code: string) => {
@@ -34,10 +38,10 @@ export const signUp = async (email: string, password: string, origin: string, cu
   return Auth.signUp({
     username: email,
     password,
-    clientMetadata: { origin, currentPath }
+    clientMetadata: { origin, currentPath },
   }).then(
-    result => result.user,
-    err => Promise.reject(signUpErrorMessage(err?.code))
+    (result) => result.user,
+    (err) => Promise.reject(signUpErrorMessage(err?.code))
   )
 }
 
@@ -50,6 +54,7 @@ const confirmSignUpErrorMessage = (code: string, username: string) => {
 }
 
 export const confirmSignUp = async (username: string, code: string) => {
+  configure(window.location.origin)
   return await Auth.confirmSignUp(username, code).catch(
     async (err) => {
       return Promise.reject(confirmSignUpErrorMessage(err?.code, username))
@@ -60,7 +65,10 @@ export const confirmSignUp = async (username: string, code: string) => {
 export const login = async (email: string, password: string) => {
   return Auth.signIn(email, password).then(
     async () => Auth.currentSession(),
-    () => Promise.reject('ログインできませんでした。入力内容を確認して再度やり直してください。')
+    () =>
+      Promise.reject(
+        'ログインできませんでした。入力内容を確認して再度やり直してください。'
+      )
   )
 }
 

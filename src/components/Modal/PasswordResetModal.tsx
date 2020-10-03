@@ -12,7 +12,11 @@ type PasswordResetComponentProps = ModalProps & {
   username: string
   code: string
 }
-const PasswordResetComponent: React.FC<PasswordResetComponentProps> = ({ username, code, closeModal }) => {
+const PasswordResetComponent: React.FC<PasswordResetComponentProps> = ({
+  username,
+  code,
+  closeModal,
+}) => {
   const { setUser } = React.useContext(UserContext)
   const [password, setPassword] = React.useState('')
   const isSubmittable = React.useMemo(() => password.length >= 8, [password])
@@ -21,10 +25,12 @@ const PasswordResetComponent: React.FC<PasswordResetComponentProps> = ({ usernam
 
   return (
     <>
-      {!errorMesasge ?
-        <DefaultModalContainer closeModal={closeModal} >
-          <TextDisplay className='text-4xl font-semibold'>Password Reset</TextDisplay>
-          {!succeeded ?
+      {!errorMesasge ? (
+        <DefaultModalContainer closeModal={closeModal}>
+          <TextDisplay className="text-4xl font-semibold">
+            Password Reset
+          </TextDisplay>
+          {!succeeded ? (
             <>
               <TextDisplay className='mb-8 text-sm'>再設定するパスワードを入力してください</TextDisplay>
               <PasswordInput value={password} onChange={setPassword} />
@@ -44,15 +50,19 @@ const PasswordResetComponent: React.FC<PasswordResetComponentProps> = ({ usernam
                   }} />
               </div>
             </>
-            :
+          ) : (
             <>
               <TextDisplay className='mb-8 text-sm'>パスワードの再設定が完了しました。</TextDisplay>
               <RoundButton className='border-2 text-lg' text='OK' onClick={closeModal} />
             </>
-          }
-        </DefaultModalContainer >
-        : <ErrorModal message={errorMesasge} closeModal={() => setErrorMessage('')} />
-      }
+          )}
+        </DefaultModalContainer>
+      ) : (
+        <ErrorModal
+          message={errorMesasge}
+          closeModal={() => setErrorMessage('')}
+        />
+      )}
     </>
   )
 }

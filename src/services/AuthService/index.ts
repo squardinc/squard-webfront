@@ -2,7 +2,12 @@ import * as Cognito from 'src/external/aws/cognito'
 import { LoginUserModel } from './LoginUserModel'
 
 class Service {
-  signUp = async (email: string, password: string, origin: string, currentPath: string) => {
+  signUp = async (
+    email: string,
+    password: string,
+    origin: string,
+    currentPath: string
+  ) => {
     const user = await Cognito.signUp(email, password, origin, currentPath)
     return user.getUsername()
   }
@@ -14,10 +19,18 @@ class Service {
     const credential = await Cognito.login(email, password)
     return new LoginUserModel(credential.getIdToken().getJwtToken())
   }
-  resetPasswordRequest = async (email: string, origin: string, currentPath: string) => {
+  resetPasswordRequest = async (
+    email: string,
+    origin: string,
+    currentPath: string
+  ) => {
     return Cognito.resetPasswordRequest(email, origin, currentPath)
   }
-  resetPassword = async (username: string, code: string, newPassword: string) => {
+  resetPassword = async (
+    username: string,
+    code: string,
+    newPassword: string
+  ) => {
     return Cognito.resetPassword(username, code, newPassword)
   }
   loginWithFacebook = () => {
@@ -28,7 +41,7 @@ class Service {
 
   intialize = async () => {
     return Cognito.intialize().then(
-      credential => new LoginUserModel(credential.getIdToken().getJwtToken()),
+      credential => new LoginUserModel(credential.getIdToken().decodePayload().sub, credential.getIdToken().getJwtToken()),
       () => LoginUserModel.guest()
     )
   }

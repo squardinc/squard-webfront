@@ -18,6 +18,8 @@ const JoinTeamWrapper = styled.div`
 `
 
 const JoinTeamTitle = styled.div`
+  display: flex;
+  justify-content: center;
   white-space: nowrap;
 `
 

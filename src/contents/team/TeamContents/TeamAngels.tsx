@@ -32,7 +32,7 @@ export const TeamAngels: React.FC<TeamAngelsProps> = ({
         style="medium"
         subFontWeight=""
       />
-      {angels.length ?
+      {angels.length ? (
         <div className="pt-6">
           <div className={styles.angels}>
             {angels.map((angel, index) => (
@@ -40,9 +40,17 @@ export const TeamAngels: React.FC<TeamAngelsProps> = ({
             ))}
           </div>
         </div>
-        : ''}
+      ) : (
+        ''
+      )}
       <div className="pt-5">
-        <DefaultButton size="small" text="Angelsとして参加する" onClick={() => { navigate('join#ANGELS') }} />
+        <DefaultButton
+          size="small"
+          text="Angelsとして参加する"
+          onClick={() => {
+            navigate('join#ANGELS')
+          }}
+        />
       </div>
     </div>
   )
