@@ -4,11 +4,12 @@ import { IPersonal } from 'src/models/personal'
 import * as colors from 'src/styles/colors'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import ProfileLink from 'src/assets/profile_link_icon.svg'
-import EditProfileIcon from 'src/assets/setting.svg'
+import EditProfileIcon from 'src/assets/edit.svg'
 import { getSocialMediaIcon, getTeamIcon } from './utils'
 import { withTheme } from 'src/context/ThemeContext'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { PersonalEditProfile } from '../../../contents/personal/edit/component/index'
+
 type PersonalLayoutProps = {
   isLoading: boolean
   personal: IPersonal
@@ -293,7 +294,7 @@ const PersonalLayout = (props: PersonalLayoutProps) => {
             <SocialMediaWrapper>
               {personal.socialMedia.map((sm, index) => {
                 return (
-                  <a href={sm.url} key={index}>
+                  <a href={sm.url} key={`${index}_${sm.url}`}>
                     <SocialMediaIcon key={sm.url}>
                       {getSocialMediaIcon(sm.type)}
                     </SocialMediaIcon>

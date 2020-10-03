@@ -4,6 +4,8 @@ import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { getTeamIcon } from '../../../../components/pages/PersonalLayout/utils'
 import { withTheme } from 'src/context/ThemeContext'
 import { IPersonal } from 'src/models/personal'
+import { ImageEditModal } from 'src/components/Modal/ImageEditModal'
+import { PasswordResetModal } from 'src/components/Modal/PasswordResetModal'
 
 import {
   LayoutHorizontal,
@@ -148,7 +150,7 @@ const RowInformation = (props: RowInformationProps) => {
         paddingTop: '10px',
       }}
     >
-      <Label>{props.label}</Label>
+      <Label><TextDisplay>{props.label}</TextDisplay></Label>
       <Input
         contentEditable={true}
         suppressContentEditableWarning={true}
@@ -156,7 +158,7 @@ const RowInformation = (props: RowInformationProps) => {
           console.log(e.currentTarget.textContent)
         }}
       >
-        {props.value}
+        <TextDisplay>{props.value}</TextDisplay>
       </Input>
     </LayoutHorizontal>
   )
@@ -166,6 +168,8 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
   props
 ) => {
   const personal = props.personal
+  const [showImageEditModal, setShowImageEditModal] = React.useState(false)
+  const [editImage, setEditImage] = React.useState<string | null>(null)
 
   return (
     <PersonalEditProfileWrapper>
@@ -179,7 +183,13 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
             }
           }}
         />
-        <ImageProfile cover={personal.topImage} avatar={personal.icon} />
+        <ImageProfile cover={personal.topImage} avatar={personal.icon} onEditImage={(type: string) => { 
+          if (type === 'cover') {
+            setEditImage(personal.topImage || null)
+          } else {
+            setEditImage(personal.icon || null)
+          }
+          setShowImageEditModal(true)}}/>
         <InformationWrapper style={{ width: '100%' }}>
           <RowInformation label={'名前'} value={personal.nameJp} />
           <RowInformation label={'英語表記'} value={personal.nameEn} />
@@ -194,8 +204,8 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
           {personal.socialMedia.map((socialMedia, index) => {
             return (
               <RowInformation
-                key={index}
-                label={`リンクURL${index}`}
+                key={`${index}_${socialMedia.url}`}
+                label={`リンクURL${index + 1 }`}
                 value={socialMedia.url}
               />
             )
@@ -207,7 +217,7 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
 
           {personal.teams.map((team, i) => {
             return (
-              <TeamItemWrapper key={i}>
+              <TeamItemWrapper key={`${i}_${team.name}`}>
                 <TeamInfo>
                   <LayoutHorizontal
                     layoutType={LayoutType.centerBetween}
@@ -247,7 +257,7 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
                 props.onClose(false)
               }}
             >
-              保存
+              <TextDisplay>保存</TextDisplay>
             </RoundButton>
             <RoundButton
               style={{ color: 'white' }}
@@ -255,11 +265,16 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
                 props.onClose(false)
               }}
             >
-              キャンセル
+                <TextDisplay>キャンセル</TextDisplay>
             </RoundButton>
           </LayoutVertical>
         </BottomWrapper>
       </LayoutVertical>
+      {showImageEditModal && <ImageEditModal title="イメージ編集"
+          closeModal={() => {
+            setShowImageEditModal(false)
+          }}
+          editImage={editImage}/>}
     </PersonalEditProfileWrapper>
   )
 }

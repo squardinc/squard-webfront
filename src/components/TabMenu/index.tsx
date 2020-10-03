@@ -8,6 +8,7 @@ import React, {
 } from 'react'
 import styled from 'styled-components'
 import { Icon } from '../Icon'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 
 const ItemWrapper = styled.div`
   display: flex;
@@ -56,7 +57,7 @@ export const Item = (props: ItemProps) => {
           fontWeight: props.isSelected ? 'bold' : 'normal',
         }}
       >
-        {props.title}
+        <TextDisplay>{props.title}</TextDisplay>
       </TitleWrapper>
     </ItemWrapper>
   )

@@ -7,6 +7,7 @@ export interface ImageProfileProps {
   cover?: string
   avatar?: string
   style?: React.CSSProperties
+  onEditImage?: (type: string) => void
 }
 
 const ImageProfileWrapper = styled.div`
@@ -55,6 +56,10 @@ const CameraIconAvatarWrapper = styled.div`
   display:flex;
   justify-content: center;
   align-items:center;
+
+  :hover {
+    opacity: 0.5;
+  }
 `
 
 export const ImageProfile = React.memo((props: ImageProfileProps) => {
@@ -83,10 +88,18 @@ export const ImageProfile = React.memo((props: ImageProfileProps) => {
           style={{ borderRadius: '75px', overflow: 'hidden' }}
         />
       </ImageAvatarWrapper>
-      <CameraIconCoverWrapper>
+      <CameraIconCoverWrapper onClick={(e) => { e.preventDefault()
+        if (props.onEditImage) {
+          props.onEditImage('cover')
+        }
+      }}>
           <Camera/>
       </CameraIconCoverWrapper>
-      <CameraIconAvatarWrapper>
+      <CameraIconAvatarWrapper onClick={(e) => { e.preventDefault()
+        if (props.onEditImage) {
+          props.onEditImage('avatar')
+        }
+      }}>
       <Camera/>
           {/* <Icon name={'camera'} color={'white'} size={'40px'}/> */}
       </CameraIconAvatarWrapper>
