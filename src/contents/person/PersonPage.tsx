@@ -4,10 +4,11 @@ import { IPersonal } from 'src/models/person'
 import * as colors from 'src/styles/colors'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import ProfileLink from 'src/assets/profile_link_icon.svg'
-import EditProfileIcon from 'src/assets/edit.svg'
 import { getSocialMediaIcon, getTeamIcon } from './utils'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { descriminate, toHref } from 'src/utils/SocialMediaDescriminator'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 type PersonPageProps = {
   isLoading: boolean
@@ -236,8 +237,8 @@ const ButtonEditWrapper = styled.div`
   position: absolute;
   top: 15px;
   right: 15px;
-  width: 50px;
-  height: 50px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   box-shadow: 0 0 0 3px #white;
   cursor: pointer;
@@ -255,7 +256,7 @@ export const PersonPage = (props: PersonPageProps) => {
           <UserCover backgroundColor={'#ebebeb'}>
             <img src={personal.topImage} />
             <ButtonEditWrapper onClick={editProfile}>
-              <EditProfileIcon />
+              <FontAwesomeIcon icon={faEdit} size='2x'/>
             </ButtonEditWrapper>
           </UserCover>
           <ProfileContainerWrapper>
