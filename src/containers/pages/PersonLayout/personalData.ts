@@ -1,4 +1,4 @@
-import { IPersonal } from "src/models/personal"
+import { IPersonal } from 'src/models/personal'
 import ShunpeiIcon from 'src/images/temp/personal/shunpei_icon.jpg'
 import ShunpeiTop from 'src/images/temp/personal/shunpei_top.jpg'
 import HirokiIcon from 'src/images/temp/personal/hiroki_icon.png'
@@ -16,31 +16,31 @@ export const shunpei: IPersonal = {
   socialMedia: [
     {
       type: 'twitter',
-      url: 'https://twitter.com/shunpei42ba_'
+      url: 'https://twitter.com/shunpei42ba_',
     },
     {
       type: 'facebook',
-      url: 'https://www.facebook.com/shunpei.koike.9'
+      url: 'https://www.facebook.com/shunpei.koike.9',
     },
     {
       type: 'instagram',
-      url: 'https://www.instagram.com/shunpeikoike/'
+      url: 'https://www.instagram.com/shunpeikoike/',
     },
     {
       type: 'linkedin',
-      url: 'https://www.linkedin.com/in/shumpeikoike'
+      url: 'https://www.linkedin.com/in/shumpeikoike',
     },
     {
       type: 'github',
-      url: 'https://github.com/shunp'
+      url: 'https://github.com/shunp',
     },
     {
       type: 'youtube',
-      url: 'https://www.youtube.com/channel/UCYtIq93DNJ2ReJoLbR6_oVg/'
+      url: 'https://www.youtube.com/channel/UCYtIq93DNJ2ReJoLbR6_oVg/',
     },
     {
       type: 'email',
-      url: 'shunpei.koike@squard.co.jp'
+      url: 'shunpei.koike@squard.co.jp',
     },
   ],
   teams: [
@@ -48,6 +48,11 @@ export const shunpei: IPersonal = {
       name: 'Squard',
       classType: 'Leader',
       role: 'CEO',
+      entitlements: [
+        'Slackワークスペースへの招待',
+        'GitHub, XDファイルへのアクセス',
+        '定例Zoomミーティングへの招待',
+      ],
     },
   ],
 }
@@ -61,19 +66,19 @@ export const hiroki: IPersonal = {
   socialMedia: [
     {
       type: 'facebook',
-      url: 'https://www.facebook.com/hirokimatsui0429'
+      url: 'https://www.facebook.com/hirokimatsui0429',
     },
     {
       type: 'instagram',
-      url: 'https://www.instagram.com/_hirokimatsui/'
+      url: 'https://www.instagram.com/_hirokimatsui/',
     },
     {
       type: 'linkedin',
-      url: 'https://www.linkedin.com/in/hiroki-matsui-36075a1b4/'
+      url: 'https://www.linkedin.com/in/hiroki-matsui-36075a1b4/',
     },
     {
       type: 'email',
-      url: 'matsui@squard.co.jp'
+      url: 'matsui@squard.co.jp',
     },
   ],
   teams: [
@@ -95,15 +100,15 @@ export const akihiro: IPersonal = {
   socialMedia: [
     {
       type: 'facebook',
-      url: 'https://www.facebook.com/akihiro.kimura.18062'
+      url: 'https://www.facebook.com/akihiro.kimura.18062',
     },
     {
       type: 'twitter',
-      url: 'https://twitter.com/golizou3'
+      url: 'https://twitter.com/golizou3',
     },
     {
       type: 'email',
-      url: 'akihiro.kimura@squard.jp'
+      url: 'akihiro.kimura@squard.jp',
     },
   ],
   teams: [
@@ -125,15 +130,15 @@ export const shoya: IPersonal = {
   socialMedia: [
     {
       type: 'facebook',
-      url: 'https://www.facebook.com/shoya.yanagisawa.1'
+      url: 'https://www.facebook.com/shoya.yanagisawa.1',
     },
     {
       type: 'github',
-      url: 'https://github.com/Shoya-Y'
+      url: 'https://github.com/Shoya-Y',
     },
     {
       type: 'email',
-      url: 'shoya.yanagisawa@squard.jp'
+      url: 'shoya.yanagisawa@squard.jp',
     },
   ],
   teams: [

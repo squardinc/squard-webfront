@@ -31,6 +31,8 @@ export type ITeam = {
   name: string
   classType: ClassType
   role: string
+  monthlyPrice?: number
+  entitlements?: string[]
 }
 
 export type IPersonal = {

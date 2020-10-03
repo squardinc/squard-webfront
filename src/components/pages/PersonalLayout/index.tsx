@@ -1,12 +1,14 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { IPersonal } from 'src/models/personal'
+import { navigate } from 'gatsby'
+import { IPersonal, ITeam } from 'src/models/personal'
 import * as colors from 'src/styles/colors'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import ProfileLink from 'src/assets/profile_link_icon.svg'
 import { getSocialMediaIcon, getTeamIcon } from './utils'
 import { withTheme } from 'src/context/ThemeContext'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { TeamModal } from 'src/components/Modal/TeamModal'
 
 type PersonalLayoutProps = {
   isLoading: boolean
@@ -85,7 +87,8 @@ const UserCover = styled.div`
       to right bottom,
       rgba(0, 0, 0, 0) 50%,
       ${(props: StyleCssProps) =>
-    props.backgroundColor ? props.backgroundColor : colors.textWhite} 50%
+          props.backgroundColor ? props.backgroundColor : colors.textWhite}
+        50%
     );
     transform: scale(1.1);
     display: block;
@@ -110,8 +113,7 @@ const ProfileImage = styled.div`
   width: 74px;
   border-radius: 10px;
   margin: 3px 0px 0px 3px;
-  background: url(${(props: StyleCssProps) =>
-    props.icon ? props.icon : ''})
+  background: url(${(props: StyleCssProps) => (props.icon ? props.icon : '')})
     no-repeat center center;
   background-size: cover;
 `
@@ -172,6 +174,7 @@ const TeamItemWrapper = styled.div`
   height: 80px;
   margin: 0px 20px 65px 20px;
   border-radius: 10px;
+  cursor: pointer;
 
   :last-child {
     margin-bottom: 0px;
@@ -239,63 +242,96 @@ const TeamRoleText = styled.div`
 const PersonalLayout = (props: PersonalLayoutProps) => {
   const { personal } = props
 
+  const [selectedTeam, setSelectedTeam] = React.useState<ITeam | null>(null)
+
   return (
-    <PersonalLayoutWrapper backgroundColor={'#ebebeb'}>
-      <ContentWrapper>
-        <UserCoverWrapper>
-          <UserCover backgroundColor={'#ebebeb'}><img src={personal.topImage} /></UserCover>
-          <ProfileContainerWrapper>
-            <ProfilerImageContainer>
-              <ProfileImage icon={personal.icon} />
-            </ProfilerImageContainer>
-            <NameWrapper>
-              <NameText><TextDisplay>{personal.nameJp}</TextDisplay></NameText>
-              <NameSubText><TextDisplay>{personal.nameEn}</TextDisplay></NameSubText>
-              <NameDescription><TextDisplay>{personal.description}</TextDisplay></NameDescription>
-            </NameWrapper>
-            <SocialMediaWrapper>
-              {personal.socialMedia.map((sm) => {
-                return (
-                  <a href={sm.url} >
-                    <SocialMediaIcon key={sm.url}>
-                      {getSocialMediaIcon(sm.type)}
-                    </SocialMediaIcon>
-                  </a>
-                )
-              })}
-            </SocialMediaWrapper>
-          </ProfileContainerWrapper>
-        </UserCoverWrapper>
-        <TeamWrapper>
-          {personal.teams.map((team, i) => {
-            return (
-              <TeamItemWrapper key={i}>
-                <TeamRole>
-                  <TeamRoleText>
-                    <TextDisplay>{team.role}</TextDisplay>
-                  </TeamRoleText>
-                </TeamRole>
-                <TeamInfo>
-                  <TeamIconWrapper>{getTeamIcon(team.classType)}</TeamIconWrapper>
-                  <TeamTextWrapper>
-                    <TeamNameText>
-                      <TextDisplay>{team.name}</TextDisplay>
-                    </TeamNameText>
-                    <TeamPositionText>
-                      <TextDisplay>{`- ${team.classType}`}</TextDisplay>
-                    </TeamPositionText>
-                  </TeamTextWrapper>
-                  <TeamLinkWrapper>
-                    <ProfileLink />
-                  </TeamLinkWrapper>
-                </TeamInfo>
-              </TeamItemWrapper>
-            )
-          })}
-        </TeamWrapper>
-      </ContentWrapper>
-      <DefaultFooter />
-    </PersonalLayoutWrapper>
+    <>
+      <PersonalLayoutWrapper backgroundColor={'#ebebeb'}>
+        <ContentWrapper>
+          <UserCoverWrapper>
+            <UserCover backgroundColor={'#ebebeb'}>
+              <img src={personal.topImage} />
+            </UserCover>
+            <ProfileContainerWrapper>
+              <ProfilerImageContainer>
+                <ProfileImage icon={personal.icon} />
+              </ProfilerImageContainer>
+              <NameWrapper>
+                <NameText>
+                  <TextDisplay>{personal.nameJp}</TextDisplay>
+                </NameText>
+                <NameSubText>
+                  <TextDisplay>{personal.nameEn}</TextDisplay>
+                </NameSubText>
+                <NameDescription>
+                  <TextDisplay>{personal.description}</TextDisplay>
+                </NameDescription>
+              </NameWrapper>
+              <SocialMediaWrapper>
+                {personal.socialMedia.map((sm) => {
+                  return (
+                    <a href={sm.url}>
+                      <SocialMediaIcon key={sm.url}>
+                        {getSocialMediaIcon(sm.type)}
+                      </SocialMediaIcon>
+                    </a>
+                  )
+                })}
+              </SocialMediaWrapper>
+            </ProfileContainerWrapper>
+          </UserCoverWrapper>
+          <TeamWrapper>
+            {personal.teams.map((team, i) => {
+              return (
+                <TeamItemWrapper
+                  key={i}
+                  onClick={() => {
+                    setSelectedTeam(team)
+                  }}
+                >
+                  <TeamRole>
+                    <TeamRoleText>
+                      <TextDisplay>{team.role}</TextDisplay>
+                    </TeamRoleText>
+                  </TeamRole>
+                  <TeamInfo>
+                    <TeamIconWrapper>
+                      {getTeamIcon(team.classType)}
+                    </TeamIconWrapper>
+                    <TeamTextWrapper>
+                      <TeamNameText>
+                        <TextDisplay>{team.name}</TextDisplay>
+                      </TeamNameText>
+                      <TeamPositionText>
+                        <TextDisplay>{`- ${team.classType}`}</TextDisplay>
+                      </TeamPositionText>
+                    </TeamTextWrapper>
+                    <TeamLinkWrapper>
+                      <ProfileLink />
+                    </TeamLinkWrapper>
+                  </TeamInfo>
+                </TeamItemWrapper>
+              )
+            })}
+          </TeamWrapper>
+        </ContentWrapper>
+        <DefaultFooter />
+      </PersonalLayoutWrapper>
+      {selectedTeam ? (
+        <TeamModal
+          team={selectedTeam}
+          closeModal={() => {
+            setSelectedTeam(null)
+          }}
+          onLeaveTeam={() => {
+            setSelectedTeam(null)
+            navigate(`/squard/leave`) // TODO ID書き換え
+          }}
+        ></TeamModal>
+      ) : (
+        <></>
+      )}
+    </>
   )
 }
 
