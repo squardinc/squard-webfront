@@ -6,25 +6,26 @@ import styles from './modal.module.scss'
 Modal.setAppElement('body')
 
 export interface ModalProps {
-  closeModal: VoidFunction
+  closeModal: (e: React.MouseEvent<Element, MouseEvent>) => void
+  backgroundColor?: string
 }
 export const asModal = <T extends ModalProps>(Component: React.FC<T>) => {
   return (props: T) => {
     const closeModal = withFadeOut(props.closeModal)
-  return (
-    <Modal
-      isOpen
-      onRequestClose={closeModal}
-      shouldCloseOnEsc
-      shouldCloseOnOverlayClick
-      portalClassName="relative"
-      overlayClassName="fixed top-0 left-0 right-0 bottom-0 z-50 bg-black bg-opacity-50 blur-3"
-      className={`${styles.content} outline-none modal-transition close`}
-    >
-      <div className="max-w-xs w-full flex justify-center">
-        <Component {...props} closeModal={closeModal} />
-      </div>
-    </Modal>
-  )
-}
+    return (
+      <Modal
+        isOpen
+        onRequestClose={closeModal}
+        shouldCloseOnEsc
+        shouldCloseOnOverlayClick
+        portalClassName="relative"
+        overlayClassName="fixed top-0 left-0 right-0 bottom-0 z-50 bg-black bg-opacity-50 blur-3"
+        className={`${styles.content} outline-none modal-transition close`}
+      >
+        <div className="max-w-xs w-full flex justify-center">
+          <Component {...props} closeModal={closeModal} />
+        </div>
+      </Modal>
+    )
+  }
 }

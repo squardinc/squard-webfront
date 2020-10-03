@@ -12,7 +12,7 @@ import {
   LayoutType,
 } from 'src/components/layout'
 import { TabMenuBar, ItemProps } from 'src/components/TabMenu'
-import { ImageProfile } from 'src/components/ImageProfile'
+import { ImageProfile, ImageType } from 'src/components/ImageProfile'
 
 const PersonalEditProfileWrapper = styled.div`
   padding-bottom: 0px;
@@ -23,6 +23,8 @@ interface PersonalEditProfileProps {
   isLoading: boolean
   personal: IPersonal
   close: VoidFunction
+  savePofile: Function
+  saveImage: Function
 }
 
 const tabMenuData = [
@@ -168,9 +170,14 @@ const RowInformation = (props: RowInformationProps) => {
 export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
   props
 ) => {
-  const personal = props.personal
-  const [showImageEditModal, setShowImageEditModal] = React.useState(false)
-  const [editImage, setEditImage] = React.useState<string | null>(null)
+  const { personal, close, saveImage, savePofile } = props
+  const [showTopImageEditModal, setShowTopImageEditModal] = React.useState(false)
+  const [showIconEditModal, setShowIconEditModal] = React.useState(false)
+  const [topImage, setTopImage] = React.useState<Blob>()
+  const [icon, setIcon] = React.useState<Blob>()
+  const [topImagePreviewUrl, setTopImagePreviewUrl] = React.useState<string>('')
+  const [iconPreviewUrl, setIconPreviewUrl] = React.useState<string>('')
+  const [profile, setProfile] = React.useState<IPersonal>(personal)
 
   return (
     <PersonalEditProfileWrapper>
@@ -179,34 +186,28 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
           items={tabMenuData as [ItemProps]}
           onClick={(itemMenu) => {
             if (itemMenu.title !== 'プロフィールを編集') {
-              props.onClose(false)
+              close()
             }
           }}
         />
         <ImageProfile
-          cover={personal.topImage}
-          avatar={personal.icon}
-          onEditImage={(type: string) => {
-            if (type === 'cover') {
-              setEditImage(personal.topImage || null)
-            } else {
-              setEditImage(personal.icon || null)
-            }
-            setShowImageEditModal(true)
-          }}
+          cover={topImagePreviewUrl || profile.topImage}
+          avatar={iconPreviewUrl || profile.icon}
+          onEditIcon={() => setShowIconEditModal(true)}
+          onEditTopImage={() => setShowTopImageEditModal(true)}
         />
         <InformationWrapper style={{ width: '100%' }}>
-          <RowInformation label={'名前'} value={personal.nameJp} />
-          <RowInformation label={'英語表記'} value={personal.nameEn} />
-          <RowInformation label={'ID'} value={personal.id} />
+          <RowInformation label={'名前'} value={profile.nameJp} />
+          <RowInformation label={'英語表記'} value={profile.nameEn} />
+          <RowInformation label={'ID'} value={profile.id} />
 
           <RowInformation
             type="text"
             label={'自己紹介'}
-            value={personal.description}
+            value={profile.description}
           />
 
-          {personal.socialMedia.map((socialMedia, index) => {
+          {profile.socialMedia.map((socialMedia, index) => {
             return (
               <RowInformation
                 key={`${index}_${socialMedia.url}`}
@@ -252,36 +253,47 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
         </TeamWrapper>
 
         <BottomWrapper>
-          <LayoutVertical
-            layoutType={LayoutType.center}
-            style={{ margin: 'auto' }}
-          >
-            <RoundButton
-              style={{ background: 'white', color: 'black' }}
-              onClick={() => {
-                props.close()
-              }}
-            >
+          <LayoutVertical layoutType={LayoutType.center} style={{ margin: 'auto' }}>
+            <RoundButton style={{ background: 'white', color: 'black' }} onClick={async () => {
+              if (icon) {
+                const url = await saveImage('icon.jpeg', icon, 'image/jpeg')
+                setProfile(Object.assign(profile, { icon: url }))
+              }
+              if (topImage) {
+                const url = await saveImage('top.jpeg', icon, 'image/jpeg')
+                setProfile(Object.assign(profile, { topImage: url }))
+              }
+              await savePofile(profile)
+              close()
+            }}>
               <TextDisplay>保存</TextDisplay>
             </RoundButton>
-            <RoundButton
-              style={{ color: 'white' }}
-              onClick={() => {
-                props.close()
-              }}
-            >
+            <RoundButton style={{ color: 'white' }} onClick={close} >
               <TextDisplay>キャンセル</TextDisplay>
             </RoundButton>
           </LayoutVertical>
         </BottomWrapper>
       </LayoutVertical>
-      {showImageEditModal && (
+      {showTopImageEditModal && (
         <ImageEditModal
-          title="イメージ編集"
+          fileName='top.jpeg'
+          contentType='image/jpeg'
           closeModal={() => {
-            setShowImageEditModal(false)
+            if (typeof window !== 'undefined')
+              window.URL.revokeObjectURL(topImagePreviewUrl)
+            setShowTopImageEditModal(false)
           }}
-          editImage={editImage}
+          setImg={setTopImage}
+          setPreviewUrl={setTopImagePreviewUrl}
+        />
+      )}
+      {showIconEditModal && (
+        <ImageEditModal
+          fileName='icon.jpeg'
+          contentType='image/jpeg'
+          closeModal={() => setShowIconEditModal(false)}
+          setImg={setIcon}
+          setPreviewUrl={setIconPreviewUrl}
         />
       )}
     </PersonalEditProfileWrapper>

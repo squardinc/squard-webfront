@@ -64,3 +64,25 @@ export const RoundButton: React.FC<RoundButtonProps> = ({
     </button>
   )
 }
+
+interface RoundFileUploadButtonProps {
+  text: string
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  className?: string
+  disabled?: boolean
+}
+export const RoundFileUploadButton: React.FC<RoundFileUploadButtonProps> = ({
+  text,
+  onChange,
+  className = '',
+  disabled = false,
+}) => {
+  return (
+    <label className="w-full">
+      <TextDisplay className={`flex justify-center items-center cursor-pointer h-10 w-full my-1 bg-white text-gray-900 rounded-full text-sm ${className}`}>
+        {text}
+      </TextDisplay>
+      <input type="file" className="hidden" onChange={onChange} />
+    </label>
+  )
+}

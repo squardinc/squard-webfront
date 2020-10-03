@@ -3,11 +3,15 @@ import styled from 'styled-components'
 import { Image } from '../Image/index'
 import { Icon } from '../Icon'
 import Camera from '../../assets/icon-camera.svg'
+
+
+export type ImageType = 'cover' | 'avatar'
 export interface ImageProfileProps {
   cover?: string
   avatar?: string
   style?: React.CSSProperties
-  onEditImage?: (type: string) => void
+  onEditIcon: VoidFunction
+  onEditTopImage: VoidFunction
 }
 
 const ImageProfileWrapper = styled.div`
@@ -91,9 +95,7 @@ export const ImageProfile = React.memo((props: ImageProfileProps) => {
       <CameraIconCoverWrapper
         onClick={(e) => {
           e.preventDefault()
-          if (props.onEditImage) {
-            props.onEditImage('cover')
-          }
+          props.onEditTopImage()
         }}
       >
         <Camera />
@@ -101,9 +103,7 @@ export const ImageProfile = React.memo((props: ImageProfileProps) => {
       <CameraIconAvatarWrapper
         onClick={(e) => {
           e.preventDefault()
-          if (props.onEditImage) {
-            props.onEditImage('avatar')
-          }
+          props.onEditIcon()
         }}
       >
         <Camera />

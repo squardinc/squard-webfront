@@ -1,167 +1,101 @@
 import * as React from 'react'
-import { RoundButton } from 'src/components/Button/DefaultButton'
-import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { ModalProps, asModal } from './asModal'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { fadeIn } from 'src/utils/Modal'
-import styled from 'styled-components'
-import Cropper from 'react-easy-crop'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { saveAs } from 'file-saver'
+import { DefaultModalContainer } from './ModalContainer'
+import ReactCrop from 'react-image-crop'
+import 'react-image-crop/dist/ReactCrop.css'
+import { RoundButton, RoundFileUploadButton } from '../Button/DefaultButton'
 
 type ImageEditComponentProps = ModalProps & {
-  title: string
-  editImage: string | null
+  setImg: React.Dispatch<React.SetStateAction<Blob | undefined>>
+  fileName: string
+  contentType: 'image/jpeg'
+  initialCrop?: ReactCrop.Crop
+  setPreviewUrl: Function
 }
 
-type Area = {
-  width: number;
-  height: number;
-  x: number;
-  y: number;
-};
-
-const ImageEditModalWrapper = styled.div`
-  width: calc(100vw - 10px);
-  background-image: linear-gradient(
-    rgba(251, 230, 46, 0.8),
-    rgba(175, 26, 61, 0.8)
-  );
-  color: white;
-  background-opacity: 0.25;
-  padding: 1.5rem;
-  border-radius: 0.25rem;
-`
-
-const ImageEditWrapper = styled.div`
-  height: calc(100vh - 150px);
-  max-height: 500px;
-`
-
-const CloseIcon = styled.div`
-  font-size: 20px;
-
-  :hover {
-    opacity: 0.5;
-  }
-`
-
-const ModalHeader = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-`
-
 const ImageEditComponent: React.FC<ImageEditComponentProps> = ({
+  fileName,
+  contentType,
   closeModal,
-  title,
-  editImage,
+  setImg,
+  initialCrop = {},
+  setPreviewUrl,
 }) => {
-  const [crop, setCrop] = React.useState({ x: 0, y: 0 })
-  const [zoom, setZoom] = React.useState(1)
-  const [croppedAreaPixels, setCcroppedAreaPixels] = React.useState<Area>({
-    width: 0,
-    height: 0,
-    x: 0,
-    y: 0,
-  })
-  const onCropComplete = React.useCallback(
-    (croppedArea: Area, croppedAreaPixels: Area) => {
-      setCcroppedAreaPixels(croppedAreaPixels)
-    },
-    []
-  )
+  const [upImg, setUpImg] = React.useState('')
+  const imgRef = React.useRef<HTMLImageElement>()
+  const [crop, setCrop] = React.useState<ReactCrop.Crop>({ unit: '%', ...initialCrop })
+  const [currentPreviewUrl, setCurrentPreviewUrl] = React.useState('')
+  const onLoad = React.useCallback(img => {
+    imgRef.current = img
+  }, [])
 
-  function saveCroppedImage(crop: Area): Promise<Blob | null> {
+  const createCropPreview = async (image: HTMLImageElement, crop: ReactCrop.Crop, fileName: string) => {
     const canvas = document.createElement('canvas')
-    canvas.width = crop.width
-    canvas.height = crop.height
+    const scaleX = image.naturalWidth / image.width
+    const scaleY = image.naturalHeight / image.height
+    canvas.width = crop.width || 0
+    canvas.height = crop.height || 0
     const ctx = canvas.getContext('2d')
-    const image: CanvasImageSource = document.getElementById(
-      'original_image'
-    ) as CanvasImageSource
-
-    if (ctx && image) {
-      ctx.drawImage(
-        image,
-        crop.x,
-        crop.y,
-        crop.width,
-        crop.height,
-        0,
-        0,
-        crop.width,
-        crop.height
-      )
-    }
-
+    if (!ctx)
+      return
+    ctx.drawImage(image,
+      (crop.x || 0) * scaleX,
+      (crop.y || 0) * scaleY,
+      (crop.width || 0) * scaleX,
+      (crop.height || 0) * scaleY,
+      0, 0,
+      (crop.width || 0),
+      (crop.height || 0)
+    )
     return new Promise((resolve, reject) => {
-      canvas.toBlob(
-        (blob) => {
-          if (blob) {
-            resolve(blob)
-          } else {
-            reject(null)
-          }
-        },
-        'image/png',
-        1
-      )
+      canvas.toBlob(b => {
+        if (!b) {
+          reject(new Error('Canvas is empty'))
+          return
+        }
+        b.name = fileName
+        if (typeof window !== 'undefined') {
+          window.URL.revokeObjectURL(currentPreviewUrl)
+          setCurrentPreviewUrl(window.URL.createObjectURL(b))
+          setImg(b)
+        }
+      }, contentType)
     })
   }
 
-  React.useEffect(() => {
-    fadeIn()
-  }, [])
+  const makeClientCrop = async (crop: ReactCrop.Crop) => {
+    if (imgRef.current && crop.width && crop.height) {
+      createCropPreview(imgRef.current, crop, fileName)
+    }
+  }
+
+  const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const reader = new FileReader()
+      reader.addEventListener('load', () => {
+        setUpImg(reader.result)
+      })
+      reader.readAsDataURL(e.target.files[0])
+    }
+  }
 
   return (
-    <ImageEditModalWrapper>
-      <ModalHeader>
-        <TextDisplay className="text-2xl">{title}</TextDisplay>
-        <CloseIcon>
-          <FontAwesomeIcon
-            icon={faTimes}
-            className="text-white cursor-pointer"
-            onClick={closeModal}
-          />
-        </CloseIcon>
-      </ModalHeader>
-
-      <ImageEditWrapper>
-        <Cropper
-          style={{ containerStyle: { top: '80px', bottom: '90px' } }}
-          image={editImage || ''}
-          crop={crop}
-          zoom={zoom}
-          aspect={4 / 3}
-          onCropChange={setCrop}
-          onCropComplete={onCropComplete}
-          onZoomChange={setZoom}
-        />
-      </ImageEditWrapper>
-      <img
-        style={{ width: '0px', height: '0px' }}
-        id="original_image"
-        src={editImage || ''}
-      />
-      <RoundButton
-        className="border-2 text-lg"
-        text="保存"
-        onClick={async () => {
-          try {
-            const croppedImg: Blob | null = await saveCroppedImage(
-              croppedAreaPixels
-            )
-            if (croppedImg) {
-              saveAs(croppedImg)
-            }
-          } catch (e) {
-            console.log('save image ', e)
-          }
-        }}
-      />
-    </ImageEditModalWrapper>
+    <DefaultModalContainer closeModal={(e) => {
+      if (typeof window !== 'undefined') {
+        window.URL.revokeObjectURL(currentPreviewUrl)
+      }
+      closeModal(e)
+    }
+    }>
+      <ReactCrop src={upImg} onImageLoaded={onLoad} crop={crop} onChange={setCrop} onComplete={makeClientCrop} />
+      <div className="flex flex-col items-center justify-center">
+        {upImg ? <RoundButton text='保存' onClick={(e) => {
+          setPreviewUrl(currentPreviewUrl)
+          closeModal(e)
+        }} className='text-white bg-blue-700' /> : ''}
+        <RoundFileUploadButton className='text-black bg-white' text='画像をアップロード' onChange={onSelectFile} />
+      </div>
+    </DefaultModalContainer >
   )
 }
 
