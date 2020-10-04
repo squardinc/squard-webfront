@@ -52,7 +52,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
           <MenuItem
             text="マイページ"
             SVGIcon={MyPage}
-            onClick={myPageId ? navigateWithMenuClose(myPageId) : showLoginModal}
+            onClick={myPageId ? navigateWithMenuClose(`/${myPageId}`) : showLoginModal}
           />
           <MenuItem text={'チームを作る+'} SVGIcon={AddNewTeam} />
           <MenuItem
