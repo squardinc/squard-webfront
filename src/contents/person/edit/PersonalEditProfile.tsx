@@ -194,15 +194,15 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
           onEditTopImage={() => setShowTopImageEditModal(true)}
         />
         <InformationWrapper style={{ width: '100%' }}>
-          <RowInformation label={'名前'} value={profile.nameJp} onChange={(value) => { setProfile(Object.assign({}, personal, { nameJp: value })) }} />
-          <RowInformation label={'英語表記'} value={profile.nameEn} onChange={(value) => { setProfile(Object.assign({}, personal, { nameEn: value })) }} />
-          <RowInformation label={'ID'} value={profile.id} onChange={(value) => { setProfile(Object.assign({}, personal, { id: value })) }} />
+          <RowInformation label={'名前'} value={profile.nameJp} onChange={(value) => { setProfile(Object.assign({}, profile, { nameJp: value })) }} />
+          <RowInformation label={'英語表記'} value={profile.nameEn} onChange={(value) => { setProfile(Object.assign({}, profile, { nameEn: value })) }} />
+          <RowInformation label={'ID'} value={profile.id} onChange={(value) => { setProfile(Object.assign({}, profile, { id: value })) }} />
 
           <RowInformation
             type="text"
             label={'自己紹介'}
             value={profile.introduction}
-            onChange={(value) => { setProfile(Object.assign({}, personal, { introduction: value })) }}
+            onChange={(value) => { setProfile(Object.assign({}, profile, { introduction: value })) }}
           />
 
           {profile.socialMedia.filter(Boolean).concat(['']).map((url, index) => {
@@ -212,7 +212,7 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
                 label={`リンクURL${index + 1}`}
                 value={url}
                 onChange={(value) => {
-                  const newProfile = Object.assign({}, personal)
+                  const newProfile = Object.assign({}, profile)
                   newProfile.socialMedia[index] = value
                   setProfile(newProfile)
                 }}
@@ -260,11 +260,11 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
             <RoundButton style={{ background: 'white', color: 'black' }} onClick={async () => {
               if (icon) {
                 const url = await saveImage('icon.jpeg', icon, 'image/jpeg')
-                setProfile(Object.assign(profile, { icon: url }))
+                setProfile(Object.assign({}, profile, { icon: url }))
               }
               if (topImage) {
-                const url = await saveImage('top.jpeg', icon, 'image/jpeg')
-                setProfile(Object.assign(profile, { topImage: url }))
+                const url = await saveImage('top.jpeg', topImage, 'image/jpeg')
+                setProfile(Object.assign({}, profile, { topImage: url }))
               }
               await saveProfile(profile)
               close()

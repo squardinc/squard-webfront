@@ -11,6 +11,7 @@ import { descriminate, toHref } from 'src/utils/SocialMediaDescriminator'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ExternalLink } from 'src/components/Link/ExternalLink'
+import Top from 'src/images/temp/team/top.jpg'
 
 type PersonPageProps = {
   isLoading: boolean
@@ -258,14 +259,14 @@ export const PersonPage = (props: PersonPageProps) => {
       <ContentWrapper>
         <UserCoverWrapper>
           <UserCover backgroundColor={'#ebebeb'}>
-            <img src={personal.topImage} />
+            <img src={personal.topImage || Top} style={{ width: '100%', minHeight: '320px' }} />
             <ButtonEditWrapper onClick={editProfile}>
               <FontAwesomeIcon icon={faEdit} size='2x' />
             </ButtonEditWrapper>
           </UserCover>
           <ProfileContainerWrapper>
             <ProfilerImageContainer>
-              <ProfileImage icon={personal.icon} />
+              <ProfileImage icon={personal.icon || Top} />
             </ProfilerImageContainer>
             <NameWrapper>
               <NameText>

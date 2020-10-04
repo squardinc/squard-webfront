@@ -2,6 +2,7 @@ import Amplify, { Auth } from 'aws-amplify'
 import * as AWS from 'aws-sdk'
 import { CognitoUser } from 'amazon-cognito-identity-js'
 import {
+  AWS_COGNITO_IDENTITYPOOL_ID,
   AWS_COGNITO_USERPOOL_ID,
   AWS_COGNITO_USERPOOL_CLIENT_ID,
   AWS_COGNITO_USERPOOL_DOMAIN,
@@ -12,6 +13,7 @@ const configure = (origin: string) => {
   Amplify.configure({
     Auth: {
       region: 'ap-northeast-1',
+      identityPoolId: AWS_COGNITO_IDENTITYPOOL_ID,
       userPoolId: AWS_COGNITO_USERPOOL_ID,
       userPoolWebClientId: AWS_COGNITO_USERPOOL_CLIENT_ID,
       mandatorySignIn: true,
@@ -91,3 +93,5 @@ export const intialize = async () => {
   configure(window.location.origin)
   return Auth.currentSession()
 }
+
+export const currentIdentityId = async () => (await Auth.currentCredentials()).identityId

@@ -35,6 +35,7 @@ const EditProfileWrapper = styled.div`
 `
 
 const PersonPageLayout = (props: PersonPageProps) => {
+  console.log(props)
   const { user } = React.useContext(UserContext)
   const saveProfie = async (data: IPersonal) => console.log(data)
   const { personal } = props
@@ -51,7 +52,7 @@ const PersonPageLayout = (props: PersonPageProps) => {
             isLoading={false}
             personal={personal}
             close={() => setOpenEditProfile(false)}
-            saveImage={async (fileName: string, image: Blob, contentType: string) => uploadImg(user.id, fileName, image, contentType)}
+            saveImage={async (fileName: string, image: Blob, contentType: string) => uploadImg(fileName, image, contentType)}
             saveProfile={saveProfie}
           />
         </EditProfileWrapper>
