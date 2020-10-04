@@ -205,7 +205,7 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
             onChange={(value) => { setProfile(Object.assign({}, profile, { introduction: value })) }}
           />
 
-          {profile.socialMedia.filter(Boolean).concat(['']).map((url, index) => {
+          {profile.links.filter(Boolean).concat(['']).map((url, index) => {
             return (
               <RowInformation
                 key={`${index}_${url}`}
@@ -213,7 +213,7 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
                 value={url}
                 onChange={(value) => {
                   const newProfile = Object.assign({}, profile)
-                  newProfile.socialMedia[index] = value
+                  newProfile.links[index] = value
                   setProfile(newProfile)
                 }}
               />

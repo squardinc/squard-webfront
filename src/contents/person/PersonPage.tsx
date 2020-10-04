@@ -283,7 +283,7 @@ export const PersonPage = (props: PersonPageProps) => {
               </NameDescription>
             </NameWrapper>
             <SocialMediaWrapper>
-              {personal.socialMedia.map((url, index) => {
+              {personal.links.map((url, index) => {
                 const mediaType = descriminate(url)
                 return (
                   <ExternalLink href={toHref(url, mediaType)} key={`${index}_${url}`}>

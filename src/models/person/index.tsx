@@ -1,5 +1,4 @@
 import { GetUserQuery } from "src/types/API"
-import { display } from "src/components/layout"
 
 const SOCIAL_MEDIA = [
   'facebook',
@@ -41,7 +40,7 @@ export type IPersonal = {
   nameJp: string
   nameEn: string
   introduction: string
-  socialMedia: string[]
+  links: string[]
   teams: ITeam[]
 }
 
@@ -59,7 +58,7 @@ export class Person {
     readonly topImage: string = '',
     readonly icon: string = '',
     readonly introduction: string = '',
-    readonly socialMedia: string[] = [],
+    readonly links: string[] = [],
     readonly teams: ITeam[] = [],
   ) { }
 
