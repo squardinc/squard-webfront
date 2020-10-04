@@ -16,6 +16,7 @@ import Top from 'src/images/temp/team/top.jpg'
 type PersonPageProps = {
   isLoading: boolean
   personal: IPersonal
+  profileEditable: boolean
   editProfile: VoidFunction
 }
 
@@ -251,7 +252,7 @@ const ButtonEditWrapper = styled.div`
 `
 
 export const PersonPage = (props: PersonPageProps) => {
-  const { personal, editProfile } = props
+  const { personal, editProfile, profileEditable = false } = props
   const [selectedTeam, setSelectedTeam] = React.useState<ITeam | null>(null)
 
   return (
@@ -260,9 +261,11 @@ export const PersonPage = (props: PersonPageProps) => {
         <UserCoverWrapper>
           <UserCover backgroundColor={'#ebebeb'}>
             <img src={personal.topImage || Top} style={{ width: '100%', minHeight: '320px' }} />
-            <ButtonEditWrapper onClick={editProfile}>
-              <FontAwesomeIcon icon={faEdit} size='2x' />
-            </ButtonEditWrapper>
+            {profileEditable && (
+              <ButtonEditWrapper onClick={editProfile}>
+                <FontAwesomeIcon icon={faEdit} size='2x' />
+              </ButtonEditWrapper>
+            )}
           </UserCover>
           <ProfileContainerWrapper>
             <ProfilerImageContainer>

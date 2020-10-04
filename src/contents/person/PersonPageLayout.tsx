@@ -45,7 +45,12 @@ const PersonPageLayout = (props: PersonPageProps) => {
   return (
     <PersonPageWrapper backgroundColor={'#ebebeb'}>
       {!openEditProfile
-        ? <PersonPage isLoading={false} personal={personal} editProfile={() => setOpenEditProfile(true)} />
+        ?
+        <PersonPage
+          isLoading={false}
+          personal={personal}
+          editProfile={() => setOpenEditProfile(true)} profileEditable={props.personal.id === user.id}
+        />
         :
         <EditProfileWrapper>
           <PersonalEditProfile
