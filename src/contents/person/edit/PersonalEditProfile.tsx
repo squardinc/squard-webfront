@@ -260,11 +260,13 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
             <RoundButton style={{ background: 'white', color: 'black' }} onClick={async () => {
               if (icon) {
                 const url = await saveImage('icon.jpeg', icon, 'image/jpeg')
-                setProfile(Object.assign({}, profile, { icon: url }))
+                profile.icon = url
+                setProfile(Object.assign({}, profile))
               }
               if (topImage) {
                 const url = await saveImage('top.jpeg', topImage, 'image/jpeg')
-                setProfile(Object.assign({}, profile, { topImage: url }))
+                profile.topImage = url
+                setProfile(Object.assign({}, profile))
               }
               await saveProfile(profile)
               close()
