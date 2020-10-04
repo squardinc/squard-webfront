@@ -24,7 +24,6 @@ export const getTeam = /* GraphQL */ `
         teamId
         userId
         createdAt
-        teamClassId
       }
     }
   }
@@ -41,15 +40,10 @@ export const getTeamMembers = /* GraphQL */ `
         introduction
         links
         birthDay
+        topImage
+        icon
       }
       createdAt
-      teamClassId
-      class {
-        teamId
-        classType
-        priceId
-        enabled
-      }
     }
   }
 `;
@@ -68,16 +62,8 @@ export const getUser = /* GraphQL */ `
         tags
         system
       }
-      topImage {
-        bucket
-        region
-        key
-      }
-      icon {
-        bucket
-        region
-        key
-      }
+      topImage
+      icon
     }
   }
 `;

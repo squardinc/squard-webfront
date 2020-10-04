@@ -9,14 +9,8 @@ export type UpdateUserInput = {
   links?: Array< string | null > | null,
   birthDay?: string | null,
   displlayTeams?: Array< string | null > | null,
-  topImage?: PhotoInput | null,
-  icon?: PhotoInput | null,
-};
-
-export type PhotoInput = {
-  bucket: string,
-  region: string,
-  key: string,
+  topImage?: string | null,
+  icon?: string | null,
 };
 
 export enum ClassType {
@@ -49,18 +43,8 @@ export type UpdateUserMutation = {
       tags: Array< string | null > | null,
       system: string | null,
     } | null > | null,
-    topImage:  {
-      __typename: "Photo",
-      bucket: string,
-      region: string,
-      key: string,
-    } | null,
-    icon:  {
-      __typename: "Photo",
-      bucket: string,
-      region: string,
-      key: string,
-    } | null,
+    topImage: string | null,
+    icon: string | null,
   } | null,
 };
 
@@ -107,7 +91,6 @@ export type GetTeamQuery = {
       teamId: string,
       userId: string,
       createdAt: string | null,
-      teamClassId: string,
     } | null > | null,
   } | null,
 };
@@ -129,16 +112,10 @@ export type GetTeamMembersQuery = {
       introduction: string | null,
       links: Array< string | null > | null,
       birthDay: string | null,
+      topImage: string | null,
+      icon: string | null,
     } | null,
     createdAt: string | null,
-    teamClassId: string,
-    class:  {
-      __typename: "TeamClass",
-      teamId: string,
-      classType: ClassType,
-      priceId: string | null,
-      enabled: boolean | null,
-    },
   } | null > | null,
 };
 
@@ -162,17 +139,7 @@ export type GetUserQuery = {
       tags: Array< string | null > | null,
       system: string | null,
     } | null > | null,
-    topImage:  {
-      __typename: "Photo",
-      bucket: string,
-      region: string,
-      key: string,
-    } | null,
-    icon:  {
-      __typename: "Photo",
-      bucket: string,
-      region: string,
-      key: string,
-    } | null,
+    topImage: string | null,
+    icon: string | null,
   } | null,
 };

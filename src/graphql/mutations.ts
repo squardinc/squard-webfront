@@ -17,16 +17,8 @@ export const updateUser = /* GraphQL */ `
         tags
         system
       }
-      topImage {
-        bucket
-        region
-        key
-      }
-      icon {
-        bucket
-        region
-        key
-      }
+      topImage
+      icon
     }
   }
 `;
