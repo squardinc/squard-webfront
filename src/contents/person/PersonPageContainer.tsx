@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { IPersonal, Person } from 'src/models/person'
-import { withTheme } from 'src/context/ThemeContext'
 import { shunpei, hiroki, akihiro, shoya } from './personalData'
 import { navigate } from 'gatsby'
 import PersonPageLayout from './PersonPageLayout'
-import { useQuery, gql } from '@apollo/client'
-import { GetUserQuery } from 'src/types/API'
+import { useQuery, gql, useMutation } from '@apollo/client'
+import { GetUserQuery, UpdateUserMutation, UpdateUserMutationVariables, UpdateUserInput } from 'src/types/API'
 import { getUser } from 'src/graphql/queries'
+import { updateUser } from 'src/graphql/mutations'
 
 interface PersonPageContainerProps {
   id: string
@@ -21,15 +21,31 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({
   id,
 }) => {
   const { loading, error, data } = useQuery<GetUserQuery>(gql(getUser), { variables: { id } })
+  const [requestUpdate, response] = useMutation<UpdateUserMutation, UpdateUserMutationVariables>(gql(updateUser))
   if (error) {
-    // navigate('/')
-    console.log(error)
+    navigate('/')
     return <></>
   }
   if (loading || !data) {
     return <></>
   }
-  return <PersonPageLayout isLoading={false} personal={Person.fromQueryResult(data)} />
+  return <PersonPageLayout
+    isLoading={false}
+    personal={Person.fromQueryResult(data)}
+    update={(profile: UpdateUserInput) => requestUpdate({
+      variables: {
+        input: {
+          nameJp: profile.nameJp,
+          nameEn: profile.nameEn,
+          links: profile.links,
+          introduction: profile.introduction,
+          displlayTeams: profile.displlayTeams,
+          topImage: profile.topImage,
+          icon: profile.icon,
+        }
+      }
+    })}
+  />
 }
 
 export default PersonPageContainer

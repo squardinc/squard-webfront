@@ -34,12 +34,8 @@ const EditProfileWrapper = styled.div`
   width: 100%;
 `
 
-const PersonPageLayout = (props: PersonPageProps) => {
-  console.log(props)
+const PersonPageLayout: React.FC<PersonPageProps> = ({ personal, update }) => {
   const { user } = React.useContext(UserContext)
-  const saveProfie = async (data: IPersonal) => console.log(data)
-  const { personal } = props
-
   const [openEditProfile, setOpenEditProfile] = useState(false)
 
   return (
@@ -49,7 +45,7 @@ const PersonPageLayout = (props: PersonPageProps) => {
         <PersonPage
           isLoading={false}
           personal={personal}
-          editProfile={() => setOpenEditProfile(true)} profileEditable={props.personal.id === user.id}
+          editProfile={() => setOpenEditProfile(true)} profileEditable={personal.id === user.id}
         />
         :
         <EditProfileWrapper>
@@ -58,7 +54,7 @@ const PersonPageLayout = (props: PersonPageProps) => {
             personal={personal}
             close={() => setOpenEditProfile(false)}
             saveImage={async (fileName: string, image: Blob, contentType: string) => uploadImg(fileName, image, contentType)}
-            saveProfile={saveProfie}
+            saveProfile={update}
           />
         </EditProfileWrapper>
       }
