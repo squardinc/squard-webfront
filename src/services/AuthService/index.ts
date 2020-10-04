@@ -37,7 +37,7 @@ class Service {
     Cognito.loginWithFacebook()
   }
 
-  logout = async () => Cognito.logout
+  logout = async () => Cognito.logout()
 
   intialize = async () => {
     return Cognito.intialize().then(
