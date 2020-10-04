@@ -74,7 +74,11 @@ export const NavMenu: React.FC<NavMenuProps> = ({
             SVGIcon={PrivacyPolicy}
             onClick={navigateWithMenuClose('/privacypolicy')}
           />
-          <MenuItem text={'特定商取引法に基づく表記'} SVGIcon={LegalInfo} />
+          <MenuItem
+            text={'特定商取引法に基づく表記'}
+            SVGIcon={LegalInfo}
+            onClick={navigateWithMenuClose('/sctl')}
+          />
           <MenuItem text={'ログアウト'} faIcon={faSignOutAlt} onClick={loggedIn ? logout : undefined} />
         </div>
       </div>
