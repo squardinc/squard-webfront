@@ -1,5 +1,5 @@
 import * as React from 'react'
-import JoinTeam from 'src/components/pages/JoinTeam'
+import JoinTeam from 'src/contents/team/Join/JoinTeamPage'
 import { ITeamClass } from 'src/models/team'
 import { withTheme } from 'src/context/ThemeContext'
 import { useQuery, useMutation, gql } from '@apollo/client'

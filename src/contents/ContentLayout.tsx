@@ -47,7 +47,7 @@ export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId }) => {
       return <SocialSigninLayout />
   }
   if (contentId === 'squard') {
-    return <TeamLayout />
+    return <TeamLayout id={contentId} />
   }
   return <PersonPageContainer id={contentId} />
 }

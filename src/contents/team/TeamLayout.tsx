@@ -56,7 +56,10 @@ const DUMMY_CORE_MEMBERS = [
   },
 ]
 
-const Layout = () => {
+interface TeamLayoutProps {
+  id: string
+}
+const Layout: React.FC<TeamLayoutProps> = ({ id }) => {
   // const { loading, error, data } = useQuery<GetTeamQuery>(gql(getTeam), { variables: { id: 'squard' } })
   const data = {
     getTeam: {
