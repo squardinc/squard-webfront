@@ -17,7 +17,7 @@ class Service {
 
   login = async (email: string, password: string) => {
     const credential = await Cognito.login(email, password)
-    return new LoginUserModel(credential.getIdToken().getJwtToken())
+    return new LoginUserModel(credential.getIdToken().decodePayload().sub, credential.getIdToken().getJwtToken())
   }
   resetPasswordRequest = async (
     email: string,
@@ -37,7 +37,7 @@ class Service {
     Cognito.loginWithFacebook()
   }
 
-  logout = async () => Cognito.logout
+  logout = async () => Cognito.logout()
 
   intialize = async () => {
     return Cognito.intialize().then(
