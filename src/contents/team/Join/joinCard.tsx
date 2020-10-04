@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import * as colors from 'src/styles/colors'
-import { ITeam } from '../../../models/team'
+import { ITeamClass } from 'src/models/team'
 import { addComma } from 'src/utils/NumberFormatter'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import {
@@ -17,7 +17,8 @@ import {
 } from 'src/components/TeamCard'
 
 type JoinCardProps = {
-  team: ITeam
+  team: ITeamClass
+  join: VoidFunction
 }
 
 const JoinCardAnchor = styled.div`
@@ -25,7 +26,7 @@ const JoinCardAnchor = styled.div`
   margin-top: -70px;
 `
 
-const JoinNowText = styled.div`
+const JoinNowButton = styled.button`
   display: inline-block;
   padding: 0 40px;
   border-radius: 30px;
@@ -40,8 +41,7 @@ const JoinNowText = styled.div`
   );
 `
 
-const JoinCard = (props: JoinCardProps) => {
-  const { team } = props
+const JoinCard: React.FC<JoinCardProps> = ({ team, join }) => {
   const formattedPrice = addComma(team.monthlyPrice)
 
   return (
@@ -61,16 +61,16 @@ const JoinCard = (props: JoinCardProps) => {
           </Flag>
         </FlagWrapper>
         <EntitlementsWrapper>
-          {team.entitlements.map((el, i) => (
+          {team.benefits.map((el, i) => (
             <EntitlementText key={i}>
               <TextDisplay>{el}</TextDisplay>
             </EntitlementText>
           ))}
         </EntitlementsWrapper>
         <CardBodyWrapper>
-          <JoinNowText>
+          <JoinNowButton onClick={join} >
             <TextDisplay>今すぐ参加する</TextDisplay>
-          </JoinNowText>
+          </JoinNowButton>
         </CardBodyWrapper>
       </TeamCardWrapper>
     </JoinCardAnchor>
