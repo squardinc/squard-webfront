@@ -260,7 +260,7 @@ export const PersonPage = (props: PersonPageProps) => {
       <ContentWrapper>
         <UserCoverWrapper>
           <UserCover backgroundColor={'#ebebeb'}>
-            <img src={personal.topImage || Top} style={{ width: '100%', minHeight: '320px' }} />
+            <img src={personal.topImage ? encodeURI(personal.topImage) : Top} style={{ width: '100%', minHeight: '320px' }} />
             {profileEditable && (
               <ButtonEditWrapper onClick={editProfile}>
                 <FontAwesomeIcon icon={faEdit} size='2x' />
@@ -269,7 +269,7 @@ export const PersonPage = (props: PersonPageProps) => {
           </UserCover>
           <ProfileContainerWrapper>
             <ProfilerImageContainer>
-              <ProfileImage icon={personal.icon || Top} />
+              <ProfileImage icon={personal.icon ? encodeURI(personal.icon) : Top} />
             </ProfilerImageContainer>
             <NameWrapper>
               <NameText>
