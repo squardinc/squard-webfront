@@ -127,7 +127,7 @@ const Page: React.FC = () => {
             設立 / Founded
           </TextDisplay>
           <TextDisplay className="text-black text-lg font-thin text-center tracking-wider pt-6">
-            2020年8月 / August 2020
+            2020年9月 / September 2020
           </TextDisplay>
         </div>
       </div>
