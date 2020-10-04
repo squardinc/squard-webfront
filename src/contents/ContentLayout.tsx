@@ -9,6 +9,7 @@ import { ConfirmSignUpLayout } from './callback/ConfirmSignUp'
 import { ResetPasswordLayout } from './callback/ResetPassword'
 import { PersonPageContainer } from './person/PersonPageContainer'
 import { SocialSigninLayout } from './SocialSignIn'
+import { SctlPage } from './sctl/SctlPage'
 
 export const StaticPagePaths = [
   'about',
@@ -34,6 +35,8 @@ export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId }) => {
       return <FAQPage />
     case 'privacypolicy':
       return <PrivacyPolicyPage />
+    case 'sctl':
+      return <SctlPage />
     case 'signup':
       return <SignUpLayout />
     case 'confirmSignUp':
