@@ -10,6 +10,7 @@ import { TeamModal } from 'src/components/Modal/TeamModal'
 import { descriminate, toHref } from 'src/utils/SocialMediaDescriminator'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { ExternalLink } from 'src/components/Link/ExternalLink'
 
 type PersonPageProps = {
   isLoading: boolean
@@ -281,11 +282,11 @@ export const PersonPage = (props: PersonPageProps) => {
               {personal.socialMedia.map((url, index) => {
                 const mediaType = descriminate(url)
                 return (
-                  <a href={toHref(url, mediaType)} key={`${index}_${url}`}>
+                  <ExternalLink href={toHref(url, mediaType)} key={`${index}_${url}`}>
                     <SocialMediaIcon>
                       {getSocialMediaIcon(mediaType)}
                     </SocialMediaIcon>
-                  </a>
+                  </ExternalLink>
                 )
               })}
             </SocialMediaWrapper>
