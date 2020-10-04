@@ -95,4 +95,5 @@ export const intialize = async () => {
   return Auth.currentSession()
 }
 
+export const currentIdToken = async () => (await Auth.currentSession()).getIdToken().getJwtToken()
 export const currentIdentityId = async () => (await Auth.currentCredentials()).identityId
