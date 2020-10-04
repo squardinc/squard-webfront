@@ -1,3 +1,4 @@
+GATSBY_AWS_REGION=ap-northeast-1
 GATSBY_AWS_APPSYNC_GRAPHQL_ENDPOINT=https://ywwktxgpdzgd3oueloakcifsga.appsync-api.ap-northeast-1.amazonaws.com/graphql
 GATSBY_AWS_APPSYNC_API_KEY=da2-z2gaax7gqrg7lkqrfsico2xasa
 GATSBY_AWS_COGNITO_IDENTITYPOOL_ID=ap-northeast-1:b3bb2e2f-fe61-4fb5-9fa4-e3165b5cc3b5
