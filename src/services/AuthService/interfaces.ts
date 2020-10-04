@@ -1,5 +1,5 @@
 export interface LoginUser {
   id: string
-  idToken: string
+  pageId: string
   loggedIn: boolean
 }

@@ -1,9 +1,12 @@
 import * as React from 'react'
-import { IPersonal } from 'src/models/person'
+import { IPersonal, Person } from 'src/models/person'
 import { withTheme } from 'src/context/ThemeContext'
 import { shunpei, hiroki, akihiro, shoya } from './personalData'
 import { navigate } from 'gatsby'
 import PersonPageLayout from './PersonPageLayout'
+import { useQuery, gql } from '@apollo/client'
+import { GetUserQuery } from 'src/types/API'
+import { getUser } from 'src/graphql/queries'
 
 interface PersonPageContainerProps {
   id: string
@@ -17,25 +20,16 @@ const getPersonData = (id: string): IPersonal | undefined => {
 export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({
   id,
 }) => {
-  const [isLoading, setIsLoading] = React.useState<boolean>(true)
-  // React.useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setIsLoading(false)
-  //   }, 400)
-  //   return () => clearTimeout(timer)
-  // }, [])
-
-  // if (isLoading) {
-  //   return <></>
-  // }
-  const personData = getPersonData(id)
-  if (!personData) {
-    navigate('/')
+  const { loading, error, data } = useQuery<GetUserQuery>(gql(getUser), { variables: { id } })
+  if (error) {
+    // navigate('/')
+    console.log(error)
     return <></>
   }
-  personData.id = id
-
-  return <PersonPageLayout isLoading={false} personal={personData} />
+  if (loading || !data) {
+    return <></>
+  }
+  return <PersonPageLayout isLoading={false} personal={Person.fromQueryResult(data)} />
 }
 
 export default PersonPageContainer

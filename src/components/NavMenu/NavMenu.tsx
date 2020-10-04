@@ -1,8 +1,7 @@
 import * as React from 'react'
-import { navigateTo } from 'gatsby'
+import { navigate } from 'gatsby'
 import { MenuItem } from './MenuItem'
 import styles from './NavMenu.module.scss'
-import Setting from 'src/assets/settings_icon_jp.svg'
 import MyPage from 'src/assets/my_page_icon_jp.svg'
 import AddNewTeam from 'src/assets/add_new_team_icon.svg'
 import Faq from 'src/assets/faq_icon.svg'
@@ -14,6 +13,7 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
 interface NavMenuProps {
   show: boolean
+  myPageId?: string
   loggedIn: boolean
   hideNavMenu: VoidFunction
   showLoginModal: VoidFunction
@@ -21,6 +21,7 @@ interface NavMenuProps {
 }
 export const NavMenu: React.FC<NavMenuProps> = ({
   show,
+  myPageId = '',
   loggedIn,
   hideNavMenu,
   showLoginModal,
@@ -28,7 +29,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
 }) => {
   const navigateWithMenuClose = (to: string) => () => {
     hideNavMenu()
-    navigateTo(to)
+    navigate(to)
   }
   return (
     <>
@@ -51,7 +52,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
           <MenuItem
             text="マイページ"
             SVGIcon={MyPage}
-            onClick={showLoginModal}
+            onClick={myPageId ? navigateWithMenuClose(myPageId) : showLoginModal}
           />
           <MenuItem text={'チームを作る+'} SVGIcon={AddNewTeam} />
           <MenuItem

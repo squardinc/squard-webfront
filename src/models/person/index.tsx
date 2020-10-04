@@ -1,3 +1,6 @@
+import { GetUserQuery } from "src/types/API"
+import { display } from "src/components/layout"
+
 const SOCIAL_MEDIA = [
   'facebook',
   'twitter',
@@ -15,7 +18,7 @@ export type SocialMediaType = typeof SOCIAL_MEDIA[number]
 
 const CLASSES = [
   'Leader',
-  'Core Members',
+  'CoreMembers',
   'Members',
   'Prospects',
   'Angels',
@@ -40,4 +43,28 @@ export type IPersonal = {
   introduction: string
   socialMedia: string[]
   teams: ITeam[]
+}
+
+interface S3Object {
+  bucket: string
+  region: string
+  key: string
+}
+
+export class Person {
+  constructor(
+    readonly id: string,
+    readonly nameJp: string,
+    readonly nameEn: string = '',
+    readonly topImage: string = '',
+    readonly icon: string = '',
+    readonly introduction: string = '',
+    readonly socialMedia: string[] = [],
+    readonly teams: ITeam[] = [],
+  ) { }
+
+  static fromQueryResult = (result: GetUserQuery) => {
+    const { id, nameJp, nameEn, introduction, links, topImage, icon, displayTeams } = result.getUser
+    return new Person(id, nameJp || '', nameEn || '', topImage || '', icon || '', introduction || '', links || [], displayTeams || [])
+  }
 }
