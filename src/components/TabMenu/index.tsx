@@ -1,70 +1,50 @@
-import React, {
-  memo,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-  useState,
-  useRef,
-} from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { Icon } from '../Icon'
+import { windowWidth } from 'src/styles/sizes'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 
+interface ItemWrapperStyleProps {
+  clickable: boolean
+}
 const ItemWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  cursor: ${(props: ItemWrapperStyleProps) => props.clickable ? 'pointer' : 'default'};
   min-width: 100px;
 `
-const IconWrapper = styled.div``
 const TitleWrapper = styled.div`
   color: white;
   font-weight: bold;
   font-size: 20px;
 `
 export interface ItemProps {
-  id?: string
-  isSelected?: boolean | '' | undefined
-  icon?: string
-  iconSize?: string
   title: string
-  size?: number
-  style?: React.CSSProperties
-  onClick?: (tab: ItemProps) => void
+  fontSize?: number
+  onClick?: VoidFunction
 }
-export const Item = (props: ItemProps) => {
+export const Item: React.FC<ItemProps> = ({ title, onClick, fontSize }) => {
   return (
     <ItemWrapper
-      style={props.style ? props.style : {}}
-      onClick={() => {
-        props.onClick && props.onClick({ ...props })
-      }}
+      clickable={!!onClick}
+      onClick={() => onClick && onClick()}
     >
-      {props.icon && (
-        <IconWrapper>
-          <Icon
-            name={props.icon}
-            size={props.iconSize ? props.iconSize : '24px'}
-            style={{ marginRight: '5px' }}
-          />
-        </IconWrapper>
-      )}
       <TitleWrapper
-        style={{
-          fontSize: props.size ? `${props.size}px` : '13px',
-          fontWeight: props.isSelected ? 'bold' : 'normal',
-        }}
+        style={{ fontSize: fontSize ? `${fontSize}px` : '13px' }}
       >
-        <TextDisplay>{props.title}</TextDisplay>
+        <TextDisplay>{title}</TextDisplay>
       </TitleWrapper>
     </ItemWrapper>
   )
 }
 
 const TabMenuWrapper = styled.div`
+  z-index: 1;
+  max-width: ${windowWidth};
   width: 100%;
+  position: fixed;
+  background-color: black;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -73,32 +53,24 @@ const TabMenuWrapper = styled.div`
 `
 const TabMenuItemWrapper = styled.div``
 interface TabMenuProps {
-  items: [ItemProps]
+  title: string
+  onCancel: VoidFunction
+  onSave: VoidFunction
   style?: React.CSSProperties
-  onClick: (tab: ItemProps) => void
 }
 
-export const TabMenuBar = (props: TabMenuProps) => {
-  const [tabSelected, setTabSelected] = useState({ id: '' } as ItemProps)
-
+export const TabMenuBar: React.FC<TabMenuProps> = ({ title, onCancel, onSave, style = {} }) => {
   return (
-    <TabMenuWrapper style={props.style ? props.style : {}}>
-      {props.items.map((item, index) => {
-        const isSelected = tabSelected.id && tabSelected.id === `${index}`
-        return (
-          <TabMenuItemWrapper key={index}>
-            <Item
-              {...item}
-              id={`${index}`}
-              isSelected={isSelected}
-              onClick={(item) => {
-                setTabSelected(item)
-                props.onClick(item)
-              }}
-            />
-          </TabMenuItemWrapper>
-        )
-      })}
-    </TabMenuWrapper>
+    <TabMenuWrapper style={style}>
+      <TabMenuItemWrapper >
+        <Item title='キャンセル' onClick={onCancel} />
+      </TabMenuItemWrapper>
+      <TabMenuItemWrapper >
+        <Item title={title} />
+      </TabMenuItemWrapper>
+      <TabMenuItemWrapper >
+        <Item title='保存' onClick={onSave} />
+      </TabMenuItemWrapper>
+    </TabMenuWrapper >
   )
 }

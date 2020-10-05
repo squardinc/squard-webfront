@@ -1,10 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import TextareaAutosize from 'react-textarea-autosize'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { getTeamIcon } from 'src/contents/person/utils'
 import { withTheme } from 'src/context/ThemeContext'
 import { IPersonal } from 'src/models/person'
-import { ImageEditModal } from 'src/components/Modal/ImageEditModal'
 
 import {
   LayoutHorizontal,
@@ -12,7 +12,8 @@ import {
   LayoutType,
 } from 'src/components/layout'
 import { TabMenuBar, ItemProps } from 'src/components/TabMenu'
-import { ImageProfile, ImageType } from 'src/components/ImageProfile'
+import { ImageProfileEdit } from 'src/components/ImageProfile'
+import Top from 'src/images/temp/team/top.jpg'
 
 const PersonalEditProfileWrapper = styled.div`
   padding-bottom: 0px;
@@ -41,6 +42,7 @@ const tabMenuData = [
 
 const InformationWrapper = styled.div`
   width: 100%;
+  position: absolute:
   border-top: 1px solid gray;
 `
 const Label = styled.div`
@@ -53,6 +55,15 @@ const Input = styled.input`
   display: block;
   background: none;
   color: white;
+`
+const TextareaWrapper = styled.div`
+  width: calc(100% - 120px);
+  .textarea{
+    width: 100%;
+    display: block;
+    background: none;
+    color: white;
+  }
 `
 
 const TeamWrapper = styled.div`
@@ -132,14 +143,15 @@ const RoundButton = styled.button`
   margin-bottom: 0px;
 `
 
-interface RowInformationProps {
-  type?: string
+interface RowInputProps {
   label: string
   value?: string
   onChange: (value: string) => void
+  onFocus?: (value: string) => void
+  onBlur?: (value: string) => void
 }
 
-const RowInformation = (props: RowInformationProps) => {
+const HorizontalLayoutWrapper: React.FC = ({ children }) => {
   return (
     <LayoutHorizontal
       layoutType={LayoutType.centerLeft}
@@ -152,73 +164,145 @@ const RowInformation = (props: RowInformationProps) => {
         paddingTop: '10px',
       }}
     >
+      {children}
+    </LayoutHorizontal>
+  )
+}
+const RowInput: React.FC<RowInputProps> = ({ label, value = '', onChange, onBlur, onFocus }) => {
+  return (
+    <HorizontalLayoutWrapper>
       <Label>
-        <TextDisplay>{props.label}</TextDisplay>
+        <TextDisplay>{label}</TextDisplay>
       </Label>
       <Input
         contentEditable={true}
         suppressContentEditableWarning={true}
-        value={props.value}
-        onChange={(e) => props.onChange(e.target.value)}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        onFocus={(e) => {
+          if (onFocus)
+            onFocus(e.target.value)
+        }}
+        onBlur={(e) => {
+          if (onBlur)
+            onBlur(e.target.value)
+        }}
       />
-    </LayoutHorizontal>
+    </HorizontalLayoutWrapper>
+  )
+}
+const RowTextarea: React.FC<RowInputProps> = ({ label, value = '', onChange, onBlur, onFocus }) => {
+  return (
+    <HorizontalLayoutWrapper>
+      <Label>
+        <TextDisplay>{label}</TextDisplay>
+      </Label>
+      <TextareaWrapper>
+        <TextareaAutosize
+          className='textarea'
+          contentEditable={true}
+          suppressContentEditableWarning={true}
+          value={value}
+          onChange={(e) => {
+            onChange(e.target.value)
+          }}
+          onFocus={(e) => {
+            if (onFocus)
+              onFocus(e.target.value)
+          }}
+          onBlur={(e) => {
+            if (onBlur)
+              onBlur(e.target.value)
+          }}
+        />
+      </TextareaWrapper>
+    </HorizontalLayoutWrapper>
+  )
+}
+interface LinksInputProps {
+  values?: string[]
+  onChange: (value: string, index: number) => void
+}
+
+const LinksInput: React.FC<LinksInputProps> = ({ values = [''], onChange }) => {
+  const [currentIndex, setCurrentindex] = React.useState(values.length + 1)
+  const [inputValue, setInputValue] = React.useState('')
+  return (
+    <>
+      {values.filter(Boolean).concat(['']).map((url, index) => {
+        return (
+          <RowInput
+            key={`${index}_${url}`}
+            label={`リンクURL${index + 1}`}
+            value={index === currentIndex ? inputValue : url}
+            onChange={(value) => setInputValue(value)}
+            onFocus={(value) => {
+              setCurrentindex(index)
+              setInputValue(value)
+            }}
+            onBlur={(value) => {
+              onChange(value, currentIndex)
+            }}
+          />
+        )
+      })}
+    </>
   )
 }
 
-export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
-  props
-) => {
-  const { personal, close, saveImage, saveProfile } = props
-  const [showTopImageEditModal, setShowTopImageEditModal] = React.useState(false)
-  const [showIconEditModal, setShowIconEditModal] = React.useState(false)
+export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
+  personal, close, saveImage, saveProfile
+}) => {
   const [topImage, setTopImage] = React.useState<Blob>()
   const [icon, setIcon] = React.useState<Blob>()
-  const [topImagePreviewUrl, setTopImagePreviewUrl] = React.useState<string>('')
-  const [iconPreviewUrl, setIconPreviewUrl] = React.useState<string>('')
   const [profile, setProfile] = React.useState<IPersonal>(personal)
+  const onSaveProfile = async () => {
+    if (icon) {
+      const url = await saveImage('icon.jpeg', icon, 'image/jpeg')
+      profile.icon = url
+      setProfile(Object.assign({}, profile))
+    }
+    if (topImage) {
+      const url = await saveImage('top.jpeg', topImage, 'image/jpeg')
+      profile.topImage = url
+      setProfile(Object.assign({}, profile))
+    }
+    await saveProfile(profile)
+    close()
+  }
   return (
     <PersonalEditProfileWrapper>
+      <TabMenuBar
+        title='プロフィールを編集'
+        onCancel={close}
+        onSave={onSaveProfile}
+      />
       <LayoutVertical layoutType={LayoutType.topCenter}>
-        <TabMenuBar
-          items={tabMenuData as [ItemProps]}
-          onClick={(itemMenu) => {
-            if (itemMenu.title !== 'プロフィールを編集') {
-              close()
-            }
-          }}
-        />
-        <ImageProfile
-          cover={topImagePreviewUrl || profile.topImage}
-          avatar={iconPreviewUrl || profile.icon}
-          onEditIcon={() => setShowIconEditModal(true)}
-          onEditTopImage={() => setShowTopImageEditModal(true)}
+        <ImageProfileEdit
+          topImage={profile.topImage || Top}
+          icon={profile.icon || Top}
+          setTopImage={setTopImage}
+          setIcon={setIcon}
         />
         <InformationWrapper style={{ width: '100%' }}>
-          <RowInformation label={'名前'} value={profile.nameJp} onChange={(value) => { setProfile(Object.assign({}, personal, { nameJp: value })) }} />
-          <RowInformation label={'英語表記'} value={profile.nameEn} onChange={(value) => { setProfile(Object.assign({}, personal, { nameEn: value })) }} />
-          <RowInformation label={'ID'} value={profile.id} onChange={(value) => { setProfile(Object.assign({}, personal, { id: value })) }} />
+          <RowInput label={'名前'} value={profile.nameJp} onChange={(value) => { setProfile(Object.assign({}, profile, { nameJp: value })) }} />
+          <RowInput label={'英語表記'} value={profile.nameEn} onChange={(value) => { setProfile(Object.assign({}, profile, { nameEn: value })) }} />
+          {/* <RowInput label={'ID'} value={profile.id} onChange={(value) => { setProfile(Object.assign({}, profile, { id: value })) }} /> */}
 
-          <RowInformation
-            type="text"
+          <RowTextarea
             label={'自己紹介'}
             value={profile.introduction}
-            onChange={(value) => { setProfile(Object.assign({}, personal, { introduction: value })) }}
+            onChange={(value) => { setProfile(Object.assign({}, profile, { introduction: value })) }}
           />
 
-          {profile.socialMedia.filter(Boolean).concat(['']).map((url, index) => {
-            return (
-              <RowInformation
-                key={`${index}_${url}`}
-                label={`リンクURL${index + 1}`}
-                value={url}
-                onChange={(value) => {
-                  const newProfile = Object.assign({}, personal)
-                  newProfile.socialMedia[index] = value
-                  setProfile(newProfile)
-                }}
-              />
-            )
-          })}
+          <LinksInput
+            values={profile.links}
+            onChange={(value, index) => {
+              const links = [...profile.links]
+              links[index] = value
+              setProfile({ ...profile, links })
+            }}
+          />
         </InformationWrapper>
 
         {/* <TeamWrapper>
@@ -257,18 +341,7 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
 
         <BottomWrapper>
           <LayoutVertical layoutType={LayoutType.center} style={{ margin: 'auto' }}>
-            <RoundButton style={{ background: 'white', color: 'black' }} onClick={async () => {
-              if (icon) {
-                const url = await saveImage('icon.jpeg', icon, 'image/jpeg')
-                setProfile(Object.assign(profile, { icon: url }))
-              }
-              if (topImage) {
-                const url = await saveImage('top.jpeg', icon, 'image/jpeg')
-                setProfile(Object.assign(profile, { topImage: url }))
-              }
-              await saveProfile(profile)
-              close()
-            }}>
+            <RoundButton style={{ background: 'white', color: 'black' }} onClick={onSaveProfile}>
               <TextDisplay>保存</TextDisplay>
             </RoundButton>
             <RoundButton style={{ color: 'white' }} onClick={close} >
@@ -277,28 +350,6 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = (
           </LayoutVertical>
         </BottomWrapper>
       </LayoutVertical>
-      {showTopImageEditModal && (
-        <ImageEditModal
-          fileName='top.jpeg'
-          contentType='image/jpeg'
-          closeModal={() => {
-            if (typeof window !== 'undefined')
-              window.URL.revokeObjectURL(topImagePreviewUrl)
-            setShowTopImageEditModal(false)
-          }}
-          setImg={setTopImage}
-          setPreviewUrl={setTopImagePreviewUrl}
-        />
-      )}
-      {showIconEditModal && (
-        <ImageEditModal
-          fileName='icon.jpeg'
-          contentType='image/jpeg'
-          closeModal={() => setShowIconEditModal(false)}
-          setImg={setIcon}
-          setPreviewUrl={setIconPreviewUrl}
-        />
-      )}
     </PersonalEditProfileWrapper>
   )
 }

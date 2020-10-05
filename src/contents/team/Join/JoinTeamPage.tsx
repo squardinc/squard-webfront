@@ -1,20 +1,21 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { Heading3 } from 'src/vendor/heading3'
-import { ITeam } from 'src/models/team'
+import { ITeamClass } from 'src/models/team'
 import JoinCard from './joinCard'
 import * as colors from 'src/styles/colors'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 
 type JoinTeamProps = {
+  requestSubscription: (teamClassId: string) => Promise<void>
   isLoading: boolean
-  teamData: ITeam[]
+  teamData: ITeamClass[]
 }
 
 const JoinTeamWrapper = styled.div`
   background: ${colors.textWhite};
-  padding: 20px;
+  padding: 20px 10px;
 `
 
 const JoinTeamTitle = styled.div`
@@ -24,7 +25,7 @@ const JoinTeamTitle = styled.div`
 `
 
 const JoinInfoWrapper = styled.div`
-  padding: 20px 30px;
+  padding: 20px 10px;
 `
 
 const TextJoinTeam = styled.div`
@@ -52,7 +53,7 @@ const CardWrapper = styled.div`
   }
 `
 
-const JoinTeam = (props: JoinTeamProps) => {
+const JoinTeam: React.FC<JoinTeamProps> = ({ requestSubscription, teamData }) => {
   return (
     <JoinTeamWrapper>
       <JoinTeamTitle>
@@ -71,10 +72,20 @@ const JoinTeam = (props: JoinTeamProps) => {
         </TextDesciption>
       </JoinInfoWrapper>
       <div>
-        {props.teamData.map((team: ITeam, i) => {
+        {teamData.map((team: ITeamClass, i) => {
           return (
             <CardWrapper>
-              <JoinCard key={i} team={team} />
+              <JoinCard
+                key={i}
+                team={team}
+                join={() => {
+                  if (team.classType === 'Galleries') {
+                    //
+                    return
+                  }
+                  requestSubscription(team.classId)
+                }}
+              />
             </CardWrapper>
           )
         })}

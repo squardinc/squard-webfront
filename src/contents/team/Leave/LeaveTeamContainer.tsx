@@ -1,5 +1,5 @@
 import * as React from 'react'
-import LeaveTeam from 'src/components/pages/LeaveTeam'
+import LeaveTeam from 'src/contents/team/Leave/LeaveTeamPage'
 import { ITeam } from 'src/models/team'
 import { withTheme } from 'src/context/ThemeContext'
 
