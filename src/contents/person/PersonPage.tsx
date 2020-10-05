@@ -242,13 +242,15 @@ const ButtonEditWrapper = styled.div`
   position: absolute;
   top: 15px;
   right: 15px;
-  width: 25px;
-  height: 25px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
+  background-color: gray;
   box-shadow: 0 0 0 3px #white;
   cursor: pointer;
-  :hover {
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 export const PersonPage = (props: PersonPageProps) => {
