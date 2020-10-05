@@ -13,30 +13,29 @@ export type ModalType = 'SignUp' | 'Login' | 'PasswordResetRequest' | 'Logout' |
 export const AuthModal: React.FC<AuthModalProps> = ({ openModal, setOpenModal }) => {
   return (
     <>
-      {openModal === 'SignUp' ?
+      {openModal === 'SignUp' &&
         <SignUpModal
           closeModal={() => setOpenModal('Closed')}
           showLoginModal={withFadeOut(() => setOpenModal('Login'))}
         />
-        : ''}
-      {openModal === 'Login' ?
+      }
+      {openModal === 'Login' &&
         <LoginModal
           closeModal={() => setOpenModal('Closed')}
           showSignUpModal={withFadeOut(() => setOpenModal('SignUp'))}
           showPasswordResetRequestModal={withFadeOut(() => setOpenModal('PasswordResetRequest'))}
         />
-        : ''}
-      {openModal === 'PasswordResetRequest' ?
+      }
+      {openModal === 'PasswordResetRequest' &&
         <PasswordResetRequestModal
           closeModal={() => setOpenModal('Closed')}
         />
-        : ''}
-      {openModal === 'Logout' ?
+      }
+      {openModal === 'Logout' &&
         <LogoutModal
           closeModal={() => setOpenModal('Closed')}
         />
-        : ''}
-
+      }
     </>
   )
 }
