@@ -3,15 +3,16 @@ import styled from 'styled-components'
 import { Image } from '../Image/index'
 import { Icon } from '../Icon'
 import Camera from '../../assets/icon-camera.svg'
+import { ImageEditModal } from '../Modal/ImageEditModal'
 
 
 export type ImageType = 'cover' | 'avatar'
 export interface ImageProfileProps {
-  cover?: string
-  avatar?: string
+  topImage: string
+  icon: string
+  setTopImage: React.Dispatch<React.SetStateAction<Blob | undefined>>
+  setIcon: React.Dispatch<React.SetStateAction<Blob | undefined>>
   style?: React.CSSProperties
-  onEditIcon: VoidFunction
-  onEditTopImage: VoidFunction
 }
 
 const ImageProfileWrapper = styled.div`
@@ -46,6 +47,9 @@ const CameraIconCoverWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  :hover {
+    opacity: 0.5;
+  }
 `
 
 const CameraIconAvatarWrapper = styled.div`
@@ -66,48 +70,101 @@ const CameraIconAvatarWrapper = styled.div`
   }
 `
 
-export const ImageProfile = React.memo((props: ImageProfileProps) => {
-  const style = props.style ? { ...props.style } : {}
-
-  const cover = props.cover ? props.cover : ''
-  const avatar = props.avatar ? props.avatar : ''
-
+const ImageProfileEditComponent: React.FC<ImageProfileProps> = ({ style = {}, topImage, icon, setTopImage, setIcon }) => {
+  const [showTopImageEditModal, setShowTopImageEditModal] = React.useState(false)
+  const [showIconEditModal, setShowIconEditModal] = React.useState(false)
+  const [topImagePreviewUrl, setTopImagePreviewUrl] = React.useState<string>(topImage)
+  const [iconPreviewUrl, setIconPreviewUrl] = React.useState<string>(icon)
+  const [editingTopImage, setEditingTopImage] = React.useState<string>('')
+  const [editingIcon, setEditingIcon] = React.useState<string>('')
+  const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>, setImg: React.Dispatch<React.SetStateAction<string>>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const reader = new FileReader()
+      reader.addEventListener('load', () => {
+        setImg(reader.result)
+      })
+      reader.readAsDataURL(e.target.files[0])
+    }
+  }
   return (
-    <ImageProfileWrapper style={style}>
-      <ImageCoverWrapper>
-        <Image
-          src={cover}
-          width={'100%'}
-          height={'100%'}
-          objectFit={'cover'}
-          style={{ overflow: 'hidden' }}
+    <>
+      <ImageProfileWrapper style={style}>
+        <ImageCoverWrapper>
+          <Image
+            src={topImagePreviewUrl}
+            width={'100%'}
+            height={'100%'}
+            objectFit={'cover'}
+            style={{ overflow: 'hidden' }}
+          />
+        </ImageCoverWrapper>
+        <ImageAvatarWrapper>
+          <Image
+            src={iconPreviewUrl}
+            width={'100%'}
+            height={'100%'}
+            objectFit={'cover'}
+            style={{ borderRadius: '75px', overflow: 'hidden' }}
+          />
+        </ImageAvatarWrapper>
+
+        <label>
+          <CameraIconCoverWrapper>
+            <Camera />
+          </CameraIconCoverWrapper>
+          <input
+            type="file"
+            className="hidden"
+            onChange={(e) => {
+              e.preventDefault()
+              onSelectFile(e, setEditingTopImage)
+              setShowTopImageEditModal(true)
+            }}
+          />
+        </label>
+        <label >
+          <CameraIconAvatarWrapper>
+            <Camera />
+          </CameraIconAvatarWrapper>
+          <input
+            type="file"
+            className="hidden"
+            onChange={(e) => {
+              e.preventDefault()
+              onSelectFile(e, setEditingIcon)
+              setShowIconEditModal(true)
+            }}
+          />
+        </label>
+      </ImageProfileWrapper>
+      {showTopImageEditModal && (
+        <ImageEditModal
+          fileName='top.jpeg'
+          contentType='image/jpeg'
+          closeModal={() => {
+            if (typeof window !== 'undefined')
+              window.URL.revokeObjectURL(topImagePreviewUrl)
+            setShowTopImageEditModal(false)
+          }}
+          editingImg={editingTopImage}
+          onSelectFile={(e) => onSelectFile(e, setEditingTopImage)}
+          setImg={setTopImage}
+          setPreviewUrl={setTopImagePreviewUrl}
         />
-      </ImageCoverWrapper>
-      <ImageAvatarWrapper>
-        <Image
-          src={avatar}
-          width={'100%'}
-          height={'100%'}
-          objectFit={'cover'}
-          style={{ borderRadius: '75px', overflow: 'hidden' }}
+      )}
+      {showIconEditModal && (
+        <ImageEditModal
+          editingImg={editingIcon}
+          onSelectFile={(e) => onSelectFile(e, setEditingIcon)}
+          fileName='icon.jpeg'
+          contentType='image/jpeg'
+          closeModal={() => setShowIconEditModal(false)}
+          setImg={setIcon}
+          setPreviewUrl={setIconPreviewUrl}
         />
-      </ImageAvatarWrapper>
-      <CameraIconCoverWrapper
-        onClick={(e) => {
-          e.preventDefault()
-          props.onEditTopImage()
-        }}
-      >
-        <Camera />
-      </CameraIconCoverWrapper>
-      <CameraIconAvatarWrapper
-        onClick={(e) => {
-          e.preventDefault()
-          props.onEditIcon()
-        }}
-      >
-        <Camera />
-      </CameraIconAvatarWrapper>
-    </ImageProfileWrapper>
+      )}
+    </>
   )
-})
+}
+
+export const ImageProfileEdit = React.memo(ImageProfileEditComponent)

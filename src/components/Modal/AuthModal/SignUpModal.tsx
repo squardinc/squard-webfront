@@ -4,7 +4,7 @@ import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { asModal, ModalProps } from 'src/components/Modal/asModal'
 import { DefaultModalContainer } from 'src/components/Modal/ModalContainer'
 import { AuthService } from 'src/services/AuthService'
-import { ErrorModal } from 'src/components/Modal/ErrorModal'
+import { MessageModal } from 'src/components/Modal/MessageModal'
 import { EMailAddressInput } from 'src/components/Input/EMailAddressInput'
 import { PasswordInput } from 'src/components/Input/PasswordInput'
 import { validEmaliAddress } from 'src/utils/StringValidator'
@@ -24,9 +24,17 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({
 
   return (
     <>
-      {!errorMesasge ? (
-        <DefaultModalContainer closeModal={closeModal}>
-          {!registrationUserId ? (
+      {registrationUserId &&
+        <MessageModal
+          title='SignUp'
+          message={`${email} 宛にご確認のメールを送信しました。メッセージ内リンクから登録を完了してください。`}
+          buttonText='OK'
+          closeModal={closeModal}
+        />
+      }
+      {
+        !errorMesasge ?
+          <DefaultModalContainer closeModal={closeModal}>
             <>
               <TextDisplay className='text-4xl font-semibold'>SignUp</TextDisplay>
               <TextDisplay className='mb-8 text-sm'>アカウント情報を入力してください</TextDisplay>
@@ -46,35 +54,20 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({
                     )
                     setErrorMessage('')
                   }} />
-                  <RoundButton className='text-white bg-blue-700' text='Facebookで登録' onClick={AuthService.loginWithFacebook} />
+                <RoundButton className='text-white bg-blue-700' text='Facebookで登録' onClick={AuthService.loginWithFacebook} />
               </div>
               <TextDisplay className="mt-10 flex justify-center text-sm">
                 アカウントをお持ちですか？ログインは
                 <div className='underline cursor-pointer' onClick={showLoginModal}>こちら</div>
               </TextDisplay>
             </>
-          ) : (
-            <>
-              <TextDisplay className="text-4xl font-semibold">
-                SignUp
-              </TextDisplay>
-              <TextDisplay className="mb-8 text-sm">
-                {email} 宛にご確認のメールを送信しました。メッセージ内リンクから登録を完了してください。
-              </TextDisplay>
-              <RoundButton
-                className="border-2 text-lg"
-                text="OK"
-                onClick={closeModal}
-              />
-            </>
-          )}
-        </DefaultModalContainer>
-      ) : (
-        <ErrorModal
-          message={errorMesasge}
-          closeModal={() => setErrorMessage('')}
-        />
-      )}
+          </DefaultModalContainer>
+          :
+          <MessageModal
+            message={errorMesasge}
+            closeModal={() => setErrorMessage('')}
+          />
+      }
     </>
   )
 }

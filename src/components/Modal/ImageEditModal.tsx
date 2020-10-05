@@ -7,6 +7,8 @@ import { RoundButton, RoundFileUploadButton } from '../Button/DefaultButton'
 
 type ImageEditComponentProps = ModalProps & {
   setImg: React.Dispatch<React.SetStateAction<Blob | undefined>>
+  editingImg: string
+  onSelectFile: (e: React.ChangeEvent<HTMLInputElement>) => void
   fileName: string
   contentType: 'image/jpeg'
   initialCrop?: ReactCrop.Crop
@@ -14,14 +16,15 @@ type ImageEditComponentProps = ModalProps & {
 }
 
 const ImageEditComponent: React.FC<ImageEditComponentProps> = ({
-  fileName,
-  contentType,
   closeModal,
   setImg,
+  editingImg,
+  onSelectFile,
+  fileName,
+  contentType,
   initialCrop = {},
   setPreviewUrl,
 }) => {
-  const [upImg, setUpImg] = React.useState('')
   const imgRef = React.useRef<HTMLImageElement>()
   const [crop, setCrop] = React.useState<ReactCrop.Crop>({ unit: '%', ...initialCrop })
   const [currentPreviewUrl, setCurrentPreviewUrl] = React.useState('')
@@ -69,16 +72,6 @@ const ImageEditComponent: React.FC<ImageEditComponentProps> = ({
     }
   }
 
-  const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const reader = new FileReader()
-      reader.addEventListener('load', () => {
-        setUpImg(reader.result)
-      })
-      reader.readAsDataURL(e.target.files[0])
-    }
-  }
-
   return (
     <DefaultModalContainer closeModal={(e) => {
       if (typeof window !== 'undefined') {
@@ -87,13 +80,13 @@ const ImageEditComponent: React.FC<ImageEditComponentProps> = ({
       closeModal(e)
     }
     }>
-      <ReactCrop src={upImg} onImageLoaded={onLoad} crop={crop} onChange={setCrop} onComplete={makeClientCrop} />
+      <ReactCrop src={editingImg} onImageLoaded={onLoad} crop={crop} onChange={setCrop} onComplete={makeClientCrop} />
       <div className="flex flex-col items-center justify-center">
-        {upImg ? <RoundButton text='保存' onClick={(e) => {
+        {editingImg ? <RoundButton text='保存' onClick={(e) => {
           setPreviewUrl(currentPreviewUrl)
           closeModal(e)
         }} className='text-white bg-blue-700' /> : ''}
-        <RoundFileUploadButton className='text-black bg-white' text='画像をアップロード' onChange={onSelectFile} />
+        <RoundFileUploadButton className='text-black bg-white' text='画像を変更' onChange={onSelectFile} />
       </div>
     </DefaultModalContainer >
   )

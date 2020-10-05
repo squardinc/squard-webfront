@@ -4,7 +4,7 @@ import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { asModal, ModalProps } from './asModal'
 import { DefaultModalContainer } from './ModalContainer'
 import { AuthService } from 'src/services/AuthService'
-import { ErrorModal } from './ErrorModal'
+import { MessageModal } from './MessageModal'
 import { UserContext } from 'src/context/UserContext'
 import { PasswordInput } from '../Input/PasswordInput'
 
@@ -58,7 +58,7 @@ const PasswordResetComponent: React.FC<PasswordResetComponentProps> = ({
           )}
         </DefaultModalContainer>
       ) : (
-        <ErrorModal
+        <MessageModal
           message={errorMesasge}
           closeModal={() => setErrorMessage('')}
         />

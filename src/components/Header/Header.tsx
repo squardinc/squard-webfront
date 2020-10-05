@@ -8,11 +8,12 @@ import Menu from 'src/assets/menu.svg'
 import styles from './Header.module.scss'
 import { AuthModal, ModalType } from 'src/components/Modal/AuthModal'
 import { UserContext } from 'src/context/UserContext'
-import { Link } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 import { AuthService } from 'src/services/AuthService'
+import { LoginUserModel } from 'src/services/AuthService/LoginUserModel'
 
 export const Header = () => {
-  const { user } = React.useContext(UserContext)
+  const { user, setUser } = React.useContext(UserContext)
   const [openModal, setOpenModal] = React.useState<ModalType>('Closed')
   const [showNavMenu, setShowNavMenu] = React.useState(false)
 
@@ -44,8 +45,10 @@ export const Header = () => {
         loggedIn={user.loggedIn}
         hideNavMenu={() => setShowNavMenu(false)}
         showLoginModal={() => setOpenModal('Login')}
+        myPageId={user.pageId}
         logout={async () => {
           await AuthService.logout()
+          setUser(LoginUserModel.guest())
           setOpenModal('Logout')
         }}
       />

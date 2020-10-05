@@ -10,10 +10,13 @@ import { TeamModal } from 'src/components/Modal/TeamModal'
 import { descriminate, toHref } from 'src/utils/SocialMediaDescriminator'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { ExternalLink } from 'src/components/Link/ExternalLink'
+import Top from 'src/images/temp/team/top.jpg'
 
 type PersonPageProps = {
   isLoading: boolean
   personal: IPersonal
+  profileEditable: boolean
   editProfile: VoidFunction
 }
 
@@ -239,17 +242,19 @@ const ButtonEditWrapper = styled.div`
   position: absolute;
   top: 15px;
   right: 15px;
-  width: 25px;
-  height: 25px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
+  background-color: gray;
   box-shadow: 0 0 0 3px #white;
   cursor: pointer;
-  :hover {
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 export const PersonPage = (props: PersonPageProps) => {
-  const { personal, editProfile } = props
+  const { personal, editProfile, profileEditable = false } = props
   const [selectedTeam, setSelectedTeam] = React.useState<ITeam | null>(null)
 
   return (
@@ -257,14 +262,16 @@ export const PersonPage = (props: PersonPageProps) => {
       <ContentWrapper>
         <UserCoverWrapper>
           <UserCover backgroundColor={'#ebebeb'}>
-            <img src={personal.topImage} />
-            <ButtonEditWrapper onClick={editProfile}>
-              <FontAwesomeIcon icon={faEdit} size='2x' />
-            </ButtonEditWrapper>
+            <img src={personal.topImage ? encodeURI(personal.topImage) : Top} style={{ width: '100%', minHeight: '320px' }} />
+            {profileEditable && (
+              <ButtonEditWrapper onClick={editProfile}>
+                <FontAwesomeIcon icon={faEdit} size='2x' />
+              </ButtonEditWrapper>
+            )}
           </UserCover>
           <ProfileContainerWrapper>
             <ProfilerImageContainer>
-              <ProfileImage icon={personal.icon} />
+              <ProfileImage icon={personal.icon ? encodeURI(personal.icon) : Top} />
             </ProfilerImageContainer>
             <NameWrapper>
               <NameText>
@@ -278,14 +285,14 @@ export const PersonPage = (props: PersonPageProps) => {
               </NameDescription>
             </NameWrapper>
             <SocialMediaWrapper>
-              {personal.socialMedia.map((url, index) => {
+              {personal.links.map((url, index) => {
                 const mediaType = descriminate(url)
                 return (
-                  <a href={toHref(url, mediaType)} key={`${index}_${url}`}>
+                  <ExternalLink href={toHref(url, mediaType)} key={`${index}_${url}`}>
                     <SocialMediaIcon>
                       {getSocialMediaIcon(mediaType)}
                     </SocialMediaIcon>
-                  </a>
+                  </ExternalLink>
                 )
               })}
             </SocialMediaWrapper>

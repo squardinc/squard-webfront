@@ -13,7 +13,7 @@ export const shunpei: IPersonal = {
   icon: ShunpeiIcon,
   introduction:
     'プログラミングにのめり込み、研修時代ついたあだ名はJava(ジャバ)くん。英語力ゼロなのにラスベガスで恐れずスピーチ、金欠なのに世界各国で海外生活。多くの応援により香港科技大学で研究をはじめ、同時にSquard株式会社を設立。ブロックチェーンとバナナシェイクをこよなく愛する男。',
-  socialMedia: [
+  links: [
     'https://twitter.com/shunpei42ba_',
     'https://www.facebook.com/shunpei.koike.9',
     'https://www.instagram.com/shunpeikoike/',
@@ -42,7 +42,7 @@ export const hiroki: IPersonal = {
   icon: HirokiIcon,
   introduction:
     ' Squard, Inc.のCOOをやっています。そのほかMONSTER MUSIC Inc.という音楽テック企業の取締役をやっていたり、Boxx inc.というクリエイティブエージェンシーでも活動していたりします。白黒写真とグラベルロードが好き。',
-  socialMedia: [
+  links: [
     'https://www.facebook.com/hirokimatsui0429',
     'https://www.instagram.com/_hirokimatsui/',
     'https://www.linkedin.com/in/hiroki-matsui-36075a1b4/',
@@ -64,7 +64,7 @@ export const akihiro: IPersonal = {
   icon: AkihiroIcon,
   introduction:
     'Squard, Inc. CFO\r\n182cm130kgの巨体で愛称はゴリラ。外見に反して心理学を専攻。ロックバンドのドラマーとして4年間活動、その後株式会社MONSTER MUSICを立ち上げ営業部門を牽引。1ヶ月前の出来事を事細かに思い出せる超記憶力を持つ。頭がちょっとでかい。',
-  socialMedia: [
+  links: [
     'https://www.facebook.com/akihiro.kimura.18062',
     'https://twitter.com/golizou3',
     'akihiro.kimura@squard.jp',
@@ -85,7 +85,7 @@ export const shoya: IPersonal = {
   icon: ShoyaIcon,
   introduction:
     'Squard, Inc. CTO\r\n在学時代は日本酒とビールを片手に言語哲学をめくり、今ではウイスキーとブランデーを傍らに加えて鍵盤を叩いています。',
-  socialMedia: [
+  links: [
     'https://www.facebook.com/shoya.yanagisawa.1',
     'https://github.com/Shoya-Y',
     'shoya.yanagisawa@squard.jp',

@@ -1,9 +1,12 @@
 import * as React from 'react'
-import { IPersonal } from 'src/models/person'
-import { withTheme } from 'src/context/ThemeContext'
+import { IPersonal, Person } from 'src/models/person'
 import { shunpei, hiroki, akihiro, shoya } from './personalData'
 import { navigate } from 'gatsby'
 import PersonPageLayout from './PersonPageLayout'
+import { useQuery, gql, useMutation } from '@apollo/client'
+import { GetUserQuery, UpdateUserMutation, UpdateUserMutationVariables, UpdateUserInput } from 'src/types/API'
+import { getUser } from 'src/graphql/queries'
+import { updateUser } from 'src/graphql/mutations'
 
 interface PersonPageContainerProps {
   id: string
@@ -17,25 +20,32 @@ const getPersonData = (id: string): IPersonal | undefined => {
 export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({
   id,
 }) => {
-  const [isLoading, setIsLoading] = React.useState<boolean>(true)
-  // React.useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setIsLoading(false)
-  //   }, 400)
-  //   return () => clearTimeout(timer)
-  // }, [])
-
-  // if (isLoading) {
-  //   return <></>
-  // }
-  const personData = getPersonData(id)
-  if (!personData) {
+  const { loading, error, data } = useQuery<GetUserQuery>(gql(getUser), { variables: { id } })
+  const [requestUpdate, response] = useMutation<UpdateUserMutation, UpdateUserMutationVariables>(gql(updateUser))
+  if (error) {
     navigate('/')
     return <></>
   }
-  personData.id = id
-
-  return <PersonPageLayout isLoading={false} personal={personData} />
+  if (loading || !data) {
+    return <></>
+  }
+  return <PersonPageLayout
+    isLoading={false}
+    personal={Person.fromQueryResult(data)}
+    update={(profile: UpdateUserInput) => requestUpdate({
+      variables: {
+        input: {
+          nameJp: profile.nameJp,
+          nameEn: profile.nameEn,
+          links: profile.links,
+          introduction: profile.introduction,
+          displlayTeams: profile.displlayTeams,
+          topImage: profile.topImage,
+          icon: profile.icon,
+        }
+      }
+    })}
+  />
 }
 
 export default PersonPageContainer

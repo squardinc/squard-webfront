@@ -7,37 +7,63 @@ export const getTeam = /* GraphQL */ `
     getTeam(id: $id) {
       id
       name
+      title {
+        title
+        subTitle
+        introduction
+      }
       tags
       system
-      leaderName
-      leaderId
-      coreMembers
-      members
-      angels
-      vips
+      classes {
+        teamId
+        classType
+        priceId
+        enabled
+      }
+      members {
+        teamId
+        userId
+        createdAt
+      }
     }
   }
-`
-export const listTeams = /* GraphQL */ `
-  query ListTeams(
-    $filter: TableTeamFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listTeams(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
+`;
+export const getTeamMembers = /* GraphQL */ `
+  query GetTeamMembers($teamId: ID!) {
+    getTeamMembers(teamId: $teamId) {
+      teamId
+      userId
+      user {
+        id
+        nameJp
+        nameEn
+        introduction
+        links
+        birthDay
+        topImage
+        icon
+      }
+      createdAt
+    }
+  }
+`;
+export const getUser = /* GraphQL */ `
+  query GetUser($id: ID!) {
+    getUser(id: $id) {
+      id
+      nameJp
+      nameEn
+      introduction
+      links
+      birthDay
+      displayTeams {
         id
         name
         tags
         system
-        leaderName
-        leaderId
-        coreMembers
-        members
-        angels
-        vips
       }
-      nextToken
+      topImage
+      icon
     }
   }
-`
+`;

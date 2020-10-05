@@ -13,7 +13,7 @@ export const shunpei: IPersonal = {
   icon: ShunpeiIcon,
   introduction:
     'プログラミングにのめり込み、研修時代ついたあだ名はJava(ジャバ)くん。英語力ゼロなのにラスベガスで恐れずスピーチ、金欠なのに世界各国で海外生活。多くの応援により香港科技大学で研究をはじめ、同時にSquard株式会社を設立。ブロックチェーンとバナナシェイクをこよなく愛する男。',
-  socialMedia: [
+    links: [
     'https://twitter.com/shunpei42ba_',
     'https://www.facebook.com/shunpei.koike.9',
     'https://www.instagram.com/shunpeikoike/',
