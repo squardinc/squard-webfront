@@ -6,10 +6,12 @@ import JoinCard from './joinCard'
 import * as colors from 'src/styles/colors'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { AuthModal, ModalType } from 'src/components/Modal/AuthModal'
 
 type JoinTeamProps = {
   requestSubscription: (teamClassId: string) => Promise<void>
   isLoading: boolean
+  loggedIn: boolean
   teamData: ITeamClass[]
 }
 
@@ -53,45 +55,56 @@ const CardWrapper = styled.div`
   }
 `
 
-const JoinTeam: React.FC<JoinTeamProps> = ({ requestSubscription, teamData }) => {
+const JoinTeam: React.FC<JoinTeamProps> = ({ requestSubscription, teamData, loggedIn }) => {
+  const [openModal, setOpenModal] = React.useState<ModalType>('Closed')
   return (
-    <JoinTeamWrapper>
-      <JoinTeamTitle>
-        <Heading3>
-          <TextDisplay>Join The Team</TextDisplay>
-        </Heading3>
-      </JoinTeamTitle>
-      <JoinInfoWrapper>
-        <TextJoinTeam>
-          <TextTeamName>Squard</TextTeamName>に参加する
+    <>
+      <JoinTeamWrapper>
+        <JoinTeamTitle>
+          <Heading3>
+            <TextDisplay>Join The Team</TextDisplay>
+          </Heading3>
+        </JoinTeamTitle>
+        <JoinInfoWrapper>
+          <TextJoinTeam>
+            <TextTeamName>Squard</TextTeamName>に参加する
         </TextJoinTeam>
-        <TextDesciption>
-          <TextDisplay>
-            チームが設定した月々のサブスクリプション料金を支払いProspectsやAngelsとしてチームに参加することで、様々な特典を受け取ることができます。
+          <TextDesciption>
+            <TextDisplay>
+              チームが設定した月々のサブスクリプション料金を支払いProspectsやAngelsとしてチームに参加することで、様々な特典を受け取ることができます。
           </TextDisplay>
-        </TextDesciption>
-      </JoinInfoWrapper>
-      <div>
-        {teamData.map((team: ITeamClass, i) => {
-          return (
-            <CardWrapper>
-              <JoinCard
-                key={i}
-                team={team}
-                join={() => {
-                  if (team.classType === 'Galleries') {
-                    //
-                    return
-                  }
-                  requestSubscription(team.classId)
-                }}
-              />
-            </CardWrapper>
-          )
-        })}
-      </div>
-      <DefaultFooter />
-    </JoinTeamWrapper>
+          </TextDesciption>
+        </JoinInfoWrapper>
+        <div>
+          {teamData.map((team: ITeamClass, i) => {
+            return (
+              <CardWrapper>
+                <JoinCard
+                  key={i}
+                  team={team}
+                  join={() => {
+                    if(!loggedIn) {
+                      setOpenModal('Login')
+                      return
+                    }
+                    if (team.classType === 'Galleries') {
+                      //
+                      return
+                    }
+                    requestSubscription(team.classId)
+                  }}
+                />
+              </CardWrapper>
+            )
+          })}
+        </div>
+        <DefaultFooter />
+      </JoinTeamWrapper>
+      <AuthModal
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      />
+    </>
   )
 }
 
