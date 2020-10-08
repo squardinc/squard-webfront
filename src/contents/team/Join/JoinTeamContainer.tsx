@@ -12,9 +12,7 @@ interface JoinTeamContainerProps {
   teamId: string
 }
 const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
-  console.log(teamId)
   const { user } = React.useContext(UserContext)
-  console.log(user)
   const [request, data] = useMutation<RequestSubscriptionMutation, RequestSubscriptionMutationVariables>(gql(requestSubscription));
   const teamData: ITeamClass[] = [
     {
@@ -61,6 +59,7 @@ const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
         checkout(response.data?.requestSubscription?.sessionId)
     }}
     isLoading={false}
+    loggedIn={user.loggedIn}
     teamData={teamData}
   />
 }
