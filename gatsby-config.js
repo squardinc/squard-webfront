@@ -1,9 +1,11 @@
+const fs = require('fs')
 const dotenv = require('dotenv')
 const path = require('path')
 
-dotenv.config({
-  path: `env/.${process.env.BRANCH === 'master' ? 'master' : 'develop'}`,
-})
+const branchName = process.env.BRANCH
+const envfile = fs.existsSync(`env/.${branchName}`) ? `env/.${branchName}` : 'env/.dev'
+console.log(`run in ${envfile}`)
+dotenv.config({ path: envfile })
 
 module.exports = {
   siteMetadata: {
