@@ -1,4 +1,6 @@
 @import 'src/styles/variables';
+@import '../../styles/const';
+@import '../../styles/font';
 
 .navMenu {
   z-index: $nav-bar;
@@ -11,8 +13,17 @@
   color: white;
   border-radius: 25px 25px 0 0;
   transition: all 0.3s ease-in-out;
+  font-family: $noto-sans-font;
+  font-weight: $weight-light;
+  font-size: 18px;
 }
-
+.cursorNotAllowed{
+  font-family: $noto-sans-font;
+  font-weight: $weight-light;
+  font-size: 18px;
+  opacity: 0.3;
+  color: #262626;
+}
 .navToggleBtn {
   position: relative;
   top: 15px;

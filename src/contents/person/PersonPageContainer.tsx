@@ -31,7 +31,7 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({
   }
   return <PersonPageLayout
     isLoading={false}
-    personal={getPersonData(id)}
+    personal={Person.fromQueryResult(data)}
     update={(profile: UpdateUserInput) => requestUpdate({
       variables: {
         input: {

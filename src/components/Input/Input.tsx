@@ -28,7 +28,7 @@ export const RoundInput: React.FC<InputProps> = ({
           ''
         )}
       <input
-        className="ml-2 bg-gray-200 h-full w-full text-gray-600 focus:outline-none"
+        className="ml-2 bg-gray-200 h-full w-full text-gray-600 focus:outline-none font-light"
         style={{ fontSize: '16px' }}
         type={type}
         value={value}

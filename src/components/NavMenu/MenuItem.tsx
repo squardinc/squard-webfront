@@ -20,15 +20,15 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   return (
     <div
       className={`flex cursor-pointer ${
-        onClick ? '' : 'opacity-50 cursor-not-allowed'
+        onClick ? '' : styles.cursorNotAllowed
         }`}
       onClick={onClick || (() => { })}
     >
       {SVGIcon
-        ? <SVGIcon className="h-16 w-16 flex justify-center items-center" />
+        ? <SVGIcon className="h-16 w-16 flex justify-center items-center"/>
         :
         <div className="h-16 w-16 flex justify-center items-center">
-          <FontAwesomeIcon icon={faIcon} size='lg' />
+          <FontAwesomeIcon icon={faIcon} size='lg' color={onClick ? 'white' : '#262626'}/>
         </div>
       }
       <TextDisplay

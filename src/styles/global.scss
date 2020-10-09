@@ -6,7 +6,8 @@
   font-family: 'Noto Sans CJK JP';
   font-style: normal;
   font-weight: 100;
-  src: url('../fonts/Noto-Sans/fonts/NotoSansCJKjp-Thin.woff2') format('woff2'),
+  src: local('Noto Sans CJK JP'), local('NotoSansCJKjp-Thin'),
+    url('../fonts/Noto-Sans/fonts/NotoSansCJKjp-Thin.woff2') format('woff2'),
     url('../fonts/Noto-Sans/fonts/NotoSansCJKjp-Thin.woff') format('woff'),
     url('../fonts/Noto-Sans/fonts/NotoSansCJKjp-Thin.ttf') format('truetype'),
     url('../fonts/Noto-Sans/fonts/NotoSansCJKjp-Thin.eot')
@@ -24,7 +25,8 @@
   font-family: 'Noto Sans CJK JP';
   font-style: normal;
   font-weight: 300;
-  src: url('../fonts/Noto-Sans/fonts/NotoSansCJKjp-DemiLight.woff2')
+  src: local('Noto Sans CJK JP'), local('NotoSansCJKjp-DemiLight'),
+    url('../fonts/Noto-Sans/fonts/NotoSansCJKjp-DemiLight.woff2')
       format('woff2'),
     url('../fonts/Noto-Sans/fonts/NotoSansCJKjp-DemiLight.woff') format('woff'),
     url('../fonts/Noto-Sans/fonts/NotoSansCJKjp-DemiLight.ttf')
@@ -36,8 +38,8 @@
   font-family: 'Noto Sans CJK JP';
   font-style: normal;
   font-weight: 400;
-  src: url('../fonts/Noto-Sans/fonts/NotoSansCJKjp-Regular.woff2')
-      format('woff2'),
+  src: local('Noto Sans CJK JP'), local('NotoSansCJKjp-Regular'),
+    url('../fonts/Noto-Sans/fonts/NotoSansCJKjp-Regular.woff2') format('woff2'),
     url('../fonts/Noto-Sans/fonts/NotoSansCJKjp-Regular.woff') format('woff'),
     url('../fonts/Noto-Sans/fonts/NotoSansCJKjp-Regular.ttf') format('truetype'),
     url('../fonts/Noto-Sans/fonts/NotoSansCJKjp-Regular.eot')
@@ -69,12 +71,14 @@
   font-family: 'Noto Sans CJK JP';
   font-style: normal;
   font-weight: 900;
-  src: url('../fonts/Noto-Sans/fonts/NotoSansCJKjp-Black.woff2') format('woff2'),
+  src: local('Noto Sans CJK JP'), local('NotoSansCJKjp-Black'),
+    url('../fonts/Noto-Sans/fonts/NotoSansCJKjp-Black.woff2') format('woff2'),
     url('../fonts/Noto-Sans/fonts/NotoSansCJKjp-Black.woff') format('woff'),
     url('../fonts/Noto-Sans/fonts/NotoSansCJKjp-Black.ttf') format('truetype'),
     url('../fonts/Noto-Sans/fonts/NotoSansCJKjp-Black.eot')
       format('embedded-opentype');
 }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

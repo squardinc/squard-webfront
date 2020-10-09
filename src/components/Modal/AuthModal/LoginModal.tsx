@@ -11,6 +11,8 @@ import { EMailAddressInput } from 'src/components/Input/EMailAddressInput'
 import { PasswordInput } from 'src/components/Input/PasswordInput'
 import { validEmaliAddress } from 'src/utils/StringValidator'
 
+
+
 interface LoginFormProps {
   login: (e: React.MouseEvent, email: string, password: string) => Promise<void>
   closeModal: (e: React.MouseEvent) => void
@@ -28,10 +30,10 @@ const LoginFormModal: React.FC<LoginFormProps> = ({
   const isSubmittable = React.useMemo(() => (validEmaliAddress(email) && password.length >= 8), [email, password])
   return (
     <DefaultModalContainer closeModal={closeModal}>
-      <TextDisplay className="text-4xl font-semibold">
+      <TextDisplay className="font-sans font-bold text-3xl">
         Login
     </TextDisplay>
-      <TextDisplay className="mb-8 text-sm">
+      <TextDisplay className="mb-8 font-sans text-xs font-light">
         ログイン情報を入力してください
     </TextDisplay>
       <form>

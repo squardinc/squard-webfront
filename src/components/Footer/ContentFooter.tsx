@@ -31,7 +31,7 @@ export const ContentFooter: React.FC<ContentFooterProps> = ({
               <div
                 className={`${styles.titleSub} ${
                   theme === 'dark' ? 'text-theme-text-sub' : ''
-                  }`}
+                }`}
               >
                 {titleSub}
               </div>
@@ -46,17 +46,19 @@ export const ContentFooter: React.FC<ContentFooterProps> = ({
               「Prospects」や「Angels」についてはこちら↓
             </TextDisplay>
           ) : (
-              ''
-            )}
+            ''
+          )}
+          
           <div onClick={onButtonClick} className="cursor-pointer">
             <TextDisplay
               className={`${
                 theme === 'dark'
                   ? 'border-2 border-yellow bg-black'
                   : 'background-theme-button'
-                } rounded-full h-12 w-full flex items-center justify-center mr-2`}
+              } rounded-full h-12 w-full flex items-center justify-center mr-2`}
             >
-              <span className="text-theme-text-sub font-bold text-lg">
+              
+              <span className={styles.buttonText}>
                 {buttonText}
               </span>
             </TextDisplay>
@@ -75,7 +77,7 @@ export const DefaultFooter: React.FC = () => (
       titleMain="Squard?"
       text="Webサービス「Squard（スクアード）」は、個人でもなく法人でもない新しい働き方の実現を目標に、新時代のチームメイキングソリューションを提供するコラボレーションプラットフォームです。"
       buttonText="チームを作ってみる？"
-      onButtonClick={() => { }}
+      onButtonClick={() => {}}
     />
   </a>
 )
