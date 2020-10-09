@@ -256,14 +256,14 @@ const ButtonEditWrapper = styled.div`
 export const PersonPage = (props: PersonPageProps) => {
   const { personal, editProfile, profileEditable = false } = props
   const [selectedTeam, setSelectedTeam] = React.useState<ITeam | null>(null)
-
+  console.log("shit shit ", personal, profileEditable)
   return (
     <>
       <ContentWrapper>
         <UserCoverWrapper>
           <UserCover backgroundColor={'#ebebeb'}>
             <img src={personal.topImage ? encodeURI(personal.topImage) : Top} style={{ width: '100%', minHeight: '320px' }} />
-            {profileEditable && (
+            {true && (
               <ButtonEditWrapper onClick={editProfile}>
                 <FontAwesomeIcon icon={faEdit} size='2x' />
               </ButtonEditWrapper>

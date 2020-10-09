@@ -31,16 +31,16 @@ export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({
         <TextDisplay className={styles.description}>
           チーム「Squard（スクアード）」はコラボレーションプラットフォーム「Squard」の企画/開発/運営を目的として集まったチームです。
         </TextDisplay>
-        <div>
+        <div className={styles.hashTag}>
           {tags.map((tag, index) => (
             <HashTag key={index} text={tag} />
           ))}
         </div>
         <div className={`${styles.attributeContainer} tracking-wide`}>
-          <TextDisplay>
+          <TextDisplay  className={styles.captionSystemLabel}>
             マネジメントシステム: <span className="text-yellow">{system}</span>
           </TextDisplay>
-          <TextDisplay>
+          <TextDisplay  className={styles.captionSystemLabel}>
             チームリーダー: <span className="text-yellow">{leaderName}</span>
           </TextDisplay>
         </div>

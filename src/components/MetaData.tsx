@@ -21,7 +21,22 @@ export const MetaData: React.FC = () => (
               },
             ]}
           >
-            <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,500,700,900" rel="stylesheet preload" />
+            <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,800;1,800&display=swap" rel="stylesheet" />
+
+            {/* <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,500,700,900" rel="stylesheet preload" />
+            <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet"></link> */}
+
+            {/* <link
+              rel="stylesheet"
+              href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css"
+            />
+
+            <link
+              rel="stylesheet"
+              href="https://fonts.googleapis.com/earlyaccess/notosansjp.css"
+            /> */}
+
+
             <link
               id="Montserrat"
               rel="stylesheet"

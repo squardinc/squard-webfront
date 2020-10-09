@@ -1,17 +1,23 @@
+@import '../../styles/const';
+@import '../../styles/font';
+
 .content {
   padding: 20px 38px;
 }
 .titleSub {
-  font-weight: bold;
+  color: $text-yellow;
+  font-family: $montserrat-font;
+  font-weight: $weight-bold;
   font-style: italic;
-  font-size: 1.2rem;
-  line-height: normal;
+  font-size: 20px;
+  line-height: 2.5;
 }
 .titleMain {
-  font-weight: bold;
+  font-family: $montserrat-font;
+  font-weight: $weight-bold;
   font-style: italic;
-  font-size: 3em;
-  line-height: normal;
+  font-size: 50px;
+  line-height: 1;
 }
 .description {
   font-size: 18px;

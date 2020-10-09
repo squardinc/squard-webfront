@@ -14,6 +14,7 @@ export const LeftBorderCaption: React.FC<CaptionProps> = ({
   fontWeight = 'bold',
   shadow = false,
 }) => {
+
   return (
     <div
       className={
@@ -43,6 +44,8 @@ export const TwoStagedCaption: React.FC<TwoStagedCaptionProps> = ({
   subFontWeight = 'bold',
   shadow = false,
 }) => {
+
+  console.log('COREMEMBER',styles[style] + ' ' + (shadow ? styles['textShadow'] : ''))
   return (
     <>
       <LeftBorderCaption

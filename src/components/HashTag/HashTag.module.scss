@@ -1,13 +1,18 @@
-$hashtag-color: #f6e05e;
+@import '../../styles/const';
+@import '../../styles/font';
 
 .container {
   display: inline-block;
   border-radius: 20px;
   border: 1px solid $hashtag-color;
-  color: $hashtag-color;
-  font-size: 0.8rem;
-  letter-spacing: 0.025em;
-  padding: 6px 12px;
+  color: $text-yellow;
+  font-family: $noto-sans-font;
+  font-weight: $weight-light;
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: 2.35;
+  padding: 7px 14px 7px 14px;
+  
   margin: 4px 7px 7px 0px;
-  font-weight: 200;
+  
 }

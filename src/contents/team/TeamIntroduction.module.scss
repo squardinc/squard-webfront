@@ -1,4 +1,6 @@
 @import 'src/styles/variables.scss';
+@import '../../styles/const';
+@import '../../styles/font';
 
 .content {
   color: white;
@@ -11,23 +13,45 @@
 }
 
 .caption1 {
-  color: $yellow;
-  font-size: small;
+  color: $text-yellow;
+  font-family: $noto-sans-font;
+  font-weight: 250;
+  font-size: 16px;
+  line-height : 2.33;
 }
 
 .caption2 {
-  font-weight: bold;
-  font-size: xx-large;
+  font-family: $montserrat-font;
+  font-weight: $weight-bold;
+  font-size: 35px;
+  line-height : 1.2;
 }
 
 .description {
-  margin: 20px 0px;
-  font-size: small;
-  letter-spacing: 0.025em;
-  font-weight: 200;
+  margin: 12px 0px;
+  font-family: $noto-sans-font;
+  font-weight: $weight-light;
+  line-height : 1.66;
+  font-size: 18px;
 }
 
+.hashTag{
+  margin-top:10px;
+}
 .attributeContainer {
   margin: 20px 0px;
   font-size: 14px;
+}
+.captionSystemLabel{
+  font-family: $noto-sans-font;
+  font-weight: $weight-light;
+  font-size: 14px;
+  line-height : 2;
+}
+.text-yellow{
+  color :$text-yellow;
+  font-family: $noto-sans-font;
+  font-weight: $weight-light;
+  font-size: 14px;
+  line-height : 2;
 }
