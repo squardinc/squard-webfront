@@ -1,8 +1,62 @@
 import * as React from 'react'
+import styled from 'styled-components'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import styles from './privacypolicy.module.scss'
 import { withTheme } from 'src/context/ThemeContext'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
+import { Heading1 } from 'src/components/Heading1/Heading1'
+import * as Const from '../../styles/const'
+
+const PageHeader = styled(Heading1)`
+  font-family: ${Const.fontFamily.monster};
+  font-weight: ${Const.fontWeight.bold};
+  font-size: 28px;
+`
+
+const Description = styled.div`
+  font-family: ${Const.fontFamily.sans};
+  font-weight: ${Const.fontWeight.light};
+  font-size: ${Const.fontSize.sm};
+  letter-spacing: ${Const.letterSpacing.normal};
+  line-height: 1.785em;
+  padding-left: 58px;
+  padding-right: 58px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  text-align: left;
+`
+const Contact = styled.div`
+  font-family: ${Const.fontFamily.sans};
+  font-weight: ${Const.fontWeight.medium};
+  font-size: ${Const.fontSize.xl};
+  letter-spacing: ${Const.letterSpacing.normal};
+  line-height: 1.785em;
+  text-align: center;
+  margin-top: 10px;
+  text-decoration: underline;
+`
+
+const EndPoliccyWrapper = styled.div`
+  font-family: ${Const.fontFamily.sans};
+  font-weight: ${Const.fontWeight.medium};
+  font-size: ${Const.fontSize.lg};
+  width: 100%;
+  margin-top: 20px;
+  padding-left: 58px;
+  padding-right: 58px;
+  display: flex;
+  justify-content: flex-end;
+`
+
+const DateWrapper = styled.div`
+  font-family: ${Const.fontFamily.sans};
+  font-weight: ${Const.fontWeight.regular};
+  font-size: ${Const.fontSize.base};
+  letter-spacing: 0.075;
+  line-height: 5;
+  text-align: center;
+  margin-top: 60px;
+`
 
 interface PolicySectionContent {
   section: string
@@ -26,21 +80,21 @@ const PolicySection: React.FC<PolicySectionProps> = ({ sections }) => (
 const PolicySectionWithSubSections: React.FC<PolicySectionWithSubSectionsProps> = ({
   sections,
 }) => (
-    <>
-      {sections.map((section, index) => (
-        <div className="py-2" key={index}>
-          {section.section}
-          {section.subsections ? (
-            <div className="px-4">
-              <PolicySection sections={section.subsections} />
-            </div>
-          ) : (
-              ''
-            )}
-        </div>
-      ))}
-    </>
-  )
+  <>
+    {sections.map((section, index) => (
+      <div className="py-2" key={index}>
+        {section.section}
+        {section.subsections ? (
+          <div className="px-4">
+            <PolicySection sections={section.subsections} />
+          </div>
+        ) : (
+          ''
+        )}
+      </div>
+    ))}
+  </>
+)
 
 interface PolicyChapterProps {
   chapter: string
@@ -50,11 +104,7 @@ const PolicyChapter: React.FC<PolicyChapterProps> = ({ chapter, children }) => (
     <TextDisplay className="flex justify-center">
       <div className={styles.underLiner}>{chapter}</div>
     </TextDisplay>
-    <div className="pb-8">
-      <TextDisplay className="pt-8 pl-16 pr-16 text-justify text-white text-sm font-thin tracking-widest text-opacity-75">
-        {children}
-      </TextDisplay>
-    </div>
+    <Description>{children}</Description>
   </div>
 )
 
@@ -65,11 +115,10 @@ const Page: React.FC = () => {
         <TextDisplay className="flex justify-center">
           <div className={styles.sharpUnderLiner}>Privacy Policy</div>
         </TextDisplay>
-        <div className="pb-8">
-          <TextDisplay className="pt-2 pl-16 pr-16 text-justify text-white text-sm font-thin tracking-widest text-opacity-75">
-            スクアード株式会社（以下，「当社」といいます。）は，本ウェブサイト上で提供するサービス（以下,「本サービス」といいます。）における，ユーザーの個人情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。
-          </TextDisplay>
-        </div>
+
+        <Description>
+          スクアード株式会社（以下，「当社」といいます。）は，本ウェブサイト上で提供するサービス（以下,「本サービス」といいます。）における，ユーザーの個人情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。
+        </Description>
       </div>
       <PolicyChapter chapter="第1条（個人情報）">
         「個人情報」とは，個人情報保護法にいう「個人情報」を指すものとし，生存する個人に関する情報であって，当該情報に含まれる氏名，生年月日，住所，電話番号，連絡先その他の記述等により特定の個人を識別できる情報及び容貌，指紋，声紋にかかるデータ，及び健康保険証の保険者番号などの当該情報単体から特定の個人を識別できる情報（個人識別情報）を指します。
@@ -177,19 +226,13 @@ const Page: React.FC = () => {
             '本ポリシーに関するお問い合わせは，下記の窓口までお願いいたします。',
           ]}
         />
-        <div className="pt-8 flex justify-center text-white text-2xl underline font-medium tracking-widest">
+        <Contact>
           <a href="mailto:contact@squard.co.jp">contact@squard.co.jp</a>
-        </div>
+        </Contact>
       </PolicyChapter>
-      <TextDisplay className="pb-8">
-        <div className="pt-16 pl-16 pr-12 text-right text-white text-xl font-medium tracking-widest">
-          以上
-        </div>
-        <div className="pt-24 text-center text-white text-xl font-medium tracking-widest text-opacity-75">
-          2020年9月16日制定・施行
-        </div>
-      </TextDisplay>
-      <DefaultFooter />
+      <EndPoliccyWrapper>以上</EndPoliccyWrapper>
+      <DateWrapper>2020年9月16日制定・施行</DateWrapper>
+      <DefaultFooter backgroundColor={Const.darkBlue} />
     </div>
   )
 }

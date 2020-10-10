@@ -1,11 +1,23 @@
 import * as React from 'react'
 
 import styles from './About.module.scss'
-
-import { Description } from 'src/components/Description/Description'
+import styled from 'styled-components'
+// import { Description } from 'src/components/Description/Description'
 import { Rocket } from 'src/components/Rocket/Rocket'
-
+import * as Const from '../../../styles/const'
 interface AboutProps {}
+
+const Description = styled.div`
+  font-family: ${Const.fontFamily.sans};
+  font-weight: ${Const.fontWeight.light};
+  font-size: ${Const.fontSize.sm};
+  letter-spacing: ${Const.letterSpacing.normal};
+  line-height: 1.785;
+  padding-left: 58px;
+  padding-right: 58px;
+  margin-bottom: 10px;
+  text-align: left;
+`
 
 export const About: React.FC<AboutProps> = (props) => {
   return (

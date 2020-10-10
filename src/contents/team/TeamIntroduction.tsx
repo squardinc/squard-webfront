@@ -37,10 +37,10 @@ export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({
           ))}
         </div>
         <div className={`${styles.attributeContainer} tracking-wide`}>
-          <TextDisplay  className={styles.captionSystemLabel}>
+          <TextDisplay className={styles.captionSystemLabel}>
             マネジメントシステム: <span className="text-yellow">{system}</span>
           </TextDisplay>
-          <TextDisplay  className={styles.captionSystemLabel}>
+          <TextDisplay className={styles.captionSystemLabel}>
             チームリーダー: <span className="text-yellow">{leaderName}</span>
           </TextDisplay>
         </div>

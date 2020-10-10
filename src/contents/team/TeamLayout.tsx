@@ -3,7 +3,7 @@ import { gql, useQuery } from '@apollo/client'
 import { getTeam } from 'src/graphql/queries'
 import { TeamTop } from './TeamTop'
 import { TeamIntroduction } from './TeamIntroduction'
-import { TeamCoreMembers } from './TeamContents/TeamCoreMembers'
+import { TeamCoreMembers, CoreMember } from './TeamContents/TeamCoreMembers'
 import { TeamMembers } from './TeamContents/TeamMembers'
 import { TeamProspects } from './TeamContents/TeamProspects'
 import { TeamAngels } from './TeamContents/TeamAngels'
@@ -79,7 +79,7 @@ const Layout: React.FC<TeamLayoutProps> = ({ id }) => {
         system={data?.getTeam?.system}
       />
       <TeamCoreMembers coreMembers={DUMMY_CORE_MEMBERS} />
-      <TeamMembers members={[]} />
+      <TeamMembers topMember={''} members={[]} />
       <TeamProspects propspects={[]} />
       <TeamAngels angels={[]} numOfAngels={0} />
       <TeamVIP vips={[]} />
@@ -93,8 +93,8 @@ const Layout: React.FC<TeamLayoutProps> = ({ id }) => {
             チームページから
             <span className="text-yellow">Prospects（プロスペクト）</span>または
             <span className="text-yellow">Angels（エンジェル）</span>
-            としてチームに参加することで、コミュニケーションツールや限定コンテンツのアクセスなど
-            <span className="text-yellow">Class（クラス）</span>
+            としてチームに参加することで、コミュニケーションツールや限定コンテンツへのアクセスなど
+            <span className="text-yellow"> Class（クラス）</span>
             ごとに定められた各種特典を受け取ることができます。
           </>
         }

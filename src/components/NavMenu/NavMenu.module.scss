@@ -1,6 +1,5 @@
 @import 'src/styles/variables';
 @import '../../styles/const';
-@import '../../styles/font';
 
 .navMenu {
   z-index: $nav-bar;
@@ -15,7 +14,7 @@
   transition: all 0.3s ease-in-out;
   font-family: $noto-sans-font;
   font-weight: $weight-light;
-  font-size: 18px;
+  font-size: 14px;
 }
 .cursorNotAllowed{
   font-family: $noto-sans-font;

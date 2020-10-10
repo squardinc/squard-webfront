@@ -40,24 +40,28 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({ personal, update }) => {
 
   return (
     <PersonPageWrapper backgroundColor={'#ebebeb'}>
-      {!openEditProfile
-        ?
+      {!openEditProfile ? (
         <PersonPage
           isLoading={false}
           personal={personal}
-          editProfile={() => setOpenEditProfile(true)} profileEditable={personal.id === user.id}
+          editProfile={() => setOpenEditProfile(true)}
+          profileEditable={personal.id === user.id}
         />
-        :
+      ) : (
         <EditProfileWrapper>
           <PersonalEditProfile
             isLoading={false}
             personal={personal}
             close={() => setOpenEditProfile(false)}
-            saveImage={async (fileName: string, image: Blob, contentType: string) => uploadImg(fileName, image, contentType)}
+            saveImage={async (
+              fileName: string,
+              image: Blob,
+              contentType: string
+            ) => uploadImg(fileName, image, contentType)}
             saveProfile={update}
           />
         </EditProfileWrapper>
-      }
+      )}
     </PersonPageWrapper>
   )
 }

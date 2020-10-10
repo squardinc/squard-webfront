@@ -12,6 +12,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ExternalLink } from 'src/components/Link/ExternalLink'
 import Top from 'src/images/temp/team/top.jpg'
+import * as Const from '../../styles/const'
 
 type PersonPageProps = {
   isLoading: boolean
@@ -86,7 +87,7 @@ const UserCover = styled.div`
       to right bottom,
       rgba(0, 0, 0, 0) 50%,
       ${(props: StyleCssProps) =>
-    props.backgroundColor ? props.backgroundColor : colors.textWhite}
+          props.backgroundColor ? props.backgroundColor : colors.textWhite}
         50%
     );
     transform: scale(1.1);
@@ -123,30 +124,38 @@ const NameWrapper = styled.div`
 `
 
 const NameText = styled.div`
-  letter-spacing: 0.1em;
   color: ${colors.textWhite};
   padding-left: 8rem;
   padding-top: 1.25rem;
-  font-size: 1.5rem;
-  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+  font-weight: ${Const.fontWeight.medium};
+  font-family: ${Const.fontFamily.sans};
+  font-size: ${Const.fontSize.xl1};
 `
 
 const NameSubText = styled.div`
   letter-spacing: 0.1em;
   color: #fff;
   padding-left: 8rem;
-  font-size: 1rem;
-  font-weight: 200;
+  line-height: 1.285;
+  letter-spacing: 0.05em;
+  margin-top: 5px;
+  font-weight: ${Const.fontWeight.medium};
+  font-family: ${Const.fontFamily.monster};
+  font-size: ${Const.fontSize.sm};
 `
 
 const NameDescription = styled.div`
-  font-weight: 100;
-  font-size: 0.875rem;
   padding: 1.5rem;
   text-align: justify;
   color: #fff;
-  letter-spacing: 0.1em;
+  line-height: 1.715;
+  letter-spacing: 0.05em;
   white-space: pre-wrap;
+  font-weight: ${Const.fontWeight.light};
+  font-family: ${Const.fontFamily.sans};
+  font-size: ${Const.fontSize.sm};
 `
 
 const SocialMediaWrapper = styled.div`
@@ -207,7 +216,10 @@ const TeamNameText = styled.div`
   font-weight: 600;
 `
 const TeamPositionText = styled.div`
-  line-height: 1.5rem;
+  line-height: 1.57;
+  font-weight: ${Const.fontWeight.light};
+  font-family: ${Const.fontFamily.monster};
+  font-size: ${Const.fontSize.sm};
 `
 
 const TeamLinkWrapper = styled.div`
@@ -245,7 +257,6 @@ const ButtonEditWrapper = styled.div`
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background-color: gray;
   box-shadow: 0 0 0 3px #white;
   cursor: pointer;
   display: flex;
@@ -262,16 +273,21 @@ export const PersonPage = (props: PersonPageProps) => {
       <ContentWrapper>
         <UserCoverWrapper>
           <UserCover backgroundColor={'#ebebeb'}>
-            <img src={personal.topImage ? encodeURI(personal.topImage) : Top} style={{ width: '100%', minHeight: '320px' }} />
+            <img
+              src={personal.topImage ? encodeURI(personal.topImage) : Top}
+              style={{ width: '100%', minHeight: '320px' }}
+            />
             {profileEditable && (
               <ButtonEditWrapper onClick={editProfile}>
-                <FontAwesomeIcon icon={faEdit} size='2x' />
+                <FontAwesomeIcon icon={faEdit} size="2x" />
               </ButtonEditWrapper>
             )}
           </UserCover>
           <ProfileContainerWrapper>
             <ProfilerImageContainer>
-              <ProfileImage icon={personal.icon ? encodeURI(personal.icon) : Top} />
+              <ProfileImage
+                icon={personal.icon ? encodeURI(personal.icon) : Top}
+              />
             </ProfilerImageContainer>
             <NameWrapper>
               <NameText>
@@ -288,7 +304,10 @@ export const PersonPage = (props: PersonPageProps) => {
               {personal.links.map((url, index) => {
                 const mediaType = descriminate(url)
                 return (
-                  <ExternalLink href={toHref(url, mediaType)} key={`${index}_${url}`}>
+                  <ExternalLink
+                    href={toHref(url, mediaType)}
+                    key={`${index}_${url}`}
+                  >
                     <SocialMediaIcon>
                       {getSocialMediaIcon(mediaType)}
                     </SocialMediaIcon>
@@ -301,10 +320,7 @@ export const PersonPage = (props: PersonPageProps) => {
         <TeamWrapper>
           {personal.teams.map((team, i) => {
             return (
-              <TeamItemWrapper
-                key={i}
-                onClick={() => setSelectedTeam(team)}
-              >
+              <TeamItemWrapper key={i} onClick={() => setSelectedTeam(team)}>
                 <TeamRole>
                   <TeamRoleText>
                     <TextDisplay>{team.role}</TextDisplay>
@@ -322,8 +338,7 @@ export const PersonPage = (props: PersonPageProps) => {
                       <TextDisplay>{`- ${team.classType}`}</TextDisplay>
                     </TeamPositionText>
                   </TeamTextWrapper>
-                  <TeamLinkWrapper>
-                  </TeamLinkWrapper>
+                  <TeamLinkWrapper></TeamLinkWrapper>
                 </TeamInfo>
               </TeamItemWrapper>
             )

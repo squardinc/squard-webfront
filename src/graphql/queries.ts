@@ -27,7 +27,7 @@ export const getTeam = /* GraphQL */ `
       }
     }
   }
-`;
+`
 export const getTeamMembers = /* GraphQL */ `
   query GetTeamMembers($teamId: ID!) {
     getTeamMembers(teamId: $teamId) {
@@ -46,11 +46,11 @@ export const getTeamMembers = /* GraphQL */ `
       createdAt
     }
   }
-`;
+`
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
-      id
+      # id
       nameJp
       nameEn
       introduction
@@ -66,4 +66,4 @@ export const getUser = /* GraphQL */ `
       icon
     }
   }
-`;
+`

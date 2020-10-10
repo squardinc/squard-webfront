@@ -1,4 +1,5 @@
 import * as React from 'react'
+import styled from 'styled-components'
 import styles from './company.module.scss'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
@@ -9,6 +10,59 @@ import CEO from 'src/images/temp/company/ceo.jpg'
 import COO from 'src/images/temp/company/coo.jpg'
 import CFO from 'src/images/temp/company/cfo.jpg'
 import CTO from 'src/images/temp/company/cto.jpg'
+import * as Const from '../../styles/const'
+
+const CompanyName = styled.div`
+  font-family: ${Const.fontFamily.monster};
+  font-weight: ${Const.fontWeight.bold};
+  font-size: 38px;
+  display: flex;
+  flex-wrap: nowrap;
+`
+const CompanyInfor = styled.div`
+  margin-left: 20px;
+  margin-right: 20px;
+`
+const PersonalPosition = styled.div`
+  font-family: ${Const.fontFamily.sans};
+  font-weight: ${Const.fontWeight.medium};
+  font-size: ${Const.fontSize.sm};
+  letter-spacing: 0;
+`
+
+const BlockWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+`
+const LabelWrapper = styled.div`
+  font-family: ${Const.fontFamily.sans};
+  font-weight: ${Const.fontWeight.medium};
+  font-size: ${Const.fontSize.base};
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 0;
+  line-height: 1;
+  height: 45px;
+  width: 100%;
+  padding-left: 24px;
+  padding-right: 24px;
+  background-image: linear-gradient(to right, #27d8df, #3b4491);
+  box-shadow: 5px 7px lightgrey;
+`
+const ValueWrapper = styled.div`
+  color: #051026;
+  font-family: ${Const.fontFamily.sans};
+  font-weight: ${Const.fontWeight.light};
+  font-size: ${Const.fontSize.lg};
+  letter-spacing: 0;
+  margin-top: 15px;
+  text-align: center;
+`
 
 interface MemberProps {
   member: { imageUrl: string; color: string; title: string }
@@ -36,7 +90,7 @@ const Member: React.FC<MemberProps> = ({ member }) => {
         className={styles.member + ' ' + getImageTheme(member.color)}
       />
       <div className={styles.memberCaption}>
-        <TextDisplay className={styles.memberName}>{member.title}</TextDisplay>
+        <PersonalPosition>{member.title}</PersonalPosition>
       </div>
     </div>
   )
@@ -77,81 +131,63 @@ const Page: React.FC = () => {
               are the
             </p>
             <p className="pr-6 text-white text-4xl font-bold tracking-wider">
-              Squard, Inc<span className="text-red-600">.</span>
+              <CompanyName>
+                Squard, Inc<span className="text-red-600">.</span>
+              </CompanyName>
             </p>
           </div>
         </div>
       </div>
-      <div className="pt-2 pb-8">
-        <div className="flex flex-col justify-center items-center">
-          <div>
-            <TwoStagedCaption
-              style="medium"
-              sub="About"
-              main="Our Company"
-              shadow={true}
-            />
+      <CompanyInfor>
+        <div className="pt-2 pb-8">
+          <TwoStagedCaption
+            style="medium"
+            sub="About"
+            main="Our Company"
+            shadow={true}
+          />
+          <div className="pt-8 flex justify-center">
+            <div className={styles.members}>
+              {members.map((member, index) => (
+                <Member key={index} member={member} />
+              ))}
+            </div>
           </div>
         </div>
-        <div className="pt-8 flex justify-center">
-          <div className={styles.members}>
-            {members.map((member, index) => (
-              <Member key={index} member={member} />
-            ))}
-          </div>
-        </div>
-      </div>
-      <div className="pb-16">
-        <div className={styles.labelHeaderBox}>
-          <TextDisplay className="text-white text-lg font-medium text-center tracking-wider pt-2">
-            社名 / Corporate Name
-          </TextDisplay>
-          <TextDisplay className="text-black text-lg font-thin text-center tracking-wider pt-6">
-            スクアード株式会社 / Squard, Inc.
-          </TextDisplay>
-        </div>
-      </div>
-      <div className="pb-16">
-        <div className={styles.labelHeaderBox}>
-          <TextDisplay className="text-white text-lg font-medium text-center tracking-wider pt-2">
-            代表取締役 / CEO
-          </TextDisplay>
-          <TextDisplay className="text-black text-lg font-thin text-center tracking-wider pt-6">
-            小池駿平 / Shunpei Koike
-          </TextDisplay>
-        </div>
-      </div>
-      <div className="pb-16">
-        <div className={styles.labelHeaderBox}>
-          <TextDisplay className="text-white text-lg font-medium text-center tracking-wider pt-2">
-            設立 / Founded
-          </TextDisplay>
-          <TextDisplay className="text-black text-lg font-thin text-center tracking-wider pt-6">
-            2020年9月 / September 2020
-          </TextDisplay>
-        </div>
-      </div>
-      <div className="pb-16">
-        <div className={styles.labelHeaderBox}>
-          <TextDisplay className="text-white text-lg font-medium text-center tracking-wider pt-2">
-            資本金 / Capital
-          </TextDisplay>
-          <TextDisplay className="text-black text-lg font-thin text-center tracking-wider pt-6">
-            10,000,000円 / 10,000,000 yen
-          </TextDisplay>
-        </div>
-      </div>
-      <div className="pb-24">
-        <div className={styles.labelHeaderBox}>
-          <TextDisplay className="text-white text-lg font-medium text-center tracking-wider pt-2">
-            所在地 / Address
-          </TextDisplay>
-          <TextDisplay className="text-black text-sm font-thin text-center tracking-wider pt-6">
-            <p>〒135-0064 東京都江東区青海2-7-4 the SOHO 1310 </p>
-            <p>the SOHO 1310, 2-7-4, Aomi, Koto-ku, Tokyo</p>
-          </TextDisplay>
-        </div>
-      </div>
+
+        <BlockWrapper>
+          <LabelWrapper>社名 / Corporate Name</LabelWrapper>
+          <ValueWrapper>スクアード株式会社 / Squard, Inc.</ValueWrapper>
+        </BlockWrapper>
+
+        <BlockWrapper>
+          <LabelWrapper>代表取締役 / CEO</LabelWrapper>
+          <ValueWrapper>小池駿平 / Shunpei Koike</ValueWrapper>
+        </BlockWrapper>
+
+        <BlockWrapper>
+          <LabelWrapper>設立 / Founded</LabelWrapper>
+          <ValueWrapper>2020年9月 / September 2020</ValueWrapper>
+        </BlockWrapper>
+
+        <BlockWrapper>
+          <LabelWrapper>資本金 / Capital</LabelWrapper>
+          <ValueWrapper>10,000,000円 / 10,000,000 yen</ValueWrapper>
+        </BlockWrapper>
+
+        <BlockWrapper>
+          <LabelWrapper>所在地 / Address</LabelWrapper>
+          <ValueWrapper
+            style={{ fontSize: '14px', marginBottom: '0px', marginTop: '20px' }}
+          >
+            〒135-0064 東京都江東区青海2-7-4 the SOHO 1310
+          </ValueWrapper>
+          <ValueWrapper style={{ fontSize: '14px', marginTop: '5px' }}>
+            the SOHO 1310, 2-7-4, Aomi, Koto-ku, Tokyo
+          </ValueWrapper>
+        </BlockWrapper>
+      </CompanyInfor>
+
       <DefaultFooter />
     </div>
   )

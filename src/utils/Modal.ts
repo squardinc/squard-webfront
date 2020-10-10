@@ -25,6 +25,8 @@ export const withFadeOut = (closeModal: (e: React.MouseEvent) => void) => {
   return (e: React.MouseEvent) => {
     e.stopPropagation()
     fadeOut()
-    setTimeout(() => { closeModal(e) }, 150)
+    setTimeout(() => {
+      closeModal(e)
+    }, 150)
   }
 }

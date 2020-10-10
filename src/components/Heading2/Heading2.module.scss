@@ -2,6 +2,8 @@
 
 .wrapper {
   margin: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
   text-align: center;
   font-weight: 700;
   color: $text-white;
@@ -20,9 +22,13 @@
 }
 
 .main {
-  font-size: 1.5rem;
+  font-size: 28px;
+  font-family: $noto-sans-font;
+  font-weight: 700;
 }
 
 .sub {
-  font-size: 1rem;
+  font-size: 14px;
+  font-family: $noto-sans-font;
+  font-weight: 700;
 }

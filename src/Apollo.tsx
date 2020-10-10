@@ -1,6 +1,12 @@
 import * as React from 'react'
 import fetch from 'cross-fetch'
-import { ApolloProvider, ApolloClient, ApolloLink, createHttpLink, InMemoryCache } from '@apollo/client'
+import {
+  ApolloProvider,
+  ApolloClient,
+  ApolloLink,
+  createHttpLink,
+  InMemoryCache,
+} from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import { AWS_APPSYNC_GRAPHQL_ENDPOINT, AWS_APPSYNC_API_KEY } from './utils/env'
 import { AuthService } from './services/AuthService'
@@ -12,7 +18,8 @@ const httpLink = createHttpLink({
 
 type OperationType = 'query' | 'mutation'
 const authLink = setContext(async (operation, { headers }) => {
-  const operationType: OperationType = operation.query.definitions[0].operation || 'query'
+  const operationType: OperationType =
+    operation.query.definitions[0].operation || 'query'
   const token = await AuthService.idToken().catch(() => '')
   if (operationType === 'mutation' && token) {
     return {
@@ -30,10 +37,7 @@ const authLink = setContext(async (operation, { headers }) => {
   }
 })
 const client = new ApolloClient({
-  link: ApolloLink.from([
-    authLink,
-    httpLink
-  ]),
+  link: ApolloLink.from([authLink, httpLink]),
   cache: new InMemoryCache(),
 })
 

@@ -1,4 +1,4 @@
-import { GetUserQuery } from "src/types/API"
+import { GetUserQuery } from 'src/types/API'
 
 const SOCIAL_MEDIA = [
   'facebook',
@@ -59,11 +59,29 @@ export class Person {
     readonly icon: string = '',
     readonly introduction: string = '',
     readonly links: string[] = [],
-    readonly teams: ITeam[] = [],
-  ) { }
+    readonly teams: ITeam[] = []
+  ) {}
 
   static fromQueryResult = (result: GetUserQuery) => {
-    const { id, nameJp, nameEn, introduction, links, topImage, icon, displayTeams } = result.getUser
-    return new Person(id, nameJp || '', nameEn || '', topImage || '', icon || '', introduction || '', links || [], displayTeams || [])
+    const {
+      id,
+      nameJp,
+      nameEn,
+      introduction,
+      links,
+      topImage,
+      icon,
+      displayTeams,
+    } = result.getUser
+    return new Person(
+      id,
+      nameJp || '',
+      nameEn || '',
+      topImage || '',
+      icon || '',
+      introduction || '',
+      links || [],
+      displayTeams || []
+    )
   }
 }

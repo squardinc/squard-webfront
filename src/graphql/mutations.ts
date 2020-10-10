@@ -21,7 +21,7 @@ export const updateUser = /* GraphQL */ `
       icon
     }
   }
-`;
+`
 export const requestSubscription = /* GraphQL */ `
   mutation RequestSubscription(
     $userId: ID!
@@ -38,4 +38,4 @@ export const requestSubscription = /* GraphQL */ `
       sessionId
     }
   }
-`;
+`

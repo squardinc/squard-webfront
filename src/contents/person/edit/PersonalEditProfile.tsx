@@ -5,7 +5,7 @@ import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { getTeamIcon } from 'src/contents/person/utils'
 import { withTheme } from 'src/context/ThemeContext'
 import { IPersonal } from 'src/models/person'
-
+import * as Const from '../../../styles/const'
 import {
   LayoutHorizontal,
   LayoutVertical,
@@ -51,6 +51,7 @@ const Label = styled.div`
   color: gray;
 `
 const Input = styled.input`
+  font-family: ${Const.fontFamily.sans};
   width: calc(100% - 120px);
   display: block;
   background: none;
@@ -58,7 +59,8 @@ const Input = styled.input`
 `
 const TextareaWrapper = styled.div`
   width: calc(100% - 120px);
-  .textarea{
+  font-family: ${Const.fontFamily.sans};
+  .textarea {
     width: 100%;
     display: block;
     background: none;
@@ -168,7 +170,13 @@ const HorizontalLayoutWrapper: React.FC = ({ children }) => {
     </LayoutHorizontal>
   )
 }
-const RowInput: React.FC<RowInputProps> = ({ label, value = '', onChange, onBlur, onFocus }) => {
+const RowInput: React.FC<RowInputProps> = ({
+  label,
+  value = '',
+  onChange,
+  onBlur,
+  onFocus,
+}) => {
   return (
     <HorizontalLayoutWrapper>
       <Label>
@@ -180,18 +188,22 @@ const RowInput: React.FC<RowInputProps> = ({ label, value = '', onChange, onBlur
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onFocus={(e) => {
-          if (onFocus)
-            onFocus(e.target.value)
+          if (onFocus) onFocus(e.target.value)
         }}
         onBlur={(e) => {
-          if (onBlur)
-            onBlur(e.target.value)
+          if (onBlur) onBlur(e.target.value)
         }}
       />
     </HorizontalLayoutWrapper>
   )
 }
-const RowTextarea: React.FC<RowInputProps> = ({ label, value = '', onChange, onBlur, onFocus }) => {
+const RowTextarea: React.FC<RowInputProps> = ({
+  label,
+  value = '',
+  onChange,
+  onBlur,
+  onFocus,
+}) => {
   return (
     <HorizontalLayoutWrapper>
       <Label>
@@ -199,7 +211,7 @@ const RowTextarea: React.FC<RowInputProps> = ({ label, value = '', onChange, onB
       </Label>
       <TextareaWrapper>
         <TextareaAutosize
-          className='textarea'
+          className="textarea"
           contentEditable={true}
           suppressContentEditableWarning={true}
           value={value}
@@ -207,12 +219,10 @@ const RowTextarea: React.FC<RowInputProps> = ({ label, value = '', onChange, onB
             onChange(e.target.value)
           }}
           onFocus={(e) => {
-            if (onFocus)
-              onFocus(e.target.value)
+            if (onFocus) onFocus(e.target.value)
           }}
           onBlur={(e) => {
-            if (onBlur)
-              onBlur(e.target.value)
+            if (onBlur) onBlur(e.target.value)
           }}
         />
       </TextareaWrapper>
@@ -229,29 +239,35 @@ const LinksInput: React.FC<LinksInputProps> = ({ values = [''], onChange }) => {
   const [inputValue, setInputValue] = React.useState('')
   return (
     <>
-      {values.filter(Boolean).concat(['']).map((url, index) => {
-        return (
-          <RowInput
-            key={`${index}_${url}`}
-            label={`リンクURL${index + 1}`}
-            value={index === currentIndex ? inputValue : url}
-            onChange={(value) => setInputValue(value)}
-            onFocus={(value) => {
-              setCurrentindex(index)
-              setInputValue(value)
-            }}
-            onBlur={(value) => {
-              onChange(value, currentIndex)
-            }}
-          />
-        )
-      })}
+      {values
+        .filter(Boolean)
+        .concat([''])
+        .map((url, index) => {
+          return (
+            <RowInput
+              key={`${index}_${url}`}
+              label={`リンクURL${index + 1}`}
+              value={index === currentIndex ? inputValue : url}
+              onChange={(value) => setInputValue(value)}
+              onFocus={(value) => {
+                setCurrentindex(index)
+                setInputValue(value)
+              }}
+              onBlur={(value) => {
+                onChange(value, currentIndex)
+              }}
+            />
+          )
+        })}
     </>
   )
 }
 
 export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
-  personal, close, saveImage, saveProfile
+  personal,
+  close,
+  saveImage,
+  saveProfile,
 }) => {
   const [topImage, setTopImage] = React.useState<Blob>()
   const [icon, setIcon] = React.useState<Blob>()
@@ -273,7 +289,7 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
   return (
     <PersonalEditProfileWrapper>
       <TabMenuBar
-        title='プロフィールを編集'
+        title="プロフィールを編集"
         onCancel={close}
         onSave={onSaveProfile}
       />
@@ -285,14 +301,28 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
           setIcon={setIcon}
         />
         <InformationWrapper style={{ width: '100%' }}>
-          <RowInput label={'名前'} value={profile.nameJp} onChange={(value) => { setProfile(Object.assign({}, profile, { nameJp: value })) }} />
-          <RowInput label={'英語表記'} value={profile.nameEn} onChange={(value) => { setProfile(Object.assign({}, profile, { nameEn: value })) }} />
+          <RowInput
+            label={'名前'}
+            value={profile.nameJp}
+            onChange={(value) => {
+              setProfile(Object.assign({}, profile, { nameJp: value }))
+            }}
+          />
+          <RowInput
+            label={'英語表記'}
+            value={profile.nameEn}
+            onChange={(value) => {
+              setProfile(Object.assign({}, profile, { nameEn: value }))
+            }}
+          />
           {/* <RowInput label={'ID'} value={profile.id} onChange={(value) => { setProfile(Object.assign({}, profile, { id: value })) }} /> */}
 
           <RowTextarea
             label={'自己紹介'}
             value={profile.introduction}
-            onChange={(value) => { setProfile(Object.assign({}, profile, { introduction: value })) }}
+            onChange={(value) => {
+              setProfile(Object.assign({}, profile, { introduction: value }))
+            }}
           />
 
           <LinksInput
@@ -340,11 +370,17 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
         </TeamWrapper> */}
 
         <BottomWrapper>
-          <LayoutVertical layoutType={LayoutType.center} style={{ margin: 'auto' }}>
-            <RoundButton style={{ background: 'white', color: 'black' }} onClick={onSaveProfile}>
+          <LayoutVertical
+            layoutType={LayoutType.center}
+            style={{ margin: 'auto' }}
+          >
+            <RoundButton
+              style={{ background: 'white', color: 'black' }}
+              onClick={onSaveProfile}
+            >
               <TextDisplay>保存</TextDisplay>
             </RoundButton>
-            <RoundButton style={{ color: 'white' }} onClick={close} >
+            <RoundButton style={{ color: 'white' }} onClick={close}>
               <TextDisplay>キャンセル</TextDisplay>
             </RoundButton>
           </LayoutVertical>

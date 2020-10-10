@@ -41,11 +41,12 @@ class Service {
 
   intialize = async () => {
     return Cognito.intialize().then(
-      credential => new LoginUserModel(credential.getIdToken().decodePayload().sub),
+      (credential) =>
+        new LoginUserModel(credential.getIdToken().decodePayload().sub),
       () => LoginUserModel.guest()
     )
   }
-  idToken = async() => Cognito.currentIdToken()
+  idToken = async () => Cognito.currentIdToken()
 }
 
 export const AuthService = new Service()

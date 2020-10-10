@@ -1,11 +1,10 @@
 @import '../../styles/const';
-@import '../../styles/font';
 
 .content {
   padding: 20px 38px;
 }
 .titleSub {
-  color: $text-yellow;
+
   font-family: $montserrat-font;
   font-weight: $weight-bold;
   font-style: italic;
@@ -24,7 +23,7 @@
   font-weight: $weight-light;
   font-size: 18px;
   line-height: 1.66;
-  margin: 20px 0px;
+  margin-top: 20px;
 }
 .question {
   text-align: center;
@@ -43,12 +42,24 @@
   flex-direction: column;
   justify-content: space-between;
   font-family: $montserrat-font;
-  font-weight: $weight-bold;
+  font-weight: $weight-sim-bold;
   font-size: 18px;
   line-height: 1.66;
   white-space: nowrap;
   margin: 0px 10px;
   color: $text-yellow;
+}
+.linksThemeWhite {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: $montserrat-font;
+  font-weight: $weight-bold;
+  font-size: 18px;
+  line-height: 1.66;
+  white-space: nowrap;
+  margin: 0px 10px;
+  color: #262626;
 }
 .logo {
   width: auto;
@@ -62,7 +73,6 @@
   line-height: 1.66;
 }
 .copyright {
-  color: $text-yellow;
   text-align: center;
   font-size: 12px;
   font-family: $montserrat-font;
@@ -75,6 +85,6 @@
 .buttonText{
   color: $text-yellow;
   font-family: $noto-sans-font;
-  font-weight: $weight-dim-light;
+  font-weight: $weight-bold;
   font-size: 18px;
 }

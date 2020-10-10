@@ -51,11 +51,16 @@ export const RoundButton: React.FC<RoundButtonProps> = ({
   text,
   type = 'button',
   disabled = false,
-  onClick = () => { },
+  onClick = () => {},
   className = '',
 }) => {
   return (
-    <button type={type} onClick={onClick} className="w-full" disabled={disabled} >
+    <button
+      type={type}
+      onClick={onClick}
+      className="w-full"
+      disabled={disabled}
+    >
       <TextDisplay
         className={`flex justify-center items-center h-10 w-full my-1 rounded-full text-sm ${className}`}
       >
@@ -79,7 +84,9 @@ export const RoundFileUploadButton: React.FC<RoundFileUploadButtonProps> = ({
 }) => {
   return (
     <label className="w-full">
-      <TextDisplay className={`flex justify-center items-center cursor-pointer h-10 w-full my-1 bg-white text-gray-900 rounded-full text-sm ${className}`}>
+      <TextDisplay
+        className={`flex justify-center items-center cursor-pointer h-10 w-full my-1 bg-white text-gray-900 rounded-full text-sm ${className}`}
+      >
         {text}
       </TextDisplay>
       <input type="file" className="hidden" onChange={onChange} />

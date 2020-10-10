@@ -26,20 +26,31 @@ const PasswordResetRequestComponent: React.FC<PasswordResetRequestComponentProps
           </TextDisplay>
           {!succeeded ? (
             <>
-              <TextDisplay className='mb-8 text-sm'>ご登録のメールアドレスを入力してください</TextDisplay>
+              <TextDisplay className="mb-8 text-sm">
+                ご登録のメールアドレスを入力してください
+              </TextDisplay>
               <EMailAddressInput value={email} onChange={setEmail} />
-              <div className='flex flex-col'>
+              <div className="flex flex-col">
                 <RoundButton
-                  className={isSubmittable ? 'text-black bg-white' : 'text-gray-600 bg-gray-500'}
-                  text='送信'
+                  className={
+                    isSubmittable
+                      ? 'text-black bg-white'
+                      : 'text-gray-600 bg-gray-500'
+                  }
+                  text="送信"
                   disabled={!isSubmittable}
                   onClick={async () => {
                     const { host, pathname } = window.location
-                    AuthService.resetPasswordRequest(email, host, pathname).then(
+                    AuthService.resetPasswordRequest(
+                      email,
+                      host,
+                      pathname
+                    ).then(
                       () => setSucceeded(true),
                       (err) => setErrorMessage(err)
                     )
-                  }} />
+                  }}
+                />
               </div>
             </>
           ) : (

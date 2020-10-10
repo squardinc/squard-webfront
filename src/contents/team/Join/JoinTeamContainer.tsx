@@ -4,7 +4,10 @@ import { ITeamClass } from 'src/models/team'
 import { withTheme } from 'src/context/ThemeContext'
 import { useQuery, useMutation, gql } from '@apollo/client'
 import { requestSubscription } from 'src/graphql/mutations'
-import { RequestSubscriptionMutation, RequestSubscriptionMutationVariables } from 'src/types/API'
+import {
+  RequestSubscriptionMutation,
+  RequestSubscriptionMutationVariables,
+} from 'src/types/API'
 import { checkout } from 'src/external/stripe'
 import { UserContext } from 'src/context/UserContext'
 
@@ -13,7 +16,10 @@ interface JoinTeamContainerProps {
 }
 const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
   const { user } = React.useContext(UserContext)
-  const [request, data] = useMutation<RequestSubscriptionMutation, RequestSubscriptionMutationVariables>(gql(requestSubscription));
+  const [request, data] = useMutation<
+    RequestSubscriptionMutation,
+    RequestSubscriptionMutationVariables
+  >(gql(requestSubscription))
   const teamData: ITeamClass[] = [
     {
       main: 'ANGELS',
@@ -25,7 +31,7 @@ const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
         '月1回開催される\r\nZoom定例会にご招待します。',
       ],
       classType: 'Angels',
-      classId: 'squard_angels'
+      classId: 'squard_angels',
     },
     {
       main: 'PROSPECTS',
@@ -39,7 +45,7 @@ const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
         'その他限定情報へのアクセスが可能です。',
       ],
       classType: 'Prospects',
-      classId: 'squard_prospects'
+      classId: 'squard_prospects',
     },
     {
       main: 'GALLERIES',
@@ -49,19 +55,28 @@ const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
         'フィードにて進捗を方向します。\r\n※フィード機能は現在開発中です',
       ],
       classType: 'Galleries',
-      classId: 'xxxxxx'
+      classId: 'xxxxxx',
     },
   ]
-  return <JoinTeam
-    requestSubscription={async (teamClassId) => {
-      const response = await request({ variables: { userId: user.id, teamId, teamClassId, origin: window.location.host } })
-      if (response.data?.requestSubscription?.sessionId)
-        checkout(response.data?.requestSubscription?.sessionId)
-    }}
-    isLoading={false}
-    loggedIn={user.loggedIn}
-    teamData={teamData}
-  />
+  return (
+    <JoinTeam
+      requestSubscription={async (teamClassId) => {
+        const response = await request({
+          variables: {
+            userId: user.id,
+            teamId,
+            teamClassId,
+            origin: window.location.host,
+          },
+        })
+        if (response.data?.requestSubscription?.sessionId)
+          checkout(response.data?.requestSubscription?.sessionId)
+      }}
+      isLoading={false}
+      loggedIn={user.loggedIn}
+      teamData={teamData}
+    />
+  )
 }
 
 export default withTheme(JoinTeamContainer, 'light')

@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import * as colors from '../../styles/colors'
 import * as sizes from '../../styles/sizes'
 
-
 export const TeamCardWrapper = styled.div`
   width: ${sizes.cardWidth};
   background: ${colors.bgBlack};
@@ -15,7 +14,6 @@ export const FlagWrapper = styled.div`
   width: ${sizes.flagWidth};
   margin: 0 auto;
   top: -${sizes.flagTopShift};
-
   &::before {
     position: absolute;
     top: 0;

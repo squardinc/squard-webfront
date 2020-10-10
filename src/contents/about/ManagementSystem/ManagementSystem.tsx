@@ -4,10 +4,51 @@ import styles from './ManagementSystem.module.scss'
 
 import TopDown from 'src/assets/management_system/topdown.svg'
 import DAO from 'src/assets/management_system/dao.svg'
-
+import styled from 'styled-components'
 import { Heading2 } from 'src/components/Heading2/Heading2'
-import { Description } from 'src/components/Description/Description'
+// import { Description } from 'src/components/Description/Description'
 import { GradientCard2 } from 'src/components/GradientCard2/GradientCard2'
+import * as Const from '../../../styles/const'
+
+const HeaderWrapper = styled.div`
+  font-family: ${Const.fontFamily.sans};
+  display: block;
+  &::after {
+    margin-top: 10px;
+    content: '';
+    display: block;
+    height: 2px;
+    background: linear-gradient(
+      to right,
+      $gradient-yellow 0%,
+      $gradient-red 100%
+    );
+  }
+`
+
+const Description = styled.div`
+  font-family: ${Const.fontFamily.sans};
+  font-weight: ${Const.fontWeight.light};
+  font-size: ${Const.fontSize.sm};
+  letter-spacing: ${Const.letterSpacing.normal};
+  line-height: 1.785em;
+  padding-left: 58px;
+  padding-right: 58px;
+  margin-bottom: 40px;
+  margin-top: 30px;
+  text-align: left;
+`
+const MainName = styled.div`
+  font-family: ${Const.fontFamily.sans};
+  font-weight: ${Const.fontWeight.bold};
+  font-size: ${Const.fontSize.xl1};
+`
+const SubMainName = styled.div`
+  font-family: ${Const.fontFamily.sans};
+  font-weight: ${Const.fontWeight.light};
+  font-size: ${Const.fontSize.sm};
+  margin-bottom: 10px;
+`
 
 interface ManagementSystemProps {}
 
@@ -29,7 +70,14 @@ export const ManagementSystem: React.FC<ManagementSystemProps> = (props) => {
 
   return (
     <div>
-      <Heading2 main="MANAGEMENT SYSTEM" sub="マネジメントシステム" />
+      <HeaderWrapper>
+        <Heading2
+          main="MANAGEMENT SYSTEM"
+          sub="マネジメントシステム"
+          size="24px"
+        />
+      </HeaderWrapper>
+
       <Description>
         Squardはチームのマネジメントシステムを2種類から選択することができます。
         <br />
@@ -40,12 +88,12 @@ export const ManagementSystem: React.FC<ManagementSystemProps> = (props) => {
           <div key={index} className={styles.card}>
             <GradientCard2>
               <div className={styles.name}>
-                <div className={styles.nameMain}>{el.name.main}</div>
-                <div className={styles.nameSub}>（{el.name.sub}）</div>
+                <MainName>{el.name.main}</MainName>
+                <SubMainName>（{el.name.sub}）</SubMainName>
               </div>
             </GradientCard2>
             <div className={styles.logo}>{el.logo}</div>
-            <div className={styles.description}>{el.description}</div>
+            <Description>{el.description}</Description>
           </div>
         ))}
       </div>

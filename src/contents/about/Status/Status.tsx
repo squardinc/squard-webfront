@@ -7,9 +7,27 @@ import Ready from 'src/assets/status/ready.svg'
 import Drive from 'src/assets/status/drive.svg'
 import Breakup from 'src/assets/status/breakup.svg'
 import Complete from 'src/assets/status/complete.svg'
-
+import styled from 'styled-components'
 import { Heading2 } from 'src/components/Heading2/Heading2'
-import { Description } from 'src/components/Description/Description'
+// import { Description } from 'src/components/Description/Description'
+import * as Const from '../../../styles/const'
+
+const HeaderWrapper = styled.div`
+  font-family: ${Const.fontFamily.sans};
+`
+
+const Description = styled.div`
+  font-family: ${Const.fontFamily.sans};
+  font-weight: ${Const.fontWeight.light};
+  font-size: ${Const.fontSize.sm};
+  letter-spacing: ${Const.letterSpacing.normal};
+  line-height: 1.785em;
+  padding-left: 58px;
+  padding-right: 58px;
+  margin-bottom: 40px;
+  margin-top: 30px;
+  text-align: left;
+`
 
 interface StatusProps {}
 
@@ -39,7 +57,10 @@ export const Status: React.FC<StatusProps> = (props) => {
 
   return (
     <div>
-      <Heading2 main="STATUS" sub="ステータス" />
+      <HeaderWrapper>
+        <Heading2 main="STATUS" sub="ステータス" />
+      </HeaderWrapper>
+
       <Description>
         Squardで管理される全てのチームには、STATUS（ステータス）が存在します。STATUSは現在のチームの状況を表し、チームページの表示項目や各種機能の開放及び制限はステータスに基づいて行われます。またSTATUSはチームの管理者が自由に設定することができます。
       </Description>
@@ -54,7 +75,7 @@ export const Status: React.FC<StatusProps> = (props) => {
         {statusList.map((el, index) => (
           <div key={index} className={styles.status}>
             <div className={styles.logo}>{el.logo}</div>
-            <div className={styles.description}>{el.description}</div>
+            <Description>{el.description}</Description>
           </div>
         ))}
       </div>

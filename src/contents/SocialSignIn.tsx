@@ -7,17 +7,21 @@ import { CompleteModal } from 'src/components/Modal/CompleteModal'
 export const SocialSigninLayout: React.FC = () => {
   const { user } = React.useContext(UserContext)
   const [showModal, setShowModal] = React.useState(false)
-  React.useEffect(() => { setShowModal(user.loggedIn) }, [user])
+  React.useEffect(() => {
+    setShowModal(user.loggedIn)
+  }, [user])
   return (
     <>
       <TopLayout />
-      {showModal ?
+      {showModal ? (
         <CompleteModal
-          title='Login Completed!'
-          footerDescription='ログインしました'
+          title="Login Completed!"
+          footerDescription="ログインしました"
           closeModal={() => setShowModal(false)}
         />
-        : ''}
+      ) : (
+        ''
+      )}
     </>
   )
 }

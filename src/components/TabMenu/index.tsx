@@ -11,7 +11,8 @@ const ItemWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  cursor: ${(props: ItemWrapperStyleProps) => props.clickable ? 'pointer' : 'default'};
+  cursor: ${(props: ItemWrapperStyleProps) =>
+    props.clickable ? 'pointer' : 'default'};
   min-width: 100px;
 `
 const TitleWrapper = styled.div`
@@ -26,13 +27,8 @@ export interface ItemProps {
 }
 export const Item: React.FC<ItemProps> = ({ title, onClick, fontSize }) => {
   return (
-    <ItemWrapper
-      clickable={!!onClick}
-      onClick={() => onClick && onClick()}
-    >
-      <TitleWrapper
-        style={{ fontSize: fontSize ? `${fontSize}px` : '13px' }}
-      >
+    <ItemWrapper clickable={!!onClick} onClick={() => onClick && onClick()}>
+      <TitleWrapper style={{ fontSize: fontSize ? `${fontSize}px` : '13px' }}>
         <TextDisplay>{title}</TextDisplay>
       </TitleWrapper>
     </ItemWrapper>
@@ -59,18 +55,23 @@ interface TabMenuProps {
   style?: React.CSSProperties
 }
 
-export const TabMenuBar: React.FC<TabMenuProps> = ({ title, onCancel, onSave, style = {} }) => {
+export const TabMenuBar: React.FC<TabMenuProps> = ({
+  title,
+  onCancel,
+  onSave,
+  style = {},
+}) => {
   return (
     <TabMenuWrapper style={style}>
-      <TabMenuItemWrapper >
-        <Item title='キャンセル' onClick={onCancel} />
+      <TabMenuItemWrapper>
+        <Item title="キャンセル" onClick={onCancel} />
       </TabMenuItemWrapper>
-      <TabMenuItemWrapper >
+      <TabMenuItemWrapper>
         <Item title={title} />
       </TabMenuItemWrapper>
-      <TabMenuItemWrapper >
-        <Item title='保存' onClick={onSave} />
+      <TabMenuItemWrapper>
+        <Item title="保存" onClick={onSave} />
       </TabMenuItemWrapper>
-    </TabMenuWrapper >
+    </TabMenuWrapper>
   )
 }

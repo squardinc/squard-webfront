@@ -39,12 +39,12 @@ export const NavMenu: React.FC<NavMenuProps> = ({
           onClick={hideNavMenu}
         />
       ) : (
-          ''
-        )}
+        ''
+      )}
       <div
         className={`${styles.navMenu} ${
           show ? styles.open : styles.close
-          } bg-v-gradient`}
+        } bg-v-gradient`}
       >
         <div className={styles.navToggleBtn} onClick={hideNavMenu}></div>
         <div className="flex flex-col mt-6 mr-4">
@@ -52,7 +52,9 @@ export const NavMenu: React.FC<NavMenuProps> = ({
           <MenuItem
             text="マイページ"
             SVGIcon={MyPage}
-            onClick={myPageId ? navigateWithMenuClose(`/${myPageId}`) : showLoginModal}
+            onClick={
+              myPageId ? navigateWithMenuClose(`/${myPageId}`) : showLoginModal
+            }
           />
           <MenuItem text={'チームを作る+'} SVGIcon={AddNewTeam} />
           <MenuItem
@@ -80,7 +82,11 @@ export const NavMenu: React.FC<NavMenuProps> = ({
             SVGIcon={LegalInfo}
             onClick={navigateWithMenuClose('/sctl')}
           />
-          <MenuItem text={'ログアウト'} faIcon={faSignOutAlt} onClick={loggedIn ? logout : undefined} />
+          <MenuItem
+            text={'ログアウト'}
+            faIcon={faSignOutAlt}
+            onClick={loggedIn ? logout : undefined}
+          />
         </div>
       </div>
     </>

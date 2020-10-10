@@ -1,6 +1,7 @@
 export const textBlack = '#262626'
 export const textWhite = '#fff'
+export const textLightGray = '#EBEBEB'
 export const bgBlack = '#262626'
 export const gradientYellow = '#fbe62e'
 export const gradientRed = '#af1a3d'
-export const borderGray = '#999b9c'
+export const borderGray = '#383738'
