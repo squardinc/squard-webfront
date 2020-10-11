@@ -1,18 +1,20 @@
 import * as React from 'react'
-import styled from 'styled-components'
-import { Heading3 } from 'src/vendor/heading3'
-import { ITeamClass } from 'src/models/team'
-import JoinCard from './joinCard'
-import * as colors from 'src/styles/colors'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
-import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { AuthModal, ModalType } from 'src/components/Modal/AuthModal'
+import { MessageModal } from 'src/components/Modal/MessageModal'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { ITeamClass } from 'src/models/team'
+import * as colors from 'src/styles/colors'
+import { Heading3 } from 'src/vendor/heading3'
+import styled from 'styled-components'
+import JoinCard from './joinCard'
 
 type JoinTeamProps = {
   requestSubscription: (teamClassId: string) => Promise<void>
   isLoading: boolean
   loggedIn: boolean
   teamData: ITeamClass[]
+  hasPaymentCancelled?: boolean
 }
 
 const JoinTeamWrapper = styled.div`
@@ -55,8 +57,14 @@ const CardWrapper = styled.div`
   }
 `
 
-const JoinTeam: React.FC<JoinTeamProps> = ({ requestSubscription, teamData, loggedIn }) => {
+const JoinTeam: React.FC<JoinTeamProps> = ({
+  requestSubscription,
+  teamData,
+  loggedIn,
+  hasPaymentCancelled,
+}) => {
   const [openModal, setOpenModal] = React.useState<ModalType>('Closed')
+  const [showPaymentCancelledModal, setShowPaymentCancelledModal] = React.useState(hasPaymentCancelled)
   return (
     <>
       <JoinTeamWrapper>
@@ -68,11 +76,11 @@ const JoinTeam: React.FC<JoinTeamProps> = ({ requestSubscription, teamData, logg
         <JoinInfoWrapper>
           <TextJoinTeam>
             <TextTeamName>Squard</TextTeamName>に参加する
-        </TextJoinTeam>
+          </TextJoinTeam>
           <TextDesciption>
             <TextDisplay>
               チームが設定した月々のサブスクリプション料金を支払いProspectsやAngelsとしてチームに参加することで、様々な特典を受け取ることができます。
-          </TextDisplay>
+            </TextDisplay>
           </TextDesciption>
         </JoinInfoWrapper>
         <div>
@@ -83,7 +91,7 @@ const JoinTeam: React.FC<JoinTeamProps> = ({ requestSubscription, teamData, logg
                   key={i}
                   team={team}
                   join={() => {
-                    if(!loggedIn) {
+                    if (!loggedIn) {
                       setOpenModal('Login')
                       return
                     }
@@ -100,10 +108,13 @@ const JoinTeam: React.FC<JoinTeamProps> = ({ requestSubscription, teamData, logg
         </div>
         <DefaultFooter />
       </JoinTeamWrapper>
-      <AuthModal
-        openModal={openModal}
-        setOpenModal={setOpenModal}
-      />
+      <AuthModal openModal={openModal} setOpenModal={setOpenModal} />
+      {showPaymentCancelledModal && (
+        <MessageModal
+          closeModal={(e) => setShowPaymentCancelledModal(false)}
+          message='チームへの参加をキャンセルしました。'
+        />
+      )}
     </>
   )
 }
