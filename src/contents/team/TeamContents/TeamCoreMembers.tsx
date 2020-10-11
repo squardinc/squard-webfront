@@ -2,7 +2,8 @@ import * as React from 'react'
 import { Link } from 'gatsby'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import styles from './TeamCoreMembers.module.scss'
+// import styles from './TeamCoreMembers.module.scss'
+import { StyledComponents } from "./TeamCoreMember.styled"
 
 interface CoreMember {
   id: string
@@ -20,22 +21,23 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
   coreMembers,
 }) => {
   function getImageTheme(key: string) {
-    let style = styles.yellowImageContainer
+    let style = "yellowImageContainer"
     if (key === 'red') {
-      style = styles.redImageContainer
+      style = "redImageContainer"
     } else if (key === 'blue') {
-      style = styles.blueImageContainer
+      style = "blueImageContainer"
     } else if (key === 'green') {
-      style = styles.greenImageContainer
+      style = "greenImageContainer"
     } else {
-      style = styles.yellowImageContainer
+      style = "yellowImageContainer"
     }
     return style
   }
   return (
-    <div className={styles.container}>
+    <StyledComponents>
+      {/* <div className={styles.container}> */}
       <TwoStagedCaption sub="CORE" main="MEMBERS" />
-      <div className={styles.members}>
+      <div className="members">
         {coreMembers.map((member: any) => (
           <Link key={member.id} to={`/${member.id}`}>
             <div className="relative mt-3">
@@ -46,9 +48,9 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
                 }}
                 className={getImageTheme(member.color)}
               ></div>
-              <TextDisplay className={styles.ageTag}>
-                <div className={styles.ageTagContainer}>
-                  <p className={`${styles.ageTitle} font-semibold text-white`}>
+              <TextDisplay className="ageTag">
+                <div className="ageTagContainer">
+                  <p className={`ageTitle font-semibold text-white`}>
                     Age
                   </p>
                   <p
@@ -57,19 +59,19 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
                   <p className="font-bold text-white">{member.age}</p>
                 </div>
               </TextDisplay>
-              <TextDisplay className={styles.designationText}>
+              <TextDisplay className="designationText">
                 {member.title}
               </TextDisplay>
-              <TextDisplay className={styles.titleSM}>
+              <TextDisplay className="titleSM">
                 {member.introduction}
               </TextDisplay>
-              <TextDisplay className={styles.titleLG}>
+              <TextDisplay className="titleLG">
                 {member.name}
               </TextDisplay>
             </div>
           </Link>
         ))}
       </div>
-    </div>
+    </StyledComponents>
   )
 }
