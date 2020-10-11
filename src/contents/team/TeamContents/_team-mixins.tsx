@@ -1,5 +1,5 @@
 import { css } from 'styled-components'
-import colors from 'src/styles/colors';
+import colors from 'src/styles/colors'
 
 export const teamMixins = {}
 

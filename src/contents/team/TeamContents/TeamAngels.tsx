@@ -3,7 +3,6 @@ import { DefaultButton } from 'src/components/Button/DefaultButton'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { StyledComponents } from './TeamAngels.styled'
 
-// import styles from './TeamAngels.module.scss'
 import { navigate } from 'gatsby'
 
 interface AngelProps {
@@ -27,7 +26,6 @@ export const TeamAngels: React.FC<TeamAngelsProps> = ({
 }) => {
   return (
     <StyledComponents>
-      {/* <div className={styles.container}> */}
       <TwoStagedCaption
         sub="And we have"
         main={`${numOfAngels} Angels`}
