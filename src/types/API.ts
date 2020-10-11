@@ -8,18 +8,26 @@ export type UpdateUserInput = {
   introduction?: string | null,
   links?: Array< string | null > | null,
   birthDay?: string | null,
-  displlayTeams?: Array< string | null > | null,
+  displayTeamIds?: Array< string | null > | null,
   topImage?: string | null,
   icon?: string | null,
 };
 
 export enum ClassType {
   Leader = "Leader",
-  CoreMember = "CoreMember",
-  Member = "Member",
-  Prospect = "Prospect",
-  Angel = "Angel",
+  CoreMembers = "CoreMembers",
+  Members = "Members",
+  Prospects = "Prospects",
+  Angels = "Angels",
+  Galleries = "Galleries",
   VIP = "VIP",
+}
+
+
+export enum PageType {
+  Static = "Static",
+  Team = "Team",
+  Person = "Person",
 }
 
 
@@ -36,20 +44,49 @@ export type UpdateUserMutation = {
     introduction: string | null,
     links: Array< string | null > | null,
     birthDay: string | null,
-    displayTeams:  Array< {
-      __typename: "Team",
-      id: string,
-      name: string | null,
-      tags: Array< string | null > | null,
-      system: string | null,
+    displayTeamIds: Array< string | null > | null,
+    displayTeamMembers:  Array< {
+      __typename: "TeamMember",
+      teamId: string,
+      teamMemberId: string,
+      userId: string,
+      teamClassId: string,
+      startAt: number | null,
+      endAt: number | null,
+      image: string | null,
+      imageColor: string | null,
+      nickname: string | null,
+      title: string | null,
+      subTitle: string | null,
+      age: string | null,
+      link: string | null,
+      contact: string | null,
+      introduction: string | null,
     } | null > | null,
     topImage: string | null,
     icon: string | null,
+    teamMembers:  Array< {
+      __typename: "TeamMember",
+      teamId: string,
+      teamMemberId: string,
+      userId: string,
+      teamClassId: string,
+      startAt: number | null,
+      endAt: number | null,
+      image: string | null,
+      imageColor: string | null,
+      nickname: string | null,
+      title: string | null,
+      subTitle: string | null,
+      age: string | null,
+      link: string | null,
+      contact: string | null,
+      introduction: string | null,
+    } | null > | null,
   } | null,
 };
 
 export type RequestSubscriptionMutationVariables = {
-  userId: string,
   teamId: string,
   teamClassId: string,
   origin: string,
@@ -71,16 +108,14 @@ export type GetTeamQuery = {
     __typename: "Team",
     id: string,
     name: string | null,
-    title:  {
-      __typename: "Title",
-      title: string | null,
-      subTitle: string | null,
-      introduction: string | null,
-    },
-    tags: Array< string | null > | null,
+    subTitle: string | null,
+    introduction: string | null,
+    topImage: string | null,
+    tags: Array< string > | null,
     system: string | null,
     classes:  Array< {
       __typename: "TeamClass",
+      teamClassId: string,
       teamId: string,
       classType: ClassType,
       priceId: string | null,
@@ -89,20 +124,29 @@ export type GetTeamQuery = {
     members:  Array< {
       __typename: "TeamMember",
       teamId: string,
+      teamMemberId: string,
       userId: string,
-      createdAt: string | null,
+      teamClassId: string,
+      startAt: number | null,
+      endAt: number | null,
+      image: string | null,
+      imageColor: string | null,
+      nickname: string | null,
+      title: string | null,
+      subTitle: string | null,
+      age: string | null,
+      link: string | null,
+      contact: string | null,
+      introduction: string | null,
     } | null > | null,
   } | null,
 };
 
-export type GetTeamMembersQueryVariables = {
-  teamId: string,
-};
-
-export type GetTeamMembersQuery = {
-  getTeamMembers:  Array< {
-    __typename: "TeamMember",
+export type GetMyMemberInfoQuery = {
+  getMyMemberInfo:  Array< {
+    __typename: "MyTeamMember",
     teamId: string,
+    teamMemberId: string,
     userId: string,
     user:  {
       __typename: "User",
@@ -112,10 +156,38 @@ export type GetTeamMembersQuery = {
       introduction: string | null,
       links: Array< string | null > | null,
       birthDay: string | null,
+      displayTeamIds: Array< string | null > | null,
       topImage: string | null,
       icon: string | null,
     } | null,
-    createdAt: string | null,
+    team:  {
+      __typename: "Team",
+      id: string,
+      name: string | null,
+      subTitle: string | null,
+      introduction: string | null,
+      topImage: string | null,
+      tags: Array< string > | null,
+      system: string | null,
+    } | null,
+    teamClassId: string,
+    class:  {
+      __typename: "MyTeamClass",
+      teamClassId: string,
+      teamId: string,
+      classType: ClassType,
+      priceId: string | null,
+      enabled: boolean | null,
+    } | null,
+    startAt: number | null,
+    endAt: number | null,
+    image: string | null,
+    title: string | null,
+    subTitle: string | null,
+    age: string | null,
+    link: string | null,
+    contact: string | null,
+    introduction: string | null,
   } | null > | null,
 };
 
@@ -132,14 +204,57 @@ export type GetUserQuery = {
     introduction: string | null,
     links: Array< string | null > | null,
     birthDay: string | null,
-    displayTeams:  Array< {
-      __typename: "Team",
-      id: string,
-      name: string | null,
-      tags: Array< string | null > | null,
-      system: string | null,
+    displayTeamIds: Array< string | null > | null,
+    displayTeamMembers:  Array< {
+      __typename: "TeamMember",
+      teamId: string,
+      teamMemberId: string,
+      userId: string,
+      teamClassId: string,
+      startAt: number | null,
+      endAt: number | null,
+      image: string | null,
+      imageColor: string | null,
+      nickname: string | null,
+      title: string | null,
+      subTitle: string | null,
+      age: string | null,
+      link: string | null,
+      contact: string | null,
+      introduction: string | null,
     } | null > | null,
     topImage: string | null,
     icon: string | null,
+    teamMembers:  Array< {
+      __typename: "TeamMember",
+      teamId: string,
+      teamMemberId: string,
+      userId: string,
+      teamClassId: string,
+      startAt: number | null,
+      endAt: number | null,
+      image: string | null,
+      imageColor: string | null,
+      nickname: string | null,
+      title: string | null,
+      subTitle: string | null,
+      age: string | null,
+      link: string | null,
+      contact: string | null,
+      introduction: string | null,
+    } | null > | null,
+  } | null,
+};
+
+export type GetPageQueryVariables = {
+  id: string,
+};
+
+export type GetPageQuery = {
+  getPage:  {
+    __typename: "Page",
+    id: string,
+    resourceId: string,
+    type: PageType,
   } | null,
 };
