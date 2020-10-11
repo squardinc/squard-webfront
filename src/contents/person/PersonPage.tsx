@@ -12,11 +12,13 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ExternalLink } from 'src/components/Link/ExternalLink'
 import Top from 'src/images/temp/team/top.jpg'
+import { MODAL_Z_INDEX } from 'src/components/Modal/asModal'
 
 type PersonPageProps = {
   isLoading: boolean
   personal: IPersonal
   profileEditable: boolean
+  joinSucceededTeamId?: string
   editProfile: VoidFunction
 }
 
@@ -29,6 +31,10 @@ type StyleCssProps = {
   oppositeTopOffset?: number
   profileMarginLeft?: number
   profileBorderLeft?: number
+}
+interface TeamItemAnchorProps {
+  joinSucceeded?: boolean
+  index: number
 }
 
 const ContentWrapper = styled.div`
@@ -167,17 +173,23 @@ const SocialMediaIcon = styled.div`
 const TeamWrapper = styled.div`
   margin: 48px 0 38px 0;
 `
-
-const TeamItemWrapper = styled.div`
+const TeamItemAnchor = styled.div<TeamItemAnchorProps>`
   position: relative;
-  height: 80px;
-  margin: 0px 20px 65px 20px;
-  border-radius: 10px;
-  cursor: pointer;
+  ${({ joinSucceeded }) => joinSucceeded &&
+    `
+      z-index: ${MODAL_Z_INDEX + 1};
+    `
+  }
 
   :last-child {
     margin-bottom: 0px;
   }
+`
+const TeamItemWrapper = styled.div`
+  height: 80px;
+  margin: 0px 20px 65px 20px;
+  border-radius: 10px;
+  cursor: pointer;
 `
 const TeamInfo = styled.div`
   display: flex;
@@ -253,10 +265,8 @@ const ButtonEditWrapper = styled.div`
   align-items: center;
 `
 
-export const PersonPage = (props: PersonPageProps) => {
-  const { personal, editProfile, profileEditable = false } = props
+export const PersonPage: React.FC<PersonPageProps> = ({ personal, editProfile, profileEditable = false, joinSucceededTeamId = '' }) => {
   const [selectedTeam, setSelectedTeam] = React.useState<ITeam | null>(null)
-
   return (
     <>
       <ContentWrapper>
@@ -299,33 +309,40 @@ export const PersonPage = (props: PersonPageProps) => {
           </ProfileContainerWrapper>
         </UserCoverWrapper>
         <TeamWrapper>
-          {personal.teams.map((team, i) => {
+          {personal.teams.map((team, index) => {
             return (
-              <TeamItemWrapper
-                key={i}
-                onClick={() => setSelectedTeam(team)}
-              >
-                <TeamRole>
-                  <TeamRoleText>
-                    <TextDisplay>{team.role}</TextDisplay>
-                  </TeamRoleText>
-                </TeamRole>
-                <TeamInfo>
-                  <TeamIconWrapper>
-                    {getTeamIcon(team.classType)}
-                  </TeamIconWrapper>
-                  <TeamTextWrapper>
-                    <TeamNameText>
-                      <TextDisplay>{team.name}</TextDisplay>
-                    </TeamNameText>
-                    <TeamPositionText>
-                      <TextDisplay>{`- ${team.classType}`}</TextDisplay>
-                    </TeamPositionText>
-                  </TeamTextWrapper>
-                  <TeamLinkWrapper>
-                  </TeamLinkWrapper>
-                </TeamInfo>
-              </TeamItemWrapper>
+              <TeamItemAnchor
+                id={`team-item_${team.id}`}
+                key={team.id}
+                joinSucceeded={team.id === joinSucceededTeamId}
+                index={index}>
+                <TeamItemWrapper
+                  onClick={() => setSelectedTeam(team)}
+                >
+                  {team.role &&
+                    <TeamRole>
+                      <TeamRoleText>
+                        <TextDisplay>{team.role}</TextDisplay>
+                      </TeamRoleText>
+                    </TeamRole>
+                  }
+                  <TeamInfo>
+                    <TeamIconWrapper>
+                      {getTeamIcon(team.classType)}
+                    </TeamIconWrapper>
+                    <TeamTextWrapper>
+                      <TeamNameText>
+                        <TextDisplay>{team.name}</TextDisplay>
+                      </TeamNameText>
+                      <TeamPositionText>
+                        <TextDisplay>{`- ${team.classType}`}</TextDisplay>
+                      </TeamPositionText>
+                    </TeamTextWrapper>
+                    <TeamLinkWrapper>
+                    </TeamLinkWrapper>
+                  </TeamInfo>
+                </TeamItemWrapper>
+              </TeamItemAnchor>
             )
           })}
         </TeamWrapper>

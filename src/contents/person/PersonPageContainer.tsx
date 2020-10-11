@@ -1,12 +1,18 @@
-import * as React from 'react'
-import { IPersonal, Person } from 'src/models/person'
-import { shunpei, hiroki, akihiro, shoya } from './personalData'
+import { gql, useMutation, useQuery } from '@apollo/client'
 import { navigate } from 'gatsby'
-import PersonPageLayout from './PersonPageLayout'
-import { useQuery, gql, useMutation } from '@apollo/client'
-import { GetUserQuery, UpdateUserMutation, UpdateUserMutationVariables, UpdateUserInput } from 'src/types/API'
-import { getUser } from 'src/graphql/queries'
+import * as React from 'react'
 import { updateUser } from 'src/graphql/mutations'
+import { getUser } from 'src/graphql/queries'
+import { IPersonal, Person } from 'src/models/person'
+import {
+  GetUserQuery,
+  UpdateUserInput,
+  UpdateUserMutation,
+  UpdateUserMutationVariables
+} from 'src/types/API'
+import { parseSearchParams } from 'src/utils/UrlParser'
+import { akihiro, hiroki, shoya, shunpei } from './personalData'
+import PersonPageLayout from './PersonPageLayout'
 
 interface PersonPageContainerProps {
   id: string
@@ -20,8 +26,14 @@ const getPersonData = (id: string): IPersonal | undefined => {
 export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({
   id,
 }) => {
-  const { loading, error, data } = useQuery<GetUserQuery>(gql(getUser), { variables: { id } })
-  const [requestUpdate, response] = useMutation<UpdateUserMutation, UpdateUserMutationVariables>(gql(updateUser))
+  const params = parseSearchParams(window.location.search)
+  const { loading, error, data } = useQuery<GetUserQuery>(gql(getUser), {
+    variables: { id },
+  })
+  const [requestUpdate, response] = useMutation<
+    UpdateUserMutation,
+    UpdateUserMutationVariables
+  >(gql(updateUser))
   if (error) {
     navigate('/')
     return <></>
@@ -29,23 +41,21 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({
   if (loading || !data) {
     return <></>
   }
-  return <PersonPageLayout
-    isLoading={false}
-    personal={Person.fromQueryResult(data)}
-    update={(profile: UpdateUserInput) => requestUpdate({
-      variables: {
-        input: {
-          nameJp: profile.nameJp,
-          nameEn: profile.nameEn,
-          links: profile.links,
-          introduction: profile.introduction,
-          displlayTeams: profile.displlayTeams,
-          topImage: profile.topImage,
-          icon: profile.icon,
+  return (
+    <>
+      <PersonPageLayout
+        isLoading={false}
+        personal={Person.fromQueryResult(data)}
+        update={(profile: UpdateUserInput) =>
+          requestUpdate({
+            variables: { input: profile },
+          })
         }
-      }
-    })}
-  />
+        hasPaymentComplete={params['payment_status'] === 'success'}
+        joinSucceededTeamId={params.teamId}
+      />
+    </>
+  )
 }
 
 export default PersonPageContainer

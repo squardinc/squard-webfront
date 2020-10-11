@@ -1,4 +1,5 @@
-import { GetUserQuery } from "src/types/API"
+import dayjs from 'dayjs'
+import { GetUserQuery } from 'src/types/API'
 
 const SOCIAL_MEDIA = [
   'facebook',
@@ -26,6 +27,7 @@ const CLASSES = [
 export type ClassType = typeof CLASSES[number]
 
 export type ITeam = {
+  id: string
   name: string
   classType: ClassType
   role: string
@@ -58,12 +60,36 @@ export class Person {
     readonly topImage: string = '',
     readonly icon: string = '',
     readonly introduction: string = '',
+    readonly birthday: string = '',
     readonly links: string[] = [],
-    readonly teams: ITeam[] = [],
-  ) { }
+    readonly teams: ITeam[] = []
+  ) {}
 
   static fromQueryResult = (result: GetUserQuery) => {
-    const { id, nameJp, nameEn, introduction, links, topImage, icon, displayTeams } = result.getUser
-    return new Person(id, nameJp || '', nameEn || '', topImage || '', icon || '', introduction || '', links || [], displayTeams || [])
+    const {
+      id,
+      nameJp,
+      nameEn,
+      topImage,
+      icon,
+      introduction,
+      birthDay,
+      links,
+      displayTeams,
+    } = result?.getUser || {}
+    return new Person(
+      id || '',
+      nameJp || '',
+      nameEn || '',
+      topImage || '',
+      icon || '',
+      introduction || '',
+      birthDay || '',
+      links || [],
+      displayTeams || []
+    )
+  }
+  get age() {
+    return dayjs().diff(this.birthday, 'year')
   }
 }
