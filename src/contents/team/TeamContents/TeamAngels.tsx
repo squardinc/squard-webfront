@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { DefaultButton } from 'src/components/Button/DefaultButton'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
+import { StyledComponents } from './TeamAngels.styled'
 
-import styles from './TeamAngels.module.scss'
+// import styles from './TeamAngels.module.scss'
 import { navigate } from 'gatsby'
 
 interface AngelProps {
@@ -10,8 +11,8 @@ interface AngelProps {
 }
 const Angel: React.FC<AngelProps> = ({ angel }) => {
   return (
-    <div className={styles.angelContainer}>
-      <img src={angel} className={styles.angel} />
+    <div className="angelContainer">
+      <img src={angel} className="angel" />
     </div>
   )
 }
@@ -25,7 +26,8 @@ export const TeamAngels: React.FC<TeamAngelsProps> = ({
   numOfAngels,
 }) => {
   return (
-    <div className={styles.container}>
+    <StyledComponents>
+      {/* <div className={styles.container}> */}
       <TwoStagedCaption
         sub="And we have"
         main={`${numOfAngels} Angels`}
@@ -34,15 +36,15 @@ export const TeamAngels: React.FC<TeamAngelsProps> = ({
       />
       {angels.length ? (
         <div className="pt-6">
-          <div className={styles.angels}>
+          <div className="angels">
             {angels.map((angel, index) => (
               <Angel key={index} angel={angel} />
             ))}
           </div>
         </div>
       ) : (
-        ''
-      )}
+          ''
+        )}
       <div className="pt-5">
         <DefaultButton
           size="small"
@@ -52,6 +54,6 @@ export const TeamAngels: React.FC<TeamAngelsProps> = ({
           }}
         />
       </div>
-    </div>
+    </StyledComponents>
   )
 }
