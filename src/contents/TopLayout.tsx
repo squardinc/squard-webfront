@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { TeamLayout } from './team/TeamLayout'
+import { TeamContainer } from './team/TeamContainer'
 
 export const TopLayout: React.FC = () => {
-  return <TeamLayout />
+  return <TeamContainer id='squard' />
 }
