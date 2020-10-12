@@ -7,14 +7,13 @@ export const getTeam = /* GraphQL */ `
     getTeam(id: $id) {
       id
       name
-      title {
-        title
-        subTitle
-        introduction
-      }
+      subTitle
+      introduction
+      topImage
       tags
       system
       classes {
+        teamClassId
         teamId
         classType
         priceId
@@ -22,16 +21,41 @@ export const getTeam = /* GraphQL */ `
       }
       members {
         teamId
+        teamMemberId
         userId
-        createdAt
+        teamClassId
+        startAt
+        endAt
+        image
+        imageColor
+        nickname
+        title
+        subTitle
+        age
+        link
+        contact
+        introduction
+        user {
+          nameJp
+          birthday
+          page {
+            id
+          }
+        }
+      }
+      page {
+        id
+        resourceId
+        type
       }
     }
   }
 `;
-export const getTeamMembers = /* GraphQL */ `
-  query GetTeamMembers($teamId: ID!) {
-    getTeamMembers(teamId: $teamId) {
+export const getMyMemberInfo = /* GraphQL */ `
+  query GetMyMemberInfo {
+    getMyMemberInfo {
       teamId
+      teamMemberId
       userId
       user {
         id
@@ -39,11 +63,85 @@ export const getTeamMembers = /* GraphQL */ `
         nameEn
         introduction
         links
-        birthDay
+        birthday
+        displayTeamIds
         topImage
         icon
       }
-      createdAt
+      team {
+        id
+        name
+        subTitle
+        introduction
+        topImage
+        tags
+        system
+      }
+      teamClassId
+      class {
+        teamClassId
+        teamId
+        classType
+        priceId
+        enabled
+      }
+      startAt
+      endAt
+      image
+      title
+      subTitle
+      age
+      link
+      contact
+      introduction
+    }
+  }
+`;
+export const getTeamMembers = /* GraphQL */ `
+  query GetTeamMembers($teamId: ID!) {
+    getTeamMembers(teamId: $teamId) {
+      teamId
+      teamMemberId
+      userId
+      user {
+        id
+        nameJp
+        nameEn
+        introduction
+        links
+        birthday
+        displayTeamIds
+        topImage
+        icon
+      }
+      team {
+        id
+        name
+        subTitle
+        introduction
+        topImage
+        tags
+        system
+      }
+      teamClassId
+      class {
+        teamClassId
+        teamId
+        classType
+        priceId
+        enabled
+      }
+      startAt
+      endAt
+      image
+      imageColor
+      nickname
+      title
+      subTitle
+      age
+      link
+      contact
+      introduction
     }
   }
 `;
@@ -55,15 +153,68 @@ export const getUser = /* GraphQL */ `
       nameEn
       introduction
       links
-      birthDay
-      displayTeams {
-        id
-        name
-        tags
-        system
+      birthday
+      displayTeamIds
+      displayTeamMembers {
+        teamId
+        teamMemberId
+        userId
+        teamClassId
+        startAt
+        endAt
+        image
+        imageColor
+        nickname
+        title
+        subTitle
+        age
+        link
+        contact
+        introduction
       }
       topImage
       icon
+      teamMembers {
+        teamId
+        teamMemberId
+        userId
+        teamClassId
+        startAt
+        endAt
+        image
+        imageColor
+        nickname
+        title
+        subTitle
+        age
+        link
+        contact
+        introduction
+        team {
+          id
+          name
+          page {
+            id
+          }
+        }
+        class {
+          classType
+        }
+      }
+      page {
+        id
+        resourceId
+        type
+      }
+    }
+  }
+`;
+export const getPage = /* GraphQL */ `
+  query GetPage($id: ID!) {
+    getPage(id: $id) {
+      id
+      resourceId
+      type
     }
   }
 `;

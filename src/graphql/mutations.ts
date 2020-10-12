@@ -10,27 +10,59 @@ export const updateUser = /* GraphQL */ `
       nameEn
       introduction
       links
-      birthDay
-      displayTeams {
-        id
-        name
-        tags
-        system
+      birthday
+      displayTeamIds
+      displayTeamMembers {
+        teamId
+        teamMemberId
+        userId
+        teamClassId
+        startAt
+        endAt
+        image
+        imageColor
+        nickname
+        title
+        subTitle
+        age
+        link
+        contact
+        introduction
       }
       topImage
       icon
+      teamMembers {
+        teamId
+        teamMemberId
+        userId
+        teamClassId
+        startAt
+        endAt
+        image
+        imageColor
+        nickname
+        title
+        subTitle
+        age
+        link
+        contact
+        introduction
+      }
+      page {
+        id
+        resourceId
+        type
+      }
     }
   }
 `;
 export const requestSubscription = /* GraphQL */ `
   mutation RequestSubscription(
-    $userId: ID!
     $teamId: ID!
     $teamClassId: ID!
     $origin: String!
   ) {
     requestSubscription(
-      userId: $userId
       teamId: $teamId
       teamClassId: $teamClassId
       origin: $origin
