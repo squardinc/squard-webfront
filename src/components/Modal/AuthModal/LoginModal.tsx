@@ -35,8 +35,8 @@ const ForgotPassWrapper = styled.div`
   margin-bottom: 5px;
 `
 const Label = styled.div`
-  font-family: ${Const.fontFamily.monster};
-  font-weight: ${Const.fontWeight.thin};
+  font-family: ${Const.fontFamily.sans};
+  font-weight: ${Const.fontWeight.light};
   font-size: ${Const.fontSize.xs};
   letter-spacing: 0.04em;
   margin-bottom: 40px;

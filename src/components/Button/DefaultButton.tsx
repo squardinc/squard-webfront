@@ -89,6 +89,7 @@ interface RoundButtonProps {
   className?: string
   disabled?: boolean
   type?: 'button' | 'submit'
+  style?: CSS.Properties
 }
 export const RoundButton: React.FC<RoundButtonProps> = ({
   text,
@@ -96,6 +97,7 @@ export const RoundButton: React.FC<RoundButtonProps> = ({
   disabled = false,
   onClick = () => {},
   className = '',
+  style
 }) => {
   return (
     <button
@@ -103,6 +105,7 @@ export const RoundButton: React.FC<RoundButtonProps> = ({
       onClick={onClick}
       className="w-full"
       disabled={disabled}
+      style={style ? style : {}}
     >
       <TextDisplay
         className={`flex justify-center items-center h-10 w-full my-1 rounded-full text-sm ${className}`}

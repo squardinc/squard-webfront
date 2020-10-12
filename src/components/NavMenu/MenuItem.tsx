@@ -37,9 +37,12 @@ export const MenuItem: React.FC<MenuItemProps> = ({
       )}
       <TextDisplay
         className={
-          'flex items-center w-full tracking-wider border-b border-gray-100 border-opacity-75 ' +
+          'flex items-center w-full tracking-wider' +
           styles.navText
         }
+        style={{
+          borderBottom:'1px solid rgba(255, 255, 255, .2)',
+        }}
       >
         {text}
       </TextDisplay>
