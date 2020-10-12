@@ -34,10 +34,18 @@ export const SiteMap = (props?: SiteMapProps) => {
                 theme === 'dark' ? styles.links : styles.linksThemeWhite
               }
             >
-              <Link to="/faq">FAQ</Link>
-              <Link to="/about">About</Link>
-              <Link to="/company">Company</Link>
-              <Link to="/privacypolicy">Privacy Policy</Link>
+              <Link to="/faq" style={{ height: '23px' }}>
+                FAQ
+              </Link>
+              <Link to="/about" style={{ height: '23px' }}>
+                About
+              </Link>
+              <Link to="/company" style={{ height: '23px' }}>
+                Company
+              </Link>
+              <Link to="/privacypolicy" style={{ height: '23px' }}>
+                Privacy Policy
+              </Link>
             </TextDisplay>
             <Link to="/">
               {theme === 'dark' ? (

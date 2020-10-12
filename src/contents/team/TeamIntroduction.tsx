@@ -46,11 +46,7 @@ export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({
         </div>
         <DefaultButton
           text="Squardに参加してみる？"
-          style={{
-            marginLeft:'40px',
-            marginRight:'40px',
-            width:'100%'
-          }}
+          size="larger"
           onClick={() => navigate(`/${teamId}/join`)}
         />
       </div>

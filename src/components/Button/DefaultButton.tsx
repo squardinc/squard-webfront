@@ -5,21 +5,60 @@ import {
 } from '@fortawesome/react-fontawesome'
 import styles from './Button.module.scss'
 import { TextDisplay } from '../TextDisplay/TextDisplay'
-import CSS from 'csstype';
+import CSS from 'csstype'
+import styled from 'styled-components'
+import * as Const from '../../styles/const'
 
-interface ButtonProps {
+interface DefaultButtonProps {
+  size?: 'larger' | 'medium' | 'small' | string
+}
+
+const ButtonWrapper = styled.button<DefaultButtonProps>`
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  border: 1px solid ${Const.textYellow};
+  background-color: ${Const.bgYellow};
+  color: ${Const.textDark};
+  font-family: ${Const.fontFamily.sans};
+  font-weight: ${Const.fontWeight.simbold};
+  line-height: 1.67;
+  font-size: ${(props) => {
+    let size = '18px'
+    // (props.size == 'small' || props.size == 'medium') && (size = '18px')
+
+    return size
+  }};
+  text-align: center;
+  padding: ${(props) => {
+    let padding = '12px 40px'
+    props.size === 'icon' && (padding = '3px')
+    props.size === 'medium' && (padding = '12px 40px')
+    props.size === 'small' && (padding = '4px 30px')
+    props.size === 'larger' && (padding = '8px 20px')
+    return padding
+  }};
+  width: ${(props) => {
+    let width = 'auto'
+    props.size === 'larger' && (width = '100%')
+    return width
+  }};
+  white-space: nowrap;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+`
+
+interface ButtonProps extends DefaultButtonProps {
   text: string
   onClick: VoidFunction
-  size?: 'medium' | 'small' | string
-  style?:CSS.Properties
 }
 export const DefaultButton: React.FC<ButtonProps> = ({
   text,
   onClick,
   size = 'medium',
-  style
 }) => {
-
   return (
     <div
       className={`${styles.buttonContainer} cursor-pointer`}
@@ -28,9 +67,9 @@ export const DefaultButton: React.FC<ButtonProps> = ({
       tabIndex={0}
       role="button"
     >
-      <div className={styles.button} data-size={size} style={style ? style : {}}>
+      <ButtonWrapper size={size}>
         <TextDisplay>{text}</TextDisplay>
-      </div>
+      </ButtonWrapper>
     </div>
   )
 }

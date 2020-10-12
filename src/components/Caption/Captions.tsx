@@ -53,7 +53,7 @@ export const TwoStagedCaption: React.FC<TwoStagedCaptionProps> = ({
       <TextDisplay
         className={styles[style] + ' ' + (shadow ? styles['textShadow'] : '')}
       >
-        <i>{main}</i>
+        {main}
       </TextDisplay>
     </>
   )
