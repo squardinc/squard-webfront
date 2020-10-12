@@ -19,6 +19,7 @@ export const personIconDisplayWrap = css`
   flex-wrap: wrap;
 `
 
+// type errorで使えない→現地でコピペしてます
 export const personIconDisplayScroll = css`
   display: flex;
   overflow-x: scroll;
