@@ -1,20 +1,17 @@
 import * as React from 'react'
-import styled from 'styled-components'
-import * as colors from 'src/styles/colors'
-import { ITeamClass } from 'src/models/team'
-import { addComma } from 'src/utils/NumberFormatter'
-import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import {
-  TeamCardWrapper,
-  FlagWrapper,
-  Flag,
+  CardBodyWrapper, EntitlementsWrapper,
+  EntitlementText, Flag, FlagWrapper,
+
   MainNameText,
-  SubNameText,
-  PriceText,
-  EntitlementsWrapper,
-  EntitlementText,
-  CardBodyWrapper,
+
+  PriceText, SubNameText, TeamCardWrapper
 } from 'src/components/TeamCard'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { ITeamClass } from 'src/models/team'
+import * as colors from 'src/styles/colors'
+import { addComma } from 'src/utils/NumberFormatter'
+import styled from 'styled-components'
 
 type JoinCardProps = {
   team: ITeamClass
@@ -42,18 +39,18 @@ const JoinNowButton = styled.button`
 `
 
 const JoinCard: React.FC<JoinCardProps> = ({ team, join }) => {
-  const formattedPrice = addComma(team.monthlyPrice)
+  const formattedPrice = addComma(team.price)
 
   return (
-    <JoinCardAnchor id={team.main}>
+    <JoinCardAnchor id={team.classType}>
       <TeamCardWrapper>
         <FlagWrapper>
           <Flag>
             <MainNameText>
-              <TextDisplay>{team.main}</TextDisplay>
+              <TextDisplay>{team.classType}</TextDisplay>
             </MainNameText>
             <SubNameText>
-              <TextDisplay>{team.sub}</TextDisplay>
+              <TextDisplay>{team.classTypeJp}</TextDisplay>
             </SubNameText>
             <PriceText>
               <TextDisplay>￥{formattedPrice} / 月額</TextDisplay>

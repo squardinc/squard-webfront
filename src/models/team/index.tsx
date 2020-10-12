@@ -1,4 +1,4 @@
-import { ClassType, IPersonal, Person } from 'src/models/person'
+import { ClassType, ClassTypeJp, IPersonal, Person } from 'src/models/person'
 import { GetTeamQuery } from 'src/types/API'
 
 export type ITeam = {
@@ -8,13 +8,36 @@ export type ITeam = {
   entitlements: string[]
 }
 export type ITeamClass = {
-  main: string
-  sub: string
-  monthlyPrice: number
   benefits: string[]
   teamId: string
   classType: ClassType
   teamClassId: string
+  price: number
+  classTypeJp: string
+}
+
+export class TeamClass implements ITeamClass {
+  constructor(
+    readonly teamId: string,
+    readonly teamClassId: string,
+    readonly classType: ClassType,
+    readonly benefits: string[],
+    readonly price: number
+  ) {}
+
+  static fromTeamQueryResult = (teamClass) => {
+    return new TeamClass(
+      teamClass.teamId,
+      teamClass.teamClassId,
+      teamClass.classType,
+      teamClass.benefits,
+      teamClass.price
+    )
+  }
+
+  get classTypeJp() {
+    return ClassTypeJp[this.classType]
+  }
 }
 
 export interface ITeamMember {
