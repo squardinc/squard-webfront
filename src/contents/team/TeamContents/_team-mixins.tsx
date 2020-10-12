@@ -30,13 +30,13 @@ export const personIconDisplayScroll = css`
   }
 `
 
-export const personIcon = (
+export const personIcon = ({
   maxWidth = "120px",
   height = "120px",
   radius = "20px",
   width = "100%",
   minWidth = "100%",
-) => css`
+}) => css`
   margin: 5px 0px;
   max-width: ${maxWidth};
   height: ${height};

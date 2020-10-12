@@ -10,6 +10,90 @@ import COO from 'src/images/temp/company/coo.jpg'
 import CFO from 'src/images/temp/company/cfo.jpg'
 import CTO from 'src/images/temp/company/cto.jpg'
 
+import styled from 'styled-components'
+import { colorFilters, personIcon } from 'src/styles/utils'
+
+const StyledComponents = styled.div`
+  position: relative;
+  background-color: #fafafa;
+  font-family: 'montserrat', sans-serif;
+
+  .companyImageContainer {
+    height: 400px;
+  }
+
+  .contactInfo {
+    position: relative;
+    height: 200px;
+    background-image: linear-gradient(#051026, transparent);
+    padding-top: 20px;
+    font-weight: 100;
+  }
+
+  .companyInfo {
+    position: relative;
+    height: 200px;
+    background-image: linear-gradient(transparent, #051026);
+  }
+
+  .labelHeaderBox {
+    height: 45px;
+    width: 90%;
+    margin: auto;
+    background-image: linear-gradient(to right, #27d8df, #3b4491);
+    box-shadow: 5px 7px lightgrey;
+  }
+
+  .members {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 370px;
+  }
+  .memberContainer {
+    width: 50%;
+  }
+  .member {
+    ${personIcon({ maxWidth: "164px", height: "152px", radius: "3.5px" })}
+  }
+
+  .redFilter {
+    ${colorFilters.red}
+  }
+
+  .blueFilter {
+   ${colorFilters.blue} 
+  }
+
+  .greenFilter {
+    ${colorFilters.green}
+  }
+
+  .yellowFilter {
+    ${colorFilters.yellow}
+  }
+
+  .memberCaption {
+    position: absolute;
+    width: 124px;
+    height: 32px;
+    top: 106px;
+    padding: 2px 0px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(24px);
+    border-radius: 0 10px 10px 0;
+  }
+
+  .memberName {
+    font-size: small;
+    line-height: 2rem;
+  }
+`
+
 interface MemberProps {
   member: { imageUrl: string; color: string; title: string }
 }
@@ -30,13 +114,13 @@ const Member: React.FC<MemberProps> = ({ member }) => {
   }
 
   return (
-    <div className={`relative mt-1 px-1 ${styles.memberContainer}`}>
+    <div className={`relative mt-1 px-1 memberContainer`}>
       <img
         src={member.imageUrl}
         className={styles.member + ' ' + getImageTheme(member.color)}
       />
-      <div className={styles.memberCaption}>
-        <TextDisplay className={styles.memberName}>{member.title}</TextDisplay>
+      <div className="memberCaption">
+        <TextDisplay className="memberName">{member.title}</TextDisplay>
       </div>
     </div>
   )
@@ -51,15 +135,15 @@ const Page: React.FC = () => {
   ]
 
   return (
-    <div className={styles.container}>
+    <StyledComponents>
       <div
         style={{
           background: `url(${CompanyImage}) no-repeat center`,
           backgroundSize: 'cover',
         }}
-        className={styles.companyImageContainer}
+        className="companyImageContainer"
       >
-        <div className={styles.contactInfo}>
+        <div className="contactInfo">
           <p className="pl-10 text-white text-sm text-opacity-75 tracking-widest">
             Web : <a href="https://www.squard.co.jp">www.squard.co.jp</a>
           </p>
@@ -68,7 +152,7 @@ const Page: React.FC = () => {
             <a href="mailto:contact@squard.co.jp">contact@squard.co.jp</a>
           </p>
         </div>
-        <div className={styles.companyInfo}>
+        <div className="companyInfo">
           <div className="float-right text-right leading-8 pt-24">
             <p className="pt-4 pr-6 text-white text-xl font-light tracking-wider">
               <span className="line-through">
@@ -94,7 +178,7 @@ const Page: React.FC = () => {
           </div>
         </div>
         <div className="pt-8 flex justify-center">
-          <div className={styles.members}>
+          <div className="members">
             {members.map((member, index) => (
               <Member key={index} member={member} />
             ))}
@@ -102,7 +186,7 @@ const Page: React.FC = () => {
         </div>
       </div>
       <div className="pb-16">
-        <div className={styles.labelHeaderBox}>
+        <div className="labelHeaderBox">
           <TextDisplay className="text-white text-lg font-medium text-center tracking-wider pt-2">
             社名 / Corporate Name
           </TextDisplay>
@@ -112,7 +196,7 @@ const Page: React.FC = () => {
         </div>
       </div>
       <div className="pb-16">
-        <div className={styles.labelHeaderBox}>
+        <div className="labelHeaderBox">
           <TextDisplay className="text-white text-lg font-medium text-center tracking-wider pt-2">
             代表取締役 / CEO
           </TextDisplay>
@@ -122,7 +206,7 @@ const Page: React.FC = () => {
         </div>
       </div>
       <div className="pb-16">
-        <div className={styles.labelHeaderBox}>
+        <div className="labelHeaderBox">
           <TextDisplay className="text-white text-lg font-medium text-center tracking-wider pt-2">
             設立 / Founded
           </TextDisplay>
@@ -132,7 +216,7 @@ const Page: React.FC = () => {
         </div>
       </div>
       <div className="pb-16">
-        <div className={styles.labelHeaderBox}>
+        <div className="labelHeaderBox">
           <TextDisplay className="text-white text-lg font-medium text-center tracking-wider pt-2">
             資本金 / Capital
           </TextDisplay>
@@ -142,7 +226,7 @@ const Page: React.FC = () => {
         </div>
       </div>
       <div className="pb-24">
-        <div className={styles.labelHeaderBox}>
+        <div className="labelHeaderBox">
           <TextDisplay className="text-white text-lg font-medium text-center tracking-wider pt-2">
             所在地 / Address
           </TextDisplay>
@@ -153,7 +237,7 @@ const Page: React.FC = () => {
         </div>
       </div>
       <DefaultFooter />
-    </div>
+    </StyledComponents>
   )
 }
 
