@@ -25,6 +25,7 @@ export const RoundInput: React.FC<InputProps> = ({
         zIndex: 0,
         position: 'relative',
         overflow: 'hidden',
+        height:'45px'
       }}
     >
       <div
@@ -39,8 +40,14 @@ export const RoundInput: React.FC<InputProps> = ({
         }}
       />
       {faIcon ? (
-        <div className="flex justify-center items-center bg-gray-500 rounded-full h-6 w-6">
-          <FontAwesomeIcon icon={faIcon} className="text-gray-200" color={'white'}/>
+        <div className="flex justify-center items-center">
+          <FontAwesomeIcon icon={faIcon} color={'white'} style={{
+            width:'20px',
+            height:'20px',
+            background:'#707070',
+            padding:'5px',
+            borderRadius:'50vh'
+          }}/>
         </div>
       ) : (
         ''

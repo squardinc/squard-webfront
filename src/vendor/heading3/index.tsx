@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import * as colors from '../../styles/colors'
+import * as Const from '../../styles/const'
 
 export interface Heading3Props {
   children: React.ReactNode
@@ -10,7 +11,8 @@ const Wrapper = styled.div`
   margin: 20px;
   text-align: center;
   font-size: 2.4rem;
-  font-weight: 700;
+  font-weight: 660;
+  font-family:${Const.fontFamily.monster};
   color: ${colors.textBlack};
   text-align: center;
 `
@@ -20,7 +22,7 @@ const Heading = styled.div`
   padding: 0 10px 8px;
 
   &::after {
-    margin: 0px -40px 0 -20px;
+    margin: 0px -5px 0px -5px;
     content: '';
     display: block;
     height: 8px;

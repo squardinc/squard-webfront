@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { RoundButton } from 'src/components/Button/DefaultButton'
+// import { RoundButton } from 'src/components/Button/DefaultButton'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { asModal, ModalProps } from 'src/components/Modal/asModal'
 import { DefaultModalContainer } from 'src/components/Modal/ModalContainer'
@@ -12,8 +12,8 @@ import styled from 'styled-components'
 import * as Const from '../../../styles/const'
 
 const SignupContent = styled.div`
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
 `
 
 const SignupTitle = styled.div`
@@ -21,10 +21,11 @@ const SignupTitle = styled.div`
   font-weight: ${Const.fontWeight.bold};
   font-size: ${Const.fontSize.xl3};
   letter-spacing: 0.04em;
+  padding-left: 10px;
 `
 const HintWrapper = styled.div`
   font-family: ${Const.fontFamily.monster};
-  font-weight: ${Const.fontWeight.regular};
+  font-weight: ${Const.fontWeight.dimlight};
   font-size: 10px;
   line-spacing: 1.8;
   display: flex;
@@ -34,8 +35,11 @@ const HintWrapper = styled.div`
 `
 const BottomWrapper = styled.div`
   font-family: ${Const.fontFamily.monster};
-  font-weight: ${Const.fontWeight.regular};
+  font-weight: ${Const.fontWeight.dimlight};
   font-size: ${Const.fontSize.xs};
+  display: flex;
+  justify-content: center;
+  align-items:center;
   line-spacing: 1.8;
   display: flex;
   flex-wrap: nowrap;
@@ -49,10 +53,19 @@ const Label = styled.div`
   font-size: ${Const.fontSize.xs};
   letter-spacing: 0.04em;
   margin-bottom: 40px;
+  padding-left: 10px;
 `
 const EmailWrapper = styled.div`
   width: 100%;
   margin-bottom: 20px;
+`
+const RoundButton = styled.button`
+  font-family: ${Const.fontFamily.sans};
+  font-size: ${Const.fontSize.sm};
+  font-weight: ${Const.fontWeight.dimlight};
+  border-radius: 50vh;
+  height: 45px;
+  margin-bottom: 10px;
 `
 
 type SignUpComponentProps = ModalProps & {
@@ -96,12 +109,10 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({
             </TextDisplay>
             <div className="flex flex-col">
               <RoundButton
-                className={
-                  isSubmittable
-                    ? 'text-black bg-white'
-                    : 'text-gray-600 bg-gray-500'
-                }
-                text="新規登録"
+                style={{
+                  color: 'black',
+                  backgroundColor: 'white',
+                }}
                 disabled={!isSubmittable}
                 onClick={async () => {
                   const { host, pathname } = window.location
@@ -115,14 +126,20 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({
                   )
                   setErrorMessage('')
                 }}
-              />
+              >
+                新規登録
+              </RoundButton>
               <RoundButton
-                className="text-white bg-blue-700"
-                text="Facebookで登録"
+                style={{
+                  color: 'white',
+                  backgroundColor: '#3B5998',
+                }}
                 onClick={AuthService.loginWithFacebook}
-              />
+              >
+                Facebookで登録
+              </RoundButton>
             </div>
-            <TextDisplay className=" flex justify-center text-sm">
+            <TextDisplay>
               <BottomWrapper>
                 アカウントをお持ちですか？ログインは
                 <div

@@ -30,8 +30,10 @@ const JoinTeamTitle = styled.div`
   justify-content: center;
   white-space: nowrap;
   font-family: ${Const.fontFamily.monster};
-  font-size: ${Const.fontSize.xl3};
+  font-size: ${Const.fontSize.xxl1};
   font-style: normal;
+  padding-left:15px;
+  padding-right:15px;
 `
 
 const JoinInfoWrapper = styled.div`

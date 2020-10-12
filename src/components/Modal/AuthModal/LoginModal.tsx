@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { RoundButton } from 'src/components/Button/DefaultButton'
+// import { RoundButton } from 'src/components/Button/DefaultButton'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { asModal, ModalProps } from 'src/components/Modal/asModal'
 import { DefaultModalContainer } from 'src/components/Modal/ModalContainer'
@@ -14,8 +14,8 @@ import styled from 'styled-components'
 import * as Const from '../../../styles/const'
 
 const LoginContent = styled.div`
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
 `
 
 const LoginTitle = styled.div`
@@ -23,10 +23,11 @@ const LoginTitle = styled.div`
   font-weight: ${Const.fontWeight.bold};
   font-size: ${Const.fontSize.xl3};
   letter-spacing: 0.04em;
+  padding-left: 10px;
 `
 const ForgotPassWrapper = styled.div`
   font-family: ${Const.fontFamily.monster};
-  font-weight: ${Const.fontWeight.regular};
+  font-weight: ${Const.fontWeight.light};
   font-size: 10px;
   line-spacing: 1.8;
   display: flex;
@@ -40,10 +41,31 @@ const Label = styled.div`
   font-size: ${Const.fontSize.xs};
   letter-spacing: 0.04em;
   margin-bottom: 40px;
+  padding-left: 10px;
 `
 const EmailWrapper = styled.div`
   width: 100%;
   margin-bottom: 20px;
+`
+
+const BottomWrapper = styled.div`
+  font-family: ${Const.fontFamily.sans};
+  font-weight: ${Const.fontWeight.dimlight};
+  font-size: ${Const.fontSize.xs};
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  line-height: 1.5;
+  margin-top: 20px;
+  margin-bottom: 5px;
+`
+const RoundButton = styled.button`
+  font-family: ${Const.fontFamily.sans};
+  font-size: ${Const.fontSize.sm};
+  font-weight: ${Const.fontWeight.dimlight};
+  border-radius: 50vh;
+  height: 45px;
+  margin-bottom: 10px;
 `
 
 interface LoginFormProps {
@@ -88,32 +110,37 @@ const LoginFormModal: React.FC<LoginFormProps> = ({
           </TextDisplay>
           <div className="flex flex-col">
             <RoundButton
-              className={
-                isSubmittable
-                  ? 'text-black bg-white'
-                  : 'text-gray-600 bg-gray-500'
-              }
-              text="ログイン"
+              style={{
+                color: 'black',
+                backgroundColor: 'white',
+                opacity:isSubmittable ? 1 : 0.7
+              }}
               type="submit"
               disabled={!isSubmittable}
               onClick={(e) => login(e, email, password)}
-            />
+            >
+              ログイン
+            </RoundButton>
             <RoundButton
-              className="text-white bg-blue-700"
-              text="Facebookでログイン"
+              style={{
+                color: 'white',
+                backgroundColor: '#3B5998',
+              }}
               onClick={AuthService.loginWithFacebook}
-            />
+            >
+              Facebookでログイン
+            </RoundButton>
           </div>
         </form>
-        <TextDisplay className="mt-10 flex justify-center text-sm">
-          まだ登録していませんか？新規登録は
-          <button
-            className="underline cursor-pointer"
-            onClick={showSignUpModal}
-          >
-            こちら
+
+        <BottomWrapper>
+          <TextDisplay>まだ登録していませんか？新規登録は</TextDisplay>
+          <button onClick={showSignUpModal}>
+            <TextDisplay style={{ textDecoration: 'underline' }}>
+              こちら
+            </TextDisplay>
           </button>
-        </TextDisplay>
+        </BottomWrapper>
       </LoginContent>
     </DefaultModalContainer>
   )

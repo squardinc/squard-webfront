@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { RoundButton } from 'src/components/Button/DefaultButton'
+// import { RoundButton } from 'src/components/Button/DefaultButton'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { asModal, ModalProps } from '../asModal'
 import { DefaultModalContainer } from '../ModalContainer'
@@ -7,6 +7,25 @@ import { AuthService } from 'src/services/AuthService'
 import { MessageModal } from '../MessageModal'
 import { EMailAddressInput } from '../../Input/EMailAddressInput'
 import { validEmaliAddress } from 'src/utils/StringValidator'
+import * as Const from '../../../styles/const'
+import styled from 'styled-components'
+
+const RoundButton = styled.button`
+  font-family: ${Const.fontFamily.sans};
+  font-size: ${Const.fontSize.sm};
+  font-weight: ${Const.fontWeight.dimlight};
+  border-radius: 50vh;
+  height: 45px;
+  margin-bottom: 10px;
+  background: white;
+  color: black;
+`
+const MessageBox = styled.button`
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+`
 
 type PasswordResetRequestComponentProps = ModalProps & {}
 const PasswordResetRequestComponent: React.FC<PasswordResetRequestComponentProps> = ({
@@ -32,12 +51,9 @@ const PasswordResetRequestComponent: React.FC<PasswordResetRequestComponentProps
               <EMailAddressInput value={email} onChange={setEmail} />
               <div className="flex flex-col">
                 <RoundButton
-                  className={
-                    isSubmittable
-                      ? 'text-black bg-white'
-                      : 'text-gray-600 bg-gray-500'
-                  }
-                  text="送信"
+                  style={{
+                    opacity: isSubmittable ? 1 : 0.7,
+                  }}
                   disabled={!isSubmittable}
                   onClick={async () => {
                     const { host, pathname } = window.location
@@ -50,20 +66,30 @@ const PasswordResetRequestComponent: React.FC<PasswordResetRequestComponentProps
                       (err) => setErrorMessage(err)
                     )
                   }}
-                />
+                >
+                  送信
+                </RoundButton>
               </div>
             </>
           ) : (
-            <>
+            <MessageBox>
               <TextDisplay className="mb-8 text-sm">
                 {email} 宛にパスワード再設定用リンクを送信しました。
               </TextDisplay>
               <RoundButton
-                className="border-2 text-lg"
-                text="OK"
+                style={{
+                  backgroundColor: 'transparent',
+                  border: '2px solid white',
+                  width: '80%',
+                  color: 'white',
+                  fontWeight: 'bold',
+                  fontSize: '18px',
+                }}
                 onClick={closeModal}
-              />
-            </>
+              >
+                OK
+              </RoundButton>
+            </MessageBox>
           )}
         </DefaultModalContainer>
       ) : (
