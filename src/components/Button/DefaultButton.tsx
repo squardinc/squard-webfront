@@ -5,17 +5,21 @@ import {
 } from '@fortawesome/react-fontawesome'
 import styles from './Button.module.scss'
 import { TextDisplay } from '../TextDisplay/TextDisplay'
+import CSS from 'csstype';
 
 interface ButtonProps {
   text: string
   onClick: VoidFunction
-  size?: 'medium' | 'small'
+  size?: 'medium' | 'small' | string
+  style?:CSS.Properties
 }
 export const DefaultButton: React.FC<ButtonProps> = ({
   text,
   onClick,
   size = 'medium',
+  style
 }) => {
+
   return (
     <div
       className={`${styles.buttonContainer} cursor-pointer`}
@@ -24,7 +28,7 @@ export const DefaultButton: React.FC<ButtonProps> = ({
       tabIndex={0}
       role="button"
     >
-      <div className={styles.button} data-size={size}>
+      <div className={styles.button} data-size={size} style={style ? style : {}}>
         <TextDisplay>{text}</TextDisplay>
       </div>
     </div>

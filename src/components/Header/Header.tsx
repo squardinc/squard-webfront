@@ -36,7 +36,6 @@ export const Header = () => {
           <TextDisplay>
             <Link
               to="/"
-              className="text-2xl font-bold"
               style={{
                 display: 'flex',
                 flexWrap: 'nowrap',
@@ -55,7 +54,7 @@ export const Header = () => {
               )} */}
           </div>
         </div>
-        {/* <SearchBar show={showSearchBar} /> */}
+        {/* <SearchBar show={false} /> */}
       </div>
       <NavMenu
         show={showNavMenu}

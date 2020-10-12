@@ -8,6 +8,7 @@ interface TextDisplayProps {
   className?: string
   alphanumericFont?:
     | 'montserrat'
+    | 'notosans'
     | 'livermore'
     | 'raleway'
     | 'raleway-v2.0'

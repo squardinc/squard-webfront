@@ -4,7 +4,7 @@
 .content {
   color: white;
   margin: 0px 40px;
-  padding: 40px 0px;
+  padding: 25px 0px;
 }
 
 .caption {
@@ -14,7 +14,7 @@
 .caption1 {
   color: $text-yellow;
   font-family: $noto-sans-font;
-  font-weight:$weight-medium;
+  font-weight:$weight-dim-light;
   font-style: normal;
   font-size: 16px;
   line-height : 2.33;
@@ -29,6 +29,7 @@
 
 .description {
   margin: 12px 0px;
+  margin-bottom: 18px;
   font-family: $noto-sans-font;
   font-weight: $weight-light;
   line-height : 1.66;
@@ -39,7 +40,8 @@
   margin-top:10px;
 }
 .attributeContainer {
-  margin: 20px 0px;
+  margin-top: 10px;
+  margin-bottom: 30px;
   font-size: 14px;
 }
 .captionSystemLabel{
