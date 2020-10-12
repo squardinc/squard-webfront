@@ -17,49 +17,13 @@ export const getTeam = /* GraphQL */ `
         teamId
         classType
         priceId
-        price {
-          id
-          teamId
-          teamClassId
-          price
-        }
         enabled
-        benefits {
-          description
-        }
       }
       members {
         teamId
         teamMemberId
         userId
-        user {
-          id
-          nameJp
-          nameEn
-          introduction
-          links
-          birthday
-          displayTeamIds
-          topImage
-          icon
-        }
-        team {
-          id
-          name
-          subTitle
-          introduction
-          topImage
-          tags
-          system
-        }
         teamClassId
-        class {
-          teamClassId
-          teamId
-          classType
-          priceId
-          enabled
-        }
         startAt
         endAt
         image
@@ -71,6 +35,13 @@ export const getTeam = /* GraphQL */ `
         link
         contact
         introduction
+        user {
+          nameJp
+          birthday
+          page {
+            id
+          }
+        }
       }
       page {
         id
@@ -94,47 +65,8 @@ export const getMyMemberInfo = /* GraphQL */ `
         links
         birthday
         displayTeamIds
-        displayTeamMembers {
-          teamId
-          teamMemberId
-          userId
-          teamClassId
-          startAt
-          endAt
-          image
-          imageColor
-          nickname
-          title
-          subTitle
-          age
-          link
-          contact
-          introduction
-        }
         topImage
         icon
-        teamMembers {
-          teamId
-          teamMemberId
-          userId
-          teamClassId
-          startAt
-          endAt
-          image
-          imageColor
-          nickname
-          title
-          subTitle
-          age
-          link
-          contact
-          introduction
-        }
-        page {
-          id
-          resourceId
-          type
-        }
       }
       team {
         id
@@ -144,35 +76,6 @@ export const getMyMemberInfo = /* GraphQL */ `
         topImage
         tags
         system
-        classes {
-          teamClassId
-          teamId
-          classType
-          priceId
-          enabled
-        }
-        members {
-          teamId
-          teamMemberId
-          userId
-          teamClassId
-          startAt
-          endAt
-          image
-          imageColor
-          nickname
-          title
-          subTitle
-          age
-          link
-          contact
-          introduction
-        }
-        page {
-          id
-          resourceId
-          type
-        }
       }
       teamClassId
       class {
@@ -180,21 +83,59 @@ export const getMyMemberInfo = /* GraphQL */ `
         teamId
         classType
         priceId
-        price {
-          id
-          teamId
-          teamClassId
-          price
-        }
         enabled
-        benefits {
-          description
-          link
-        }
       }
       startAt
       endAt
       image
+      title
+      subTitle
+      age
+      link
+      contact
+      introduction
+    }
+  }
+`;
+export const getTeamMembers = /* GraphQL */ `
+  query GetTeamMembers($teamId: ID!) {
+    getTeamMembers(teamId: $teamId) {
+      teamId
+      teamMemberId
+      userId
+      user {
+        id
+        nameJp
+        nameEn
+        introduction
+        links
+        birthday
+        displayTeamIds
+        topImage
+        icon
+      }
+      team {
+        id
+        name
+        subTitle
+        introduction
+        topImage
+        tags
+        system
+      }
+      teamClassId
+      class {
+        teamClassId
+        teamId
+        classType
+        priceId
+        enabled
+      }
+      startAt
+      endAt
+      image
+      imageColor
+      nickname
       title
       subTitle
       age
@@ -218,34 +159,7 @@ export const getUser = /* GraphQL */ `
         teamId
         teamMemberId
         userId
-        user {
-          id
-          nameJp
-          nameEn
-          introduction
-          links
-          birthday
-          displayTeamIds
-          topImage
-          icon
-        }
-        team {
-          id
-          name
-          subTitle
-          introduction
-          topImage
-          tags
-          system
-        }
         teamClassId
-        class {
-          teamClassId
-          teamId
-          classType
-          priceId
-          enabled
-        }
         startAt
         endAt
         image
@@ -264,34 +178,7 @@ export const getUser = /* GraphQL */ `
         teamId
         teamMemberId
         userId
-        user {
-          id
-          nameJp
-          nameEn
-          introduction
-          links
-          birthday
-          displayTeamIds
-          topImage
-          icon
-        }
-        team {
-          id
-          name
-          subTitle
-          introduction
-          topImage
-          tags
-          system
-        }
         teamClassId
-        class {
-          teamClassId
-          teamId
-          classType
-          priceId
-          enabled
-        }
         startAt
         endAt
         image
@@ -303,6 +190,16 @@ export const getUser = /* GraphQL */ `
         link
         contact
         introduction
+        team {
+          id
+          name
+          page {
+            id
+          }
+        }
+        class {
+          classType
+        }
       }
       page {
         id

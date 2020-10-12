@@ -16,14 +16,7 @@ const SOCIAL_MEDIA = [
 
 export type SocialMediaType = typeof SOCIAL_MEDIA[number]
 
-const CLASSES = [
-  'Leader',
-  'CoreMembers',
-  'Members',
-  'Prospects',
-  'Angels',
-  'VIP',
-]
+const CLASSES = ['Leader', 'CoreMembers', 'Members', 'Prospects', 'Angels', 'VIP']
 export type ClassType = typeof CLASSES[number]
 
 export type ITeam = {
@@ -43,7 +36,7 @@ export type IPersonal = {
   nameEn: string
   introduction: string
   links: string[]
-  teams: ITeam[]
+  teams: IDisplayTeamMember[]
   age: string
 }
 
@@ -52,7 +45,31 @@ interface S3Object {
   region: string
   key: string
 }
+interface IDisplayTeamMember {
+  teamId: string
+  pageId: string
+  teamName: string
+  classType: ClassType
+  title: string
+}
+class DisplayTeamMember {
+  constructor(
+    readonly pageId: string,
+    readonly teamName: string,
+    readonly classType: ClassType,
+    readonly title: string
+  ) {}
 
+  static fromUserQueryResult = (displayTeamMember = {}) => {
+    return {
+      teamId: displayTeamMember.team?.id,
+      pageId: displayTeamMember.team?.page?.id,
+      teamName: displayTeamMember.team?.name,
+      classType: displayTeamMember.class?.classType,
+      title: displayTeamMember.title,
+    }
+  }
+}
 export class Person {
   constructor(
     readonly id: string,
@@ -63,7 +80,8 @@ export class Person {
     readonly introduction: string = '',
     readonly birthday: string = '',
     readonly links: string[] = [],
-    readonly teams: ITeam[] = []
+    readonly teams: IDisplayTeamMember[] = [],
+    readonly displayTeamIds: string[]
   ) {}
 
   static fromQueryResult = (result: GetUserQuery) => {
@@ -76,7 +94,8 @@ export class Person {
       introduction,
       birthday,
       links,
-      displayTeams,
+      teamMembers,
+      displayTeamIds,
     } = result?.getUser || {}
     return new Person(
       id || '',
@@ -87,7 +106,8 @@ export class Person {
       introduction || '',
       birthday || '',
       links || [],
-      displayTeams || []
+      (teamMembers || []).map((each) => DisplayTeamMember.fromUserQueryResult(each)),
+      displayTeamIds
     )
   }
   get age() {
