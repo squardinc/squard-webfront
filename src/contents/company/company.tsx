@@ -1,5 +1,4 @@
 import * as React from 'react'
-import styles from './company.module.scss'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { withTheme } from 'src/context/ThemeContext'
@@ -100,15 +99,15 @@ interface MemberProps {
 
 const Member: React.FC<MemberProps> = ({ member }) => {
   function getImageTheme(key: string) {
-    let style = styles.yellowFilter
+    let style = "yellowFilter"
     if (key === 'red') {
-      style = styles.redFilter
+      style = "redFilter"
     } else if (key === 'blue') {
-      style = styles.blueFilter
+      style = "blueFilter"
     } else if (key === 'green') {
-      style = styles.greenFilter
+      style = "greenFilter"
     } else {
-      style = styles.yellowFilter
+      style = "yellowFilter"
     }
     return style
   }
@@ -117,7 +116,7 @@ const Member: React.FC<MemberProps> = ({ member }) => {
     <div className={`relative mt-1 px-1 memberContainer`}>
       <img
         src={member.imageUrl}
-        className={styles.member + ' ' + getImageTheme(member.color)}
+        className={"member" + ' ' + getImageTheme(member.color)}
       />
       <div className="memberCaption">
         <TextDisplay className="memberName">{member.title}</TextDisplay>
