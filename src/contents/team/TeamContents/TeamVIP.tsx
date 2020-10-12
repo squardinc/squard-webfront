@@ -1,9 +1,75 @@
 import * as React from 'react'
 import { LeftBorderCaption } from 'src/components/Caption/Captions'
 import { faPaperPlane, faLink } from '@fortawesome/free-solid-svg-icons'
-import styles from './TeamVIP.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+
+import styled from 'styled-components'
+import colors from 'src/styles/colors'
+import { teamContentContainer, personIcon } from "./_team-mixins"
+
+const StyledComponents = styled.div`
+  ${teamContentContainer("white")}
+
+  .vips {
+    /* personIconDisplayScroll() */
+    display: flex;
+    overflow-x: scroll;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .vipContainer {
+    position: relative;
+    position: relative;
+    margin: 0px 25px 10px 5px;
+  }
+
+  .vip {
+    ${personIcon("300px", "300px", "10px")}
+  }
+
+  $content-size: 40%;
+
+  .vipCaptionContainer {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    bottom: 25px;
+    color: white;
+    background-color: ${colors.black};
+    margin: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  .vipCaption {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 5% 5%;
+  }
+
+  .vipName {
+    padding: 10px;
+    font-size: x-large;
+    font-weight: 800;
+  }
+  .vipIntroduction {
+    padding: 10px;
+    font-size: small;
+    font-weight: 100;
+  }
+  .vipLinks {
+    display: flex;
+    justify-content: flex-start;
+    margin: 5px 0px;
+  }
+`
 
 const trim = (text: string, length: number) => `${text.substring(0, length)}...`
 interface VIPProps {
@@ -13,18 +79,18 @@ interface VIPProps {
 }
 const VIP: React.FC<VIPProps> = ({ vip, name, introduction }) => {
   return (
-    <div className={styles.vipContainer}>
+    <div className="vipContainer">
       <div className="pl-0 pr-0" style={{ width: '300px', height: '520px' }}>
-        <img src={vip} className={styles.vip} />
-        <div className={styles.vipCaptionContainer}>
-          <div className={styles.vipCaption}>
-            <div className={styles.vipCaptionTop}>
-              <TextDisplay className={styles.vipName}>{name}</TextDisplay>
-              <TextDisplay className={styles.vipIntroduction}>
+        <img src={vip} className="vip" />
+        <div className="vipCaptionContainer">
+          <div className="vipCaption">
+            <div className="vipCaptionTop">
+              <TextDisplay className="vipName">{name}</TextDisplay>
+              <TextDisplay className="vipIntroduction">
                 {introduction}
               </TextDisplay>
             </div>
-            <div className={styles.vipLinks}>
+            <div className="vipLinks">
               <div className="bg-yellow text-black rounded-full h-12 w-12 flex items-center justify-center mr-2">
                 <FontAwesomeIcon
                   icon={faPaperPlane}
@@ -52,7 +118,7 @@ interface TeamVIPProps {
 }
 export const TeamVIP: React.FC<TeamVIPProps> = ({ vips }) => {
   return (
-    <div className={styles.container}>
+    <StyledComponents>
       {/* <div className="pl-2 pr-2">
         <LeftBorderCaption text="V.I.P." />
       </div>
@@ -69,6 +135,6 @@ export const TeamVIP: React.FC<TeamVIPProps> = ({ vips }) => {
           />
         ))}
       </div> */}
-    </div>
+    </StyledComponents>
   )
 }

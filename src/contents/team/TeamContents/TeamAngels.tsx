@@ -1,9 +1,29 @@
 import * as React from 'react'
 import { DefaultButton } from 'src/components/Button/DefaultButton'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
-import { StyledComponents } from './TeamAngels.styled'
+
+import styled from 'styled-components'
+import { teamContentContainer, personIcon } from "./_team-mixins"
 
 import { navigate } from 'gatsby'
+
+const StyledComponents = styled.div`
+  ${teamContentContainer("white")}
+  .angels {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .angelContainer {
+    position: relative;
+  }
+  .angel {
+    ${personIcon("95px", "95px", "5px")}
+    margin: 9.5px;
+  }
+`
+
 
 interface AngelProps {
   angel: string
