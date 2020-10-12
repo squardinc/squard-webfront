@@ -53,6 +53,17 @@
   --background-theme-button: linear-gradient(70deg, #af1a3d, #fbe62e);
 }
 
+.theme-black {
+  --text-color-theme-main: #ffffff;
+  --text-color-theme-sub: #fbe62e;
+  --bg-color-theme-main: #111111;
+  --text-color-theme-header: #ffffff;
+  --bg-color-theme-header: #111111;
+  --box-shadow-theme-header: 0;
+  --background-theme-footer: #111111;
+  --background-theme-button: #fbe62e;
+}
+
 .theme-light-gray {
   --text-color-theme-main: #050126;
   --text-color-theme-sub: #ffffff;

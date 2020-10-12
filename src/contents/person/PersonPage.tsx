@@ -11,6 +11,7 @@ import { descriminate, toHref } from 'src/utils/SocialMediaDescriminator'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ExternalLink } from 'src/components/Link/ExternalLink'
+
 import Top from 'src/images/temp/team/top.jpg'
 import * as Const from '../../styles/const'
 
@@ -273,6 +274,8 @@ export const PersonPage = (props: PersonPageProps) => {
   const { personal, editProfile, profileEditable = false } = props
   const [selectedTeam, setSelectedTeam] = React.useState<ITeam | null>(null)
 
+  
+
   return (
     <>
       <ContentWrapper>
@@ -282,11 +285,11 @@ export const PersonPage = (props: PersonPageProps) => {
               src={personal.topImage ? encodeURI(personal.topImage) : Top}
               style={{ width: '100%', minHeight: '320px' }}
             />
-            {profileEditable && (
+            {/* {profileEditable && ( */}
               <ButtonEditWrapper onClick={editProfile}>
                 <FontAwesomeIcon icon={faEdit} size="2x" />
               </ButtonEditWrapper>
-            )}
+            {/* )} */}
           </UserCover>
           <ProfileContainerWrapper>
             <ProfilerImageContainer>
