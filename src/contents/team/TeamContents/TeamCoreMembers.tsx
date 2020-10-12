@@ -5,6 +5,7 @@ import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 
 import styled, { css } from 'styled-components'
 import colors from 'src/styles/colors'
+import { colorFilters } from 'src/styles/utils'
 import { teamContentContainer } from "./_team-mixins"
 
 const member = css`
@@ -13,6 +14,7 @@ const member = css`
   border: 0px;
   border-radius: 10px;
   margin: 6.5px 5px;
+
 `
 
 const StyledComponents = styled.div`
@@ -27,26 +29,22 @@ const StyledComponents = styled.div`
 
   .redImageContainer {
     ${member}
-    -webkit-filter: invert(40%) grayscale(100%) brightness(50%) sepia(100%) hue-rotate(-70deg) saturate(400%) contrast(0.8);
-    filter: grayscale(100%) brightness(50%) sepia(100%) hue-rotate(-70deg) saturate(500%) contrast(0.8);
+    ${colorFilters.red}
   }
 
   .blueImageContainer {
     ${member}
-    -webkit-filter: grayscale(100%) brightness(50%) sepia(100%) hue-rotate(-210deg) saturate(1000%) contrast(0.7);
-    filter: grayscale(100%) brightness(50%) sepia(100%) hue-rotate(-205deg) saturate(1000%) contrast(0.7);
+    ${colorFilters.blue}
   }
 
   .greenImageContainer {
     ${member}
-    -webkit-filter: grayscale(100%) brightness(50%) sepia(100%) hue-rotate(120deg) saturate(1000%) contrast(0.8);
-    filter: grayscale(100%) brightness(50%) sepia(100%) hue-rotate(120deg) saturate(1000%) contrast(0.8);
+    ${colorFilters.green}
   }
 
   .yellowImageContainer {
     ${member}
-    -webkit-filter: grayscale(90%) brightness(80%) sepia(90%) hue-rotate(5deg) saturate(500%) contrast(0.8);
-    filter: grayscale(90%) brightness(80%) sepia(90%) hue-rotate(5deg) saturate(500%) contrast(0.8);
+    ${colorFilters.yellow}
   }
 
   .designationText {
