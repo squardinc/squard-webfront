@@ -1,21 +1,19 @@
+import { navigateTo } from 'gatsby'
 import * as React from 'react'
-import { gql, useQuery } from '@apollo/client'
-import { getTeam } from 'src/graphql/queries'
-import { TeamTop } from './TeamTop'
-import { TeamIntroduction } from './TeamIntroduction'
+import { ContentFooter } from 'src/components/Footer/ContentFooter'
+import { withTheme } from 'src/context/ThemeContext'
+import akihiro from 'src/images/temp/team/akihiro.jpg'
+import hiroki from 'src/images/temp/team/hiroki.jpg'
+import shoya from 'src/images/temp/team/shoya.jpg'
+import shunpei from 'src/images/temp/team/shunpei.jpg'
+import { Team } from 'src/models/team'
+import { TeamAngels } from './TeamContents/TeamAngels'
 import { TeamCoreMembers } from './TeamContents/TeamCoreMembers'
 import { TeamMembers } from './TeamContents/TeamMembers'
 import { TeamProspects } from './TeamContents/TeamProspects'
-import { TeamAngels } from './TeamContents/TeamAngels'
 import { TeamVIP } from './TeamContents/TeamVIP'
-import { GetTeamQuery } from 'src/types/API'
-import { ContentFooter } from 'src/components/Footer/ContentFooter'
-import { navigateTo } from 'gatsby'
-import { ThemeContext, withTheme } from 'src/context/ThemeContext'
-import shunpei from 'src/images/temp/team/shunpei.jpg'
-import hiroki from 'src/images/temp/team/hiroki.jpg'
-import akihiro from 'src/images/temp/team/akihiro.jpg'
-import shoya from 'src/images/temp/team/shoya.jpg'
+import { TeamIntroduction } from './TeamIntroduction'
+import { TeamTop } from './TeamTop'
 
 const DUMMY_CORE_MEMBERS = [
   {
@@ -56,30 +54,24 @@ const DUMMY_CORE_MEMBERS = [
   },
 ]
 
-const Layout = () => {
-  // const { loading, error, data } = useQuery<GetTeamQuery>(gql(getTeam), { variables: { id: 'squard' } })
-  const data = {
-    getTeam: {
-      id: 'squard',
-      tags: ['チームメイキング', '働き方3.0', 'TopDown', 'DAO', '離合集散'],
-      leaderName: '小池駿平',
-      system: 'トップダウン',
-    },
-  }
+interface TeamLayoutProps {
+  team: Team
+}
+const Layout: React.FC<TeamLayoutProps> = ({ team }) => {
   return (
     <>
       <TeamTop />
       <TeamIntroduction
-        teamId={data?.getTeam?.id}
-        tags={data?.getTeam?.tags}
-        leaderName={data?.getTeam?.leaderName}
-        system={data?.getTeam?.system}
+        teamId={team.id}
+        tags={team.tags}
+        leaderName={team.teamMembers.leader?.displayName}
+        system={team.system}
       />
-      <TeamCoreMembers coreMembers={DUMMY_CORE_MEMBERS} />
-      <TeamMembers members={[]} />
-      <TeamProspects propspects={[]} />
-      <TeamAngels angels={[]} numOfAngels={0} />
-      <TeamVIP vips={[]} />
+      <TeamCoreMembers coreMembers={team.teamMembers.leaderAndCoreMembers} />
+      <TeamMembers topMember={team.teamMembers.members[0]} members={team.teamMembers.members} />
+      <TeamProspects propspects={team.teamMembers.prospects} />
+      <TeamAngels angels={team.teamMembers.angels} numOfAngels={team.teamMembers.angels.length} />
+      <TeamVIP vips={team.teamMembers.vip} />
       <ContentFooter
         titleSub="What's the"
         titleMain="Squard?"

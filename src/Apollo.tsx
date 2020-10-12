@@ -1,22 +1,30 @@
-import * as React from 'react'
-import fetch from 'cross-fetch'
-import { ApolloProvider } from '@apollo/client'
-import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
+import {
+  ApolloClient,
+  ApolloLink,
+  ApolloProvider,
+  createHttpLink,
+  InMemoryCache
+} from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
-import { AWS_APPSYNC_GRAPHQL_ENDPOINT, AWS_APPSYNC_API_KEY } from './utils/env'
+import fetch from 'cross-fetch'
+import * as React from 'react'
+import { AuthService } from './services/AuthService'
+import { AWS_APPSYNC_API_KEY, AWS_APPSYNC_GRAPHQL_ENDPOINT } from './utils/env'
 
 const httpLink = createHttpLink({
   uri: AWS_APPSYNC_GRAPHQL_ENDPOINT,
   fetch,
 })
 
-const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('token')
-  if (token) {
+type OperationType = 'query' | 'mutation'
+const authLink = setContext(async (operation, { headers }) => {
+  const operationType: OperationType = operation.query.definitions[0].operation || 'query'
+  const token = await AuthService.idToken().catch(() => '')
+  if (operationType === 'mutation' && token) {
     return {
       headers: {
         ...headers,
-        authorization: token ? `Bearer ${token}` : '',
+        authorization: token,
       },
     }
   }
@@ -28,8 +36,16 @@ const authLink = setContext((_, { headers }) => {
   }
 })
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: ApolloLink.from([authLink, httpLink]),
   cache: new InMemoryCache(),
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: 'no-cache',
+    },
+    query: {
+      fetchPolicy: 'no-cache',
+    },
+  },
 })
 
 export const WithApolloProvider = (Component: React.FC) => () => (

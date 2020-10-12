@@ -99,6 +99,7 @@ export const EntitlementText = styled.div`
   color: ${colors.textWhite};
   border-top: 1px solid ${colors.borderGray};
   font-size: 0.9rem;
+  white-space: pre-wrap;
 
   &:last-child {
     border-bottom: 1px solid ${colors.borderGray};

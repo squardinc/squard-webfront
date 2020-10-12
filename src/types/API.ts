@@ -2,129 +2,104 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateTeamInput = {
-  name?: string | null
-  tags?: Array<string | null> | null
-  system?: string | null
-  leaderName?: string | null
-  leaderId?: string | null
-  coreMembers?: string | null
-  members?: string | null
-  angels?: string | null
-  vips?: string | null
+export type UpdateUserInput = {
+  nameJp?: string | null
+  nameEn?: string | null
+  introduction?: string | null
+  links?: Array<string | null> | null
+  birthday?: string | null
+  displayTeamIds?: Array<string | null> | null
+  topImage?: string | null
+  icon?: string | null
 }
 
-export type UpdateTeamInput = {
-  id: string
-  name?: string | null
-  tags?: Array<string | null> | null
-  system?: string | null
-  leaderName?: string | null
-  leaderId?: string | null
-  coreMembers?: string | null
-  menbers?: string | null
-  angels?: string | null
-  vips?: string | null
+export enum PageType {
+  Static = 'Static',
+  Team = 'Team',
+  Person = 'Person',
 }
 
-export type DeleteTeamInput = {
-  id: string
+export enum ClassType {
+  Leader = 'Leader',
+  CoreMembers = 'CoreMembers',
+  Members = 'Members',
+  Prospects = 'Prospects',
+  Angels = 'Angels',
+  Galleries = 'Galleries',
+  VIP = 'VIP',
 }
 
-export type TableTeamFilterInput = {
-  id?: TableIDFilterInput | null
-  name?: TableStringFilterInput | null
-  tags?: TableStringFilterInput | null
-  system?: TableStringFilterInput | null
-  leaderName?: TableStringFilterInput | null
-  leaderId?: TableStringFilterInput | null
-  angels?: TableStringFilterInput | null
-  vips?: TableStringFilterInput | null
+export type UpdateUserMutationVariables = {
+  input: UpdateUserInput
 }
 
-export type TableIDFilterInput = {
-  ne?: string | null
-  eq?: string | null
-  le?: string | null
-  lt?: string | null
-  ge?: string | null
-  gt?: string | null
-  contains?: string | null
-  notContains?: string | null
-  between?: Array<string | null> | null
-  beginsWith?: string | null
-}
-
-export type TableStringFilterInput = {
-  ne?: string | null
-  eq?: string | null
-  le?: string | null
-  lt?: string | null
-  ge?: string | null
-  gt?: string | null
-  contains?: string | null
-  notContains?: string | null
-  between?: Array<string | null> | null
-  beginsWith?: string | null
-}
-
-export type CreateTeamMutationVariables = {
-  input: CreateTeamInput
-}
-
-export type CreateTeamMutation = {
-  createTeam: {
-    __typename: 'Team'
+export type UpdateUserMutation = {
+  updateUser: {
+    __typename: 'User'
     id: string
-    name: string | null
-    tags: Array<string | null> | null
-    system: string | null
-    leaderName: string | null
-    leaderId: string | null
-    coreMembers: string | null
-    members: string | null
-    angels: string | null
-    vips: string | null
+    nameJp: string | null
+    nameEn: string | null
+    introduction: string | null
+    links: Array<string | null> | null
+    birthday: string | null
+    displayTeamIds: Array<string | null> | null
+    displayTeamMembers: Array<{
+      __typename: 'TeamMember'
+      teamId: string
+      teamMemberId: string
+      userId: string
+      teamClassId: string
+      startAt: number | null
+      endAt: number | null
+      image: string | null
+      imageColor: string | null
+      nickname: string | null
+      title: string | null
+      subTitle: string | null
+      age: string | null
+      link: string | null
+      contact: string | null
+      introduction: string | null
+    } | null> | null
+    topImage: string | null
+    icon: string | null
+    teamMembers: Array<{
+      __typename: 'TeamMember'
+      teamId: string
+      teamMemberId: string
+      userId: string
+      teamClassId: string
+      startAt: number | null
+      endAt: number | null
+      image: string | null
+      imageColor: string | null
+      nickname: string | null
+      title: string | null
+      subTitle: string | null
+      age: string | null
+      link: string | null
+      contact: string | null
+      introduction: string | null
+    } | null> | null
+    page: {
+      __typename: 'Page'
+      id: string
+      resourceId: string
+      type: PageType | null
+    } | null
   } | null
 }
 
-export type UpdateTeamMutationVariables = {
-  input: UpdateTeamInput
+export type RequestSubscriptionMutationVariables = {
+  teamId: string
+  teamClassId: string
+  origin: string
 }
 
-export type UpdateTeamMutation = {
-  updateTeam: {
-    __typename: 'Team'
-    id: string
-    name: string | null
-    tags: Array<string | null> | null
-    system: string | null
-    leaderName: string | null
-    leaderId: string | null
-    coreMembers: string | null
-    members: string | null
-    angels: string | null
-    vips: string | null
-  } | null
-}
-
-export type DeleteTeamMutationVariables = {
-  input: DeleteTeamInput
-}
-
-export type DeleteTeamMutation = {
-  deleteTeam: {
-    __typename: 'Team'
-    id: string
-    name: string | null
-    tags: Array<string | null> | null
-    system: string | null
-    leaderName: string | null
-    leaderId: string | null
-    coreMembers: string | null
-    members: string | null
-    angels: string | null
-    vips: string | null
+export type RequestSubscriptionMutation = {
+  requestSubscription: {
+    __typename: 'SubscriptionRequestSession'
+    sessionId: string
   } | null
 }
 
@@ -137,111 +112,229 @@ export type GetTeamQuery = {
     __typename: 'Team'
     id: string
     name: string | null
-    tags: Array<string | null> | null
+    subTitle: string | null
+    introduction: string | null
+    topImage: string | null
+    tags: Array<string> | null
     system: string | null
-    leaderName: string | null
-    leaderId: string | null
-    coreMembers: string | null
-    members: string | null
-    angels: string | null
-    vips: string | null
+    classes: Array<{
+      __typename: 'TeamClass'
+      teamClassId: string
+      teamId: string
+      classType: ClassType
+      priceId: string | null
+      enabled: boolean | null
+    } | null> | null
+    members: Array<{
+      __typename: 'TeamMember'
+      teamId: string
+      teamMemberId: string
+      userId: string
+      teamClassId: string
+      startAt: number | null
+      endAt: number | null
+      image: string | null
+      imageColor: string | null
+      nickname: string | null
+      title: string | null
+      subTitle: string | null
+      age: string | null
+      link: string | null
+      contact: string | null
+      introduction: string | null
+    } | null> | null
+    page: {
+      __typename: 'Page'
+      id: string
+      resourceId: string
+      type: PageType | null
+    } | null
   } | null
 }
 
-export type ListTeamsQueryVariables = {
-  filter?: TableTeamFilterInput | null
-  limit?: number | null
-  nextToken?: string | null
-}
-
-export type ListTeamsQuery = {
-  listTeams: {
-    __typename: 'TeamConnection'
-    items: Array<{
+export type GetMyMemberInfoQuery = {
+  getMyMemberInfo: Array<{
+    __typename: 'MyTeamMember'
+    teamId: string
+    teamMemberId: string
+    userId: string
+    user: {
+      __typename: 'User'
+      id: string
+      nameJp: string | null
+      nameEn: string | null
+      introduction: string | null
+      links: Array<string | null> | null
+      birthday: string | null
+      displayTeamIds: Array<string | null> | null
+      topImage: string | null
+      icon: string | null
+    } | null
+    team: {
       __typename: 'Team'
       id: string
       name: string | null
-      tags: Array<string | null> | null
+      subTitle: string | null
+      introduction: string | null
+      topImage: string | null
+      tags: Array<string> | null
       system: string | null
-      leaderName: string | null
-      leaderId: string | null
-      coreMembers: string | null
-      members: string | null
-      angels: string | null
-      vips: string | null
+    } | null
+    teamClassId: string
+    class: {
+      __typename: 'MyTeamClass'
+      teamClassId: string
+      teamId: string
+      classType: ClassType
+      priceId: string | null
+      enabled: boolean | null
+    } | null
+    startAt: number | null
+    endAt: number | null
+    image: string | null
+    title: string | null
+    subTitle: string | null
+    age: string | null
+    link: string | null
+    contact: string | null
+    introduction: string | null
+  } | null> | null
+}
+
+export type GetTeamMembersQueryVariables = {
+  teamId: string
+}
+
+export type GetTeamMembersQuery = {
+  getTeamMembers: Array<{
+    __typename: 'TeamMember'
+    teamId: string
+    teamMemberId: string
+    userId: string
+    user: {
+      __typename: 'User'
+      id: string
+      nameJp: string | null
+      nameEn: string | null
+      introduction: string | null
+      links: Array<string | null> | null
+      birthday: string | null
+      displayTeamIds: Array<string | null> | null
+      topImage: string | null
+      icon: string | null
+    }
+    team: {
+      __typename: 'Team'
+      id: string
+      name: string | null
+      subTitle: string | null
+      introduction: string | null
+      topImage: string | null
+      tags: Array<string> | null
+      system: string | null
+    }
+    teamClassId: string
+    class: {
+      __typename: 'TeamClass'
+      teamClassId: string
+      teamId: string
+      classType: ClassType
+      priceId: string | null
+      enabled: boolean | null
+    }
+    startAt: number | null
+    endAt: number | null
+    image: string | null
+    imageColor: string | null
+    nickname: string | null
+    title: string | null
+    subTitle: string | null
+    age: string | null
+    link: string | null
+    contact: string | null
+    introduction: string | null
+  } | null> | null
+}
+
+export type GetUserQueryVariables = {
+  id: string
+}
+
+export type GetUserQuery = {
+  getUser: {
+    __typename: 'User'
+    id: string
+    nameJp: string | null
+    nameEn: string | null
+    introduction: string | null
+    links: Array<string | null> | null
+    birthday: string | null
+    displayTeamIds: Array<string | null> | null
+    displayTeamMembers: Array<{
+      __typename: 'TeamMember'
+      teamId: string
+      teamMemberId: string
+      userId: string
+      teamClassId: string
+      startAt: number | null
+      endAt: number | null
+      image: string | null
+      imageColor: string | null
+      nickname: string | null
+      title: string | null
+      subTitle: string | null
+      age: string | null
+      link: string | null
+      contact: string | null
+      introduction: string | null
+      team: {
+        name: string
+        page: {
+          id: string
+        } | null
+      } | null
+      class: {
+        classType: ClassType
+      }
     } | null> | null
-    nextToken: string | null
+    topImage: string | null
+    icon: string | null
+    teamMembers: Array<{
+      __typename: 'TeamMember'
+      teamId: string
+      teamMemberId: string
+      userId: string
+      teamClassId: string
+      startAt: number | null
+      endAt: number | null
+      image: string | null
+      imageColor: string | null
+      nickname: string | null
+      title: string | null
+      subTitle: string | null
+      age: string | null
+      link: string | null
+      contact: string | null
+      introduction: string | null
+    } | null> | null
+    page: {
+      __typename: 'Page'
+      id: string
+      resourceId: string
+      type: PageType | null
+    } | null
   } | null
 }
 
-export type OnCreateTeamSubscriptionVariables = {
-  id?: string | null
-  name?: string | null
-  tags?: Array<string | null> | null
-  system?: string | null
-  leaderName?: string | null
+export type GetPageQueryVariables = {
+  id: string
 }
 
-export type OnCreateTeamSubscription = {
-  onCreateTeam: {
-    __typename: 'Team'
+export type GetPageQuery = {
+  getPage: {
+    __typename: 'Page'
     id: string
-    name: string | null
-    tags: Array<string | null> | null
-    system: string | null
-    leaderName: string | null
-    leaderId: string | null
-    coreMembers: string | null
-    members: string | null
-    angels: string | null
-    vips: string | null
-  } | null
-}
-
-export type OnUpdateTeamSubscriptionVariables = {
-  id?: string | null
-  name?: string | null
-  tags?: Array<string | null> | null
-  system?: string | null
-  leaderName?: string | null
-}
-
-export type OnUpdateTeamSubscription = {
-  onUpdateTeam: {
-    __typename: 'Team'
-    id: string
-    name: string | null
-    tags: Array<string | null> | null
-    system: string | null
-    leaderName: string | null
-    leaderId: string | null
-    coreMembers: string | null
-    members: string | null
-    angels: string | null
-    vips: string | null
-  } | null
-}
-
-export type OnDeleteTeamSubscriptionVariables = {
-  id?: string | null
-  name?: string | null
-  tags?: Array<string | null> | null
-  system?: string | null
-  leaderName?: string | null
-}
-
-export type OnDeleteTeamSubscription = {
-  onDeleteTeam: {
-    __typename: 'Team'
-    id: string
-    name: string | null
-    tags: Array<string | null> | null
-    system: string | null
-    leaderName: string | null
-    leaderId: string | null
-    coreMembers: string | null
-    members: string | null
-    angels: string | null
-    vips: string | null
+    resourceId: string
+    type: PageType | null
   } | null
 }

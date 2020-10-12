@@ -186,7 +186,7 @@ const Page: React.FC = () => {
           以上
         </div>
         <div className="pt-24 text-center text-white text-xl font-medium tracking-widest text-opacity-75">
-          2020年8月1日制定・施行
+          2020年9月16日制定・施行
         </div>
       </TextDisplay>
       <DefaultFooter />

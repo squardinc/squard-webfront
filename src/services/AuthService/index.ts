@@ -17,7 +17,7 @@ class Service {
 
   login = async (email: string, password: string) => {
     const credential = await Cognito.login(email, password)
-    return new LoginUserModel(credential.getIdToken().decodePayload().sub, credential.getIdToken().getJwtToken())
+    return new LoginUserModel(credential.getIdToken().decodePayload().sub)
   }
   resetPasswordRequest = async (
     email: string,
@@ -41,10 +41,11 @@ class Service {
 
   intialize = async () => {
     return Cognito.intialize().then(
-      credential => new LoginUserModel(credential.getIdToken().decodePayload().sub, credential.getIdToken().getJwtToken()),
+      credential => new LoginUserModel(credential.getIdToken().decodePayload().sub),
       () => LoginUserModel.guest()
     )
   }
+  idToken = async() => Cognito.currentIdToken()
 }
 
 export const AuthService = new Service()

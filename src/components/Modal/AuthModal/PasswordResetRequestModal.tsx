@@ -4,7 +4,7 @@ import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { asModal, ModalProps } from '../asModal'
 import { DefaultModalContainer } from '../ModalContainer'
 import { AuthService } from 'src/services/AuthService'
-import { ErrorModal } from '../ErrorModal'
+import { MessageModal } from '../MessageModal'
 import { EMailAddressInput } from '../../Input/EMailAddressInput'
 import { validEmaliAddress } from 'src/utils/StringValidator'
 
@@ -56,7 +56,7 @@ const PasswordResetRequestComponent: React.FC<PasswordResetRequestComponentProps
           )}
         </DefaultModalContainer>
       ) : (
-        <ErrorModal
+        <MessageModal
           message={errorMesasge}
           closeModal={() => setErrorMessage('')}
         />

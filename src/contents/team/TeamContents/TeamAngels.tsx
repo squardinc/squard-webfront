@@ -1,29 +1,26 @@
+import { navigate } from 'gatsby'
 import * as React from 'react'
 import { DefaultButton } from 'src/components/Button/DefaultButton'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
-
+import { ITeamMember } from 'src/models/team'
 import styles from './TeamAngels.module.scss'
-import { navigate } from 'gatsby'
 
 interface AngelProps {
-  angel: string
+  angel: ITeamMember
 }
 const Angel: React.FC<AngelProps> = ({ angel }) => {
   return (
     <div className={styles.angelContainer}>
-      <img src={angel} className={styles.angel} />
+      <img src={angel.image} className={styles.angel} />
     </div>
   )
 }
 
 interface TeamAngelsProps {
-  angels: string[]
+  angels: ITeamMember[]
   numOfAngels: number
 }
-export const TeamAngels: React.FC<TeamAngelsProps> = ({
-  angels = [],
-  numOfAngels,
-}) => {
+export const TeamAngels: React.FC<TeamAngelsProps> = ({ angels = [], numOfAngels }) => {
   return (
     <div className={styles.container}>
       <TwoStagedCaption
@@ -35,8 +32,8 @@ export const TeamAngels: React.FC<TeamAngelsProps> = ({
       {angels.length ? (
         <div className="pt-6">
           <div className={styles.angels}>
-            {angels.map((angel, index) => (
-              <Angel key={index} angel={angel} />
+            {angels.map((angel) => (
+              <Angel key={angel.teamMemberId} angel={angel} />
             ))}
           </div>
         </div>

@@ -2,51 +2,72 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTeam = /* GraphQL */ `
-  mutation CreateTeam($input: CreateTeamInput!) {
-    createTeam(input: $input) {
+export const updateUser = /* GraphQL */ `
+  mutation UpdateUser($input: UpdateUserInput!) {
+    updateUser(input: $input) {
       id
-      name
-      tags
-      system
-      leaderName
-      leaderId
-      coreMembers
-      members
-      angels
-      vips
+      nameJp
+      nameEn
+      introduction
+      links
+      birthday
+      displayTeamIds
+      displayTeamMembers {
+        teamId
+        teamMemberId
+        userId
+        teamClassId
+        startAt
+        endAt
+        image
+        imageColor
+        nickname
+        title
+        subTitle
+        age
+        link
+        contact
+        introduction
+      }
+      topImage
+      icon
+      teamMembers {
+        teamId
+        teamMemberId
+        userId
+        teamClassId
+        startAt
+        endAt
+        image
+        imageColor
+        nickname
+        title
+        subTitle
+        age
+        link
+        contact
+        introduction
+      }
+      page {
+        id
+        resourceId
+        type
+      }
     }
   }
-`
-export const updateTeam = /* GraphQL */ `
-  mutation UpdateTeam($input: UpdateTeamInput!) {
-    updateTeam(input: $input) {
-      id
-      name
-      tags
-      system
-      leaderName
-      leaderId
-      coreMembers
-      members
-      angels
-      vips
+`;
+export const requestSubscription = /* GraphQL */ `
+  mutation RequestSubscription(
+    $teamId: ID!
+    $teamClassId: ID!
+    $origin: String!
+  ) {
+    requestSubscription(
+      teamId: $teamId
+      teamClassId: $teamClassId
+      origin: $origin
+    ) {
+      sessionId
     }
   }
-`
-export const deleteTeam = /* GraphQL */ `
-  mutation DeleteTeam($input: DeleteTeamInput!) {
-    deleteTeam(input: $input) {
-      id
-      name
-      tags
-      system
-      leaderName
-      leaderId
-      coreMembers
-      members
-      angels
-      vips
-    }
-  }
-`
+`;
