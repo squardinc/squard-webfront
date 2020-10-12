@@ -16,8 +16,25 @@ const SOCIAL_MEDIA = [
 
 export type SocialMediaType = typeof SOCIAL_MEDIA[number]
 
-const CLASSES = ['Leader', 'CoreMembers', 'Members', 'Prospects', 'Angels', 'VIP']
+const CLASSES = [
+  'Leader',
+  'CoreMembers',
+  'Members',
+  'Prospects',
+  'Angels',
+  'Galleries',
+  'VIP',
+] as const
 export type ClassType = typeof CLASSES[number]
+export const ClassTypeJp: { [key in ClassType]: string } = {
+  Leader: 'リーダー',
+  CoreMembers: 'コアメンバー',
+  Members: 'メンバー',
+  Prospects: 'プロスペクト',
+  Angels: 'エンジェル',
+  Galleries: 'ギャラリー',
+  VIP: 'ビップ',
+}
 
 export type ITeam = {
   id: string
