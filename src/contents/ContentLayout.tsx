@@ -7,7 +7,17 @@ import { PersonPageContainer } from './person/PersonPageContainer'
 import { StaticPageRoute } from './StaticPageRoute'
 import { TeamContainer } from './team/TeamContainer'
 
-export const StaticPagePaths = ['about', 'company', 'faq', 'privacypolicy', 'signup'] as const
+export const StaticPagePaths = [
+  'about',
+  'company',
+  'faq',
+  'privacypolicy',
+  'sctl',
+  'signup',
+  'confirmSignUp',
+  'resetPassword',
+  'socialSignIn',
+] as const
 
 type StaticPageType = typeof StaticPagePaths[number]
 
@@ -15,9 +25,11 @@ interface ContentLayoutProps {
   path: string
   contentId: StaticPageType | string
 }
-export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId }) => {
+export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId = '' }) => {
+  if (StaticPagePaths.includes(contentId)) return <StaticPageRoute contentId={contentId} />
+
   const { loading, error, data } = useQuery<GetPageQuery>(gql(getPage), {
-    variables: { id: contentId },
+    variables: { id: contentId.toLowerCase() },
   })
   if (error) {
     navigate('/')
