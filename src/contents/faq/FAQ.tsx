@@ -11,8 +11,19 @@ import * as Const from '../../styles/const'
 
 const PageHeader = styled(Heading1)`
   font-family: ${Const.fontFamily.monster};
-  font-weight: ${Const.fontWeight.bold};
+  font-weight: ${Const.fontWeight.simbold};
   font-size: 28px;
+`
+
+const GroupFAQ = styled.div`
+  width:100%;
+  margin-top:40px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  :last-child {
+    margin-bottom: 0px;
+  }
 `
 
 export const Page: React.FC = (props) => {
@@ -71,11 +82,11 @@ export const Page: React.FC = (props) => {
     <>
       <div className={styles.pageWrapper}>
         <PageHeader>FAQ</PageHeader>
-        <div>
+        <GroupFAQ>
           {faqs.map((el, index) => (
             <FAQItem key={index} num={index + 1} {...el} />
           ))}
-        </div>
+        </GroupFAQ>
       </div>
       <DefaultFooter backgroundColor={Const.darkBlue} />
     </>

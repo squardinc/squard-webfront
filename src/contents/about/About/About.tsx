@@ -16,6 +16,7 @@ const Description = styled.div`
   padding-left: 58px;
   padding-right: 58px;
   margin-bottom: 10px;
+  margin-top: 35px;
   text-align: left;
 `
 

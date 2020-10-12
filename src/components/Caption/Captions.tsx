@@ -32,7 +32,7 @@ export const LeftBorderCaption: React.FC<CaptionProps> = ({
 interface TwoStagedCaptionProps {
   sub: string
   main: string
-  style?: 'large' | 'medium'
+  style?: 'large' | 'medium'| 'mediumItalic'
   subFontWeight?: 'bold' | ''
   shadow?: true | false
 }

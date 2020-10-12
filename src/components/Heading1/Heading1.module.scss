@@ -4,8 +4,8 @@
 .wrapper {
   margin: 20px;
   text-align: center;
-  font-size: 1.7rem;
-  font-weight: 700;
+  font-size: 28px;
+  font-weight: 600;
   color: $text-white;
   text-align: center;
 }
@@ -15,7 +15,7 @@
   padding: 0 10px 8px;
   font-family: $montserrat-font;
   &::after {
-    margin: 10px -40px 0 -20px;
+    margin: 2px -25px 0 -10px;
     content: '';
     display: block;
     height: 6px;

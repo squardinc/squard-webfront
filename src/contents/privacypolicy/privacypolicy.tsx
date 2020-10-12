@@ -15,7 +15,7 @@ const PageHeader = styled(Heading1)`
 
 const Description = styled.div`
   font-family: ${Const.fontFamily.sans};
-  font-weight: ${Const.fontWeight.light};
+  font-weight: ${Const.fontWeight.thin};
   font-size: ${Const.fontSize.sm};
   letter-spacing: ${Const.letterSpacing.normal};
   line-height: 1.785em;
@@ -24,10 +24,11 @@ const Description = styled.div`
   margin-bottom: 10px;
   margin-top: 20px;
   text-align: left;
+  color:#E5E6E9;
 `
 const Contact = styled.div`
   font-family: ${Const.fontFamily.sans};
-  font-weight: ${Const.fontWeight.medium};
+  font-weight: ${Const.fontWeight.regular};
   font-size: ${Const.fontSize.xl};
   letter-spacing: ${Const.letterSpacing.normal};
   line-height: 1.785em;
@@ -38,10 +39,10 @@ const Contact = styled.div`
 
 const EndPoliccyWrapper = styled.div`
   font-family: ${Const.fontFamily.sans};
-  font-weight: ${Const.fontWeight.medium};
+  font-weight: ${Const.fontWeight.regular};
   font-size: ${Const.fontSize.lg};
   width: 100%;
-  margin-top: 20px;
+  margin-top: 60px;
   padding-left: 58px;
   padding-right: 58px;
   display: flex;
@@ -50,7 +51,7 @@ const EndPoliccyWrapper = styled.div`
 
 const DateWrapper = styled.div`
   font-family: ${Const.fontFamily.sans};
-  font-weight: ${Const.fontWeight.regular};
+  font-weight: ${Const.fontWeight.dimlight};
   font-size: ${Const.fontSize.base};
   letter-spacing: 0.075;
   line-height: 5;
@@ -101,7 +102,9 @@ interface PolicyChapterProps {
 }
 const PolicyChapter: React.FC<PolicyChapterProps> = ({ chapter, children }) => (
   <div className="pt-8 text-center text-white text-xl font-medium tracking-wider">
-    <TextDisplay className="flex justify-center">
+    <TextDisplay className="flex justify-center" style={{
+      marginTop:'10px'
+    }}>
       <div className={styles.underLiner}>{chapter}</div>
     </TextDisplay>
     <Description>{children}</Description>
@@ -116,7 +119,9 @@ const Page: React.FC = () => {
           <div className={styles.sharpUnderLiner}>Privacy Policy</div>
         </TextDisplay>
 
-        <Description>
+        <Description style={{
+          marginBottom:'10px'
+        }}>
           スクアード株式会社（以下，「当社」といいます。）は，本ウェブサイト上で提供するサービス（以下,「本サービス」といいます。）における，ユーザーの個人情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。
         </Description>
       </div>

@@ -15,6 +15,9 @@ import { Heading2 } from 'src/components/Heading2/Heading2'
 import { ClassCard } from 'src/components/ClassCard/ClassCard'
 import * as Const from '../../../styles/const'
 
+const HeaderWrapper = styled.div`
+  margin-top: 60px;
+`
 const Description = styled.div`
   font-family: ${Const.fontFamily.sans};
   font-weight: ${Const.fontWeight.light};
@@ -24,10 +27,20 @@ const Description = styled.div`
   padding-left: 58px;
   padding-right: 58px;
   margin-bottom: 40px;
-  margin-top: 30px;
+  margin-top: 40px;
   text-align: left;
 `
-
+const ClassWrapper = styled.div`
+  margin-top: 70px;
+`
+const ClassCardWrapper = styled.div`
+  margin-top: 20px;
+  margin-bottom: 145px;
+  :last-child {
+    margin-bottom: 120px;
+  }
+  
+`
 interface ClassesProps {}
 
 export const Classes: React.FC<ClassesProps> = (props) => {
@@ -85,23 +98,28 @@ export const Classes: React.FC<ClassesProps> = (props) => {
 
   return (
     <div>
-      <Heading2 main="CLASS" sub="クラス" />
+      <HeaderWrapper>
+        <Heading2 main="CLASS" sub="クラス" />
+      </HeaderWrapper>
+
       <Description>
         SquardにはCLASS（クラス）という概念が存在します。このCLASSによってチーム内で誰がどのような立場なのか、どのような視点でチームに参画しているのかを可視化することができます。
         CLASSにはLeader、Core
         Members、Members、Prospects、Angels、Galleries、V.I.P.の7種類があります。
       </Description>
-      <div>
+      <ClassWrapper>
         {classes.map((el, index) => (
-          <ClassCard
-            key={index}
-            logo={el.logo}
-            title={el.title}
-            subTitle={el.subTitle}
-            description={el.description}
-          />
+          <ClassCardWrapper key={index}>
+            <ClassCard
+              key={index}
+              logo={el.logo}
+              title={el.title}
+              subTitle={el.subTitle}
+              description={el.description}
+            />
+          </ClassCardWrapper>
         ))}
-      </div>
+      </ClassWrapper>
     </div>
   )
 }

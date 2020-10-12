@@ -116,8 +116,18 @@ $caption-margin: 10px 10px 10px 5px;
   white-space: nowrap;
   margin: $caption-margin;
 }
+.mediumItalic {
+  display: flex;
+  justify-content: flex-end;
+  font-weight: 800;
+  font-style: italic;
+  font-size: 42px;
+  line-height: 2.5rem;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  margin: $caption-margin;
+}
 
 .textShadow {
   text-shadow: 5px 5px 0 lightgrey;
-
 }

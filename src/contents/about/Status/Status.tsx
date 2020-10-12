@@ -21,12 +21,17 @@ const Description = styled.div`
   font-weight: ${Const.fontWeight.light};
   font-size: ${Const.fontSize.sm};
   letter-spacing: ${Const.letterSpacing.normal};
-  line-height: 1.785em;
+  line-height: 1.785;
   padding-left: 58px;
   padding-right: 58px;
-  margin-bottom: 40px;
-  margin-top: 30px;
+  margin-bottom: 50px;
+  margin-bottom: 50px;
   text-align: left;
+`
+const StatusDescription = styled(Description)`
+font-weight: ${Const.fontWeight.thin};
+  margin-bottom: 30px;
+  margin-bottom: 20px;
 `
 
 interface StatusProps {}
@@ -75,7 +80,7 @@ export const Status: React.FC<StatusProps> = (props) => {
         {statusList.map((el, index) => (
           <div key={index} className={styles.status}>
             <div className={styles.logo}>{el.logo}</div>
-            <Description>{el.description}</Description>
+            <StatusDescription>{el.description}</StatusDescription>
           </div>
         ))}
       </div>

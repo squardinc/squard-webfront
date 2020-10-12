@@ -173,13 +173,13 @@ const SocialMediaIcon = styled.div`
 `
 
 const TeamWrapper = styled.div`
-  margin: 48px 0 38px 0;
+  margin: 30px 0 50px 0;
 `
 
 const TeamItemWrapper = styled.div`
   position: relative;
   height: 80px;
-  margin: 0px 20px 65px 20px;
+  margin: 0px 20px 45px 20px;
   border-radius: 10px;
   cursor: pointer;
 

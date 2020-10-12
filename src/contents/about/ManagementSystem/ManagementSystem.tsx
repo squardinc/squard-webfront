@@ -13,6 +13,7 @@ import * as Const from '../../../styles/const'
 const HeaderWrapper = styled.div`
   font-family: ${Const.fontFamily.sans};
   display: block;
+  margin-top: 100px;
   &::after {
     margin-top: 10px;
     content: '';
@@ -34,8 +35,8 @@ const Description = styled.div`
   line-height: 1.785em;
   padding-left: 58px;
   padding-right: 58px;
-  margin-bottom: 40px;
-  margin-top: 30px;
+  margin-bottom: 50px;
+  margin-top: 35px;
   text-align: left;
 `
 const MainName = styled.div`
@@ -48,6 +49,10 @@ const SubMainName = styled.div`
   font-weight: ${Const.fontWeight.light};
   font-size: ${Const.fontSize.sm};
   margin-bottom: 10px;
+`
+
+const ManagerCard = styled.div`
+
 `
 
 interface ManagementSystemProps {}

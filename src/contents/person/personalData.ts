@@ -33,7 +33,16 @@ export const shunpei: IPersonal = {
         '定例Zoomミーティングへの招待',
       ],
     },
-    
+    {
+      name: 'Squard',
+      classType: 'Core Members',
+      role: 'COO',
+    },
+     {
+      name: 'Squard',
+      classType: 'Core Members',
+      role: 'CFO',
+    },
   ],
 }
 export const hiroki: IPersonal = {

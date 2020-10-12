@@ -46,8 +46,7 @@ const LabelWrapper = styled.div`
   justify-content: center;
   align-items: center;
   letter-spacing: 0;
-  line-height: 1;
-  height: 45px;
+  height: 41px;
   width: 100%;
   padding-left: 24px;
   padding-right: 24px;
@@ -141,7 +140,7 @@ const Page: React.FC = () => {
       <CompanyInfor>
         <div className="pt-2 pb-8">
           <TwoStagedCaption
-            style="medium"
+            style="mediumItalic"
             sub="About"
             main="Our Company"
             shadow={true}
@@ -155,7 +154,9 @@ const Page: React.FC = () => {
           </div>
         </div>
 
-        <BlockWrapper>
+        <BlockWrapper style={{
+          marginTop:'12px'
+        }}>
           <LabelWrapper>社名 / Corporate Name</LabelWrapper>
           <ValueWrapper>スクアード株式会社 / Squard, Inc.</ValueWrapper>
         </BlockWrapper>
@@ -182,7 +183,7 @@ const Page: React.FC = () => {
           >
             〒135-0064 東京都江東区青海2-7-4 the SOHO 1310
           </ValueWrapper>
-          <ValueWrapper style={{ fontSize: '14px', marginTop: '5px' }}>
+          <ValueWrapper style={{ fontSize: '14px', marginTop: '5px', marginBottom: '20px',}}>
             the SOHO 1310, 2-7-4, Aomi, Koto-ku, Tokyo
           </ValueWrapper>
         </BlockWrapper>
