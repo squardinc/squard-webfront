@@ -25,14 +25,15 @@ type JoinCardProps = {
 const CardTitle = styled(MainNameText)`
   font-family: ${Const.fontFamily.monster};
   font-weight: ${Const.fontWeight.bold};
-  font-size: 25px;
-  margin-top: -10px;
+  font-size: 23px;
+  margin-top: -5px;
 `
 
 const CardSubTitle = styled(SubNameText)`
   font-family: ${Const.fontFamily.sans};
   font-weight: ${Const.fontWeight.light};
   font-size: 14px;
+  margin-top:-2px;
 `
 const CardPriceTitle = styled(SubNameText)`
   font-family: ${Const.fontFamily.sans};
@@ -80,7 +81,13 @@ const JoinCard: React.FC<JoinCardProps> = ({ team, join }) => {
       <TeamCardWrapper>
         <FlagWrapper>
           <Flag>
-            <CardTitle>{team.main}</CardTitle>
+            <CardTitle
+              style={{
+                fontSize: team.main && team.main.length > 8 ? '23px' : '29px',
+              }}
+            >
+              {team.main}
+            </CardTitle>
             <CardSubTitle>({team.sub})</CardSubTitle>
             <CardPriceTitle>￥{formattedPrice} / 月額</CardPriceTitle>
           </Flag>

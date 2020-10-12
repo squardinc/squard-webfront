@@ -78,17 +78,17 @@ export const ContentFooter: React.FC<ContentFooterProps> = ({
 
 export const DefaultFooter = (props?: DefaultFooterProps) => {
   return (
-    <a href="https://www.squard.co.jp/coming-soon/">
-      <ContentFooter
-        backgroundColor={
-          props && props.backgroundColor ? props.backgroundColor : undefined
-        }
-        titleSub="What's  the"
-        titleMain="Squard?"
-        text="Webサービス「Squard（スクアード）」は、個人でもなく法人でもない新しい働き方の実現を目標に、新時代のチームメイキングソリューションを提供するコラボレーションプラットフォームです。"
-        buttonText="チームを作ってみる？"
-        onButtonClick={() => {}}
-      />
-    </a>
+    // <a href="https://www.squard.co.jp/coming-soon/">
+    <ContentFooter
+      backgroundColor={
+        props && props.backgroundColor ? props.backgroundColor : undefined
+      }
+      titleSub="What's  the"
+      titleMain="Squard?"
+      text="Webサービス「Squard（スクアード）」は、個人でもなく法人でもない新しい働き方の実現を目標に、新時代のチームメイキングソリューションを提供するコラボレーションプラットフォームです。"
+      buttonText="チームを作ってみる？"
+      onButtonClick={() => {}}
+    />
+    // </a>
   )
 }

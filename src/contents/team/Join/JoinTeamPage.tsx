@@ -18,11 +18,13 @@ type JoinTeamProps = {
 const JoinTeamWrapper = styled.div`
   background: ${colors.textWhite};
   padding: 0px;
+  width: 100%;
+  height: 100%;
 `
 
-const JoinTeamContentWrapper = styled.div`
+const JoinTeamTopWrapper = styled.div`
   background: ${colors.textWhite};
-  padding: 20px 50px;
+  padding: 10px 50px;
 `
 
 const JoinTeamTitle = styled.div`
@@ -32,12 +34,13 @@ const JoinTeamTitle = styled.div`
   font-family: ${Const.fontFamily.monster};
   font-size: ${Const.fontSize.xxl1};
   font-style: normal;
-  padding-left:15px;
-  padding-right:15px;
+  padding-left: 15px;
+  padding-right: 15px;
 `
 
 const JoinInfoWrapper = styled.div`
-  padding: 20px 10px;
+  padding: 10px 10px;
+  padding-bottom: 40px;
 `
 
 const TextJoinTeam = styled.div`
@@ -55,19 +58,25 @@ const TextTeamName = styled.span`
 
 const TextDesciption = styled.div`
   font-family: ${Const.fontFamily.sans};
-  font-weight: ${Const.fontWeight.medium};
+  font-weight: ${Const.fontWeight.dimlight};
   font-size: ${Const.fontSize.sm};
   font-style: normal;
   margin: 10px 0px;
   line-height: 1.78;
   letter-spacing: 0.025em;
 `
+const CardListWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  padding-left:${window.innerWidth <= 370 ? '20px' : '60px'};
+  padding-right:${window.innerWidth <= 370 ? '20px' : '60px'};
+  margin-bottom:40px;
+`
 
 const CardWrapper = styled.div`
   position: relative;
-  margin: 24px 0px;
   :not(:first-child) {
-    margin-top: 60px;
+    margin-top: 100px;
   }
 `
 
@@ -78,50 +87,50 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
 }) => {
   const [openModal, setOpenModal] = React.useState<ModalType>('Closed')
   return (
-    <>
-      <JoinTeamWrapper>
-        <JoinTeamContentWrapper>
-          <JoinTeamTitle>
-            <Heading3>
-              <TextDisplay>Join The Team</TextDisplay>
-            </Heading3>
-          </JoinTeamTitle>
-          <JoinInfoWrapper>
-            <TextJoinTeam>
-              <TextTeamName>Squard</TextTeamName>に参加する
-            </TextJoinTeam>
-            <TextDesciption>
-              チームが設定した月々のサブスクリプション料金を支払いProspectsやAngelsとしてチームに参加することで、様々な特典を受け取ることができます。
-            </TextDesciption>
-          </JoinInfoWrapper>
-          <div>
-            {teamData.map((team: ITeamClass, i) => {
-              return (
-                <CardWrapper>
-                  <JoinCard
-                    key={i}
-                    team={team}
-                    join={() => {
-                      if (!loggedIn) {
-                        setOpenModal('Login')
-                        return
-                      }
-                      if (team.classType === 'Galleries') {
-                        //
-                        return
-                      }
-                      requestSubscription(team.classId)
-                    }}
-                  />
-                </CardWrapper>
-              )
-            })}
-          </div>
-        </JoinTeamContentWrapper>
-        <DefaultFooter />
-      </JoinTeamWrapper>
+    <JoinTeamWrapper>
+      <JoinTeamTopWrapper>
+        <JoinTeamTitle>
+          <Heading3>
+            <TextDisplay>Join The Team</TextDisplay>
+          </Heading3>
+        </JoinTeamTitle>
+        <JoinInfoWrapper>
+          <TextJoinTeam>
+            <TextTeamName>Squard</TextTeamName>に参加する
+          </TextJoinTeam>
+          <TextDesciption>
+            チームが設定した月々のサブスクリプション料金を支払いProspectsやAngelsとしてチームに参加することで、様々な特典を受け取ることができます。
+          </TextDesciption>
+        </JoinInfoWrapper>
+      </JoinTeamTopWrapper>
+      <CardListWrapper>
+        {teamData.map((team: ITeamClass, i) => {
+          return (
+            <CardWrapper key={i}>
+              <JoinCard
+                key={i}
+                team={team}
+                join={() => {
+                  if (!loggedIn) {
+                    setOpenModal('Login')
+                    return
+                  }
+                  if (team.classType === 'Galleries') {
+                    //
+                    return
+                  }
+                  requestSubscription(team.classId)
+                }}
+              />
+            </CardWrapper>
+          )
+        })}
+      </CardListWrapper>
+
+      <DefaultFooter />
+
       <AuthModal openModal={openModal} setOpenModal={setOpenModal} />
-    </>
+    </JoinTeamWrapper>
   )
 }
 

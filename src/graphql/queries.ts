@@ -50,7 +50,7 @@ export const getTeamMembers = /* GraphQL */ `
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
-      # id
+      id
       nameJp
       nameEn
       introduction

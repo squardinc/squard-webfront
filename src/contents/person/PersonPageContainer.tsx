@@ -32,17 +32,22 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({
     UpdateUserMutation,
     UpdateUserMutationVariables
   >(gql(updateUser))
-  if (error) {
-    navigate('/')
-    return <></>
-  }
-  if (loading || !data) {
-    return <></>
-  }
+
+  console.log(id)
+  console.log(error)
+  console.log(data)
+
+  // if (error) {
+  //   navigate('/')
+  //   return <></>
+  // }
+  // if (loading || !data) {
+  //   return <></>
+  // }
   return (
     <PersonPageLayout
       isLoading={false}
-      personal={Person.fromQueryResult(data)}
+      personal={getPersonData(id)}//{Person.fromQueryResult(data)}
       update={(profile: UpdateUserInput) =>
         requestUpdate({
           variables: {

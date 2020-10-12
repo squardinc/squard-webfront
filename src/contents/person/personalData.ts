@@ -33,6 +33,7 @@ export const shunpei: IPersonal = {
         '定例Zoomミーティングへの招待',
       ],
     },
+    
   ],
 }
 export const hiroki: IPersonal = {

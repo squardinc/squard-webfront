@@ -68,7 +68,7 @@ const UserCoverWrapper = styled.div`
   font-size: 11px;
   letter-spacing: 0.2em;
   text-align: center;
-  text-transform: uppercase;
+  // text-transform: uppercase;
   width: 100%;
 `
 
@@ -125,23 +125,22 @@ const NameWrapper = styled.div`
 
 const NameText = styled.div`
   color: ${colors.textWhite};
-  padding-left: 8rem;
+  padding-left: 7.125rem;
   padding-top: 1.25rem;
   line-height: 1.5;
   letter-spacing: 0.05em;
-  font-weight: ${Const.fontWeight.medium};
+  font-weight: ${Const.fontWeight.regular};
   font-family: ${Const.fontFamily.sans};
   font-size: ${Const.fontSize.xl1};
 `
 
 const NameSubText = styled.div`
-  letter-spacing: 0.1em;
   color: #fff;
-  padding-left: 8rem;
+  padding-left: 7.125rem;
   line-height: 1.285;
   letter-spacing: 0.05em;
   margin-top: 5px;
-  font-weight: ${Const.fontWeight.medium};
+  font-weight: ${Const.fontWeight.dimlight};
   font-family: ${Const.fontFamily.monster};
   font-size: ${Const.fontSize.sm};
 `
@@ -194,7 +193,7 @@ const TeamInfo = styled.div`
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
   border-radius: 10px;
   color: #fff;
-  padding-left: 1.5rem;
+  padding-left: 16px;
   height: 100%;
   align-items: center;
   position: relative;
@@ -206,19 +205,21 @@ const TeamIconWrapper = styled.div`
 `
 
 const TeamTextWrapper = styled.span`
-  padding-left: 2rem;
-  padding-top: 0.25rem;
-  line-height: 1.5rem;
+  margin-top:-4px;
+  padding-left: 25px;
+  display:flex;
+  flex-direction:column;
+  align-item:center;
 `
 
 const TeamNameText = styled.div`
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: ${Const.fontWeight.simbold};
+  font-family: ${Const.fontFamily.sans};
+  font-size: ${Const.fontSize.xl};
 `
 const TeamPositionText = styled.div`
-  line-height: 1.57;
-  font-weight: ${Const.fontWeight.light};
-  font-family: ${Const.fontFamily.monster};
+  font-weight: ${Const.fontWeight.regular};
+  font-family: ${Const.fontFamily.sans};
   font-size: ${Const.fontSize.sm};
 `
 
@@ -233,10 +234,10 @@ const TeamLinkWrapper = styled.div`
 const TeamRole = styled.div`
   display: inline-block;
   position: absolute;
-  bottom: -35px;
+  bottom: -27px;
   right: 16px;
-  height: 35px;
-  background-color: #fff;
+  height: 30px;
+  background-color: #EFEFEF;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   border-bottom-left-radius: 5px;
@@ -247,7 +248,11 @@ const TeamRoleText = styled.div`
   padding-left: 1.25rem;
   padding-right: 1.25rem;
   padding-top: 0.5rem;
-  font-weight: 200;
+  font-weight: ${Const.fontWeight.light};
+  font-family: ${Const.fontFamily.monster};
+  font-size: ${Const.fontSize.sm};
+  color:#262626;
+  opacity:0.75;
 `
 
 const ButtonEditWrapper = styled.div`
