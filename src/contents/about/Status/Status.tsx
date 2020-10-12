@@ -1,19 +1,19 @@
 import * as React from 'react'
-
-import styles from './Status.module.scss'
-
-import StatusExplain from 'src/assets/status/status.svg'
-import Ready from 'src/assets/status/ready.svg'
-import Drive from 'src/assets/status/drive.svg'
 import Breakup from 'src/assets/status/breakup.svg'
 import Complete from 'src/assets/status/complete.svg'
-
-import { Heading2 } from 'src/components/Heading2/Heading2'
+import Drive from 'src/assets/status/drive.svg'
+import Ready from 'src/assets/status/ready.svg'
+import StatusExplain from 'src/assets/status/status.svg'
 import { Description } from 'src/components/Description/Description'
+import { Heading2 } from 'src/components/Heading2/Heading2'
+import styles from './Status.module.scss'
+
+
+
 
 interface StatusProps {}
 
-export const Status: React.FC<StatusProps> = (props) => {
+export const Status: React.FC<StatusProps> = () => {
   const statusList = [
     {
       logo: <Ready />,
@@ -28,12 +28,12 @@ export const Status: React.FC<StatusProps> = (props) => {
     {
       logo: <Breakup />,
       description:
-        '「Complete」はプロジェクトが完遂したことを表します。チームは解散され、関与した全ての人員にはチームの成功に対する勲章が与えられます。',
+        '「Breakup」はプロジェクトが完遂することなくチームが解散したことを表します。挑戦は失敗に終わりましたが、挑戦したこと自体への勲章が与えられます。',
     },
     {
       logo: <Complete />,
       description:
-        '「Breakup」はプロジェクトが完遂することなくチームが解散したことを表します。挑戦は失敗に終わりましたが、挑戦したこと自体への勲章が与えられます。',
+        '「Complete」はプロジェクトが完遂したことを表します。チームは解散され、関与した全ての人員にはチームの成功に対する勲章が与えられます。',
     },
   ]
 

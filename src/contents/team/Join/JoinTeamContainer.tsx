@@ -1,20 +1,20 @@
+import { gql, useMutation } from '@apollo/client'
 import * as React from 'react'
 import JoinTeam from 'src/contents/team/Join/JoinTeamPage'
-import { ITeamClass } from 'src/models/team'
 import { withTheme } from 'src/context/ThemeContext'
-import { useQuery, useMutation, gql } from '@apollo/client'
-import { requestSubscription } from 'src/graphql/mutations'
-import { RequestSubscriptionMutation, RequestSubscriptionMutationVariables } from 'src/types/API'
-import { checkout } from 'src/external/stripe'
 import { UserContext } from 'src/context/UserContext'
+import { checkout } from 'src/external/stripe'
+import { requestSubscription } from 'src/graphql/mutations'
+import { ITeamClass } from 'src/models/team'
+import { RequestSubscriptionMutation, RequestSubscriptionMutationVariables } from 'src/types/API'
+import { parseSearchParams } from 'src/utils/UrlParser'
 
 interface JoinTeamContainerProps {
   teamId: string
 }
 const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
-  console.log(teamId)
+  const params = parseSearchParams(window.location.search)
   const { user } = React.useContext(UserContext)
-  console.log(user)
   const [request, data] = useMutation<RequestSubscriptionMutation, RequestSubscriptionMutationVariables>(gql(requestSubscription));
   const teamData: ITeamClass[] = [
     {
@@ -61,7 +61,9 @@ const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
         checkout(response.data?.requestSubscription?.sessionId)
     }}
     isLoading={false}
+    loggedIn={user.loggedIn}
     teamData={teamData}
+    hasPaymentCancelled={params['payment_status'] === 'cancel'}
   />
 }
 

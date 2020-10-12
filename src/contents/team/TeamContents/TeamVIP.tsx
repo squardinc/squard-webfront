@@ -1,27 +1,25 @@
-import * as React from 'react'
-import { LeftBorderCaption } from 'src/components/Caption/Captions'
-import { faPaperPlane, faLink } from '@fortawesome/free-solid-svg-icons'
-import styles from './TeamVIP.module.scss'
+import { faLink, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import * as React from 'react'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { ITeamMember } from 'src/models/team'
+import styles from './TeamVIP.module.scss'
 
 const trim = (text: string, length: number) => `${text.substring(0, length)}...`
 interface VIPProps {
-  vip: string
-  name: string
-  introduction: string
+  vip: ITeamMember
 }
-const VIP: React.FC<VIPProps> = ({ vip, name, introduction }) => {
+const VIP: React.FC<VIPProps> = ({ vip }) => {
   return (
     <div className={styles.vipContainer}>
       <div className="pl-0 pr-0" style={{ width: '300px', height: '520px' }}>
-        <img src={vip} className={styles.vip} />
+        <img src={vip.image} className={styles.vip} />
         <div className={styles.vipCaptionContainer}>
           <div className={styles.vipCaption}>
             <div className={styles.vipCaptionTop}>
               <TextDisplay className={styles.vipName}>{name}</TextDisplay>
               <TextDisplay className={styles.vipIntroduction}>
-                {introduction}
+                {vip.introduction}
               </TextDisplay>
             </div>
             <div className={styles.vipLinks}>
@@ -48,7 +46,7 @@ const VIP: React.FC<VIPProps> = ({ vip, name, introduction }) => {
   )
 }
 interface TeamVIPProps {
-  vips: string[]
+  vips: ITeamMember[]
 }
 export const TeamVIP: React.FC<TeamVIPProps> = ({ vips }) => {
   return (

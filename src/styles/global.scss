@@ -79,6 +79,9 @@ body {
   background-color: black;
   font-family: 'Noto Sans JP', sans-serif, 'NoChattering';
 }
+.ReactModal__Body--open {
+  overflow: hidden;
+}
 
 .page-base-container {
   background-color: $black;

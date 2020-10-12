@@ -1,25 +1,17 @@
-import * as React from 'react'
 import { Link } from 'gatsby'
+import * as React from 'react'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { ITeamMember } from 'src/models/team/index'
 import styles from './TeamCoreMembers.module.scss'
 
-interface CoreMember {
-  id: string
-  imageUrl: string
-  age: string
-  title: string
-  introduction: string
-  name: string
-  color: string
-}
 interface TeamCoreMembersProps {
-  coreMembers: CoreMember[]
+  coreMembers: ITeamMember[]
 }
 export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
   coreMembers,
 }) => {
-  function getImageTheme(key: string) {
+  function getImageTheme(key?: string) {
     let style = styles.yellowImageContainer
     if (key === 'red') {
       style = styles.redImageContainer
@@ -36,15 +28,15 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
     <div className={styles.container}>
       <TwoStagedCaption sub="CORE" main="MEMBERS" />
       <div className={styles.members}>
-        {coreMembers.map((member: any) => (
-          <Link key={member.id} to={`/${member.id}`}>
+        {coreMembers.map((member) => (
+          <Link key={member.userId} to={`/${member.userId}`}>
             <div className="relative mt-3">
               <div
                 style={{
-                  background: `url("${member.imageUrl}") no-repeat center center `,
+                  background: `url("${member.image}") no-repeat center center `,
                   backgroundSize: 'cover',
                 }}
-                className={getImageTheme(member.color)}
+                className={getImageTheme(member.imageColor)}
               ></div>
               <TextDisplay className={styles.ageTag}>
                 <div className={styles.ageTagContainer}>
@@ -54,17 +46,17 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
                   <p
                     className={`border-b border-dashed w-full border-yellow`}
                   ></p>
-                  <p className="font-bold text-white">{member.age}</p>
+                  <p className="font-bold text-white">{member.displayAge}</p>
                 </div>
               </TextDisplay>
               <TextDisplay className={styles.designationText}>
                 {member.title}
               </TextDisplay>
               <TextDisplay className={styles.titleSM}>
-                {member.introduction}
+                {member.subTitle}
               </TextDisplay>
               <TextDisplay className={styles.titleLG}>
-                {member.name}
+                {member.displayName}
               </TextDisplay>
             </div>
           </Link>
