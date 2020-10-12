@@ -26,11 +26,7 @@ interface ContentLayoutProps {
   contentId: StaticPageType | string
 }
 export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId = '' }) => {
-  console.log(contentId)
-  if (StaticPagePaths.includes(contentId)) {
-    console.log(contentId)
-    return <StaticPageRoute contentId={contentId} />
-  }
+  if (StaticPagePaths.includes(contentId)) return <StaticPageRoute contentId={contentId} />
 
   const { loading, error, data } = useQuery<GetPageQuery>(gql(getPage), {
     variables: { id: contentId.toLowerCase() },

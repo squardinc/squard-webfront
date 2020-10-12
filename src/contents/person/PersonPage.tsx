@@ -20,6 +20,7 @@ type PersonPageProps = {
   profileEditable: boolean
   joinSucceededTeamId?: string
   editProfile: VoidFunction
+  showJoinSucceededModal: Boolean
 }
 
 type StyleCssProps = {
@@ -268,6 +269,7 @@ export const PersonPage: React.FC<PersonPageProps> = ({
   editProfile,
   profileEditable = false,
   joinSucceededTeamId = '',
+  showJoinSucceededModal,
 }) => {
   const [selectedTeam, setSelectedTeam] = React.useState<ITeam | null>(null)
   return (
@@ -318,7 +320,7 @@ export const PersonPage: React.FC<PersonPageProps> = ({
               <TeamItemAnchor
                 id={`team-item_${team.teamId}`}
                 key={team.teamId}
-                joinSucceeded={team.teamId === joinSucceededTeamId}
+                joinSucceeded={showJoinSucceededModal && team.teamId === joinSucceededTeamId}
                 index={index}
               >
                 <TeamItemWrapper onClick={() => setSelectedTeam(team)}>

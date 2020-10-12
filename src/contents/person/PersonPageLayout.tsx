@@ -67,6 +67,7 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
             editProfile={() => setOpenEditProfile(true)}
             profileEditable={personal.id === user.id}
             joinSucceededTeamId={joinSucceededTeamId}
+            showJoinSucceededModal={showJoinSucceededModal}
           />
         ) : (
           <EditProfileWrapper>
