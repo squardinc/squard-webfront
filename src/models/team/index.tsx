@@ -1,4 +1,4 @@
-import { ClassType, IPersonal } from 'src/models/person'
+import { ClassType, IPersonal, Person } from 'src/models/person'
 import { GetTeamQuery } from 'src/types/API'
 
 export type ITeam = {
@@ -35,6 +35,7 @@ export interface ITeamMember {
   user: IPersonal
   displayName: string
   imageColor?: string
+  displayAge: string
 }
 class TeamMember implements ITeamMember {
   constructor(
@@ -62,7 +63,7 @@ class TeamMember implements ITeamMember {
       member.teamMemberId || '',
       member.userId || '',
       member.teamClassId || '',
-      member.user,
+      Person.fromQueryResult({ getUser: { ...member.user } }),
       member.startAt || 0,
       member.endAt || 0,
       member.image || '',
@@ -80,6 +81,10 @@ class TeamMember implements ITeamMember {
   get displayName() {
     return this.nickname || this.user?.nameJp || ''
   }
+
+  get displayAge() {
+    return this.age || this.user?.age || ''
+  }
 }
 
 class TeamMembers {
@@ -93,9 +98,7 @@ class TeamMembers {
 
   constructor(members: ITeamMember[], classes: ITeamClass[]) {
     members.forEach((member) => {
-      const teamClass = classes.find(
-        (each) => each.teamClassId === member.teamClassId
-      )
+      const teamClass = classes.find((each) => each.teamClassId === member.teamClassId)
       if (!teamClass) {
         throw new Error('TBA')
       }
@@ -152,17 +155,8 @@ export class Team {
   }
 
   static fromQueryResult = (result: GetTeamQuery) => {
-    const {
-      id,
-      name,
-      subTitle,
-      introduction,
-      topImage,
-      tags,
-      system,
-      classes,
-      members,
-    } = result?.getTeam || {}
+    const { id, name, subTitle, introduction, topImage, tags, system, classes, members } =
+      result?.getTeam || {}
     return new Team(
       id || '',
       name || '',

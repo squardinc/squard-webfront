@@ -1,15 +1,12 @@
-import { gql, useQuery } from '@apollo/client'
 import { navigateTo } from 'gatsby'
 import * as React from 'react'
 import { ContentFooter } from 'src/components/Footer/ContentFooter'
 import { withTheme } from 'src/context/ThemeContext'
-import { getTeam } from 'src/graphql/queries'
 import akihiro from 'src/images/temp/team/akihiro.jpg'
 import hiroki from 'src/images/temp/team/hiroki.jpg'
 import shoya from 'src/images/temp/team/shoya.jpg'
 import shunpei from 'src/images/temp/team/shunpei.jpg'
 import { Team } from 'src/models/team'
-import { GetTeamQuery } from 'src/types/API'
 import { TeamAngels } from './TeamContents/TeamAngels'
 import { TeamCoreMembers } from './TeamContents/TeamCoreMembers'
 import { TeamMembers } from './TeamContents/TeamMembers'
@@ -58,24 +55,9 @@ const DUMMY_CORE_MEMBERS = [
 ]
 
 interface TeamLayoutProps {
-  id: string
+  team: Team
 }
-const Layout: React.FC<TeamLayoutProps> = ({ id }) => {
-  const { loading, error, data } = useQuery<GetTeamQuery>(gql(getTeam), {
-    variables: { id: 'squard' },
-  })
-  // const data = {
-  //   getTeam: {
-  //     id: 'squard',
-  //     tags: ['チームメイキング', '働き方3.0', 'TopDown', 'DAO', '離合集散'],
-  //     leaderName: '小池駿平',
-  //     system: 'トップダウン',
-  //   },
-  // }
-  if (!data?.getTeam) {
-    return <></>
-  }
-  const team = Team.fromQueryResult(data)
+const Layout: React.FC<TeamLayoutProps> = ({ team }) => {
   return (
     <>
       <TeamTop />
@@ -86,15 +68,9 @@ const Layout: React.FC<TeamLayoutProps> = ({ id }) => {
         system={team.system}
       />
       <TeamCoreMembers coreMembers={team.teamMembers.leaderAndCoreMembers} />
-      <TeamMembers
-        topMember={team.teamMembers.members[0]}
-        members={team.teamMembers.members}
-      />
+      <TeamMembers topMember={team.teamMembers.members[0]} members={team.teamMembers.members} />
       <TeamProspects propspects={team.teamMembers.prospects} />
-      <TeamAngels
-        angels={team.teamMembers.angels}
-        numOfAngels={team.teamMembers.angels.length}
-      />
+      <TeamAngels angels={team.teamMembers.angels} numOfAngels={team.teamMembers.angels.length} />
       <TeamVIP vips={team.teamMembers.vip} />
       <ContentFooter
         titleSub="What's the"

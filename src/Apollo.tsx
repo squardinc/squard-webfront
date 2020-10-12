@@ -1,9 +1,15 @@
-import * as React from 'react'
-import fetch from 'cross-fetch'
-import { ApolloProvider, ApolloClient, ApolloLink, createHttpLink, InMemoryCache } from '@apollo/client'
+import {
+  ApolloClient,
+  ApolloLink,
+  ApolloProvider,
+  createHttpLink,
+  InMemoryCache
+} from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
-import { AWS_APPSYNC_GRAPHQL_ENDPOINT, AWS_APPSYNC_API_KEY } from './utils/env'
+import fetch from 'cross-fetch'
+import * as React from 'react'
 import { AuthService } from './services/AuthService'
+import { AWS_APPSYNC_API_KEY, AWS_APPSYNC_GRAPHQL_ENDPOINT } from './utils/env'
 
 const httpLink = createHttpLink({
   uri: AWS_APPSYNC_GRAPHQL_ENDPOINT,
@@ -30,11 +36,16 @@ const authLink = setContext(async (operation, { headers }) => {
   }
 })
 const client = new ApolloClient({
-  link: ApolloLink.from([
-    authLink,
-    httpLink
-  ]),
+  link: ApolloLink.from([authLink, httpLink]),
   cache: new InMemoryCache(),
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: 'no-cache',
+    },
+    query: {
+      fetchPolicy: 'no-cache',
+    },
+  },
 })
 
 export const WithApolloProvider = (Component: React.FC) => () => (

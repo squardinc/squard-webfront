@@ -44,6 +44,7 @@ export type IPersonal = {
   introduction: string
   links: string[]
   teams: ITeam[]
+  age: string
 }
 
 interface S3Object {
@@ -73,7 +74,7 @@ export class Person {
       topImage,
       icon,
       introduction,
-      birthDay,
+      birthday,
       links,
       displayTeams,
     } = result?.getUser || {}
@@ -84,7 +85,7 @@ export class Person {
       topImage || '',
       icon || '',
       introduction || '',
-      birthDay || '',
+      birthday || '',
       links || [],
       displayTeams || []
     )

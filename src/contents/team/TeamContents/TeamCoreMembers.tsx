@@ -46,7 +46,7 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
                   <p
                     className={`border-b border-dashed w-full border-yellow`}
                   ></p>
-                  <p className="font-bold text-white">{member.age}</p>
+                  <p className="font-bold text-white">{member.displayAge}</p>
                 </div>
               </TextDisplay>
               <TextDisplay className={styles.designationText}>

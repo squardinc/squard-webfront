@@ -35,10 +35,7 @@ export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId }) => {
   if (!type) {
     return <></>
   }
-  console.log(resourceId, type)
   if (type === 'Team') return <TeamContainer id={resourceId} />
-  console.log('person')
   if (type === 'Person') return <PersonPageContainer id={resourceId} />
-  console.log('static')
   return <StaticPageRoute contentId={resourceId} />
 }

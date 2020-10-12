@@ -10,13 +10,40 @@ export const updateUser = /* GraphQL */ `
       nameEn
       introduction
       links
-      birthDay
+      birthday
       displayTeamIds
       displayTeamMembers {
         teamId
         teamMemberId
         userId
+        user {
+          id
+          nameJp
+          nameEn
+          introduction
+          links
+          birthday
+          displayTeamIds
+          topImage
+          icon
+        }
+        team {
+          id
+          name
+          subTitle
+          introduction
+          topImage
+          tags
+          system
+        }
         teamClassId
+        class {
+          teamClassId
+          teamId
+          classType
+          priceId
+          enabled
+        }
         startAt
         endAt
         image
@@ -35,7 +62,34 @@ export const updateUser = /* GraphQL */ `
         teamId
         teamMemberId
         userId
+        user {
+          id
+          nameJp
+          nameEn
+          introduction
+          links
+          birthday
+          displayTeamIds
+          topImage
+          icon
+        }
+        team {
+          id
+          name
+          subTitle
+          introduction
+          topImage
+          tags
+          system
+        }
         teamClassId
+        class {
+          teamClassId
+          teamId
+          classType
+          priceId
+          enabled
+        }
         startAt
         endAt
         image
@@ -47,6 +101,11 @@ export const updateUser = /* GraphQL */ `
         link
         contact
         introduction
+      }
+      page {
+        id
+        resourceId
+        type
       }
     }
   }

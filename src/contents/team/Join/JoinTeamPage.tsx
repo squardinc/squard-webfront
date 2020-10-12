@@ -99,7 +99,7 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
                       //
                       return
                     }
-                    requestSubscription(team.classId)
+                    requestSubscription(team.teamClassId)
                   }}
                 />
               </CardWrapper>
