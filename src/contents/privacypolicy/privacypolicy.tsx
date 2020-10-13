@@ -8,13 +8,11 @@ import { Heading1 } from 'src/components/Heading1/Heading1'
 import * as Const from '../../styles/const'
 
 const PageHeader = styled(Heading1)`
-  font-family: ${Const.fontFamily.monster};
   font-weight: ${Const.fontWeight.bold};
   font-size: 28px;
 `
 
 const Description = styled.div`
-  font-family: ${Const.fontFamily.sans};
   font-weight: ${Const.fontWeight.thin};
   font-size: ${Const.fontSize.sm};
   letter-spacing: ${Const.letterSpacing.normal};
@@ -24,10 +22,9 @@ const Description = styled.div`
   margin-bottom: 10px;
   margin-top: 20px;
   text-align: left;
-  color:#E5E6E9;
+  color: #e5e6e9;
 `
 const Contact = styled.div`
-  font-family: ${Const.fontFamily.sans};
   font-weight: ${Const.fontWeight.regular};
   font-size: ${Const.fontSize.xl};
   letter-spacing: ${Const.letterSpacing.normal};
@@ -38,7 +35,6 @@ const Contact = styled.div`
 `
 
 const EndPoliccyWrapper = styled.div`
-  font-family: ${Const.fontFamily.sans};
   font-weight: ${Const.fontWeight.regular};
   font-size: ${Const.fontSize.lg};
   width: 100%;
@@ -50,7 +46,6 @@ const EndPoliccyWrapper = styled.div`
 `
 
 const DateWrapper = styled.div`
-  font-family: ${Const.fontFamily.sans};
   font-weight: ${Const.fontWeight.dimlight};
   font-size: ${Const.fontSize.base};
   letter-spacing: 0.075;
@@ -73,7 +68,7 @@ const PolicySection: React.FC<PolicySectionProps> = ({ sections }) => (
   <>
     {sections.map((section, index) => (
       <div className="py-2" key={index}>
-        {section}
+        <TextDisplay>{section}</TextDisplay>
       </div>
     ))}
   </>
@@ -102,12 +97,17 @@ interface PolicyChapterProps {
 }
 const PolicyChapter: React.FC<PolicyChapterProps> = ({ chapter, children }) => (
   <div className="pt-8 text-center text-white text-xl font-medium tracking-wider">
-    <TextDisplay className="flex justify-center" style={{
-      marginTop:'10px'
-    }}>
+    <TextDisplay
+      className="flex justify-center"
+      style={{
+        marginTop: '10px',
+      }}
+    >
       <div className={styles.underLiner}>{chapter}</div>
     </TextDisplay>
-    <Description>{children}</Description>
+    <Description>
+      <TextDisplay>{children}</TextDisplay>
+    </Description>
   </div>
 )
 
@@ -119,17 +119,25 @@ const Page: React.FC = () => {
           <div className={styles.sharpUnderLiner}>Privacy Policy</div>
         </TextDisplay>
 
-        <Description style={{
-          marginBottom:'10px'
-        }}>
-          スクアード株式会社（以下，「当社」といいます。）は，本ウェブサイト上で提供するサービス（以下,「本サービス」といいます。）における，ユーザーの個人情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。
+        <Description
+          style={{
+            marginBottom: '10px',
+          }}
+        >
+          <TextDisplay>
+            スクアード株式会社（以下，「当社」といいます。）は，本ウェブサイト上で提供するサービス（以下,「本サービス」といいます。）における，ユーザーの個人情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。
+          </TextDisplay>
         </Description>
       </div>
       <PolicyChapter chapter="第1条（個人情報）">
-        「個人情報」とは，個人情報保護法にいう「個人情報」を指すものとし，生存する個人に関する情報であって，当該情報に含まれる氏名，生年月日，住所，電話番号，連絡先その他の記述等により特定の個人を識別できる情報及び容貌，指紋，声紋にかかるデータ，及び健康保険証の保険者番号などの当該情報単体から特定の個人を識別できる情報（個人識別情報）を指します。
+        <TextDisplay>
+          「個人情報」とは，個人情報保護法にいう「個人情報」を指すものとし，生存する個人に関する情報であって，当該情報に含まれる氏名，生年月日，住所，電話番号，連絡先その他の記述等により特定の個人を識別できる情報及び容貌，指紋，声紋にかかるデータ，及び健康保険証の保険者番号などの当該情報単体から特定の個人を識別できる情報（個人識別情報）を指します。
+        </TextDisplay>
       </PolicyChapter>
       <PolicyChapter chapter="第2条（収集方法）">
-        当社は，ユーザーが利用登録をする際に氏名，生年月日，住所，電話番号，メールアドレス，銀行口座番号，クレジットカード番号，運転免許証番号などの個人情報をお尋ねすることがあります。また，ユーザーと提携先などとの間でなされたユーザーの個人情報を含む取引記録や決済に関する情報を,当社の提携先（情報提供元，広告主，広告配信先などを含みます。以下，｢提携先｣といいます。）などから収集することがあります。
+        <TextDisplay>
+          当社は，ユーザーが利用登録をする際に氏名，生年月日，住所，電話番号，メールアドレス，銀行口座番号，クレジットカード番号，運転免許証番号などの個人情報をお尋ねすることがあります。また，ユーザーと提携先などとの間でなされたユーザーの個人情報を含む取引記録や決済に関する情報を,当社の提携先（情報提供元，広告主，広告配信先などを含みます。以下，｢提携先｣といいます。）などから収集することがあります。
+        </TextDisplay>
       </PolicyChapter>
       <PolicyChapter chapter="第3条（収集・利用の目的）">
         <PolicySection
@@ -147,7 +155,9 @@ const Page: React.FC = () => {
         />
       </PolicyChapter>
       <PolicyChapter chapter="第4条（利用目的の変更）">
-        当社は，利用目的が変更前と関連性を有すると合理的に認められる場合に限り，個人情報の利用目的を変更するものとします。また、利用目的の変更を行った場合には，変更後の目的について，当社所定の方法により，ユーザーに通知し，または本ウェブサイト上に公表するものとします。
+        <TextDisplay>
+          当社は，利用目的が変更前と関連性を有すると合理的に認められる場合に限り，個人情報の利用目的を変更するものとします。また、利用目的の変更を行った場合には，変更後の目的について，当社所定の方法により，ユーザーに通知し，または本ウェブサイト上に公表するものとします。
+        </TextDisplay>
       </PolicyChapter>
       <PolicyChapter chapter="第5条（第三者提供）">
         <PolicySectionWithSubSections
@@ -232,11 +242,19 @@ const Page: React.FC = () => {
           ]}
         />
         <Contact>
-          <a href="mailto:contact@squard.co.jp">contact@squard.co.jp</a>
+          <TextDisplay>
+            <a href="mailto:contact@squard.co.jp"> contact@squard.co.jp</a>
+          </TextDisplay>
         </Contact>
       </PolicyChapter>
-      <EndPoliccyWrapper>以上</EndPoliccyWrapper>
-      <DateWrapper>2020年9月16日制定・施行</DateWrapper>
+      <EndPoliccyWrapper>
+        {' '}
+        <TextDisplay>以上</TextDisplay>
+      </EndPoliccyWrapper>
+      <DateWrapper>
+        {' '}
+        <TextDisplay>2020年9月16日制定・施行</TextDisplay>
+      </DateWrapper>
       <DefaultFooter backgroundColor={Const.darkBlue} />
     </div>
   )

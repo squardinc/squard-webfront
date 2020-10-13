@@ -22,7 +22,6 @@ const ButtonWrapper = styled.button<DefaultButtonProps>`
   border: 1px solid ${Const.textYellow};
   background-color: ${Const.bgYellow};
   color: ${Const.textDark};
-  font-family: ${Const.fontFamily.sans};
   font-weight: ${Const.fontWeight.simbold};
   line-height: 1.67;
   font-size: ${(props) => {
@@ -97,7 +96,7 @@ export const RoundButton: React.FC<RoundButtonProps> = ({
   disabled = false,
   onClick = () => {},
   className = '',
-  style
+  style,
 }) => {
   return (
     <button

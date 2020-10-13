@@ -64,7 +64,7 @@ export const ContentFooter: React.FC<ContentFooterProps> = ({
                   : 'background-theme-button'
               } rounded-full h-12 w-full flex items-center justify-center mr-2`}
             >
-              <span className="text-theme-text-sub font-bold text-lg button-text">
+              <span className="text-theme-text-sub font-light text-lg button-text">
                 {buttonText}
               </span>
             </TextDisplay>

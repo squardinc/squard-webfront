@@ -13,8 +13,8 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import styled from 'styled-components'
 
 const MenuItemContent = styled.div`
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
 `
 
 interface NavMenuProps {
@@ -52,8 +52,8 @@ export const NavMenu: React.FC<NavMenuProps> = ({
           show ? styles.open : styles.close
         } bg-v-gradient`}
       >
-        <div style={{width:'100%',height:'25px'}} onClick={hideNavMenu}>
-          <div className={styles.navToggleBtn}/>
+        <div style={{ width: '100%', height: '25px' }} onClick={hideNavMenu}>
+          <div className={styles.navToggleBtn} />
         </div>
         <MenuItemContent>
           {/* <MenuItem text="設定" SVGIcon={Setting} /> */}

@@ -11,7 +11,6 @@ import * as Const from '../../../styles/const'
 import styled from 'styled-components'
 
 const RoundButton = styled.button`
-  font-family: ${Const.fontFamily.sans};
   font-size: ${Const.fontSize.sm};
   font-weight: ${Const.fontWeight.dimlight};
   border-radius: 50vh;
@@ -22,7 +21,7 @@ const RoundButton = styled.button`
 `
 const MessageBox = styled.button`
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `

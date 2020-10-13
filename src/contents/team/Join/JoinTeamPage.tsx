@@ -31,7 +31,6 @@ const JoinTeamTitle = styled.div`
   display: flex;
   justify-content: center;
   white-space: nowrap;
-  font-family: ${Const.fontFamily.monster};
   font-size: ${Const.fontSize.xxl1};
   font-style: normal;
   padding-left: 15px;
@@ -44,7 +43,6 @@ const JoinInfoWrapper = styled.div`
 `
 
 const TextJoinTeam = styled.div`
-  font-family: ${Const.fontFamily.sans};
   font-weight: ${Const.fontWeight.medium};
   font-size: ${Const.fontSize.xl};
   font-style: normal;
@@ -57,8 +55,7 @@ const TextTeamName = styled.span`
 `
 
 const TextDesciption = styled.div`
-  font-family: ${Const.fontFamily.sans};
-  font-weight: ${Const.fontWeight.dimlight};
+  font-weight: ${Const.fontWeight.regular};
   font-size: ${Const.fontSize.sm};
   font-style: normal;
   margin: 10px 0px;
@@ -68,9 +65,9 @@ const TextDesciption = styled.div`
 const CardListWrapper = styled.div`
   position: relative;
   width: 100%;
-  padding-left:${window.innerWidth <= 370 ? '20px' : '60px'};
-  padding-right:${window.innerWidth <= 370 ? '20px' : '60px'};
-  margin-bottom:40px;
+  padding-left: ${window.innerWidth <= 370 ? '20px' : '60px'};
+  padding-right: ${window.innerWidth <= 370 ? '20px' : '60px'};
+  margin-bottom: 40px;
 `
 
 const CardWrapper = styled.div`
@@ -96,10 +93,14 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
         </JoinTeamTitle>
         <JoinInfoWrapper>
           <TextJoinTeam>
-            <TextTeamName>Squard</TextTeamName>に参加する
+            <TextDisplay>
+              <TextTeamName>Squard</TextTeamName>に参加する
+            </TextDisplay>
           </TextJoinTeam>
           <TextDesciption>
-            チームが設定した月々のサブスクリプション料金を支払いProspectsやAngelsとしてチームに参加することで、様々な特典を受け取ることができます。
+            <TextDisplay>
+              チームが設定した月々のサブスクリプション料金を支払いProspectsやAngelsとしてチームに参加することで、様々な特典を受け取ることができます。
+            </TextDisplay>
           </TextDesciption>
         </JoinInfoWrapper>
       </JoinTeamTopWrapper>

@@ -8,10 +8,10 @@ import styled from 'styled-components'
 import { Heading2 } from 'src/components/Heading2/Heading2'
 // import { Description } from 'src/components/Description/Description'
 import { GradientCard2 } from 'src/components/GradientCard2/GradientCard2'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import * as Const from '../../../styles/const'
 
 const HeaderWrapper = styled.div`
-  font-family: ${Const.fontFamily.sans};
   display: block;
   margin-top: 100px;
   &::after {
@@ -28,7 +28,6 @@ const HeaderWrapper = styled.div`
 `
 
 const Description = styled.div`
-  font-family: ${Const.fontFamily.sans};
   font-weight: ${Const.fontWeight.light};
   font-size: ${Const.fontSize.sm};
   letter-spacing: ${Const.letterSpacing.normal};
@@ -40,20 +39,16 @@ const Description = styled.div`
   text-align: left;
 `
 const MainName = styled.div`
-  font-family: ${Const.fontFamily.sans};
   font-weight: ${Const.fontWeight.bold};
   font-size: ${Const.fontSize.xl1};
 `
 const SubMainName = styled.div`
-  font-family: ${Const.fontFamily.sans};
   font-weight: ${Const.fontWeight.light};
   font-size: ${Const.fontSize.sm};
   margin-bottom: 10px;
 `
 
-const ManagerCard = styled.div`
-
-`
+const ManagerCard = styled.div``
 
 interface ManagementSystemProps {}
 
@@ -84,21 +79,29 @@ export const ManagementSystem: React.FC<ManagementSystemProps> = (props) => {
       </HeaderWrapper>
 
       <Description>
-        Squardはチームのマネジメントシステムを2種類から選択することができます。
-        <br />
-        ひとつは中央集権型の「Topdown（トップダウン）」もうひとつは自律分散型の「DAO（ダオ）」です。このマネジメントシステムはプロジェクトの進行において大変重要な意味を持ち、チームの理念に基づいて選択する必要があります。
+        <TextDisplay>
+          Squardはチームのマネジメントシステムを2種類から選択することができます。
+          <br />
+          ひとつは中央集権型の「Topdown（トップダウン）」もうひとつは自律分散型の「DAO（ダオ）」です。このマネジメントシステムはプロジェクトの進行において大変重要な意味を持ち、チームの理念に基づいて選択する必要があります。
+        </TextDisplay>
       </Description>
       <div>
         {managementSystems.map((el, index) => (
           <div key={index} className={styles.card}>
             <GradientCard2>
               <div className={styles.name}>
-                <MainName>{el.name.main}</MainName>
-                <SubMainName>（{el.name.sub}）</SubMainName>
+                <MainName>
+                  <TextDisplay>{el.name.main}</TextDisplay>
+                </MainName>
+                <SubMainName>
+                  <TextDisplay>（{el.name.sub}）</TextDisplay>
+                </SubMainName>
               </div>
             </GradientCard2>
             <div className={styles.logo}>{el.logo}</div>
-            <Description>{el.description}</Description>
+            <Description>
+              <TextDisplay>{el.description}</TextDisplay>
+            </Description>
           </div>
         ))}
       </div>

@@ -24,9 +24,7 @@ export const SiteMap = (props?: SiteMapProps) => {
     <>
       <FooterWrapper>
         <div className={styles.content} style={styleBg}>
-          <div
-            className={`${styles.sitemap} `}
-          >
+          <div className={`${styles.sitemap} `}>
             <TextDisplay
               className={
                 theme === 'dark' ? styles.links : styles.linksThemeWhite

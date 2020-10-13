@@ -16,13 +16,11 @@ const ItemWrapper = styled.div`
   align-items: center;
   cursor: ${(props: ItemWrapperStyleProps) =>
     props.clickable ? 'pointer' : 'default'};
-
 `
 const TitleWrapper = styled.div`
-  font-family: ${Const.fontFamily.sans};
   color: white;
   font-weight: bold;
-  font-size: 20px; 
+  font-size: 20px;
   min-width: 100px;
 `
 export interface ItemProps {

@@ -131,7 +131,7 @@ const NameText = styled.div`
   line-height: 1.5;
   letter-spacing: 0.05em;
   font-weight: ${Const.fontWeight.regular};
-  font-family: ${Const.fontFamily.sans};
+
   font-size: ${Const.fontSize.xl1};
 `
 
@@ -142,7 +142,7 @@ const NameSubText = styled.div`
   letter-spacing: 0.05em;
   margin-top: 5px;
   font-weight: ${Const.fontWeight.dimlight};
-  font-family: ${Const.fontFamily.monster};
+
   font-size: ${Const.fontSize.sm};
 `
 
@@ -154,7 +154,7 @@ const NameDescription = styled.div`
   letter-spacing: 0.05em;
   white-space: pre-wrap;
   font-weight: ${Const.fontWeight.light};
-  font-family: ${Const.fontFamily.sans};
+
   font-size: ${Const.fontSize.sm};
 `
 
@@ -206,21 +206,21 @@ const TeamIconWrapper = styled.div`
 `
 
 const TeamTextWrapper = styled.span`
-  margin-top:-4px;
+  margin-top: -4px;
   padding-left: 25px;
-  display:flex;
-  flex-direction:column;
-  align-item:center;
+  display: flex;
+  flex-direction: column;
+  align-item: center;
 `
 
 const TeamNameText = styled.div`
   font-weight: ${Const.fontWeight.simbold};
-  font-family: ${Const.fontFamily.sans};
+
   font-size: ${Const.fontSize.xl};
 `
 const TeamPositionText = styled.div`
   font-weight: ${Const.fontWeight.regular};
-  font-family: ${Const.fontFamily.sans};
+
   font-size: ${Const.fontSize.sm};
 `
 
@@ -238,7 +238,7 @@ const TeamRole = styled.div`
   bottom: -27px;
   right: 16px;
   height: 30px;
-  background-color: #EFEFEF;
+  background-color: #efefef;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   border-bottom-left-radius: 5px;
@@ -250,10 +250,10 @@ const TeamRoleText = styled.div`
   padding-right: 1.25rem;
   padding-top: 0.5rem;
   font-weight: ${Const.fontWeight.light};
-  font-family: ${Const.fontFamily.monster};
+
   font-size: ${Const.fontSize.sm};
-  color:#262626;
-  opacity:0.75;
+  color: #262626;
+  opacity: 0.75;
 `
 
 const ButtonEditWrapper = styled.div`
@@ -274,8 +274,6 @@ export const PersonPage = (props: PersonPageProps) => {
   const { personal, editProfile, profileEditable = false } = props
   const [selectedTeam, setSelectedTeam] = React.useState<ITeam | null>(null)
 
-  
-
   return (
     <>
       <ContentWrapper>
@@ -285,11 +283,11 @@ export const PersonPage = (props: PersonPageProps) => {
               src={personal.topImage ? encodeURI(personal.topImage) : Top}
               style={{ width: '100%', minHeight: '320px' }}
             />
-            {/* {profileEditable && ( */}
+            {profileEditable && (
               <ButtonEditWrapper onClick={editProfile}>
                 <FontAwesomeIcon icon={faEdit} size="2x" />
               </ButtonEditWrapper>
-            {/* )} */}
+            )}
           </UserCover>
           <ProfileContainerWrapper>
             <ProfilerImageContainer>

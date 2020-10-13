@@ -8,19 +8,19 @@ import { withTheme } from 'src/context/ThemeContext'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { Link } from 'gatsby'
 import * as Const from '../../styles/const'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 
 const PageHeader = styled(Heading1)`
-  font-family: ${Const.fontFamily.monster};
   font-weight: ${Const.fontWeight.simbold};
   font-size: 28px;
 `
 
 const GroupFAQ = styled.div`
-  width:100%;
-  margin-top:40px;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
+  width: 100%;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   :last-child {
     margin-bottom: 0px;
   }
@@ -81,7 +81,9 @@ export const Page: React.FC = (props) => {
   return (
     <>
       <div className={styles.pageWrapper}>
-        <PageHeader>FAQ</PageHeader>
+        <PageHeader>
+          <TextDisplay>FAQ</TextDisplay>
+        </PageHeader>
         <GroupFAQ>
           {faqs.map((el, index) => (
             <FAQItem key={index} num={index + 1} {...el} />

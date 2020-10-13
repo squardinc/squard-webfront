@@ -9,6 +9,7 @@ import Prospects from 'src/assets/classes/prospects.svg'
 import Angels from 'src/assets/classes/angels.svg'
 import Galleries from 'src/assets/classes/galleries.svg'
 import VIP from 'src/assets/classes/vip.svg'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 
 import { Heading2 } from 'src/components/Heading2/Heading2'
 // import { Description } from 'src/components/Description/Description'
@@ -19,7 +20,6 @@ const HeaderWrapper = styled.div`
   margin-top: 60px;
 `
 const Description = styled.div`
-  font-family: ${Const.fontFamily.sans};
   font-weight: ${Const.fontWeight.light};
   font-size: ${Const.fontSize.sm};
   letter-spacing: ${Const.letterSpacing.normal};
@@ -39,7 +39,6 @@ const ClassCardWrapper = styled.div`
   :last-child {
     margin-bottom: 120px;
   }
-  
 `
 interface ClassesProps {}
 
@@ -101,11 +100,12 @@ export const Classes: React.FC<ClassesProps> = (props) => {
       <HeaderWrapper>
         <Heading2 main="CLASS" sub="クラス" />
       </HeaderWrapper>
-
       <Description>
-        SquardにはCLASS（クラス）という概念が存在します。このCLASSによってチーム内で誰がどのような立場なのか、どのような視点でチームに参画しているのかを可視化することができます。
-        CLASSにはLeader、Core
-        Members、Members、Prospects、Angels、Galleries、V.I.P.の7種類があります。
+        <TextDisplay>
+          SquardにはCLASS（クラス）という概念が存在します。このCLASSによってチーム内で誰がどのような立場なのか、どのような視点でチームに参画しているのかを可視化することができます。
+          CLASSにはLeader、Core
+          Members、Members、Prospects、Angels、Galleries、V.I.P.の7種類があります。
+        </TextDisplay>
       </Description>
       <ClassWrapper>
         {classes.map((el, index) => (

@@ -12,7 +12,6 @@ const Wrapper = styled.div`
   text-align: center;
   font-size: 2.4rem;
   font-weight: 600;
-  font-family:${Const.fontFamily.monster};
   color: ${colors.textBlack};
   text-align: center;
 `

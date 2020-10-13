@@ -38,7 +38,7 @@ export const shunpei: IPersonal = {
       classType: 'Core Members',
       role: 'COO',
     },
-     {
+    {
       name: 'Squard',
       classType: 'Core Members',
       role: 'CFO',

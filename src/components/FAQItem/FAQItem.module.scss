@@ -57,7 +57,6 @@ $gradient-middle: #90352b;
 
 .questionTitle {
   display: inline-block;
-  font-family: $montserrat-font;
   font-weight: $weight-sim-bold;
   font-size: 16px;
   letter-spacing: 0.025em;
@@ -66,8 +65,7 @@ $gradient-middle: #90352b;
 
 .questionText {
   margin: 8px 0;
-  font-family: $noto-sans-font;
-  font-weight: $weight-dim-light;
+  font-weight: 250;
   font-size: 18px;
   letter-spacing: 0.025em;
   line-height: 1.6;
@@ -83,7 +81,6 @@ $gradient-middle: #90352b;
 
 .answerWrapper {
   margin: 32px;
-  font-family: $noto-sans-font;
   font-weight: $weight-medium;
   font-size: 16px;
   letter-spacing: 0.025em;
@@ -92,7 +89,6 @@ $gradient-middle: #90352b;
 
 .answerTitle {
   display: inline-block;
-  font-family: $montserrat-font;
   font-weight: $weight-sim-bold;
   font-size: 24px;
   letter-spacing: 0.025em;
@@ -113,8 +109,7 @@ $gradient-middle: #90352b;
 
 .answerText {
   margin: 8px 0;
-  font-family: $montserrat-font;
-  font-weight: $weight-dim-light;
+  font-weight: 250;
   letter-spacing: 0.025em;
   line-height: 1.5;
   font-size: 16px;

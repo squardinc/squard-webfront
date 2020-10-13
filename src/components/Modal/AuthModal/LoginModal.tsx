@@ -19,14 +19,12 @@ const LoginContent = styled.div`
 `
 
 const LoginTitle = styled.div`
-  font-family: ${Const.fontFamily.monster};
   font-weight: ${Const.fontWeight.bold};
   font-size: ${Const.fontSize.xl3};
   letter-spacing: 0.04em;
   padding-left: 10px;
 `
 const ForgotPassWrapper = styled.div`
-  font-family: ${Const.fontFamily.monster};
   font-weight: ${Const.fontWeight.light};
   font-size: 10px;
   line-spacing: 1.8;
@@ -36,7 +34,6 @@ const ForgotPassWrapper = styled.div`
   margin-bottom: 5px;
 `
 const Label = styled.div`
-  font-family: ${Const.fontFamily.sans};
   font-weight: ${Const.fontWeight.light};
   font-size: ${Const.fontSize.xs};
   letter-spacing: 0.04em;
@@ -49,18 +46,16 @@ const EmailWrapper = styled.div`
 `
 
 const BottomWrapper = styled.div`
-  font-family: ${Const.fontFamily.sans};
   font-weight: ${Const.fontWeight.dimlight};
   font-size: ${Const.fontSize.xs};
   display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   line-height: 1.5;
   margin-top: 20px;
   margin-bottom: 5px;
 `
 const RoundButton = styled.button`
-  font-family: ${Const.fontFamily.sans};
   font-size: ${Const.fontSize.sm};
   font-weight: ${Const.fontWeight.dimlight};
   border-radius: 50vh;
@@ -89,8 +84,12 @@ const LoginFormModal: React.FC<LoginFormProps> = ({
   return (
     <DefaultModalContainer closeModal={closeModal}>
       <LoginContent>
-        <LoginTitle>Login</LoginTitle>
-        <Label>ログイン情報を入力してください</Label>
+        <LoginTitle>
+          <TextDisplay>Login</TextDisplay>
+        </LoginTitle>
+        <Label>
+          <TextDisplay>ログイン情報を入力してください</TextDisplay>
+        </Label>
         <form>
           <EmailWrapper>
             <EMailAddressInput value={email} onChange={setEmail} />
@@ -99,12 +98,12 @@ const LoginFormModal: React.FC<LoginFormProps> = ({
           <PasswordInput value={password} onChange={setPassword} />
           <TextDisplay className="flex justify-end w-full text-sm mb-4">
             <ForgotPassWrapper>
-              パスワードを忘れた方は
+              <TextDisplay>パスワードを忘れた方は</TextDisplay>
               <div
                 className="underline cursor-pointer"
                 onClick={showPasswordResetRequestModal}
               >
-                こちら
+                <TextDisplay> こちら</TextDisplay>
               </div>
             </ForgotPassWrapper>
           </TextDisplay>
@@ -113,13 +112,13 @@ const LoginFormModal: React.FC<LoginFormProps> = ({
               style={{
                 color: 'black',
                 backgroundColor: 'white',
-                opacity:isSubmittable ? 1 : 0.7
+                opacity: isSubmittable ? 1 : 0.7,
               }}
               type="submit"
               disabled={!isSubmittable}
               onClick={(e) => login(e, email, password)}
             >
-              ログイン
+              <TextDisplay>ログイン</TextDisplay>
             </RoundButton>
             <RoundButton
               style={{
@@ -128,7 +127,7 @@ const LoginFormModal: React.FC<LoginFormProps> = ({
               }}
               onClick={AuthService.loginWithFacebook}
             >
-              Facebookでログイン
+              <TextDisplay>Facebookでログイン</TextDisplay>
             </RoundButton>
           </div>
         </form>

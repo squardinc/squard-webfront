@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { IPersonal, Person } from 'src/models/person'
 import { shunpei, hiroki, akihiro, shoya } from './personalData'
 import { navigate } from 'gatsby'
-import {PersonPageLayoutBlack, PersonPageLayoutGray} from './PersonPageLayout'
+import { PersonPageLayoutBlack, PersonPageLayoutGray } from './PersonPageLayout'
 import { useQuery, gql, useMutation } from '@apollo/client'
 import {
   GetUserQuery,
@@ -34,25 +34,23 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({
     UpdateUserMutationVariables
   >(gql(updateUser))
 
-  console.log(id)
-  console.log(error)
-  console.log(data)
+  if (error) {
+    navigate('/')
+    return <></>
+  }
+  if (loading || !data) {
+    return <></>
+  }
 
-  // if (error) {
-  //   navigate('/')
-  //   return <></>
-  // }
-  // if (loading || !data) {
-  //   return <></>
-  // }
-
-  const PersonPageLayout = isEditing ? PersonPageLayoutBlack : PersonPageLayoutGray
+  const PersonPageLayout = isEditing
+    ? PersonPageLayoutBlack
+    : PersonPageLayoutGray
 
   return (
     <PersonPageLayout
       isLoading={false}
       isEditing={isEditing}
-      personal={getPersonData(id)} //{Person.fromQueryResult(data)}
+      personal={Person.fromQueryResult(data)}
       update={(profile: UpdateUserInput) =>
         requestUpdate({
           variables: {
@@ -68,7 +66,7 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({
           },
         })
       }
-      onEditProfile={(editing:boolean) => {
+      onEditProfile={(editing: boolean) => {
         setEditing(editing)
       }}
     />

@@ -10,7 +10,7 @@ import * as Const from '../../styles/const'
 const TitleWrapper = styled.div`
   width: 100%;
   text-align: center;
-  font-family: ${Const.fontFamily.monster};
+
   font-weight: ${Const.fontWeight.bold};
   font-size: 30px;
   margin-top: 10px;
@@ -19,7 +19,7 @@ const TitleWrapper = styled.div`
 const SubTitleWrapper = styled.div`
   width: 100%;
   text-align: center;
-  font-family: ${Const.fontFamily.monster};
+
   font-weight: ${Const.fontWeight.bold};
   font-size: 18px;
   margin-top: 10px;
@@ -28,7 +28,7 @@ const SubTitleWrapper = styled.div`
 const CompletedTitleWrapper = styled.div`
   width: 100%;
   text-align: center;
-  font-family: ${Const.fontFamily.monster};
+
   font-weight: ${Const.fontWeight.bold};
   font-size: 18px;
   margin-top: 15px;

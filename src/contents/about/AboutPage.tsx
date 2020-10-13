@@ -10,7 +10,6 @@ import { withTheme } from 'src/context/ThemeContext'
 import * as Const from '../../styles/const'
 
 const PageHeader = styled(Heading1)`
-  font-family: ${Const.fontFamily.monster};
   font-weight: ${Const.fontWeight.bold};
   font-size: ${Const.fontSize.xl2};
 `

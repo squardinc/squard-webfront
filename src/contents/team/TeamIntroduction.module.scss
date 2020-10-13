@@ -14,7 +14,6 @@
 
 .caption1 {
   color: $text-yellow;
-  font-family: $noto-sans-font;
   font-weight:$weight-dim-light;
   font-style: normal;
   font-size: 16px;
@@ -22,8 +21,7 @@
 }
 
 .caption2 {
-  font-family: $montserrat-font;
-  font-weight: $weight-bold;
+  font-weight: $weight-sim-bold;
   font-size: 35px;
   line-height : 1.2;
 }
@@ -31,7 +29,6 @@
 .description {
   margin: 12px 0px;
   margin-bottom: 18px;
-  font-family: $noto-sans-font;
   font-weight: $weight-light;
   line-height : 1.66;
   font-size: 18px;
@@ -47,14 +44,12 @@
 }
 .captionSystemLabel{
   color :$text-white;
-  font-family: $noto-sans-font;
   font-weight: $weight-light;
   font-size: 14px;
   line-height : 2;
 }
 .text-yellow{
   color :$text-yellow;
-  font-family: $noto-sans-font;
   font-weight: $weight-light;
   font-size: 14px;
   line-height : 2;

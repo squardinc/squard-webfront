@@ -4,7 +4,7 @@ import styles from './ClassCard.module.scss'
 import styled from 'styled-components'
 import { GradientCard } from '../GradientCard/GradientCard'
 import * as Const from '../../styles/const'
-
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 const Card = styled.div`
   margin-left: 15px;
   margin-right: 15px;
@@ -19,7 +19,6 @@ const SvgLogo = styled.div`
 
 const Title = styled.div`
   text-align: center;
-  font-family: ${Const.fontFamily.monster};
   font-weight: ${Const.fontWeight.light};
   font-size: 35px;
   letter-spacing: ${Const.letterSpacing.normal};
@@ -28,7 +27,6 @@ const Title = styled.div`
 `
 const SubTitle = styled.div`
   text-align: center;
-  font-family: ${Const.fontFamily.monster};
   font-weight: ${Const.fontWeight.light};
   font-size: 15px;
   letter-spacing: ${Const.letterSpacing.normal};
@@ -36,15 +34,14 @@ const SubTitle = styled.div`
   white-space: pre-wrap;
 `
 
-const Descrition = styled.div`
+const Description = styled.div`
   text-align: left;
-  font-family: ${Const.fontFamily.sans};
   font-weight: ${Const.fontWeight.light};
   font-size: 14px;
   line-height: 1.875;
   letter-spacing: -0.05em;
   margin: 0px 20px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   white-space: pre-wrap;
 `
 
@@ -60,9 +57,15 @@ export const ClassCard: React.FC<ClassCardProps> = (props) => {
     <Card>
       <GradientCard>
         <SvgLogo>{props.logo}</SvgLogo>
-        <Title>{props.title}</Title>
-        <SubTitle>{props.subTitle}</SubTitle>
-        <Descrition>{props.description}</Descrition>
+        <Title>
+          <TextDisplay>{props.title}</TextDisplay>
+        </Title>
+        <SubTitle>
+          <TextDisplay>{props.subTitle}</TextDisplay>
+        </SubTitle>
+        <Description>
+          <TextDisplay>{props.description}</TextDisplay>{' '}
+        </Description>
       </GradientCard>
     </Card>
   )

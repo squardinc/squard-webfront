@@ -10,14 +10,12 @@ import Complete from 'src/assets/status/complete.svg'
 import styled from 'styled-components'
 import { Heading2 } from 'src/components/Heading2/Heading2'
 // import { Description } from 'src/components/Description/Description'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import * as Const from '../../../styles/const'
 
-const HeaderWrapper = styled.div`
-  font-family: ${Const.fontFamily.sans};
-`
+const HeaderWrapper = styled.div``
 
 const Description = styled.div`
-  font-family: ${Const.fontFamily.sans};
   font-weight: ${Const.fontWeight.light};
   font-size: ${Const.fontSize.sm};
   letter-spacing: ${Const.letterSpacing.normal};
@@ -29,7 +27,7 @@ const Description = styled.div`
   text-align: left;
 `
 const StatusDescription = styled(Description)`
-font-weight: ${Const.fontWeight.thin};
+  font-weight: ${Const.fontWeight.thin};
   margin-bottom: 30px;
   margin-bottom: 20px;
 `
@@ -67,20 +65,27 @@ export const Status: React.FC<StatusProps> = (props) => {
       </HeaderWrapper>
 
       <Description>
-        Squardで管理される全てのチームには、STATUS（ステータス）が存在します。STATUSは現在のチームの状況を表し、チームページの表示項目や各種機能の開放及び制限はステータスに基づいて行われます。またSTATUSはチームの管理者が自由に設定することができます。
+        <TextDisplay>
+          Squardで管理される全てのチームには、STATUS（ステータス）が存在します。STATUSは現在のチームの状況を表し、チームページの表示項目や各種機能の開放及び制限はステータスに基づいて行われます。またSTATUSはチームの管理者が自由に設定することができます。
+        </TextDisplay>
       </Description>
       <div className={styles.explain}>
         <StatusExplain></StatusExplain>
       </div>
       <Description>
-        プロジェクトを開始した時点でSTATUSは「Ready」となり、設定したCore
-        Membersの人員が集まった時点で自動的に「Drive」に変更され、チームが始動します。その後プロジェクトが完遂されれば「Complete」途中で解散すれば「Breakup」となります。
+        <TextDisplay>
+          プロジェクトを開始した時点でSTATUSは「Ready」となり、設定したCore
+          Membersの人員が集まった時点で自動的に「Drive」に変更され、チームが始動します。その後プロジェクトが完遂されれば「Complete」途中で解散すれば「Breakup」となります。
+        </TextDisplay>
       </Description>
       <div className={styles.statusList}>
         {statusList.map((el, index) => (
           <div key={index} className={styles.status}>
             <div className={styles.logo}>{el.logo}</div>
-            <StatusDescription>{el.description}</StatusDescription>
+            <StatusDescription>
+              {' '}
+              <TextDisplay>{el.description}</TextDisplay>
+            </StatusDescription>
           </div>
         ))}
       </div>

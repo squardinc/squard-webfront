@@ -17,15 +17,13 @@ const SignupContent = styled.div`
 `
 
 const SignupTitle = styled.div`
-  font-family: ${Const.fontFamily.monster};
   font-weight: ${Const.fontWeight.bold};
   font-size: ${Const.fontSize.xl3};
   letter-spacing: 0.04em;
   padding-left: 10px;
 `
 const HintWrapper = styled.div`
-  font-family: ${Const.fontFamily.monster};
-  font-weight: ${Const.fontWeight.dimlight};
+  font-weight: ${Const.fontWeight.medium};
   font-size: 10px;
   line-spacing: 1.8;
   display: flex;
@@ -34,12 +32,11 @@ const HintWrapper = styled.div`
   margin-bottom: 5px;
 `
 const BottomWrapper = styled.div`
-  font-family: ${Const.fontFamily.monster};
   font-weight: ${Const.fontWeight.dimlight};
   font-size: ${Const.fontSize.xs};
   display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   line-spacing: 1.8;
   display: flex;
   flex-wrap: nowrap;
@@ -48,7 +45,6 @@ const BottomWrapper = styled.div`
 `
 
 const Label = styled.div`
-  font-family: ${Const.fontFamily.sans};
   font-weight: ${Const.fontWeight.thin};
   font-size: ${Const.fontSize.xs};
   letter-spacing: 0.04em;
@@ -60,7 +56,6 @@ const EmailWrapper = styled.div`
   margin-bottom: 20px;
 `
 const RoundButton = styled.button`
-  font-family: ${Const.fontFamily.sans};
   font-size: ${Const.fontSize.sm};
   font-weight: ${Const.fontWeight.dimlight};
   border-radius: 50vh;
@@ -97,8 +92,12 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({
       {!errorMesasge ? (
         <DefaultModalContainer closeModal={closeModal}>
           <SignupContent>
-            <SignupTitle>SignUp</SignupTitle>
-            <Label>アカウント情報を入力してください</Label>
+            <SignupTitle>
+              <TextDisplay>SignUp</TextDisplay>
+            </SignupTitle>
+            <TextDisplay>
+              <Label>アカウント情報を入力してくださ い</Label>
+            </TextDisplay>
             <EmailWrapper>
               <EMailAddressInput value={email} onChange={setEmail} />
             </EmailWrapper>
@@ -127,7 +126,7 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({
                   setErrorMessage('')
                 }}
               >
-                新規登録
+                <TextDisplay>新規登録</TextDisplay>
               </RoundButton>
               <RoundButton
                 style={{
@@ -136,7 +135,7 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({
                 }}
                 onClick={AuthService.loginWithFacebook}
               >
-                Facebookで登録
+                <TextDisplay>Facebookで登録</TextDisplay>
               </RoundButton>
             </div>
             <TextDisplay>

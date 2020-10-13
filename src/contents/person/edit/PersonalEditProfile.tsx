@@ -51,7 +51,6 @@ const Label = styled.div`
   color: gray;
 `
 const Input = styled.input`
-  font-family: ${Const.fontFamily.sans};
   width: calc(100% - 120px);
   display: block;
   background: none;
@@ -59,7 +58,7 @@ const Input = styled.input`
 `
 const TextareaWrapper = styled.div`
   width: calc(100% - 120px);
-  font-family: ${Const.fontFamily.sans};
+
   .textarea {
     width: 100%;
     display: block;
@@ -136,7 +135,7 @@ const BottomWrapper = styled.div`
   padding: 20px;
 `
 const RoundButton = styled.button`
-  font-size:17px;
+  font-size: 17px;
   text-align: center;
   padding: 5px;
   border: 1px solid white;
@@ -144,9 +143,9 @@ const RoundButton = styled.button`
   width: 150px;
   margin-top: 15px;
   margin-bottom: 0px;
-  font-weight:200;
-  :last-child{
-    margin-bottom:30px;
+  font-weight: 200;
+  :last-child {
+    margin-bottom: 30px;
   }
 `
 
@@ -192,7 +191,7 @@ const RowInput: React.FC<RowInputProps> = ({
         suppressContentEditableWarning={true}
         value={value}
         style={{
-          color:'#F8F8F8'
+          color: '#F8F8F8',
         }}
         onChange={(e) => onChange(e.target.value)}
         onFocus={(e) => {
