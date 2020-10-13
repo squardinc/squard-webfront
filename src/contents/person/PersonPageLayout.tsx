@@ -77,8 +77,8 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
   )
 }
 
-export const PersonPageLayoutWhite = React.memo(
-  withTheme(PersonPageLayout, 'light')
+export const PersonPageLayoutGray = React.memo(
+  withTheme(PersonPageLayout, 'gray')
 )
 export const PersonPageLayoutDark = React.memo(
   withTheme(PersonPageLayout, 'dark')

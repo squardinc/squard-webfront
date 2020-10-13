@@ -136,13 +136,18 @@ const BottomWrapper = styled.div`
   padding: 20px;
 `
 const RoundButton = styled.button`
+  font-size:17px;
   text-align: center;
-  padding: 10px;
+  padding: 5px;
   border: 1px solid white;
   border-radius: 50vh;
-  width: 200px;
+  width: 150px;
   margin-top: 15px;
   margin-bottom: 0px;
+  font-weight:200;
+  :last-child{
+    margin-bottom:30px;
+  }
 `
 
 interface RowInputProps {
@@ -159,7 +164,7 @@ const HorizontalLayoutWrapper: React.FC = ({ children }) => {
       layoutType={LayoutType.centerLeft}
       style={{
         width: '100%',
-        borderBottom: '1px solid gray',
+        borderBottom: '1.5px solid #636363',
         paddingRight: '20px',
         paddingLeft: '20px',
         paddingBottom: '10px',
@@ -186,6 +191,9 @@ const RowInput: React.FC<RowInputProps> = ({
         contentEditable={true}
         suppressContentEditableWarning={true}
         value={value}
+        style={{
+          color:'#F8F8F8'
+        }}
         onChange={(e) => onChange(e.target.value)}
         onFocus={(e) => {
           if (onFocus) onFocus(e.target.value)
@@ -244,7 +252,7 @@ const LinksInput: React.FC<LinksInputProps> = ({ values = [''], onChange }) => {
         .concat([''])
         .map((url, index) => {
           return (
-            <RowInput
+            <RowTextarea
               key={`${index}_${url}`}
               label={`リンクURL${index + 1}`}
               value={index === currentIndex ? inputValue : url}

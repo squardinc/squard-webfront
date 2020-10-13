@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { IPersonal, Person } from 'src/models/person'
 import { shunpei, hiroki, akihiro, shoya } from './personalData'
 import { navigate } from 'gatsby'
-import {PersonPageLayoutBlack, PersonPageLayoutWhite} from './PersonPageLayout'
+import {PersonPageLayoutBlack, PersonPageLayoutGray} from './PersonPageLayout'
 import { useQuery, gql, useMutation } from '@apollo/client'
 import {
   GetUserQuery,
@@ -46,7 +46,7 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({
   //   return <></>
   // }
 
-  const PersonPageLayout = isEditing ? PersonPageLayoutBlack : PersonPageLayoutWhite
+  const PersonPageLayout = isEditing ? PersonPageLayoutBlack : PersonPageLayoutGray
 
   return (
     <PersonPageLayout
