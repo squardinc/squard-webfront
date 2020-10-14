@@ -60,8 +60,11 @@ interface TeamLayoutProps {
 const Layout: React.FC<TeamLayoutProps> = ({ team }) => {
   return (
     <>
-      <TeamTop />
+      <TeamTop image={team.topImage} />
       <TeamIntroduction
+        name={team.name}
+        introduction={team.introduction}
+        subTitle={team.subTitle}
         teamId={team.id}
         tags={team.tags}
         leaderName={team.teamMembers.leader?.displayName}
