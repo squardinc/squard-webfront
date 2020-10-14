@@ -53,6 +53,7 @@ export type IPersonal = {
   nameEn: string
   introduction: string
   links: string[]
+  displayTeamIds: string[]
   teams: IDisplayTeamMember[]
   age: string
 }

@@ -315,7 +315,8 @@ export const PersonPage: React.FC<PersonPageProps> = ({
           </ProfileContainerWrapper>
         </UserCoverWrapper>
         <TeamWrapper>
-          {personal.teams.map((team, index) => {
+          {/* TODO seperate logged in or not */}
+          {personal.teams.filter(team => personal.displayTeamIds.includes(team.teamId)).map((team, index) => {
             return (
               <TeamItemAnchor
                 id={`team-item_${team.teamId}`}
