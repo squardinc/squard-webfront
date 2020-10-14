@@ -13,6 +13,22 @@ module.exports = {
     description: ``,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'UA-179078519-2'],
+        gtagConfig: {
+          anonymize_ip: false,
+          linker: {
+            domains: ['squard.co.jp'],
+          },
+        },
+        pluginConfig: {
+          head: true,
+          respectDNT: true,
+        },
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: 'gatsby-plugin-root-import',
@@ -54,10 +70,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sass`,
       options: {
-        postCssPlugins: [
-          require('tailwindcss'),
-          require('./tailwind.config.js'),
-        ],
+        postCssPlugins: [require('tailwindcss'), require('./tailwind.config.js')],
       },
     },
     {

@@ -20,6 +20,7 @@ type PersonPageProps = {
   profileEditable: boolean
   joinSucceededTeamId?: string
   editProfile: VoidFunction
+  showJoinSucceededModal: Boolean
 }
 
 type StyleCssProps = {
@@ -268,6 +269,7 @@ export const PersonPage: React.FC<PersonPageProps> = ({
   editProfile,
   profileEditable = false,
   joinSucceededTeamId = '',
+  showJoinSucceededModal,
 }) => {
   const [selectedTeam, setSelectedTeam] = React.useState<ITeam | null>(null)
   return (
@@ -313,15 +315,21 @@ export const PersonPage: React.FC<PersonPageProps> = ({
           </ProfileContainerWrapper>
         </UserCoverWrapper>
         <TeamWrapper>
-          {personal.teams.map((team, index) => {
+          {/* TODO seperate logged in or not */}
+          {personal.teams.filter(team => personal.displayTeamIds.includes(team.teamId)).map((team, index) => {
             return (
               <TeamItemAnchor
                 id={`team-item_${team.teamId}`}
                 key={team.teamId}
-                joinSucceeded={team.teamId === joinSucceededTeamId}
+                joinSucceeded={showJoinSucceededModal && team.teamId === joinSucceededTeamId}
                 index={index}
               >
-                <TeamItemWrapper onClick={() => setSelectedTeam(team)}>
+                <TeamItemWrapper
+                  onClick={() => {
+                    navigate(`/${team.pageId}`)
+                    // setSelectedTeam(team)
+                  }}
+                >
                   {team.title && (
                     <TeamRole>
                       <TeamRoleText>
