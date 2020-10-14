@@ -16,6 +16,11 @@ module.exports = {
         black: '#051026',
         yellow: '#FBE62E',
       },
+      fontFamily: {
+        sans: ['Noto Sans CJK JP', 'sans-serif'],
+        monts: ['Montserrat', 'sans-serif'],
+        body: ['Noto Sans CJK JP', 'sans-serif'],
+      },
     },
     maxWidth: {
       xs: '480px',

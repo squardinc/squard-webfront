@@ -3,7 +3,6 @@
 }
 
 .name {
-    padding: 10px 0;
     text-align: center;
 }
 .nameMain {
@@ -21,7 +20,11 @@
 
 .description {
     margin: 20px;
+    margin-top: 30px;
     padding: 20px;
-    line-height: 1.5;
+    line-height: 1.785;
+    letter-spacing: 0.025em;
+    font-size: 14px;
+    font-weight: 900;
     color: #fff;
 }

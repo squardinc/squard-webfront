@@ -6,19 +6,22 @@ interface PasswordInput {
   value: string
   onChange: (value: string) => void
 }
-export const PasswordInput: React.FC<PasswordInput> = ({ value = '', onChange, }) => {
+export const PasswordInput: React.FC<PasswordInput> = ({
+  value = '',
+  onChange,
+}) => {
   return (
     <RoundInput
-      onChange={value => {
+      onChange={(value) => {
         if (value.length <= 16) {
           onChange(value)
         }
       }}
       value={value}
       faIcon={faLock}
-      type='password'
-      placeholder='パスワード'
-      autoComplete='password'
+      type="password"
+      placeholder="パスワード"
+      autoComplete="password"
     />
   )
 }

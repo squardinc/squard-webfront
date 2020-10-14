@@ -8,6 +8,7 @@ export const FooterWrapper: React.FC = ({ children }) => {
   return (
     <div className="bg-theme-bg-main text-theme-text-main">
       <div
+        className="content-footer"
         style={
           theme === 'dark' ? { backgroundImage: `url(${backgroundImage})` } : {}
         }

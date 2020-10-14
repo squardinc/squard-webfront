@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { animateScroll } from 'react-scroll'
 import { CompleteModal } from 'src/components/Modal/CompleteModal'
 import { MessageModal } from 'src/components/Modal/MessageModal'
@@ -13,10 +13,12 @@ import { PersonalEditProfile } from './edit/PersonalEditProfile'
 import { PersonPage } from './PersonPage'
 
 type PersonPageProps = {
-  isLoading: boolean
   personal: IPersonal
+  isLoading: boolean
+  isEditing?: boolean
   hasPaymentComplete?: boolean
   joinSucceededTeamId?: string
+  onEditProfile?: (value: boolean) => void
   update: (input: UpdateUserInput) => Promise<void>
 }
 
@@ -43,28 +45,24 @@ const EditProfileWrapper = styled.div`
 
 const PersonPageLayout: React.FC<PersonPageProps> = ({
   personal,
+  isEditing,
   hasPaymentComplete,
   joinSucceededTeamId,
+  onEditProfile,
   update,
 }) => {
   const { user } = React.useContext(UserContext)
-  const [openEditProfile, setOpenEditProfile] = useState(false)
-  const [
-    showPaymentCompleteModal,
-    setShowPaymentCompleteModal,
-  ] = React.useState(hasPaymentComplete)
-  const [showJoinSucceededModal, setShowJoinSucceededModal] = React.useState(
-    false
-  )
+  const [showPaymentCompleteModal, setShowPaymentCompleteModal] = React.useState(hasPaymentComplete)
+  const [showJoinSucceededModal, setShowJoinSucceededModal] = React.useState(false)
 
   return (
     <>
       <PersonPageWrapper backgroundColor={'#ebebeb'}>
-        {!openEditProfile ? (
+        {!isEditing ? (
           <PersonPage
             isLoading={false}
             personal={personal}
-            editProfile={() => setOpenEditProfile(true)}
+            editProfile={() => onEditProfile && onEditProfile(true)}
             profileEditable={personal.id === user.id}
             joinSucceededTeamId={joinSucceededTeamId}
             showJoinSucceededModal={showJoinSucceededModal}
@@ -74,12 +72,10 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
             <PersonalEditProfile
               isLoading={false}
               personal={personal}
-              close={() => setOpenEditProfile(false)}
-              saveImage={async (
-                fileName: string,
-                image: Blob,
-                contentType: string
-              ) => uploadImg(fileName, image, contentType)}
+              close={() => onEditProfile && onEditProfile(false)}
+              saveImage={async (fileName: string, image: Blob, contentType: string) =>
+                uploadImg(fileName, image, contentType)
+              }
               saveProfile={update}
             />
           </EditProfileWrapper>
@@ -90,9 +86,7 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
           closeModal={(e) => {
             setShowPaymentCompleteModal(false)
             setShowJoinSucceededModal(true)
-            const top = document.getElementById(
-              `team-item_${joinSucceededTeamId}`
-            )?.offsetTop
+            const top = document.getElementById(`team-item_${joinSucceededTeamId}`)?.offsetTop
             if (top) {
               animateScroll.scrollTo(top - 600 || 0)
             }
@@ -104,13 +98,15 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
       {showJoinSucceededModal && (
         <MessageModal
           closeModal={(e) => setShowJoinSucceededModal(false)}
-          message={
-            'チームに参加しました。マイページから参加特典を確認できます。'
-          }
+          message={'チームに参加しました。マイページから参加特典を確認できます。'}
         />
       )}
     </>
   )
 }
+
+export const PersonPageLayoutGray = React.memo(withTheme(PersonPageLayout, 'gray'))
+export const PersonPageLayoutDark = React.memo(withTheme(PersonPageLayout, 'dark'))
+export const PersonPageLayoutBlack = React.memo(withTheme(PersonPageLayout, 'black'))
 
 export default React.memo(withTheme(PersonPageLayout, 'gray'))

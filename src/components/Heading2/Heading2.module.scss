@@ -2,8 +2,10 @@
 
 .wrapper {
   margin: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
   text-align: center;
-  font-weight: 700;
+  font-weight: 600;
   color: $text-white;
   text-align: center;
 }
@@ -20,9 +22,11 @@
 }
 
 .main {
-  font-size: 1.5rem;
+  font-size: 28px;
+  font-weight: 700;
 }
 
 .sub {
-  font-size: 1rem;
+  font-size: 14px;
+  font-weight: 700;
 }

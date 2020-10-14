@@ -1,4 +1,5 @@
 import * as React from 'react'
+import styled from 'styled-components'
 import { NavMenu } from 'src/components/NavMenu/NavMenu'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { SearchBar } from './SearchBar'
@@ -11,6 +12,14 @@ import { UserContext } from 'src/context/UserContext'
 import { Link, navigate } from 'gatsby'
 import { AuthService } from 'src/services/AuthService'
 import { LoginUserModel } from 'src/services/AuthService/LoginUserModel'
+import * as Const from '../../styles/const'
+
+const Title = styled.div`
+  font-family: ${Const.fontFamily.josefin};
+  font-weight: ${Const.fontWeight.bold};
+  font-size: ${Const.fontSize.xl};
+  margin-top: 2px;
+`
 
 export const Header = () => {
   const { user, setUser } = React.useContext(UserContext)
@@ -25,8 +34,15 @@ export const Header = () => {
         <div className={styles.header}>
           <Menu cursor="pointer" onClick={() => setShowNavMenu(!showNavMenu)} />
           <TextDisplay>
-            <Link to="/" className="text-2xl font-bold">
-              Squard
+            <Link
+              to="/"
+              style={{
+                display: 'flex',
+                flexWrap: 'nowrap',
+                justifyContent: 'center',
+              }}
+            >
+              <Title>Squard</Title>
               <span className="text-xl font-bold text-red-600">.</span>
             </Link>
           </TextDisplay>
@@ -38,7 +54,7 @@ export const Header = () => {
               )} */}
           </div>
         </div>
-        {/* <SearchBar show={showSearchBar} /> */}
+        {/* <SearchBar show={false} /> */}
       </div>
       <NavMenu
         show={showNavMenu}
@@ -52,10 +68,7 @@ export const Header = () => {
           setOpenModal('Logout')
         }}
       />
-      <AuthModal
-        openModal={openModal}
-        setOpenModal={setOpenModal}
-      />
+      <AuthModal openModal={openModal} setOpenModal={setOpenModal} />
     </React.Fragment>
   )
 }

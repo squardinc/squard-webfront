@@ -1,9 +1,11 @@
 @import 'src/styles/variables.scss';
+@import '../../styles/const';
 
 .content {
   color: white;
   margin: 0px 40px;
-  padding: 40px 0px;
+  padding: 25px 0px;
+  padding-bottom: 30px;
 }
 
 .caption {
@@ -11,23 +13,45 @@
 }
 
 .caption1 {
-  color: $yellow;
-  font-size: small;
+  color: $text-yellow;
+  font-weight:$weight-dim-light;
+  font-style: normal;
+  font-size: 16px;
+  line-height : 2.33;
 }
 
 .caption2 {
-  font-weight: bold;
-  font-size: xx-large;
+  font-weight: $weight-sim-bold;
+  font-size: 35px;
+  line-height : 1.2;
 }
 
 .description {
-  margin: 20px 0px;
-  font-size: small;
-  letter-spacing: 0.025em;
-  font-weight: 200;
+  margin: 12px 0px;
+  margin-bottom: 18px;
+  font-weight: $weight-light;
+  line-height : 1.66;
+  font-size: 18px;
 }
 
+.hashTag{
+  margin-top:10px;
+}
 .attributeContainer {
-  margin: 20px 0px;
+  margin-top: 10px;
+  margin-bottom: 30px;
   font-size: 14px;
 }
+.captionSystemLabel{
+  color :$text-white;
+  font-weight: $weight-light;
+  font-size: 14px;
+  line-height : 2;
+}
+.text-yellow{
+  color :$text-yellow;
+  font-weight: $weight-light;
+  font-size: 14px;
+  line-height : 2;
+}
+

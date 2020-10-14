@@ -7,13 +7,17 @@ export type ITeam = {
   monthlyPrice: number
   entitlements: string[]
 }
+interface ITeamBenefits {
+  description: string
+  link?: string
+}
 export type ITeamClass = {
-  benefits: string[]
   teamId: string
   classType: ClassType
   teamClassId: string
   price: number
   classTypeJp: string
+  benefits: ITeamBenefits[]
 }
 
 export class TeamClass implements ITeamClass {
@@ -21,7 +25,7 @@ export class TeamClass implements ITeamClass {
     readonly teamId: string,
     readonly teamClassId: string,
     readonly classType: ClassType,
-    readonly benefits: string[],
+    readonly benefits: ITeamBenefits[],
     readonly price: number
   ) {}
 
@@ -31,7 +35,7 @@ export class TeamClass implements ITeamClass {
       teamClass.teamClassId,
       teamClass.classType,
       teamClass.benefits,
-      teamClass.price
+      teamClass.price.price
     )
   }
 

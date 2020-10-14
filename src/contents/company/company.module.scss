@@ -28,6 +28,9 @@
 .labelHeaderBox {
   height: 45px;
   width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: auto;
   background-image: linear-gradient(to right, #27d8df, #3b4491);
   box-shadow: 5px 7px lightgrey;
@@ -78,6 +81,7 @@ $member-width: 164px;
   color: white;
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(24px);
   border-radius: 0 10px 10px 0;

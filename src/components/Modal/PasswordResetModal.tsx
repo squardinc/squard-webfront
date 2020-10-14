@@ -32,12 +32,18 @@ const PasswordResetComponent: React.FC<PasswordResetComponentProps> = ({
           </TextDisplay>
           {!succeeded ? (
             <>
-              <TextDisplay className='mb-8 text-sm'>再設定するパスワードを入力してください</TextDisplay>
+              <TextDisplay className="mb-8 text-sm">
+                再設定するパスワードを入力してください
+              </TextDisplay>
               <PasswordInput value={password} onChange={setPassword} />
-              <div className='flex flex-col'>
+              <div className="flex flex-col">
                 <RoundButton
-                  className={isSubmittable ? 'text-black bg-white' : 'text-gray-600 bg-gray-500'}
-                  text='送信'
+                  className={
+                    isSubmittable
+                      ? 'text-black bg-white'
+                      : 'text-gray-600 bg-gray-500'
+                  }
+                  text="送信"
                   disabled={!isSubmittable}
                   onClick={async () => {
                     AuthService.resetPassword(username, code, password).then(
@@ -47,13 +53,20 @@ const PasswordResetComponent: React.FC<PasswordResetComponentProps> = ({
                       },
                       (err) => setErrorMessage(err)
                     )
-                  }} />
+                  }}
+                />
               </div>
             </>
           ) : (
             <>
-              <TextDisplay className='mb-8 text-sm'>パスワードの再設定が完了しました。</TextDisplay>
-              <RoundButton className='border-2 text-lg' text='OK' onClick={closeModal} />
+              <TextDisplay className="mb-8 text-sm">
+                パスワードの再設定が完了しました。
+              </TextDisplay>
+              <RoundButton
+                className="border-2 text-lg"
+                text="OK"
+                onClick={closeModal}
+              />
             </>
           )}
         </DefaultModalContainer>

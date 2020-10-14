@@ -15,7 +15,7 @@ import {
 } from 'src/types/API'
 import { parseSearchParams } from 'src/utils/UrlParser'
 
-const JoinableClassType: ClassType[] = ['Prospects', 'Angels', 'Galleries']
+const JoinableClasses: ClassType[] = ['Angels', 'Prospects', 'Galleries']
 
 interface JoinTeamContainerProps {
   teamId: string
@@ -41,9 +41,18 @@ const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
   if (!data?.getTeam) {
     return <></>
   }
-  const teamClasses = data?.getTeam?.classes
-    .filter((each) => JoinableClassType.includes(each?.classType))
-    .map((each) => new TeamClass(each?.teamId, each?.teamClassId, each?.classType, [], 1000))
+  const team = data.getTeam
+  const teamClasses = team.classes || []
+  const joinableTeamClasses = JoinableClasses.map((joinableClass) => {
+    const teamClass = teamClasses.find((each) => each?.classType === joinableClass)
+    return new TeamClass(
+      teamClass?.teamId,
+      teamClass?.teamClassId,
+      teamClass?.classType,
+      teamClass?.benefits,
+      teamClass?.price?.price || 0
+    )
+  })
   return (
     <JoinTeam
       requestSubscription={async (teamClassId) => {
@@ -53,9 +62,10 @@ const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
         if (response.data?.requestSubscription?.sessionId)
           checkout(response.data?.requestSubscription?.sessionId)
       }}
+      teamName={team.name || ''}
       isLoading={false}
       loggedIn={user.loggedIn}
-      teamData={teamClasses}
+      teamData={joinableTeamClasses}
       hasPaymentCancelled={params['payment_status'] === 'cancel'}
     />
   )

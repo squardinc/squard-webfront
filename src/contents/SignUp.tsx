@@ -7,10 +7,7 @@ export const SignUpLayout: React.FC = () => {
   return (
     <>
       <TopLayout />
-      <AuthModal
-        openModal={openModal}
-        setOpenModal={setOpenModal}
-      />
+      <AuthModal openModal={openModal} setOpenModal={setOpenModal} />
     </>
   )
 }

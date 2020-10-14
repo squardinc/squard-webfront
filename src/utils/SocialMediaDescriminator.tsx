@@ -31,11 +31,9 @@ export const descriminate = (urlString: string): SocialMediaType => {
   }
   return 'link'
 }
-export const toHref =(url:string, type: SocialMediaType) =>{
+export const toHref = (url: string, type: SocialMediaType) => {
   const encoded = encodeURI(url)
-  if(type === 'email')
-    return `mailto:${encoded}`
-    if(type === 'phone')
-      return `tel:${encoded}`
-    return encoded
+  if (type === 'email') return `mailto:${encoded}`
+  if (type === 'phone') return `tel:${encoded}`
+  return encoded
 }
