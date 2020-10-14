@@ -1,18 +1,22 @@
 import * as React from 'react'
-import styled from 'styled-components'
-import { Heading3 } from 'src/vendor/heading3'
-import { ITeamClass } from 'src/models/team'
-import JoinCard from './joinCard'
-import * as colors from 'src/styles/colors'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
-import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { AuthModal, ModalType } from 'src/components/Modal/AuthModal'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { ITeamClass } from 'src/models/team'
+import * as colors from 'src/styles/colors'
+import { Heading3 } from 'src/vendor/heading3'
+import styled from 'styled-components'
 import * as Const from '../../../styles/const'
+import JoinCard from './joinCard'
 type JoinTeamProps = {
   requestSubscription: (teamClassId: string) => Promise<void>
   isLoading: boolean
   loggedIn: boolean
   teamData: ITeamClass[]
+}
+
+type CSSProps = {
+  innerWidth: number
 }
 
 const JoinTeamWrapper = styled.div`
@@ -62,11 +66,11 @@ const TextDesciption = styled.div`
   line-height: 1.78;
   letter-spacing: 0.025em;
 `
-const CardListWrapper = styled.div`
+const CardListWrapper = styled.div<CSSProps>`
   position: relative;
   width: 100%;
-  padding-left: ${window.innerWidth <= 370 ? '20px' : '60px'};
-  padding-right: ${window.innerWidth <= 370 ? '20px' : '60px'};
+  padding-left: ${(props) => props.innerWidth <= 370 ? '20px' : '60px'};
+  padding-right: ${(props) => props.innerWidth <= 370 ? '20px' : '60px'};
   margin-bottom: 40px;
 `
 
@@ -104,7 +108,7 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
           </TextDesciption>
         </JoinInfoWrapper>
       </JoinTeamTopWrapper>
-      <CardListWrapper>
+      <CardListWrapper innerWidth={window.innerWidth}>
         {teamData.map((team: ITeamClass, i) => {
           return (
             <CardWrapper key={i}>
