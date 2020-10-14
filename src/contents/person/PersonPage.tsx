@@ -323,7 +323,12 @@ export const PersonPage: React.FC<PersonPageProps> = ({
                 joinSucceeded={showJoinSucceededModal && team.teamId === joinSucceededTeamId}
                 index={index}
               >
-                <TeamItemWrapper onClick={() => setSelectedTeam(team)}>
+                <TeamItemWrapper
+                  onClick={() => {
+                    navigate(`/${team.pageId}`)
+                    // setSelectedTeam(team)
+                  }}
+                >
                   {team.title && (
                     <TeamRole>
                       <TeamRoleText>
