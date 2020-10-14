@@ -13,6 +13,7 @@ type JoinTeamProps = {
   requestSubscription: (teamClassId: string) => Promise<void>
   isLoading: boolean
   loggedIn: boolean
+  teamName: string
   teamData: ITeamClass[]
   hasPaymentCancelled?: boolean
 }
@@ -59,12 +60,15 @@ const CardWrapper = styled.div`
 
 const JoinTeam: React.FC<JoinTeamProps> = ({
   requestSubscription,
+  teamName,
   teamData,
   loggedIn,
   hasPaymentCancelled,
 }) => {
   const [openModal, setOpenModal] = React.useState<ModalType>('Closed')
-  const [showPaymentCancelledModal, setShowPaymentCancelledModal] = React.useState(hasPaymentCancelled)
+  const [showPaymentCancelledModal, setShowPaymentCancelledModal] = React.useState(
+    hasPaymentCancelled
+  )
   return (
     <>
       <JoinTeamWrapper>
@@ -75,7 +79,7 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
         </JoinTeamTitle>
         <JoinInfoWrapper>
           <TextJoinTeam>
-            <TextTeamName>Squard</TextTeamName>に参加する
+            <TextTeamName>{teamName}</TextTeamName>に参加する
           </TextJoinTeam>
           <TextDesciption>
             <TextDisplay>
@@ -112,7 +116,7 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
       {showPaymentCancelledModal && (
         <MessageModal
           closeModal={(e) => setShowPaymentCancelledModal(false)}
-          message='チームへの参加をキャンセルしました。'
+          message="チームへの参加をキャンセルしました。"
         />
       )}
     </>

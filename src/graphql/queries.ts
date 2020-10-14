@@ -17,7 +17,13 @@ export const getTeam = /* GraphQL */ `
         teamId
         classType
         priceId
+        price {
+          price
+        }
         enabled
+        benefits {
+          description
+        }
       }
       members {
         teamId

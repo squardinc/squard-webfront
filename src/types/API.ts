@@ -6,9 +6,9 @@ export type UpdateUserInput = {
   nameJp?: string | null
   nameEn?: string | null
   introduction?: string | null
-  links?: Array<string | null> | null
+  links?: Array<string> | null
   birthday?: string | null
-  displayTeamIds?: Array<string | null> | null
+  displayTeamIds?: Array<string> | null
   topImage?: string | null
   icon?: string | null
 }
@@ -40,9 +40,9 @@ export type UpdateUserMutation = {
     nameJp: string | null
     nameEn: string | null
     introduction: string | null
-    links: Array<string | null> | null
+    links: Array<string> | null
     birthday: string | null
-    displayTeamIds: Array<string | null> | null
+    displayTeamIds: Array<string> | null
     displayTeamMembers: Array<{
       __typename: 'TeamMember'
       teamId: string
@@ -60,7 +60,7 @@ export type UpdateUserMutation = {
       link: string | null
       contact: string | null
       introduction: string | null
-    } | null> | null
+    }> | null
     topImage: string | null
     icon: string | null
     teamMembers: Array<{
@@ -80,7 +80,7 @@ export type UpdateUserMutation = {
       link: string | null
       contact: string | null
       introduction: string | null
-    } | null> | null
+    }> | null
     page: {
       __typename: 'Page'
       id: string
@@ -124,7 +124,7 @@ export type GetTeamQuery = {
       classType: ClassType
       priceId: string | null
       enabled: boolean | null
-    } | null> | null
+    }> | null
     members: Array<{
       __typename: 'TeamMember'
       teamId: string
@@ -142,7 +142,7 @@ export type GetTeamQuery = {
       link: string | null
       contact: string | null
       introduction: string | null
-    } | null> | null
+    }> | null
     page: {
       __typename: 'Page'
       id: string
@@ -164,12 +164,12 @@ export type GetMyMemberInfoQuery = {
       nameJp: string | null
       nameEn: string | null
       introduction: string | null
-      links: Array<string | null> | null
+      links: Array<string> | null
       birthday: string | null
-      displayTeamIds: Array<string | null> | null
+      displayTeamIds: Array<string> | null
       topImage: string | null
       icon: string | null
-    } | null
+    }
     team: {
       __typename: 'Team'
       id: string
@@ -179,7 +179,7 @@ export type GetMyMemberInfoQuery = {
       topImage: string | null
       tags: Array<string> | null
       system: string | null
-    } | null
+    }
     teamClassId: string
     class: {
       __typename: 'MyTeamClass'
@@ -188,6 +188,10 @@ export type GetMyMemberInfoQuery = {
       classType: ClassType
       priceId: string | null
       enabled: boolean | null
+      benefits: {
+        description: string
+      } | null
+      price: number
     } | null
     startAt: number | null
     endAt: number | null
@@ -198,7 +202,7 @@ export type GetMyMemberInfoQuery = {
     link: string | null
     contact: string | null
     introduction: string | null
-  } | null> | null
+  }> | null
 }
 
 export type GetTeamMembersQueryVariables = {
@@ -217,9 +221,9 @@ export type GetTeamMembersQuery = {
       nameJp: string | null
       nameEn: string | null
       introduction: string | null
-      links: Array<string | null> | null
+      links: Array<string> | null
       birthday: string | null
-      displayTeamIds: Array<string | null> | null
+      displayTeamIds: Array<string> | null
       topImage: string | null
       icon: string | null
     }
@@ -253,7 +257,7 @@ export type GetTeamMembersQuery = {
     link: string | null
     contact: string | null
     introduction: string | null
-  } | null> | null
+  }> | null
 }
 
 export type GetUserQueryVariables = {
@@ -267,9 +271,9 @@ export type GetUserQuery = {
     nameJp: string | null
     nameEn: string | null
     introduction: string | null
-    links: Array<string | null> | null
+    links: Array<string> | null
     birthday: string | null
-    displayTeamIds: Array<string | null> | null
+    displayTeamIds: Array<string> | null
     displayTeamMembers: Array<{
       __typename: 'TeamMember'
       teamId: string
@@ -287,16 +291,7 @@ export type GetUserQuery = {
       link: string | null
       contact: string | null
       introduction: string | null
-      team: {
-        name: string
-        page: {
-          id: string
-        } | null
-      } | null
-      class: {
-        classType: ClassType
-      }
-    } | null> | null
+    }> | null
     topImage: string | null
     icon: string | null
     teamMembers: Array<{
@@ -316,7 +311,7 @@ export type GetUserQuery = {
       link: string | null
       contact: string | null
       introduction: string | null
-    } | null> | null
+    }> | null
     page: {
       __typename: 'Page'
       id: string

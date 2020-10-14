@@ -1,11 +1,14 @@
 import * as React from 'react'
 import {
-  CardBodyWrapper, EntitlementsWrapper,
-  EntitlementText, Flag, FlagWrapper,
-
+  CardBodyWrapper,
+  EntitlementsWrapper,
+  EntitlementText,
+  Flag,
+  FlagWrapper,
   MainNameText,
-
-  PriceText, SubNameText, TeamCardWrapper
+  PriceText,
+  SubNameText,
+  TeamCardWrapper
 } from 'src/components/TeamCard'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { ITeamClass } from 'src/models/team'
@@ -31,11 +34,7 @@ const JoinNowButton = styled.button`
   height: 50px;
   line-height: 50px;
   font-size: 1.2rem;
-  background: linear-gradient(
-    70deg,
-    ${colors.gradientRed},
-    ${colors.gradientYellow}
-  );
+  background: linear-gradient(70deg, ${colors.gradientRed}, ${colors.gradientYellow});
 `
 
 const JoinCard: React.FC<JoinCardProps> = ({ team, join }) => {
@@ -58,14 +57,14 @@ const JoinCard: React.FC<JoinCardProps> = ({ team, join }) => {
           </Flag>
         </FlagWrapper>
         <EntitlementsWrapper>
-          {team.benefits.map((el, i) => (
+          {team.benefits.map((benefit, i) => (
             <EntitlementText key={i}>
-              <TextDisplay>{el}</TextDisplay>
+              <TextDisplay>{benefit.description}</TextDisplay>
             </EntitlementText>
           ))}
         </EntitlementsWrapper>
         <CardBodyWrapper>
-          <JoinNowButton onClick={join} >
+          <JoinNowButton onClick={join}>
             <TextDisplay>今すぐ参加する</TextDisplay>
           </JoinNowButton>
         </CardBodyWrapper>

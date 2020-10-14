@@ -1,6 +1,8 @@
 import * as React from 'react'
-import { StaticImageFluid } from 'src/components/Image'
 
-export const TeamTop = () => {
-  return <StaticImageFluid image="top" />
+interface TeamTopProps {
+  image: string
+}
+export const TeamTop: React.FC<TeamTopProps> = ({ image }) => {
+  return <img src={encodeURI(image)} alt="" />
 }
