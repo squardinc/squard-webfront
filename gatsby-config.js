@@ -13,6 +13,19 @@ module.exports = {
     description: ``,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
+        head: true,
+        anonymize: true,
+        respectDNT: true,
+        pageTransitionDelay: 0,
+        defer: false,
+        alwaysSendReferrer: true,
+        allowLinker: true,
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: 'gatsby-plugin-root-import',
@@ -54,10 +67,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sass`,
       options: {
-        postCssPlugins: [
-          require('tailwindcss'),
-          require('./tailwind.config.js'),
-        ],
+        postCssPlugins: [require('tailwindcss'), require('./tailwind.config.js')],
       },
     },
     {
