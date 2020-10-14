@@ -1,21 +1,20 @@
 import * as React from 'react'
-import styled from 'styled-components'
-import * as colors from 'src/styles/colors'
-import { ITeamClass } from 'src/models/team'
-import { addComma } from 'src/utils/NumberFormatter'
-import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import * as Const from '../../../styles/const'
 import {
-  TeamCardWrapper,
-  FlagWrapper,
-  Flag,
-  MainNameText,
-  SubNameText,
-  PriceText,
+  CardBodyWrapper,
   EntitlementsWrapper,
   EntitlementText,
-  CardBodyWrapper,
+  Flag,
+  FlagWrapper,
+  MainNameText,
+  SubNameText,
+  TeamCardWrapper
 } from 'src/components/TeamCard'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { ITeamClass } from 'src/models/team'
+import * as colors from 'src/styles/colors'
+import * as Const from 'src/styles/const'
+import { addComma } from 'src/utils/NumberFormatter'
+import styled from 'styled-components'
 
 type JoinCardProps = {
   team: ITeamClass
@@ -59,33 +58,29 @@ const JoinNowButton = styled.button`
   height: 50px;
   line-height: 50px;
 
-  background: linear-gradient(
-    70deg,
-    ${colors.gradientRed},
-    ${colors.gradientYellow}
-  );
+  background: linear-gradient(70deg, ${colors.gradientRed}, ${colors.gradientYellow});
 
   font-weight: ${Const.fontWeight.medium};
   font-size: 16px;
 `
 
 const JoinCard: React.FC<JoinCardProps> = ({ team, join }) => {
-  const formattedPrice = addComma(team.monthlyPrice)
+  const formattedPrice = addComma(team.price)
 
   return (
-    <JoinCardAnchor id={team.main}>
+    <JoinCardAnchor id={team.classType}>
       <TeamCardWrapper>
         <FlagWrapper>
           <Flag>
             <CardTitle
               style={{
-                fontSize: team.main && team.main.length > 8 ? '23px' : '29px',
+                fontSize: team.classType && team.classType.length > 8 ? '23px' : '29px',
               }}
             >
-              <TextDisplay>{team.main}</TextDisplay>
+              <TextDisplay>{team.classType}</TextDisplay>
             </CardTitle>
             <CardSubTitle>
-              <TextDisplay>({team.sub})</TextDisplay>
+              <TextDisplay>({team.classTypeJp})</TextDisplay>
             </CardSubTitle>
             <CardPriceTitle>
               <TextDisplay>￥{formattedPrice} / 月額</TextDisplay>
@@ -93,10 +88,10 @@ const JoinCard: React.FC<JoinCardProps> = ({ team, join }) => {
           </Flag>
         </FlagWrapper>
         <EntitlementsWrapper>
-          {team.benefits.map((el, i) => (
-            <CardEntitlementText key={i}>
-              <TextDisplay>{el}</TextDisplay>
-            </CardEntitlementText>
+          {team.benefits.map((benefit, i) => (
+            <EntitlementText key={i}>
+              <TextDisplay>{benefit.description}</TextDisplay>
+            </EntitlementText>
           ))}
         </EntitlementsWrapper>
         <CardBodyWrapper>

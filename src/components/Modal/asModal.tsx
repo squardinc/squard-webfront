@@ -4,6 +4,7 @@ import { withFadeOut } from 'src/utils/Modal'
 import styles from './modal.module.scss'
 
 Modal.setAppElement('body')
+export const MODAL_Z_INDEX = 50
 
 export interface ModalProps {
   closeModal: (e: React.MouseEvent<Element, MouseEvent>) => void

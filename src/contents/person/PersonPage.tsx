@@ -1,25 +1,27 @@
-import React from 'react'
-import styled from 'styled-components'
-import { navigate } from 'gatsby'
-import { IPersonal, ITeam } from 'src/models/person'
-import * as colors from 'src/styles/colors'
-import { DefaultFooter } from 'src/components/Footer/ContentFooter'
-import { getSocialMediaIcon, getTeamIcon } from './utils'
-import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import { TeamModal } from 'src/components/Modal/TeamModal'
-import { descriminate, toHref } from 'src/utils/SocialMediaDescriminator'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { navigate } from 'gatsby'
+import React from 'react'
+import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { ExternalLink } from 'src/components/Link/ExternalLink'
-
+import { MODAL_Z_INDEX } from 'src/components/Modal/asModal'
+import { TeamModal } from 'src/components/Modal/TeamModal'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import Top from 'src/images/temp/team/top.jpg'
-import * as Const from '../../styles/const'
+import { IPersonal, ITeam } from 'src/models/person'
+import * as colors from 'src/styles/colors'
+import * as Const from 'src/styles/const'
+import { descriminate, toHref } from 'src/utils/SocialMediaDescriminator'
+import styled from 'styled-components'
+import { getSocialMediaIcon, getTeamIcon } from './utils'
 
 type PersonPageProps = {
   isLoading: boolean
   personal: IPersonal
   profileEditable: boolean
+  joinSucceededTeamId?: string
   editProfile: VoidFunction
+  showJoinSucceededModal: Boolean
 }
 
 type StyleCssProps = {
@@ -31,6 +33,10 @@ type StyleCssProps = {
   oppositeTopOffset?: number
   profileMarginLeft?: number
   profileBorderLeft?: number
+}
+interface TeamItemAnchorProps {
+  joinSucceeded?: boolean
+  index: number
 }
 
 const ContentWrapper = styled.div`
@@ -105,8 +111,7 @@ const ProfilerImageContainer = styled.div`
   margin: 0px 20px 20px 20px;
   background-image: linear-gradient(#edc74c, #bc4c49);
   border-radius: 10px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 `
 
 const ProfileImage = styled.div`
@@ -114,8 +119,8 @@ const ProfileImage = styled.div`
   width: 74px;
   border-radius: 10px;
   margin: 3px 0px 0px 3px;
-  background: url(${(props: StyleCssProps) => (props.icon ? props.icon : '')})
-    no-repeat center center;
+  background: url(${(props: StyleCssProps) => (props.icon ? props.icon : '')}) no-repeat center
+    center;
   background-size: cover;
 `
 
@@ -176,17 +181,23 @@ const SocialMediaIcon = styled.div`
 const TeamWrapper = styled.div`
   margin: 30px 0 50px 0;
 `
-
-const TeamItemWrapper = styled.div`
+const TeamItemAnchor = styled.div<TeamItemAnchorProps>`
   position: relative;
-  height: 80px;
-  margin: 0px 20px 45px 20px;
-  border-radius: 10px;
-  cursor: pointer;
+  ${({ joinSucceeded }) =>
+    joinSucceeded &&
+    `
+      z-index: ${MODAL_Z_INDEX + 1};
+    `}
 
   :last-child {
     margin-bottom: 0px;
   }
+`
+const TeamItemWrapper = styled.div`
+  height: 80px;
+  margin: 0px 20px 45px 20px;
+  border-radius: 10px;
+  cursor: pointer;
 `
 const TeamInfo = styled.div`
   display: flex;
@@ -239,8 +250,7 @@ const TeamRole = styled.div`
   right: 16px;
   height: 30px;
   background-color: #efefef;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   color: #051026;
@@ -270,10 +280,14 @@ const ButtonEditWrapper = styled.div`
   align-items: center;
 `
 
-export const PersonPage = (props: PersonPageProps) => {
-  const { personal, editProfile, profileEditable = false } = props
+export const PersonPage: React.FC<PersonPageProps> = ({
+  personal,
+  editProfile,
+  profileEditable = false,
+  joinSucceededTeamId = '',
+  showJoinSucceededModal,
+}) => {
   const [selectedTeam, setSelectedTeam] = React.useState<ITeam | null>(null)
-
   return (
     <>
       <ContentWrapper>
@@ -291,9 +305,7 @@ export const PersonPage = (props: PersonPageProps) => {
           </UserCover>
           <ProfileContainerWrapper>
             <ProfilerImageContainer>
-              <ProfileImage
-                icon={personal.icon ? encodeURI(personal.icon) : Top}
-              />
+              <ProfileImage icon={personal.icon ? encodeURI(personal.icon) : Top} />
             </ProfilerImageContainer>
             <NameWrapper>
               <NameText>
@@ -310,13 +322,8 @@ export const PersonPage = (props: PersonPageProps) => {
               {personal.links.map((url, index) => {
                 const mediaType = descriminate(url)
                 return (
-                  <ExternalLink
-                    href={toHref(url, mediaType)}
-                    key={`${index}_${url}`}
-                  >
-                    <SocialMediaIcon>
-                      {getSocialMediaIcon(mediaType)}
-                    </SocialMediaIcon>
+                  <ExternalLink href={toHref(url, mediaType)} key={`${index}_${url}`}>
+                    <SocialMediaIcon>{getSocialMediaIcon(mediaType)}</SocialMediaIcon>
                   </ExternalLink>
                 )
               })}
@@ -324,31 +331,46 @@ export const PersonPage = (props: PersonPageProps) => {
           </ProfileContainerWrapper>
         </UserCoverWrapper>
         <TeamWrapper>
-          {personal.teams.map((team, i) => {
-            return (
-              <TeamItemWrapper key={i} onClick={() => setSelectedTeam(team)}>
-                <TeamRole>
-                  <TeamRoleText>
-                    <TextDisplay>{team.role}</TextDisplay>
-                  </TeamRoleText>
-                </TeamRole>
-                <TeamInfo>
-                  <TeamIconWrapper>
-                    {getTeamIcon(team.classType)}
-                  </TeamIconWrapper>
-                  <TeamTextWrapper>
-                    <TeamNameText>
-                      <TextDisplay>{team.name}</TextDisplay>
-                    </TeamNameText>
-                    <TeamPositionText>
-                      <TextDisplay>{`- ${team.classType}`}</TextDisplay>
-                    </TeamPositionText>
-                  </TeamTextWrapper>
-                  <TeamLinkWrapper></TeamLinkWrapper>
-                </TeamInfo>
-              </TeamItemWrapper>
-            )
-          })}
+          {/* TODO seperate logged in or not */}
+          {personal.teams
+            .filter((team) => personal.displayTeamIds.includes(team.teamId))
+            .map((team, index) => {
+              return (
+                <TeamItemAnchor
+                  id={`team-item_${team.teamId}`}
+                  key={team.teamId}
+                  joinSucceeded={showJoinSucceededModal && team.teamId === joinSucceededTeamId}
+                  index={index}
+                >
+                  <TeamItemWrapper
+                    onClick={() => {
+                      navigate(`/${team.pageId}`)
+                      // setSelectedTeam(team)
+                    }}
+                  >
+                    {team.title && (
+                      <TeamRole>
+                        <TeamRoleText>
+                          <TextDisplay>{team.title}</TextDisplay>
+                        </TeamRoleText>
+                      </TeamRole>
+                    )}
+                    <TeamInfo>
+                      <TeamIconWrapper>{getTeamIcon(team.classType)}</TeamIconWrapper>
+                      <TeamTextWrapper>
+                        <TeamNameText>
+                          <TextDisplay>{team.teamName}</TextDisplay>
+                        </TeamNameText>
+                        <TeamPositionText>
+                          <TextDisplay>{`- ${team.classType}`}</TextDisplay>
+                        </TeamPositionText>
+                      </TeamTextWrapper>
+                      <TeamLinkWrapper></TeamLinkWrapper>
+                    </TeamInfo>
+                  </TeamItemWrapper>
+                </TeamItemAnchor>
+              )
+            })}
         </TeamWrapper>
       </ContentWrapper>
       {selectedTeam && (

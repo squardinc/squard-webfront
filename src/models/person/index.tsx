@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import { GetUserQuery } from 'src/types/API'
 
 const SOCIAL_MEDIA = [
@@ -21,11 +22,22 @@ const CLASSES = [
   'Members',
   'Prospects',
   'Angels',
+  'Galleries',
   'VIP',
-]
+] as const
 export type ClassType = typeof CLASSES[number]
+export const ClassTypeJp: { [key in ClassType]: string } = {
+  Leader: 'リーダー',
+  CoreMembers: 'コアメンバー',
+  Members: 'メンバー',
+  Prospects: 'プロスペクト',
+  Angels: 'エンジェル',
+  Galleries: 'ギャラリー',
+  VIP: 'ビップ',
+}
 
 export type ITeam = {
+  id: string
   name: string
   classType: ClassType
   role: string
@@ -41,7 +53,9 @@ export type IPersonal = {
   nameEn: string
   introduction: string
   links: string[]
-  teams: ITeam[]
+  displayTeamIds: string[]
+  teams: IDisplayTeamMember[]
+  age: string
 }
 
 interface S3Object {
@@ -49,7 +63,31 @@ interface S3Object {
   region: string
   key: string
 }
+interface IDisplayTeamMember {
+  teamId: string
+  pageId: string
+  teamName: string
+  classType: ClassType
+  title: string
+}
+class DisplayTeamMember {
+  constructor(
+    readonly pageId: string,
+    readonly teamName: string,
+    readonly classType: ClassType,
+    readonly title: string
+  ) {}
 
+  static fromUserQueryResult = (displayTeamMember = {}) => {
+    return {
+      teamId: displayTeamMember.team?.id,
+      pageId: displayTeamMember.team?.page?.id,
+      teamName: displayTeamMember.team?.name,
+      classType: displayTeamMember.class?.classType,
+      title: displayTeamMember.title,
+    }
+  }
+}
 export class Person {
   constructor(
     readonly id: string,
@@ -58,8 +96,10 @@ export class Person {
     readonly topImage: string = '',
     readonly icon: string = '',
     readonly introduction: string = '',
+    readonly birthday: string = '',
     readonly links: string[] = [],
-    readonly teams: ITeam[] = []
+    readonly teams: IDisplayTeamMember[] = [],
+    readonly displayTeamIds: string[]
   ) {}
 
   static fromQueryResult = (result: GetUserQuery) => {
@@ -67,21 +107,28 @@ export class Person {
       id,
       nameJp,
       nameEn,
-      introduction,
-      links,
       topImage,
       icon,
-      displayTeams,
-    } = result.getUser
+      introduction,
+      birthday,
+      links,
+      teamMembers,
+      displayTeamIds,
+    } = result?.getUser || {}
     return new Person(
-      id,
+      id || '',
       nameJp || '',
       nameEn || '',
       topImage || '',
       icon || '',
       introduction || '',
+      birthday || '',
       links || [],
-      displayTeams || []
+      (teamMembers || []).map((each) => DisplayTeamMember.fromUserQueryResult(each)),
+      displayTeamIds
     )
+  }
+  get age() {
+    return dayjs().diff(this.birthday, 'year')
   }
 }

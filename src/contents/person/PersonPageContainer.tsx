@@ -1,38 +1,30 @@
-import React, { useState } from 'react'
-import { IPersonal, Person } from 'src/models/person'
-import { shunpei, hiroki, akihiro, shoya } from './personalData'
+import { gql, useMutation, useQuery } from '@apollo/client'
 import { navigate } from 'gatsby'
-import { PersonPageLayoutBlack, PersonPageLayoutGray } from './PersonPageLayout'
-import { useQuery, gql, useMutation } from '@apollo/client'
+import * as React from 'react'
+import { updateUser } from 'src/graphql/mutations'
+import { getUser } from 'src/graphql/queries'
+import { Person } from 'src/models/person'
 import {
   GetUserQuery,
-  UpdateUserMutation,
-  UpdateUserMutationVariables,
   UpdateUserInput,
+  UpdateUserMutation,
+  UpdateUserMutationVariables
 } from 'src/types/API'
-import { getUser } from 'src/graphql/queries'
-import { updateUser } from 'src/graphql/mutations'
+import { parseSearchParams } from 'src/utils/UrlParser'
+import { PersonPageLayoutBlack, PersonPageLayoutGray } from './PersonPageLayout'
 
 interface PersonPageContainerProps {
   id: string
 }
-const getPersonData = (id: string): IPersonal | undefined => {
-  if (id === 'shunpei_koike') return shunpei
-  if (id === 'hiroki_matsui') return hiroki
-  if (id === 'akihiro_kimura') return akihiro
-  if (id === 'shoya_yanagisawa') return shoya
-}
-export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({
-  id,
-}) => {
-  const [isEditing, setEditing] = useState(false)
+export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) => {
+  const [isEditing, setEditing] = React.useState(false)
+  const params = parseSearchParams(window.location.search)
   const { loading, error, data } = useQuery<GetUserQuery>(gql(getUser), {
     variables: { id },
   })
-  const [requestUpdate, response] = useMutation<
-    UpdateUserMutation,
-    UpdateUserMutationVariables
-  >(gql(updateUser))
+  const [requestUpdate, response] = useMutation<UpdateUserMutation, UpdateUserMutationVariables>(
+    gql(updateUser)
+  )
 
   if (error) {
     navigate('/')
@@ -42,14 +34,14 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({
     return <></>
   }
 
-  const PersonPageLayout = isEditing
-    ? PersonPageLayoutBlack
-    : PersonPageLayoutGray
+  const PersonPageLayout = isEditing ? PersonPageLayoutBlack : PersonPageLayoutGray
 
   return (
     <PersonPageLayout
       isLoading={false}
       isEditing={isEditing}
+      hasPaymentComplete={params['payment_status'] === 'success'}
+      joinSucceededTeamId={params.teamId}
       personal={Person.fromQueryResult(data)}
       update={(profile: UpdateUserInput) =>
         requestUpdate({

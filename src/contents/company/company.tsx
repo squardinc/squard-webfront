@@ -1,16 +1,16 @@
 import * as React from 'react'
-import styled from 'styled-components'
-import styles from './company.module.scss'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
+import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { withTheme } from 'src/context/ThemeContext'
-import { DefaultFooter } from 'src/components/Footer/ContentFooter'
-import CompanyImage from 'src/images/temp/company/company.jpg'
 import CEO from 'src/images/temp/company/ceo.jpg'
-import COO from 'src/images/temp/company/coo.jpg'
 import CFO from 'src/images/temp/company/cfo.jpg'
+import CompanyImage from 'src/images/temp/company/company.jpg'
+import COO from 'src/images/temp/company/coo.jpg'
 import CTO from 'src/images/temp/company/cto.jpg'
+import styled from 'styled-components'
 import * as Const from '../../styles/const'
+import styles from './company.module.scss'
 
 const CompanyName = styled.div`
   font-weight: ${Const.fontWeight.bold};
@@ -127,13 +127,13 @@ const Page: React.FC = () => {
               </span>{' '}
               are the
             </p>
-            <p className="pr-6 text-white text-4xl font-bold tracking-wider">
+            <div className="pr-6 text-white text-4xl font-bold tracking-wider">
               <CompanyName>
                 <TextDisplay>
                   Squard, Inc<span className="text-red-600">.</span>
                 </TextDisplay>
               </CompanyName>
-            </p>
+            </div>
           </div>
         </div>
       </div>

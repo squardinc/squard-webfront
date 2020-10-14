@@ -28,6 +28,10 @@ $member-border-radius: 10px;
   margin: 2.5px 5px;
 }
 
+.imageContainer {
+  @include member;
+}
+
 .redImageContainer {
   @include member;
   -webkit-filter: invert(40%) grayscale(100%) brightness(50%) sepia(100%) hue-rotate(-70deg) saturate(400%) contrast(0.8);

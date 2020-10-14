@@ -1,74 +1,58 @@
-import * as React from 'react'
 import { Link } from 'gatsby'
+import * as React from 'react'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { ITeamMember } from 'src/models/team/index'
 import styles from './TeamCoreMembers.module.scss'
 
-export interface CoreMember {
-  id: string
-  imageUrl: string
-  age: string
-  title: string
-  introduction: string
-  name: string
-  color: string
-}
 interface TeamCoreMembersProps {
-  coreMembers: CoreMember[]
+  coreMembers: ITeamMember[]
 }
-export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
-  coreMembers,
-}) => {
-  function getImageTheme(key: string) {
-    let style = styles.yellowImageContainer
+export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({ coreMembers }) => {
+  function getImageTheme(key?: string) {
     if (key === 'red') {
-      style = styles.redImageContainer
-    } else if (key === 'blue') {
-      style = styles.blueImageContainer
-    } else if (key === 'green') {
-      style = styles.greenImageContainer
-    } else {
-      style = styles.yellowImageContainer
+      return styles.redImageContainer
     }
-    return style
+    if (key === 'blue') {
+      return styles.blueImageContainer
+    }
+    if (key === 'green') {
+      return styles.greenImageContainer
+    }
+    if (key === 'yellow') {
+      return styles.yellowImageContainer
+    }
+    return styles.imageContainer
   }
   return (
     <div className={styles.container}>
       <TwoStagedCaption sub="CORE" main="MEMBERS" />
       <div className={styles.members}>
-        {coreMembers.map((member: any) => {
-          return (
-            <Link key={member.id} to={`/${member.id}`}>
-              <div className="relative mt-3">
-                <div
-                  style={{
-                    background: `url("${member.imageUrl}") no-repeat center center `,
-                    backgroundSize: 'cover',
-                  }}
-                  className={getImageTheme(member.color)}
-                ></div>
+        {coreMembers.map((member) => (
+          <Link key={member.userId} to={`/${member.userId}`}>
+            <div className="relative mt-3">
+              <div
+                style={{
+                  background: `url("${member.image}") no-repeat center center `,
+                  backgroundSize: 'cover',
+                }}
+                className={getImageTheme(member.imageColor)}
+              ></div>
+              {member.displayAge && (
                 <TextDisplay className={styles.ageTag}>
                   <div className={styles.ageTagContainer}>
                     <p className={`${styles.ageTitle}`}>Age</p>
-                    <p
-                      className={`border-b border-dashed w-full border-yellow`}
-                    ></p>
-                    <p className={`${styles.ageValue}`}>{member.age}</p>
+                    <p className={`border-b border-dashed w-full border-yellow`}></p>
+                    <p className={styles.ageValue}>{member.displayAge}</p>
                   </div>
                 </TextDisplay>
-                <TextDisplay className={styles.designationText}>
-                  {member.title}
-                </TextDisplay>
-                <TextDisplay className={styles.titleSM}>
-                  {member.introduction}
-                </TextDisplay>
-                <TextDisplay className={styles.titleLG}>
-                  {member.name}
-                </TextDisplay>
-              </div>
-            </Link>
-          )
-        })}
+              )}
+              <TextDisplay className={styles.designationText}>{member.title}</TextDisplay>
+              <TextDisplay className={styles.titleSM}>{member.subTitle}</TextDisplay>
+              <TextDisplay className={styles.titleLG}>{member.displayName}</TextDisplay>
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   )

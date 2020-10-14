@@ -1,24 +1,25 @@
-import * as React from 'react'
-import { LeftBorderCaption } from 'src/components/Caption/Captions'
-import styles from './TeamProspects.module.scss'
-import { DefaultButton } from 'src/components/Button/DefaultButton'
 import { navigate } from 'gatsby'
+import * as React from 'react'
+import { DefaultButton } from 'src/components/Button/DefaultButton'
+import { LeftBorderCaption } from 'src/components/Caption/Captions'
+import { ITeamMember } from 'src/models/team'
+import styles from './TeamProspects.module.scss'
 
 interface ProspectProps {
-  prospect: string
+  prospect: ITeamMember
 }
 const Prospect: React.FC<ProspectProps> = ({ prospect }) => {
   return (
     <div className={styles.prospectContainer}>
       <div className="pl-1 pr-2 w-40">
-        <img src={prospect} className={styles.prospect} />
+        <img src={prospect.image} className={styles.prospect} />
       </div>
     </div>
   )
 }
 
 interface TeamPropspectsProps {
-  propspects: string[]
+  propspects: ITeamMember[]
 }
 export const TeamProspects: React.FC<TeamPropspectsProps> = ({
   propspects,
@@ -27,8 +28,8 @@ export const TeamProspects: React.FC<TeamPropspectsProps> = ({
     <div className={styles.container}>
       <LeftBorderCaption text="PROSPECTS" color="white" />
       <div className="flex overflow-x-auto">
-        {propspects.map((prospect, index) => (
-          <Prospect key={index} prospect={prospect} />
+        {propspects.map((prospect) => (
+          <Prospect key={prospect.teamMemberId} prospect={prospect} />
         ))}
       </div>
       <div className="py-5">

@@ -1,22 +1,22 @@
+import { gql, useQuery } from '@apollo/client'
+import { navigate } from 'gatsby'
 import * as React from 'react'
-import { AboutPage } from './about/AboutPage'
-import { CompanyPage } from './company/company'
-import { FAQPage } from './faq/FAQ'
-import { PrivacyPolicyPage } from './privacypolicy/privacypolicy'
-import { TeamLayout } from './team/TeamLayout'
-import { SignUpLayout } from './SignUp'
-import { ConfirmSignUpLayout } from './callback/ConfirmSignUp'
-import { ResetPasswordLayout } from './callback/ResetPassword'
+import { getPage } from 'src/graphql/queries'
+import { GetPageQuery } from 'src/types/API'
 import { PersonPageContainer } from './person/PersonPageContainer'
-import { SocialSigninLayout } from './SocialSignIn'
-import { SctlPage } from './sctl/SctlPage'
+import { StaticPageRoute } from './StaticPageRoute'
+import { TeamContainer } from './team/TeamContainer'
 
 export const StaticPagePaths = [
   'about',
   'company',
   'faq',
   'privacypolicy',
+  'sctl',
   'signup',
+  'confirmSignUp',
+  'resetPassword',
+  'socialSignIn',
 ] as const
 
 type StaticPageType = typeof StaticPagePaths[number]
@@ -25,29 +25,29 @@ interface ContentLayoutProps {
   path: string
   contentId: StaticPageType | string
 }
-export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId }) => {
-  switch (contentId) {
-    case 'about':
-      return <AboutPage />
-    case 'company':
-      return <CompanyPage />
-    case 'faq':
-      return <FAQPage />
-    case 'privacypolicy':
-      return <PrivacyPolicyPage />
-    case 'sctl':
-      return <SctlPage />
-    case 'signup':
-      return <SignUpLayout />
-    case 'confirmSignUp':
-      return <ConfirmSignUpLayout />
-    case 'resetPassword':
-      return <ResetPasswordLayout />
-    case 'socialSignIn':
-      return <SocialSigninLayout />
+export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId = '' }) => {
+  if (StaticPagePaths.includes(contentId)) return <StaticPageRoute contentId={contentId} />
+
+  const { loading, error, data } = useQuery<GetPageQuery>(gql(getPage), {
+    variables: { id: contentId.toLowerCase() },
+  })
+  if (error) {
+    navigate('/')
+    return <></>
   }
-  if (contentId === 'squard') {
-    return <TeamLayout id={contentId} />
+  if (loading || !data) {
+    // TODO loading
+    return <></>
   }
-  return <PersonPageContainer id={contentId} />
+  const { resourceId, type = 'Team' } = data.getPage || {}
+  if (!resourceId) {
+    navigate('/')
+    return <></>
+  }
+  if (!type) {
+    return <></>
+  }
+  if (type === 'Team') return <TeamContainer id={resourceId} />
+  if (type === 'Person') return <PersonPageContainer id={resourceId} />
+  return <StaticPageRoute contentId={resourceId} />
 }

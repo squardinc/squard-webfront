@@ -1,4 +1,7 @@
-export const parseSearchParams = (search: string) => {
+export const parseSearchParams = (search?: string) => {
+  if (!search) {
+    return {}
+  }
   const params = decodeURIComponent(search).substring(1).split('&')
   return params.reduce((previous: any, cuurent) => {
     const [key, value] = cuurent.split('=')
