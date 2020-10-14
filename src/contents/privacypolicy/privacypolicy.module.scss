@@ -1,5 +1,5 @@
 @import 'src/styles/variables';
-
+@import "../../styles/const";
 .container {
   position: relative;
   background-color: #051026;
@@ -8,7 +8,9 @@
 .sharpUnderLiner {
   display: inline-block;
   padding: 0 10px 25px;
-
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 28px;
   &::after {
     margin-left: 20px;
     content: '';
@@ -23,12 +25,15 @@
 }
 
 .underLiner {
+  font-weight: $weight-dim-light;
+  font-size: 20px;;
   &::after {
-    margin-left: 20px;
+    
     content: '';
     display: block;
     height: 6px;
     margin: 5px auto;
+    margin-left: -15px;
     height: 2px;
     background-image: linear-gradient(to right, #fbe62e, #af1a3d);
   }

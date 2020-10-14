@@ -5,7 +5,6 @@ import { Icon } from '../Icon'
 import Camera from '../../assets/icon-camera.svg'
 import { ImageEditModal } from '../Modal/ImageEditModal'
 
-
 export type ImageType = 'cover' | 'avatar'
 export interface ImageProfileProps {
   topImage: string
@@ -70,14 +69,27 @@ const CameraIconAvatarWrapper = styled.div`
   }
 `
 
-const ImageProfileEditComponent: React.FC<ImageProfileProps> = ({ style = {}, topImage, icon, setTopImage, setIcon }) => {
-  const [showTopImageEditModal, setShowTopImageEditModal] = React.useState(false)
+const ImageProfileEditComponent: React.FC<ImageProfileProps> = ({
+  style = {},
+  topImage,
+  icon,
+  setTopImage,
+  setIcon,
+}) => {
+  const [showTopImageEditModal, setShowTopImageEditModal] = React.useState(
+    false
+  )
   const [showIconEditModal, setShowIconEditModal] = React.useState(false)
-  const [topImagePreviewUrl, setTopImagePreviewUrl] = React.useState<string>(topImage)
+  const [topImagePreviewUrl, setTopImagePreviewUrl] = React.useState<string>(
+    topImage
+  )
   const [iconPreviewUrl, setIconPreviewUrl] = React.useState<string>(icon)
   const [editingTopImage, setEditingTopImage] = React.useState<string>('')
   const [editingIcon, setEditingIcon] = React.useState<string>('')
-  const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>, setImg: React.Dispatch<React.SetStateAction<string>>) => {
+  const onSelectFile = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    setImg: React.Dispatch<React.SetStateAction<string>>
+  ) => {
     if (e.target.files && e.target.files.length > 0) {
       const reader = new FileReader()
       reader.addEventListener('load', () => {
@@ -122,7 +134,7 @@ const ImageProfileEditComponent: React.FC<ImageProfileProps> = ({ style = {}, to
             }}
           />
         </label>
-        <label >
+        <label>
           <CameraIconAvatarWrapper>
             <Camera />
           </CameraIconAvatarWrapper>
@@ -139,8 +151,8 @@ const ImageProfileEditComponent: React.FC<ImageProfileProps> = ({ style = {}, to
       </ImageProfileWrapper>
       {showTopImageEditModal && (
         <ImageEditModal
-          fileName='top.jpeg'
-          contentType='image/jpeg'
+          fileName="top.jpeg"
+          contentType="image/jpeg"
           closeModal={() => {
             if (typeof window !== 'undefined')
               window.URL.revokeObjectURL(topImagePreviewUrl)
@@ -156,8 +168,8 @@ const ImageProfileEditComponent: React.FC<ImageProfileProps> = ({ style = {}, to
         <ImageEditModal
           editingImg={editingIcon}
           onSelectFile={(e) => onSelectFile(e, setEditingIcon)}
-          fileName='icon.jpeg'
-          contentType='image/jpeg'
+          fileName="icon.jpeg"
+          contentType="image/jpeg"
           closeModal={() => setShowIconEditModal(false)}
           setImg={setIcon}
           setPreviewUrl={setIconPreviewUrl}

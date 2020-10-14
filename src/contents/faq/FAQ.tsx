@@ -1,12 +1,30 @@
 import * as React from 'react'
 
 import styles from './FAQ.module.scss'
-
+import styled from 'styled-components'
 import { Heading1 } from 'src/components/Heading1/Heading1'
 import { FAQItem } from 'src/components/FAQItem/FAQItem'
 import { withTheme } from 'src/context/ThemeContext'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { Link } from 'gatsby'
+import * as Const from '../../styles/const'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+
+const PageHeader = styled(Heading1)`
+  font-weight: ${Const.fontWeight.simbold};
+  font-size: 28px;
+`
+
+const GroupFAQ = styled.div`
+  width: 100%;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  :last-child {
+    margin-bottom: 0px;
+  }
+`
 
 export const Page: React.FC = (props) => {
   const faqs = [
@@ -63,14 +81,16 @@ export const Page: React.FC = (props) => {
   return (
     <>
       <div className={styles.pageWrapper}>
-        <Heading1>FAQ</Heading1>
-        <div>
+        <PageHeader>
+          <TextDisplay>FAQ</TextDisplay>
+        </PageHeader>
+        <GroupFAQ>
           {faqs.map((el, index) => (
             <FAQItem key={index} num={index + 1} {...el} />
           ))}
-        </div>
+        </GroupFAQ>
       </div>
-      <DefaultFooter />
+      <DefaultFooter backgroundColor={Const.darkBlue} />
     </>
   )
 }

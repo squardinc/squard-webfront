@@ -4,12 +4,30 @@ import Complete from 'src/assets/status/complete.svg'
 import Drive from 'src/assets/status/drive.svg'
 import Ready from 'src/assets/status/ready.svg'
 import StatusExplain from 'src/assets/status/status.svg'
-import { Description } from 'src/components/Description/Description'
 import { Heading2 } from 'src/components/Heading2/Heading2'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import * as Const from 'src/styles/const'
+import styled from 'styled-components'
 import styles from './Status.module.scss'
 
+const HeaderWrapper = styled.div``
 
-
+const Description = styled.div`
+  font-weight: ${Const.fontWeight.light};
+  font-size: ${Const.fontSize.sm};
+  letter-spacing: ${Const.letterSpacing.normal};
+  line-height: 1.785;
+  padding-left: 58px;
+  padding-right: 58px;
+  margin-bottom: 50px;
+  margin-bottom: 50px;
+  text-align: left;
+`
+const StatusDescription = styled(Description)`
+  font-weight: ${Const.fontWeight.thin};
+  margin-bottom: 30px;
+  margin-bottom: 20px;
+`
 
 interface StatusProps {}
 
@@ -39,22 +57,32 @@ export const Status: React.FC<StatusProps> = () => {
 
   return (
     <div>
-      <Heading2 main="STATUS" sub="ステータス" />
+      <HeaderWrapper>
+        <Heading2 main="STATUS" sub="ステータス" />
+      </HeaderWrapper>
+
       <Description>
-        Squardで管理される全てのチームには、STATUS（ステータス）が存在します。STATUSは現在のチームの状況を表し、チームページの表示項目や各種機能の開放及び制限はステータスに基づいて行われます。またSTATUSはチームの管理者が自由に設定することができます。
+        <TextDisplay>
+          Squardで管理される全てのチームには、STATUS（ステータス）が存在します。STATUSは現在のチームの状況を表し、チームページの表示項目や各種機能の開放及び制限はステータスに基づいて行われます。またSTATUSはチームの管理者が自由に設定することができます。
+        </TextDisplay>
       </Description>
       <div className={styles.explain}>
         <StatusExplain></StatusExplain>
       </div>
       <Description>
-        プロジェクトを開始した時点でSTATUSは「Ready」となり、設定したCore
-        Membersの人員が集まった時点で自動的に「Drive」に変更され、チームが始動します。その後プロジェクトが完遂されれば「Complete」途中で解散すれば「Breakup」となります。
+        <TextDisplay>
+          プロジェクトを開始した時点でSTATUSは「Ready」となり、設定したCore
+          Membersの人員が集まった時点で自動的に「Drive」に変更され、チームが始動します。その後プロジェクトが完遂されれば「Complete」途中で解散すれば「Breakup」となります。
+        </TextDisplay>
       </Description>
       <div className={styles.statusList}>
         {statusList.map((el, index) => (
           <div key={index} className={styles.status}>
             <div className={styles.logo}>{el.logo}</div>
-            <div className={styles.description}>{el.description}</div>
+            <StatusDescription>
+              {' '}
+              <TextDisplay>{el.description}</TextDisplay>
+            </StatusDescription>
           </div>
         ))}
       </div>

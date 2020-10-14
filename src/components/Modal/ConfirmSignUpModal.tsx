@@ -24,20 +24,20 @@ export const ConfirmSignUpModal: React.FC = () => {
   }, [])
   return (
     <>
-      {showSignUpCompleteModal &&
+      {showSignUpCompleteModal && (
         <CompleteModal
           title="登録完了"
           closeModal={() => {
             setShowSignUpCompleteModal(false)
           }}
         />
-      }
-      {showErrorMessage &&
+      )}
+      {showErrorMessage && (
         <MessageModal
           message="登録に失敗しました。再度登録し直すか、管理者までお問い合わせください。"
           closeModal={() => setShowErrorMessage(false)}
         />
-      }
+      )}
     </>
   )
 }

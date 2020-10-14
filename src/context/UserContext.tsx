@@ -15,8 +15,8 @@ export const UserContext = React.createContext<UserContextInterface>({
 export const UserContextProvider: React.FC = ({ children }) => {
   const [user, setUser] = React.useState<LoginUser>(LoginUserModel.guest())
   React.useEffect(() => {
-      AuthService.intialize().then(user => setUser(user))
-  },[])
+    AuthService.intialize().then((user) => setUser(user))
+  }, [])
   return (
     <UserContext.Provider value={{ user, setUser }}>
       {children}

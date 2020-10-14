@@ -11,22 +11,21 @@ import {
   UpdateUserMutationVariables
 } from 'src/types/API'
 import { parseSearchParams } from 'src/utils/UrlParser'
-import PersonPageLayout from './PersonPageLayout'
+import { PersonPageLayoutBlack, PersonPageLayoutGray } from './PersonPageLayout'
 
 interface PersonPageContainerProps {
   id: string
 }
-export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({
-  id,
-}) => {
+export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) => {
+  const [isEditing, setEditing] = React.useState(false)
   const params = parseSearchParams(window.location.search)
   const { loading, error, data } = useQuery<GetUserQuery>(gql(getUser), {
     variables: { id },
   })
-  const [requestUpdate, response] = useMutation<
-    UpdateUserMutation,
-    UpdateUserMutationVariables
-  >(gql(updateUser))
+  const [requestUpdate, response] = useMutation<UpdateUserMutation, UpdateUserMutationVariables>(
+    gql(updateUser)
+  )
+
   if (error) {
     navigate('/')
     return <></>
@@ -34,20 +33,35 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({
   if (loading || !data) {
     return <></>
   }
+
+  const PersonPageLayout = isEditing ? PersonPageLayoutBlack : PersonPageLayoutGray
+
   return (
-    <>
-      <PersonPageLayout
-        isLoading={false}
-        personal={Person.fromQueryResult(data)}
-        update={(profile: UpdateUserInput) =>
-          requestUpdate({
-            variables: { input: profile },
-          })
-        }
-        hasPaymentComplete={params['payment_status'] === 'success'}
-        joinSucceededTeamId={params.teamId}
-      />
-    </>
+    <PersonPageLayout
+      isLoading={false}
+      isEditing={isEditing}
+      hasPaymentComplete={params['payment_status'] === 'success'}
+      joinSucceededTeamId={params.teamId}
+      personal={Person.fromQueryResult(data)}
+      update={(profile: UpdateUserInput) =>
+        requestUpdate({
+          variables: {
+            input: {
+              nameJp: profile.nameJp,
+              nameEn: profile.nameEn,
+              links: profile.links,
+              introduction: profile.introduction,
+              displlayTeams: profile.displlayTeams,
+              topImage: profile.topImage,
+              icon: profile.icon,
+            },
+          },
+        })
+      }
+      onEditProfile={(editing: boolean) => {
+        setEditing(editing)
+      }}
+    />
   )
 }
 

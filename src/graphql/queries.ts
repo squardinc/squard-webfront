@@ -102,7 +102,7 @@ export const getMyMemberInfo = /* GraphQL */ `
       introduction
     }
   }
-`;
+`
 export const getTeamMembers = /* GraphQL */ `
   query GetTeamMembers($teamId: ID!) {
     getTeamMembers(teamId: $teamId) {
@@ -150,7 +150,7 @@ export const getTeamMembers = /* GraphQL */ `
       introduction
     }
   }
-`;
+`
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
@@ -223,4 +223,4 @@ export const getPage = /* GraphQL */ `
       type
     }
   }
-`;
+`

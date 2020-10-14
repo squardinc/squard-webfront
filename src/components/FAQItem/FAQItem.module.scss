@@ -4,15 +4,17 @@
 $gradient-middle: #90352b;
 
 .faq {
-  margin: 50px 0;
+  margin-top: 25px;
+  margin-bottom: 25px;
   color: #fff;
+  text-align: left;
 }
 
 .questionWrapper {
   background: linear-gradient(to bottom, $gradient-yellow, $gradient-middle);
   border-radius: 20px;
   padding: 4px;
-  margin-bottom: 52px;
+  margin-bottom: 72px;
   position: relative;
 
   &::before {
@@ -55,12 +57,18 @@ $gradient-middle: #90352b;
 
 .questionTitle {
   display: inline-block;
-  font-weight: 700;
-  font-size: 1.2rem;
+  font-weight: $weight-sim-bold;
+  font-size: 16px;
+  letter-spacing: 0.025em;
+  line-height: 1.18;
 }
 
 .questionText {
   margin: 8px 0;
+  font-weight: 250;
+  font-size: 18px;
+  letter-spacing: 0.025em;
+  line-height: 1.6;
 }
 
 .questionQuote {
@@ -73,12 +81,18 @@ $gradient-middle: #90352b;
 
 .answerWrapper {
   margin: 32px;
+  font-weight: $weight-medium;
+  font-size: 16px;
+  letter-spacing: 0.025em;
+  line-height: 1.6;
 }
 
 .answerTitle {
   display: inline-block;
-  font-weight: 700;
-  font-size: 1.2rem;
+  font-weight: $weight-sim-bold;
+  font-size: 24px;
+  letter-spacing: 0.025em;
+  line-height: 1.08;
 
   &::after {
     content: '';
@@ -95,4 +109,8 @@ $gradient-middle: #90352b;
 
 .answerText {
   margin: 8px 0;
+  font-weight: 250;
+  letter-spacing: 0.025em;
+  line-height: 1.5;
+  font-size: 16px;
 }

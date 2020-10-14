@@ -12,12 +12,12 @@ export const EMailAddressInput: React.FC<EMailAddressInput> = ({
 }) => {
   return (
     <RoundInput
-      onChange={value => onChange(value)}
+      onChange={(value) => onChange(value)}
       value={value}
       faIcon={faEnvelope}
-      type='email'
-      placeholder='メールアドレス'
-      autoComplete='email'
+      type="email"
+      placeholder="メールアドレス"
+      autoComplete="email"
     />
   )
 }

@@ -8,22 +8,40 @@ import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { FooterWrapper } from './FooterWrapper'
 import { ThemeContext } from 'src/context/ThemeContext'
 
-export const SiteMap = () => {
+interface SiteMapProps {
+  backgroundColor?: string
+}
+
+export const SiteMap = (props?: SiteMapProps) => {
   const { theme } = React.useContext(ThemeContext)
+
+  const styleBg =
+    props && props.backgroundColor
+      ? { backgroundColor: props.backgroundColor }
+      : {}
+
   return (
     <>
       <FooterWrapper>
-        <div className={styles.content}>
-          <div
-            className={`${styles.sitemap} ${
-              theme === 'dark' ? 'text-theme-text-sub' : ''
-            }`}
-          >
-            <TextDisplay className={styles.links}>
-              <Link to="/faq">FAQ</Link>
-              <Link to="/about">About</Link>
-              <Link to="/company">Company</Link>
-              <Link to="/privacypolicy">Privacy Policy</Link>
+        <div className={styles.content} style={styleBg}>
+          <div className={`${styles.sitemap} `}>
+            <TextDisplay
+              className={
+                theme === 'dark' ? styles.links : styles.linksThemeWhite
+              }
+            >
+              <Link to="/faq" style={{ height: '23px' }}>
+                FAQ
+              </Link>
+              <Link to="/about" style={{ height: '23px' }}>
+                About
+              </Link>
+              <Link to="/company" style={{ height: '23px' }}>
+                Company
+              </Link>
+              <Link to="/privacypolicy" style={{ height: '23px' }}>
+                Privacy Policy
+              </Link>
             </TextDisplay>
             <Link to="/">
               {theme === 'dark' ? (

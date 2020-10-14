@@ -7,11 +7,15 @@ Amplify.configure({
     AWSS3: {
       bucket: AWS_S3_BUCKET_NAME,
       region: 'ap-northeast-1',
-    }
-  }
+    },
+  },
 })
 
-export const uploadImg = async (fileName: string, image: Blob, contentType: string) => {
+export const uploadImg = async (
+  fileName: string,
+  image: Blob,
+  contentType: string
+) => {
   const identityId = await currentIdentityId()
   const filePath = `${identityId}/${fileName}`
   await Storage.put(filePath, new File([image], 'img.jpeg'), { contentType })

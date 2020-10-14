@@ -41,9 +41,9 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({ coreMembers })
               {member.displayAge && (
                 <TextDisplay className={styles.ageTag}>
                   <div className={styles.ageTagContainer}>
-                    <p className={`${styles.ageTitle} font-semibold text-white`}>Age</p>
+                    <p className={`${styles.ageTitle}`}>Age</p>
                     <p className={`border-b border-dashed w-full border-yellow`}></p>
-                    <p className="font-bold text-white">{member.displayAge}</p>
+                    <p className={styles.ageValue}>{member.displayAge}</p>
                   </div>
                 </TextDisplay>
               )}

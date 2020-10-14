@@ -10,6 +10,12 @@ import LegalInfo from 'src/assets/legal_information_icon.svg'
 import PrivacyPolicy from 'src/assets/privacy_policy_icon_jp.svg'
 import About from 'src/assets/about_icon.svg'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import styled from 'styled-components'
+
+const MenuItemContent = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 
 interface NavMenuProps {
   show: boolean
@@ -39,20 +45,24 @@ export const NavMenu: React.FC<NavMenuProps> = ({
           onClick={hideNavMenu}
         />
       ) : (
-          ''
-        )}
+        ''
+      )}
       <div
         className={`${styles.navMenu} ${
           show ? styles.open : styles.close
-          } bg-v-gradient`}
+        } bg-v-gradient`}
       >
-        <div className={styles.navToggleBtn} onClick={hideNavMenu}></div>
-        <div className="flex flex-col mt-6 mr-4">
+        <div style={{ width: '100%', height: '25px' }} onClick={hideNavMenu}>
+          <div className={styles.navToggleBtn} />
+        </div>
+        <MenuItemContent>
           {/* <MenuItem text="設定" SVGIcon={Setting} /> */}
           <MenuItem
             text="マイページ"
             SVGIcon={MyPage}
-            onClick={myPageId ? navigateWithMenuClose(`/${myPageId}`) : showLoginModal}
+            onClick={
+              myPageId ? navigateWithMenuClose(`/${myPageId}`) : showLoginModal
+            }
           />
           <MenuItem text={'チームを作る+'} SVGIcon={AddNewTeam} />
           <MenuItem
@@ -80,8 +90,12 @@ export const NavMenu: React.FC<NavMenuProps> = ({
             SVGIcon={LegalInfo}
             onClick={navigateWithMenuClose('/sctl')}
           />
-          <MenuItem text={'ログアウト'} faIcon={faSignOutAlt} onClick={loggedIn ? logout : undefined} />
-        </div>
+          <MenuItem
+            text={'ログアウト'}
+            faIcon={faSignOutAlt}
+            onClick={loggedIn ? logout : undefined}
+          />
+        </MenuItemContent>
       </div>
     </>
   )

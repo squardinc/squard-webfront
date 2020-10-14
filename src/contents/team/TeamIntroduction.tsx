@@ -33,20 +33,24 @@ export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({
           <TextDisplay className={styles.caption2}>{name}</TextDisplay>
         </div>
         <TextDisplay className={styles.description}>{introduction}</TextDisplay>
-        <div>
+        <div className={styles.hashTag}>
           {tags.map((tag, index) => (
             <HashTag key={index} text={tag} />
           ))}
         </div>
         <div className={`${styles.attributeContainer} tracking-wide`}>
-          <TextDisplay>
+          <TextDisplay className={styles.captionSystemLabel}>
             マネジメントシステム: <span className="text-yellow">{system}</span>
           </TextDisplay>
-          <TextDisplay>
+          <TextDisplay className={styles.captionSystemLabel}>
             チームリーダー: <span className="text-yellow">{leaderName}</span>
           </TextDisplay>
         </div>
-        <DefaultButton text="このチームに参加してみる？" onClick={() => navigate(`/${teamId}/join`)} />
+        <DefaultButton
+          text="このチームに参加してみる？"
+          size="larger"
+          onClick={() => navigate(`/${teamId}/join`)}
+        />
       </div>
     </div>
   )

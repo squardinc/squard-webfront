@@ -2,9 +2,9 @@ import styled from 'styled-components'
 import * as colors from '../../styles/colors'
 import * as sizes from '../../styles/sizes'
 
-
 export const TeamCardWrapper = styled.div`
-  width: ${sizes.cardWidth};
+  min-width: 220px;
+  max-width: 320px;
   background: ${colors.bgBlack};
   box-shadow: 0 20px 30px 0px ${colors.bgBlack};
   margin: 0 auto;
@@ -15,7 +15,6 @@ export const FlagWrapper = styled.div`
   width: ${sizes.flagWidth};
   margin: 0 auto;
   top: -${sizes.flagTopShift};
-
   &::before {
     position: absolute;
     top: 0;
@@ -49,7 +48,7 @@ export const Flag = styled.div`
     ${colors.gradientRed},
     ${colors.gradientYellow}
   );
-  padding: 40px 10px 80px;
+  padding: 40px 10px 70px;
   text-align: center;
 
   position: relative;
