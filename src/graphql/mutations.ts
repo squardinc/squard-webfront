@@ -55,7 +55,7 @@ export const updateUser = /* GraphQL */ `
       }
     }
   }
-`;
+`
 export const requestSubscription = /* GraphQL */ `
   mutation RequestSubscription(
     $teamId: ID!
@@ -70,4 +70,4 @@ export const requestSubscription = /* GraphQL */ `
       sessionId
     }
   }
-`;
+`

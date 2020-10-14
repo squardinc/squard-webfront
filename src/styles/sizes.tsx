@@ -1,6 +1,6 @@
-export const cardWidth = '300px'
-export const halfFlagWidth = '90px'
-export const flagWidth = '180px'
+export const cardWidth = '260px'
+export const halfFlagWidth = '80px'
+export const flagWidth = '160px'
 export const flagTopShift = '12px'
 export const flagBottomCut = '50px'
 

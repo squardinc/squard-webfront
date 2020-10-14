@@ -8,21 +8,21 @@ import styles from './TeamCoreMembers.module.scss'
 interface TeamCoreMembersProps {
   coreMembers: ITeamMember[]
 }
-export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
-  coreMembers,
-}) => {
+export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({ coreMembers }) => {
   function getImageTheme(key?: string) {
-    let style = styles.yellowImageContainer
     if (key === 'red') {
-      style = styles.redImageContainer
-    } else if (key === 'blue') {
-      style = styles.blueImageContainer
-    } else if (key === 'green') {
-      style = styles.greenImageContainer
-    } else {
-      style = styles.yellowImageContainer
+      return styles.redImageContainer
     }
-    return style
+    if (key === 'blue') {
+      return styles.blueImageContainer
+    }
+    if (key === 'green') {
+      return styles.greenImageContainer
+    }
+    if (key === 'yellow') {
+      return styles.yellowImageContainer
+    }
+    return styles.imageContainer
   }
   return (
     <div className={styles.container}>
@@ -38,26 +38,18 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
                 }}
                 className={getImageTheme(member.imageColor)}
               ></div>
-              <TextDisplay className={styles.ageTag}>
-                <div className={styles.ageTagContainer}>
-                  <p className={`${styles.ageTitle} font-semibold text-white`}>
-                    Age
-                  </p>
-                  <p
-                    className={`border-b border-dashed w-full border-yellow`}
-                  ></p>
-                  <p className="font-bold text-white">{member.displayAge}</p>
-                </div>
-              </TextDisplay>
-              <TextDisplay className={styles.designationText}>
-                {member.title}
-              </TextDisplay>
-              <TextDisplay className={styles.titleSM}>
-                {member.subTitle}
-              </TextDisplay>
-              <TextDisplay className={styles.titleLG}>
-                {member.displayName}
-              </TextDisplay>
+              {member.displayAge && (
+                <TextDisplay className={styles.ageTag}>
+                  <div className={styles.ageTagContainer}>
+                    <p className={`${styles.ageTitle}`}>Age</p>
+                    <p className={`border-b border-dashed w-full border-yellow`}></p>
+                    <p className={styles.ageValue}>{member.displayAge}</p>
+                  </div>
+                </TextDisplay>
+              )}
+              <TextDisplay className={styles.designationText}>{member.title}</TextDisplay>
+              <TextDisplay className={styles.titleSM}>{member.subTitle}</TextDisplay>
+              <TextDisplay className={styles.titleLG}>{member.displayName}</TextDisplay>
             </div>
           </Link>
         ))}

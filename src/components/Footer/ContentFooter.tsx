@@ -5,7 +5,11 @@ import styles from './Footer.module.scss'
 import { FooterWrapper } from './FooterWrapper'
 import { SiteMap } from './SiteMap'
 
-interface ContentFooterProps {
+interface DefaultFooterProps {
+  backgroundColor?: string
+}
+
+interface ContentFooterProps extends DefaultFooterProps {
   titleSub: string
   titleMain: string
   text: string | JSX.Element
@@ -19,13 +23,17 @@ export const ContentFooter: React.FC<ContentFooterProps> = ({
   text,
   buttonSub,
   buttonText,
+  backgroundColor,
   onButtonClick,
 }) => {
   const { theme } = React.useContext(ThemeContext)
+
+  const styleBg = backgroundColor ? { backgroundColor: backgroundColor } : {}
+
   return (
     <>
       <FooterWrapper>
-        <div className={styles.content}>
+        <div className={styles.content} style={styleBg}>
           <div className="py-10">
             <TextDisplay>
               <div
@@ -50,22 +58,27 @@ export const ContentFooter: React.FC<ContentFooterProps> = ({
                 theme === 'dark' ? 'border-2 border-yellow bg-black' : 'background-theme-button'
               } rounded-full h-12 w-full flex items-center justify-center mr-2`}
             >
-              <span className="text-theme-text-sub font-bold text-lg">{buttonText}</span>
+              <span className="text-theme-text-sub font-light text-lg button-text">
+                {buttonText}
+              </span>
             </TextDisplay>
           </div>
         </div>
       </FooterWrapper>
-      <SiteMap />
+      <SiteMap backgroundColor={backgroundColor} />
     </>
   )
 }
 
-export const DefaultFooter: React.FC = () => (
-  <ContentFooter
-    titleSub="What's  the"
-    titleMain="Squard?"
-    text="Webサービス「Squard（スクアード）」は、個人でもなく法人でもない新しい働き方の実現を目標に、新時代のチームメイキングソリューションを提供するコラボレーションプラットフォームです。"
-    buttonText="チームを作ってみる？"
-    onButtonClick={() => window.open('https://www.squard.co.jp/coming-soon/', '_blank')}
-  />
-)
+export const DefaultFooter = (props?: DefaultFooterProps) => {
+  return (
+    <ContentFooter
+      backgroundColor={props && props.backgroundColor ? props.backgroundColor : undefined}
+      titleSub="What's  the"
+      titleMain="Squard?"
+      text="Webサービス「Squard（スクアード）」は、個人でもなく法人でもない新しい働き方の実現を目標に、新時代のチームメイキングソリューションを提供するコラボレーションプラットフォームです。"
+      buttonText="チームを作ってみる？"
+      onButtonClick={() => window.open('https://www.squard.co.jp/coming-soon/', '_blank')}
+    />
+  )
+}

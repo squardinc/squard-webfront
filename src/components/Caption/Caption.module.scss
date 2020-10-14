@@ -7,7 +7,7 @@ $caption-margin: 10px 10px 10px 5px;
   align-items: center;
   margin: $caption-margin;
   font-weight: $font-weight;
-  font-size: 2em;
+  font-size: 25px;
   color: $color;
 }
 
@@ -110,7 +110,18 @@ $caption-margin: 10px 10px 10px 5px;
   justify-content: flex-end;
   font-weight: 800;
   font-style: Normal;
-  font-size: clamp(40px, 13vw, 3em);
+  font-size: 42px;
+  line-height: 2.5rem;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  margin: $caption-margin;
+}
+.mediumItalic {
+  display: flex;
+  justify-content: flex-end;
+  font-weight: 800;
+  font-style: italic;
+  font-size: 42px;
   line-height: 2.5rem;
   letter-spacing: 0.03em;
   white-space: nowrap;

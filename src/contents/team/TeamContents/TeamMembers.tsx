@@ -22,13 +22,13 @@ const Member: React.FC<MemberProps> = ({ member }) => {
 }
 
 type TopMemberProps = MemberProps & {
-  member: ITeamMember
+  member?: ITeamMember
 }
 const TopMember: React.FC<TopMemberProps> = ({ member }) => {
   return (
     <div className={styles.topMemberRow}>
       <div className={styles.topMemberContainer}>
-        <img src={member.image || ComingSoon} className={styles.topMember} />
+        <img src={member?.image || ComingSoon} className={styles.topMember} />
         {member && (
           <TextDisplay className={styles.topMemberCaption}>
             <div className={styles.topMemberName}>{member.displayName}</div>
@@ -41,12 +41,12 @@ const TopMember: React.FC<TopMemberProps> = ({ member }) => {
 }
 
 interface TeamMembersProps {
-  topMember: ITeamMember
-  members: ITeamMember[]
+  topMember?: ITeamMember
+  members?: ITeamMember[]
 }
 export const TeamMembers: React.FC<TeamMembersProps> = ({
   topMember,
-  members,
+  members = [],
 }) => {
   return (
     <div className={styles.container}>

@@ -9,12 +9,21 @@ type MessageComponentProps = ModalProps & {
   message: string
   buttonText?: string
 }
-export const MessageCompoenent: React.FC<MessageComponentProps> = ({ closeModal, title = '', message, buttonText = 'Close' }) => (
-  <DefaultModalContainer closeModal={closeModal} >
-    <TextDisplay className='text-4xl font-semibold'>{title}</TextDisplay>
-    <div className='flex flex-col justify-center items-center'>
-      <TextDisplay className='mb-8'>{message}</TextDisplay>
-      <RoundButton className='border-2 text-lg' text={buttonText} onClick={closeModal} />
+export const MessageCompoenent: React.FC<MessageComponentProps> = ({
+  closeModal,
+  title = '',
+  message,
+  buttonText = 'Close',
+}) => (
+  <DefaultModalContainer closeModal={closeModal}>
+    <TextDisplay className="text-4xl font-semibold">{title}</TextDisplay>
+    <div className="flex flex-col justify-center items-center">
+      <TextDisplay className="mb-8">{message}</TextDisplay>
+      <RoundButton
+        className="border-2 text-lg"
+        text={buttonText}
+        onClick={closeModal}
+      />
     </div>
   </DefaultModalContainer>
 )
