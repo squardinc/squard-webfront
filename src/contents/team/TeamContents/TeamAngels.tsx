@@ -2,6 +2,7 @@ import { navigate } from 'gatsby'
 import * as React from 'react'
 import { DefaultButton } from 'src/components/Button/DefaultButton'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
+import Top from 'src/images/temp/team/top.jpg'
 import { ITeamMember } from 'src/models/team'
 import styles from './TeamAngels.module.scss'
 
@@ -11,7 +12,7 @@ interface AngelProps {
 const Angel: React.FC<AngelProps> = ({ angel }) => {
   return (
     <div className={styles.angelContainer}>
-      <img src={angel.image} className={styles.angel} />
+      <img src={angel?.image ? encodeURI(angel.image) : Top} className={styles.angel} />
     </div>
   )
 }
