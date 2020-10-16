@@ -2,7 +2,6 @@ import * as React from 'react'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import { MainContainer } from 'src/components/MainContainer'
 import { withTheme } from 'src/context/ThemeContext'
 import CEO from 'src/images/temp/company/ceo.jpg'
 import CFO from 'src/images/temp/company/cfo.jpg'
@@ -103,7 +102,7 @@ const Page: React.FC = () => {
   ]
 
   return (
-    <MainContainer>
+    <>
       <div className={styles.container}>
         <div
           style={{
@@ -231,7 +230,7 @@ const Page: React.FC = () => {
 
         <DefaultFooter />
       </div>
-    </MainContainer>
+    </>
   )
 }
 

@@ -1,12 +1,14 @@
 import { gql, useQuery } from '@apollo/client'
 import { navigate } from 'gatsby'
-import  from 'p-min-delay';
+import pMinDelay from 'p-min-delay';
 import React from 'react';
 import { getPage } from 'src/graphql/queries'
 import { GetPageQuery } from 'src/types/API'
 import { PersonPageContainer } from './person/PersonPageContainer'
 import { StaticPageRoute } from './StaticPageRoute'
 import { TeamContainer } from './team/TeamContainer'
+
+
 
 export const StaticPagePaths = [
   'about',
