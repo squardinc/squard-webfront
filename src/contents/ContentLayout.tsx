@@ -39,6 +39,7 @@ export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId = '' }) 
     // TODO loading
     return <></>
   }
+
   const { resourceId, type = 'Team' } = data.getPage || {}
   if (!resourceId) {
     navigate('/')
