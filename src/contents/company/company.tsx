@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
@@ -11,6 +11,7 @@ import CTO from 'src/images/temp/company/cto.jpg'
 import styled from 'styled-components'
 import * as Const from '../../styles/const'
 import styles from './company.module.scss'
+import LazyLoad from 'react-lazyload'
 
 const CompanyName = styled.div`
   font-weight: ${Const.fontWeight.bold};
@@ -82,16 +83,20 @@ const Member: React.FC<MemberProps> = ({ member }) => {
 
   return (
     <div className={`relative mt-1 px-1 ${styles.memberContainer}`}>
-      <img
-        src={member.imageUrl}
-        className={styles.member + ' ' + getImageTheme(member.color)}
-      />
+      <LazyLoad>
+        <img
+          src={member.imageUrl}
+          className={styles.member + ' ' + getImageTheme(member.color)}
+        />
+      </LazyLoad>
       <div className={styles.memberCaption}>
         <PersonalPosition>{member.title}</PersonalPosition>
       </div>
     </div>
   )
 }
+
+const renderLoader = () => <p>Loading</p>
 
 const Page: React.FC = () => {
   const members = [
@@ -102,42 +107,45 @@ const Page: React.FC = () => {
   ]
 
   return (
-    <>
+    <Suspense fallback={renderLoader()}>
       <div className={styles.container}>
-        <div
-          style={{
-            background: `url(${CompanyImage}) no-repeat center`,
-            backgroundSize: 'cover',
-          }}
-          className={styles.companyImageContainer}
-        >
-          <div className={styles.contactInfo}>
-            <p className="pl-10 text-white text-sm text-opacity-75 tracking-widest">
-              Web : <a href="https://www.squard.co.jp">www.squard.co.jp</a>
-            </p>
-            <p className="pt-2 pl-10 text-white text-sm text-opacity-75 tracking-widest">
-              Mail :{' '}
-              <a href="mailto:contact@squard.co.jp">contact@squard.co.jp</a>
-            </p>
-          </div>
-          <div className={styles.companyInfo}>
-            <div className="float-right text-right leading-8 pt-24">
-              <p className="pt-4 pr-6 text-white text-xl font-light tracking-wider">
-                <span className="line-through">
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We
-                </span>{' '}
-                are the
+        <LazyLoad>
+          <div
+            style={{
+              background: `url(${CompanyImage}) no-repeat center`,
+              backgroundSize: 'cover',
+            }}
+            className={styles.companyImageContainer}
+          >
+            <div className={styles.contactInfo}>
+              <p className="pl-10 text-white text-sm text-opacity-75 tracking-widest">
+                Web : <a href="https://www.squard.co.jp">www.squard.co.jp</a>
               </p>
-              <div className="pr-6 text-white text-4xl font-bold tracking-wider">
-                <CompanyName>
-                  <TextDisplay>
-                    Squard, Inc<span className="text-red-600">.</span>
-                  </TextDisplay>
-                </CompanyName>
+              <p className="pt-2 pl-10 text-white text-sm text-opacity-75 tracking-widest">
+                Mail :{' '}
+                <a href="mailto:contact@squard.co.jp">contact@squard.co.jp</a>
+              </p>
+            </div>
+            <div className={styles.companyInfo}>
+              <div className="float-right text-right leading-8 pt-24">
+                <p className="pt-4 pr-6 text-white text-xl font-light tracking-wider">
+                  <span className="line-through">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We
+                  </span>{' '}
+                  are the
+                </p>
+                <div className="pr-6 text-white text-4xl font-bold tracking-wider">
+                  <CompanyName>
+                    <TextDisplay>
+                      Squard, Inc<span className="text-red-600">.</span>
+                    </TextDisplay>
+                  </CompanyName>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </LazyLoad>
+
         <CompanyInfor>
           <div style={{ maxWidth: '370px', margin: 'auto' }}>
             <TwoStagedCaption
@@ -230,7 +238,7 @@ const Page: React.FC = () => {
 
         <DefaultFooter />
       </div>
-    </>
+    </Suspense>
   )
 }
 

@@ -57,3 +57,5 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({ coreMembers })
     </div>
   )
 }
+
+export default TeamCoreMembers;

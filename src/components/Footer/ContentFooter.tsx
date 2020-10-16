@@ -82,3 +82,5 @@ export const DefaultFooter = (props?: DefaultFooterProps) => {
     />
   )
 }
+
+export default ContentFooter;

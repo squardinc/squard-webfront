@@ -53,3 +53,5 @@ export const TeamAngels: React.FC<TeamAngelsProps> = ({ angels = [], numOfAngels
     </div>
   )
 }
+
+export default TeamAngels;

@@ -43,3 +43,5 @@ export const TeamProspects: React.FC<TeamPropspectsProps> = ({ propspects }) => 
     </div>
   )
 }
+
+export default TeamProspects;
