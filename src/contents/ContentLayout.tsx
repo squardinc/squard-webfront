@@ -1,6 +1,7 @@
 import { gql, useQuery } from '@apollo/client'
 import { navigate } from 'gatsby'
-import * as React from 'react'
+import  from 'p-min-delay';
+import React from 'react';
 import { getPage } from 'src/graphql/queries'
 import { GetPageQuery } from 'src/types/API'
 import { PersonPageContainer } from './person/PersonPageContainer'

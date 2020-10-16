@@ -25,3 +25,5 @@ export const TeamContainer: React.FC<TeamContainerProps> = ({ id }) => {
   const team = Team.fromQueryResult(data)
   return <TeamLayout team={team} />
 }
+
+export default TeamContainer

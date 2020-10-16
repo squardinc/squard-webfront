@@ -56,3 +56,4 @@ const Layout: React.FC<TeamLayoutProps> = ({ team }) => {
 }
 
 export const TeamLayout = withTheme(Layout, 'dark')
+export default withTheme(Layout, 'dark')

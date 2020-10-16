@@ -19,3 +19,5 @@ export const ResetPasswordLayout: React.FC = () => {
     </>
   )
 }
+
+export default ResetPasswordLayout;
