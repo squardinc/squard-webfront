@@ -1,15 +1,19 @@
-import * as React from 'react'
 import { Router } from '@reach/router'
+import * as React from 'react'
 import { WithApolloProvider } from 'src/Apollo'
 import { PageWrapper } from 'src/components/PageWrapper'
 import { ContentLayout } from 'src/contents/ContentLayout'
 import { ContentSubLayout } from 'src/contents/ContentSubLayout'
-import { ThemeContextProvider } from 'src/context/ThemeContext'
 import { Redirect } from 'src/contents/redirect'
+import { ThemeContextProvider } from 'src/context/ThemeContext'
 import { UserContextProvider } from 'src/context/UserContext'
 
 const IndexPage: React.FC = () => {
+  const isSSR = typeof window === "undefined"
+
   return (
+    <>
+      {!isSSR && (
     <React.Suspense fallback={<div></div>}>
       <ThemeContextProvider>
         <UserContextProvider>
@@ -27,6 +31,8 @@ const IndexPage: React.FC = () => {
         </UserContextProvider>
       </ThemeContextProvider>
     </React.Suspense>
+    )}
+    </>
   )
 }
 
