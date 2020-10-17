@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 
 import styles from './About.module.scss'
 import styled from 'styled-components'
@@ -35,3 +35,5 @@ export const About: React.FC<AboutProps> = (props) => {
     </div>
   )
 }
+
+export default About;

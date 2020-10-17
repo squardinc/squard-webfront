@@ -123,3 +123,5 @@ export const Classes: React.FC<ClassesProps> = (props) => {
     </div>
   )
 }
+
+export default Classes

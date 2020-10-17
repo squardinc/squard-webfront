@@ -11,7 +11,7 @@ import { TeamClass } from 'src/models/team'
 import {
   GetTeamQuery,
   RequestSubscriptionMutation,
-  RequestSubscriptionMutationVariables
+  RequestSubscriptionMutationVariables,
 } from 'src/types/API'
 import { parseSearchParams } from 'src/utils/UrlParser'
 
@@ -44,7 +44,9 @@ const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
   const team = data.getTeam
   const teamClasses = team.classes || []
   const joinableTeamClasses = JoinableClasses.map((joinableClass) => {
-    const teamClass = teamClasses.find((each) => each?.classType === joinableClass)
+    const teamClass = teamClasses.find(
+      (each) => each?.classType === joinableClass
+    )
     return new TeamClass(
       teamClass?.teamId,
       teamClass?.teamClassId,

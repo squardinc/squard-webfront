@@ -70,3 +70,5 @@ export const TeamVIP: React.FC<TeamVIPProps> = ({ vips }) => {
     </div>
   )
 }
+
+export default TeamVIP

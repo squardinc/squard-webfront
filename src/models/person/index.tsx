@@ -124,7 +124,9 @@ export class Person {
       introduction || '',
       birthday || '',
       links || [],
-      (teamMembers || []).map((each) => DisplayTeamMember.fromUserQueryResult(each)),
+      (teamMembers || []).map((each) =>
+        DisplayTeamMember.fromUserQueryResult(each)
+      ),
       displayTeamIds
     )
   }

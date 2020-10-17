@@ -3,7 +3,7 @@ import {
   ApolloLink,
   ApolloProvider,
   createHttpLink,
-  InMemoryCache
+  InMemoryCache,
 } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import fetch from 'cross-fetch'
@@ -18,7 +18,8 @@ const httpLink = createHttpLink({
 
 type OperationType = 'query' | 'mutation'
 const authLink = setContext(async (operation, { headers }) => {
-  const operationType: OperationType = operation.query.definitions[0].operation || 'query'
+  const operationType: OperationType =
+    operation.query.definitions[0].operation || 'query'
   const token = await AuthService.idToken().catch(() => '')
   if (operationType === 'mutation' && token) {
     return {

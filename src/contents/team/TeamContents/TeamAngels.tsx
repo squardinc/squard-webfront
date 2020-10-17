@@ -12,7 +12,10 @@ interface AngelProps {
 const Angel: React.FC<AngelProps> = ({ angel }) => {
   return (
     <div className={styles.angelContainer}>
-      <img src={angel?.image ? encodeURI(angel.image) : Top} className={styles.angel} />
+      <img
+        src={angel?.image ? encodeURI(angel.image) : Top}
+        className={styles.angel}
+      />
     </div>
   )
 }
@@ -21,7 +24,10 @@ interface TeamAngelsProps {
   angels: ITeamMember[]
   numOfAngels: number
 }
-export const TeamAngels: React.FC<TeamAngelsProps> = ({ angels = [], numOfAngels }) => {
+export const TeamAngels: React.FC<TeamAngelsProps> = ({
+  angels = [],
+  numOfAngels,
+}) => {
   return (
     <div className={styles.container}>
       <TwoStagedCaption
@@ -53,3 +59,5 @@ export const TeamAngels: React.FC<TeamAngelsProps> = ({ angels = [], numOfAngels
     </div>
   )
 }
+
+export default TeamAngels

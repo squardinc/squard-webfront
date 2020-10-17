@@ -13,7 +13,10 @@ const Prospect: React.FC<ProspectProps> = ({ prospect }) => {
   return (
     <div className={styles.prospectContainer}>
       <div className="pl-1 pr-2 w-40">
-        <img src={prospect?.image ? encodeURI(prospect.image) : Top} className={styles.prospect} />
+        <img
+          src={prospect?.image ? encodeURI(prospect.image) : Top}
+          className={styles.prospect}
+        />
       </div>
     </div>
   )
@@ -22,7 +25,9 @@ const Prospect: React.FC<ProspectProps> = ({ prospect }) => {
 interface TeamPropspectsProps {
   propspects: ITeamMember[]
 }
-export const TeamProspects: React.FC<TeamPropspectsProps> = ({ propspects }) => {
+export const TeamProspects: React.FC<TeamPropspectsProps> = ({
+  propspects,
+}) => {
   return (
     <div className={styles.container}>
       <LeftBorderCaption text="PROSPECTS" color="white" />
@@ -43,3 +48,5 @@ export const TeamProspects: React.FC<TeamPropspectsProps> = ({ propspects }) => 
     </div>
   )
 }
+
+export default TeamProspects
