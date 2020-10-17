@@ -2,35 +2,27 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const exitTeam = /* GraphQL */ `
+  mutation ExitTeam($teamId: ID!, $teamClassId: ID!) {
+    exitTeam(teamId: $teamId, teamClassId: $teamClassId) {
+      message
+    }
+  }
+`;
 export const updateUser = /* GraphQL */ `
   mutation UpdateUser($input: UpdateUserInput!) {
     updateUser(input: $input) {
       id
-      nameJp
-      nameEn
-      introduction
-      links
-      birthday
-      displayTeamIds
-      displayTeamMembers {
-        teamId
-        teamMemberId
-        userId
-        teamClassId
-        startAt
-        endAt
-        image
-        imageColor
-        nickname
-        title
-        subTitle
-        age
-        link
-        contact
+      profile {
+        nameJp
+        nameEn
         introduction
+        links
+        birthday
+        displayTeamIds
+        topImage
+        icon
       }
-      topImage
-      icon
       teamMembers {
         teamId
         teamMemberId
@@ -48,14 +40,9 @@ export const updateUser = /* GraphQL */ `
         contact
         introduction
       }
-      page {
-        id
-        resourceId
-        type
-      }
     }
   }
-`
+`;
 export const requestSubscription = /* GraphQL */ `
   mutation RequestSubscription(
     $teamId: ID!
@@ -70,4 +57,4 @@ export const requestSubscription = /* GraphQL */ `
       sessionId
     }
   }
-`
+`;

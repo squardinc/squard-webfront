@@ -1,34 +1,36 @@
 import { gql, useMutation, useQuery } from '@apollo/client'
 import { navigate } from 'gatsby'
-import React, { lazy } from 'react'
+import * as React from 'react'
 import { withTheme } from 'src/context/ThemeContext'
+import { UserContext } from 'src/context/UserContext'
 import { updateUser } from 'src/graphql/mutations'
-import { getUser } from 'src/graphql/queries'
+import { getMyself, getUser } from 'src/graphql/queries'
 import { Person } from 'src/models/person'
 import {
+  GetMyselfQuery,
   GetUserQuery,
   UpdateUserInput,
   UpdateUserMutation,
-  UpdateUserMutationVariables,
+  UpdateUserMutationVariables
 } from 'src/types/API'
 import { parseSearchParams } from 'src/utils/UrlParser'
-const PersonPage = lazy(() => import('./PersonPageLayout'))
+const PersonPage = React.lazy(() => import('./PersonPageLayout'))
 
 interface PersonPageContainerProps {
   id: string
 }
-export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({
-  id,
-}) => {
+export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) => {
+  const { user } = React.useContext(UserContext)
   const [isEditing, setEditing] = React.useState(false)
   const params = parseSearchParams(window.location.search)
-  const { loading, error, data } = useQuery<GetUserQuery>(gql(getUser), {
-    variables: { id },
-  })
-  const [requestUpdate, response] = useMutation<
-    UpdateUserMutation,
-    UpdateUserMutationVariables
-  >(gql(updateUser))
+  const { loading, error, data } = user.isMine(id)
+    ? useQuery<GetMyselfQuery>(gql(getMyself))
+    : useQuery<GetUserQuery>(gql(getUser), {
+        variables: { id },
+      })
+  const [requestUpdate, response] = useMutation<UpdateUserMutation, UpdateUserMutationVariables>(
+    gql(updateUser)
+  )
 
   if (error) {
     navigate('/')
@@ -37,6 +39,7 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({
   if (loading || !data) {
     return <></>
   }
+  const personalData = Person.fromQueryResult(data)
 
   const PersonPageLayout = isEditing
     ? React.memo(withTheme(PersonPage, 'black'))
@@ -45,10 +48,11 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({
   return (
     <PersonPageLayout
       isLoading={false}
+      profileEditable={user.isMine(personalData.id)}
       isEditing={isEditing}
       hasPaymentComplete={params['payment_status'] === 'success'}
       joinSucceededTeamId={params.teamId}
-      personal={Person.fromQueryResult(data)}
+      personal={personalData}
       update={(profile: UpdateUserInput) =>
         requestUpdate({
           variables: {
@@ -57,7 +61,7 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({
               nameEn: profile.nameEn,
               links: profile.links,
               introduction: profile.introduction,
-              displlayTeams: profile.displlayTeams,
+              displayTeamIds: profile.displayTeamIds,
               topImage: profile.topImage,
               icon: profile.icon,
             },

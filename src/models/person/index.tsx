@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import { GetUserQuery } from 'src/types/API'
+import { GetMyselfQuery, GetUserQuery } from 'src/types/API'
 
 const SOCIAL_MEDIA = [
   'facebook',
@@ -63,19 +63,27 @@ interface S3Object {
   region: string
   key: string
 }
-interface IDisplayTeamMember {
+interface IBenefit {
+  description: string
+  link: string
+}
+export interface IDisplayTeamMember {
   teamId: string
   pageId: string
   teamName: string
   classType: ClassType
   title: string
+  price?: number
+  benefits: IBenefit[]
 }
 class DisplayTeamMember {
   constructor(
     readonly pageId: string,
     readonly teamName: string,
     readonly classType: ClassType,
-    readonly title: string
+    readonly title: string,
+    readonly price?: number,
+    readonly benefits?: IBenefit[]
   ) {}
 
   static fromUserQueryResult = (displayTeamMember = {}) => {
@@ -85,10 +93,12 @@ class DisplayTeamMember {
       teamName: displayTeamMember.team?.name,
       classType: displayTeamMember.class?.classType,
       title: displayTeamMember.title,
+      price: displayTeamMember.price?.price,
+      benefits: displayTeamMember.class?.benefits,
     }
   }
 }
-export class Person {
+export class Person implements IPersonal {
   constructor(
     readonly id: string,
     readonly nameJp: string,
@@ -98,11 +108,11 @@ export class Person {
     readonly introduction: string = '',
     readonly birthday: string = '',
     readonly links: string[] = [],
-    readonly teams: IDisplayTeamMember[] = [],
-    readonly displayTeamIds: string[]
+    readonly displayTeamIds: string[],
+    readonly teams: IDisplayTeamMember[] = []
   ) {}
 
-  static fromQueryResult = (result: GetUserQuery) => {
+  static fromQueryResult = (result: GetUserQuery | GetMyselfQuery) => {
     const {
       id,
       nameJp,
@@ -114,7 +124,7 @@ export class Person {
       links,
       teamMembers,
       displayTeamIds,
-    } = result?.getUser || {}
+    } = result?.getUser || result?.getMyself || {}
     return new Person(
       id || '',
       nameJp || '',
@@ -124,13 +134,12 @@ export class Person {
       introduction || '',
       birthday || '',
       links || [],
-      (teamMembers || []).map((each) =>
-        DisplayTeamMember.fromUserQueryResult(each)
-      ),
-      displayTeamIds
+      displayTeamIds || [],
+      (teamMembers || []).map((each) => DisplayTeamMember.fromUserQueryResult(each))
     )
   }
+
   get age() {
-    return dayjs().diff(this.birthday, 'year')
+    return String(dayjs().diff(this.birthday, 'year'))
   }
 }
