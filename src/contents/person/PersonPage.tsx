@@ -2,9 +2,10 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { navigate } from 'gatsby'
 import React, { lazy, Suspense } from 'react'
+import LazyLoad from 'react-lazyload'
+import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { MODAL_Z_INDEX } from 'src/components/Modal/asModal'
 import { TeamModal } from 'src/components/Modal/TeamModal'
-import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import Top from 'src/images/temp/team/top.jpg'
 import { IPersonal, ITeam } from 'src/models/person'
 import * as colors from 'src/styles/colors'
@@ -12,7 +13,6 @@ import * as Const from 'src/styles/const'
 import { descriminate, toHref } from 'src/utils/SocialMediaDescriminator'
 import styled from 'styled-components'
 import { getSocialMediaIcon, getTeamIcon } from './utils'
-import LazyLoad from 'react-lazyload'
 const ExternalLink = lazy(() => import('src/components/Link/ExternalLink'))
 const TextDisplay = lazy(() => import('src/components/TextDisplay/TextDisplay'))
 
@@ -135,6 +135,7 @@ const NameText = styled.div`
   color: ${colors.textWhite};
   padding-left: 7.125rem;
   padding-top: 1.25rem;
+  padding-right: 20px;
   line-height: 1.5;
   letter-spacing: 0.05em;
   font-weight: ${Const.fontWeight.regular};
@@ -145,6 +146,7 @@ const NameText = styled.div`
 const NameSubText = styled.div`
   color: #fff;
   padding-left: 7.125rem;
+  padding-right: 20px;
   line-height: 1.285;
   letter-spacing: 0.05em;
   margin-top: 5px;
@@ -319,10 +321,10 @@ export const PersonPage: React.FC<PersonPageProps> = ({
               </ProfilerImageContainer>
               <NameWrapper>
                 <NameText>
-                  <TextDisplay>{personal.nameJp}</TextDisplay>
+                  <TextDisplay style={{overflowWrap: 'break-word'}}>{personal.nameJp}</TextDisplay>
                 </NameText>
                 <NameSubText>
-                  <TextDisplay>{personal.nameEn}</TextDisplay>
+                  <TextDisplay style={{overflowWrap: 'break-word'}}>{personal.nameEn}</TextDisplay>
                 </NameSubText>
                 <NameDescription>
                   <TextDisplay>{personal.introduction}</TextDisplay>
