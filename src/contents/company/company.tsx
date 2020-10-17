@@ -1,4 +1,6 @@
-import React, { lazy, Suspense } from 'react'
+import { navigate } from 'gatsby'
+import React, { Suspense } from 'react'
+import LazyLoad from 'react-lazyload'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
@@ -11,7 +13,6 @@ import CTO from 'src/images/temp/company/cto.jpg'
 import styled from 'styled-components'
 import * as Const from '../../styles/const'
 import styles from './company.module.scss'
-import LazyLoad from 'react-lazyload'
 
 const CompanyName = styled.div`
   font-weight: ${Const.fontWeight.bold};
@@ -63,7 +64,7 @@ const ValueWrapper = styled.div`
 `
 
 interface MemberProps {
-  member: { imageUrl: string; color: string; title: string }
+  member: { imageUrl: string; color: string; title: string, path: string }
 }
 
 const Member: React.FC<MemberProps> = ({ member }) => {
@@ -82,7 +83,7 @@ const Member: React.FC<MemberProps> = ({ member }) => {
   }
 
   return (
-    <div className={`relative mt-1 px-1 ${styles.memberContainer}`}>
+    <div className={`relative mt-1 px-1 ${styles.memberContainer}`} onClick={() => navigate(member.path)}>
       <LazyLoad>
         <img
           src={member.imageUrl}
@@ -100,10 +101,10 @@ const renderLoader = () => <p>Loading</p>
 
 const Page: React.FC = () => {
   const members = [
-    { imageUrl: CEO, color: 'red', title: 'CEO / 小池駿平' },
-    { imageUrl: COO, color: 'blue', title: 'COO / 松井大樹' },
-    { imageUrl: CFO, color: 'green', title: 'CFO / 木村明寛' },
-    { imageUrl: CTO, color: 'yello', title: 'CTO / 柳澤翔矢' },
+    { imageUrl: CEO, color: 'red', title: 'CEO / 小池駿平', path: '/shunpei_koike' },
+    { imageUrl: COO, color: 'blue', title: 'COO / 松井大樹', path: '/hiroki_matsui' },
+    { imageUrl: CFO, color: 'green', title: 'CFO / 木村明寛', path: '/akihiro_kimura' },
+    { imageUrl: CTO, color: 'yello', title: 'CTO / 柳澤翔矢', path: '/shoya_yanagisawa' },
   ]
 
   return (
