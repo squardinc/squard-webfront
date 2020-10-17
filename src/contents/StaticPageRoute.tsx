@@ -1,15 +1,15 @@
 import { navigate } from 'gatsby'
-import React,{lazy} from 'react'
+import React, { lazy } from 'react'
 import { SctlPage } from './sctl/SctlPage'
 
-const AboutPage = lazy(() => import('./about/AboutPage'));
-const CompanyPage = lazy(() => import('./company/company'));
-const FAQPage = lazy(() => import('./faq/FAQ'));
-const PrivacyPolicyPage = lazy(() => import('./privacypolicy/privacypolicy'));
-const SignUpLayout = lazy(() => import('./SignUp'));
-const SocialSigninLayout = lazy(() => import('./SocialSignIn'));
-const ConfirmSignUpLayout = lazy(() => import('./callback/ConfirmSignUp'));
-const ResetPasswordLayout = lazy(() => import('./callback/ResetPassword'));
+const AboutPage = lazy(() => import('./about/AboutPage'))
+const CompanyPage = lazy(() => import('./company/company'))
+const FAQPage = lazy(() => import('./faq/FAQ'))
+const PrivacyPolicyPage = lazy(() => import('./privacypolicy/privacypolicy'))
+const SignUpLayout = lazy(() => import('./SignUp'))
+const SocialSigninLayout = lazy(() => import('./SocialSignIn'))
+const ConfirmSignUpLayout = lazy(() => import('./callback/ConfirmSignUp'))
+const ResetPasswordLayout = lazy(() => import('./callback/ResetPassword'))
 
 export const StaticPagePaths = [
   'about',
@@ -40,7 +40,9 @@ const StaticPageMap: { [key in StaticPageType]: React.FC } = {
 interface StaticPageRouteProps {
   contentId: StaticPageType | string
 }
-export const StaticPageRoute: React.FC<StaticPageRouteProps> = ({ contentId }) => {
+export const StaticPageRoute: React.FC<StaticPageRouteProps> = ({
+  contentId,
+}) => {
   const StaticPage = StaticPageMap[contentId]
   if (StaticPage) {
     return <StaticPage />

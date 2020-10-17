@@ -4,7 +4,6 @@ import { getTeam } from 'src/graphql/queries'
 import { Team } from 'src/models/team'
 import { GetTeamQuery } from 'src/types/API'
 import { TeamLayout } from './TeamLayout'
-import pMinDelay from 'p-min-delay';
 
 interface TeamContainerProps {
   id: string

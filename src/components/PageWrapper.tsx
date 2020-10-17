@@ -1,7 +1,6 @@
-
 import { ThemeContext } from 'src/context/ThemeContext'
 import { MetaData } from './MetaData'
-import React,{lazy} from 'react'
+import React, { lazy } from 'react'
 const Header = lazy(() => import('src/components/Header/Header'))
 const Copyright = lazy(() => import('./Footer/Copyright'))
 

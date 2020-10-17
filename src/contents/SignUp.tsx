@@ -12,4 +12,4 @@ export const SignUpLayout: React.FC = () => {
   )
 }
 
-export default SignUpLayout;
+export default SignUpLayout

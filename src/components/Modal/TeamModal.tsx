@@ -90,3 +90,4 @@ const TeamModalComponent: React.FC<TeamModalProps> = ({
 }
 
 export const TeamModal = asModal(TeamModalComponent)
+export default asModal(TeamModalComponent)

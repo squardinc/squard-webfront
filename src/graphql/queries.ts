@@ -56,7 +56,7 @@ export const getTeam = /* GraphQL */ `
       }
     }
   }
-`;
+`
 export const getMyMemberInfo = /* GraphQL */ `
   query GetMyMemberInfo {
     getMyMemberInfo {
@@ -214,7 +214,7 @@ export const getUser = /* GraphQL */ `
       }
     }
   }
-`;
+`
 export const getPage = /* GraphQL */ `
   query GetPage($id: ID!) {
     getPage(id: $id) {

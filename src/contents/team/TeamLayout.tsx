@@ -2,7 +2,6 @@ import { navigateTo } from 'gatsby'
 import React, { lazy, Suspense } from 'react'
 import { withTheme } from 'src/context/ThemeContext'
 import { Team } from 'src/models/team'
-
 const TeamTop = lazy(() => import('./TeamTop'))
 const TeamCoreMembers = lazy(() => import('./TeamContents/TeamCoreMembers'))
 const TeamIntroduction = lazy(() => import('./TeamIntroduction'))

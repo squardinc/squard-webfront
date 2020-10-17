@@ -56,4 +56,4 @@ export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({
   )
 }
 
-export default TeamIntroduction;
+export default TeamIntroduction

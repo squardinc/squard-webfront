@@ -12,4 +12,4 @@ export const Copyright = () => {
   )
 }
 
-export default Copyright;
+export default Copyright

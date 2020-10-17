@@ -63,4 +63,4 @@ export const TeamMembers: React.FC<TeamMembersProps> = ({
   )
 }
 
-export default TeamMembers;
+export default TeamMembers

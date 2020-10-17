@@ -11,4 +11,4 @@ export const ConfirmSignUpLayout: React.FC = () => {
   )
 }
 
-export default ConfirmSignUpLayout;
+export default ConfirmSignUpLayout
