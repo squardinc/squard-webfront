@@ -79,6 +79,5 @@ module.exports = {
     },
     `gatsby-plugin-preact`,
     `gatsby-plugin-no-javascript`,
-    `gatsby-plugin-webpack-bundle-analyser-v2`,
   ],
 }

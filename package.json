@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build --prefix-paths",
-    "dev": "gatsby develop --https",
+    "dev": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,tsx,ts,json,md}\"",
     "tslint": "tslint \"src/**/*.ts[x]\" --fix",
     "lint": "npm run format && npm run tslint",
@@ -107,7 +107,6 @@
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-prettier": "^3.1.4",
     "gatsby-plugin-root-import": "^2.0.5",
-    "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.13",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.4.2",
     "path": "^0.12.7",
