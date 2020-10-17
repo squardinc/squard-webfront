@@ -44,14 +44,14 @@ const EditProfileWrapper = styled.div`
 `
 
 const PersonPageLayout: React.FC<PersonPageProps> = ({
-  profileEditable,
   personal,
+  profileEditable,
+  isEditing,
   hasPaymentComplete,
   joinSucceededTeamId,
   onEditProfile,
   update,
 }) => {
-  const [isEditing, setEditing] = React.useState(false)
   const [showPaymentCompleteModal, setShowPaymentCompleteModal] = React.useState(hasPaymentComplete)
   const [showJoinSucceededModal, setShowJoinSucceededModal] = React.useState(false)
 
