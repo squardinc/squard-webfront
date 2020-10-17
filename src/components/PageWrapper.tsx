@@ -1,11 +1,13 @@
-import * as React from 'react'
+
 import { ThemeContext } from 'src/context/ThemeContext'
-import { Header } from 'src/components/Header/Header'
 import { MetaData } from './MetaData'
-import { Copyright } from './Footer/Copyright'
+import React,{lazy} from 'react'
+const Header = lazy(() => import('src/components/Header/Header'))
+const Copyright = lazy(() => import('./Footer/Copyright'))
 
 export const PageWrapper: React.FC = ({ children }) => {
   const { theme } = React.useContext(ThemeContext)
+  console.log('PageWrapperPageWrapperPageWrapper ')
   return (
     <>
       <MetaData />
