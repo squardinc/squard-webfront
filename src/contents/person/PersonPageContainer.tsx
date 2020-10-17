@@ -1,20 +1,21 @@
 import { gql, useMutation, useQuery } from '@apollo/client'
 import { navigate } from 'gatsby'
 import * as React from 'react'
-import { withTheme } from 'src/context/ThemeContext'
 import { UserContext } from 'src/context/UserContext'
-import { updateUser } from 'src/graphql/mutations'
+import { leaveTeam, updateUser } from 'src/graphql/mutations'
 import { getMyself, getUser } from 'src/graphql/queries'
 import { Person } from 'src/models/person'
 import {
   GetMyselfQuery,
   GetUserQuery,
+  LeaveTeamMutation,
+  LeaveTeamMutationVariables,
   UpdateUserInput,
   UpdateUserMutation,
   UpdateUserMutationVariables
 } from 'src/types/API'
 import { parseSearchParams } from 'src/utils/UrlParser'
-const PersonPage = React.lazy(() => import('./PersonPageLayout'))
+import { PersonPageLayoutBlack, PersonPageLayoutGray } from './PersonPageLayout'
 
 interface PersonPageContainerProps {
   id: string
@@ -28,9 +29,14 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
     : useQuery<GetUserQuery>(gql(getUser), {
         variables: { id },
       })
-  const [requestUpdate, response] = useMutation<UpdateUserMutation, UpdateUserMutationVariables>(
-    gql(updateUser)
-  )
+  const [updateUserRequest, updateUserResponse] = useMutation<
+    UpdateUserMutation,
+    UpdateUserMutationVariables
+  >(gql(updateUser))
+  const [leaveTeamRequest, leaveTeamResponse] = useMutation<
+    LeaveTeamMutation,
+    LeaveTeamMutationVariables
+  >(gql(leaveTeam))
 
   if (error) {
     navigate('/')
@@ -41,10 +47,8 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
   }
   const personalData = Person.fromQueryResult(data)
 
-  const PersonPageLayout = isEditing
-    ? React.memo(withTheme(PersonPage, 'black'))
-    : React.memo(withTheme(PersonPage, 'gray'))
-
+  const PersonPageLayout = isEditing ? PersonPageLayoutBlack : PersonPageLayoutGray
+  console.log(personalData)
   return (
     <PersonPageLayout
       isLoading={false}
@@ -52,9 +56,10 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
       isEditing={isEditing}
       hasPaymentComplete={params['payment_status'] === 'success'}
       joinSucceededTeamId={params.teamId}
+      showLeaveTeamResult={!!leaveTeamResponse.data?.leaveTeam?.message}
       personal={personalData}
       update={(profile: UpdateUserInput) =>
-        requestUpdate({
+        updateUserRequest({
           variables: {
             input: {
               nameJp: profile.nameJp,
@@ -65,6 +70,14 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
               topImage: profile.topImage,
               icon: profile.icon,
             },
+          },
+        })
+      }
+      leaveTeam={(teamId: string, teamClassId: string) =>
+        leaveTeamRequest({
+          variables: {
+            teamId,
+            teamClassId,
           },
         })
       }

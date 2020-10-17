@@ -87,6 +87,8 @@ export const getMyMemberInfo = /* GraphQL */ `
       startAt
       endAt
       image
+      imageColor
+      nickname
       title
       subTitle
       age
@@ -105,6 +107,12 @@ export const getTeamMembers = /* GraphQL */ `
       user {
         id
         nameJp
+        nameEn
+        introduction
+        links
+        birthday
+        displayTeamIds
+        topImage
         icon
         page {
           id
@@ -153,6 +161,11 @@ export const getUser = /* GraphQL */ `
       displayTeamIds
       topImage
       icon
+      page {
+        id
+        resourceId
+        type
+      }
       teamMembers {
         teamId
         teamMemberId
@@ -195,6 +208,11 @@ export const getMyself = /* GraphQL */ `
       displayTeamIds
       topImage
       icon
+      page {
+        id
+        resourceId
+        type
+      }
       teamMembers {
         teamId
         teamMemberId
@@ -226,6 +244,9 @@ export const getMyself = /* GraphQL */ `
             description
             link
           }
+        }
+        subscription {
+          expireAt
         }
       }
       page {

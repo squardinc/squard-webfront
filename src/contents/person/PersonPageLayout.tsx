@@ -15,11 +15,13 @@ type PersonPageProps = {
   personal: IPersonal
   isLoading: boolean
   profileEditable: boolean
+  showLeaveTeamResult: boolean
   isEditing: boolean
   hasPaymentComplete?: boolean
   joinSucceededTeamId?: string
   onEditProfile?: (value: boolean) => void
   update: (input: UpdateUserInput) => Promise<void>
+  leaveTeam: (teamId: string, teamClassId: string) => void
 }
 
 type StyleCssProps = {
@@ -46,15 +48,17 @@ const EditProfileWrapper = styled.div`
 const PersonPageLayout: React.FC<PersonPageProps> = ({
   personal,
   profileEditable,
+  showLeaveTeamResult,
   isEditing,
   hasPaymentComplete,
   joinSucceededTeamId,
   onEditProfile,
   update,
+  leaveTeam,
 }) => {
   const [showPaymentCompleteModal, setShowPaymentCompleteModal] = React.useState(hasPaymentComplete)
   const [showJoinSucceededModal, setShowJoinSucceededModal] = React.useState(false)
-
+  console.log(personal)
   return (
     <>
       <PersonPageWrapper backgroundColor={'#ebebeb'}>
@@ -66,6 +70,8 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
             profileEditable={profileEditable}
             joinSucceededTeamId={joinSucceededTeamId}
             showJoinSucceededModal={showJoinSucceededModal}
+            showLeaveTeamResult={showLeaveTeamResult}
+            leaveTeam={leaveTeam}
           />
         ) : (
           <EditProfileWrapper>
@@ -101,7 +107,10 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
       )}
       {showJoinSucceededModal && (
         <MessageModal
-          closeModal={(e) => setShowJoinSucceededModal(false)}
+          closeModal={(e) => {
+            setShowJoinSucceededModal(false)
+            window.history.replaceState({}, document.title, window.location.pathname)
+          }}
           message={
             'チームに参加しました。マイページから参加特典を確認できます。'
           }
