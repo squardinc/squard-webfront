@@ -56,24 +56,12 @@ export const getTeam = /* GraphQL */ `
       }
     }
   }
-`;
+`
 export const getMyMemberInfo = /* GraphQL */ `
   query GetMyMemberInfo {
     getMyMemberInfo {
       teamId
       teamMemberId
-      userId
-      user {
-        id
-        nameJp
-        nameEn
-        introduction
-        links
-        birthday
-        displayTeamIds
-        topImage
-        icon
-      }
       team {
         id
         name
@@ -88,8 +76,13 @@ export const getMyMemberInfo = /* GraphQL */ `
         teamClassId
         teamId
         classType
-        priceId
-        enabled
+        benefits {
+          description
+          link
+        }
+        price {
+          price
+        }
       }
       startAt
       endAt
@@ -112,13 +105,10 @@ export const getTeamMembers = /* GraphQL */ `
       user {
         id
         nameJp
-        nameEn
-        introduction
-        links
-        birthday
-        displayTeamIds
-        topImage
         icon
+        page {
+          id
+        }
       }
       team {
         id
@@ -161,23 +151,6 @@ export const getUser = /* GraphQL */ `
       links
       birthday
       displayTeamIds
-      displayTeamMembers {
-        teamId
-        teamMemberId
-        userId
-        teamClassId
-        startAt
-        endAt
-        image
-        imageColor
-        nickname
-        title
-        subTitle
-        age
-        link
-        contact
-        introduction
-      }
       topImage
       icon
       teamMembers {
@@ -207,6 +180,55 @@ export const getUser = /* GraphQL */ `
           classType
         }
       }
+    }
+  }
+`
+export const getMyself = /* GraphQL */ `
+  query GetMyself {
+    getMyself {
+      id
+      nameJp
+      nameEn
+      introduction
+      links
+      birthday
+      displayTeamIds
+      topImage
+      icon
+      teamMembers {
+        teamId
+        teamMemberId
+        userId
+        teamClassId
+        startAt
+        endAt
+        image
+        imageColor
+        nickname
+        title
+        subTitle
+        age
+        link
+        contact
+        introduction
+        team {
+          id
+          name
+          page {
+            id
+          }
+        }
+        class {
+          classType
+          price {
+            price
+          }
+          benefits {
+            description
+            link
+          }
+        }
+      }
       page {
         id
         resourceId
@@ -214,7 +236,7 @@ export const getUser = /* GraphQL */ `
       }
     }
   }
-`;
+`
 export const getPage = /* GraphQL */ `
   query GetPage($id: ID!) {
     getPage(id: $id) {

@@ -1,6 +1,7 @@
 import { gql, useMutation, useQuery } from '@apollo/client'
 import { navigate } from 'gatsby'
 import * as React from 'react'
+import { UserContext } from 'src/context/UserContext'
 import { updateUser } from 'src/graphql/mutations'
 import { getUser } from 'src/graphql/queries'
 import { Person } from 'src/models/person'
@@ -17,6 +18,7 @@ interface PersonPageContainerProps {
   id: string
 }
 export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) => {
+  const { user } = React.useContext(UserContext)
   const [isEditing, setEditing] = React.useState(false)
   const params = parseSearchParams(window.location.search)
   const { loading, error, data } = useQuery<GetUserQuery>(gql(getUser), {
@@ -33,16 +35,17 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
   if (loading || !data) {
     return <></>
   }
-
+  const personalData = Person.fromQueryResult(data)
   const PersonPageLayout = isEditing ? PersonPageLayoutBlack : PersonPageLayoutGray
 
   return (
     <PersonPageLayout
       isLoading={false}
+      profileEditable={user.isMine(personalData.id)}
       isEditing={isEditing}
       hasPaymentComplete={params['payment_status'] === 'success'}
       joinSucceededTeamId={params.teamId}
-      personal={Person.fromQueryResult(data)}
+      personal={personalData}
       update={(profile: UpdateUserInput) =>
         requestUpdate({
           variables: {
@@ -51,7 +54,7 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
               nameEn: profile.nameEn,
               links: profile.links,
               introduction: profile.introduction,
-              displlayTeams: profile.displlayTeams,
+              displayTeamIds: profile.displayTeamIds,
               topImage: profile.topImage,
               icon: profile.icon,
             },

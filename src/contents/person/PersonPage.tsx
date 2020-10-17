@@ -333,7 +333,6 @@ export const PersonPage: React.FC<PersonPageProps> = ({
         <TeamWrapper>
           {/* TODO seperate logged in or not */}
           {personal.teams
-            .filter((team) => personal.displayTeamIds.includes(team.teamId))
             .map((team, index) => {
               return (
                 <TeamItemAnchor
@@ -344,8 +343,11 @@ export const PersonPage: React.FC<PersonPageProps> = ({
                 >
                   <TeamItemWrapper
                     onClick={() => {
+                      if (profileEditable) {
+                        setSelectedTeam(team)
+                        return
+                      }
                       navigate(`/${team.pageId}`)
-                      // setSelectedTeam(team)
                     }}
                   >
                     {team.title && (

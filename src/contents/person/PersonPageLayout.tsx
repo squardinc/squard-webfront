@@ -3,7 +3,6 @@ import { animateScroll } from 'react-scroll'
 import { CompleteModal } from 'src/components/Modal/CompleteModal'
 import { MessageModal } from 'src/components/Modal/MessageModal'
 import { withTheme } from 'src/context/ThemeContext'
-import { UserContext } from 'src/context/UserContext'
 import { uploadImg } from 'src/external/aws/s3'
 import { IPersonal } from 'src/models/person'
 import * as colors from 'src/styles/colors'
@@ -15,7 +14,8 @@ import { PersonPage } from './PersonPage'
 type PersonPageProps = {
   personal: IPersonal
   isLoading: boolean
-  isEditing?: boolean
+  profileEditable: boolean
+  isEditing: boolean
   hasPaymentComplete?: boolean
   joinSucceededTeamId?: string
   onEditProfile?: (value: boolean) => void
@@ -44,14 +44,14 @@ const EditProfileWrapper = styled.div`
 `
 
 const PersonPageLayout: React.FC<PersonPageProps> = ({
+  profileEditable,
   personal,
-  isEditing,
   hasPaymentComplete,
   joinSucceededTeamId,
   onEditProfile,
   update,
 }) => {
-  const { user } = React.useContext(UserContext)
+  const [isEditing, setEditing] = React.useState(false)
   const [showPaymentCompleteModal, setShowPaymentCompleteModal] = React.useState(hasPaymentComplete)
   const [showJoinSucceededModal, setShowJoinSucceededModal] = React.useState(false)
 
@@ -63,7 +63,7 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
             isLoading={false}
             personal={personal}
             editProfile={() => onEditProfile && onEditProfile(true)}
-            profileEditable={personal.id === user.id}
+            profileEditable={profileEditable}
             joinSucceededTeamId={joinSucceededTeamId}
             showJoinSucceededModal={showJoinSucceededModal}
           />

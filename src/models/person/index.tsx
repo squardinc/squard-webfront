@@ -69,13 +69,15 @@ interface IDisplayTeamMember {
   teamName: string
   classType: ClassType
   title: string
+  price?: number
 }
 class DisplayTeamMember {
   constructor(
     readonly pageId: string,
     readonly teamName: string,
     readonly classType: ClassType,
-    readonly title: string
+    readonly title: string,
+    readonly price?: number
   ) {}
 
   static fromUserQueryResult = (displayTeamMember = {}) => {
@@ -85,10 +87,11 @@ class DisplayTeamMember {
       teamName: displayTeamMember.team?.name,
       classType: displayTeamMember.class?.classType,
       title: displayTeamMember.title,
+      price: displayTeamMember.price?.price,
     }
   }
 }
-export class Person {
+export class Person implements IPersonal {
   constructor(
     readonly id: string,
     readonly nameJp: string,
@@ -98,8 +101,8 @@ export class Person {
     readonly introduction: string = '',
     readonly birthday: string = '',
     readonly links: string[] = [],
-    readonly teams: IDisplayTeamMember[] = [],
-    readonly displayTeamIds: string[]
+    readonly displayTeamIds: string[],
+    readonly teams: IDisplayTeamMember[] = []
   ) {}
 
   static fromQueryResult = (result: GetUserQuery) => {
@@ -124,11 +127,11 @@ export class Person {
       introduction || '',
       birthday || '',
       links || [],
-      (teamMembers || []).map((each) => DisplayTeamMember.fromUserQueryResult(each)),
-      displayTeamIds
+      displayTeamIds || [],
+      (teamMembers || []).map((each) => DisplayTeamMember.fromUserQueryResult(each))
     )
   }
   get age() {
-    return dayjs().diff(this.birthday, 'year')
+    return String(dayjs().diff(this.birthday, 'year'))
   }
 }
