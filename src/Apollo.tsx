@@ -20,8 +20,7 @@ const httpLink = createHttpLink({
 
 type OperationType = 'query' | 'mutation'
 const useToken = (operation: GraphQLRequest): boolean => {
-  const operationDefinition = operation.query.definitions[0]
-  const operationType: OperationType = operationDefinition.operation
+  const operationType: OperationType = operation.query.definitions[0].operation
   if (operationType === 'mutation') return true
   if (isTokenRequired(operation.operationName)) return true
   return false
