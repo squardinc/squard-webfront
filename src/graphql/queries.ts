@@ -198,7 +198,6 @@ export const getMyself = /* GraphQL */ `
       teamMembers {
         teamId
         teamMemberId
-        userId
         teamClassId
         startAt
         endAt

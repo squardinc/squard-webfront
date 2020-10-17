@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import { GetUserQuery } from 'src/types/API'
+import { GetMyselfQuery, GetUserQuery } from 'src/types/API'
 
 const SOCIAL_MEDIA = [
   'facebook',
@@ -105,7 +105,7 @@ export class Person implements IPersonal {
     readonly teams: IDisplayTeamMember[] = []
   ) {}
 
-  static fromQueryResult = (result: GetUserQuery) => {
+  static fromQueryResult = (result: GetUserQuery | GetMyselfQuery) => {
     const {
       id,
       nameJp,
@@ -117,7 +117,7 @@ export class Person implements IPersonal {
       links,
       teamMembers,
       displayTeamIds,
-    } = result?.getUser || {}
+    } = result?.getUser || result?.getMyself || {}
     return new Person(
       id || '',
       nameJp || '',
@@ -131,6 +131,7 @@ export class Person implements IPersonal {
       (teamMembers || []).map((each) => DisplayTeamMember.fromUserQueryResult(each))
     )
   }
+
   get age() {
     return String(dayjs().diff(this.birthday, 'year'))
   }

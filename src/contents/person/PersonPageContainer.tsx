@@ -3,9 +3,10 @@ import { navigate } from 'gatsby'
 import * as React from 'react'
 import { UserContext } from 'src/context/UserContext'
 import { updateUser } from 'src/graphql/mutations'
-import { getUser } from 'src/graphql/queries'
+import { getMyself, getUser } from 'src/graphql/queries'
 import { Person } from 'src/models/person'
 import {
+  GetMyselfQuery,
   GetUserQuery,
   UpdateUserInput,
   UpdateUserMutation,
@@ -21,9 +22,11 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
   const { user } = React.useContext(UserContext)
   const [isEditing, setEditing] = React.useState(false)
   const params = parseSearchParams(window.location.search)
-  const { loading, error, data } = useQuery<GetUserQuery>(gql(getUser), {
-    variables: { id },
-  })
+  const { loading, error, data } = user.isMine(id)
+    ? useQuery<GetMyselfQuery>(gql(getMyself))
+    : useQuery<GetUserQuery>(gql(getUser), {
+        variables: { id },
+      })
   const [requestUpdate, response] = useMutation<UpdateUserMutation, UpdateUserMutationVariables>(
     gql(updateUser)
   )
