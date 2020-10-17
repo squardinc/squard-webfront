@@ -77,7 +77,5 @@ module.exports = {
       resolve: `gatsby-plugin-create-client-paths`,
       options: { prefixes: ['/*'] },
     },
-    `gatsby-plugin-preact`,
-    `gatsby-plugin-no-javascript`,
   ],
 }
