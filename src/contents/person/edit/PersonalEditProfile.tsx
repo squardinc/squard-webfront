@@ -397,4 +397,4 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
   )
 }
 
-export default React.memo(withTheme(PersonalEditProfile, 'gray'))
+export default PersonalEditProfile

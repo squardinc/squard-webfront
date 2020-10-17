@@ -27,11 +27,6 @@ export const MetaData: React.FC = () => (
             ></link>
 
             <link
-              href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&display=swap"
-              rel="stylesheet"
-            />
-
-            <link
               id="ATF Livermore Script"
               rel="stylesheet"
               href="https://use.typekit.net/ajn0goi.css"

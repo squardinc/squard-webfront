@@ -1,12 +1,11 @@
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { navigate } from 'gatsby'
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
+import LazyLoad from 'react-lazyload'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
-import { ExternalLink } from 'src/components/Link/ExternalLink'
 import { MODAL_Z_INDEX } from 'src/components/Modal/asModal'
 import { TeamModal } from 'src/components/Modal/TeamModal'
-import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import Top from 'src/images/temp/team/top.jpg'
 import { IPersonal, ITeam } from 'src/models/person'
 import * as colors from 'src/styles/colors'
@@ -14,6 +13,8 @@ import * as Const from 'src/styles/const'
 import { descriminate, toHref } from 'src/utils/SocialMediaDescriminator'
 import styled from 'styled-components'
 import { getSocialMediaIcon, getTeamIcon } from './utils'
+const ExternalLink = lazy(() => import('src/components/Link/ExternalLink'))
+const TextDisplay = lazy(() => import('src/components/TextDisplay/TextDisplay'))
 
 type PersonPageProps = {
   isLoading: boolean
@@ -280,6 +281,8 @@ const ButtonEditWrapper = styled.div`
   align-items: center;
 `
 
+const renderLoader = () => <p>Loading</p>
+
 export const PersonPage: React.FC<PersonPageProps> = ({
   personal,
   editProfile,
@@ -289,52 +292,56 @@ export const PersonPage: React.FC<PersonPageProps> = ({
 }) => {
   const [selectedTeam, setSelectedTeam] = React.useState<ITeam | null>(null)
   return (
-    <>
+    <Suspense fallback={renderLoader()}>
       <ContentWrapper>
         <UserCoverWrapper>
-          <UserCover backgroundColor={'#ebebeb'}>
-            <img
-              src={personal.topImage ? encodeURI(personal.topImage) : Top}
-              style={{ width: '100%', minHeight: '320px' }}
-            />
-            {profileEditable && (
-              <ButtonEditWrapper onClick={editProfile}>
-                <FontAwesomeIcon icon={faEdit} size="2x" />
-              </ButtonEditWrapper>
-            )}
-          </UserCover>
-          <ProfileContainerWrapper>
-            <ProfilerImageContainer>
-              <ProfileImage icon={personal.icon ? encodeURI(personal.icon) : Top} />
-            </ProfilerImageContainer>
-            <NameWrapper>
-              <NameText>
-                <TextDisplay>{personal.nameJp}</TextDisplay>
-              </NameText>
-              <NameSubText>
-                <TextDisplay>{personal.nameEn}</TextDisplay>
-              </NameSubText>
-              <NameDescription>
-                <TextDisplay>{personal.introduction}</TextDisplay>
-              </NameDescription>
-            </NameWrapper>
-            <SocialMediaWrapper>
-              {personal.links.map((url, index) => {
-                const mediaType = descriminate(url)
-                return (
-                  <ExternalLink href={toHref(url, mediaType)} key={`${index}_${url}`}>
-                    <SocialMediaIcon>{getSocialMediaIcon(mediaType)}</SocialMediaIcon>
-                  </ExternalLink>
-                )
-              })}
-            </SocialMediaWrapper>
-          </ProfileContainerWrapper>
+          <LazyLoad>
+            <UserCover backgroundColor={'#ebebeb'}>
+              <img
+                src={personal.topImage ? encodeURI(personal.topImage) : Top}
+                style={{ width: '100%', minHeight: '320px' }}
+              />
+              {profileEditable && (
+                <ButtonEditWrapper onClick={editProfile}>
+                  <FontAwesomeIcon icon={faEdit} size="2x" />
+                </ButtonEditWrapper>
+              )}
+            </UserCover>
+          </LazyLoad>
+          <LazyLoad>
+            <ProfileContainerWrapper>
+              <ProfilerImageContainer>
+                <ProfileImage icon={personal.icon ? encodeURI(personal.icon) : Top} />
+              </ProfilerImageContainer>
+              <NameWrapper>
+                <NameText>
+                  <TextDisplay>{personal.nameJp}</TextDisplay>
+                </NameText>
+                <NameSubText>
+                  <TextDisplay>{personal.nameEn}</TextDisplay>
+                </NameSubText>
+                <NameDescription>
+                  <TextDisplay>{personal.introduction}</TextDisplay>
+                </NameDescription>
+              </NameWrapper>
+              <SocialMediaWrapper>
+                {personal.links.map((url, index) => {
+                  const mediaType = descriminate(url)
+                  return (
+                    <ExternalLink href={toHref(url, mediaType)} key={`${index}_${url}`}>
+                      <SocialMediaIcon>{getSocialMediaIcon(mediaType)}</SocialMediaIcon>
+                    </ExternalLink>
+                  )
+                })}
+              </SocialMediaWrapper>
+            </ProfileContainerWrapper>
+          </LazyLoad>
         </UserCoverWrapper>
         <TeamWrapper>
           {/* TODO seperate logged in or not */}
-          {personal.teams
-            .map((team, index) => {
-              return (
+          {personal.teams.map((team, index) => {
+            return (
+              <LazyLoad key={team.teamId}>
                 <TeamItemAnchor
                   id={`team-item_${team.teamId}`}
                   key={team.teamId}
@@ -371,21 +378,28 @@ export const PersonPage: React.FC<PersonPageProps> = ({
                     </TeamInfo>
                   </TeamItemWrapper>
                 </TeamItemAnchor>
-              )
-            })}
+              </LazyLoad>
+            )
+          })}
         </TeamWrapper>
       </ContentWrapper>
-      {selectedTeam && (
-        <TeamModal
-          team={selectedTeam}
-          closeModal={() => setSelectedTeam(null)}
-          onLeaveTeam={() => {
-            setSelectedTeam(null)
-            navigate(`/squard/leave`) // TODO ID書き換え
-          }}
-        />
-      )}
-      <DefaultFooter />
-    </>
+      <LazyLoad>
+        {selectedTeam && (
+          <TeamModal
+            team={selectedTeam}
+            closeModal={() => setSelectedTeam(null)}
+            onLeaveTeam={() => {
+              setSelectedTeam(null)
+              navigate(`/squard/leave`) // TODO ID書き換え
+            }}
+          />
+        )}
+      </LazyLoad>
+      <LazyLoad>
+        <DefaultFooter />
+      </LazyLoad>
+    </Suspense>
   )
 }
+
+export default PersonPage

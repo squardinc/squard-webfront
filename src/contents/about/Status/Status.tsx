@@ -89,3 +89,5 @@ export const Status: React.FC<StatusProps> = () => {
     </div>
   )
 }
+
+export default Status

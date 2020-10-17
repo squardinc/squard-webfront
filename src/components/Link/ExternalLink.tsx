@@ -14,3 +14,5 @@ export const ExternalLink: React.FC<ExternalLinkProps> = ({ children, href, clas
     </a>
   )
 }
+
+export default ExternalLink

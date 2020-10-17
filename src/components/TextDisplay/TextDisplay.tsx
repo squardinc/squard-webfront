@@ -36,3 +36,5 @@ export const TextDisplay: React.FC<TextDisplayProps> = ({
     </div>
   )
 }
+
+export default TextDisplay

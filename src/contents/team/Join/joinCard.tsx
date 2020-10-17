@@ -7,7 +7,7 @@ import {
   FlagWrapper,
   MainNameText,
   SubNameText,
-  TeamCardWrapper
+  TeamCardWrapper,
 } from 'src/components/TeamCard'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { ITeamClass } from 'src/models/team'
@@ -58,7 +58,11 @@ const JoinNowButton = styled.button`
   height: 50px;
   line-height: 50px;
 
-  background: linear-gradient(70deg, ${colors.gradientRed}, ${colors.gradientYellow});
+  background: linear-gradient(
+    70deg,
+    ${colors.gradientRed},
+    ${colors.gradientYellow}
+  );
 
   font-weight: ${Const.fontWeight.medium};
   font-size: 16px;
@@ -74,7 +78,8 @@ const JoinCard: React.FC<JoinCardProps> = ({ team, join }) => {
           <Flag>
             <CardTitle
               style={{
-                fontSize: team.classType && team.classType.length > 8 ? '23px' : '29px',
+                fontSize:
+                  team.classType && team.classType.length > 8 ? '23px' : '29px',
               }}
             >
               <TextDisplay>{team.classType}</TextDisplay>

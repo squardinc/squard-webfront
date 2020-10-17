@@ -15,8 +15,7 @@ export const darkBlue = '#051026'
 
 export const fontFamily = {
   sans: "'Noto Sans CJK JP',sans-serif",
-  monster: "'Montserrat', sans-serif",
-  josefin: "'Josefin Sans', sans-serif",
+  monster: "'Montserrat', sans-serif"
 }
 
 //LINE HEIGHT

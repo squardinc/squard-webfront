@@ -1,6 +1,7 @@
 import { gql, useMutation, useQuery } from '@apollo/client'
 import { navigate } from 'gatsby'
 import * as React from 'react'
+import { withTheme } from 'src/context/ThemeContext'
 import { UserContext } from 'src/context/UserContext'
 import { updateUser } from 'src/graphql/mutations'
 import { getMyself, getUser } from 'src/graphql/queries'
@@ -13,7 +14,7 @@ import {
   UpdateUserMutationVariables
 } from 'src/types/API'
 import { parseSearchParams } from 'src/utils/UrlParser'
-import { PersonPageLayoutBlack, PersonPageLayoutGray } from './PersonPageLayout'
+const PersonPage = React.lazy(() => import('./PersonPageLayout'))
 
 interface PersonPageContainerProps {
   id: string
@@ -39,7 +40,10 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
     return <></>
   }
   const personalData = Person.fromQueryResult(data)
-  const PersonPageLayout = isEditing ? PersonPageLayoutBlack : PersonPageLayoutGray
+
+  const PersonPageLayout = isEditing
+    ? React.memo(withTheme(PersonPage, 'black'))
+    : React.memo(withTheme(PersonPage, 'gray'))
 
   return (
     <PersonPageLayout

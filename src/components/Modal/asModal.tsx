@@ -30,3 +30,5 @@ export const asModal = <T extends ModalProps>(Component: React.FC<T>) => {
     )
   }
 }
+
+export default asModal

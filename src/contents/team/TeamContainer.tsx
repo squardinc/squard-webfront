@@ -4,6 +4,7 @@ import { getTeam } from 'src/graphql/queries'
 import { Team } from 'src/models/team'
 import { GetTeamQuery } from 'src/types/API'
 import { TeamLayout } from './TeamLayout'
+
 interface TeamContainerProps {
   id: string
 }
@@ -25,3 +26,5 @@ export const TeamContainer: React.FC<TeamContainerProps> = ({ id }) => {
   const team = Team.fromQueryResult(data)
   return <TeamLayout team={team} />
 }
+
+export default TeamContainer

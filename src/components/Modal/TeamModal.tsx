@@ -88,3 +88,4 @@ const TeamModalComponent: React.FC<TeamModalProps> = ({ closeModal, team, onLeav
 }
 
 export const TeamModal = asModal(TeamModalComponent)
+export default asModal(TeamModalComponent)
