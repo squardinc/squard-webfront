@@ -63,13 +63,18 @@ interface S3Object {
   region: string
   key: string
 }
-interface IDisplayTeamMember {
+interface IBenefit {
+  description: string
+  link: string
+}
+export interface IDisplayTeamMember {
   teamId: string
   pageId: string
   teamName: string
   classType: ClassType
   title: string
   price?: number
+  benefits: IBenefit[]
 }
 class DisplayTeamMember {
   constructor(
@@ -77,7 +82,8 @@ class DisplayTeamMember {
     readonly teamName: string,
     readonly classType: ClassType,
     readonly title: string,
-    readonly price?: number
+    readonly price?: number,
+    readonly benefits?: IBenefit[]
   ) {}
 
   static fromUserQueryResult = (displayTeamMember = {}) => {
@@ -88,6 +94,7 @@ class DisplayTeamMember {
       classType: displayTeamMember.class?.classType,
       title: displayTeamMember.title,
       price: displayTeamMember.price?.price,
+      benefits: displayTeamMember.class?.benefits,
     }
   }
 }
