@@ -1,20 +1,22 @@
-import * as React from 'react'
-import { ContentFooter } from 'src/components/Footer/ContentFooter'
-import { Heading1 } from 'src/components/Heading1/Heading1'
+import React, { lazy, Suspense } from 'react'
 import { withTheme } from 'src/context/ThemeContext'
 import * as Const from 'src/styles/const'
 import styled from 'styled-components'
-import { About } from './About/About'
-import { Classes } from './Classes/Classes'
-import { ManagementSystem } from './ManagementSystem/ManagementSystem'
-import { Status } from './Status/Status'
+
+const Status = lazy(() => import('./Status/Status'))
+const Heading1 = lazy(() => import('src/components/Heading1/Heading1'))
+const About = lazy(() => import('./About/About'))
+const Classes = lazy(() => import('./Classes/Classes'))
+const ManagementSystem = lazy(() => import('./ManagementSystem/ManagementSystem'))
+const ContentFooter = lazy(() => import('src/components/Footer/ContentFooter'))
 
 const PageHeader = styled(Heading1)`
   font-size: ${Const.fontSize.xl2};
 `
+const renderLoader = () => <p>Loading</p>
 const Page: React.FC = () => {
   return (
-    <div>
+    <Suspense fallback={renderLoader()}>
       <PageHeader>About</PageHeader>
       <About></About>
       <Classes></Classes>
@@ -30,7 +32,7 @@ const Page: React.FC = () => {
           window.open('https://www.squard.co.jp/coming-soon/', '_blank')
         }
       />
-    </div>
+    </Suspense>
   )
 }
 

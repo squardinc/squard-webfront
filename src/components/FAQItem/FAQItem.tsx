@@ -38,3 +38,5 @@ export const FAQItem: React.FC<FAQItemProps> = ({ num, question, answer }) => {
     </div>
   )
 }
+
+export default FAQItem;

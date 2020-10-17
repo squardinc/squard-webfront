@@ -15,7 +15,6 @@ import { LoginUserModel } from 'src/services/AuthService/LoginUserModel'
 import * as Const from '../../styles/const'
 
 const Title = styled.div`
-  font-family: ${Const.fontFamily.josefin};
   font-weight: ${Const.fontWeight.bold};
   font-size: ${Const.fontSize.xl};
   margin-top: 2px;

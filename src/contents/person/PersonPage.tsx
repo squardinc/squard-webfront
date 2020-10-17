@@ -12,7 +12,7 @@ import * as Const from 'src/styles/const'
 import { descriminate, toHref } from 'src/utils/SocialMediaDescriminator'
 import styled from 'styled-components'
 import { getSocialMediaIcon, getTeamIcon } from './utils'
-
+import LazyLoad from 'react-lazyload'
 const ExternalLink = lazy(() => import('src/components/Link/ExternalLink'))
 const TextDisplay = lazy(() => import('src/components/TextDisplay/TextDisplay'))
 
@@ -297,50 +297,54 @@ export const PersonPage: React.FC<PersonPageProps> = ({
     <Suspense fallback={renderLoader()}>
       <ContentWrapper>
         <UserCoverWrapper>
-          <UserCover backgroundColor={'#ebebeb'}>
-            <img
-              src={personal.topImage ? encodeURI(personal.topImage) : Top}
-              style={{ width: '100%', minHeight: '320px' }}
-            />
-            {/* {profileEditable && ( */}
-            <ButtonEditWrapper onClick={editProfile}>
-              <FontAwesomeIcon icon={faEdit} size="2x" />
-            </ButtonEditWrapper>
-            {/* )} */}
-          </UserCover>
-          <ProfileContainerWrapper>
-            <ProfilerImageContainer>
-              <ProfileImage
-                icon={personal.icon ? encodeURI(personal.icon) : Top}
+          <LazyLoad>
+            <UserCover backgroundColor={'#ebebeb'}>
+              <img
+                src={personal.topImage ? encodeURI(personal.topImage) : Top}
+                style={{ width: '100%', minHeight: '320px' }}
               />
-            </ProfilerImageContainer>
-            <NameWrapper>
-              <NameText>
-                <TextDisplay>{personal.nameJp}</TextDisplay>
-              </NameText>
-              <NameSubText>
-                <TextDisplay>{personal.nameEn}</TextDisplay>
-              </NameSubText>
-              <NameDescription>
-                <TextDisplay>{personal.introduction}</TextDisplay>
-              </NameDescription>
-            </NameWrapper>
-            <SocialMediaWrapper>
-              {personal.links.map((url, index) => {
-                const mediaType = descriminate(url)
-                return (
-                  <ExternalLink
-                    href={toHref(url, mediaType)}
-                    key={`${index}_${url}`}
-                  >
-                    <SocialMediaIcon>
-                      {getSocialMediaIcon(mediaType)}
-                    </SocialMediaIcon>
-                  </ExternalLink>
-                )
-              })}
-            </SocialMediaWrapper>
-          </ProfileContainerWrapper>
+              {profileEditable && (
+                <ButtonEditWrapper onClick={editProfile}>
+                  <FontAwesomeIcon icon={faEdit} size="2x" />
+                </ButtonEditWrapper>
+              )}
+            </UserCover>
+          </LazyLoad>
+          <LazyLoad>
+            <ProfileContainerWrapper>
+              <ProfilerImageContainer>
+                <ProfileImage
+                  icon={personal.icon ? encodeURI(personal.icon) : Top}
+                />
+              </ProfilerImageContainer>
+              <NameWrapper>
+                <NameText>
+                  <TextDisplay>{personal.nameJp}</TextDisplay>
+                </NameText>
+                <NameSubText>
+                  <TextDisplay>{personal.nameEn}</TextDisplay>
+                </NameSubText>
+                <NameDescription>
+                  <TextDisplay>{personal.introduction}</TextDisplay>
+                </NameDescription>
+              </NameWrapper>
+              <SocialMediaWrapper>
+                {personal.links.map((url, index) => {
+                  const mediaType = descriminate(url)
+                  return (
+                    <ExternalLink
+                      href={toHref(url, mediaType)}
+                      key={`${index}_${url}`}
+                    >
+                      <SocialMediaIcon>
+                        {getSocialMediaIcon(mediaType)}
+                      </SocialMediaIcon>
+                    </ExternalLink>
+                  )
+                })}
+              </SocialMediaWrapper>
+            </ProfileContainerWrapper>
+          </LazyLoad>
         </UserCoverWrapper>
         <TeamWrapper>
           {/* TODO seperate logged in or not */}
@@ -348,59 +352,65 @@ export const PersonPage: React.FC<PersonPageProps> = ({
             .filter((team) => personal.displayTeamIds.includes(team.teamId))
             .map((team, index) => {
               return (
-                <TeamItemAnchor
-                  id={`team-item_${team.teamId}`}
-                  key={team.teamId}
-                  joinSucceeded={
-                    showJoinSucceededModal &&
-                    team.teamId === joinSucceededTeamId
-                  }
-                  index={index}
-                >
-                  <TeamItemWrapper
-                    onClick={() => {
-                      navigate(`/${team.pageId}`)
-                      // setSelectedTeam(team)
-                    }}
+                <LazyLoad key={team.teamId}>
+                  <TeamItemAnchor
+                    id={`team-item_${team.teamId}`}
+                    key={team.teamId}
+                    joinSucceeded={
+                      showJoinSucceededModal &&
+                      team.teamId === joinSucceededTeamId
+                    }
+                    index={index}
                   >
-                    {team.title && (
-                      <TeamRole>
-                        <TeamRoleText>
-                          <TextDisplay>{team.title}</TextDisplay>
-                        </TeamRoleText>
-                      </TeamRole>
-                    )}
-                    <TeamInfo>
-                      <TeamIconWrapper>
-                        {getTeamIcon(team.classType)}
-                      </TeamIconWrapper>
-                      <TeamTextWrapper>
-                        <TeamNameText>
-                          <TextDisplay>{team.teamName}</TextDisplay>
-                        </TeamNameText>
-                        <TeamPositionText>
-                          <TextDisplay>{`- ${team.classType}`}</TextDisplay>
-                        </TeamPositionText>
-                      </TeamTextWrapper>
-                      <TeamLinkWrapper></TeamLinkWrapper>
-                    </TeamInfo>
-                  </TeamItemWrapper>
-                </TeamItemAnchor>
+                    <TeamItemWrapper
+                      onClick={() => {
+                        navigate(`/${team.pageId}`)
+                        // setSelectedTeam(team)
+                      }}
+                    >
+                      {team.title && (
+                        <TeamRole>
+                          <TeamRoleText>
+                            <TextDisplay>{team.title}</TextDisplay>
+                          </TeamRoleText>
+                        </TeamRole>
+                      )}
+                      <TeamInfo>
+                        <TeamIconWrapper>
+                          {getTeamIcon(team.classType)}
+                        </TeamIconWrapper>
+                        <TeamTextWrapper>
+                          <TeamNameText>
+                            <TextDisplay>{team.teamName}</TextDisplay>
+                          </TeamNameText>
+                          <TeamPositionText>
+                            <TextDisplay>{`- ${team.classType}`}</TextDisplay>
+                          </TeamPositionText>
+                        </TeamTextWrapper>
+                        <TeamLinkWrapper></TeamLinkWrapper>
+                      </TeamInfo>
+                    </TeamItemWrapper>
+                  </TeamItemAnchor>
+                </LazyLoad>
               )
             })}
         </TeamWrapper>
       </ContentWrapper>
-      {selectedTeam && (
-        <TeamModal
-          team={selectedTeam}
-          closeModal={() => setSelectedTeam(null)}
-          onLeaveTeam={() => {
-            setSelectedTeam(null)
-            navigate(`/squard/leave`) // TODO ID書き換え
-          }}
-        />
-      )}
-      <DefaultFooter />
+      <LazyLoad>
+        {selectedTeam && (
+          <TeamModal
+            team={selectedTeam}
+            closeModal={() => setSelectedTeam(null)}
+            onLeaveTeam={() => {
+              setSelectedTeam(null)
+              navigate(`/squard/leave`) // TODO ID書き換え
+            }}
+          />
+        )}
+      </LazyLoad>
+      <LazyLoad>
+        <DefaultFooter />
+      </LazyLoad>
     </Suspense>
   )
 }

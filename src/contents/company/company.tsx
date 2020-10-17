@@ -165,75 +165,79 @@ const Page: React.FC = () => {
             </div>
           </div>
 
-          <BlockWrapper
-            style={{
-              marginTop: '12px',
-            }}
-          >
-            <LabelWrapper>
-              <TextDisplay> 社名 / Corporate Name</TextDisplay>
-            </LabelWrapper>
-            <ValueWrapper>
-              {' '}
-              <TextDisplay> スクアード株式会社 / Squard, Inc.</TextDisplay>
-            </ValueWrapper>
-          </BlockWrapper>
-
-          <BlockWrapper>
-            <LabelWrapper>
-              {' '}
-              <TextDisplay> 代表取締役 / CEO</TextDisplay>
-            </LabelWrapper>
-            <ValueWrapper>
-              <TextDisplay>小池駿平 / Shunpei Koike</TextDisplay>
-            </ValueWrapper>
-          </BlockWrapper>
-
-          <BlockWrapper>
-            <LabelWrapper>
-              <TextDisplay>設立 / Founded</TextDisplay>
-            </LabelWrapper>
-            <ValueWrapper>
-              <TextDisplay>2020年9月 / September 2020</TextDisplay>
-            </ValueWrapper>
-          </BlockWrapper>
-
-          <BlockWrapper>
-            <LabelWrapper>
-              <TextDisplay>資本金 / Capital</TextDisplay>
-            </LabelWrapper>
-            <ValueWrapper>
-              <TextDisplay>10,000,000円 / 10,000,000 yen</TextDisplay>
-            </ValueWrapper>
-          </BlockWrapper>
-
-          <BlockWrapper>
-            <LabelWrapper>
-              <TextDisplay>所在地 / Address</TextDisplay>
-            </LabelWrapper>
-            <ValueWrapper
+          <LazyLoad>
+            <BlockWrapper
               style={{
-                fontSize: '14px',
-                marginBottom: '0px',
-                marginTop: '20px',
+                marginTop: '12px',
               }}
             >
-              <TextDisplay>
-                〒135-0064 東京都江東区青海2-7-4 the SOHO 1310
-              </TextDisplay>
-            </ValueWrapper>
-            <ValueWrapper
-              style={{
-                fontSize: '14px',
-                marginTop: '5px',
-                marginBottom: '20px',
-              }}
-            >
-              <TextDisplay>
-                the SOHO 1310, 2-7-4, Aomi, Koto-ku, Tokyo
-              </TextDisplay>
-            </ValueWrapper>
-          </BlockWrapper>
+              <LabelWrapper>
+                <TextDisplay> 社名 / Corporate Name</TextDisplay>
+              </LabelWrapper>
+              <ValueWrapper>
+                <TextDisplay> スクアード株式会社 / Squard, Inc.</TextDisplay>
+              </ValueWrapper>
+            </BlockWrapper>
+          </LazyLoad>
+          <LazyLoad>
+            <BlockWrapper>
+              <LabelWrapper>
+                <TextDisplay> 代表取締役 / CEO</TextDisplay>
+              </LabelWrapper>
+              <ValueWrapper>
+                <TextDisplay>小池駿平 / Shunpei Koike</TextDisplay>
+              </ValueWrapper>
+            </BlockWrapper>
+          </LazyLoad>
+          <LazyLoad>
+            <BlockWrapper>
+              <LabelWrapper>
+                <TextDisplay>設立 / Founded</TextDisplay>
+              </LabelWrapper>
+              <ValueWrapper>
+                <TextDisplay>2020年9月 / September 2020</TextDisplay>
+              </ValueWrapper>
+            </BlockWrapper>
+          </LazyLoad>
+          <LazyLoad>
+            <BlockWrapper>
+              <LabelWrapper>
+                <TextDisplay>資本金 / Capital</TextDisplay>
+              </LabelWrapper>
+              <ValueWrapper>
+                <TextDisplay>10,000,000円 / 10,000,000 yen</TextDisplay>
+              </ValueWrapper>
+            </BlockWrapper>
+          </LazyLoad>
+          <LazyLoad>
+            <BlockWrapper>
+              <LabelWrapper>
+                <TextDisplay>所在地 / Address</TextDisplay>
+              </LabelWrapper>
+              <ValueWrapper
+                style={{
+                  fontSize: '14px',
+                  marginBottom: '0px',
+                  marginTop: '20px',
+                }}
+              >
+                <TextDisplay>
+                  〒135-0064 東京都江東区青海2-7-4 the SOHO 1310
+                </TextDisplay>
+              </ValueWrapper>
+              <ValueWrapper
+                style={{
+                  fontSize: '14px',
+                  marginTop: '5px',
+                  marginBottom: '20px',
+                }}
+              >
+                <TextDisplay>
+                  the SOHO 1310, 2-7-4, Aomi, Koto-ku, Tokyo
+                </TextDisplay>
+              </ValueWrapper>
+            </BlockWrapper>
+          </LazyLoad>
         </CompanyInfor>
 
         <DefaultFooter />

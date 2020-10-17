@@ -1,14 +1,14 @@
-import * as React from 'react'
-
+import React, { lazy, Suspense } from 'react'
 import styles from './FAQ.module.scss'
 import styled from 'styled-components'
-import { Heading1 } from 'src/components/Heading1/Heading1'
-import { FAQItem } from 'src/components/FAQItem/FAQItem'
 import { withTheme } from 'src/context/ThemeContext'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { Link } from 'gatsby'
 import * as Const from '../../styles/const'
-import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import LazyLoad from 'react-lazyload'
+const TextDisplay = lazy(() => import('src/components/TextDisplay/TextDisplay'))
+const Heading1 = lazy(() => import('src/components/Heading1/Heading1'))
+const FAQItem = lazy(() => import('src/components/FAQItem/FAQItem'))
 
 const PageHeader = styled(Heading1)`
   font-weight: ${Const.fontWeight.simbold};
@@ -25,7 +25,7 @@ const GroupFAQ = styled.div`
     margin-bottom: 0px;
   }
 `
-
+const renderLoader = () => <p>Loading</p>
 export const Page: React.FC = (props) => {
   const faqs = [
     {
@@ -79,7 +79,7 @@ export const Page: React.FC = (props) => {
   ]
 
   return (
-    <>
+    <Suspense fallback={renderLoader()}>
       <div className={styles.pageWrapper}>
         <PageHeader>
           <TextDisplay>FAQ</TextDisplay>
@@ -90,8 +90,10 @@ export const Page: React.FC = (props) => {
           ))}
         </GroupFAQ>
       </div>
-      <DefaultFooter backgroundColor={Const.darkBlue} />
-    </>
+      <LazyLoad>
+        <DefaultFooter backgroundColor={Const.darkBlue} />
+      </LazyLoad>
+    </Suspense>
   )
 }
 export const FAQPage = withTheme(Page, 'dark')
