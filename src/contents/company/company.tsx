@@ -243,3 +243,4 @@ const Page: React.FC = () => {
 }
 
 export const CompanyPage = withTheme(Page, 'light-gray')
+export default  withTheme(Page, 'light-gray')

@@ -1,16 +1,7 @@
 import { navigateTo } from 'gatsby'
 import React, { lazy, Suspense } from 'react'
-// import { ContentFooter } from 'src/components/Footer/ContentFooter'
-const ContentFooter = lazy(() => import('src/components/Footer/ContentFooter'))
 import { withTheme } from 'src/context/ThemeContext'
 import { Team } from 'src/models/team'
-// import { TeamAngels } from './TeamContents/TeamAngels'
-// import { TeamCoreMembers } from './TeamContents/TeamCoreMembers'
-// import { TeamMembers } from './TeamContents/TeamMembers'
-// import { TeamProspects } from './TeamContents/TeamProspects'
-// import { TeamVIP } from './TeamContents/TeamVIP'
-// import { TeamIntroduction } from './TeamIntroduction'
-// import { TeamTop } from './TeamTop'
 
 const TeamTop = lazy(() => import('./TeamTop'))
 const TeamCoreMembers = lazy(() => import('./TeamContents/TeamCoreMembers'))
@@ -19,6 +10,7 @@ const TeamMembers = lazy(() => import('./TeamContents/TeamMembers'))
 const TeamProspects = lazy(() => import('./TeamContents/TeamProspects'))
 const TeamVIP = lazy(() => import('./TeamContents/TeamVIP'))
 const TeamAngels = lazy(() => import('./TeamContents/TeamAngels'))
+const ContentFooter = lazy(() => import('src/components/Footer/ContentFooter'))
 
 interface TeamLayoutProps {
   team: Team

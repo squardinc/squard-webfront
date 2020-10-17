@@ -95,3 +95,4 @@ export const Page: React.FC = (props) => {
   )
 }
 export const FAQPage = withTheme(Page, 'dark')
+export default withTheme(Page, 'dark')

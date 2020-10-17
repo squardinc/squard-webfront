@@ -261,3 +261,4 @@ const Page: React.FC = () => {
 }
 
 export const PrivacyPolicyPage = withTheme(Page, 'dark')
+export default withTheme(Page, 'dark')

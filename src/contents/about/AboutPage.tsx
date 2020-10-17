@@ -33,3 +33,4 @@ const Page: React.FC = () => {
 }
 
 export const AboutPage = withTheme(Page, 'dark')
+export default withTheme(Page, 'dark')

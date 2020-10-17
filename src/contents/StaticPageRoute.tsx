@@ -1,14 +1,15 @@
 import { navigate } from 'gatsby'
-import * as React from 'react'
-import { AboutPage } from './about/AboutPage'
-import { ConfirmSignUpLayout } from './callback/ConfirmSignUp'
-import { ResetPasswordLayout } from './callback/ResetPassword'
-import { CompanyPage } from './company/company'
-import { FAQPage } from './faq/FAQ'
-import { PrivacyPolicyPage } from './privacypolicy/privacypolicy'
+import React,{lazy} from 'react'
 import { SctlPage } from './sctl/SctlPage'
-import { SignUpLayout } from './SignUp'
-import { SocialSigninLayout } from './SocialSignIn'
+
+const AboutPage = lazy(() => import('./about/AboutPage'));
+const CompanyPage = lazy(() => import('./company/company'));
+const FAQPage = lazy(() => import('./faq/FAQ'));
+const PrivacyPolicyPage = lazy(() => import('./privacypolicy/privacypolicy'));
+const SignUpLayout = lazy(() => import('./SignUp'));
+const SocialSigninLayout = lazy(() => import('./SocialSignIn'));
+const ConfirmSignUpLayout = lazy(() => import('./callback/ConfirmSignUp'));
+const ResetPasswordLayout = lazy(() => import('./callback/ResetPassword'));
 
 export const StaticPagePaths = [
   'about',
