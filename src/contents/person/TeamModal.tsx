@@ -1,11 +1,8 @@
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as React from 'react'
-import { IDisplayTeamMember } from 'src/models/person'
-import { fadeIn } from 'src/utils/Modal'
-import { addComma } from 'src/utils/NumberFormatter'
-import styled from 'styled-components'
-import { ExternalLink } from '../Link/ExternalLink'
+import { ExternalLink } from 'src/components/Link/ExternalLink'
+import { asModal, ModalProps } from 'src/components/Modal/asModal'
 import {
   CardBodyWrapper,
   EntitlementsWrapper,
@@ -15,9 +12,13 @@ import {
   MainNameText,
   PriceText,
   TeamCardWrapper
-} from '../TeamCard'
-import { TextDisplay } from '../TextDisplay/TextDisplay'
-import { asModal, ModalProps } from './asModal'
+} from 'src/components/TeamCard'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { IDisplayTeamMember } from 'src/models/person'
+import { formattedDate } from 'src/utils/date'
+import { fadeIn } from 'src/utils/Modal'
+import { addComma } from 'src/utils/NumberFormatter'
+import styled from 'styled-components'
 
 type TeamModalProps = ModalProps & {
   team: IDisplayTeamMember
@@ -64,6 +65,11 @@ const TeamModalComponent: React.FC<TeamModalProps> = ({ closeModal, team, onLeav
           </Flag>
         </FlagWrapper>
         <EntitlementsWrapper>
+          {team.expireAt && (
+            <EntitlementText>
+              <TextDisplay>有効期間： ～{formattedDate(team.expireAt)}(自動更新)</TextDisplay>
+            </EntitlementText>
+          )}
           {team.benefits &&
             team.benefits.map((benefit, i) => (
               <EntitlementText key={i}>

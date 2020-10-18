@@ -29,17 +29,29 @@ export enum PageType {
   Person = 'Person',
 }
 
-export type ExitTeamMutationVariables = {
-  teamId: string
-  teamClassId: string
-}
+export type JoinAsGalleriesMutationVariables = {
+  teamId: string,
+  teamClassId: string,
+};
 
-export type ExitTeamMutation = {
-  exitTeam: {
-    __typename: 'Response'
-    message: string | null
-  } | null
-}
+export type JoinAsGalleriesMutation = {
+  joinAsGalleries:  {
+    __typename: "Response",
+    message: string | null,
+  } | null,
+};
+
+export type LeaveTeamMutationVariables = {
+  teamId: string,
+  teamClassId: string,
+};
+
+export type LeaveTeamMutation = {
+  leaveTeam:  {
+    __typename: "Response",
+    message: string | null,
+  } | null,
+};
 
 export type UpdateUserMutationVariables = {
   input: UpdateUserInput
