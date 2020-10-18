@@ -17,6 +17,7 @@ type JoinTeamProps = {
   teamName: string
   teamData: ITeamClass[]
   hasPaymentCancelled?: boolean
+  requestJoinAsGalleries?: any
 }
 
 type CSSProps = {
@@ -91,12 +92,14 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
   teamData,
   loggedIn,
   hasPaymentCancelled,
+  requestJoinAsGalleries,
 }) => {
   const [openModal, setOpenModal] = React.useState<ModalType>('Closed')
   const [
     showPaymentCancelledModal,
     setShowPaymentCancelledModal,
   ] = React.useState(hasPaymentCancelled)
+  console.log(teamData)
   return (
     <>
       <JoinTeamWrapper>
@@ -130,7 +133,8 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
                       return
                     }
                     if (team.classType === 'Galleries') {
-                      //
+                      requestJoinAsGalleries(team.teamClassId)
+                      console.log('押した！')
                       return
                     }
                     requestSubscription(team.teamClassId)
