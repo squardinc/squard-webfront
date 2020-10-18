@@ -2,6 +2,7 @@ import * as React from 'react'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { withTheme } from 'src/context/ThemeContext'
+import * as Const from '../../styles/const'
 import styles from './sctl.module.scss'
 
 interface PolicySectionContent {
@@ -195,7 +196,7 @@ const Page: React.FC = () => {
         各チームへの会員費の決済が行われた時点で、約定された特典を得る権利が発生します。なお、特典毎の履行時期は各チームの記載・連絡に準じます。諸般の事情により遅延が生じる場合は、チームマスターより記載・連絡されるものとします。
       </PolicyChapter>
 
-      <DefaultFooter />
+      <DefaultFooter backgroundColor={Const.darkBlue} />
     </div>
   )
 }
