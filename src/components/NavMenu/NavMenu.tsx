@@ -1,16 +1,16 @@
-import * as React from 'react'
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { navigate } from 'gatsby'
+import * as React from 'react'
+import About from 'src/assets/about_icon.svg'
+import AddNewTeam from 'src/assets/add_new_team_icon.svg'
+import CompanyIcon from 'src/assets/company_icon.svg'
+import Faq from 'src/assets/faq_icon.svg'
+import LegalInfo from 'src/assets/legal_information_icon.svg'
+import MyPage from 'src/assets/my_page_icon_jp.svg'
+import PrivacyPolicy from 'src/assets/privacy_policy_icon_jp.svg'
+import styled from 'styled-components'
 import { MenuItem } from './MenuItem'
 import styles from './NavMenu.module.scss'
-import MyPage from 'src/assets/my_page_icon_jp.svg'
-import AddNewTeam from 'src/assets/add_new_team_icon.svg'
-import Faq from 'src/assets/faq_icon.svg'
-import CompanyIcon from 'src/assets/company_icon.svg'
-import LegalInfo from 'src/assets/legal_information_icon.svg'
-import PrivacyPolicy from 'src/assets/privacy_policy_icon_jp.svg'
-import About from 'src/assets/about_icon.svg'
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
-import styled from 'styled-components'
 
 const MenuItemContent = styled.div`
   display: flex;
@@ -19,7 +19,6 @@ const MenuItemContent = styled.div`
 
 interface NavMenuProps {
   show: boolean
-  myPageId?: string
   loggedIn: boolean
   hideNavMenu: VoidFunction
   showLoginModal: VoidFunction
@@ -27,7 +26,6 @@ interface NavMenuProps {
 }
 export const NavMenu: React.FC<NavMenuProps> = ({
   show,
-  myPageId = '',
   loggedIn,
   hideNavMenu,
   showLoginModal,
@@ -47,11 +45,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
       ) : (
         ''
       )}
-      <div
-        className={`${styles.navMenu} ${
-          show ? styles.open : styles.close
-        } bg-v-gradient`}
-      >
+      <div className={`${styles.navMenu} ${show ? styles.open : styles.close} bg-v-gradient`}>
         <div style={{ width: '100%', height: '25px' }} onClick={hideNavMenu}>
           <div className={styles.navToggleBtn} />
         </div>
@@ -60,9 +54,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
           <MenuItem
             text="マイページ"
             SVGIcon={MyPage}
-            onClick={
-              myPageId ? navigateWithMenuClose(`/${myPageId}`) : showLoginModal
-            }
+            onClick={loggedIn ? navigateWithMenuClose(`/mypage`) : showLoginModal}
           />
           <MenuItem text={'チームを作る+'} SVGIcon={AddNewTeam} />
           <MenuItem
@@ -70,11 +62,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
             SVGIcon={About}
             onClick={navigateWithMenuClose('/about')}
           />
-          <MenuItem
-            text={'よくある質問'}
-            SVGIcon={Faq}
-            onClick={navigateWithMenuClose('/faq')}
-          />
+          <MenuItem text={'よくある質問'} SVGIcon={Faq} onClick={navigateWithMenuClose('/faq')} />
           <MenuItem
             text={'会社概要'}
             SVGIcon={CompanyIcon}
