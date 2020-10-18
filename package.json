@@ -59,6 +59,7 @@
     "graphql": "^15.3.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
+    "react-apollo-network-status": "^5.0.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-image-crop": "^8.6.5",

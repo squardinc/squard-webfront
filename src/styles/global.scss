@@ -102,6 +102,10 @@ body {
   background-color: $black;
 }
 
+.page-base-body {
+  min-height: calc(100vh - 110px);
+}
+
 ::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgb(5, 16, 38);
   border-radius: 20px;

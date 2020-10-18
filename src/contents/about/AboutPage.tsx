@@ -12,10 +12,9 @@ import { Status } from './Status/Status'
 const PageHeader = styled(Heading1)`
   font-size: ${Const.fontSize.xl2};
 `
-const renderLoader = () => <></>
 const Page: React.FC = () => {
   return (
-    <Suspense fallback={renderLoader()}>
+    <Suspense fallback={<></>}>
       <PageHeader>About</PageHeader>
       <About></About>
       <Classes></Classes>

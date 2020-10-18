@@ -94,8 +94,6 @@ const Member: React.FC<MemberProps> = ({ member }) => {
   )
 }
 
-const renderLoader = () => <></>
-
 const Page: React.FC = () => {
   const members = [
     { imageUrl: CEO, color: 'red', title: 'CEO / 小池駿平', path: '/shunpei_koike' },
@@ -105,7 +103,7 @@ const Page: React.FC = () => {
   ]
 
   return (
-    <Suspense fallback={renderLoader()}>
+    <Suspense fallback={<></>}>
       <div className={styles.container}>
         <div
           style={{
