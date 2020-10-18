@@ -18,6 +18,13 @@ import { PersonImage } from '../team/TeamContents/PersonImage'
 import { TeamModal } from './TeamModal'
 import { getSocialMediaIcon, getTeamIcon } from './utils'
 
+// FIXME
+const teamReverseSort = (a, b) => {
+  if (a.teamId > b.teamId) return -1
+  if (a.teamId < b.teamId) return 1
+  return 0
+}
+
 type PersonPageProps = {
   isLoading: boolean
   personal: IPersonal
@@ -338,7 +345,7 @@ export const PersonPage: React.FC<PersonPageProps> = ({
           </ProfileContainerWrapper>
         </UserCoverWrapper>
         <TeamWrapper>
-          {personal.teams.map((team, index) => {
+          {personal.teams.sort(teamReverseSort).map((team, index) => {
             return (
               <TeamItemAnchor
                 id={`team-item_${team.teamId}`}
