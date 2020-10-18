@@ -7,9 +7,10 @@ import {
   FlagWrapper,
   MainNameText,
   SubNameText,
-  TeamCardWrapper,
+  TeamCardWrapper
 } from 'src/components/TeamCard'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { ClassType } from 'src/models/person'
 import { ITeamClass } from 'src/models/team'
 import * as colors from 'src/styles/colors'
 import * as Const from 'src/styles/const'
@@ -18,6 +19,7 @@ import styled from 'styled-components'
 
 type JoinCardProps = {
   team: ITeamClass
+  currentClass?: ClassType
   join: VoidFunction
 }
 
@@ -57,18 +59,12 @@ const JoinNowButton = styled.button`
   color: ${colors.textWhite};
   height: 50px;
   line-height: 50px;
-
-  background: linear-gradient(
-    70deg,
-    ${colors.gradientRed},
-    ${colors.gradientYellow}
-  );
-
+  background: linear-gradient(70deg, ${colors.gradientRed}, ${colors.gradientYellow});
   font-weight: ${Const.fontWeight.medium};
   font-size: 16px;
 `
 
-const JoinCard: React.FC<JoinCardProps> = ({ team, join }) => {
+const JoinCard: React.FC<JoinCardProps> = ({ team, currentClass, join }) => {
   const formattedPrice = addComma(team.price)
 
   return (
@@ -78,8 +74,7 @@ const JoinCard: React.FC<JoinCardProps> = ({ team, join }) => {
           <Flag>
             <CardTitle
               style={{
-                fontSize:
-                  team.classType && team.classType.length > 8 ? '23px' : '29px',
+                fontSize: team.classType && team.classType.length > 8 ? '23px' : '29px',
               }}
             >
               <TextDisplay>{team.classType}</TextDisplay>
@@ -100,8 +95,15 @@ const JoinCard: React.FC<JoinCardProps> = ({ team, join }) => {
           ))}
         </EntitlementsWrapper>
         <CardBodyWrapper>
-          <JoinNowButton onClick={join}>
-            <TextDisplay>今すぐ参加する</TextDisplay>
+          <JoinNowButton
+            onClick={join}
+            disabled={!!currentClass}
+          >
+            {currentClass ? (
+              <TextDisplay>参加済</TextDisplay>
+            ) : (
+              <TextDisplay>今すぐ参加する</TextDisplay>
+            )}
           </JoinNowButton>
         </CardBodyWrapper>
       </TeamCardWrapper>
