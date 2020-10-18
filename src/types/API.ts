@@ -102,6 +102,13 @@ export type RequestSubscriptionMutation = {
     sessionId: string
   } | null
 }
+export type UpdatePageMutationVariables = {
+  pageId: string,
+};
+
+export type UpdatePageMutation = {
+  updatePage: string | null,
+};
 
 export type GetTeamQueryVariables = {
   id: string

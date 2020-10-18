@@ -20,7 +20,7 @@ type PersonPageProps = {
   hasPaymentComplete?: boolean
   joinSucceededTeamId?: string
   onEditProfile?: (value: boolean) => void
-  update: (input: UpdateUserInput) => Promise<void>
+  update: (input: UpdateUserInput, pageId: string) => Promise<void>
   leaveTeam: (teamId: string, teamClassId: string) => void
 }
 
