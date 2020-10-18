@@ -5,13 +5,15 @@ import React, { lazy, Suspense } from 'react'
 import LazyLoad from 'react-lazyload'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { MODAL_Z_INDEX } from 'src/components/Modal/asModal'
-import { TeamModal } from 'src/components/Modal/TeamModal'
+import { CompleteModal } from 'src/components/Modal/CompleteModal'
+import { YesNoModal } from 'src/components/Modal/YesNoModal'
 import Top from 'src/images/temp/team/top.jpg'
-import { IPersonal, ITeam } from 'src/models/person'
+import { IDisplayTeamMember, IPersonal } from 'src/models/person'
 import * as colors from 'src/styles/colors'
 import * as Const from 'src/styles/const'
 import { descriminate, toHref } from 'src/utils/SocialMediaDescriminator'
 import styled from 'styled-components'
+import { TeamModal } from './TeamModal'
 import { getSocialMediaIcon, getTeamIcon } from './utils'
 const ExternalLink = lazy(() => import('src/components/Link/ExternalLink'))
 const TextDisplay = lazy(() => import('src/components/TextDisplay/TextDisplay'))
@@ -21,8 +23,10 @@ type PersonPageProps = {
   personal: IPersonal
   profileEditable: boolean
   joinSucceededTeamId?: string
+  showLeaveTeamResult: boolean
   editProfile: VoidFunction
   showJoinSucceededModal: Boolean
+  leaveTeam: (teamId: string, teamClassId: string) => void
 }
 
 type StyleCssProps = {
@@ -112,8 +116,7 @@ const ProfilerImageContainer = styled.div`
   margin: 0px 20px 20px 20px;
   background-image: linear-gradient(#edc74c, #bc4c49);
   border-radius: 10px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 `
 
 const ProfileImage = styled.div`
@@ -121,8 +124,8 @@ const ProfileImage = styled.div`
   width: 74px;
   border-radius: 10px;
   margin: 3px 0px 0px 3px;
-  background: url(${(props: StyleCssProps) => (props.icon ? props.icon : '')})
-    no-repeat center center;
+  background: url(${(props: StyleCssProps) => (props.icon ? props.icon : '')}) no-repeat center
+    center;
   background-size: cover;
 `
 
@@ -254,8 +257,7 @@ const TeamRole = styled.div`
   right: 32px;
   height: 30px;
   background-color: #efefef;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   color: #051026;
@@ -293,8 +295,11 @@ export const PersonPage: React.FC<PersonPageProps> = ({
   profileEditable = false,
   joinSucceededTeamId = '',
   showJoinSucceededModal,
+  showLeaveTeamResult,
+  leaveTeam,
 }) => {
-  const [selectedTeam, setSelectedTeam] = React.useState<ITeam | null>(null)
+  const [selectedTeam, setSelectedTeam] = React.useState<IDisplayTeamMember | null>(null)
+  const [showTeamLeaveModal, setShowTeamLeaveModal] = React.useState(false)
   return (
     <Suspense fallback={renderLoader()}>
       <ContentWrapper>
@@ -315,9 +320,7 @@ export const PersonPage: React.FC<PersonPageProps> = ({
           <LazyLoad>
             <ProfileContainerWrapper>
               <ProfilerImageContainer>
-                <ProfileImage
-                  icon={personal.icon ? encodeURI(personal.icon) : Top}
-                />
+                <ProfileImage icon={personal.icon ? encodeURI(personal.icon) : Top} />
               </ProfilerImageContainer>
               <NameWrapper>
                 <NameText>
@@ -334,13 +337,8 @@ export const PersonPage: React.FC<PersonPageProps> = ({
                 {personal.links.map((url, index) => {
                   const mediaType = descriminate(url)
                   return (
-                    <ExternalLink
-                      href={toHref(url, mediaType)}
-                      key={`${index}_${url}`}
-                    >
-                      <SocialMediaIcon>
-                        {getSocialMediaIcon(mediaType)}
-                      </SocialMediaIcon>
+                    <ExternalLink href={toHref(url, mediaType)} key={`${index}_${url}`}>
+                      <SocialMediaIcon>{getSocialMediaIcon(mediaType)}</SocialMediaIcon>
                     </ExternalLink>
                   )
                 })}
@@ -349,67 +347,77 @@ export const PersonPage: React.FC<PersonPageProps> = ({
           </LazyLoad>
         </UserCoverWrapper>
         <TeamWrapper>
-          {/* TODO seperate logged in or not */}
-          {personal.teams
-            .filter((team) => personal.displayTeamIds.includes(team.teamId))
-            .map((team, index) => {
-              return (
-                <LazyLoad key={team.teamId}>
-                  <TeamItemAnchor
-                    id={`team-item_${team.teamId}`}
-                    key={team.teamId}
-                    joinSucceeded={
-                      showJoinSucceededModal &&
-                      team.teamId === joinSucceededTeamId
-                    }
-                    index={index}
+          {personal.teams.map((team, index) => {
+            return (
+              <LazyLoad key={team.teamId}>
+                <TeamItemAnchor
+                  id={`team-item_${team.teamId}`}
+                  key={team.teamId}
+                  joinSucceeded={showJoinSucceededModal && team.teamId === joinSucceededTeamId}
+                  index={index}
+                >
+                  <TeamItemWrapper
+                    onClick={() => {
+                      if (profileEditable) {
+                        setSelectedTeam(team)
+                        return
+                      }
+                      navigate(`/${team.pageId}`)
+                    }}
                   >
-                    <TeamItemWrapper
-                      onClick={() => {
-                        navigate(`/${team.pageId}`)
-                        // setSelectedTeam(team)
-                      }}
-                    >
-                      {team.title && (
-                        <TeamRole>
-                          <TeamRoleText>
-                            <TextDisplay>{team.title}</TextDisplay>
-                          </TeamRoleText>
-                        </TeamRole>
-                      )}
-                      <TeamInfo>
-                        <TeamIconWrapper>
-                          {getTeamIcon(team.classType)}
-                        </TeamIconWrapper>
-                        <TeamTextWrapper>
-                          <TeamNameText>
-                            <TextDisplay>{team.teamName}</TextDisplay>
-                          </TeamNameText>
-                          <TeamPositionText>
-                            <TextDisplay>{`- ${team.classType}`}</TextDisplay>
-                          </TeamPositionText>
-                        </TeamTextWrapper>
-                        <TeamLinkWrapper></TeamLinkWrapper>
-                      </TeamInfo>
-                    </TeamItemWrapper>
-                  </TeamItemAnchor>
-                </LazyLoad>
-              )
-            })}
+                    {team.title && (
+                      <TeamRole>
+                        <TeamRoleText>
+                          <TextDisplay>{team.title}</TextDisplay>
+                        </TeamRoleText>
+                      </TeamRole>
+                    )}
+                    <TeamInfo>
+                      <TeamIconWrapper>{getTeamIcon(team.classType)}</TeamIconWrapper>
+                      <TeamTextWrapper>
+                        <TeamNameText>
+                          <TextDisplay>{team.teamName}</TextDisplay>
+                        </TeamNameText>
+                        <TeamPositionText>
+                          <TextDisplay>{`- ${team.classType}`}</TextDisplay>
+                        </TeamPositionText>
+                      </TeamTextWrapper>
+                      <TeamLinkWrapper></TeamLinkWrapper>
+                    </TeamInfo>
+                  </TeamItemWrapper>
+                </TeamItemAnchor>
+              </LazyLoad>
+            )
+          })}
         </TeamWrapper>
       </ContentWrapper>
       <LazyLoad>
-        {selectedTeam && (
+        {selectedTeam && !showTeamLeaveModal && (
           <TeamModal
             team={selectedTeam}
             closeModal={() => setSelectedTeam(null)}
-            onLeaveTeam={() => {
-              setSelectedTeam(null)
-              navigate(`/squard/leave`) // TODO ID書き換え
-            }}
+            onLeaveTeam={() => setShowTeamLeaveModal(true)}
           />
         )}
       </LazyLoad>
+      {selectedTeam && showTeamLeaveModal && (
+        <YesNoModal
+          title={`${selectedTeam.teamName}\r\nから脱退する`}
+          closeModal={() => setShowTeamLeaveModal(false)}
+          onExecute={() => {
+            leaveTeam(selectedTeam.teamId, selectedTeam.teamClassId)
+          }}
+          message="脱退すると有効期間の途中であっても直ちに権利を喪失し、返金は行われません。また、脱退後のキャンセルは行えません。"
+          cancelButtonText="キャンセル"
+          executeButtonText="上記内容を理解した上で脱退する"
+        />
+      )}
+      {selectedTeam && showLeaveTeamResult && (
+        <CompleteModal
+          title={`${selectedTeam.teamName} から脱退しました。`}
+          closeModal={(e) => window.location.reload()}
+        />
+      )}
       <LazyLoad>
         <DefaultFooter />
       </LazyLoad>

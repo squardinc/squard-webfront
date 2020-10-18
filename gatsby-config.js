@@ -3,9 +3,7 @@ const dotenv = require('dotenv')
 const path = require('path')
 
 const branchName = process.env.BRANCH
-const envfile = fs.existsSync(`env/.${branchName}`)
-  ? `env/.${branchName}`
-  : 'env/.dev'
+const envfile = fs.existsSync(`env/.${branchName}`) ? `env/.${branchName}` : 'env/.dev'
 console.log(`run in ${envfile}`)
 dotenv.config({ path: envfile })
 
@@ -18,9 +16,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingIds: [
-          process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'UA-179078519-2',
-        ],
+        trackingIds: [process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'UA-179078519-2'],
         gtagConfig: {
           anonymize_ip: false,
           linker: {
@@ -74,15 +70,21 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sass`,
       options: {
-        postCssPlugins: [
-          require('tailwindcss'),
-          require('./tailwind.config.js'),
-        ],
+        postCssPlugins: [require('tailwindcss'), require('./tailwind.config.js')],
       },
     },
     {
       resolve: `gatsby-plugin-create-client-paths`,
-      options: { prefixes: ['/*'] },
+      options: {
+        prefixes: ['/*'],
+        extensions: ['css', 'html', 'js', 'svg', 'eot', 'ttf', 'woff', 'woff2'],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-zopfli',
+      options: {
+        verbose: true,
+      },
     },
   ],
 }

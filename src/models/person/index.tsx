@@ -1,5 +1,5 @@
-import dayjs from 'dayjs'
-import { GetUserQuery } from 'src/types/API'
+import dayjs, { Dayjs } from 'dayjs'
+import { GetMyselfQuery, GetUserQuery } from 'src/types/API'
 
 const SOCIAL_MEDIA = [
   'facebook',
@@ -58,37 +58,52 @@ export type IPersonal = {
   age: string
 }
 
-interface S3Object {
-  bucket: string
-  region: string
-  key: string
+interface IBenefit {
+  description: string
+  link: string
 }
-interface IDisplayTeamMember {
+export interface IDisplayTeamMember {
   teamId: string
   pageId: string
   teamName: string
+  teamClassId: string
   classType: ClassType
   title: string
+  price?: number
+  expireAt?: Dayjs
+  benefits: IBenefit[]
 }
-class DisplayTeamMember {
+class DisplayTeamMember implements IDisplayTeamMember {
   constructor(
+    readonly teamId: string,
     readonly pageId: string,
     readonly teamName: string,
+    readonly teamClassId: string,
     readonly classType: ClassType,
-    readonly title: string
+    readonly title: string,
+    readonly price?: number,
+    readonly expireAt?: Dayjs,
+    readonly benefits: IBenefit[] = []
   ) {}
 
   static fromUserQueryResult = (displayTeamMember = {}) => {
+    console.log(displayTeamMember)
     return {
       teamId: displayTeamMember.team?.id,
       pageId: displayTeamMember.team?.page?.id,
       teamName: displayTeamMember.team?.name,
+      teamClassId: displayTeamMember.teamClassId,
       classType: displayTeamMember.class?.classType,
       title: displayTeamMember.title,
+      price: displayTeamMember.class?.price?.price,
+      expireAt: displayTeamMember.subscription?.expireAt
+        ? dayjs.unix(displayTeamMember.subscription?.expireAt)
+        : undefined,
+      benefits: displayTeamMember.class?.benefits,
     }
   }
 }
-export class Person {
+export class Person implements IPersonal {
   constructor(
     readonly id: string,
     readonly nameJp: string,
@@ -98,11 +113,11 @@ export class Person {
     readonly introduction: string = '',
     readonly birthday: string = '',
     readonly links: string[] = [],
-    readonly teams: IDisplayTeamMember[] = [],
-    readonly displayTeamIds: string[]
+    readonly displayTeamIds: string[],
+    readonly teams: IDisplayTeamMember[] = []
   ) {}
 
-  static fromQueryResult = (result: GetUserQuery) => {
+  static fromQueryResult = (result: GetUserQuery | GetMyselfQuery) => {
     const {
       id,
       nameJp,
@@ -114,7 +129,7 @@ export class Person {
       links,
       teamMembers,
       displayTeamIds,
-    } = result?.getUser || {}
+    } = result?.getUser || result?.getMyself || {}
     return new Person(
       id || '',
       nameJp || '',
@@ -124,13 +139,12 @@ export class Person {
       introduction || '',
       birthday || '',
       links || [],
-      (teamMembers || []).map((each) =>
-        DisplayTeamMember.fromUserQueryResult(each)
-      ),
-      displayTeamIds
+      displayTeamIds || [],
+      (teamMembers || []).map((each) => DisplayTeamMember.fromUserQueryResult(each))
     )
   }
+
   get age() {
-    return dayjs().diff(this.birthday, 'year')
+    return String(dayjs().diff(this.birthday, 'year'))
   }
 }

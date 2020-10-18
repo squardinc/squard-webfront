@@ -1,25 +1,27 @@
-import * as React from 'react'
-import styled from 'styled-components'
-import { ModalProps, asModal } from './asModal'
-import { ITeam } from 'src/models/personal'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
-import { fadeIn } from 'src/utils/Modal'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import * as React from 'react'
+import { ExternalLink } from 'src/components/Link/ExternalLink'
+import { asModal, ModalProps } from 'src/components/Modal/asModal'
 import {
-  FlagWrapper,
-  Flag,
-  MainNameText,
-  PriceText,
+  CardBodyWrapper,
   EntitlementsWrapper,
   EntitlementText,
-  CardBodyWrapper,
-  TeamCardWrapper,
-} from '../TeamCard'
-import { TextDisplay } from '../TextDisplay/TextDisplay'
+  Flag,
+  FlagWrapper,
+  MainNameText,
+  PriceText,
+  TeamCardWrapper
+} from 'src/components/TeamCard'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { IDisplayTeamMember } from 'src/models/person'
+import { formattedDate } from 'src/utils/date'
+import { fadeIn } from 'src/utils/Modal'
 import { addComma } from 'src/utils/NumberFormatter'
+import styled from 'styled-components'
 
 type TeamModalProps = ModalProps & {
-  team: ITeam
+  team: IDisplayTeamMember
   onLeaveTeam: VoidFunction
 }
 
@@ -34,11 +36,7 @@ const LeaveTeamLabel = styled.div`
   cursor: pointer;
 `
 
-const TeamModalComponent: React.FC<TeamModalProps> = ({
-  closeModal,
-  team,
-  onLeaveTeam,
-}) => {
+const TeamModalComponent: React.FC<TeamModalProps> = ({ closeModal, team, onLeaveTeam }) => {
   React.useEffect(() => {
     fadeIn()
   }, [])
@@ -56,22 +54,28 @@ const TeamModalComponent: React.FC<TeamModalProps> = ({
         <FlagWrapper>
           <Flag>
             <MainNameText>
-              <TextDisplay>{team.name}</TextDisplay>
+              <TextDisplay>{team.teamName}</TextDisplay>
+              <TextDisplay>{team.classType}</TextDisplay>
             </MainNameText>
-            {team.monthlyPrice && (
+            {team.price && (
               <PriceText>
-                <TextDisplay>
-                  ￥{addComma(team.monthlyPrice)} / 月額
-                </TextDisplay>
+                <TextDisplay>￥{addComma(team.price)} / 月額</TextDisplay>
               </PriceText>
             )}
           </Flag>
         </FlagWrapper>
         <EntitlementsWrapper>
-          {team.entitlements &&
-            team.entitlements.map((el, i) => (
+          {team.expireAt && (
+            <EntitlementText>
+              <TextDisplay>有効期間： ～{formattedDate(team.expireAt)}(自動更新)</TextDisplay>
+            </EntitlementText>
+          )}
+          {team.benefits &&
+            team.benefits.map((benefit, i) => (
               <EntitlementText key={i}>
-                <TextDisplay>{el}</TextDisplay>
+                <ExternalLink href={benefit.link}>
+                  <TextDisplay>{benefit.description}</TextDisplay>
+                </ExternalLink>
               </EntitlementText>
             ))}
         </EntitlementsWrapper>

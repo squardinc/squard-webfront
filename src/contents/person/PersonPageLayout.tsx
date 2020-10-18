@@ -3,7 +3,6 @@ import { animateScroll } from 'react-scroll'
 import { CompleteModal } from 'src/components/Modal/CompleteModal'
 import { MessageModal } from 'src/components/Modal/MessageModal'
 import { withTheme } from 'src/context/ThemeContext'
-import { UserContext } from 'src/context/UserContext'
 import { uploadImg } from 'src/external/aws/s3'
 import { IPersonal } from 'src/models/person'
 import * as colors from 'src/styles/colors'
@@ -15,11 +14,14 @@ const PersonPage = lazy(() => import('./PersonPage'))
 type PersonPageProps = {
   personal: IPersonal
   isLoading: boolean
-  isEditing?: boolean
+  profileEditable: boolean
+  showLeaveTeamResult: boolean
+  isEditing: boolean
   hasPaymentComplete?: boolean
   joinSucceededTeamId?: string
   onEditProfile?: (value: boolean) => void
   update: (input: UpdateUserInput) => Promise<void>
+  leaveTeam: (teamId: string, teamClassId: string) => void
 }
 
 type StyleCssProps = {
@@ -45,21 +47,18 @@ const EditProfileWrapper = styled.div`
 
 const PersonPageLayout: React.FC<PersonPageProps> = ({
   personal,
+  profileEditable,
+  showLeaveTeamResult,
   isEditing,
   hasPaymentComplete,
   joinSucceededTeamId,
   onEditProfile,
   update,
+  leaveTeam,
 }) => {
-  const { user } = React.useContext(UserContext)
-  const [
-    showPaymentCompleteModal,
-    setShowPaymentCompleteModal,
-  ] = React.useState(hasPaymentComplete)
-  const [showJoinSucceededModal, setShowJoinSucceededModal] = React.useState(
-    false
-  )
-
+  const [showPaymentCompleteModal, setShowPaymentCompleteModal] = React.useState(hasPaymentComplete)
+  const [showJoinSucceededModal, setShowJoinSucceededModal] = React.useState(false)
+  console.log(personal)
   return (
     <>
       <PersonPageWrapper backgroundColor={'#ebebeb'}>
@@ -68,9 +67,11 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
             isLoading={false}
             personal={personal}
             editProfile={() => onEditProfile && onEditProfile(true)}
-            profileEditable={personal.id === user.id}
+            profileEditable={profileEditable}
             joinSucceededTeamId={joinSucceededTeamId}
             showJoinSucceededModal={showJoinSucceededModal}
+            showLeaveTeamResult={showLeaveTeamResult}
+            leaveTeam={leaveTeam}
           />
         ) : (
           <EditProfileWrapper>
@@ -106,7 +107,10 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
       )}
       {showJoinSucceededModal && (
         <MessageModal
-          closeModal={(e) => setShowJoinSucceededModal(false)}
+          closeModal={(e) => {
+            setShowJoinSucceededModal(false)
+            window.history.replaceState({}, document.title, window.location.pathname)
+          }}
           message={
             'チームに参加しました。マイページから参加特典を確認できます。'
           }
