@@ -1,12 +1,12 @@
-import * as React from 'react'
 import { Link } from 'gatsby'
-
+import * as React from 'react'
 import Logo from 'src/assets/Logo.svg'
 import BlueLogo from 'src/assets/Logo_Blue.svg'
-import styles from './Footer.module.scss'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import { FooterWrapper } from './FooterWrapper'
 import { ThemeContext } from 'src/context/ThemeContext'
+import styles from './Footer.module.scss'
+import { FooterWrapper } from './FooterWrapper'
+
 
 interface SiteMapProps {
   backgroundColor?: string
@@ -41,6 +41,9 @@ export const SiteMap = (props?: SiteMapProps) => {
               </Link>
               <Link to="/privacypolicy" style={{ height: '23px' }}>
                 Privacy Policy
+              </Link>
+              <Link to="/termsofuse" style={{ height: '23px' }}>
+                Term of Use
               </Link>
             </TextDisplay>
             <Link to="/">
