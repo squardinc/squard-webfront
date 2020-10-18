@@ -1,12 +1,13 @@
 import * as React from 'react'
-// import { RoundButton } from 'src/components/Button/DefaultButton'
-import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import { asModal, ModalProps } from 'src/components/Modal/asModal'
-import { DefaultModalContainer } from 'src/components/Modal/ModalContainer'
-import { AuthService } from 'src/services/AuthService'
-import { MessageModal } from 'src/components/Modal/MessageModal'
 import { EMailAddressInput } from 'src/components/Input/EMailAddressInput'
 import { PasswordInput } from 'src/components/Input/PasswordInput'
+import ExternalLink from 'src/components/Link/ExternalLink'
+import { asModal, ModalProps } from 'src/components/Modal/asModal'
+import { MessageModal } from 'src/components/Modal/MessageModal'
+import { DefaultModalContainer } from 'src/components/Modal/ModalContainer'
+// import { RoundButton } from 'src/components/Button/DefaultButton'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { AuthService } from 'src/services/AuthService'
 import { validEmaliAddress } from 'src/utils/StringValidator'
 import styled from 'styled-components'
 import * as Const from '../../../styles/const'
@@ -66,15 +67,13 @@ const RoundButton = styled.button`
 type SignUpComponentProps = ModalProps & {
   showLoginModal: (e: React.MouseEvent) => void
 }
-const SignUpComponent: React.FC<SignUpComponentProps> = ({
-  closeModal,
-  showLoginModal,
-}) => {
+const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLoginModal }) => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
+  const [agreeTermsOfUse, setAgreeTermsOfUse] = React.useState(false)
   const isSubmittable = React.useMemo(
-    () => validEmaliAddress(email) && password.length >= 8,
-    [email, password]
+    () => validEmaliAddress(email) && password.length >= 8 && agreeTermsOfUse,
+    [email, password, agreeTermsOfUse]
   )
   const [registrationUserId, setRegistrationUserId] = React.useState('')
   const [errorMesasge, setErrorMessage] = React.useState('')
@@ -106,11 +105,25 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({
             <TextDisplay className="flex justify-end w-full text-sm mb-4">
               <HintWrapper>※8文字以上16文字以内</HintWrapper>
             </TextDisplay>
+            <div className="flex justify-center items-center mb-2">
+              <input
+                type="checkbox"
+                className="form-checkbox"
+                onChange={(e) => setAgreeTermsOfUse(e.target.checked)}
+              />
+              <div className="ml-2">
+                <ExternalLink href="/termsofuse" className="underline">
+                  利用規約
+                </ExternalLink>
+                に同意する
+              </div>
+            </div>
             <div className="flex flex-col">
               <RoundButton
                 style={{
                   color: 'black',
-                  backgroundColor: 'white',
+                  backgroundColor: isSubmittable ? 'white' : 'gray',
+                  opacity: isSubmittable ? '' : '0.8',
                 }}
                 disabled={!isSubmittable}
                 onClick={async () => {
@@ -132,7 +145,9 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({
                 style={{
                   color: 'white',
                   backgroundColor: '#3B5998',
+                  opacity: agreeTermsOfUse ? '' : '0.7',
                 }}
+                disabled={!agreeTermsOfUse}
                 onClick={AuthService.loginWithFacebook}
               >
                 <TextDisplay>Facebookで登録</TextDisplay>
@@ -141,10 +156,7 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({
             <TextDisplay>
               <BottomWrapper>
                 アカウントをお持ちですか？ログインは
-                <div
-                  className="underline cursor-pointer"
-                  onClick={showLoginModal}
-                >
+                <div className="underline cursor-pointer" onClick={showLoginModal}>
                   こちら
                 </div>
               </BottomWrapper>
@@ -152,10 +164,7 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({
           </SignupContent>
         </DefaultModalContainer>
       ) : (
-        <MessageModal
-          message={errorMesasge}
-          closeModal={() => setErrorMessage('')}
-        />
+        <MessageModal message={errorMesasge} closeModal={() => setErrorMessage('')} />
       )}
     </>
   )
