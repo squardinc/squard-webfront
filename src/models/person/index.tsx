@@ -47,6 +47,7 @@ export type ITeam = {
 
 export type IPersonal = {
   id?: string
+  pageId: string
   topImage?: string
   icon?: string
   nameJp: string
@@ -87,7 +88,6 @@ class DisplayTeamMember implements IDisplayTeamMember {
   ) {}
 
   static fromUserQueryResult = (displayTeamMember = {}) => {
-    console.log(displayTeamMember)
     return {
       teamId: displayTeamMember.team?.id,
       pageId: displayTeamMember.team?.page?.id,
@@ -106,6 +106,7 @@ class DisplayTeamMember implements IDisplayTeamMember {
 export class Person implements IPersonal {
   constructor(
     readonly id: string,
+    readonly _pageId: string,
     readonly nameJp: string,
     readonly nameEn: string = '',
     readonly topImage: string = '',
@@ -120,6 +121,7 @@ export class Person implements IPersonal {
   static fromQueryResult = (result: GetUserQuery | GetMyselfQuery) => {
     const {
       id,
+      page,
       nameJp,
       nameEn,
       topImage,
@@ -132,6 +134,7 @@ export class Person implements IPersonal {
     } = result?.getUser || result?.getMyself || {}
     return new Person(
       id || '',
+      page.id || '',
       nameJp || '',
       nameEn || '',
       topImage || '',
@@ -146,5 +149,9 @@ export class Person implements IPersonal {
 
   get age() {
     return String(dayjs().diff(this.birthday, 'year'))
+  }
+
+  get pageId() {
+    return encodeURIComponent(this._pageId)
   }
 }

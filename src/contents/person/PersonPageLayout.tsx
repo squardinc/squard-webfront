@@ -58,7 +58,6 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
 }) => {
   const [showPaymentCompleteModal, setShowPaymentCompleteModal] = React.useState(hasPaymentComplete)
   const [showJoinSucceededModal, setShowJoinSucceededModal] = React.useState(false)
-  console.log(personal)
   return (
     <>
       <PersonPageWrapper backgroundColor={'#ebebeb'}>

@@ -1,8 +1,8 @@
-import * as React from 'react'
-import { StaticPagePaths } from './ContentLayout'
 import { navigate } from 'gatsby'
+import * as React from 'react'
 import JoinTeamContainer from 'src/contents/team/Join/JoinTeamContainer'
 import LeaveTeamContainer from 'src/contents/team/Leave/LeaveTeamContainer'
+import { StaticPagePaths } from './ContentLayout'
 
 interface ContentSubLayoutProps {
   path: string
@@ -13,7 +13,6 @@ export const ContentSubLayout: React.FC<ContentSubLayoutProps> = ({
   contentId,
   subContentId,
 }) => {
-  console.log(contentId, subContentId)
   if (StaticPagePaths.includes(contentId)) {
     navigate(`/${contentId}`)
     return <></>

@@ -48,7 +48,6 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
   const personalData = Person.fromQueryResult(data)
 
   const PersonPageLayout = isEditing ? PersonPageLayoutBlack : PersonPageLayoutGray
-  console.log(personalData)
   return (
     <PersonPageLayout
       isLoading={false}
