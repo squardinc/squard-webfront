@@ -335,10 +335,12 @@ export const PersonPage: React.FC<PersonPageProps> = ({
             <SocialMediaWrapper>
               {personal.links.map((url, index) => {
                 const mediaType = descriminate(url)
-                return (
+                return mediaType ? (
                   <ExternalLink href={toHref(url, mediaType)} key={`${index}_${url}`}>
                     <SocialMediaIcon>{getSocialMediaIcon(mediaType)}</SocialMediaIcon>
                   </ExternalLink>
+                ) : (
+                  <></>
                 )
               })}
             </SocialMediaWrapper>
