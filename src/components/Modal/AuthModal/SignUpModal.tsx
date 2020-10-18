@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { EMailAddressInput } from 'src/components/Input/EMailAddressInput'
 import { PasswordInput } from 'src/components/Input/PasswordInput'
+import ExternalLink from 'src/components/Link/ExternalLink'
 import { asModal, ModalProps } from 'src/components/Modal/asModal'
 import { MessageModal } from 'src/components/Modal/MessageModal'
 import { DefaultModalContainer } from 'src/components/Modal/ModalContainer'
@@ -69,10 +70,11 @@ type SignUpComponentProps = ModalProps & {
 const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLoginModal }) => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
-  const isSubmittable = React.useMemo(() => validEmaliAddress(email) && password.length >= 8, [
-    email,
-    password,
-  ])
+  const [agreeTermsOfUse, setAgreeTermsOfUse] = React.useState(false)
+  const isSubmittable = React.useMemo(
+    () => validEmaliAddress(email) && password.length >= 8 && agreeTermsOfUse,
+    [email, password, agreeTermsOfUse]
+  )
   const [registrationUserId, setRegistrationUserId] = React.useState('')
   const [errorMesasge, setErrorMessage] = React.useState('')
 
@@ -103,11 +105,26 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
             <TextDisplay className="flex justify-end w-full text-sm mb-4">
               <HintWrapper>※8文字以上16文字以内</HintWrapper>
             </TextDisplay>
+            <div className="flex justify-center items-center mb-2">
+              <input
+                type="checkbox"
+                checked={agreeTermsOfUse}
+                className="form-checkbox"
+                onChange={(e) => setAgreeTermsOfUse(e.target.checked)}
+              />
+              <div className="ml-2">
+                <ExternalLink href="/termsofuse" className="underline">
+                  利用規約
+                </ExternalLink>
+                に同意する
+              </div>
+            </div>
             <div className="flex flex-col">
               <RoundButton
                 style={{
                   color: 'black',
-                  backgroundColor: 'white',
+                  backgroundColor: isSubmittable ? 'white' : 'gray',
+                  opacity: isSubmittable ? '' : '0.8',
                 }}
                 disabled={!isSubmittable}
                 onClick={async () => {
@@ -129,11 +146,13 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
                 style={{
                   color: 'white',
                   backgroundColor: '#3B5998',
+                  opacity: agreeTermsOfUse ? '' : '0.7',
                 }}
                 onClick={(e) => {
                   e.preventDefault()
                   AuthService.loginWithFacebook()
                 }}
+                disabled={!agreeTermsOfUse}
               >
                 <TextDisplay>Facebookで登録</TextDisplay>
               </RoundButton>

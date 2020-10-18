@@ -95,9 +95,14 @@ export const getMyMemberInfo = /* GraphQL */ `
       link
       contact
       introduction
+      subscription {
+        subscriptionId
+        teamMemberId
+        expireAt
+      }
     }
   }
-`
+`;
 export const getTeamMembers = /* GraphQL */ `
   query GetTeamMembers($teamId: ID!) {
     getTeamMembers(teamId: $teamId) {

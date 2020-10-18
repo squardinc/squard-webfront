@@ -1,13 +1,10 @@
-import * as React from 'react'
-import {
-  FontAwesomeIconProps,
-  FontAwesomeIcon,
-} from '@fortawesome/react-fontawesome'
-import styles from './Button.module.scss'
-import { TextDisplay } from '../TextDisplay/TextDisplay'
+import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
 import CSS from 'csstype'
+import * as React from 'react'
 import styled from 'styled-components'
 import * as Const from '../../styles/const'
+import { TextDisplay } from '../TextDisplay/TextDisplay'
+import styles from './Button.module.scss'
 
 interface DefaultButtonProps {
   size?: 'larger' | 'medium' | 'small' | string
@@ -45,19 +42,14 @@ const ButtonWrapper = styled.button<DefaultButtonProps>`
     return width
   }};
   white-space: nowrap;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 `
 
 interface ButtonProps extends DefaultButtonProps {
   text: string
   onClick: VoidFunction
 }
-export const DefaultButton: React.FC<ButtonProps> = ({
-  text,
-  onClick,
-  size = 'medium',
-}) => {
+export const DefaultButton: React.FC<ButtonProps> = ({ text, onClick, size = 'medium' }) => {
   return (
     <div
       className={`${styles.buttonContainer} cursor-pointer`}
@@ -73,9 +65,7 @@ export const DefaultButton: React.FC<ButtonProps> = ({
   )
 }
 type FontAwesomeIconButtonProps = FontAwesomeIconProps & {}
-export const IconButton: React.FC<FontAwesomeIconButtonProps> = ({
-  ...props
-}) => {
+export const IconButton: React.FC<FontAwesomeIconButtonProps> = ({ ...props }) => {
   return (
     <div className={styles.buttonContainer}>
       <FontAwesomeIcon {...props} className={styles.button} data-size="icon" />
@@ -102,7 +92,7 @@ export const RoundButton: React.FC<RoundButtonProps> = ({
     <button
       type={type}
       onClick={onClick}
-      className="w-full"
+      className={`w-full ${disabled && 'cursor-not-allowed'}`}
       disabled={disabled}
       style={style ? style : {}}
     >

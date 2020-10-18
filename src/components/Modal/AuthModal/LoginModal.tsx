@@ -61,6 +61,7 @@ const RoundButton = styled.button`
   border-radius: 50vh;
   height: 45px;
   margin-bottom: 10px;
+  ${(props) => props.disabled && 'cursor-not-allowed'}
 `
 
 interface LoginFormProps {
@@ -108,8 +109,8 @@ const LoginFormModal: React.FC<LoginFormProps> = ({
             <RoundButton
               style={{
                 color: 'black',
-                backgroundColor: 'white',
-                opacity: isSubmittable ? 1 : 0.7,
+                backgroundColor: isSubmittable ? 'white' : 'gray',
+                opacity: isSubmittable ? '' : '0.8',
               }}
               type="submit"
               disabled={!isSubmittable}

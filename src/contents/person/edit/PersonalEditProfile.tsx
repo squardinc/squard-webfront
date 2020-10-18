@@ -17,7 +17,7 @@ interface PersonalEditProfileProps {
   isLoading: boolean
   personal: IPersonal
   close: VoidFunction
-  saveProfile: (data: IPersonal) => Promise<void>
+  saveProfile: (data: IPersonal, pageId: string) => Promise<void>
   saveImage: Function
 }
 
@@ -260,6 +260,7 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
   const [topImage, setTopImage] = React.useState<Blob>()
   const [icon, setIcon] = React.useState<Blob>()
   const [profile, setProfile] = React.useState<IPersonal>(personal)
+  const [pageId, setPageId] = React.useState<string>(personal.pageId)
   const onSaveProfile = async () => {
     if (icon) {
       const url = await saveImage('icon.jpeg', icon, 'image/jpeg')
@@ -271,7 +272,7 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
       profile.topImage = url
       setProfile(Object.assign({}, profile))
     }
-    await saveProfile(profile)
+    await saveProfile(profile, pageId)
     close()
   }
   return (
@@ -299,8 +300,13 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
               setProfile(Object.assign({}, profile, { nameEn: value }))
             }}
           />
-          {/* <RowInput label={'ID'} value={profile.id} onChange={(value) => { setProfile(Object.assign({}, profile, { id: value })) }} /> */}
-
+          {/* <RowInput
+            label={'ID'}
+            value={pageId}
+            onChange={(value) => {
+              setPageId(value)
+            }}
+          /> */}
           <RowTextarea
             label={'自己紹介'}
             value={profile.introduction}

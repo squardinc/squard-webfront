@@ -3,6 +3,7 @@ import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { AuthModal, ModalType } from 'src/components/Modal/AuthModal'
 import { MessageModal } from 'src/components/Modal/MessageModal'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { ClassType } from 'src/models/person'
 import { ITeamClass } from 'src/models/team'
 import * as colors from 'src/styles/colors'
 import * as Const from 'src/styles/const'
@@ -16,7 +17,9 @@ type JoinTeamProps = {
   loggedIn: boolean
   teamName: string
   teamData: ITeamClass[]
+  currentClass?: ClassType
   hasPaymentCancelled?: boolean
+  requestJoinAsGalleries?: any
 }
 
 type CSSProps = {
@@ -90,13 +93,14 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
   teamName,
   teamData,
   loggedIn,
+  currentClass,
   hasPaymentCancelled,
+  requestJoinAsGalleries,
 }) => {
   const [openModal, setOpenModal] = React.useState<ModalType>('Closed')
-  const [
-    showPaymentCancelledModal,
-    setShowPaymentCancelledModal,
-  ] = React.useState(hasPaymentCancelled)
+  const [showPaymentCancelledModal, setShowPaymentCancelledModal] = React.useState(
+    hasPaymentCancelled
+  )
   return (
     <>
       <JoinTeamWrapper>
@@ -124,13 +128,17 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
                 <JoinCard
                   key={i}
                   team={team}
+                  currentClass={currentClass}
                   join={() => {
                     if (!loggedIn) {
                       setOpenModal('Login')
                       return
                     }
-                    if (team.classType === 'Galleries') {
-                      //
+                    if (
+                      team.classType === 'Galleries' ||
+                      (team.teamId === 'fagends' && team.classType == 'Prospects')
+                    ) {
+                      requestJoinAsGalleries(team.teamClassId)
                       return
                     }
                     requestSubscription(team.teamClassId)
