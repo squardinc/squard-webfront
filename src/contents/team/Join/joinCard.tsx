@@ -98,6 +98,7 @@ const JoinCard: React.FC<JoinCardProps> = ({ team, currentClass, join }) => {
           <JoinNowButton
             onClick={join}
             disabled={!!currentClass}
+            className={currentClass ? 'cursor-not-allowed' : ''}
           >
             {currentClass ? (
               <TextDisplay>参加済</TextDisplay>

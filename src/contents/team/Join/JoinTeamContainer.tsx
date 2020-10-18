@@ -1,6 +1,7 @@
 import { gql, MutationResult, useMutation, useQuery } from '@apollo/client'
 import { navigate } from 'gatsby'
 import * as React from 'react'
+import Loading from 'src/components/Loading'
 import JoinTeam from 'src/contents/team/Join/JoinTeamPage'
 import { withTheme } from 'src/context/ThemeContext'
 import { UserContext } from 'src/context/UserContext'
@@ -43,7 +44,7 @@ interface JoinTeamContainerProps {
 const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
   const params = parseSearchParams(window.location.search)
   const { user } = React.useContext(UserContext)
-  const [request, _] = useMutation<
+  const [request, subscriptionResponse] = useMutation<
     RequestSubscriptionMutation,
     RequestSubscriptionMutationVariables
   >(gql(requestSubscription))
@@ -84,24 +85,27 @@ const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
   })
   handleJoinResponnse(team.id, joinAsGalleriesResponse)
   return (
-    <JoinTeam
-      requestSubscription={async (teamClassId) => {
-        const response = await request({
-          variables: { teamId, teamClassId, origin: window.location.host },
-        })
-        if (response.data?.requestSubscription?.sessionId)
-          checkout(response.data?.requestSubscription?.sessionId)
-      }}
-      teamName={team.name || ''}
-      isLoading={false}
-      loggedIn={user.loggedIn}
-      teamData={joinableTeamClasses}
-      currentClass={currentClass?.classType}
-      hasPaymentCancelled={params['payment_status'] === 'cancel'}
-      requestJoinAsGalleries={(teamClassId) =>
-        requestJoinAsGalleries({ variables: { teamId, teamClassId } })
-      }
-    />
+    <>
+      <Loading loading={subscriptionResponse.loading || joinAsGalleriesResponse.loading} />
+      <JoinTeam
+        requestSubscription={async (teamClassId) => {
+          const response = await request({
+            variables: { teamId, teamClassId, origin: window.location.host },
+          })
+          if (response.data?.requestSubscription?.sessionId)
+            checkout(response.data?.requestSubscription?.sessionId)
+        }}
+        teamName={team.name || ''}
+        isLoading={false}
+        loggedIn={user.loggedIn}
+        teamData={joinableTeamClasses}
+        currentClass={currentClass?.classType}
+        hasPaymentCancelled={params['payment_status'] === 'cancel'}
+        requestJoinAsGalleries={(teamClassId) =>
+          requestJoinAsGalleries({ variables: { teamId, teamClassId } })
+        }
+      />
+    </>
   )
 }
 
