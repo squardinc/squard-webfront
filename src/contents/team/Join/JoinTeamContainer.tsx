@@ -1,21 +1,40 @@
 import { gql, useMutation, useQuery } from '@apollo/client'
+import { navigate } from 'gatsby'
 import * as React from 'react'
 import JoinTeam from 'src/contents/team/Join/JoinTeamPage'
 import { withTheme } from 'src/context/ThemeContext'
 import { UserContext } from 'src/context/UserContext'
 import { checkout } from 'src/external/stripe'
-import { requestSubscription } from 'src/graphql/mutations'
+import { joinAsGalleries, requestSubscription } from 'src/graphql/mutations'
 import { getTeam } from 'src/graphql/queries'
 import { ClassType } from 'src/models/person'
 import { TeamClass } from 'src/models/team'
 import {
   GetTeamQuery,
+  JoinAsGalleriesMutation,
+  JoinAsGalleriesMutationVariables,
   RequestSubscriptionMutation,
-  RequestSubscriptionMutationVariables,
+  RequestSubscriptionMutationVariables
 } from 'src/types/API'
 import { parseSearchParams } from 'src/utils/UrlParser'
 
 const JoinableClasses: ClassType[] = ['Angels', 'Prospects', 'Galleries']
+
+const handleJoinResponnse = (teamId, joinAsGalleriesResponse?: MutationResult<JoinAsGalleriesMutation>) => {
+  if (!joinAsGalleriesResponse) {
+    console.log('データなしだよ')
+    return
+  }
+  const { error, data } = joinAsGalleriesResponse
+  console.log(joinAsGalleriesResponse)
+  if (error) {
+    alert(error)
+  }
+  if (data) {
+    // 成功時の処理
+    navigate(`/mypage?teamId=${teamId}/`)
+  }
+}
 
 interface JoinTeamContainerProps {
   teamId: string
@@ -27,11 +46,16 @@ const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
     RequestSubscriptionMutation,
     RequestSubscriptionMutationVariables
   >(gql(requestSubscription))
+  const [requestJoinAsGalleries, joinAsGalleriesResponse] = useMutation<
+    JoinAsGalleriesMutation,
+    JoinAsGalleriesMutationVariables
+  >(gql(joinAsGalleries))
   const { loading, error, data } = useQuery<GetTeamQuery>(gql(getTeam), {
     variables: { id: teamId },
   })
+
   if (error) {
-    // TODO
+    // ダイアログで
     return <></>
   }
   if (loading) {
@@ -44,9 +68,7 @@ const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
   const team = data.getTeam
   const teamClasses = team.classes || []
   const joinableTeamClasses = JoinableClasses.map((joinableClass) => {
-    const teamClass = teamClasses.find(
-      (each) => each?.classType === joinableClass
-    )
+    const teamClass = teamClasses.find((each) => each?.classType === joinableClass)
     return new TeamClass(
       teamClass?.teamId,
       teamClass?.teamClassId,
@@ -55,6 +77,8 @@ const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
       teamClass?.price?.price || 0
     )
   })
+  handleJoinResponnse(team.id, joinAsGalleriesResponse)
+  console.log(team)
   return (
     <JoinTeam
       requestSubscription={async (teamClassId) => {
@@ -69,6 +93,8 @@ const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
       loggedIn={user.loggedIn}
       teamData={joinableTeamClasses}
       hasPaymentCancelled={params['payment_status'] === 'cancel'}
+      requestJoinAsGalleries={(teamClassId) => requestJoinAsGalleries(
+        { variables: { teamId, teamClassId, } })}
     />
   )
 }
