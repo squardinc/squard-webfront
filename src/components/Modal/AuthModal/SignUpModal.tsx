@@ -1,12 +1,12 @@
 import * as React from 'react'
-// import { RoundButton } from 'src/components/Button/DefaultButton'
-import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import { asModal, ModalProps } from 'src/components/Modal/asModal'
-import { DefaultModalContainer } from 'src/components/Modal/ModalContainer'
-import { AuthService } from 'src/services/AuthService'
-import { MessageModal } from 'src/components/Modal/MessageModal'
 import { EMailAddressInput } from 'src/components/Input/EMailAddressInput'
 import { PasswordInput } from 'src/components/Input/PasswordInput'
+import { asModal, ModalProps } from 'src/components/Modal/asModal'
+import { MessageModal } from 'src/components/Modal/MessageModal'
+import { DefaultModalContainer } from 'src/components/Modal/ModalContainer'
+// import { RoundButton } from 'src/components/Button/DefaultButton'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { AuthService } from 'src/services/AuthService'
 import { validEmaliAddress } from 'src/utils/StringValidator'
 import styled from 'styled-components'
 import * as Const from '../../../styles/const'
@@ -66,16 +66,13 @@ const RoundButton = styled.button`
 type SignUpComponentProps = ModalProps & {
   showLoginModal: (e: React.MouseEvent) => void
 }
-const SignUpComponent: React.FC<SignUpComponentProps> = ({
-  closeModal,
-  showLoginModal,
-}) => {
+const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLoginModal }) => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
-  const isSubmittable = React.useMemo(
-    () => validEmaliAddress(email) && password.length >= 8,
-    [email, password]
-  )
+  const isSubmittable = React.useMemo(() => validEmaliAddress(email) && password.length >= 8, [
+    email,
+    password,
+  ])
   const [registrationUserId, setRegistrationUserId] = React.useState('')
   const [errorMesasge, setErrorMessage] = React.useState('')
 
@@ -133,7 +130,10 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({
                   color: 'white',
                   backgroundColor: '#3B5998',
                 }}
-                onClick={AuthService.loginWithFacebook}
+                onClick={(e) => {
+                  e.preventDefault()
+                  AuthService.loginWithFacebook()
+                }}
               >
                 <TextDisplay>Facebookで登録</TextDisplay>
               </RoundButton>
@@ -141,10 +141,7 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({
             <TextDisplay>
               <BottomWrapper>
                 アカウントをお持ちですか？ログインは
-                <div
-                  className="underline cursor-pointer"
-                  onClick={showLoginModal}
-                >
+                <div className="underline cursor-pointer" onClick={showLoginModal}>
                   こちら
                 </div>
               </BottomWrapper>
@@ -152,10 +149,7 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({
           </SignupContent>
         </DefaultModalContainer>
       ) : (
-        <MessageModal
-          message={errorMesasge}
-          closeModal={() => setErrorMessage('')}
-        />
+        <MessageModal message={errorMesasge} closeModal={() => setErrorMessage('')} />
       )}
     </>
   )

@@ -1,14 +1,14 @@
 import * as React from 'react'
-// import { RoundButton } from 'src/components/Button/DefaultButton'
-import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import { asModal, ModalProps } from 'src/components/Modal/asModal'
-import { DefaultModalContainer } from 'src/components/Modal/ModalContainer'
-import { CompleteModal } from 'src/components/Modal/CompleteModal'
-import { MessageModal } from 'src/components/Modal/MessageModal'
-import { UserContext } from 'src/context/UserContext'
-import { AuthService } from 'src/services/AuthService'
 import { EMailAddressInput } from 'src/components/Input/EMailAddressInput'
 import { PasswordInput } from 'src/components/Input/PasswordInput'
+import { asModal, ModalProps } from 'src/components/Modal/asModal'
+import { CompleteModal } from 'src/components/Modal/CompleteModal'
+import { MessageModal } from 'src/components/Modal/MessageModal'
+import { DefaultModalContainer } from 'src/components/Modal/ModalContainer'
+// import { RoundButton } from 'src/components/Button/DefaultButton'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { UserContext } from 'src/context/UserContext'
+import { AuthService } from 'src/services/AuthService'
 import { validEmaliAddress } from 'src/utils/StringValidator'
 import styled from 'styled-components'
 import * as Const from '../../../styles/const'
@@ -77,10 +77,10 @@ const LoginFormModal: React.FC<LoginFormProps> = ({
 }) => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
-  const isSubmittable = React.useMemo(
-    () => validEmaliAddress(email) && password.length >= 8,
-    [email, password]
-  )
+  const isSubmittable = React.useMemo(() => validEmaliAddress(email) && password.length >= 8, [
+    email,
+    password,
+  ])
   return (
     <DefaultModalContainer closeModal={closeModal}>
       <LoginContent>
@@ -99,10 +99,7 @@ const LoginFormModal: React.FC<LoginFormProps> = ({
           <TextDisplay className="flex justify-end w-full text-sm mb-4">
             <ForgotPassWrapper>
               <TextDisplay>パスワードを忘れた方は</TextDisplay>
-              <div
-                className="underline cursor-pointer"
-                onClick={showPasswordResetRequestModal}
-              >
+              <div className="underline cursor-pointer" onClick={showPasswordResetRequestModal}>
                 <TextDisplay> こちら</TextDisplay>
               </div>
             </ForgotPassWrapper>
@@ -125,7 +122,10 @@ const LoginFormModal: React.FC<LoginFormProps> = ({
                 color: 'white',
                 backgroundColor: '#3B5998',
               }}
-              onClick={AuthService.loginWithFacebook}
+              onClick={(e) => {
+                e.preventDefault()
+                AuthService.loginWithFacebook()
+              }}
             >
               <TextDisplay>Facebookでログイン</TextDisplay>
             </RoundButton>
@@ -135,9 +135,7 @@ const LoginFormModal: React.FC<LoginFormProps> = ({
         <BottomWrapper>
           <TextDisplay>まだ登録していませんか？新規登録は</TextDisplay>
           <button onClick={showSignUpModal}>
-            <TextDisplay style={{ textDecoration: 'underline' }}>
-              こちら
-            </TextDisplay>
+            <TextDisplay style={{ textDecoration: 'underline' }}>こちら</TextDisplay>
           </button>
         </BottomWrapper>
       </LoginContent>
@@ -179,10 +177,7 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
           showPasswordResetRequestModal={showPasswordResetRequestModal}
         />
       ) : (
-        <MessageModal
-          message={errorMesasge}
-          closeModal={() => setErrorMessage('')}
-        />
+        <MessageModal message={errorMesasge} closeModal={() => setErrorMessage('')} />
       )}
     </>
   )
