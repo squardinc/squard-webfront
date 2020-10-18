@@ -10,6 +10,7 @@ import {
 import { setContext } from '@apollo/client/link/context'
 import fetch from 'cross-fetch'
 import * as React from 'react'
+import { createNetworkStatusNotifier } from 'react-apollo-network-status'
 import { isTokenRequired } from './graphql/tokenRequiredOperations'
 import { AuthService } from './services/AuthService'
 import { AWS_APPSYNC_API_KEY, AWS_APPSYNC_GRAPHQL_ENDPOINT } from './utils/env'
@@ -18,6 +19,8 @@ const httpLink = createHttpLink({
   uri: AWS_APPSYNC_GRAPHQL_ENDPOINT,
   fetch,
 })
+
+const {link, useApolloNetworkStatus} = createNetworkStatusNotifier();
 
 type OperationType = 'query' | 'mutation'
 const useToken = (operation: GraphQLRequest): boolean => {
@@ -44,7 +47,7 @@ const authLink = setContext(async (operation, { headers }) => {
   }
 })
 const client = new ApolloClient({
-  link: ApolloLink.from([authLink, httpLink]),
+  link: link.concat(ApolloLink.from([authLink, httpLink])),
   cache: new InMemoryCache(),
   defaultOptions: {
     watchQuery: {
@@ -61,3 +64,5 @@ export const WithApolloProvider = (Component: React.FC) => () => (
     <Component />
   </ApolloProvider>
 )
+
+export { useApolloNetworkStatus }

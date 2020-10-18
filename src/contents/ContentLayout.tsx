@@ -1,11 +1,12 @@
 import { gql, useQuery } from '@apollo/client'
 import { navigate } from 'gatsby'
 import * as React from 'react'
+import { UserContext } from 'src/context/UserContext'
 import { getPage } from 'src/graphql/queries'
 import { GetPageQuery } from 'src/types/API'
-import { PersonPageContainer } from './person/PersonPageContainer'
-import { StaticPageRoute } from './StaticPageRoute'
-import { TeamContainer } from './team/TeamContainer'
+const StaticPageRoute = React.lazy(() => import('./StaticPageRoute'))
+const TeamContainer = React.lazy(() => import('./team/TeamContainer'))
+const PersonPageContainer = React.lazy(() => import('./person/PersonPageContainer'))
 
 export const StaticPagePaths = [
   'about',
@@ -25,12 +26,14 @@ interface ContentLayoutProps {
   path: string
   contentId: StaticPageType | string
 }
-export const ContentLayout: React.FC<ContentLayoutProps> = ({
-  contentId = '',
-}) => {
-  if (StaticPagePaths.includes(contentId))
-    return <StaticPageRoute contentId={contentId} />
-
+export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId = '' }) => {
+  const { user } = React.useContext(UserContext)
+  if (StaticPagePaths.includes(contentId)) return <StaticPageRoute contentId={contentId} />
+  if (contentId === 'mypage') {
+    if (user.loggedIn) return <PersonPageContainer id={user.id} />
+    navigate('/')
+    return <></>
+  }
   const { loading, error, data } = useQuery<GetPageQuery>(gql(getPage), {
     variables: { id: contentId.toLowerCase() },
   })

@@ -1,18 +1,15 @@
+import { Link } from 'gatsby'
 import * as React from 'react'
-import styled from 'styled-components'
+import Menu from 'src/assets/menu.svg'
+import { AuthModal, ModalType } from 'src/components/Modal/AuthModal'
 import { NavMenu } from 'src/components/NavMenu/NavMenu'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import { SearchBar } from './SearchBar'
-import Cross from 'src/assets/cross.svg'
-import Search from 'src/assets/search.svg'
-import Menu from 'src/assets/menu.svg'
-import styles from './Header.module.scss'
-import { AuthModal, ModalType } from 'src/components/Modal/AuthModal'
 import { UserContext } from 'src/context/UserContext'
-import { Link, navigate } from 'gatsby'
 import { AuthService } from 'src/services/AuthService'
 import { LoginUserModel } from 'src/services/AuthService/LoginUserModel'
+import styled from 'styled-components'
 import * as Const from '../../styles/const'
+import styles from './Header.module.scss'
 
 const Title = styled.div`
   font-weight: ${Const.fontWeight.bold};
@@ -60,7 +57,6 @@ export const Header = () => {
         loggedIn={user.loggedIn}
         hideNavMenu={() => setShowNavMenu(false)}
         showLoginModal={() => setOpenModal('Login')}
-        myPageId={user.pageId}
         logout={async () => {
           await AuthService.logout()
           setUser(LoginUserModel.guest())

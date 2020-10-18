@@ -49,11 +49,9 @@ export const TeamIntroduction: React.FC<TeamIntroductionProps> = ({
         <DefaultButton
           text="このチームに参加してみる？"
           size="larger"
-          onClick={() => navigate(`/${teamId}/join`)}
+          onClick={() => navigate(`/${encodeURIComponent(teamId)}/join`)}
         />
       </div>
     </div>
   )
 }
-
-export default TeamIntroduction

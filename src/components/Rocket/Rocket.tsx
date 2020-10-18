@@ -1,19 +1,56 @@
-import * as React from 'react'
+import React from 'react';
+import RocketBack from 'src/assets/about/rocket_back.svg';
+import RocketFront from 'src/assets/about/rocket_front.svg';
+import styled, { keyframes } from 'styled-components';
 
-import styles from './Rocket.module.scss'
 
-import RocketBack from 'src/assets/about/rocket_back.svg'
-import RocketFront from 'src/assets/about/rocket_front.svg'
+
+const Wrapper = styled.div`
+  position: relative;
+  overflow: hidden;
+`
+
+const upcoming = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(600px);
+  }
+
+  5% {
+    opacity: 1;
+    transform: translateY(600px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`
+
+const Back = styled.div`
+  opacity: 0;
+  transform: translateY(600px);
+  animation : ${upcoming} 5s ease-out 0.5s 1 both;
+`
+
+const Front = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+`
+
 
 export const Rocket: React.FC = (props) => {
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.rocketBack}>
+    <Wrapper>
+      <Back>
         <RocketBack />
-      </div>
-      <div className={styles.rocketFront}>
+      </Back>
+      <Front>
         <RocketFront />
-      </div>
-    </div>
+      </Front>
+    </Wrapper>
   )
 }

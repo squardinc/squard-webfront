@@ -74,8 +74,8 @@ const TextDesciption = styled.div`
 const CardListWrapper = styled.div<CSSProps>`
   position: relative;
   width: 100%;
-  padding-left: ${(props) => (props.innerWidth <= 370 ? '20px' : '60px')};
-  padding-right: ${(props) => (props.innerWidth <= 370 ? '20px' : '60px')};
+  padding-left: ${(props) => (props.innerWidth <= 370 ? '20px' : '40px')};
+  padding-right: ${(props) => (props.innerWidth <= 370 ? '20px' : '40px')};
   margin-bottom: 40px;
 `
 

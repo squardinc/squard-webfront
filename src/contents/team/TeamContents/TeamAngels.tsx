@@ -1,9 +1,9 @@
-import { navigate } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 import * as React from 'react'
 import { DefaultButton } from 'src/components/Button/DefaultButton'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
-import Top from 'src/images/temp/team/top.jpg'
 import { ITeamMember } from 'src/models/team'
+import { PersonImage } from './PersonImage'
 import styles from './TeamAngels.module.scss'
 
 interface AngelProps {
@@ -11,12 +11,11 @@ interface AngelProps {
 }
 const Angel: React.FC<AngelProps> = ({ angel }) => {
   return (
-    <div className={styles.angelContainer}>
-      <img
-        src={angel?.image ? encodeURI(angel.image) : Top}
-        className={styles.angel}
-      />
-    </div>
+    <Link to={`/${angel.user.pageId}`}>
+      <div className={styles.angelContainer}>
+        <PersonImage src={angel?.image} className={styles.angel} />
+      </div>
+    </Link>
   )
 }
 
@@ -24,10 +23,7 @@ interface TeamAngelsProps {
   angels: ITeamMember[]
   numOfAngels: number
 }
-export const TeamAngels: React.FC<TeamAngelsProps> = ({
-  angels = [],
-  numOfAngels,
-}) => {
+export const TeamAngels: React.FC<TeamAngelsProps> = ({ angels = [], numOfAngels }) => {
   return (
     <div className={styles.container}>
       <TwoStagedCaption
