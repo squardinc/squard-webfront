@@ -88,7 +88,6 @@ class DisplayTeamMember implements IDisplayTeamMember {
   ) {}
 
   static fromUserQueryResult = (displayTeamMember = {}) => {
-    console.log(displayTeamMember)
     return {
       teamId: displayTeamMember.team?.id,
       pageId: displayTeamMember.team?.page?.id,
