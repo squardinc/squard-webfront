@@ -8,4 +8,6 @@ export class LoginUserModel implements LoginUser {
   get loggedIn() {
     return !!this.id
   }
+
+  isMine = (id: string) => id === this.id
 }

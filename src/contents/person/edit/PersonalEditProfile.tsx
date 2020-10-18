@@ -1,19 +1,12 @@
 import * as React from 'react'
-import styled from 'styled-components'
 import TextareaAutosize from 'react-textarea-autosize'
-import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import { getTeamIcon } from 'src/contents/person/utils'
-import { withTheme } from 'src/context/ThemeContext'
-import { IPersonal } from 'src/models/person'
-import * as Const from '../../../styles/const'
-import {
-  LayoutHorizontal,
-  LayoutVertical,
-  LayoutType,
-} from 'src/components/layout'
-import { TabMenuBar, ItemProps } from 'src/components/TabMenu'
 import { ImageProfileEdit } from 'src/components/ImageProfile'
+import { LayoutHorizontal, LayoutType, LayoutVertical } from 'src/components/layout'
+import { TabMenuBar } from 'src/components/TabMenu'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import Top from 'src/images/temp/team/top.jpg'
+import { IPersonal } from 'src/models/person'
+import styled from 'styled-components'
 
 const PersonalEditProfileWrapper = styled.div`
   padding-bottom: 0px;
@@ -174,13 +167,7 @@ const HorizontalLayoutWrapper: React.FC = ({ children }) => {
     </LayoutHorizontal>
   )
 }
-const RowInput: React.FC<RowInputProps> = ({
-  label,
-  value = '',
-  onChange,
-  onBlur,
-  onFocus,
-}) => {
+const RowInput: React.FC<RowInputProps> = ({ label, value = '', onChange, onBlur, onFocus }) => {
   return (
     <HorizontalLayoutWrapper>
       <Label>
@@ -204,13 +191,7 @@ const RowInput: React.FC<RowInputProps> = ({
     </HorizontalLayoutWrapper>
   )
 }
-const RowTextarea: React.FC<RowInputProps> = ({
-  label,
-  value = '',
-  onChange,
-  onBlur,
-  onFocus,
-}) => {
+const RowTextarea: React.FC<RowInputProps> = ({ label, value = '', onChange, onBlur, onFocus }) => {
   return (
     <HorizontalLayoutWrapper>
       <Label>
@@ -295,11 +276,7 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
   }
   return (
     <PersonalEditProfileWrapper>
-      <TabMenuBar
-        title="プロフィールを編集"
-        onCancel={close}
-        onSave={onSaveProfile}
-      />
+      <TabMenuBar title="プロフィールを編集" onCancel={close} onSave={onSaveProfile} />
       <LayoutVertical layoutType={LayoutType.topCenter}>
         <ImageProfileEdit
           topImage={profile.topImage || Top}
@@ -377,14 +354,8 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
         </TeamWrapper> */}
 
         <BottomWrapper>
-          <LayoutVertical
-            layoutType={LayoutType.center}
-            style={{ margin: 'auto' }}
-          >
-            <RoundButton
-              style={{ background: 'white', color: 'black' }}
-              onClick={onSaveProfile}
-            >
+          <LayoutVertical layoutType={LayoutType.center} style={{ margin: 'auto' }}>
+            <RoundButton style={{ background: 'white', color: 'black' }} onClick={onSaveProfile}>
               <TextDisplay>保存</TextDisplay>
             </RoundButton>
             <RoundButton style={{ color: 'white' }} onClick={close}>
@@ -397,4 +368,4 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
   )
 }
 
-export default React.memo(withTheme(PersonalEditProfile, 'gray'))
+export default PersonalEditProfile

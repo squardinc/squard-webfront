@@ -1,5 +1,5 @@
 import { navigate } from 'gatsby'
-import * as React from 'react'
+import React from 'react'
 import { AboutPage } from './about/AboutPage'
 import { ConfirmSignUpLayout } from './callback/ConfirmSignUp'
 import { ResetPasswordLayout } from './callback/ResetPassword'
@@ -47,3 +47,5 @@ export const StaticPageRoute: React.FC<StaticPageRouteProps> = ({ contentId }) =
   navigate('/')
   return <></>
 }
+
+export default StaticPageRoute

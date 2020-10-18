@@ -1,9 +1,9 @@
-import { navigate } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 import * as React from 'react'
 import { DefaultButton } from 'src/components/Button/DefaultButton'
 import { LeftBorderCaption } from 'src/components/Caption/Captions'
-import Top from 'src/images/temp/team/top.jpg'
 import { ITeamMember } from 'src/models/team'
+import { PersonImage } from './PersonImage'
 import styles from './TeamProspects.module.scss'
 
 interface ProspectProps {
@@ -11,11 +11,13 @@ interface ProspectProps {
 }
 const Prospect: React.FC<ProspectProps> = ({ prospect }) => {
   return (
-    <div className={styles.prospectContainer}>
-      <div className="pl-1 pr-2 w-40">
-        <img src={prospect?.image ? encodeURI(prospect.image) : Top} className={styles.prospect} />
+    <Link to={`${encodeURIComponent(prospect.user.pageId)}`}>
+      <div className={styles.prospectContainer}>
+        <div className="pl-1 pr-2 w-40">
+          <PersonImage src={prospect?.image} className={styles.prospect} />
+        </div>
       </div>
-    </div>
+    </Link>
   )
 }
 
@@ -43,3 +45,5 @@ export const TeamProspects: React.FC<TeamPropspectsProps> = ({ propspects }) => 
     </div>
   )
 }
+
+export default TeamProspects

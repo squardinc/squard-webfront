@@ -24,3 +24,5 @@ export const SocialSigninLayout: React.FC = () => {
     </>
   )
 }
+
+export default SocialSigninLayout

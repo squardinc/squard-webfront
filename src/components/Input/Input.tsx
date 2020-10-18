@@ -1,7 +1,15 @@
-import * as React from 'react'
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import * as React from 'react'
+import styled from 'styled-components'
 import * as Const from '../../styles/const'
+
+const Input = styled.input`
+  :-webkit-autofill {
+    box-shadow: 0 0 0px 1000px #E6CA9B inset;
+  }
+`
+
 export interface InputProps {
   value: string
   onChange: (value: string) => void
@@ -56,7 +64,7 @@ export const RoundInput: React.FC<InputProps> = ({
       ) : (
         ''
       )}
-      <input
+      <Input
         className="ml-2 bg-gray-200 h-full w-full text-gray-600 focus:outline-none"
         style={{
           fontSize: Const.fontSize.sm,

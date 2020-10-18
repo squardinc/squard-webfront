@@ -11,3 +11,5 @@ export const Copyright = () => {
     </TextDisplay>
   )
 }
+
+export default Copyright

@@ -3,9 +3,9 @@ import { navigate } from 'gatsby'
 import * as React from 'react'
 import { getPage } from 'src/graphql/queries'
 import { GetPageQuery } from 'src/types/API'
-import { PersonPageContainer } from './person/PersonPageContainer'
-import { StaticPageRoute } from './StaticPageRoute'
-import { TeamContainer } from './team/TeamContainer'
+const StaticPageRoute = React.lazy(() => import('./StaticPageRoute'))
+const TeamContainer = React.lazy(() => import('./team/TeamContainer'))
+const PersonPageContainer = React.lazy(() => import('./person/PersonPageContainer'))
 
 export const StaticPagePaths = [
   'about',

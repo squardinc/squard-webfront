@@ -1,14 +1,13 @@
-import * as React from 'react'
-
-import styles from './FAQ.module.scss'
-import styled from 'styled-components'
-import { Heading1 } from 'src/components/Heading1/Heading1'
-import { FAQItem } from 'src/components/FAQItem/FAQItem'
-import { withTheme } from 'src/context/ThemeContext'
-import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { Link } from 'gatsby'
-import * as Const from '../../styles/const'
+import React, { Suspense } from 'react'
+import { FAQItem } from 'src/components/FAQItem/FAQItem'
+import { DefaultFooter } from 'src/components/Footer/ContentFooter'
+import { Heading1 } from 'src/components/Heading1/Heading1'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { withTheme } from 'src/context/ThemeContext'
+import styled from 'styled-components'
+import * as Const from '../../styles/const'
+import styles from './FAQ.module.scss'
 
 const PageHeader = styled(Heading1)`
   font-weight: ${Const.fontWeight.simbold};
@@ -25,13 +24,12 @@ const GroupFAQ = styled.div`
     margin-bottom: 0px;
   }
 `
-
+const renderLoader = () => <></>
 export const Page: React.FC = (props) => {
   const faqs = [
     {
       question: '利用料金はいくらですか？',
-      answer:
-        'Squard内でのチームページや個人ページの作成に利用料金は一切発生しません。',
+      answer: 'Squard内でのチームページや個人ページの作成に利用料金は一切発生しません。',
     },
     {
       question: '個人ページはどうやって作れますか？',
@@ -79,7 +77,7 @@ export const Page: React.FC = (props) => {
   ]
 
   return (
-    <>
+    <Suspense fallback={renderLoader()}>
       <div className={styles.pageWrapper}>
         <PageHeader>
           <TextDisplay>FAQ</TextDisplay>
@@ -91,7 +89,8 @@ export const Page: React.FC = (props) => {
         </GroupFAQ>
       </div>
       <DefaultFooter backgroundColor={Const.darkBlue} />
-    </>
+    </Suspense>
   )
 }
 export const FAQPage = withTheme(Page, 'dark')
+export default withTheme(Page, 'dark')

@@ -2,6 +2,20 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const joinAsGalleries = /* GraphQL */ `
+  mutation JoinAsGalleries($teamId: ID!, $teamClassId: ID!) {
+    joinAsGalleries(teamId: $teamId, teamClassId: $teamClassId) {
+      message
+    }
+  }
+`;
+export const leaveTeam = /* GraphQL */ `
+  mutation LeaveTeam($teamId: ID!, $teamClassId: ID!) {
+    leaveTeam(teamId: $teamId, teamClassId: $teamClassId) {
+      message
+    }
+  }
+`;
 export const updateUser = /* GraphQL */ `
   mutation UpdateUser($input: UpdateUserInput!) {
     updateUser(input: $input) {
@@ -12,25 +26,13 @@ export const updateUser = /* GraphQL */ `
       links
       birthday
       displayTeamIds
-      displayTeamMembers {
-        teamId
-        teamMemberId
-        userId
-        teamClassId
-        startAt
-        endAt
-        image
-        imageColor
-        nickname
-        title
-        subTitle
-        age
-        link
-        contact
-        introduction
-      }
       topImage
       icon
+      page {
+        id
+        resourceId
+        type
+      }
       teamMembers {
         teamId
         teamMemberId
@@ -48,14 +50,9 @@ export const updateUser = /* GraphQL */ `
         contact
         introduction
       }
-      page {
-        id
-        resourceId
-        type
-      }
     }
   }
-`
+`;
 export const requestSubscription = /* GraphQL */ `
   mutation RequestSubscription(
     $teamId: ID!
@@ -70,4 +67,4 @@ export const requestSubscription = /* GraphQL */ `
       sessionId
     }
   }
-`
+`;

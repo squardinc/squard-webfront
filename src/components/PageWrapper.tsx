@@ -1,8 +1,8 @@
-import * as React from 'react'
-import { ThemeContext } from 'src/context/ThemeContext'
+import React from 'react'
 import { Header } from 'src/components/Header/Header'
-import { MetaData } from './MetaData'
+import { ThemeContext } from 'src/context/ThemeContext'
 import { Copyright } from './Footer/Copyright'
+import { MetaData } from './MetaData'
 
 export const PageWrapper: React.FC = ({ children }) => {
   const { theme } = React.useContext(ThemeContext)
