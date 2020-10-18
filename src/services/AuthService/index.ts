@@ -33,8 +33,8 @@ class Service {
   ) => {
     return Cognito.resetPassword(username, code, newPassword)
   }
-  loginWithFacebook = () => {
-    Cognito.loginWithFacebook()
+  loginWithFacebook = async () => {
+    return Cognito.loginWithFacebook()
   }
 
   logout = async () => Cognito.logout()

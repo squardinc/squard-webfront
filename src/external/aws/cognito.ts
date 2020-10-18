@@ -2,9 +2,10 @@ import { CognitoUser } from 'amazon-cognito-identity-js'
 import Amplify, { Auth } from 'aws-amplify'
 import {
   AWS_COGNITO_IDENTITYPOOL_ID,
-
   AWS_COGNITO_USERPOOL_CLIENT_ID,
-  AWS_COGNITO_USERPOOL_DOMAIN, AWS_COGNITO_USERPOOL_ID, AWS_REGION
+  AWS_COGNITO_USERPOOL_DOMAIN,
+  AWS_COGNITO_USERPOOL_ID,
+  AWS_REGION
 } from 'src/utils/env'
 
 const configure = (origin: string) => {
@@ -19,7 +20,7 @@ const configure = (origin: string) => {
         domain: AWS_COGNITO_USERPOOL_DOMAIN,
         scope: ['email', 'profile', 'openid'],
         redirectSignIn: `${origin}/socialSignIn`,
-        redirectSignOut: `${origin}/socialSignIn`,
+        redirectSignOut: `${origin}`,
         clientId: AWS_COGNITO_USERPOOL_CLIENT_ID,
         responseType: 'code',
       },
@@ -68,48 +69,31 @@ export const confirmSignUp = async (username: string, code: string) => {
 export const login = async (email: string, password: string) => {
   return Auth.signIn(email, password).then(
     async () => Auth.currentSession(),
-    () =>
-      Promise.reject(
-        'ログインできませんでした。入力内容を確認して再度やり直してください。'
-      )
+    () => Promise.reject('ログインできませんでした。入力内容を確認して再度やり直してください。')
   )
 }
 
-export const resetPasswordRequest = async (
-  email: string,
-  origin: string,
-  currentPath: string
-) => {
+export const resetPasswordRequest = async (email: string, origin: string, currentPath: string) => {
   return await Auth.forgotPassword(email, { origin, currentPath }).catch(() =>
-    Promise.reject(
-      'エラーが発生しました。入力内容を確認して再度やり直してください。'
-    )
+    Promise.reject('エラーが発生しました。入力内容を確認して再度やり直してください。')
   )
 }
 
-export const resetPassword = async (
-  email: string,
-  code: string,
-  newPassword: string
-) => {
+export const resetPassword = async (email: string, code: string, newPassword: string) => {
   return await Auth.forgotPasswordSubmit(email, code, newPassword).catch(() =>
-    Promise.reject(
-      'エラーが発生しました。入力内容を確認して再度やり直してください。'
-    )
+    Promise.reject('エラーが発生しました。入力内容を確認して再度やり直してください。')
   )
 }
-export const loginWithFacebook = () => {
+export const loginWithFacebook = async () => {
   return Auth.federatedSignIn({ provider: 'Facebook' })
 }
 
-export const logout = async () => Auth.signOut()
+export const logout = async () => Auth.signOut({})
 
 export const intialize = async () => {
   configure(window.location.origin)
   return Auth.currentSession()
 }
 
-export const currentIdToken = async () =>
-  (await Auth.currentSession()).getIdToken().getJwtToken()
-export const currentIdentityId = async () =>
-  (await Auth.currentCredentials()).identityId
+export const currentIdToken = async () => (await Auth.currentSession()).getIdToken().getJwtToken()
+export const currentIdentityId = async () => (await Auth.currentCredentials()).identityId
