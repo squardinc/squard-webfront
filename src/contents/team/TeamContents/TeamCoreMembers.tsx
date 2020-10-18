@@ -68,5 +68,3 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
     </div>
   )
 }
-
-export default TeamCoreMembers

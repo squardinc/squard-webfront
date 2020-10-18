@@ -1,21 +1,21 @@
 import { navigateTo } from 'gatsby'
-import React, { lazy, Suspense } from 'react'
+import React, { Suspense } from 'react'
+import { ContentFooter } from 'src/components/Footer/ContentFooter'
 import { withTheme } from 'src/context/ThemeContext'
 import { Team } from 'src/models/team'
-const TeamTop = lazy(() => import('./TeamTop'))
-const TeamCoreMembers = lazy(() => import('./TeamContents/TeamCoreMembers'))
-const TeamIntroduction = lazy(() => import('./TeamIntroduction'))
-const TeamMembers = lazy(() => import('./TeamContents/TeamMembers'))
-const TeamProspects = lazy(() => import('./TeamContents/TeamProspects'))
-const TeamVIP = lazy(() => import('./TeamContents/TeamVIP'))
-const TeamAngels = lazy(() => import('./TeamContents/TeamAngels'))
-const ContentFooter = lazy(() => import('src/components/Footer/ContentFooter'))
+import { TeamAngels } from './TeamContents/TeamAngels'
+import { TeamCoreMembers } from './TeamContents/TeamCoreMembers'
+import { TeamMembers } from './TeamContents/TeamMembers'
+import { TeamProspects } from './TeamContents/TeamProspects'
+import { TeamVIP } from './TeamContents/TeamVIP'
+import { TeamIntroduction } from './TeamIntroduction'
+import { TeamTop } from './TeamTop'
 
 interface TeamLayoutProps {
   team: Team
 }
 
-const renderLoader = () => <p>Loading</p>
+const renderLoader = () => <></>
 
 const Layout: React.FC<TeamLayoutProps> = ({ team }) => {
   return (
@@ -31,15 +31,9 @@ const Layout: React.FC<TeamLayoutProps> = ({ team }) => {
         system={team.system}
       />
       <TeamCoreMembers coreMembers={team.teamMembers.leaderAndCoreMembers} />
-      <TeamMembers
-        topMember={team.teamMembers.members[0]}
-        members={team.teamMembers.members}
-      />
+      <TeamMembers topMember={team.teamMembers.members[0]} members={team.teamMembers.members} />
       <TeamProspects propspects={team.teamMembers.prospects} />
-      <TeamAngels
-        angels={team.teamMembers.angels}
-        numOfAngels={team.teamMembers.angels.length}
-      />
+      <TeamAngels angels={team.teamMembers.angels} numOfAngels={team.teamMembers.angels.length} />
       <TeamVIP vips={team.teamMembers.vip} />
       <ContentFooter
         titleSub="What's the"
