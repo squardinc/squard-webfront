@@ -14,6 +14,6 @@
   position: relative;
 }
 .angel {
-  @include personIcon(95px, 95px, 5px);
+  @include personIcon(95px, 95px, 5px, auto, auto);
   margin: 9.5px;
 }

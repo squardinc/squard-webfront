@@ -4,7 +4,6 @@ import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { ITeamMember } from 'src/models/team/index'
 import styles from './TeamCoreMembers.module.scss'
-import LazyLoad from 'react-lazyload'
 
 interface TeamCoreMembersProps {
   coreMembers: ITeamMember[]
@@ -32,9 +31,8 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
       <TwoStagedCaption sub="CORE" main="MEMBERS" />
       <div className={styles.members}>
         {coreMembers.map((member) => (
-          <Link key={member.userId} to={`/${member.userId}`}>
+          <Link key={member.userId} to={`/${member.user.pageId}`}>
             <div className="relative mt-3">
-              <LazyLoad>
                 <div
                   style={{
                     background: `url("${member.image}") no-repeat center center `,
@@ -42,7 +40,6 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
                   }}
                   className={getImageTheme(member.imageColor)}
                 ></div>
-              </LazyLoad>
 
               {member.displayAge && (
                 <TextDisplay className={styles.ageTag}>
