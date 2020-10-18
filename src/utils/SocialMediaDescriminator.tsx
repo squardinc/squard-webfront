@@ -1,9 +1,15 @@
 import { SocialMediaType } from 'src/models/person'
-export const descriminate = (urlString: string): SocialMediaType => {
-  if (!urlString.startsWith('https://')) {
-    return urlString.includes('@') ? 'email' : 'phone'
+export const descriminate = (urlString: string): SocialMediaType | undefined => {
+  if (!urlString.startsWith('https://') && urlString.includes('@')) {
+    return 'email'
   }
-  const url = new URL(urlString)
+
+  try {
+    const url = new URL(urlString)
+  } catch {
+    return undefined
+  }
+
   const { hostname } = url
   if (hostname.includes('youtube')) {
     return 'youtube'

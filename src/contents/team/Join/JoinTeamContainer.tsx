@@ -1,4 +1,4 @@
-import { gql, useMutation, useQuery } from '@apollo/client'
+import { gql, MutationResult, useMutation, useQuery } from '@apollo/client'
 import { navigate } from 'gatsby'
 import * as React from 'react'
 import JoinTeam from 'src/contents/team/Join/JoinTeamPage'
@@ -20,19 +20,20 @@ import { parseSearchParams } from 'src/utils/UrlParser'
 
 const JoinableClasses: ClassType[] = ['Angels', 'Prospects', 'Galleries']
 
-const handleJoinResponnse = (teamId, joinAsGalleriesResponse?: MutationResult<JoinAsGalleriesMutation>) => {
+const handleJoinResponnse = (
+  teamId,
+  joinAsGalleriesResponse?: MutationResult<JoinAsGalleriesMutation>
+) => {
   if (!joinAsGalleriesResponse) {
-    console.log('データなしだよ')
     return
   }
   const { error, data } = joinAsGalleriesResponse
-  console.log(joinAsGalleriesResponse)
   if (error) {
-    alert(error)
+    // TODO Modal
+    return
   }
   if (data) {
-    // 成功時の処理
-    navigate(`/mypage?teamId=${teamId}/`)
+    navigate(`/mypage?teamId=${teamId}`)
   }
 }
 
@@ -66,7 +67,11 @@ const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
     return <></>
   }
   const team = data.getTeam
+  const currentMember = team?.members?.find((member) => member.userId === user.id)
   const teamClasses = team.classes || []
+  const currentClass = teamClasses.find(
+    (teamClass) => teamClass?.teamClassId === currentMember?.teamClassId
+  )
   const joinableTeamClasses = JoinableClasses.map((joinableClass) => {
     const teamClass = teamClasses.find((each) => each?.classType === joinableClass)
     return new TeamClass(
@@ -78,7 +83,6 @@ const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
     )
   })
   handleJoinResponnse(team.id, joinAsGalleriesResponse)
-  console.log(team)
   return (
     <JoinTeam
       requestSubscription={async (teamClassId) => {
@@ -92,9 +96,11 @@ const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
       isLoading={false}
       loggedIn={user.loggedIn}
       teamData={joinableTeamClasses}
+      currentClass={currentClass?.classType}
       hasPaymentCancelled={params['payment_status'] === 'cancel'}
-      requestJoinAsGalleries={(teamClassId) => requestJoinAsGalleries(
-        { variables: { teamId, teamClassId, } })}
+      requestJoinAsGalleries={(teamClassId) =>
+        requestJoinAsGalleries({ variables: { teamId, teamClassId } })
+      }
     />
   )
 }

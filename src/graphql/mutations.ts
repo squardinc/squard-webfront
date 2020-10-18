@@ -68,3 +68,8 @@ export const requestSubscription = /* GraphQL */ `
     }
   }
 `;
+export const updatePage = /* GraphQL */ `
+  mutation UpdatePage($pageId: ID!) {
+    updatePage(pageId: $pageId)
+  }
+`;

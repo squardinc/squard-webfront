@@ -2,7 +2,7 @@ import { gql, useMutation, useQuery } from '@apollo/client'
 import { navigate } from 'gatsby'
 import * as React from 'react'
 import { UserContext } from 'src/context/UserContext'
-import { leaveTeam, updateUser } from 'src/graphql/mutations'
+import { leaveTeam, updatePage, updateUser } from 'src/graphql/mutations'
 import { getMyself, getUser } from 'src/graphql/queries'
 import { Person } from 'src/models/person'
 import {
@@ -10,6 +10,8 @@ import {
   GetUserQuery,
   LeaveTeamMutation,
   LeaveTeamMutationVariables,
+  UpdatePageMutation,
+  UpdatePageMutationVariables,
   UpdateUserInput,
   UpdateUserMutation,
   UpdateUserMutationVariables
@@ -33,6 +35,10 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
     UpdateUserMutation,
     UpdateUserMutationVariables
   >(gql(updateUser))
+  const [updatePageIdRequest, updatePageIdResponse] = useMutation<
+    UpdatePageMutation,
+    UpdatePageMutationVariables
+  >(gql(updatePage))
   const [leaveTeamRequest, leaveTeamResponse] = useMutation<
     LeaveTeamMutation,
     LeaveTeamMutationVariables
@@ -60,7 +66,8 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
       joinSucceededTeamId={params.teamId}
       showLeaveTeamResult={!!leaveTeamResponse.data?.leaveTeam?.message}
       personal={personalData}
-      update={(profile: UpdateUserInput) =>
+      update={(profile: UpdateUserInput, pageId: string) => {
+        if (pageId && personalData.pageId !== pageId) updatePageIdRequest({ variables: { pageId } })
         updateUserRequest({
           variables: {
             input: {
@@ -74,7 +81,7 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
             },
           },
         })
-      }
+      }}
       leaveTeam={(teamId: string, teamClassId: string) =>
         leaveTeamRequest({
           variables: {

@@ -108,6 +108,7 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
             <div className="flex justify-center items-center mb-2">
               <input
                 type="checkbox"
+                checked={agreeTermsOfUse}
                 className="form-checkbox"
                 onChange={(e) => setAgreeTermsOfUse(e.target.checked)}
               />

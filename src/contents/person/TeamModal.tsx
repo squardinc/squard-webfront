@@ -73,7 +73,7 @@ const TeamModalComponent: React.FC<TeamModalProps> = ({ closeModal, team, onLeav
           {team.benefits &&
             team.benefits.map((benefit, i) => (
               <EntitlementText key={i}>
-                <ExternalLink href={benefit.link}>
+                <ExternalLink href={benefit.link} className="underline">
                   <TextDisplay>{benefit.description}</TextDisplay>
                 </ExternalLink>
               </EntitlementText>

@@ -148,7 +148,7 @@ export class Person implements IPersonal {
   }
 
   get age() {
-    return String(dayjs().diff(this.birthday, 'year'))
+    return this.birthday ? String(dayjs().diff(this.birthday, 'year')) : ''
   }
 
   get pageId() {
