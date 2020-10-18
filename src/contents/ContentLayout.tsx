@@ -4,23 +4,10 @@ import * as React from 'react'
 import { UserContext } from 'src/context/UserContext'
 import { getPage } from 'src/graphql/queries'
 import { GetPageQuery } from 'src/types/API'
+import { StaticPagePaths, StaticPageType } from './StaticPageRoute'
 const StaticPageRoute = React.lazy(() => import('./StaticPageRoute'))
 const TeamContainer = React.lazy(() => import('./team/TeamContainer'))
 const PersonPageContainer = React.lazy(() => import('./person/PersonPageContainer'))
-
-export const StaticPagePaths = [
-  'about',
-  'company',
-  'faq',
-  'privacypolicy',
-  'sctl',
-  'signup',
-  'confirmSignUp',
-  'resetPassword',
-  'socialSignIn',
-] as const
-
-type StaticPageType = typeof StaticPagePaths[number]
 
 interface ContentLayoutProps {
   path: string

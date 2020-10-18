@@ -15,11 +15,9 @@ interface TeamLayoutProps {
   team: Team
 }
 
-const renderLoader = () => <></>
-
 const Layout: React.FC<TeamLayoutProps> = ({ team }) => {
   return (
-    <Suspense fallback={renderLoader()}>
+    <Suspense fallback={<></>}>
       <TeamTop image={team.topImage} />
       <TeamIntroduction
         name={team.name}

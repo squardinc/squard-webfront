@@ -24,7 +24,6 @@ const GroupFAQ = styled.div`
     margin-bottom: 0px;
   }
 `
-const renderLoader = () => <></>
 export const Page: React.FC = (props) => {
   const faqs = [
     {
@@ -77,7 +76,7 @@ export const Page: React.FC = (props) => {
   ]
 
   return (
-    <Suspense fallback={renderLoader()}>
+    <Suspense fallback={<></>}>
       <div className={styles.pageWrapper}>
         <PageHeader>
           <TextDisplay>FAQ</TextDisplay>

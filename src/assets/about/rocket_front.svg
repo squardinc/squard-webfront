@@ -1,350 +1,350 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="80 0 374 719.633">
   <defs>
-    <linearGradient id="svg_rocket_00" x1="0.089" y1="0.908" x2="0.994" y2="0.009" gradientUnits="objectBoundingBox">
+    <linearGradient id="svg_rocket_front00" x1="0.089" y1="0.908" x2="0.994" y2="0.009" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#002a5e"/>
       <stop offset="1" stop-color="#007dca"/>
     </linearGradient>
-    <linearGradient id="svg_rocket_01" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+    <linearGradient id="svg_rocket_front01" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#ebecec"/>
       <stop offset="1" stop-color="#99a0a2"/>
     </linearGradient>
-    <linearGradient id="svg_rocket_02" x1="9.069" y1="0.5" x2="10.069" y2="0.5" xlink:href="#svg_rocket_01"/>
-    <radialGradient id="svg_rocket_03" cx="0.499" cy="0.5" r="0.49" gradientTransform="matrix(1.044, -0.028, 0.029, 1, -0.037, 0.018)" gradientUnits="objectBoundingBox">
+    <linearGradient id="svg_rocket_front02" x1="9.069" y1="0.5" x2="10.069" y2="0.5" xlink:href="#svg_rocket_front01"/>
+    <radialGradient id="svg_rocket_front03" cx="0.499" cy="0.5" r="0.49" gradientTransform="matrix(1.044, -0.028, 0.029, 1, -0.037, 0.018)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#f8ede8"/>
       <stop offset="1" stop-color="#f8ede8"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_04" cx="0.497" cy="0.499" r="0.49" gradientTransform="matrix(1.041, -0.056, 0.058, 0.998, -0.031, 0.048)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front04" cx="0.497" cy="0.499" r="0.49" gradientTransform="matrix(1.041, -0.056, 0.058, 0.998, -0.031, 0.048)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#f3e1d9"/>
       <stop offset="1" stop-color="#f3e1d9"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_05" cx="0.496" cy="0.499" r="0.491" gradientTransform="matrix(1.038, -0.085, 0.089, 0.996, -0.01, 0.091)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front05" cx="0.496" cy="0.499" r="0.491" gradientTransform="matrix(1.038, -0.085, 0.089, 0.996, -0.01, 0.091)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#eed5cb"/>
       <stop offset="1" stop-color="#eed5cb"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_06" cx="0.495" cy="0.498" r="0.491" gradientTransform="matrix(1.033, -0.115, 0.119, 0.993, 0.035, 0.146)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front06" cx="0.495" cy="0.498" r="0.491" gradientTransform="matrix(1.033, -0.115, 0.119, 0.993, 0.035, 0.146)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#e9cbbe"/>
       <stop offset="1" stop-color="#e9cbbe"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_07" cx="0.494" cy="0.498" r="0.492" gradientTransform="matrix(1.027, -0.145, 0.151, 0.989, 0.1, 0.226)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front07" cx="0.494" cy="0.498" r="0.492" gradientTransform="matrix(1.027, -0.145, 0.151, 0.989, 0.1, 0.226)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#e5c1b3"/>
       <stop offset="1" stop-color="#e5c1b3"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_08" cx="0.493" cy="0.498" r="0.493" gradientTransform="matrix(1.02, -0.176, 0.183, 0.984, 0.186, 0.323)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front08" cx="0.493" cy="0.498" r="0.493" gradientTransform="matrix(1.02, -0.176, 0.183, 0.984, 0.186, 0.323)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#e1b7a7"/>
       <stop offset="1" stop-color="#e1b7a7"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_09" cx="0.491" cy="0.498" r="0.493" gradientTransform="matrix(1.012, -0.208, 0.215, 0.978, 0.303, 0.436)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front09" cx="0.491" cy="0.498" r="0.493" gradientTransform="matrix(1.012, -0.208, 0.215, 0.978, 0.303, 0.436)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#ddae9d"/>
       <stop offset="1" stop-color="#ddae9d"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_10" cx="0.49" cy="0.498" r="0.494" gradientTransform="matrix(1.002, -0.239, 0.247, 0.971, 0.445, 0.589)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front10" cx="0.49" cy="0.498" r="0.494" gradientTransform="matrix(1.002, -0.239, 0.247, 0.971, 0.445, 0.589)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#d9a492"/>
       <stop offset="1" stop-color="#d9a492"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_11" cx="0.489" cy="0.498" r="0.495" gradientTransform="matrix(0.991, -0.272, 0.28, 0.962, 0.618, 0.755)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front11" cx="0.489" cy="0.498" r="0.495" gradientTransform="matrix(0.991, -0.272, 0.28, 0.962, 0.618, 0.755)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#d59b88"/>
       <stop offset="1" stop-color="#d59b88"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_12" cx="0.489" cy="0.498" r="0.495" gradientTransform="matrix(0.979, -0.304, 0.312, 0.953, 0.815, 0.971)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front12" cx="0.489" cy="0.498" r="0.495" gradientTransform="matrix(0.979, -0.304, 0.312, 0.953, 0.815, 0.971)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#d1937f"/>
       <stop offset="1" stop-color="#d1937f"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_13" cx="0.488" cy="0.498" r="0.496" gradientTransform="matrix(0.966, -0.336, 0.345, 0.942, 1.031, 1.21)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front13" cx="0.488" cy="0.498" r="0.496" gradientTransform="matrix(0.966, -0.336, 0.345, 0.942, 1.031, 1.21)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#cd8a76"/>
       <stop offset="1" stop-color="#cd8a76"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_14" cx="0.487" cy="0.499" r="0.497" gradientTransform="matrix(0.951, -0.369, 0.377, 0.93, 1.288, 1.471)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front14" cx="0.487" cy="0.499" r="0.497" gradientTransform="matrix(0.951, -0.369, 0.377, 0.93, 1.288, 1.471)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#c9826e"/>
       <stop offset="1" stop-color="#c9826e"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_15" cx="0.487" cy="0.499" r="0.497" gradientTransform="matrix(0.935, -0.401, 0.409, 0.916, 1.565, 1.798)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front15" cx="0.487" cy="0.499" r="0.497" gradientTransform="matrix(0.935, -0.401, 0.409, 0.916, 1.565, 1.798)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#c67a66"/>
       <stop offset="1" stop-color="#c67a66"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_16" cx="0.487" cy="0.499" r="0.498" gradientTransform="matrix(0.918, -0.433, 0.441, 0.901, 1.853, 2.146)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front16" cx="0.487" cy="0.499" r="0.498" gradientTransform="matrix(0.918, -0.433, 0.441, 0.901, 1.853, 2.146)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#c2735e"/>
       <stop offset="1" stop-color="#c2735e"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_17" cx="0.486" cy="0.499" r="0.498" gradientTransform="matrix(0.9, -0.464, 0.472, 0.886, 2.183, 2.517)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front17" cx="0.486" cy="0.499" r="0.498" gradientTransform="matrix(0.9, -0.464, 0.472, 0.886, 2.183, 2.517)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#be6c57"/>
       <stop offset="1" stop-color="#be6c57"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_18" cx="0.487" cy="0.5" r="0.499" gradientTransform="matrix(0.881, -0.495, 0.502, 0.869, 2.523, 2.965)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front18" cx="0.487" cy="0.5" r="0.499" gradientTransform="matrix(0.881, -0.495, 0.502, 0.869, 2.523, 2.965)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#ba6550"/>
       <stop offset="1" stop-color="#ba6550"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_19" cx="0.487" cy="0.5" r="0.499" gradientTransform="matrix(0.861, -0.526, 0.532, 0.851, 2.89, 3.411)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front19" cx="0.487" cy="0.5" r="0.499" gradientTransform="matrix(0.861, -0.526, 0.532, 0.851, 2.89, 3.411)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#b75e4a"/>
       <stop offset="1" stop-color="#b75e4a"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_20" cx="0.487" cy="0.5" r="0.5" gradientTransform="matrix(0.84, -0.555, 0.561, 0.832, 3.241, 3.908)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front20" cx="0.487" cy="0.5" r="0.5" gradientTransform="matrix(0.84, -0.555, 0.561, 0.832, 3.241, 3.908)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#b35844"/>
       <stop offset="1" stop-color="#b35844"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_21" cx="0.488" cy="0.5" r="0.5" gradientTransform="matrix(0.818, -0.584, 0.588, 0.812, 3.614, 4.47)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front21" cx="0.488" cy="0.5" r="0.5" gradientTransform="matrix(0.818, -0.584, 0.588, 0.812, 3.614, 4.47)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#b0523f"/>
       <stop offset="1" stop-color="#b0523f"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_22" cx="0.488" cy="0.5" r="0.501" gradientTransform="matrix(0.796, -0.612, 0.615, 0.791, 4.005, 5.017)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front22" cx="0.488" cy="0.5" r="0.501" gradientTransform="matrix(0.796, -0.612, 0.615, 0.791, 4.005, 5.017)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#ad4c39"/>
       <stop offset="1" stop-color="#ad4c39"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_23" cx="0.489" cy="0.5" r="0.501" gradientTransform="matrix(0.773, -0.638, 0.641, 0.77, 4.362, 5.609)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front23" cx="0.489" cy="0.5" r="0.501" gradientTransform="matrix(0.773, -0.638, 0.641, 0.77, 4.362, 5.609)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#a94634"/>
       <stop offset="1" stop-color="#a94634"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_24" cx="0.49" cy="0.5" r="0.501" gradientTransform="matrix(0.75, -0.664, 0.665, 0.748, 4.766, 6.244)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front24" cx="0.49" cy="0.5" r="0.501" gradientTransform="matrix(0.75, -0.664, 0.665, 0.748, 4.766, 6.244)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#a6402f"/>
       <stop offset="1" stop-color="#a6402f"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_25" cx="0.491" cy="0.5" r="0.501" gradientTransform="matrix(0.726, -0.688, 0.689, 0.725, 5.106, 6.883)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front25" cx="0.491" cy="0.5" r="0.501" gradientTransform="matrix(0.726, -0.688, 0.689, 0.725, 5.106, 6.883)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#a23a2a"/>
       <stop offset="1" stop-color="#a23a2a"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_26" cx="0.492" cy="0.5" r="0.502" gradientTransform="matrix(0.702, -0.712, 0.712, 0.702, 5.43, 7.537)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front26" cx="0.492" cy="0.5" r="0.502" gradientTransform="matrix(0.702, -0.712, 0.712, 0.702, 5.43, 7.537)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#9f3425"/>
       <stop offset="1" stop-color="#9f3425"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_27" cx="0.493" cy="0.5" r="0.502" gradientTransform="matrix(0.678, -0.734, 0.733, 0.679, 5.797, 8.227)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front27" cx="0.493" cy="0.5" r="0.502" gradientTransform="matrix(0.678, -0.734, 0.733, 0.679, 5.797, 8.227)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#9c2e21"/>
       <stop offset="1" stop-color="#9c2e21"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_28" cx="0.494" cy="0.5" r="0.502" gradientTransform="matrix(0.655, -0.755, 0.754, 0.656, 6.083, 8.9)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front28" cx="0.494" cy="0.5" r="0.502" gradientTransform="matrix(0.655, -0.755, 0.754, 0.656, 6.083, 8.9)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#99271d"/>
       <stop offset="1" stop-color="#99271d"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_29" cx="0.495" cy="0.5" r="0.501" gradientTransform="matrix(0.631, -0.775, 0.773, 0.632, 6.409, 9.603)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front29" cx="0.495" cy="0.5" r="0.501" gradientTransform="matrix(0.631, -0.775, 0.773, 0.632, 6.409, 9.603)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#952119"/>
       <stop offset="1" stop-color="#952119"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_30" cx="0.497" cy="0.5" r="0.501" gradientTransform="matrix(0.608, -0.793, 0.792, 0.609, 6.646, 10.276)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front30" cx="0.497" cy="0.5" r="0.501" gradientTransform="matrix(0.608, -0.793, 0.792, 0.609, 6.646, 10.276)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#921b16"/>
       <stop offset="1" stop-color="#921b16"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_31" cx="0.498" cy="0.5" r="0.501" gradientTransform="matrix(0.585, -0.811, 0.809, 0.586, 6.856, 10.941)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front31" cx="0.498" cy="0.5" r="0.501" gradientTransform="matrix(0.585, -0.811, 0.809, 0.586, 6.856, 10.941)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#8f1313"/>
       <stop offset="1" stop-color="#8f1313"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_32" cx="0.499" cy="0.5" r="0.5" gradientTransform="matrix(0.562, -0.827, 0.826, 0.562, 7.104, 11.626)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front32" cx="0.499" cy="0.5" r="0.5" gradientTransform="matrix(0.562, -0.827, 0.826, 0.562, 7.104, 11.626)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#8c0a11"/>
       <stop offset="1" stop-color="#8c0a11"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_33" cx="0.5" cy="0.5" r="0.5" gradientTransform="matrix(0.706, -0.708, 0.708, 0.706, 4.719, 10.361)" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front33" cx="0.5" cy="0.5" r="0.5" gradientTransform="matrix(0.706, -0.708, 0.708, 0.706, 4.719, 10.361)" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#89000f"/>
       <stop offset="1" stop-color="#89000f"/>
     </radialGradient>
-    <radialGradient id="svg_rocket_34" cx="0.013" cy="-0.083" r="1.652" gradientUnits="objectBoundingBox">
+    <radialGradient id="svg_rocket_front34" cx="0.013" cy="-0.083" r="1.652" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#bce7fb"/>
       <stop offset="1" stop-color="#00a1ed"/>
     </radialGradient>
-    <filter id="svg_rocket_35" x="126.166" y="168.835" width="57.596" height="65.03" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front35" x="126.166" y="168.835" width="57.596" height="65.03" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_36" x="131.53" y="174.199" width="46.869" height="45.993" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front36" x="131.53" y="174.199" width="46.869" height="45.993" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-2"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-2"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_37" x="356.745" y="247.663" width="46.484" height="21.766" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front37" x="356.745" y="247.663" width="46.484" height="21.766" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-3"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-3"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_38" x="356.745" y="253.921" width="46.484" height="22.04" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front38" x="356.745" y="253.921" width="46.484" height="22.04" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-4"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-4"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_39" x="356.745" y="260.452" width="46.484" height="43.974" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front39" x="356.745" y="260.452" width="46.484" height="43.974" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-5"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-5"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_40" x="139.187" y="303.719" width="47.32" height="60.241" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front40" x="139.187" y="303.719" width="47.32" height="60.241" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-6"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-6"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_41" x="377.943" y="391.261" width="32.794" height="21.888" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front41" x="377.943" y="391.261" width="32.794" height="21.888" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-7"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-7"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_42" x="377.943" y="396.572" width="29.285" height="21.888" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front42" x="377.943" y="396.572" width="29.285" height="21.888" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-8"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-8"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_43" x="377.943" y="385.776" width="35.354" height="21.888" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front43" x="377.943" y="385.776" width="35.354" height="21.888" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-9"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-9"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_44" x="341.161" y="391.261" width="32.794" height="21.888" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front44" x="341.161" y="391.261" width="32.794" height="21.888" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-10"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-10"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_45" x="344.67" y="396.572" width="29.285" height="21.888" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front45" x="344.67" y="396.572" width="29.285" height="21.888" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-11"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-11"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_46" x="338.601" y="385.776" width="35.354" height="21.888" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front46" x="338.601" y="385.776" width="35.354" height="21.888" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-12"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-12"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_47" x="356.943" y="385.776" width="38.011" height="43.049" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front47" x="356.943" y="385.776" width="38.011" height="43.049" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-13"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-13"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_48" x="129.995" y="438.662" width="57.744" height="46.177" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front48" x="129.995" y="438.662" width="57.744" height="46.177" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-14"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-14"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_49" x="145.525" y="425.049" width="26.684" height="26.259" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front49" x="145.525" y="425.049" width="26.684" height="26.259" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-15"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-15"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_50" x="364.42" y="494.983" width="27.831" height="43.237" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front50" x="364.42" y="494.983" width="27.831" height="43.237" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-16"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-16"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_51" x="370.588" y="503.771" width="38.338" height="42.477" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front51" x="370.588" y="503.771" width="38.338" height="42.477" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-17"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-17"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_52" x="347.744" y="503.771" width="38.338" height="42.477" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front52" x="347.744" y="503.771" width="38.338" height="42.477" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-18"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-18"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_53" x="374.145" y="496.57" width="26.478" height="34.596" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front53" x="374.145" y="496.57" width="26.478" height="34.596" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-19"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-19"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_54" x="356.048" y="496.57" width="26.478" height="34.596" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front54" x="356.048" y="496.57" width="26.478" height="34.596" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-20"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-20"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_55" x="360.268" y="483.854" width="36.136" height="33.633" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front55" x="360.268" y="483.854" width="36.136" height="33.633" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-21"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-21"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_56" x="380.681" y="493.451" width="24.142" height="29.305" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front56" x="380.681" y="493.451" width="24.142" height="29.305" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-22"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-22"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_57" x="351.847" y="493.451" width="24.142" height="29.305" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front57" x="351.847" y="493.451" width="24.142" height="29.305" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-23"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-23"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_58" x="383.737" y="505.405" width="21.007" height="24.65" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front58" x="383.737" y="505.405" width="21.007" height="24.65" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-24"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-24"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_59" x="351.927" y="505.405" width="21.007" height="24.65" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front59" x="351.927" y="505.405" width="21.007" height="24.65" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-25"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-25"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_60" x="370.449" y="507.751" width="30.182" height="35.789" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front60" x="370.449" y="507.751" width="30.182" height="35.789" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-26"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-26"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_61" x="356.04" y="507.751" width="30.182" height="35.789" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front61" x="356.04" y="507.751" width="30.182" height="35.789" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-27"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-27"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <linearGradient id="svg_rocket_62" x1="0.06" y1="-0.034" x2="0.697" y2="-0.795" gradientUnits="objectBoundingBox">
+    <linearGradient id="svg_rocket_front62" x1="0.06" y1="-0.034" x2="0.697" y2="-0.795" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#fff"/>
       <stop offset="1" stop-color="#c8cecf"/>
     </linearGradient>
-    <linearGradient id="svg_rocket_63" x1="0.465" y1="0.493" x2="0.844" y2="0.252" xlink:href="#svg_rocket_62"/>
-    <linearGradient id="svg_rocket_64" x1="0.297" y1="0.556" x2="0.727" y2="0.349" xlink:href="#svg_rocket_62"/>
-    <linearGradient id="svg_rocket_65" x1="0.192" y1="1.051" x2="0.816" y2="0.219" xlink:href="#svg_rocket_62"/>
-    <linearGradient id="svg_rocket_66" x1="0.721" y1="-0.286" x2="0.614" y2="1.165" gradientUnits="objectBoundingBox">
+    <linearGradient id="svg_rocket_front63" x1="0.465" y1="0.493" x2="0.844" y2="0.252" xlink:href="#svg_rocket_front62"/>
+    <linearGradient id="svg_rocket_front64" x1="0.297" y1="0.556" x2="0.727" y2="0.349" xlink:href="#svg_rocket_front62"/>
+    <linearGradient id="svg_rocket_front65" x1="0.192" y1="1.051" x2="0.816" y2="0.219" xlink:href="#svg_rocket_front62"/>
+    <linearGradient id="svg_rocket_front66" x1="0.721" y1="-0.286" x2="0.614" y2="1.165" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#fbe62e"/>
       <stop offset="1" stop-color="#af1a3d"/>
     </linearGradient>
-    <filter id="svg_rocket_67" x="303.034" y="8.528" width="107.014" height="92.657" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front67" x="303.034" y="8.528" width="107.014" height="92.657" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-28"/>
       <feFlood flood-opacity="0.161"/>
       <feComposite operator="in" in2="blur-28"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <filter id="svg_rocket_68" x="321.229" y="29.855" width="76" height="40" filterUnits="userSpaceOnUse">
+    <filter id="svg_rocket_front68" x="321.229" y="29.855" width="76" height="40" filterUnits="userSpaceOnUse">
       <feOffset dy="3" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="3" result="blur-29"/>
       <feFlood flood-opacity="0.161"/>
@@ -437,58 +437,58 @@
     <path d="M889.917,1008.985h.011l-.009-.006.009-.03-2.368-2.308h-1.578l1.3,1.269h-4.45l1.285,1.075h5.8Z" transform="translate(-879.718 -997.532)" fill="#fff"/>
   </g>
   <text transform="translate(155.229 246.855)" fill="#fff" font-size="18" font-family="Montserrat" font-weight="100" letter-spacing="0.025em"><tspan x="-27.027" y="0">CORE</tspan><tspan x="-49.329" y="18">MEMBERS</tspan></text>
-  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#svg_rocket_35)">
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#svg_rocket_front35)">
     <path d="M988.381,700.894a19.8,19.8,0,1,0-24.99,19.1l-.335,8.13,5.527-2.906,5.527,2.906-.335-8.13A19.83,19.83,0,0,0,988.381,700.894Zm-14.686,17.157-.148-3.6a14.5,14.5,0,0,1-9.927,0l-.148,3.6a17.9,17.9,0,1,1,10.223,0Z" transform="translate(-813.62 -506.26)" fill="#fff"/>
   </g>
-  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#svg_rocket_36)">
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#svg_rocket_front36)">
     <path d="M1059.258,777.133a14.434,14.434,0,1,0-19.4,13.558l.492-11.944-4.471-4.358,6.179-.9,2.763-5.6,2.763,5.6,6.179.9-4.471,4.358.492,11.944A14.44,14.44,0,0,0,1059.258,777.133Z" transform="translate(-889.86 -582.5)" fill="#fff"/>
   </g>
   <text transform="translate(332.229 315.855)" fill="#fff" font-size="18" font-family="Montserrat" font-weight="200" letter-spacing="0.025em"><tspan x="0" y="0">MEMBERS</tspan></text>
   <g transform="translate(-622.523 -425.337)">
-    <g transform="matrix(1, 0, 0, 1, 622.52, 425.34)" filter="url(#svg_rocket_37)">
+    <g transform="matrix(1, 0, 0, 1, 622.52, 425.34)" filter="url(#svg_rocket_front37)">
       <path d="M0,0H28.484V3.766H0Z" transform="translate(365.74 253.66)" fill="#fff"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, 622.52, 425.34)" filter="url(#svg_rocket_38)">
+    <g transform="matrix(1, 0, 0, 1, 622.52, 425.34)" filter="url(#svg_rocket_front38)">
       <rect width="28.484" height="4.04" transform="translate(365.74 259.92)" fill="#fff"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, 622.52, 425.34)" filter="url(#svg_rocket_39)">
+    <g transform="matrix(1, 0, 0, 1, 622.52, 425.34)" filter="url(#svg_rocket_front39)">
       <path d="M988.268,914.035V929.73l14.242,10.28,14.242-10.28h0a15.7,15.7,0,0,0-15.695-15.695Zm18.5,17.407-4.262-2.24-4.262,2.24.814-4.745-3.448-3.361,4.765-.692,2.131-4.317,2.131,4.317,4.764.692-3.448,3.361Z" transform="translate(-622.52 -647.58)" fill="#fff"/>
     </g>
   </g>
   <text transform="translate(106.229 377.855)" fill="#fff" font-size="18" font-family="Montserrat" font-weight="200" letter-spacing="0.025em"><tspan x="0" y="0">PROSPECTS</tspan></text>
-  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#svg_rocket_40)">
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#svg_rocket_front40)">
     <path d="M1067.431,664.673h0a14.66,14.66,0,0,0-14.66,14.66v12.976a14.657,14.657,0,0,0,7.839,12.979v-8.471l2.532-1.331v10.845a14.6,14.6,0,0,0,3.023.583V692.658l1.266-.832,1.266.832v14.256a14.6,14.6,0,0,0,2.727-.5V695.486l2.532,1.331v8.622a14.659,14.659,0,0,0,8.135-13.13V679.333A14.66,14.66,0,0,0,1067.431,664.673Zm4.588,19.124,1.083,6.315-5.671-2.982-5.672,2.982,1.083-6.315-4.588-4.473,6.341-.921,2.836-5.746,2.836,5.746,6.341.921Z" transform="translate(-904.58 -354.95)" fill="#fff"/>
   </g>
   <text transform="translate(340.229 439.855)" fill="#fff" font-size="18" font-family="Montserrat" font-weight="200" letter-spacing="0.025em"><tspan x="0" y="0">ANGELS</tspan></text>
   <g transform="translate(-460.923 -480.242)">
-    <g transform="matrix(1, 0, 0, 1, 460.92, 480.24)" filter="url(#svg_rocket_41)">
+    <g transform="matrix(1, 0, 0, 1, 460.92, 480.24)" filter="url(#svg_rocket_front41)">
       <path d="M1421.211,961.327h10.906a3.888,3.888,0,0,0,3.888-3.888h-14.794Z" transform="translate(-1034.27 -560.18)" fill="#fff"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, 460.92, 480.24)" filter="url(#svg_rocket_42)">
+    <g transform="matrix(1, 0, 0, 1, 460.92, 480.24)" filter="url(#svg_rocket_front42)">
       <path d="M1421.211,1044.03h7.4a3.888,3.888,0,0,0,3.888-3.888h-11.285Z" transform="translate(-1034.27 -637.57)" fill="#fff"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, 460.92, 480.24)" filter="url(#svg_rocket_43)">
+    <g transform="matrix(1, 0, 0, 1, 460.92, 480.24)" filter="url(#svg_rocket_front43)">
       <path d="M1421.211,872.018v3.888h13.466a3.888,3.888,0,0,0,3.888-3.888Z" transform="translate(-1034.27 -480.24)" fill="#fff"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, 460.92, 480.24)" filter="url(#svg_rocket_44)">
+    <g transform="matrix(1, 0, 0, 1, 460.92, 480.24)" filter="url(#svg_rocket_front44)">
       <path d="M852.287,961.327h10.906v-3.888H848.4A3.888,3.888,0,0,0,852.287,961.327Z" transform="translate(-498.24 -560.18)" fill="#fff"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, 460.92, 480.24)" filter="url(#svg_rocket_45)">
+    <g transform="matrix(1, 0, 0, 1, 460.92, 480.24)" filter="url(#svg_rocket_front45)">
       <path d="M906.931,1044.03h7.4v-3.888H903.043A3.888,3.888,0,0,0,906.931,1044.03Z" transform="translate(-549.37 -637.57)" fill="#fff"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, 460.92, 480.24)" filter="url(#svg_rocket_46)">
+    <g transform="matrix(1, 0, 0, 1, 460.92, 480.24)" filter="url(#svg_rocket_front46)">
       <path d="M812.412,875.906h13.466v-3.888H808.524A3.888,3.888,0,0,0,812.412,875.906Z" transform="translate(-460.92 -480.24)" fill="#fff"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, 460.92, 480.24)" filter="url(#svg_rocket_47)">
+    <g transform="matrix(1, 0, 0, 1, 460.92, 480.24)" filter="url(#svg_rocket_front47)">
       <path d="M1094.179,887.088a10.009,10.009,0,0,0,6.594,9.408v-4.583h1.458V896.9a10,10,0,0,0,1.259.165v-7.594l.695-.02.763.02v7.589a10.029,10.029,0,0,0,1.127-.149v-5h1.458v4.6a10.008,10.008,0,0,0,6.658-9.43v-15.07h-20.011Zm7.918-6.47,2.088-4.23,2.088,4.23,4.668.678-3.378,3.293.8,4.65-4.176-2.2-4.176,2.2.8-4.65-3.378-3.293Z" transform="translate(-728.24 -480.24)" fill="#fff"/>
     </g>
   </g>
   <text transform="translate(106.229 497.855)" fill="#fff" font-size="18" font-family="Montserrat" font-weight="200" letter-spacing="0.025em"><tspan x="0" y="0">GALLERIES</tspan></text>
   <g transform="translate(-746.424 -156.271)">
-    <g transform="matrix(1, 0, 0, 1, 746.42, 156.27)" filter="url(#svg_rocket_48)">
+    <g transform="matrix(1, 0, 0, 1, 746.42, 156.27)" filter="url(#svg_rocket_front48)">
       <path d="M924.339,849.159l-11.275-11.275a2.814,2.814,0,0,0-3.979,0l-3.794,3.794-3.794-3.794a2.814,2.814,0,0,0-3.979,0l-11.275,11.275a2.814,2.814,0,0,0,0,3.979l11.275,11.275a2.814,2.814,0,0,0,3.979,0l3.794-3.794,3.794,3.794a2.814,2.814,0,0,0,3.979,0l11.275-11.275A2.814,2.814,0,0,0,924.339,849.159Zm-15.681,3.76.795,4.634-4.162-2.188-4.162,2.188.795-4.634-3.367-3.282,4.653-.676,2.081-4.217,2.081,4.217,4.653.676Z" transform="translate(-746.42 -392.4)" fill="#fff"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, 746.42, 156.27)" filter="url(#svg_rocket_49)">
+    <g transform="matrix(1, 0, 0, 1, 746.42, 156.27)" filter="url(#svg_rocket_front49)">
       <path d="M1174.681,587.321l1.342,2.719,3,.436-2.171,2.116.513,2.988-2.683-1.411L1172,595.58l.513-2.988-2.171-2.116,3-.436Z" transform="translate(-1015.81 -156.27)" fill="#fff"/>
     </g>
     <g transform="translate(894.299 593.234)">
@@ -500,40 +500,40 @@
   <path d="M361.289,546.4a2.006,2.006,0,1,0-2.006,2.006A2.007,2.007,0,0,0,361.289,546.4Z" transform="translate(-10.771 5.855)" fill="#fff"/>
   <text transform="translate(358.229 555.855)" fill="#fff" font-size="18" font-family="Montserrat" font-weight="200" letter-spacing="0.025em"><tspan x="0" y="0">V.I.P.</tspan></text>
   <g transform="translate(30.745 250.737)">
-    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_50)">
+    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_front50)">
       <path d="M465.3,354.042c.592-1.58,1.265-3.126,1.922-4.636,1.539-3.537,2.993-6.878,2.993-9.764,0-4.766-2.657-8.128-4.915-10.837-2.259,2.708-4.915,6.071-4.915,10.837,0,2.886,1.454,6.227,2.993,9.764C464.039,350.917,464.711,352.463,465.3,354.042Z" transform="translate(-86.97 172.18)" fill="#fff"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_51)">
+    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_front51)">
       <path d="M521.952,411.4c-1.8,3.567-4.592,5.838-7.149,7.918-1.97,1.6-3.7,3.014-4.706,4.786a38.4,38.4,0,0,0,12.433-6.429,20.08,20.08,0,0,0,7.9-16.579c-.01-.538-.035-1.021-.075-1.469q-1.154.366-2.308.837a13.787,13.787,0,0,1-.959,4.413A14.99,14.99,0,0,1,521.952,411.4Z" transform="translate(-130.51 110.15)" fill="#fff"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_52)">
+    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_front52)">
       <path d="M334.483,411.4c1.8,3.567,4.592,5.838,7.149,7.918,1.97,1.6,3.7,3.014,4.706,4.786a38.4,38.4,0,0,1-12.433-6.429,20.08,20.08,0,0,1-7.9-16.579c.01-.538.035-1.021.075-1.469q1.154.366,2.308.837a13.788,13.788,0,0,0,.959,4.413A14.99,14.99,0,0,0,334.483,411.4Z" transform="translate(30.74 110.15)" fill="#fff"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_53)">
+    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_front53)">
       <path d="M539.847,346.364a14.081,14.081,0,0,1,.73,4.479,20.3,20.3,0,0,1-1.819,7.346q.735-.918,1.561-1.805a34.27,34.27,0,0,1,6.917-5.645,18.022,18.022,0,0,0-3.218-9.146A36.42,36.42,0,0,0,539.847,346.364Z" transform="translate(-155.61 160.98)" fill="#fff"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_54)">
+    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_front54)">
       <path d="M400.306,346.364a14.081,14.081,0,0,0-.73,4.479,20.3,20.3,0,0,0,1.819,7.346q-.735-.918-1.561-1.805a34.271,34.271,0,0,0-6.917-5.645,18.022,18.022,0,0,1,3.218-9.146A36.422,36.422,0,0,1,400.306,346.364Z" transform="translate(-27.87 160.98)" fill="#fff"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_55)">
+    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_front55)">
       <path d="M435.992,248.053a.857.857,0,0,1,.659.309l.383.459a28.6,28.6,0,0,1,4.1,5.928,39.371,39.371,0,0,1,3.921-4.335c-1.134-1.515-2.4-2.961-3.694-4.43a51.585,51.585,0,0,1-5.373-6.867,51.6,51.6,0,0,1-5.373,6.867c-1.291,1.469-2.561,2.916-3.694,4.43a39.371,39.371,0,0,1,3.921,4.335,28.6,28.6,0,0,1,4.1-5.928l.383-.459A.857.857,0,0,1,435.992,248.053Z" transform="translate(-57.66 250.74)" fill="#fff"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_56)">
+    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_front56)">
       <path d="M597.576,326.486c-.091-2.789-1.07-6.123-3.574-10.027a22.449,22.449,0,0,0-2.569,1.954,20.082,20.082,0,0,1,3.58,9.351Q596.273,327.071,597.576,326.486Z" transform="translate(-201.75 182.99)" fill="#fff"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_57)">
+    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_front57)">
       <path d="M359.066,326.486c.091-2.789,1.07-6.123,3.574-10.027a22.446,22.446,0,0,1,2.569,1.954,20.08,20.08,0,0,0-3.58,9.351Q360.369,327.071,359.066,326.486Z" transform="translate(1.78 182.99)" fill="#fff"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_58)">
+    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_front58)">
       <path d="M616.5,417.123a19.674,19.674,0,0,1-.44,2.323,12.25,12.25,0,0,0,3.007-6.65q-1.2.578-2.38,1.263A22.618,22.618,0,0,1,616.5,417.123Z" transform="translate(-223.32 98.61)" fill="#fff"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_59)">
+    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_front59)">
       <path d="M362.276,417.123a19.668,19.668,0,0,0,.44,2.323,12.249,12.249,0,0,1-3.007-6.65q1.2.578,2.38,1.263A22.6,22.6,0,0,0,362.276,417.123Z" transform="translate(1.22 98.61)" fill="#fff"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_60)">
+    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_front60)">
       <path d="M508.974,449.488a31.431,31.431,0,0,1,3.764-3.406c3.477-2.828,7.418-6.034,8.265-12.62.078-.606.127-1.192.153-1.763C514.985,435.814,509.943,442.1,508.974,449.488Z" transform="translate(-129.52 82.05)" fill="#fff"/>
     </g>
-    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_61)">
+    <g transform="matrix(1, 0, 0, 1, -30.74, -250.74)" filter="url(#svg_rocket_front61)">
       <path d="M405.034,449.488a31.433,31.433,0,0,0-3.764-3.406c-3.477-2.828-7.418-6.034-8.265-12.62-.078-.606-.127-1.192-.153-1.763C399.023,435.814,404.065,442.1,405.034,449.488Z" transform="translate(-27.81 82.05)" fill="#fff"/>
     </g>
   </g>
@@ -564,7 +564,7 @@
         <path d="M521.616,585.4a36.9,36.9,0,0,0-35.18,17.867,15.315,15.315,0,0,1-14.625,7.438,28.244,28.244,0,0,0-3.6-.119,27.7,27.7,0,1,0,25.908,39.584,36.915,36.915,0,1,0,27.5-64.77Z" transform="translate(-411.519 -555.333)" fill="#0b3153"/>
       </g>
       <g transform="translate(18.763 24.496)">
-        <path d="M525.581,578.841A45.575,45.575,0,0,0,478.4,614.082a34.188,34.188,0,1,0,14.731,44.827,45.568,45.568,0,1,0,32.448-80.068Z" transform="translate(-428.07 -578.755)" fill="url(#svg_rocket_62)"/>
+        <path d="M525.581,578.841A45.575,45.575,0,0,0,478.4,614.082a34.188,34.188,0,1,0,14.731,44.827,45.568,45.568,0,1,0,32.448-80.068Z" transform="translate(-428.07 -578.755)" fill="url(#svg_rocket_front62)"/>
         <path d="M428.757,643.594a34.187,34.187,0,0,1,50.267-28.052,45.565,45.565,0,0,1,86.094-8.137,45.57,45.57,0,0,0-86.716,6.677,34.188,34.188,0,0,0-47.3,44.218A34.049,34.049,0,0,1,428.757,643.594Z" transform="translate(-428.07 -578.755)" fill="#fff"/>
       </g>
     </g>
@@ -594,7 +594,7 @@
         <path d="M238.321,612.22a43.042,43.042,0,0,0-45.948,2.649,17.866,17.866,0,0,1-19.107,1.112,32.844,32.844,0,0,0-3.792-1.811,32.308,32.308,0,1,0,9.183,54.415,43.06,43.06,0,1,0,59.663-56.365Z" transform="translate(-90.325 -571.896)" fill="#007ab9"/>
       </g>
       <g transform="translate(33.559 28.991)">
-        <path d="M192.736,607.878a63.655,63.655,0,0,0-15.008,11.666,31.222,31.222,0,1,0-16.983,51.916,63.68,63.68,0,1,0,31.991-63.581Z" transform="translate(-123.626 -599.709)" fill="url(#svg_rocket_63)"/>
+        <path d="M192.736,607.878a63.655,63.655,0,0,0-15.008,11.666,31.222,31.222,0,1,0-16.983,51.916,63.68,63.68,0,1,0,31.991-63.581Z" transform="translate(-123.626 -599.709)" fill="url(#svg_rocket_front63)"/>
         <path d="M139.641,615.181a31.23,31.23,0,0,1,38.165,5.97,63.7,63.7,0,0,1,109.753,39.908,63.709,63.709,0,0,0-109.83-41.516,31.227,31.227,0,0,0-54.015,23.574A31.212,31.212,0,0,1,139.641,615.181Z" transform="translate(-123.627 -599.709)" fill="#fff"/>
       </g>
     </g>
@@ -624,7 +624,7 @@
         <path d="M118.542,591.273a43.042,43.042,0,0,0-41.783-19.3,17.865,17.865,0,0,1-17.38-8.015,33.074,33.074,0,0,0-2.492-3.383,32.309,32.309,0,1,0-17.519,52.33,43.06,43.06,0,1,0,79.175-21.635Z" transform="translate(34.987 -514.237)" fill="#0b3153"/>
       </g>
       <g transform="translate(29.529 28.594)">
-        <path d="M73.851,562.656a63.653,63.653,0,0,0-18.8,2.822,31.222,31.222,0,1,0-40.231,36.948,63.681,63.681,0,1,0,59.029-39.77Z" transform="translate(6.519 -541.583)" fill="url(#svg_rocket_64)"/>
+        <path d="M73.851,562.656a63.653,63.653,0,0,0-18.8,2.822,31.222,31.222,0,1,0-40.231,36.948,63.681,63.681,0,1,0,59.029-39.77Z" transform="translate(6.519 -541.583)" fill="url(#svg_rocket_front64)"/>
         <path d="M24.563,543.023a31.23,31.23,0,0,1,30.353,23.895,63.7,63.7,0,0,1,76.149,88.542,63.709,63.709,0,0,0-75.429-89.981A31.227,31.227,0,0,0-3,559.58,31.213,31.213,0,0,1,24.563,543.023Z" transform="translate(5.936 -541.583)" fill="#fff"/>
       </g>
     </g>
@@ -654,7 +654,7 @@
         <path d="M71.775,616.013a43.039,43.039,0,0,0-44.517,11.679,17.867,17.867,0,0,1-18.51,4.867,32.928,32.928,0,0,0-4.074-1.025,32.38,32.38,0,0,0-36.191,20.777,32.311,32.311,0,0,0,21.624,42.1,32.309,32.309,0,0,0,34.325-11.355,43.06,43.06,0,1,0,47.343-67.046Z" transform="translate(68.303 -579.088)" fill="#3c6388"/>
       </g>
       <g transform="translate(20.251 30.195)">
-        <path d="M77.27,610.35a53.161,53.161,0,0,0-62.488,28.523A39.715,39.715,0,0,0-.259,630.854a39.879,39.879,0,0,0-49.193,27.583,39.88,39.88,0,0,0,27.583,49.194A39.882,39.882,0,0,0,20.5,693.614,53.154,53.154,0,1,0,77.27,610.35Z" transform="translate(50.954 -608.349)" fill="url(#svg_rocket_65)"/>
+        <path d="M77.27,610.35a53.161,53.161,0,0,0-62.488,28.523A39.715,39.715,0,0,0-.259,630.854a39.879,39.879,0,0,0-49.193,27.583,39.88,39.88,0,0,0,27.583,49.194A39.882,39.882,0,0,0,20.5,693.614,53.154,53.154,0,1,0,77.27,610.35Z" transform="translate(50.954 -608.349)" fill="url(#svg_rocket_front65)"/>
         <path d="M-49.1,660.255A39.881,39.881,0,0,1,.091,632.671a39.718,39.718,0,0,1,15.041,8.019A53.149,53.149,0,0,1,115.29,652.68,53.156,53.156,0,0,0,14.783,638.873,39.715,39.715,0,0,0-.258,630.854a39.879,39.879,0,0,0-49.193,27.583,39.7,39.7,0,0,0-.606,19.163A39.729,39.729,0,0,1-49.1,660.255Z" transform="translate(50.953 -608.349)" fill="#fff"/>
       </g>
     </g>
@@ -662,13 +662,13 @@
   <rect width="439.94" height="439.94" transform="translate(91.083 179.999)" fill="none"/>
   <g transform="translate(40.229 -186.908)">
     <g transform="translate(270.37 200)">
-      <g transform="matrix(1, 0, 0, 1, -310.6, -13.09)" filter="url(#svg_rocket_67)">
-        <path d="M340.8,225.926c-24.581,0-44.507,14.141-44.507,31.586,0,11.33,8.412,21.262,21.039,26.836a31.927,31.927,0,0,1-1.467,4.237,29.8,29.8,0,0,1-9.523,11.984s15.018.814,26.866-10.258c.548-.512,1.066-1.014,1.568-1.511,1.97.19,3.979.3,6.023.3,24.581,0,44.507-14.142,44.507-31.586S365.384,225.926,340.8,225.926Z" transform="translate(15.74 -211.4)" fill="url(#svg_rocket_66)"/>
+      <g transform="matrix(1, 0, 0, 1, -310.6, -13.09)" filter="url(#svg_rocket_front67)">
+        <path d="M340.8,225.926c-24.581,0-44.507,14.141-44.507,31.586,0,11.33,8.412,21.262,21.039,26.836a31.927,31.927,0,0,1-1.467,4.237,29.8,29.8,0,0,1-9.523,11.984s15.018.814,26.866-10.258c.548-.512,1.066-1.014,1.568-1.511,1.97.19,3.979.3,6.023.3,24.581,0,44.507-14.142,44.507-31.586S365.384,225.926,340.8,225.926Z" transform="translate(15.74 -211.4)" fill="url(#svg_rocket_front66)"/>
       </g>
-      <path d="M282.557,277.529c-.5,0-.778-.015-.778-.015l-4.24-.238,3.512-2.382a28.641,28.641,0,0,0,9.006-11.358c.407-.957.763-1.923,1.064-2.884-13.022-6.125-20.751-16.38-20.751-27.629,0-18.208,20.61-33.022,45.943-33.022s45.943,14.814,45.943,33.022-20.61,33.022-45.943,33.022c-1.785,0-3.63-.081-5.492-.241q-.541.528-1.119,1.068C299.119,276.76,286.249,277.529,282.557,277.529Zm33.756-74.657c-23.75,0-43.072,13.525-43.072,30.15,0,10.4,7.545,19.944,20.184,25.523l1.126.5-.319,1.188a33.473,33.473,0,0,1-1.533,4.428,31.048,31.048,0,0,1-6.748,9.814,37.7,37.7,0,0,0,21.791-9.7c.538-.5,1.046-1,1.538-1.482l.478-.473.669.065c2,.191,3.978.289,5.886.289,23.75,0,43.072-13.525,43.072-30.15S340.063,202.871,316.313,202.871Z" transform="translate(-270.37 -200)" fill="url(#svg_rocket_66)"/>
+      <path d="M282.557,277.529c-.5,0-.778-.015-.778-.015l-4.24-.238,3.512-2.382a28.641,28.641,0,0,0,9.006-11.358c.407-.957.763-1.923,1.064-2.884-13.022-6.125-20.751-16.38-20.751-27.629,0-18.208,20.61-33.022,45.943-33.022s45.943,14.814,45.943,33.022-20.61,33.022-45.943,33.022c-1.785,0-3.63-.081-5.492-.241q-.541.528-1.119,1.068C299.119,276.76,286.249,277.529,282.557,277.529Zm33.756-74.657c-23.75,0-43.072,13.525-43.072,30.15,0,10.4,7.545,19.944,20.184,25.523l1.126.5-.319,1.188a33.473,33.473,0,0,1-1.533,4.428,31.048,31.048,0,0,1-6.748,9.814,37.7,37.7,0,0,0,21.791-9.7c.538-.5,1.046-1,1.538-1.482l.478-.473.669.065c2,.191,3.978.289,5.886.289,23.75,0,43.072-13.525,43.072-30.15S340.063,202.871,316.313,202.871Z" transform="translate(-270.37 -200)" fill="url(#svg_rocket_front66)"/>
     </g>
   </g>
-  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#svg_rocket_68)">
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#svg_rocket_front68)">
     <text transform="translate(330.23 52.85)" fill="#fff" font-size="18" font-family="Montserrat-Bold, Montserrat" font-weight="700" letter-spacing="0.025em"><tspan x="0" y="0">Drive!</tspan></text>
   </g>
 </svg>

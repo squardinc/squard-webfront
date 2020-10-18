@@ -9,6 +9,7 @@ import { PrivacyPolicyPage } from './privacypolicy/privacypolicy'
 import { SctlPage } from './sctl/SctlPage'
 import { SignUpLayout } from './SignUp'
 import { SocialSigninLayout } from './SocialSignIn'
+import { TermsOfUsePage } from './termsofuse/TermsOfUsePage'
 
 export const StaticPagePaths = [
   'about',
@@ -16,13 +17,14 @@ export const StaticPagePaths = [
   'faq',
   'privacypolicy',
   'sctl',
+  'termsofuse',
   'signup',
   'confirmSignUp',
   'resetPassword',
   'socialSignIn',
 ] as const
 
-type StaticPageType = typeof StaticPagePaths[number]
+export type StaticPageType = typeof StaticPagePaths[number]
 
 const StaticPageMap: { [key in StaticPageType]: React.FC } = {
   about: AboutPage,
@@ -30,6 +32,7 @@ const StaticPageMap: { [key in StaticPageType]: React.FC } = {
   faq: FAQPage,
   privacypolicy: PrivacyPolicyPage,
   sctl: SctlPage,
+  termsofuse: TermsOfUsePage,
   signup: SignUpLayout,
   confirmSignUp: ConfirmSignUpLayout,
   resetPassword: ResetPasswordLayout,

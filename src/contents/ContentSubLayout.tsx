@@ -1,6 +1,6 @@
 import { navigate } from 'gatsby'
 import * as React from 'react'
-import { StaticPagePaths } from './ContentLayout'
+import { StaticPagePaths } from './StaticPageRoute'
 const JoinTeamContainer = React.lazy(() => import('src/contents/team/Join/JoinTeamContainer'))
 const LeaveTeamContainer = React.lazy(() => import('src/contents/team/Leave/LeaveTeamContainer'))
 

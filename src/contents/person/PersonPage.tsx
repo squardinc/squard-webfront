@@ -287,8 +287,6 @@ const ButtonEditWrapper = styled.div`
   align-items: center;
 `
 
-const renderLoader = () => <></>
-
 export const PersonPage: React.FC<PersonPageProps> = ({
   personal,
   editProfile,
@@ -301,7 +299,7 @@ export const PersonPage: React.FC<PersonPageProps> = ({
   const [selectedTeam, setSelectedTeam] = React.useState<IDisplayTeamMember | null>(null)
   const [showTeamLeaveModal, setShowTeamLeaveModal] = React.useState(false)
   return (
-    <Suspense fallback={renderLoader()}>
+    <Suspense fallback={<></>}>
       <ContentWrapper>
         <UserCoverWrapper>
           <UserCover backgroundColor={'#ebebeb'}>
