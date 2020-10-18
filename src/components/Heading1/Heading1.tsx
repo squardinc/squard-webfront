@@ -9,3 +9,5 @@ export const Heading1: React.FC = (props) => {
     </div>
   )
 }
+
+export default Heading1;

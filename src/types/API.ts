@@ -13,12 +13,6 @@ export type UpdateUserInput = {
   icon?: string | null
 }
 
-export enum PageType {
-  Static = 'Static',
-  Team = 'Team',
-  Person = 'Person',
-}
-
 export enum ClassType {
   Leader = 'Leader',
   CoreMembers = 'CoreMembers',
@@ -28,6 +22,36 @@ export enum ClassType {
   Galleries = 'Galleries',
   VIP = 'VIP',
 }
+
+export enum PageType {
+  Static = 'Static',
+  Team = 'Team',
+  Person = 'Person',
+}
+
+export type JoinAsGalleriesMutationVariables = {
+  teamId: string,
+  teamClassId: string,
+};
+
+export type JoinAsGalleriesMutation = {
+  joinAsGalleries:  {
+    __typename: "Response",
+    message: string | null,
+  } | null,
+};
+
+export type LeaveTeamMutationVariables = {
+  teamId: string,
+  teamClassId: string,
+};
+
+export type LeaveTeamMutation = {
+  leaveTeam:  {
+    __typename: "Response",
+    message: string | null,
+  } | null,
+};
 
 export type UpdateUserMutationVariables = {
   input: UpdateUserInput
@@ -43,24 +67,6 @@ export type UpdateUserMutation = {
     links: Array<string> | null
     birthday: string | null
     displayTeamIds: Array<string> | null
-    displayTeamMembers: Array<{
-      __typename: 'TeamMember'
-      teamId: string
-      teamMemberId: string
-      userId: string
-      teamClassId: string
-      startAt: number | null
-      endAt: number | null
-      image: string | null
-      imageColor: string | null
-      nickname: string | null
-      title: string | null
-      subTitle: string | null
-      age: string | null
-      link: string | null
-      contact: string | null
-      introduction: string | null
-    }> | null
     topImage: string | null
     icon: string | null
     teamMembers: Array<{
@@ -81,12 +87,6 @@ export type UpdateUserMutation = {
       contact: string | null
       introduction: string | null
     }> | null
-    page: {
-      __typename: 'Page'
-      id: string
-      resourceId: string
-      type: PageType | null
-    } | null
   } | null
 }
 
@@ -161,14 +161,6 @@ export type GetMyMemberInfoQuery = {
     user: {
       __typename: 'User'
       id: string
-      nameJp: string | null
-      nameEn: string | null
-      introduction: string | null
-      links: Array<string> | null
-      birthday: string | null
-      displayTeamIds: Array<string> | null
-      topImage: string | null
-      icon: string | null
     }
     team: {
       __typename: 'Team'
@@ -188,10 +180,6 @@ export type GetMyMemberInfoQuery = {
       classType: ClassType
       priceId: string | null
       enabled: boolean | null
-      benefits: {
-        description: string
-      } | null
-      price: number
     } | null
     startAt: number | null
     endAt: number | null
@@ -218,14 +206,6 @@ export type GetTeamMembersQuery = {
     user: {
       __typename: 'User'
       id: string
-      nameJp: string | null
-      nameEn: string | null
-      introduction: string | null
-      links: Array<string> | null
-      birthday: string | null
-      displayTeamIds: Array<string> | null
-      topImage: string | null
-      icon: string | null
     }
     team: {
       __typename: 'Team'
@@ -274,24 +254,6 @@ export type GetUserQuery = {
     links: Array<string> | null
     birthday: string | null
     displayTeamIds: Array<string> | null
-    displayTeamMembers: Array<{
-      __typename: 'TeamMember'
-      teamId: string
-      teamMemberId: string
-      userId: string
-      teamClassId: string
-      startAt: number | null
-      endAt: number | null
-      image: string | null
-      imageColor: string | null
-      nickname: string | null
-      title: string | null
-      subTitle: string | null
-      age: string | null
-      link: string | null
-      contact: string | null
-      introduction: string | null
-    }> | null
     topImage: string | null
     icon: string | null
     teamMembers: Array<{
@@ -311,6 +273,61 @@ export type GetUserQuery = {
       link: string | null
       contact: string | null
       introduction: string | null
+      team: {
+        id: string | null
+        name: string | null
+        page: {
+          id: string | null
+        } | null
+        class: {
+          classType: ClassType | null
+        } | null
+      }
+    }> | null
+  }
+}
+
+export type GetMyselfQuery = {
+  getMyself: {
+    __typename: 'Myself'
+    id: string
+    nameJp: string | null
+    nameEn: string | null
+    introduction: string | null
+    links: Array<string> | null
+    birthday: string | null
+    displayTeamIds: Array<string> | null
+    topImage: string | null
+    icon: string | null
+    teamMembers: Array<{
+      __typename: 'MyTeamMember'
+      teamId: string
+      teamMemberId: string
+      userId: string
+      teamClassId: string
+      startAt: number | null
+      endAt: number | null
+      image: string | null
+      imageColor: string | null
+      nickname: string | null
+      title: string | null
+      subTitle: string | null
+      age: string | null
+      link: string | null
+      contact: string | null
+      introduction: string | null
+      class: {
+        classType: string
+        price: {
+          price: number | null
+        } | null
+        benefits:
+          | {
+              description: string
+              links: string | null
+            }[]
+          | null
+      }
     }> | null
     page: {
       __typename: 'Page'

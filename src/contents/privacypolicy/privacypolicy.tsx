@@ -1,11 +1,11 @@
 import * as React from 'react'
-import styled from 'styled-components'
-import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import styles from './privacypolicy.module.scss'
-import { withTheme } from 'src/context/ThemeContext'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { Heading1 } from 'src/components/Heading1/Heading1'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { withTheme } from 'src/context/ThemeContext'
+import styled from 'styled-components'
 import * as Const from '../../styles/const'
+import styles from './privacypolicy.module.scss'
 
 const PageHeader = styled(Heading1)`
   font-weight: ${Const.fontWeight.bold};
@@ -237,9 +237,7 @@ const Page: React.FC = () => {
       </PolicyChapter>
       <PolicyChapter chapter="第10条（お問合せ窓口）">
         <PolicySection
-          sections={[
-            '本ポリシーに関するお問い合わせは，下記の窓口までお願いいたします。',
-          ]}
+          sections={['本ポリシーに関するお問い合わせは，下記の窓口までお願いいたします。']}
         />
         <Contact>
           <TextDisplay>
@@ -247,6 +245,7 @@ const Page: React.FC = () => {
           </TextDisplay>
         </Contact>
       </PolicyChapter>
+
       <EndPoliccyWrapper>
         {' '}
         <TextDisplay>以上</TextDisplay>
@@ -261,3 +260,4 @@ const Page: React.FC = () => {
 }
 
 export const PrivacyPolicyPage = withTheme(Page, 'dark')
+export default withTheme(Page, 'dark')

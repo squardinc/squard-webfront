@@ -93,7 +93,7 @@ export const EntitlementsWrapper = styled.div`
 `
 
 export const EntitlementText = styled.div`
-  padding: 8px 0;
+  padding: 8px 12px;
   text-align: center;
   color: ${colors.textWhite};
   border-top: 1px solid ${colors.borderGray};

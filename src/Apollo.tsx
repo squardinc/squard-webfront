@@ -3,11 +3,14 @@ import {
   ApolloLink,
   ApolloProvider,
   createHttpLink,
+
+  GraphQLRequest,
   InMemoryCache
 } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import fetch from 'cross-fetch'
 import * as React from 'react'
+import { isTokenRequired } from './graphql/tokenRequiredOperations'
 import { AuthService } from './services/AuthService'
 import { AWS_APPSYNC_API_KEY, AWS_APPSYNC_GRAPHQL_ENDPOINT } from './utils/env'
 
@@ -17,10 +20,15 @@ const httpLink = createHttpLink({
 })
 
 type OperationType = 'query' | 'mutation'
+const useToken = (operation: GraphQLRequest): boolean => {
+  const operationType: OperationType = operation.query.definitions[0].operation
+  if (operationType === 'mutation') return true
+  if (isTokenRequired(operation.operationName)) return true
+  return false
+}
 const authLink = setContext(async (operation, { headers }) => {
-  const operationType: OperationType = operation.query.definitions[0].operation || 'query'
   const token = await AuthService.idToken().catch(() => '')
-  if (operationType === 'mutation' && token) {
+  if (useToken(operation) && token) {
     return {
       headers: {
         ...headers,

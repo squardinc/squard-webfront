@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { Suspense } from 'react'
 import { ContentFooter } from 'src/components/Footer/ContentFooter'
 import { Heading1 } from 'src/components/Heading1/Heading1'
 import { withTheme } from 'src/context/ThemeContext'
@@ -12,9 +12,10 @@ import { Status } from './Status/Status'
 const PageHeader = styled(Heading1)`
   font-size: ${Const.fontSize.xl2};
 `
+const renderLoader = () => <></>
 const Page: React.FC = () => {
   return (
-    <div>
+    <Suspense fallback={renderLoader()}>
       <PageHeader>About</PageHeader>
       <About></About>
       <Classes></Classes>
@@ -28,8 +29,9 @@ const Page: React.FC = () => {
         buttonText="事前登録フォームに進む"
         onButtonClick={() => window.open('https://www.squard.co.jp/coming-soon/', '_blank')}
       />
-    </div>
+    </Suspense>
   )
 }
 
 export const AboutPage = withTheme(Page, 'dark')
+export default withTheme(Page, 'dark')

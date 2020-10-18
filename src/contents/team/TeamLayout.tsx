@@ -1,5 +1,5 @@
 import { navigateTo } from 'gatsby'
-import * as React from 'react'
+import React, { Suspense } from 'react'
 import { ContentFooter } from 'src/components/Footer/ContentFooter'
 import { withTheme } from 'src/context/ThemeContext'
 import { Team } from 'src/models/team'
@@ -14,9 +14,12 @@ import { TeamTop } from './TeamTop'
 interface TeamLayoutProps {
   team: Team
 }
+
+const renderLoader = () => <></>
+
 const Layout: React.FC<TeamLayoutProps> = ({ team }) => {
   return (
-    <>
+    <Suspense fallback={renderLoader()}>
       <TeamTop image={team.topImage} />
       <TeamIntroduction
         name={team.name}
@@ -51,8 +54,9 @@ const Layout: React.FC<TeamLayoutProps> = ({ team }) => {
         buttonText="Class（クラス）ってなに？"
         onButtonClick={() => navigateTo('/about')}
       />
-    </>
+    </Suspense>
   )
 }
 
 export const TeamLayout = withTheme(Layout, 'dark')
+export default withTheme(Layout, 'dark')

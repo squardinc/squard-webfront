@@ -8,7 +8,9 @@ import styles from './TeamCoreMembers.module.scss'
 interface TeamCoreMembersProps {
   coreMembers: ITeamMember[]
 }
-export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({ coreMembers }) => {
+export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
+  coreMembers,
+}) => {
   function getImageTheme(key?: string) {
     if (key === 'red') {
       return styles.redImageContainer
@@ -29,27 +31,36 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({ coreMembers })
       <TwoStagedCaption sub="CORE" main="MEMBERS" />
       <div className={styles.members}>
         {coreMembers.map((member) => (
-          <Link key={member.userId} to={`/${member.userId}`}>
+          <Link key={member.userId} to={`/${member.user.pageId}`}>
             <div className="relative mt-3">
-              <div
-                style={{
-                  background: `url("${member.image}") no-repeat center center `,
-                  backgroundSize: 'cover',
-                }}
-                className={getImageTheme(member.imageColor)}
-              ></div>
+                <div
+                  style={{
+                    background: `url("${member.image}") no-repeat center center `,
+                    backgroundSize: 'cover',
+                  }}
+                  className={getImageTheme(member.imageColor)}
+                ></div>
+
               {member.displayAge && (
                 <TextDisplay className={styles.ageTag}>
                   <div className={styles.ageTagContainer}>
                     <p className={`${styles.ageTitle}`}>Age</p>
-                    <p className={`border-b border-dashed w-full border-yellow`}></p>
+                    <p
+                      className={`border-b border-dashed w-full border-yellow`}
+                    ></p>
                     <p className={styles.ageValue}>{member.displayAge}</p>
                   </div>
                 </TextDisplay>
               )}
-              <TextDisplay className={styles.designationText}>{member.title}</TextDisplay>
-              <TextDisplay className={styles.titleSM}>{member.subTitle}</TextDisplay>
-              <TextDisplay className={styles.titleLG}>{member.displayName}</TextDisplay>
+              <TextDisplay className={styles.designationText}>
+                {member.title}
+              </TextDisplay>
+              <TextDisplay className={styles.titleSM}>
+                {member.subTitle}
+              </TextDisplay>
+              <TextDisplay className={styles.titleLG}>
+                {member.displayName}
+              </TextDisplay>
             </div>
           </Link>
         ))}

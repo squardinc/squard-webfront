@@ -1,18 +1,21 @@
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { navigate } from 'gatsby'
-import React from 'react'
+import React, { Suspense } from 'react'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { ExternalLink } from 'src/components/Link/ExternalLink'
 import { MODAL_Z_INDEX } from 'src/components/Modal/asModal'
-import { TeamModal } from 'src/components/Modal/TeamModal'
+import { CompleteModal } from 'src/components/Modal/CompleteModal'
+import { YesNoModal } from 'src/components/Modal/YesNoModal'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import Top from 'src/images/temp/team/top.jpg'
-import { IPersonal, ITeam } from 'src/models/person'
+import { IDisplayTeamMember, IPersonal } from 'src/models/person'
 import * as colors from 'src/styles/colors'
 import * as Const from 'src/styles/const'
 import { descriminate, toHref } from 'src/utils/SocialMediaDescriminator'
 import styled from 'styled-components'
+import { PersonImage } from '../team/TeamContents/PersonImage'
+import { TeamModal } from './TeamModal'
 import { getSocialMediaIcon, getTeamIcon } from './utils'
 
 type PersonPageProps = {
@@ -20,8 +23,10 @@ type PersonPageProps = {
   personal: IPersonal
   profileEditable: boolean
   joinSucceededTeamId?: string
+  showLeaveTeamResult: boolean
   editProfile: VoidFunction
   showJoinSucceededModal: Boolean
+  leaveTeam: (teamId: string, teamClassId: string) => void
 }
 
 type StyleCssProps = {
@@ -133,6 +138,7 @@ const NameText = styled.div`
   color: ${colors.textWhite};
   padding-left: 7.125rem;
   padding-top: 1.25rem;
+  padding-right: 20px;
   line-height: 1.5;
   letter-spacing: 0.05em;
   font-weight: ${Const.fontWeight.regular};
@@ -143,6 +149,7 @@ const NameText = styled.div`
 const NameSubText = styled.div`
   color: #fff;
   padding-left: 7.125rem;
+  padding-right: 20px;
   line-height: 1.285;
   letter-spacing: 0.05em;
   margin-top: 5px;
@@ -247,7 +254,7 @@ const TeamRole = styled.div`
   display: inline-block;
   position: absolute;
   bottom: -27px;
-  right: 16px;
+  right: 32px;
   height: 30px;
   background-color: #efefef;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -280,23 +287,25 @@ const ButtonEditWrapper = styled.div`
   align-items: center;
 `
 
+const renderLoader = () => <></>
+
 export const PersonPage: React.FC<PersonPageProps> = ({
   personal,
   editProfile,
   profileEditable = false,
   joinSucceededTeamId = '',
   showJoinSucceededModal,
+  showLeaveTeamResult,
+  leaveTeam,
 }) => {
-  const [selectedTeam, setSelectedTeam] = React.useState<ITeam | null>(null)
+  const [selectedTeam, setSelectedTeam] = React.useState<IDisplayTeamMember | null>(null)
+  const [showTeamLeaveModal, setShowTeamLeaveModal] = React.useState(false)
   return (
-    <>
+    <Suspense fallback={renderLoader()}>
       <ContentWrapper>
         <UserCoverWrapper>
           <UserCover backgroundColor={'#ebebeb'}>
-            <img
-              src={personal.topImage ? encodeURI(personal.topImage) : Top}
-              style={{ width: '100%', minHeight: '320px' }}
-            />
+            <PersonImage src={personal.topImage} style={{ width: '100%', minHeight: '320px' }} />
             {profileEditable && (
               <ButtonEditWrapper onClick={editProfile}>
                 <FontAwesomeIcon icon={faEdit} size="2x" />
@@ -309,10 +318,10 @@ export const PersonPage: React.FC<PersonPageProps> = ({
             </ProfilerImageContainer>
             <NameWrapper>
               <NameText>
-                <TextDisplay>{personal.nameJp}</TextDisplay>
+                <TextDisplay style={{ overflowWrap: 'break-word' }}>{personal.nameJp}</TextDisplay>
               </NameText>
               <NameSubText>
-                <TextDisplay>{personal.nameEn}</TextDisplay>
+                <TextDisplay style={{ overflowWrap: 'break-word' }}>{personal.nameEn}</TextDisplay>
               </NameSubText>
               <NameDescription>
                 <TextDisplay>{personal.introduction}</TextDisplay>
@@ -331,59 +340,76 @@ export const PersonPage: React.FC<PersonPageProps> = ({
           </ProfileContainerWrapper>
         </UserCoverWrapper>
         <TeamWrapper>
-          {/* TODO seperate logged in or not */}
-          {personal.teams
-            .filter((team) => personal.displayTeamIds.includes(team.teamId))
-            .map((team, index) => {
-              return (
-                <TeamItemAnchor
-                  id={`team-item_${team.teamId}`}
-                  key={team.teamId}
-                  joinSucceeded={showJoinSucceededModal && team.teamId === joinSucceededTeamId}
-                  index={index}
+          {personal.teams.map((team, index) => {
+            return (
+              <TeamItemAnchor
+                id={`team-item_${team.teamId}`}
+                key={team.teamId}
+                joinSucceeded={showJoinSucceededModal && team.teamId === joinSucceededTeamId}
+                index={index}
+              >
+                <TeamItemWrapper
+                  onClick={() => {
+                    if (profileEditable) {
+                      setSelectedTeam(team)
+                      return
+                    }
+                    navigate(`/${team.pageId}`)
+                  }}
                 >
-                  <TeamItemWrapper
-                    onClick={() => {
-                      navigate(`/${team.pageId}`)
-                      // setSelectedTeam(team)
-                    }}
-                  >
-                    {team.title && (
-                      <TeamRole>
-                        <TeamRoleText>
-                          <TextDisplay>{team.title}</TextDisplay>
-                        </TeamRoleText>
-                      </TeamRole>
-                    )}
-                    <TeamInfo>
-                      <TeamIconWrapper>{getTeamIcon(team.classType)}</TeamIconWrapper>
-                      <TeamTextWrapper>
-                        <TeamNameText>
-                          <TextDisplay>{team.teamName}</TextDisplay>
-                        </TeamNameText>
-                        <TeamPositionText>
-                          <TextDisplay>{`- ${team.classType}`}</TextDisplay>
-                        </TeamPositionText>
-                      </TeamTextWrapper>
-                      <TeamLinkWrapper></TeamLinkWrapper>
-                    </TeamInfo>
-                  </TeamItemWrapper>
-                </TeamItemAnchor>
-              )
-            })}
+                  {team.title && (
+                    <TeamRole>
+                      <TeamRoleText>
+                        <TextDisplay>{team.title}</TextDisplay>
+                      </TeamRoleText>
+                    </TeamRole>
+                  )}
+                  <TeamInfo>
+                    <TeamIconWrapper>{getTeamIcon(team.classType)}</TeamIconWrapper>
+                    <TeamTextWrapper>
+                      <TeamNameText>
+                        <TextDisplay>{team.teamName}</TextDisplay>
+                      </TeamNameText>
+                      <TeamPositionText>
+                        <TextDisplay>{`- ${team.classType}`}</TextDisplay>
+                      </TeamPositionText>
+                    </TeamTextWrapper>
+                    <TeamLinkWrapper></TeamLinkWrapper>
+                  </TeamInfo>
+                </TeamItemWrapper>
+              </TeamItemAnchor>
+            )
+          })}
         </TeamWrapper>
       </ContentWrapper>
-      {selectedTeam && (
+      {selectedTeam && !showTeamLeaveModal && (
         <TeamModal
           team={selectedTeam}
           closeModal={() => setSelectedTeam(null)}
-          onLeaveTeam={() => {
-            setSelectedTeam(null)
-            navigate(`/squard/leave`) // TODO ID書き換え
+          onLeaveTeam={() => setShowTeamLeaveModal(true)}
+        />
+      )}
+      {selectedTeam && showTeamLeaveModal && (
+        <YesNoModal
+          title={`${selectedTeam.teamName}\r\nから脱退する`}
+          closeModal={() => setShowTeamLeaveModal(false)}
+          onExecute={() => {
+            leaveTeam(selectedTeam.teamId, selectedTeam.teamClassId)
           }}
+          message="脱退すると有効期間の途中であっても直ちに権利を喪失し、返金は行われません。また、脱退後のキャンセルは行えません。"
+          cancelButtonText="キャンセル"
+          executeButtonText="上記内容を理解した上で脱退する"
+        />
+      )}
+      {selectedTeam && showLeaveTeamResult && (
+        <CompleteModal
+          title={`${selectedTeam.teamName} から脱退しました。`}
+          closeModal={(e) => window.location.reload()}
         />
       )}
       <DefaultFooter />
-    </>
+    </Suspense>
   )
 }
+
+export default PersonPage
