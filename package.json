@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build --prefix-paths",
+    "build:prod": "cross-env NODE_ENV=master & gatsby build --prefix-paths",
     "dev": "gatsby develop --https",
     "format": "prettier --write \"**/*.{js,jsx,tsx,ts,json,md}\"",
     "tslint": "tslint \"src/**/*.ts[x]\" --fix",
@@ -33,6 +34,7 @@
     "@types/styled-components": "^5.1.3",
     "amazon-cognito-identity-js": "^4.4.0",
     "aws-amplify": "^3.3.2",
+    "cross-env": "^7.0.2",
     "cross-fetch": "^3.0.6",
     "dayjs": "^1.9.1",
     "gatsby": "^2.24.52",
