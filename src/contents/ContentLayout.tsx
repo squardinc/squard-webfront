@@ -3,9 +3,9 @@ import { navigate } from 'gatsby'
 import * as React from 'react'
 import { getPage } from 'src/graphql/queries'
 import { GetPageQuery } from 'src/types/API'
-import { PersonPageContainer } from './person/PersonPageContainer'
-import { StaticPageRoute } from './StaticPageRoute'
-import { TeamContainer } from './team/TeamContainer'
+const StaticPageRoute = React.lazy(() => import('./StaticPageRoute'))
+const TeamContainer = React.lazy(() => import('./team/TeamContainer'))
+const PersonPageContainer = React.lazy(() => import('./person/PersonPageContainer'))
 
 export const StaticPagePaths = [
   'about',
@@ -25,11 +25,8 @@ interface ContentLayoutProps {
   path: string
   contentId: StaticPageType | string
 }
-export const ContentLayout: React.FC<ContentLayoutProps> = ({
-  contentId = '',
-}) => {
-  if (StaticPagePaths.includes(contentId))
-    return <StaticPageRoute contentId={contentId} />
+export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId = '' }) => {
+  if (StaticPagePaths.includes(contentId)) return <StaticPageRoute contentId={contentId} />
 
   const { loading, error, data } = useQuery<GetPageQuery>(gql(getPage), {
     variables: { id: contentId.toLowerCase() },
