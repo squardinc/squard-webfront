@@ -138,6 +138,7 @@ const NameText = styled.div`
   color: ${colors.textWhite};
   padding-left: 7.125rem;
   padding-top: 1.25rem;
+  padding-right: 20px;
   line-height: 1.5;
   letter-spacing: 0.05em;
   font-weight: ${Const.fontWeight.regular};
@@ -148,6 +149,7 @@ const NameText = styled.div`
 const NameSubText = styled.div`
   color: #fff;
   padding-left: 7.125rem;
+  padding-right: 20px;
   line-height: 1.285;
   letter-spacing: 0.05em;
   margin-top: 5px;
@@ -322,10 +324,10 @@ export const PersonPage: React.FC<PersonPageProps> = ({
               </ProfilerImageContainer>
               <NameWrapper>
                 <NameText>
-                  <TextDisplay>{personal.nameJp}</TextDisplay>
+                  <TextDisplay style={{overflowWrap: 'break-word'}}>{personal.nameJp}</TextDisplay>
                 </NameText>
                 <NameSubText>
-                  <TextDisplay>{personal.nameEn}</TextDisplay>
+                  <TextDisplay style={{overflowWrap: 'break-word'}}>{personal.nameEn}</TextDisplay>
                 </NameSubText>
                 <NameDescription>
                   <TextDisplay>{personal.introduction}</TextDisplay>
