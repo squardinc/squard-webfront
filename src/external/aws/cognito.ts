@@ -19,7 +19,7 @@ const configure = (origin: string) => {
         domain: AWS_COGNITO_USERPOOL_DOMAIN,
         scope: ['email', 'profile', 'openid'],
         redirectSignIn: `${origin}/socialSignIn`,
-        redirectSignOut: `${origin}/socialSignIn`,
+        redirectSignOut: `${origin}`,
         clientId: AWS_COGNITO_USERPOOL_CLIENT_ID,
         responseType: 'code',
       },
