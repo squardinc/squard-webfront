@@ -14,7 +14,7 @@ const Member: React.FC<MemberProps> = ({ member }) => {
   return (
     <Link to={`/${member.user.pageId}`}>
       <div className="relative">
-        <PersonImage src={member.image} className={styles.member} />
+        <PersonImage src={member.image || member.user.icon} className={styles.member} />
         <div className={styles.memberCaption}>
           <TextDisplay className={styles.memberName}>{member.displayName}</TextDisplay>
         </div>

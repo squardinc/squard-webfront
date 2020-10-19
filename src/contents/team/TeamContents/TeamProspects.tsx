@@ -11,10 +11,10 @@ interface ProspectProps {
 }
 const Prospect: React.FC<ProspectProps> = ({ prospect }) => {
   return (
-    <Link to={`${encodeURIComponent(prospect.user.pageId)}`}>
+    <Link to={`/${prospect.user.pageId}`}>
       <div className={styles.prospectContainer}>
         <div className="pl-1 pr-2 w-40">
-          <PersonImage src={prospect?.image} className={styles.prospect} />
+          <PersonImage src={prospect?.image || prospect?.user?.icon} className={styles.prospect} />
         </div>
       </div>
     </Link>

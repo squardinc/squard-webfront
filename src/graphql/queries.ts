@@ -44,6 +44,7 @@ export const getTeam = /* GraphQL */ `
         user {
           nameJp
           birthday
+          icon
           page {
             id
           }
@@ -102,7 +103,7 @@ export const getMyMemberInfo = /* GraphQL */ `
       }
     }
   }
-`;
+`
 export const getTeamMembers = /* GraphQL */ `
   query GetTeamMembers($teamId: ID!) {
     getTeamMembers(teamId: $teamId) {
