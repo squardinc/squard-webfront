@@ -6,6 +6,7 @@ import { TabMenuBar } from 'src/components/TabMenu'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import Top from 'src/images/temp/team/top.jpg'
 import { IPersonal } from 'src/models/person'
+import { isValidLink } from 'src/utils/SocialMediaDescriminator'
 import styled from 'styled-components'
 
 const PersonalEditProfileWrapper = styled.div`
@@ -140,11 +141,13 @@ const RoundButton = styled.button`
   :last-child {
     margin-bottom: 30px;
   }
+  ${(props) => props.disabled && 'cursor: not-allowed;'}
 `
 
 interface RowInputProps {
   label: string
   value?: string
+  invalidMessage?: string
   onChange: (value: string) => void
   onFocus?: (value: string) => void
   onBlur?: (value: string) => void
@@ -167,7 +170,14 @@ const HorizontalLayoutWrapper: React.FC = ({ children }) => {
     </LayoutHorizontal>
   )
 }
-const RowInput: React.FC<RowInputProps> = ({ label, value = '', onChange, onBlur, onFocus }) => {
+const RowInput: React.FC<RowInputProps> = ({
+  label,
+  value = '',
+  onChange,
+  onBlur,
+  onFocus,
+  invalidMessage = '',
+}) => {
   return (
     <HorizontalLayoutWrapper>
       <Label>
@@ -188,6 +198,7 @@ const RowInput: React.FC<RowInputProps> = ({ label, value = '', onChange, onBlur
           if (onBlur) onBlur(e.target.value)
         }}
       />
+      {invalidMessage && <div style={{ color: 'red' }}>{invalidMessage}</div>}
     </HorizontalLayoutWrapper>
   )
 }
@@ -224,25 +235,31 @@ interface LinksInputProps {
 
 const LinksInput: React.FC<LinksInputProps> = ({ values = [''], onChange }) => {
   const [currentIndex, setCurrentindex] = React.useState(values.length + 1)
-  const [inputValue, setInputValue] = React.useState('')
-  const forms = values.length < 20 ? values.concat(['']) : values
+  const [inputValue, setInputValue] = React.useState(values[currentIndex])
+  const forms = values.length >= 20 ? values : values.concat([''])
   return (
     <>
       {forms.map((url, index) => {
         return (
-          <RowInput
-            key={`${index}_${url}`}
-            label={`リンクURL${index + 1}`}
-            value={index === currentIndex ? inputValue : url}
-            onChange={(value) => setInputValue(value)}
-            onFocus={(value) => {
-              setCurrentindex(index)
-              setInputValue(value)
-            }}
-            onBlur={(value) => {
-              onChange(value, currentIndex)
-            }}
-          />
+          <>
+            <RowInput
+              key={`${index}_${url}`}
+              label={`リンクURL${index + 1}`}
+              value={index === currentIndex ? inputValue : url}
+              onChange={(value) => {
+                if (value.length <= 2048) setInputValue(value)
+              }}
+              onFocus={(value) => {
+                setCurrentindex(index)
+                setInputValue(value)
+              }}
+              onBlur={(value) => {
+                onChange(value, currentIndex)
+                if (!value) setInputValue(forms[currentIndex + 1])
+              }}
+              invalidMessage={url && !isValidLink(url) ? '※リンクURLが不正です' : ''}
+            />
+          </>
         )
       })}
     </>
@@ -259,6 +276,9 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
   const [icon, setIcon] = React.useState<Blob>()
   const [profile, setProfile] = React.useState<IPersonal>(personal)
   const [pageId, setPageId] = React.useState<string>(personal.pageId)
+  const isSubmittable = React.useMemo(() => !profile.links.find((link) => !isValidLink(link)), [
+    profile,
+  ])
   const onSaveProfile = async () => {
     if (icon) {
       const url = await saveImage('icon.jpeg', icon, 'image/jpeg')
@@ -317,11 +337,9 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
           <LinksInput
             values={profile.links}
             onChange={(value = '', index) => {
-              if (value.length <= 2048) {
-                const links = [...profile.links]
-                links[index] = value
-                setProfile({ ...profile, links: links.filter(Boolean) })
-              }
+              const links = [...profile.links]
+              links[index] = value
+              setProfile({ ...profile, links: links.filter(Boolean) })
             }}
           />
         </InformationWrapper>
@@ -362,7 +380,11 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
 
         <BottomWrapper>
           <LayoutVertical layoutType={LayoutType.center} style={{ margin: 'auto' }}>
-            <RoundButton style={{ background: 'white', color: 'black' }} onClick={onSaveProfile}>
+            <RoundButton
+              style={{ background: 'white', color: 'black' }}
+              disabled={!isSubmittable}
+              onClick={onSaveProfile}
+            >
               <TextDisplay>保存</TextDisplay>
             </RoundButton>
             <RoundButton style={{ color: 'white' }} onClick={close}>
