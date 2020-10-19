@@ -148,8 +148,11 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
                   backgroundColor: '#3B5998',
                   opacity: agreeTermsOfUse ? '' : '0.7',
                 }}
+                onClick={(e) => {
+                  e.preventDefault()
+                  AuthService.loginWithFacebook()
+                }}
                 disabled={!agreeTermsOfUse}
-                onClick={AuthService.loginWithFacebook}
               >
                 <TextDisplay>Facebookで登録</TextDisplay>
               </RoundButton>

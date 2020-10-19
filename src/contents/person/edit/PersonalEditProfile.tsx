@@ -260,7 +260,7 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
   const [topImage, setTopImage] = React.useState<Blob>()
   const [icon, setIcon] = React.useState<Blob>()
   const [profile, setProfile] = React.useState<IPersonal>(personal)
-  const [pageId, setPageId] = React.useState<string>('')
+  const [pageId, setPageId] = React.useState<string>(personal.pageId)
   const onSaveProfile = async () => {
     if (icon) {
       const url = await saveImage('icon.jpeg', icon, 'image/jpeg')
@@ -300,13 +300,13 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
               setProfile(Object.assign({}, profile, { nameEn: value }))
             }}
           />
-          <RowInput
+          {/* <RowInput
             label={'ID'}
-            value={profile.pageId}
+            value={pageId}
             onChange={(value) => {
               setPageId(value)
             }}
-          />
+          /> */}
           <RowTextarea
             label={'自己紹介'}
             value={profile.introduction}

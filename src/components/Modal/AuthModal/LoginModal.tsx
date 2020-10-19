@@ -61,6 +61,7 @@ const RoundButton = styled.button`
   border-radius: 50vh;
   height: 45px;
   margin-bottom: 10px;
+  ${(props) => props.disabled && 'cursor-not-allowed'}
 `
 
 interface LoginFormProps {
@@ -122,7 +123,10 @@ const LoginFormModal: React.FC<LoginFormProps> = ({
                 color: 'white',
                 backgroundColor: '#3B5998',
               }}
-              onClick={AuthService.loginWithFacebook}
+              onClick={(e) => {
+                e.preventDefault()
+                AuthService.loginWithFacebook()
+              }}
             >
               <TextDisplay>Facebookでログイン</TextDisplay>
             </RoundButton>

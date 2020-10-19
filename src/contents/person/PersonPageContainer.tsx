@@ -18,7 +18,6 @@ import {
 } from 'src/types/API'
 import { parseSearchParams } from 'src/utils/UrlParser'
 import { PersonPageLayoutBlack, PersonPageLayoutGray } from './PersonPageLayout'
-
 interface PersonPageContainerProps {
   id: string
 }
