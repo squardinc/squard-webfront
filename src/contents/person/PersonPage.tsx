@@ -411,7 +411,7 @@ export const PersonPage: React.FC<PersonPageProps> = ({
       {selectedTeam && showLeaveTeamResult && (
         <CompleteModal
           title={`${selectedTeam.teamName} から脱退しました。`}
-          closeModal={(e) => window.location.reload()}
+          closeModal={(e) => setSelectedTeam(null)}
         />
       )}
       <DefaultFooter />

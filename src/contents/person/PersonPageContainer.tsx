@@ -25,7 +25,7 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
   const { user } = React.useContext(UserContext)
   const [isEditing, setEditing] = React.useState(false)
   const params = parseSearchParams(window.location.search)
-  const { loading, error, data } = user.isMine(id)
+  const { loading, error, data, refetch } = user.isMine(id)
     ? useQuery<GetMyselfQuery>(gql(getMyself))
     : useQuery<GetUserQuery>(gql(getUser), {
         variables: { id },
@@ -42,6 +42,9 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
     LeaveTeamMutation,
     LeaveTeamMutationVariables
   >(gql(leaveTeam))
+  React.useEffect(() => {
+    if (updateUserResponse.data || leaveTeamResponse.data) refetch()
+  }, [updateUserResponse.data, leaveTeamResponse.data])
 
   if (error) {
     navigate('/')
