@@ -3,7 +3,7 @@ import * as colors from '../../styles/colors'
 import * as sizes from '../../styles/sizes'
 
 export const TeamCardWrapper = styled.div`
-  min-width: 220px;
+  min-width: 280px;
   max-width: 320px;
   background: ${colors.bgBlack};
   box-shadow: 0 20px 30px 0px ${colors.bgBlack};
