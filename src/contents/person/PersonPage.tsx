@@ -329,7 +329,9 @@ export const PersonPage: React.FC<PersonPageProps> = ({
                 <TextDisplay style={{ overflowWrap: 'break-word' }}>{personal.nameEn}</TextDisplay>
               </NameSubText>
               <NameDescription>
-                <TextDisplay>{personal.introduction}</TextDisplay>
+                <TextDisplay style={{ overflowWrap: 'break-word' }}>
+                  {personal.introduction}
+                </TextDisplay>
               </NameDescription>
             </NameWrapper>
             <SocialMediaWrapper>

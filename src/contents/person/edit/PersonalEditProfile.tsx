@@ -225,28 +225,26 @@ interface LinksInputProps {
 const LinksInput: React.FC<LinksInputProps> = ({ values = [''], onChange }) => {
   const [currentIndex, setCurrentindex] = React.useState(values.length + 1)
   const [inputValue, setInputValue] = React.useState('')
+  const forms = values.length < 20 ? values.concat(['']) : values
   return (
     <>
-      {values
-        .filter(Boolean)
-        .concat([''])
-        .map((url, index) => {
-          return (
-            <RowTextarea
-              key={`${index}_${url}`}
-              label={`リンクURL${index + 1}`}
-              value={index === currentIndex ? inputValue : url}
-              onChange={(value) => setInputValue(value)}
-              onFocus={(value) => {
-                setCurrentindex(index)
-                setInputValue(value)
-              }}
-              onBlur={(value) => {
-                onChange(value, currentIndex)
-              }}
-            />
-          )
-        })}
+      {forms.map((url, index) => {
+        return (
+          <RowInput
+            key={`${index}_${url}`}
+            label={`リンクURL${index + 1}`}
+            value={index === currentIndex ? inputValue : url}
+            onChange={(value) => setInputValue(value)}
+            onFocus={(value) => {
+              setCurrentindex(index)
+              setInputValue(value)
+            }}
+            onBlur={(value) => {
+              onChange(value, currentIndex)
+            }}
+          />
+        )
+      })}
     </>
   )
 }
@@ -289,15 +287,15 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
           <RowInput
             label={'名前'}
             value={profile.nameJp}
-            onChange={(value) => {
-              setProfile(Object.assign({}, profile, { nameJp: value }))
+            onChange={(value = '') => {
+              if (value.length <= 32) setProfile(Object.assign({}, profile, { nameJp: value }))
             }}
           />
           <RowInput
             label={'英語表記'}
             value={profile.nameEn}
-            onChange={(value) => {
-              setProfile(Object.assign({}, profile, { nameEn: value }))
+            onChange={(value = '') => {
+              if (value.length <= 64) setProfile(Object.assign({}, profile, { nameEn: value }))
             }}
           />
           {/* <RowInput
@@ -310,17 +308,20 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
           <RowTextarea
             label={'自己紹介'}
             value={profile.introduction}
-            onChange={(value) => {
-              setProfile(Object.assign({}, profile, { introduction: value }))
+            onChange={(value = '') => {
+              if (value.length <= 1024)
+                setProfile(Object.assign({}, profile, { introduction: value }))
             }}
           />
 
           <LinksInput
             values={profile.links}
-            onChange={(value, index) => {
-              const links = [...profile.links]
-              links[index] = value
-              setProfile({ ...profile, links })
+            onChange={(value = '', index) => {
+              if (value.length <= 2048) {
+                const links = [...profile.links]
+                links[index] = value
+                setProfile({ ...profile, links: links.filter(Boolean) })
+              }
             }}
           />
         </InformationWrapper>
