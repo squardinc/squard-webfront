@@ -56,7 +56,9 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
   update,
   leaveTeam,
 }) => {
-  const [showPaymentCompleteModal, setShowPaymentCompleteModal] = React.useState(hasPaymentComplete)
+  const [showPaymentCompleteModal, setShowPaymentCompleteModal] = React.useState(
+    hasPaymentComplete || !!joinSucceededTeamId
+  )
   const [showJoinSucceededModal, setShowJoinSucceededModal] = React.useState(false)
   return (
     <>
@@ -96,8 +98,8 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
               animateScroll.scrollTo(top - 600 || 0)
             }
           }}
-          title="決済完了"
-          headerDescription="Payment Completed!"
+          title={hasPaymentComplete ? '決済完了' : '参加完了'}
+          headerDescription={hasPaymentComplete ? 'Payment Completed!' : 'Joining Completed!'}
         />
       )}
       {showJoinSucceededModal && (

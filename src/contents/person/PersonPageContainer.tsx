@@ -52,7 +52,7 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
   }
 
   const personalData = Person.fromQueryResult(data)
-  if (window.location.pathname === '/mypage')
+  if (window.location.pathname === '/mypage' && window.location.search === '')
     window.history.replaceState({}, document.title, personalData.pageId)
 
   const PersonPageLayout = isEditing ? PersonPageLayoutBlack : PersonPageLayoutGray
