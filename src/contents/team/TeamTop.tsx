@@ -1,8 +1,14 @@
 import * as React from 'react'
+import { ImageOverlay } from 'src/components/ImageOverlay/TeamCoreMembers'
 
 interface TeamTopProps {
   image: string
 }
 export const TeamTop: React.FC<TeamTopProps> = ({ image }) => {
-  return <img src={encodeURI(image)} alt="" />
+  return (
+    <div className="relative">
+      <ImageOverlay />
+      <img src={encodeURI(image)} alt="" style={{ background: '' }} />
+    </div>
+  )
 }
