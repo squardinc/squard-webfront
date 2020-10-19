@@ -35,7 +35,7 @@ export const descriminate = (urlString: string): SocialMediaType | undefined => 
   }
 
   try {
-    descriminateUrl(new URL(urlString))
+    return descriminateUrl(new URL(urlString))
   } catch {
     return undefined
   }
