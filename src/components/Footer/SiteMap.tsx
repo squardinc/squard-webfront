@@ -43,7 +43,7 @@ export const SiteMap = (props?: SiteMapProps) => {
                 Privacy Policy
               </Link>
               <Link to="/termsofuse" style={{ height: '23px' }}>
-                Term of Use
+                Terms of Use
               </Link>
             </TextDisplay>
             <Link to="/">
