@@ -98,7 +98,12 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
               <Label>アカウント情報を入力してくださ い</Label>
             </TextDisplay>
             <EmailWrapper>
-              <EMailAddressInput value={email} onChange={setEmail} />
+              <EMailAddressInput
+                value={email}
+                onChange={(value = '') => {
+                  if (value.length <= 320) setEmail(value)
+                }}
+              />
             </EmailWrapper>
 
             <PasswordInput value={password} onChange={setPassword} />
