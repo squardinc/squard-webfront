@@ -9,10 +9,10 @@ export const PageWrapper: React.FC = ({ children }) => {
   return (
     <>
       <MetaData />
-      <div className={`theme-${theme || 'dark'}`}>
+      <div id={"app-base-body"} className={`theme-${theme || 'dark'}`}>
         <div className="page-base-container bg-theme-bg-main text-theme-text-main">
           <Header />
-          <div className="page-base-body">
+          <div  className="page-base-body">
             {children}
           </div>
           <Copyright />
