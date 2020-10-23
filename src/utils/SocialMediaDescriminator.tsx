@@ -30,9 +30,7 @@ const descriminateUrl = (url: URL): SocialMediaType | undefined => {
   return 'link'
 }
 
-export const descriminate = (
-  urlString: string
-): SocialMediaType | undefined => {
+export const descriminate = (urlString: string): SocialMediaType | undefined => {
   if (!urlString.startsWith('https://') && urlString.includes('@')) {
     return 'email'
   }

@@ -4,6 +4,7 @@
 .navMenu {
   z-index: $nav-bar;
   position: fixed;
+  bottom: 0;
   right: 0;
   left: 0;
   margin: 0 auto;
@@ -22,7 +23,7 @@
 }
 .navToggleBtn {
   position: relative;
-  top: 20px;
+  top: 12px;
   left: 0;
   right: 0;
   margin: 0 auto;

@@ -23,10 +23,7 @@ interface TeamAngelsProps {
   angels: ITeamMember[]
   numOfAngels: number
 }
-export const TeamAngels: React.FC<TeamAngelsProps> = ({
-  angels = [],
-  numOfAngels,
-}) => {
+export const TeamAngels: React.FC<TeamAngelsProps> = ({ angels = [], numOfAngels }) => {
   return (
     <div className={styles.container}>
       <TwoStagedCaption

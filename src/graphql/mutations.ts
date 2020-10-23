@@ -8,14 +8,14 @@ export const joinAsGalleries = /* GraphQL */ `
       message
     }
   }
-`
+`;
 export const leaveTeam = /* GraphQL */ `
   mutation LeaveTeam($teamId: ID!, $teamClassId: ID!) {
     leaveTeam(teamId: $teamId, teamClassId: $teamClassId) {
       message
     }
   }
-`
+`;
 export const updateUser = /* GraphQL */ `
   mutation UpdateUser($input: UpdateUserInput!) {
     updateUser(input: $input) {
@@ -52,7 +52,7 @@ export const updateUser = /* GraphQL */ `
       }
     }
   }
-`
+`;
 export const requestSubscription = /* GraphQL */ `
   mutation RequestSubscription(
     $teamId: ID!
@@ -67,9 +67,9 @@ export const requestSubscription = /* GraphQL */ `
       sessionId
     }
   }
-`
+`;
 export const updatePage = /* GraphQL */ `
   mutation UpdatePage($pageId: ID!) {
     updatePage(pageId: $pageId)
   }
-`
+`;

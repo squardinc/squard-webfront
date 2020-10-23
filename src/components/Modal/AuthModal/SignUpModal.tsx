@@ -67,10 +67,7 @@ const RoundButton = styled.button`
 type SignUpComponentProps = ModalProps & {
   showLoginModal: (e: React.MouseEvent) => void
 }
-const SignUpComponent: React.FC<SignUpComponentProps> = ({
-  closeModal,
-  showLoginModal,
-}) => {
+const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLoginModal }) => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [agreeTermsOfUse, setAgreeTermsOfUse] = React.useState(false)
@@ -168,10 +165,7 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({
             <TextDisplay>
               <BottomWrapper>
                 アカウントをお持ちですか？ログインは
-                <div
-                  className="underline cursor-pointer"
-                  onClick={showLoginModal}
-                >
+                <div className="underline cursor-pointer" onClick={showLoginModal}>
                   こちら
                 </div>
               </BottomWrapper>
@@ -179,10 +173,7 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({
           </SignupContent>
         </DefaultModalContainer>
       ) : (
-        <MessageModal
-          message={errorMesasge}
-          closeModal={() => setErrorMessage('')}
-        />
+        <MessageModal message={errorMesasge} closeModal={() => setErrorMessage('')} />
       )}
     </>
   )

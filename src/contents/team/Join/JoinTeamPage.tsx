@@ -98,10 +98,9 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
   requestJoinAsGalleries,
 }) => {
   const [openModal, setOpenModal] = React.useState<ModalType>('Closed')
-  const [
-    showPaymentCancelledModal,
-    setShowPaymentCancelledModal,
-  ] = React.useState(hasPaymentCancelled)
+  const [showPaymentCancelledModal, setShowPaymentCancelledModal] = React.useState(
+    hasPaymentCancelled
+  )
   return (
     <>
       <JoinTeamWrapper>
@@ -137,8 +136,7 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
                     }
                     if (
                       team.classType === 'Galleries' ||
-                      (team.teamId === 'fagends' &&
-                        team.classType == 'Prospects')
+                      (team.teamId === 'fagends' && team.classType == 'Prospects')
                     ) {
                       requestJoinAsGalleries(team.teamClassId)
                       return

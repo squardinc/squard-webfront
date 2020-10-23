@@ -7,17 +7,6 @@ interface PersonImageProps {
   className?: string
   style?: CSSProperties
 }
-export const PersonImage: React.FC<PersonImageProps> = ({
-  src,
-  className = '',
-  style,
-}) => {
-  return (
-    <img
-      src={src ? encodeURI(src) : Top}
-      alt={Top}
-      className={className}
-      style={style}
-    />
-  )
+export const PersonImage: React.FC<PersonImageProps> = ({ src, className = '', style }) => {
+  return <img src={src ? encodeURI(src) : Top} alt={Top} className={className} style={style} />
 }

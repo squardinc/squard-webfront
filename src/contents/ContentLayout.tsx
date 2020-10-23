@@ -7,20 +7,15 @@ import { GetPageQuery } from 'src/types/API'
 import { StaticPagePaths, StaticPageType } from './StaticPageRoute'
 const StaticPageRoute = React.lazy(() => import('./StaticPageRoute'))
 const TeamContainer = React.lazy(() => import('./team/TeamContainer'))
-const PersonPageContainer = React.lazy(
-  () => import('./person/PersonPageContainer')
-)
+const PersonPageContainer = React.lazy(() => import('./person/PersonPageContainer'))
 
 interface ContentLayoutProps {
   path: string
   contentId: StaticPageType | string
 }
-export const ContentLayout: React.FC<ContentLayoutProps> = ({
-  contentId = '',
-}) => {
+export const ContentLayout: React.FC<ContentLayoutProps> = ({ contentId = '' }) => {
   const { user } = React.useContext(UserContext)
-  if (StaticPagePaths.includes(contentId))
-    return <StaticPageRoute contentId={contentId} />
+  if (StaticPagePaths.includes(contentId)) return <StaticPageRoute contentId={contentId} />
   if (contentId === 'mypage') {
     if (user.loggedIn) return <PersonPageContainer id={user.id} />
     navigate('/')

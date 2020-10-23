@@ -3,8 +3,9 @@ import {
   ApolloLink,
   ApolloProvider,
   createHttpLink,
+
   GraphQLRequest,
-  InMemoryCache,
+  InMemoryCache
 } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import fetch from 'cross-fetch'
@@ -19,7 +20,7 @@ const httpLink = createHttpLink({
   fetch,
 })
 
-const { link, useApolloNetworkStatus } = createNetworkStatusNotifier()
+const {link, useApolloNetworkStatus} = createNetworkStatusNotifier();
 
 type OperationType = 'query' | 'mutation'
 const useToken = (operation: GraphQLRequest): boolean => {

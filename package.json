@@ -7,7 +7,7 @@
   "scripts": {
     "build": "gatsby build --prefix-paths",
     "build:prod": "cross-env NODE_ENV=master & gatsby build --prefix-paths",
-    "dev": "gatsby develop --https",
+    "dev": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,tsx,ts,json,md}\"",
     "tslint": "tslint \"src/**/*.ts[x]\" --fix",
     "lint": "npm run format && npm run tslint",
@@ -67,9 +67,7 @@
     "react-lazyload": "^3.0.0",
     "react-modal": "^3.11.2",
     "react-scroll": "^1.8.1",
-    "react-spring": "^8.0.27",
     "react-textarea-autosize": "^8.2.0",
-    "react-use-gesture": "^7.0.16",
     "styled-components": "^5.2.0",
     "tailwindcss": "^1.8.10",
     "uuidv4": "^6.2.3"

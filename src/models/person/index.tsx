@@ -146,9 +146,7 @@ export class Person implements IPersonal {
       birthday || '',
       links || [],
       displayTeamIds || [],
-      (teamMembers || []).map((each) =>
-        DisplayTeamMember.fromUserQueryResult(each)
-      )
+      (teamMembers || []).map((each) => DisplayTeamMember.fromUserQueryResult(each))
     )
   }
 

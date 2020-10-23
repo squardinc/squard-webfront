@@ -86,10 +86,7 @@ const Member: React.FC<MemberProps> = ({ member }) => {
       className={`relative mt-1 px-1 ${styles.memberContainer}`}
       onClick={() => navigate(member.path)}
     >
-      <img
-        src={member.imageUrl}
-        className={styles.member + ' ' + getImageTheme(member.color)}
-      />
+      <img src={member.imageUrl} className={styles.member + ' ' + getImageTheme(member.color)} />
       <div className={styles.memberCaption}>
         <PersonalPosition>{member.title}</PersonalPosition>
       </div>
@@ -99,30 +96,10 @@ const Member: React.FC<MemberProps> = ({ member }) => {
 
 const Page: React.FC = () => {
   const members = [
-    {
-      imageUrl: CEO,
-      color: 'red',
-      title: 'CEO / 小池駿平',
-      path: '/shunpei_koike',
-    },
-    {
-      imageUrl: COO,
-      color: 'blue',
-      title: 'COO / 松井大樹',
-      path: '/hiroki_matsui',
-    },
-    {
-      imageUrl: CFO,
-      color: 'green',
-      title: 'CFO / 木村明寛',
-      path: '/akihiro_kimura',
-    },
-    {
-      imageUrl: CTO,
-      color: 'yello',
-      title: 'CTO / 柳澤翔矢',
-      path: '/shoya_yanagisawa',
-    },
+    { imageUrl: CEO, color: 'red', title: 'CEO / 小池駿平', path: '/shunpei_koike' },
+    { imageUrl: COO, color: 'blue', title: 'COO / 松井大樹', path: '/hiroki_matsui' },
+    { imageUrl: CFO, color: 'green', title: 'CFO / 木村明寛', path: '/akihiro_kimura' },
+    { imageUrl: CTO, color: 'yello', title: 'CTO / 柳澤翔矢', path: '/shoya_yanagisawa' },
   ]
 
   return (
@@ -140,8 +117,7 @@ const Page: React.FC = () => {
               Web : <a href="https://www.squard.co.jp">www.squard.co.jp</a>
             </p>
             <p className="pt-2 pl-10 text-white text-sm text-opacity-75 tracking-widest">
-              Mail :{' '}
-              <a href="mailto:contact@squard.co.jp">contact@squard.co.jp</a>
+              Mail : <a href="mailto:contact@squard.co.jp">contact@squard.co.jp</a>
             </p>
           </div>
           <div className={styles.companyInfo}>
@@ -165,12 +141,7 @@ const Page: React.FC = () => {
 
         <CompanyInfor>
           <div style={{ maxWidth: '370px', margin: 'auto' }}>
-            <TwoStagedCaption
-              style="mediumItalic"
-              sub="About"
-              main="Our Company"
-              shadow={true}
-            />
+            <TwoStagedCaption style="mediumItalic" sub="About" main="Our Company" shadow={true} />
           </div>
           <div className="pt-2 pb-8 flex flex-col align-center">
             <div className="pt-8 flex justify-center">
@@ -229,9 +200,7 @@ const Page: React.FC = () => {
                 marginTop: '20px',
               }}
             >
-              <TextDisplay>
-                〒135-0064 東京都江東区青海2-7-4 the SOHO 1310
-              </TextDisplay>
+              <TextDisplay>〒135-0064 東京都江東区青海2-7-4 the SOHO 1310</TextDisplay>
             </ValueWrapper>
             <ValueWrapper
               style={{
@@ -240,9 +209,7 @@ const Page: React.FC = () => {
                 marginBottom: '20px',
               }}
             >
-              <TextDisplay>
-                the SOHO 1310, 2-7-4, Aomi, Koto-ku, Tokyo
-              </TextDisplay>
+              <TextDisplay>the SOHO 1310, 2-7-4, Aomi, Koto-ku, Tokyo</TextDisplay>
             </ValueWrapper>
           </BlockWrapper>
         </CompanyInfor>

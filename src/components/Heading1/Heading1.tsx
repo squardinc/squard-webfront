@@ -10,4 +10,4 @@ export const Heading1: React.FC = (props) => {
   )
 }
 
-export default Heading1
+export default Heading1;

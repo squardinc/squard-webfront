@@ -29,15 +29,9 @@ const Layout: React.FC<TeamLayoutProps> = ({ team }) => {
         system={team.system}
       />
       <TeamCoreMembers coreMembers={team.teamMembers.leaderAndCoreMembers} />
-      <TeamMembers
-        topMember={team.teamMembers.members[0]}
-        members={team.teamMembers.members}
-      />
+      <TeamMembers topMember={team.teamMembers.members[0]} members={team.teamMembers.members} />
       <TeamProspects propspects={team.teamMembers.prospects} />
-      <TeamAngels
-        angels={team.teamMembers.angels}
-        numOfAngels={team.teamMembers.angels.length}
-      />
+      <TeamAngels angels={team.teamMembers.angels} numOfAngels={team.teamMembers.angels.length} />
       <TeamVIP vips={team.teamMembers.vip} />
       <ContentFooter
         titleSub="What's the"

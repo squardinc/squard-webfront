@@ -11,7 +11,7 @@ import {
   FlagWrapper,
   MainNameText,
   PriceText,
-  TeamCardWrapper,
+  TeamCardWrapper
 } from 'src/components/TeamCard'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { IDisplayTeamMember, isLeavable } from 'src/models/person'
@@ -36,11 +36,7 @@ const LeaveTeamLabel = styled.div`
   cursor: pointer;
 `
 
-const TeamModalComponent: React.FC<TeamModalProps> = ({
-  closeModal,
-  team,
-  onLeaveTeam,
-}) => {
+const TeamModalComponent: React.FC<TeamModalProps> = ({ closeModal, team, onLeaveTeam }) => {
   React.useEffect(() => {
     fadeIn()
   }, [])
@@ -71,9 +67,7 @@ const TeamModalComponent: React.FC<TeamModalProps> = ({
         <EntitlementsWrapper>
           {team.expireAt && (
             <EntitlementText>
-              <TextDisplay>
-                有効期間： ～{formattedDate(team.expireAt)}(自動更新)
-              </TextDisplay>
+              <TextDisplay>有効期間： ～{formattedDate(team.expireAt)}(自動更新)</TextDisplay>
             </EntitlementText>
           )}
           {team.benefits &&

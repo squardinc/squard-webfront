@@ -237,9 +237,7 @@ const Page: React.FC = () => {
       </PolicyChapter>
       <PolicyChapter chapter="第10条（お問合せ窓口）">
         <PolicySection
-          sections={[
-            '本ポリシーに関するお問い合わせは，下記の窓口までお願いいたします。',
-          ]}
+          sections={['本ポリシーに関するお問い合わせは，下記の窓口までお願いいたします。']}
         />
         <Contact>
           <TextDisplay>

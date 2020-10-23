@@ -123,8 +123,7 @@ const ProfilerImageContainer = styled.div`
   margin: 0px 20px 20px 20px;
   background-image: linear-gradient(#edc74c, #bc4c49);
   border-radius: 10px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 `
 
 const ProfileImage = styled.div`
@@ -132,8 +131,8 @@ const ProfileImage = styled.div`
   width: 74px;
   border-radius: 10px;
   margin: 3px 0px 0px 3px;
-  background: url(${(props: StyleCssProps) => (props.icon ? props.icon : '')})
-    no-repeat center center;
+  background: url(${(props: StyleCssProps) => (props.icon ? props.icon : '')}) no-repeat center
+    center;
   background-size: cover;
 `
 
@@ -265,8 +264,7 @@ const TeamRole = styled.div`
   right: 32px;
   height: 30px;
   background-color: #efefef;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   color: #051026;
@@ -305,20 +303,14 @@ export const PersonPage: React.FC<PersonPageProps> = ({
   showLeaveTeamResult,
   leaveTeam,
 }) => {
-  const [
-    selectedTeam,
-    setSelectedTeam,
-  ] = React.useState<IDisplayTeamMember | null>(null)
+  const [selectedTeam, setSelectedTeam] = React.useState<IDisplayTeamMember | null>(null)
   const [showTeamLeaveModal, setShowTeamLeaveModal] = React.useState(false)
   return (
     <Suspense fallback={<></>}>
       <ContentWrapper>
         <UserCoverWrapper>
           <UserCover backgroundColor={'#ebebeb'}>
-            <PersonImage
-              src={personal.topImage}
-              style={{ width: '100%', minHeight: '320px' }}
-            />
+            <PersonImage src={personal.topImage} style={{ width: '100%', minHeight: '320px' }} />
             {profileEditable && (
               <ButtonEditWrapper onClick={editProfile}>
                 <FontAwesomeIcon icon={faEdit} size="2x" />
@@ -327,20 +319,14 @@ export const PersonPage: React.FC<PersonPageProps> = ({
           </UserCover>
           <ProfileContainerWrapper>
             <ProfilerImageContainer>
-              <ProfileImage
-                icon={personal.icon ? encodeURI(personal.icon) : Top}
-              />
+              <ProfileImage icon={personal.icon ? encodeURI(personal.icon) : Top} />
             </ProfilerImageContainer>
             <NameWrapper>
               <NameText>
-                <TextDisplay style={{ overflowWrap: 'break-word' }}>
-                  {personal.nameJp}
-                </TextDisplay>
+                <TextDisplay style={{ overflowWrap: 'break-word' }}>{personal.nameJp}</TextDisplay>
               </NameText>
               <NameSubText>
-                <TextDisplay style={{ overflowWrap: 'break-word' }}>
-                  {personal.nameEn}
-                </TextDisplay>
+                <TextDisplay style={{ overflowWrap: 'break-word' }}>{personal.nameEn}</TextDisplay>
               </NameSubText>
               <NameDescription>
                 <TextDisplay style={{ overflowWrap: 'break-word' }}>
@@ -352,13 +338,8 @@ export const PersonPage: React.FC<PersonPageProps> = ({
               {personal.links.map((url, index) => {
                 const mediaType = descriminate(url)
                 return mediaType ? (
-                  <ExternalLink
-                    href={toHref(url, mediaType)}
-                    key={`${index}_${url}`}
-                  >
-                    <SocialMediaIcon>
-                      {getSocialMediaIcon(mediaType)}
-                    </SocialMediaIcon>
+                  <ExternalLink href={toHref(url, mediaType)} key={`${index}_${url}`}>
+                    <SocialMediaIcon>{getSocialMediaIcon(mediaType)}</SocialMediaIcon>
                   </ExternalLink>
                 ) : (
                   <></>
@@ -373,9 +354,7 @@ export const PersonPage: React.FC<PersonPageProps> = ({
               <TeamItemAnchor
                 id={`team-item_${team.teamId}`}
                 key={team.teamId}
-                joinSucceeded={
-                  showJoinSucceededModal && team.teamId === joinSucceededTeamId
-                }
+                joinSucceeded={showJoinSucceededModal && team.teamId === joinSucceededTeamId}
                 index={index}
               >
                 <TeamItemWrapper
@@ -395,9 +374,7 @@ export const PersonPage: React.FC<PersonPageProps> = ({
                     </TeamRole>
                   )}
                   <TeamInfo>
-                    <TeamIconWrapper>
-                      {getTeamIcon(team.classType)}
-                    </TeamIconWrapper>
+                    <TeamIconWrapper>{getTeamIcon(team.classType)}</TeamIconWrapper>
                     <TeamTextWrapper>
                       <TeamNameText>
                         <TextDisplay>{team.teamName}</TextDisplay>

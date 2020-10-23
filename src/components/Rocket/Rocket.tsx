@@ -1,7 +1,9 @@
-import React from 'react'
-import RocketBack from 'src/assets/about/rocket_back.svg'
-import RocketFront from 'src/assets/about/rocket_front.svg'
-import styled, { keyframes } from 'styled-components'
+import React from 'react';
+import RocketBack from 'src/assets/about/rocket_back.svg';
+import RocketFront from 'src/assets/about/rocket_front.svg';
+import styled, { keyframes } from 'styled-components';
+
+
 
 const Wrapper = styled.div`
   position: relative;
@@ -28,7 +30,7 @@ const upcoming = keyframes`
 const Back = styled.div`
   opacity: 0;
   transform: translateY(600px);
-  animation: ${upcoming} 5s ease-out 0.5s 1 both;
+  animation : ${upcoming} 5s ease-out 0.5s 1 both;
 `
 
 const Front = styled.div`
@@ -38,6 +40,7 @@ const Front = styled.div`
   bottom: 0;
   left: 0;
 `
+
 
 export const Rocket: React.FC = (props) => {
   return (
