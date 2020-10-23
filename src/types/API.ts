@@ -30,28 +30,28 @@ export enum PageType {
 }
 
 export type JoinAsGalleriesMutationVariables = {
-  teamId: string,
-  teamClassId: string,
-};
+  teamId: string
+  teamClassId: string
+}
 
 export type JoinAsGalleriesMutation = {
-  joinAsGalleries:  {
-    __typename: "Response",
-    message: string | null,
-  } | null,
-};
+  joinAsGalleries: {
+    __typename: 'Response'
+    message: string | null
+  } | null
+}
 
 export type LeaveTeamMutationVariables = {
-  teamId: string,
-  teamClassId: string,
-};
+  teamId: string
+  teamClassId: string
+}
 
 export type LeaveTeamMutation = {
-  leaveTeam:  {
-    __typename: "Response",
-    message: string | null,
-  } | null,
-};
+  leaveTeam: {
+    __typename: 'Response'
+    message: string | null
+  } | null
+}
 
 export type UpdateUserMutationVariables = {
   input: UpdateUserInput
@@ -103,12 +103,12 @@ export type RequestSubscriptionMutation = {
   } | null
 }
 export type UpdatePageMutationVariables = {
-  pageId: string,
-};
+  pageId: string
+}
 
 export type UpdatePageMutation = {
-  updatePage: string | null,
-};
+  updatePage: string | null
+}
 
 export type GetTeamQueryVariables = {
   id: string

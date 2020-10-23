@@ -69,7 +69,9 @@ const Page: React.FC = () => {
       </div>
       <PolicyChapter chapter="事業者">スクアード株式会社</PolicyChapter>
       <PolicyChapter chapter="運営責任者">小池駿平</PolicyChapter>
-      <PolicyChapter chapter="所在地">〒135-0064 東京都江東区青海2-7-4 the SOHO 1310</PolicyChapter>
+      <PolicyChapter chapter="所在地">
+        〒135-0064 東京都江東区青海2-7-4 the SOHO 1310
+      </PolicyChapter>
       <PolicyChapter chapter="電話番号">
         03-5962-4062
         <br />
@@ -156,7 +158,9 @@ const Page: React.FC = () => {
           各チームにおける特典の提供者はチームマスターであり、弊社ではありません。以下の事項および、各チームページの記載をご確認ください。
         </TextDisplay>
       </div>
-      <PolicyChapter chapter="チームの名称">各チームページの記載に準じる。</PolicyChapter>
+      <PolicyChapter chapter="チームの名称">
+        各チームページの記載に準じる。
+      </PolicyChapter>
       <PolicyChapter
         chapter={
           <div>
@@ -168,7 +172,9 @@ const Page: React.FC = () => {
       >
         各チームページの記載に準じる。
       </PolicyChapter>
-      <PolicyChapter chapter="お問い合わせ先">各チームページの記載に準じる。</PolicyChapter>
+      <PolicyChapter chapter="お問い合わせ先">
+        各チームページの記載に準じる。
+      </PolicyChapter>
       <PolicyChapter chapter="メールアドレス（電子メールで広告を行う場合）">
         各チームページの記載に準じる。
       </PolicyChapter>

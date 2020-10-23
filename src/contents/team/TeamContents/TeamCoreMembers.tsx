@@ -33,13 +33,13 @@ export const TeamCoreMembers: React.FC<TeamCoreMembersProps> = ({
         {coreMembers.map((member) => (
           <Link key={member.userId} to={`/${member.user.pageId}`}>
             <div className="relative mt-3">
-                <div
-                  style={{
-                    background: `url("${member.image}") no-repeat center center `,
-                    backgroundSize: 'cover',
-                  }}
-                  className={getImageTheme(member.imageColor)}
-                ></div>
+              <div
+                style={{
+                  background: `url("${member.image}") no-repeat center center `,
+                  backgroundSize: 'cover',
+                }}
+                className={getImageTheme(member.imageColor)}
+              ></div>
 
               {member.displayAge && (
                 <TextDisplay className={styles.ageTag}>

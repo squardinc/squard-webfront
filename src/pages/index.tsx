@@ -11,7 +11,7 @@ import { UserContextProvider } from 'src/context/UserContext'
 
 const IndexPage: React.FC = () => {
   const isSSR = typeof window === 'undefined'
-  const networkStatus = useApolloNetworkStatus();
+  const networkStatus = useApolloNetworkStatus()
 
   return (
     <>

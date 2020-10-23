@@ -15,7 +15,7 @@ import {
   JoinAsGalleriesMutation,
   JoinAsGalleriesMutationVariables,
   RequestSubscriptionMutation,
-  RequestSubscriptionMutationVariables
+  RequestSubscriptionMutationVariables,
 } from 'src/types/API'
 import { parseSearchParams } from 'src/utils/UrlParser'
 
@@ -68,13 +68,17 @@ const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
     return <></>
   }
   const team = data.getTeam
-  const currentMember = team?.members?.find((member) => member.userId === user.id)
+  const currentMember = team?.members?.find(
+    (member) => member.userId === user.id
+  )
   const teamClasses = team.classes || []
   const currentClass = teamClasses.find(
     (teamClass) => teamClass?.teamClassId === currentMember?.teamClassId
   )
   const joinableTeamClasses = JoinableClasses.map((joinableClass) => {
-    const teamClass = teamClasses.find((each) => each?.classType === joinableClass)
+    const teamClass = teamClasses.find(
+      (each) => each?.classType === joinableClass
+    )
     return new TeamClass(
       teamClass?.teamId,
       teamClass?.teamClassId,
@@ -86,7 +90,11 @@ const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
   handleJoinResponnse(team.id, joinAsGalleriesResponse)
   return (
     <>
-      <Loading loading={subscriptionResponse.loading || joinAsGalleriesResponse.loading} />
+      <Loading
+        loading={
+          subscriptionResponse.loading || joinAsGalleriesResponse.loading
+        }
+      />
       <JoinTeam
         requestSubscription={async (teamClassId) => {
           const response = await request({

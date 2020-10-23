@@ -28,7 +28,8 @@ export const Page: React.FC = (props) => {
   const faqs = [
     {
       question: '利用料金はいくらですか？',
-      answer: 'Squard内でのチームページや個人ページの作成に利用料金は一切発生しません。',
+      answer:
+        'Squard内でのチームページや個人ページの作成に利用料金は一切発生しません。',
     },
     {
       question: '個人ページはどうやって作れますか？',

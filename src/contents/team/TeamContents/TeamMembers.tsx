@@ -16,7 +16,9 @@ const Member: React.FC<MemberProps> = ({ member }) => {
       <div className="relative">
         <PersonImage src={member.image} className={styles.member} />
         <div className={styles.memberCaption}>
-          <TextDisplay className={styles.memberName}>{member.displayName}</TextDisplay>
+          <TextDisplay className={styles.memberName}>
+            {member.displayName}
+          </TextDisplay>
         </div>
       </div>
     </Link>
@@ -31,11 +33,18 @@ const TopMember: React.FC<TopMemberProps> = ({ member }) => {
     <Link to={`/${member.user.pageId}`}>
       <div className={styles.topMemberRow}>
         <div className={styles.topMemberContainer}>
-          <img src={member?.image || ComingSoon} alt="top" className={styles.topMember} />
+          <img
+            src={member?.image || ComingSoon}
+            alt="top"
+            className={styles.topMember}
+          />
           {member && (
             <TextDisplay className={styles.topMemberCaption}>
               <div className={styles.topMemberName}>{member.displayName}</div>
-              <div className={styles.topMemberTitle}> &nbsp;/ {member.title}</div>
+              <div className={styles.topMemberTitle}>
+                {' '}
+                &nbsp;/ {member.title}
+              </div>
             </TextDisplay>
           )}
         </div>
@@ -48,7 +57,10 @@ interface TeamMembersProps {
   topMember?: ITeamMember
   members?: ITeamMember[]
 }
-export const TeamMembers: React.FC<TeamMembersProps> = ({ topMember, members = [] }) => {
+export const TeamMembers: React.FC<TeamMembersProps> = ({
+  topMember,
+  members = [],
+}) => {
   return (
     <div className={styles.container}>
       <LeftBorderCaption text="MEMBERS" color="white" />

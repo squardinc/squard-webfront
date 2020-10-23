@@ -109,4 +109,4 @@ export const ManagementSystem: React.FC<ManagementSystemProps> = (props) => {
   )
 }
 
-export default ManagementSystem;
+export default ManagementSystem

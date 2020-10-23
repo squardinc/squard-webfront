@@ -102,7 +102,7 @@ export const getMyMemberInfo = /* GraphQL */ `
       }
     }
   }
-`;
+`
 export const getTeamMembers = /* GraphQL */ `
   query GetTeamMembers($teamId: ID!) {
     getTeamMembers(teamId: $teamId) {

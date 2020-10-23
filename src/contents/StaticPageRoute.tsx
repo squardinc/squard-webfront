@@ -42,7 +42,9 @@ const StaticPageMap: { [key in StaticPageType]: React.FC } = {
 interface StaticPageRouteProps {
   contentId: StaticPageType | string
 }
-export const StaticPageRoute: React.FC<StaticPageRouteProps> = ({ contentId }) => {
+export const StaticPageRoute: React.FC<StaticPageRouteProps> = ({
+  contentId,
+}) => {
   const StaticPage = StaticPageMap[contentId]
   if (StaticPage) {
     return <StaticPage />

@@ -36,4 +36,4 @@ export const About: React.FC<AboutProps> = (props) => {
   )
 }
 
-export default About;
+export default About

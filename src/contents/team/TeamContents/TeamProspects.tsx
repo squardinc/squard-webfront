@@ -24,7 +24,9 @@ const Prospect: React.FC<ProspectProps> = ({ prospect }) => {
 interface TeamPropspectsProps {
   propspects: ITeamMember[]
 }
-export const TeamProspects: React.FC<TeamPropspectsProps> = ({ propspects }) => {
+export const TeamProspects: React.FC<TeamPropspectsProps> = ({
+  propspects,
+}) => {
   return (
     <div className={styles.container}>
       <LeftBorderCaption text="PROSPECTS" color="white" />

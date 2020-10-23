@@ -7,7 +7,6 @@ import { ThemeContext } from 'src/context/ThemeContext'
 import styles from './Footer.module.scss'
 import { FooterWrapper } from './FooterWrapper'
 
-
 interface SiteMapProps {
   backgroundColor?: string
 }
