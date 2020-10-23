@@ -2,7 +2,7 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { navigate } from 'gatsby'
 import React, { useState } from 'react'
 import { useSpring, animated } from 'react-spring'
-import { useDrag } from 'react-use-gesture'
+import { useDrag, useGesture } from 'react-use-gesture'
 import About from 'src/assets/about_icon.svg'
 import AddNewTeam from 'src/assets/add_new_team_icon.svg'
 import CompanyIcon from 'src/assets/company_icon.svg'
@@ -38,22 +38,23 @@ export const NavMenu: React.FC<NavMenuProps> = ({
     navigate(to)
   }
   const [bottom, setBottom] = useState(0)
-  const [props, set] = useSpring(() => ({ x: 0, y: 0, scale: 1 }))
+  const [props, set] = useSpring(() => ({ y: 0 }))
   const bind = useDrag(({ down, movement: [x, y] }) => {
+    console.log(y)
     if (!down) {
       if (y > 30) {
         hideNavMenu()
         setTimeout(function () {
-          set({ x: 0, y: 0, scale: 1 })
+          set({ y: 0 })
           setBottom(0)
         }, 1000)
       } else {
-        set({ x: 0, y: 0, scale: 1 })
+        set({ y: 0 })
         setBottom(0)
       }
     } else {
       setBottom(y)
-      set({ x: x, y: y, scale: 1 })
+      set({ y: y })
     }
   })
 
@@ -68,60 +69,59 @@ export const NavMenu: React.FC<NavMenuProps> = ({
         ''
       )}
 
-      <animated.div id={'animatedTag'} {...bind()} style={props}>
-        <div
-          className={`${styles.navMenu} ${
-            show ? styles.open : styles.close
-          } bg-v-gradient`}
-          style={{
-            bottom: `${bottom > 0 ? -bottom : 0}`,
-          }}
-        >
-          <div style={{ width: '100%', height: '25x' }}>
-            <div className={styles.navToggleBtn} />
-          </div>
-          <MenuItemContent>
-            {/* <MenuItem text="設定" SVGIcon={Setting} /> */}
-            <MenuItem
-              text="マイページ"
-              SVGIcon={MyPage}
-              onClick={
-                loggedIn ? navigateWithMenuClose(`/mypage`) : showLoginModal
-              }
-            />
-            <MenuItem text={'チームを作る+'} SVGIcon={AddNewTeam} />
-            <MenuItem
-              text={'Squardについて'}
-              SVGIcon={About}
-              onClick={navigateWithMenuClose('/about')}
-            />
-            <MenuItem
-              text={'よくある質問'}
-              SVGIcon={Faq}
-              onClick={navigateWithMenuClose('/faq')}
-            />
-            <MenuItem
-              text={'会社概要'}
-              SVGIcon={CompanyIcon}
-              onClick={navigateWithMenuClose('/company')}
-            />
-            <MenuItem
-              text={'個人情報の取り扱いについて'}
-              SVGIcon={PrivacyPolicy}
-              onClick={navigateWithMenuClose('/privacypolicy')}
-            />
-            <MenuItem
-              text={'特定商取引法に基づく表記'}
-              SVGIcon={LegalInfo}
-              onClick={navigateWithMenuClose('/sctl')}
-            />
-            <MenuItem
-              text={'ログアウト'}
-              faIcon={faSignOutAlt}
-              onClick={loggedIn ? logout : undefined}
-            />
-          </MenuItemContent>
+      <animated.div
+       {...bind()}
+        className={`${styles.navMenu} ${
+          show ? styles.open : styles.close
+        } bg-v-gradient`}
+        style={{
+          bottom: bottom > 0 ? -bottom : 0,
+        }}
+      >
+        <div style={{ width: '100%', height: '25x' }}>
+          <div className={styles.navToggleBtn} />
         </div>
+        <MenuItemContent>
+          {/* <MenuItem text="設定" SVGIcon={Setting} /> */}
+          <MenuItem
+            text="マイページ"
+            SVGIcon={MyPage}
+            onClick={
+              loggedIn ? navigateWithMenuClose(`/mypage`) : showLoginModal
+            }
+          />
+          <MenuItem text={'チームを作る+'} SVGIcon={AddNewTeam} />
+          <MenuItem
+            text={'Squardについて'}
+            SVGIcon={About}
+            onClick={navigateWithMenuClose('/about')}
+          />
+          <MenuItem
+            text={'よくある質問'}
+            SVGIcon={Faq}
+            onClick={navigateWithMenuClose('/faq')}
+          />
+          <MenuItem
+            text={'会社概要'}
+            SVGIcon={CompanyIcon}
+            onClick={navigateWithMenuClose('/company')}
+          />
+          <MenuItem
+            text={'個人情報の取り扱いについて'}
+            SVGIcon={PrivacyPolicy}
+            onClick={navigateWithMenuClose('/privacypolicy')}
+          />
+          <MenuItem
+            text={'特定商取引法に基づく表記'}
+            SVGIcon={LegalInfo}
+            onClick={navigateWithMenuClose('/sctl')}
+          />
+          <MenuItem
+            text={'ログアウト'}
+            faIcon={faSignOutAlt}
+            onClick={loggedIn ? logout : undefined}
+          />
+        </MenuItemContent>
       </animated.div>
     </>
   )

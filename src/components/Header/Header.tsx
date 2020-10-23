@@ -17,6 +17,17 @@ const Title = styled.div`
   margin-top: 2px;
 `
 
+function preventDefault(e){
+  e.preventDefault();
+}
+
+function disableScroll(){
+  document.body.addEventListener('touchmove', preventDefault, { passive: false });
+}
+function enableScroll(){
+  document.body.removeEventListener('touchmove', preventDefault);
+}
+
 export const Header = () => {
   const { user, setUser } = React.useContext(UserContext)
   const [openModal, setOpenModal] = React.useState<ModalType>('Closed')
@@ -24,17 +35,9 @@ export const Header = () => {
 
   useEffect(() => {
     if (showNavMenu) {
-      const bodyContent = document.getElementById('app-base-body')
-      if (bodyContent) {
-        bodyContent.style.overflow = 'hidden'
-        bodyContent.style.height = "100vh"
-      }
+      disableScroll()
     } else {
-      const bodyContent = document.getElementById('app-base-body')
-      if (bodyContent) {
-        bodyContent.style.overflow = 'auto'
-        bodyContent.style.height = "auto"
-      }
+      enableScroll()
     }
   }, [showNavMenu])
 
