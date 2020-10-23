@@ -1,6 +1,8 @@
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { navigate } from 'gatsby'
-import * as React from 'react'
+import React, { useState } from 'react'
+import { useSpring, animated } from 'react-spring'
+import { useDrag } from 'react-use-gesture'
 import About from 'src/assets/about_icon.svg'
 import AddNewTeam from 'src/assets/add_new_team_icon.svg'
 import CompanyIcon from 'src/assets/company_icon.svg'
@@ -35,8 +37,28 @@ export const NavMenu: React.FC<NavMenuProps> = ({
     hideNavMenu()
     navigate(to)
   }
+  const [bottom, setBottom] = useState(0)
+  const [props, set] = useSpring(() => ({ x: 0, y: 0, scale: 1 }))
+  const bind = useDrag(({ down, movement: [x, y] }) => {
+    if (!down) {
+      if (y > 60) {
+        hideNavMenu()
+        setTimeout(function () {
+          set({ x: 0, y: 0, scale: 1 })
+          setBottom(0)
+        }, 1000)
+      } else {
+        set({ x: 0, y: 0, scale: 1 })
+        setBottom(0)
+      }
+    } else {
+      setBottom(y)
+      set({ x: x, y: y, scale: 1 })
+    }
+  })
+
   return (
-    <>
+    <animated.div id={'animatedTag'} {...bind()} style={props}>
       {show ? (
         <div
           className={`fixed top-0 left-0 w-full h-screen bg-gray-800 bg-opacity-50 blur-3 z-10`}
@@ -45,8 +67,15 @@ export const NavMenu: React.FC<NavMenuProps> = ({
       ) : (
         ''
       )}
-      <div className={`${styles.navMenu} ${show ? styles.open : styles.close} bg-v-gradient`}>
-        <div style={{ width: '100%', height: '25px' }} onClick={hideNavMenu}>
+      <div
+        className={`${styles.navMenu} ${
+          show ? styles.open : styles.close
+        } bg-v-gradient`}
+        style={{
+          bottom: `${bottom > 0 ? -bottom : 0}px`,
+        }}
+      >
+        <div style={{ width: '100%', height: '25x' }}>
           <div className={styles.navToggleBtn} />
         </div>
         <MenuItemContent>
@@ -54,7 +83,9 @@ export const NavMenu: React.FC<NavMenuProps> = ({
           <MenuItem
             text="マイページ"
             SVGIcon={MyPage}
-            onClick={loggedIn ? navigateWithMenuClose(`/mypage`) : showLoginModal}
+            onClick={
+              loggedIn ? navigateWithMenuClose(`/mypage`) : showLoginModal
+            }
           />
           <MenuItem text={'チームを作る+'} SVGIcon={AddNewTeam} />
           <MenuItem
@@ -62,7 +93,11 @@ export const NavMenu: React.FC<NavMenuProps> = ({
             SVGIcon={About}
             onClick={navigateWithMenuClose('/about')}
           />
-          <MenuItem text={'よくある質問'} SVGIcon={Faq} onClick={navigateWithMenuClose('/faq')} />
+          <MenuItem
+            text={'よくある質問'}
+            SVGIcon={Faq}
+            onClick={navigateWithMenuClose('/faq')}
+          />
           <MenuItem
             text={'会社概要'}
             SVGIcon={CompanyIcon}
@@ -85,6 +120,6 @@ export const NavMenu: React.FC<NavMenuProps> = ({
           />
         </MenuItemContent>
       </div>
-    </>
+    </animated.div>
   )
 }
