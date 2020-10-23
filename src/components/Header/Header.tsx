@@ -1,5 +1,5 @@
 import { Link } from 'gatsby'
-import * as React from 'react'
+import React, { useEffect } from 'react'
 import Menu from 'src/assets/menu.svg'
 import { AuthModal, ModalType } from 'src/components/Modal/AuthModal'
 import { NavMenu } from 'src/components/NavMenu/NavMenu'
@@ -21,6 +21,22 @@ export const Header = () => {
   const { user, setUser } = React.useContext(UserContext)
   const [openModal, setOpenModal] = React.useState<ModalType>('Closed')
   const [showNavMenu, setShowNavMenu] = React.useState(false)
+
+  useEffect(() => {
+    if (showNavMenu) {
+      const bodyContent = document.getElementById('app-base-body')
+      if (bodyContent) {
+        bodyContent.style.overflow = 'hidden'
+        bodyContent.style.height = "100vh"
+      }
+    } else {
+      const bodyContent = document.getElementById('app-base-body')
+      if (bodyContent) {
+        bodyContent.style.overflow = 'auto'
+        bodyContent.style.height = "auto"
+      }
+    }
+  }, [showNavMenu])
 
   return (
     <React.Fragment>
