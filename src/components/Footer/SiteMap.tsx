@@ -14,21 +14,14 @@ interface SiteMapProps {
 export const SiteMap = (props?: SiteMapProps) => {
   const { theme } = React.useContext(ThemeContext)
 
-  const styleBg =
-    props && props.backgroundColor
-      ? { backgroundColor: props.backgroundColor }
-      : {}
+  const styleBg = props && props.backgroundColor ? { backgroundColor: props.backgroundColor } : {}
 
   return (
     <>
       <FooterWrapper>
         <div className={styles.content} style={styleBg}>
           <div className={`${styles.sitemap} `}>
-            <TextDisplay
-              className={
-                theme === 'dark' ? styles.links : styles.linksThemeWhite
-              }
-            >
+            <TextDisplay className={theme === 'dark' ? styles.links : styles.linksThemeWhite}>
               <Link to="/faq" style={{ height: '23px' }}>
                 FAQ
               </Link>
@@ -42,17 +35,18 @@ export const SiteMap = (props?: SiteMapProps) => {
                 Privacy Policy
               </Link>
               <Link to="/termsofuse" style={{ height: '23px' }}>
-                Term of Use
+                Terms of Use
               </Link>
             </TextDisplay>
-            <Link to="/">
-              {theme === 'dark' ? (
-                <Logo className={styles.logo} />
-              ) : (
-                // FIXME Resize
-                <BlueLogo className={styles.logo} />
-              )}
-            </Link>
+            <div className="flex flex-col justify-center">
+              <Link to="/">
+                {theme === 'dark' ? (
+                  <Logo className={styles.logo} />
+                ) : (
+                  <BlueLogo className={styles.logo} />
+                )}
+              </Link>
+            </div>
           </div>
         </div>
       </FooterWrapper>

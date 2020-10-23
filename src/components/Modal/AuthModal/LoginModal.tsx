@@ -126,7 +126,10 @@ const LoginFormModal: React.FC<LoginFormProps> = ({
                 color: 'white',
                 backgroundColor: '#3B5998',
               }}
-              onClick={AuthService.loginWithFacebook}
+              onClick={(e) => {
+                e.preventDefault()
+                AuthService.loginWithFacebook()
+              }}
             >
               <TextDisplay>Facebookでログイン</TextDisplay>
             </RoundButton>

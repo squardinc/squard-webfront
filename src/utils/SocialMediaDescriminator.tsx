@@ -1,4 +1,5 @@
 import { SocialMediaType } from 'src/models/person'
+import { validEmaliAddress } from './StringValidator'
 
 const descriminateUrl = (url: URL): SocialMediaType | undefined => {
   const { hostname } = url
@@ -37,7 +38,7 @@ export const descriminate = (
   }
 
   try {
-    descriminateUrl(new URL(urlString))
+    return descriminateUrl(new URL(urlString))
   } catch {
     return undefined
   }
@@ -47,4 +48,15 @@ export const toHref = (url: string, type: SocialMediaType) => {
   if (type === 'email') return `mailto:${encoded}`
   if (type === 'phone') return `tel:${encoded}`
   return encoded
+}
+
+export const isValidLink = (link: string) => {
+  if (validEmaliAddress(link)) return true
+  try {
+    const url = new URL(link)
+    if (url.protocol != 'https:') return false
+  } catch {
+    return false
+  }
+  return true
 }

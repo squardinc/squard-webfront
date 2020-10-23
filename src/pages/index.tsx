@@ -16,24 +16,26 @@ const IndexPage: React.FC = () => {
   return (
     <>
       {!isSSR && (
-        <React.Suspense fallback={<div></div>}>
+        <>
           <ThemeContextProvider>
             <UserContextProvider>
               <PageWrapper>
-                <Router>
-                  <ContentLayout path=":contentId" contentId="" />
-                  <ContentSubLayout
-                    path=":contentId/:subContentId"
-                    contentId=""
-                    subContentId=""
-                  />
-                  <Redirect default />
-                </Router>
+                <React.Suspense fallback={<Loading loading />}>
+                  <Router>
+                    <ContentLayout path=":contentId" contentId="" />
+                    <ContentSubLayout
+                      path=":contentId/:subContentId"
+                      contentId=""
+                      subContentId=""
+                    />
+                    <Redirect default />
+                  </Router>
+                </React.Suspense>
               </PageWrapper>
             </UserContextProvider>
           </ThemeContextProvider>
           <Loading loading={networkStatus.numPendingQueries > 0}></Loading>
-        </React.Suspense>
+        </>
       )}
     </>
   )

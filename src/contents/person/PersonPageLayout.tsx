@@ -56,13 +56,10 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
   update,
   leaveTeam,
 }) => {
-  const [
-    showPaymentCompleteModal,
-    setShowPaymentCompleteModal,
-  ] = React.useState(hasPaymentComplete)
-  const [showJoinSucceededModal, setShowJoinSucceededModal] = React.useState(
-    false
+  const [showPaymentCompleteModal, setShowPaymentCompleteModal] = React.useState(
+    hasPaymentComplete || !!joinSucceededTeamId
   )
+  const [showJoinSucceededModal, setShowJoinSucceededModal] = React.useState(false)
   return (
     <>
       <PersonPageWrapper backgroundColor={'#ebebeb'}>
@@ -83,11 +80,9 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
               isLoading={false}
               personal={personal}
               close={() => onEditProfile && onEditProfile(false)}
-              saveImage={async (
-                fileName: string,
-                image: Blob,
-                contentType: string
-              ) => uploadImg(fileName, image, contentType)}
+              saveImage={async (fileName: string, image: Blob, contentType: string) =>
+                uploadImg(fileName, image, contentType)
+              }
               saveProfile={update}
             />
           </EditProfileWrapper>
@@ -98,44 +93,30 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
           closeModal={(e) => {
             setShowPaymentCompleteModal(false)
             setShowJoinSucceededModal(true)
-            const top = document.getElementById(
-              `team-item_${joinSucceededTeamId}`
-            )?.offsetTop
+            const top = document.getElementById(`team-item_${joinSucceededTeamId}`)?.offsetTop
             if (top) {
               animateScroll.scrollTo(top - 600 || 0)
             }
           }}
-          title="決済完了"
-          headerDescription="Payment Completed!"
+          title={hasPaymentComplete ? '決済完了' : '参加完了'}
+          headerDescription={hasPaymentComplete ? 'Payment Completed!' : 'Joining Completed!'}
         />
       )}
       {showJoinSucceededModal && (
         <MessageModal
           closeModal={(e) => {
             setShowJoinSucceededModal(false)
-            window.history.replaceState(
-              {},
-              document.title,
-              window.location.pathname
-            )
+            window.history.replaceState({}, document.title, window.location.pathname)
           }}
-          message={
-            'チームに参加しました。マイページから参加特典を確認できます。'
-          }
+          message={'チームに参加しました。マイページから参加特典を確認できます。'}
         />
       )}
     </>
   )
 }
 
-export const PersonPageLayoutGray = React.memo(
-  withTheme(PersonPageLayout, 'gray')
-)
-export const PersonPageLayoutDark = React.memo(
-  withTheme(PersonPageLayout, 'dark')
-)
-export const PersonPageLayoutBlack = React.memo(
-  withTheme(PersonPageLayout, 'black')
-)
+export const PersonPageLayoutGray = React.memo(withTheme(PersonPageLayout, 'gray'))
+export const PersonPageLayoutDark = React.memo(withTheme(PersonPageLayout, 'dark'))
+export const PersonPageLayoutBlack = React.memo(withTheme(PersonPageLayout, 'black'))
 
 export default PersonPageLayout

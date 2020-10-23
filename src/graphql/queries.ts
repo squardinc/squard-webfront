@@ -44,6 +44,7 @@ export const getTeam = /* GraphQL */ `
         user {
           nameJp
           birthday
+          icon
           page {
             id
           }

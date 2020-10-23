@@ -25,6 +25,9 @@ const CLASSES = [
   'Galleries',
   'VIP',
 ] as const
+
+const LEAVABLE_CLASSES = ['Prospects', 'Angels', 'Galleries'] as const
+export const isLeavable = (classType: ClassType) => LEAVABLE_CLASSES.includes(classType)
 export type ClassType = typeof CLASSES[number]
 export const ClassTypeJp: { [key in ClassType]: string } = {
   Leader: 'リーダー',

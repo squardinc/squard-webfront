@@ -1,15 +1,12 @@
 import * as React from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
 import { ImageProfileEdit } from 'src/components/ImageProfile'
-import {
-  LayoutHorizontal,
-  LayoutType,
-  LayoutVertical,
-} from 'src/components/layout'
+import { LayoutHorizontal, LayoutType, LayoutVertical } from 'src/components/layout'
 import { TabMenuBar } from 'src/components/TabMenu'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import Top from 'src/images/temp/team/top.jpg'
 import { IPersonal } from 'src/models/person'
+import { isValidLink } from 'src/utils/SocialMediaDescriminator'
 import styled from 'styled-components'
 
 const PersonalEditProfileWrapper = styled.div`
@@ -144,11 +141,13 @@ const RoundButton = styled.button`
   :last-child {
     margin-bottom: 30px;
   }
+  ${(props) => props.disabled && 'cursor: not-allowed;'}
 `
 
 interface RowInputProps {
   label: string
   value?: string
+  invalidMessage?: string
   onChange: (value: string) => void
   onFocus?: (value: string) => void
   onBlur?: (value: string) => void
@@ -177,6 +176,7 @@ const RowInput: React.FC<RowInputProps> = ({
   onChange,
   onBlur,
   onFocus,
+  invalidMessage = '',
 }) => {
   return (
     <HorizontalLayoutWrapper>
@@ -198,16 +198,11 @@ const RowInput: React.FC<RowInputProps> = ({
           if (onBlur) onBlur(e.target.value)
         }}
       />
+      {invalidMessage && <div style={{ color: 'red' }}>{invalidMessage}</div>}
     </HorizontalLayoutWrapper>
   )
 }
-const RowTextarea: React.FC<RowInputProps> = ({
-  label,
-  value = '',
-  onChange,
-  onBlur,
-  onFocus,
-}) => {
+const RowTextarea: React.FC<RowInputProps> = ({ label, value = '', onChange, onBlur, onFocus }) => {
   return (
     <HorizontalLayoutWrapper>
       <Label>
@@ -240,29 +235,33 @@ interface LinksInputProps {
 
 const LinksInput: React.FC<LinksInputProps> = ({ values = [''], onChange }) => {
   const [currentIndex, setCurrentindex] = React.useState(values.length + 1)
-  const [inputValue, setInputValue] = React.useState('')
+  const [inputValue, setInputValue] = React.useState(values[currentIndex])
+  const forms = values.length >= 20 ? values : values.concat([''])
   return (
     <>
-      {values
-        .filter(Boolean)
-        .concat([''])
-        .map((url, index) => {
-          return (
-            <RowTextarea
+      {forms.map((url, index) => {
+        return (
+          <>
+            <RowInput
               key={`${index}_${url}`}
               label={`リンクURL${index + 1}`}
               value={index === currentIndex ? inputValue : url}
-              onChange={(value) => setInputValue(value)}
+              onChange={(value) => {
+                if (value.length <= 2048) setInputValue(value)
+              }}
               onFocus={(value) => {
                 setCurrentindex(index)
                 setInputValue(value)
               }}
               onBlur={(value) => {
                 onChange(value, currentIndex)
+                if (!value) setInputValue(forms[currentIndex + 1])
               }}
+              invalidMessage={url && !isValidLink(url) ? '※リンクURLが不正です' : ''}
             />
-          )
-        })}
+          </>
+        )
+      })}
     </>
   )
 }
@@ -277,6 +276,9 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
   const [icon, setIcon] = React.useState<Blob>()
   const [profile, setProfile] = React.useState<IPersonal>(personal)
   const [pageId, setPageId] = React.useState<string>(personal.pageId)
+  const isSubmittable = React.useMemo(() => !profile.links.find((link) => !isValidLink(link)), [
+    profile,
+  ])
   const onSaveProfile = async () => {
     if (icon) {
       const url = await saveImage('icon.jpeg', icon, 'image/jpeg')
@@ -293,11 +295,7 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
   }
   return (
     <PersonalEditProfileWrapper>
-      <TabMenuBar
-        title="プロフィールを編集"
-        onCancel={close}
-        onSave={onSaveProfile}
-      />
+      <TabMenuBar title="プロフィールを編集" onCancel={close} onSave={onSaveProfile} />
       <LayoutVertical layoutType={LayoutType.topCenter}>
         <ImageProfileEdit
           topImage={profile.topImage || Top}
@@ -309,15 +307,15 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
           <RowInput
             label={'名前'}
             value={profile.nameJp}
-            onChange={(value) => {
-              setProfile(Object.assign({}, profile, { nameJp: value }))
+            onChange={(value = '') => {
+              if (value.length <= 32) setProfile(Object.assign({}, profile, { nameJp: value }))
             }}
           />
           <RowInput
             label={'英語表記'}
             value={profile.nameEn}
-            onChange={(value) => {
-              setProfile(Object.assign({}, profile, { nameEn: value }))
+            onChange={(value = '') => {
+              if (value.length <= 64) setProfile(Object.assign({}, profile, { nameEn: value }))
             }}
           />
           {/* <RowInput
@@ -330,17 +328,18 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
           <RowTextarea
             label={'自己紹介'}
             value={profile.introduction}
-            onChange={(value) => {
-              setProfile(Object.assign({}, profile, { introduction: value }))
+            onChange={(value = '') => {
+              if (value.length <= 1024)
+                setProfile(Object.assign({}, profile, { introduction: value }))
             }}
           />
 
           <LinksInput
             values={profile.links}
-            onChange={(value, index) => {
+            onChange={(value = '', index) => {
               const links = [...profile.links]
               links[index] = value
-              setProfile({ ...profile, links })
+              setProfile({ ...profile, links: links.filter(Boolean) })
             }}
           />
         </InformationWrapper>
@@ -380,12 +379,10 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
         </TeamWrapper> */}
 
         <BottomWrapper>
-          <LayoutVertical
-            layoutType={LayoutType.center}
-            style={{ margin: 'auto' }}
-          >
+          <LayoutVertical layoutType={LayoutType.center} style={{ margin: 'auto' }}>
             <RoundButton
               style={{ background: 'white', color: 'black' }}
+              disabled={!isSubmittable}
               onClick={onSaveProfile}
             >
               <TextDisplay>保存</TextDisplay>

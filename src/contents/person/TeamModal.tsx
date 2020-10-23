@@ -14,7 +14,7 @@ import {
   TeamCardWrapper,
 } from 'src/components/TeamCard'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import { IDisplayTeamMember } from 'src/models/person'
+import { IDisplayTeamMember, isLeavable } from 'src/models/person'
 import { formattedDate } from 'src/utils/date'
 import { fadeIn } from 'src/utils/Modal'
 import { addComma } from 'src/utils/NumberFormatter'
@@ -85,15 +85,17 @@ const TeamModalComponent: React.FC<TeamModalProps> = ({
               </EntitlementText>
             ))}
         </EntitlementsWrapper>
-        <CardBodyWrapper>
-          <LeaveTeamLabel
-            onClick={() => {
-              onLeaveTeam()
-            }}
-          >
-            <TextDisplay>チームを脱退する</TextDisplay>
-          </LeaveTeamLabel>
-        </CardBodyWrapper>
+        {isLeavable(team.classType) && (
+          <CardBodyWrapper>
+            <LeaveTeamLabel
+              onClick={() => {
+                onLeaveTeam()
+              }}
+            >
+              <TextDisplay>チームを脱退する</TextDisplay>
+            </LeaveTeamLabel>
+          </CardBodyWrapper>
+        )}
       </TeamCardWrapper>
     </div>
   )

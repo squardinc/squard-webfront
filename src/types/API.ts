@@ -149,6 +149,14 @@ export type GetTeamQuery = {
       link: string | null
       contact: string | null
       introduction: string | null
+      user: {
+        nameJp: string | null
+        birthday: string | null
+        icon: string | null
+        page: {
+          id: string | null
+        } | null
+      } | null
     }> | null
     page: {
       __typename: 'Page'

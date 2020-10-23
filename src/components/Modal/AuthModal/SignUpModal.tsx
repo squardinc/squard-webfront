@@ -101,7 +101,12 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({
               <Label>アカウント情報を入力してくださ い</Label>
             </TextDisplay>
             <EmailWrapper>
-              <EMailAddressInput value={email} onChange={setEmail} />
+              <EMailAddressInput
+                value={email}
+                onChange={(value = '') => {
+                  if (value.length <= 320) setEmail(value)
+                }}
+              />
             </EmailWrapper>
 
             <PasswordInput value={password} onChange={setPassword} />
@@ -151,8 +156,11 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({
                   backgroundColor: '#3B5998',
                   opacity: agreeTermsOfUse ? '' : '0.7',
                 }}
+                onClick={(e) => {
+                  e.preventDefault()
+                  AuthService.loginWithFacebook()
+                }}
                 disabled={!agreeTermsOfUse}
-                onClick={AuthService.loginWithFacebook}
               >
                 <TextDisplay>Facebookで登録</TextDisplay>
               </RoundButton>

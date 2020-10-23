@@ -343,7 +343,9 @@ export const PersonPage: React.FC<PersonPageProps> = ({
                 </TextDisplay>
               </NameSubText>
               <NameDescription>
-                <TextDisplay>{personal.introduction}</TextDisplay>
+                <TextDisplay style={{ overflowWrap: 'break-word' }}>
+                  {personal.introduction}
+                </TextDisplay>
               </NameDescription>
             </NameWrapper>
             <SocialMediaWrapper>
@@ -434,7 +436,7 @@ export const PersonPage: React.FC<PersonPageProps> = ({
       {selectedTeam && showLeaveTeamResult && (
         <CompleteModal
           title={`${selectedTeam.teamName} から脱退しました。`}
-          closeModal={(e) => window.location.reload()}
+          closeModal={(e) => setSelectedTeam(null)}
         />
       )}
       <DefaultFooter />

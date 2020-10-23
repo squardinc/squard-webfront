@@ -13,7 +13,7 @@ const Angel: React.FC<AngelProps> = ({ angel }) => {
   return (
     <Link to={`/${angel.user.pageId}`}>
       <div className={styles.angelContainer}>
-        <PersonImage src={angel?.image} className={styles.angel} />
+        <PersonImage src={angel?.image || angel?.user.icon} className={styles.angel} />
       </div>
     </Link>
   )
