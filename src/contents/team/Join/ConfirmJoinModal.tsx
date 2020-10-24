@@ -11,7 +11,7 @@ import {
   FlagWrapper,
   MainNameText,
   PriceText,
-  TeamCardWrapper,
+  TeamCardWrapper
 } from 'src/components/TeamCard'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { ClassType } from 'src/models/person'
@@ -86,7 +86,7 @@ const ConfirmJoinModalComponent: React.FC<ConfirmJoinModalProps> = ({
                 <div>{'として参加する'}</div>
               </TextDisplay>
             </MainNameText>
-            {team.price && (
+            {(team.price != null) && (
               <PriceText>
                 <TextDisplay>￥{addComma(team.price)} / 月額</TextDisplay>
               </PriceText>
