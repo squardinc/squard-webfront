@@ -22,6 +22,7 @@ type PersonPageProps = {
   onEditProfile?: (value: boolean) => void
   update: (input: UpdateUserInput, pageId: string) => Promise<void>
   leaveTeam: (teamId: string, teamClassId: string) => void
+  refetch: () => Promise<void>
 }
 
 type StyleCssProps = {
@@ -55,6 +56,7 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
   onEditProfile,
   update,
   leaveTeam,
+  refetch,
 }) => {
   const [showPaymentCompleteModal, setShowPaymentCompleteModal] = React.useState(
     hasPaymentComplete || !!joinSucceededTeamId
@@ -73,6 +75,7 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
             showJoinSucceededModal={showJoinSucceededModal}
             showLeaveTeamResult={showLeaveTeamResult}
             leaveTeam={leaveTeam}
+            refetch={refetch}
           />
         ) : (
           <EditProfileWrapper>

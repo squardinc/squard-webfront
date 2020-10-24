@@ -34,6 +34,7 @@ type PersonPageProps = {
   editProfile: VoidFunction
   showJoinSucceededModal: Boolean
   leaveTeam: (teamId: string, teamClassId: string) => void
+  refetch: () => Promise<void>
 }
 
 type StyleCssProps = {
@@ -302,6 +303,7 @@ export const PersonPage: React.FC<PersonPageProps> = ({
   showJoinSucceededModal,
   showLeaveTeamResult,
   leaveTeam,
+  refetch,
 }) => {
   const [selectedTeam, setSelectedTeam] = React.useState<IDisplayTeamMember | null>(null)
   const [showTeamLeaveModal, setShowTeamLeaveModal] = React.useState(false)
@@ -412,8 +414,11 @@ export const PersonPage: React.FC<PersonPageProps> = ({
       )}
       {selectedTeam && showLeaveTeamResult && (
         <CompleteModal
-          title='脱退が完了しました'
-          closeModal={(e) => setSelectedTeam(null)}
+          title="脱退が完了しました"
+          closeModal={(e) => {
+            setSelectedTeam(null)
+            refetch()
+          }}
         />
       )}
       <DefaultFooter />
