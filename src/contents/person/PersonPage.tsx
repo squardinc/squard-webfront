@@ -400,19 +400,19 @@ export const PersonPage: React.FC<PersonPageProps> = ({
       )}
       {selectedTeam && showTeamLeaveModal && (
         <YesNoModal
-          title={`${selectedTeam.teamName}\r\nから脱退する`}
+          title={`チームを脱退する`}
           closeModal={() => setShowTeamLeaveModal(false)}
           onExecute={() => {
             leaveTeam(selectedTeam.teamId, selectedTeam.teamClassId)
           }}
-          message="脱退すると有効期間の途中であっても直ちに権利を喪失し、返金は行われません。また、脱退後のキャンセルは行えません。"
+          message={`チーム: ${selectedTeam.teamName}\r\n\r\n脱退すると有効期間の途中であっても直ちに権利を喪失し、返金は行われません。また、脱退後のキャンセルは行えません。`}
           cancelButtonText="キャンセル"
-          executeButtonText="上記内容を理解した上で脱退する"
+          executeButtonText="上記内容を理解して脱退する"
         />
       )}
       {selectedTeam && showLeaveTeamResult && (
         <CompleteModal
-          title={`${selectedTeam.teamName} から脱退しました。`}
+          title='脱退が完了しました'
           closeModal={(e) => setSelectedTeam(null)}
         />
       )}

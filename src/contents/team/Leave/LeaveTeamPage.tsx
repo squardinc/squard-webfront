@@ -1,22 +1,22 @@
+import { navigate } from 'gatsby'
 import * as React from 'react'
-import styled from 'styled-components'
-import * as colors from 'src/styles/colors'
-import { ITeam } from 'src/models/team'
-import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { Heading3 } from 'src/components/Heading3/Heading3'
+import { LeaveTeamCompleteModal } from 'src/components/Modal/LeaveTeamCompleteModal'
 import {
-  TeamCardWrapper,
-  FlagWrapper,
-  Flag,
-  MainNameText,
-  SubNameText,
-  PriceText,
   EntitlementsWrapper,
   EntitlementText,
+  Flag,
+  FlagWrapper,
+  MainNameText,
+  PriceText,
+  SubNameText,
+  TeamCardWrapper,
 } from 'src/components/TeamCard'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { ITeam } from 'src/models/team'
+import * as colors from 'src/styles/colors'
 import { addComma } from 'src/utils/NumberFormatter'
-import { LeaveTeamCompleteModal } from 'src/components/Modal/LeaveTeamCompleteModal'
-import { navigate } from 'gatsby'
+import styled from 'styled-components'
 
 type LeaveTeamProps = {
   isLoading: boolean
@@ -96,9 +96,7 @@ const LeaveTeam = ({ teamData }: LeaveTeamProps) => {
                   <TextDisplay>{teamData.sub}</TextDisplay>
                 </SubNameText>
                 <PriceText>
-                  <TextDisplay>
-                    ￥{addComma(teamData.monthlyPrice)} / 月額
-                  </TextDisplay>
+                  <TextDisplay>￥{addComma(teamData.monthlyPrice)} / 月額</TextDisplay>
                 </PriceText>
               </Flag>
             </FlagWrapper>

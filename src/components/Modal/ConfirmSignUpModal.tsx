@@ -5,9 +5,7 @@ import { parseSearchParams } from 'src/utils/UrlParser'
 import { AuthService } from 'src/services/AuthService'
 
 export const ConfirmSignUpModal: React.FC = () => {
-  const [showSignUpCompleteModal, setShowSignUpCompleteModal] = React.useState(
-    false
-  )
+  const [showSignUpCompleteModal, setShowSignUpCompleteModal] = React.useState(false)
   const [showErrorMessage, setShowErrorMessage] = React.useState(false)
   const params = parseSearchParams(window.location.search)
   React.useEffect(() => {

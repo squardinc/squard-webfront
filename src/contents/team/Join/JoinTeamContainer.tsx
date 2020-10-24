@@ -86,7 +86,13 @@ const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
   handleJoinResponnse(team.id, joinAsGalleriesResponse)
   return (
     <>
-      <Loading loading={subscriptionResponse.loading || joinAsGalleriesResponse.loading} />
+      <Loading
+        loading={
+          subscriptionResponse.loading ||
+          !!subscriptionResponse.data ||
+          joinAsGalleriesResponse.loading
+        }
+      />
       <JoinTeam
         requestSubscription={async (teamClassId) => {
           const response = await request({

@@ -9,6 +9,8 @@ import * as colors from 'src/styles/colors'
 import * as Const from 'src/styles/const'
 import { Heading3 } from 'src/vendor/heading3'
 import styled from 'styled-components'
+// import { TeamModal } from '../../person/TeamModal'
+import { ConfirmJoinModal } from './ConfirmJoinModal'
 import JoinCard from './joinCard'
 
 type JoinTeamProps = {
@@ -98,9 +100,22 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
   requestJoinAsGalleries,
 }) => {
   const [openModal, setOpenModal] = React.useState<ModalType>('Closed')
+  const [isComfirmModal, setComfirmModal] = React.useState(false)
+  const [teamSelected, setTeamSelected] = React.useState({} as ITeamClass)
   const [showPaymentCancelledModal, setShowPaymentCancelledModal] = React.useState(
     hasPaymentCancelled
   )
+
+  const [currentPrice, setCurrentPrice] = React.useState<number>(-1)
+
+  React.useEffect(() => {
+    for (let i = 0; i < teamData.length; i++) {
+      if (teamData[i].classType === currentClass) {
+        setCurrentPrice(teamData[i].price)
+      }
+    }
+  }, [teamData])
+
   return (
     <>
       <JoinTeamWrapper>
@@ -128,20 +143,16 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
                 <JoinCard
                   key={i}
                   team={team}
+                  currentPrice={currentPrice}
                   currentClass={currentClass}
                   join={() => {
                     if (!loggedIn) {
                       setOpenModal('Login')
                       return
                     }
-                    if (
-                      team.classType === 'Galleries' ||
-                      (team.teamId === 'fagends' && team.classType == 'Prospects')
-                    ) {
-                      requestJoinAsGalleries(team.teamClassId)
-                      return
-                    }
-                    requestSubscription(team.teamClassId)
+
+                    setComfirmModal(true)
+                    setTeamSelected(team)
                   }}
                 />
               </CardWrapper>
@@ -155,6 +166,24 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
         <MessageModal
           closeModal={(e) => setShowPaymentCancelledModal(false)}
           message="チームへの参加をキャンセルしました。"
+        />
+      )}
+      {isComfirmModal && (
+        <ConfirmJoinModal
+          currentPrice={currentPrice}
+          currentClass={currentClass}
+          team={teamSelected}
+          closeModal={() => setComfirmModal(false)}
+          onPaying={() => {
+            if (
+              teamSelected.classType === 'Galleries' ||
+              (teamSelected.teamId === 'fagends' && teamSelected.classType == 'Prospects')
+            ) {
+              requestJoinAsGalleries(teamSelected.teamClassId)
+              return
+            }
+            requestSubscription(teamSelected.teamClassId)
+          }}
         />
       )}
     </>

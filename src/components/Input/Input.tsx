@@ -6,8 +6,9 @@ import * as Const from '../../styles/const'
 
 const Input = styled.input`
   :-webkit-autofill {
-    box-shadow: 0 0 0px 1000px #E6CA9B inset;
+    box-shadow: 0 0 0px 1000px #e6ca9b inset;
   }
+  font-size: 16px;
 `
 
 export interface InputProps {
@@ -67,7 +68,6 @@ export const RoundInput: React.FC<InputProps> = ({
       <Input
         className="ml-2 bg-gray-200 h-full w-full text-gray-600 focus:outline-none"
         style={{
-          fontSize: Const.fontSize.sm,
           fontFamily: Const.fontFamily.sans,
           fontWeight: Const.fontWeight.light,
           color: 'black',

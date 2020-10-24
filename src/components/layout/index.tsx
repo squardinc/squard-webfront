@@ -287,13 +287,9 @@ export function getLayoutStyle(props: FlexBoxProps) {
     flexWrap: props.wrap ? props.wrap : WrapType.wrap,
   }
 
-  let layoutStyle =
-    FlexLayoutRowValue[props.layoutType ? props.layoutType : LayoutType.topLeft]
+  let layoutStyle = FlexLayoutRowValue[props.layoutType ? props.layoutType : LayoutType.topLeft]
   if (props.direction === DirectionType.column) {
-    layoutStyle =
-      FlexLayoutColumnValue[
-        props.layoutType ? props.layoutType : LayoutType.topLeft
-      ]
+    layoutStyle = FlexLayoutColumnValue[props.layoutType ? props.layoutType : LayoutType.topLeft]
   }
 
   const mixStyle = { ...style, ...wrap, ...layoutStyle }
