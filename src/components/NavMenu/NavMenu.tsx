@@ -1,8 +1,8 @@
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { navigate } from 'gatsby'
 import React, { useState } from 'react'
-import { useSpring, animated } from 'react-spring'
-import { useDrag, useGesture } from 'react-use-gesture'
+import { animated, useSpring } from 'react-spring'
+import { useDrag } from 'react-use-gesture'
 import About from 'src/assets/about_icon.svg'
 import AddNewTeam from 'src/assets/add_new_team_icon.svg'
 import CompanyIcon from 'src/assets/company_icon.svg'
@@ -78,7 +78,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
           bottom: bottom > 0 ? -bottom : 0,
         }}
       >
-        <div style={{ width: '100%', height: '25x' }}>
+        <div style={{ width: '100%', height: '25px' }}>
           <div className={styles.navToggleBtn} />
         </div>
         <MenuItemContent>

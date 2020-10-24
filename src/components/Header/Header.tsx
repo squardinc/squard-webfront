@@ -75,7 +75,10 @@ export const Header = () => {
         show={showNavMenu}
         loggedIn={user.loggedIn}
         hideNavMenu={() => setShowNavMenu(false)}
-        showLoginModal={() => setOpenModal('Login')}
+        showLoginModal={() => {
+          setOpenModal('Login')
+          setShowNavMenu(false)
+        }}
         logout={async () => {
           await AuthService.logout()
           setUser(LoginUserModel.guest())
