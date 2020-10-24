@@ -21,7 +21,7 @@ export const TextDisplay: React.FC<TextDisplayProps> = ({
     <div
       className={`${className} ${
         onlyAlphanumeric(innerText(children)) ? styles.montserrat : styles.notosans
-      } whitespace-pre-wrap`}
+      }`}
       style={style ? { ...style } : {}}
     >
       {children}
