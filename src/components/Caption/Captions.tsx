@@ -16,15 +16,11 @@ export const LeftBorderCaption: React.FC<CaptionProps> = ({
 }) => {
   return (
     <div
-      className={
-        shadow ? styles.withLeftBorderAndShadow : styles.withLeftBorder
-      }
+      className={shadow ? styles.withLeftBorderAndShadow : styles.withLeftBorder}
       color={color}
       data-font-weight={fontWeight}
     >
-      <TextDisplay className={shadow ? styles['textShadow'] : ''}>
-        {text}
-      </TextDisplay>
+      <TextDisplay className={shadow ? styles['textShadow'] : ''}>{text}</TextDisplay>
     </div>
   )
 }
@@ -45,14 +41,8 @@ export const TwoStagedCaption: React.FC<TwoStagedCaptionProps> = ({
 }) => {
   return (
     <>
-      <LeftBorderCaption
-        text={sub}
-        fontWeight={subFontWeight}
-        shadow={shadow}
-      />
-      <TextDisplay
-        className={styles[style] + ' ' + (shadow ? styles['textShadow'] : '')}
-      >
+      <LeftBorderCaption text={sub} fontWeight={subFontWeight} shadow={shadow} />
+      <TextDisplay className={styles[style] + ' ' + (shadow ? styles['textShadow'] : '')}>
         {main}
       </TextDisplay>
     </>

@@ -1,8 +1,6 @@
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { navigate } from 'gatsby'
 import * as React from 'react'
-import TeamLinkIcon from 'src/assets/team_link.svg'
 import { ExternalLink } from 'src/components/Link/ExternalLink'
 import { asModal, ModalProps } from 'src/components/Modal/asModal'
 import {
@@ -16,17 +14,19 @@ import {
   TeamCardWrapper
 } from 'src/components/TeamCard'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import { IDisplayTeamMember, isLeavable } from 'src/models/person'
+import { ClassType } from 'src/models/person'
+import { ITeamClass } from 'src/models/team'
 import * as colors from 'src/styles/colors'
 import * as Const from 'src/styles/const'
-import { formattedDate } from 'src/utils/date'
 import { fadeIn } from 'src/utils/Modal'
 import { addComma } from 'src/utils/NumberFormatter'
 import styled from 'styled-components'
 
-type TeamModalProps = ModalProps & {
-  team: IDisplayTeamMember
-  onLeaveTeam: VoidFunction
+type ConfirmJoinModalProps = ModalProps & {
+  currentPrice: number
+  currentClass?: ClassType
+  team: ITeamClass
+  onPaying: VoidFunction
 }
 
 const CloseButton = styled.div`
@@ -35,8 +35,9 @@ const CloseButton = styled.div`
   right: 16px;
 `
 
-const LeaveTeamLabel = styled.div`
+const FooterBtn = styled.button`
   display: inline-block;
+  width: 70%;
   padding: 0 40px;
   border-radius: 30px;
   color: ${colors.textWhite};
@@ -45,13 +46,26 @@ const LeaveTeamLabel = styled.div`
   background: linear-gradient(70deg, ${colors.gradientRed}, ${colors.gradientYellow});
   font-weight: ${Const.fontWeight.medium};
   font-size: 16px;
-  cursor: pointer;  
 `
 
-const TeamModalComponent: React.FC<TeamModalProps> = ({ closeModal, team, onLeaveTeam }) => {
+const WarningWrapper = styled.div`
+  padding: 20px 20px;
+  padding-top: 0px;
+  font-size: 13px;
+`
+
+const ConfirmJoinModalComponent: React.FC<ConfirmJoinModalProps> = ({
+  currentClass,
+  currentPrice,
+  closeModal,
+  team,
+  onPaying,
+}) => {
   React.useEffect(() => {
     fadeIn()
   }, [])
+  const joinBtnText = team.price === 0 ? '参加する' : '決済画面に遷移する'
+  const warningProspects = `※ 現在参加中のクラス「${currentClass}」の、翌月以降の支払いは自動的に解除されます。`
 
   return (
     <div className="text-white rounded-xl bg-opacity-25 relative">
@@ -63,16 +77,16 @@ const TeamModalComponent: React.FC<TeamModalProps> = ({ closeModal, team, onLeav
         />
       </CloseButton>
       <TeamCardWrapper>
-        <FlagWrapper onClick={() => navigate(`/${team.pageId}`)} className="cursor-pointer">
+        <FlagWrapper>
           <Flag>
-            <div className="absolute top-0 right-0">
-              <TeamLinkIcon className="m-1" />
-            </div>
             <MainNameText>
-              <TextDisplay>{team.teamName}</TextDisplay>
-              <TextDisplay>{team.classType}</TextDisplay>
+              <TextDisplay>
+                {team.classType}
+                <br />
+                <div>{'として参加する'}</div>
+              </TextDisplay>
             </MainNameText>
-            {team.price != null && (
+            {(team.price != null) && (
               <PriceText>
                 <TextDisplay>￥{addComma(team.price)} / 月額</TextDisplay>
               </PriceText>
@@ -80,11 +94,6 @@ const TeamModalComponent: React.FC<TeamModalProps> = ({ closeModal, team, onLeav
           </Flag>
         </FlagWrapper>
         <EntitlementsWrapper>
-          {team.expireAt && (
-            <EntitlementText>
-              <TextDisplay>有効期間： ～{formattedDate(team.expireAt)}(自動更新)</TextDisplay>
-            </EntitlementText>
-          )}
           {team.benefits &&
             team.benefits.map((benefit, i) => (
               <EntitlementText key={i}>
@@ -94,21 +103,23 @@ const TeamModalComponent: React.FC<TeamModalProps> = ({ closeModal, team, onLeav
               </EntitlementText>
             ))}
         </EntitlementsWrapper>
-        {isLeavable(team.classType) && (
-          <CardBodyWrapper>
-            <LeaveTeamLabel
-              onClick={() => {
-                onLeaveTeam()
-              }}
-            >
-              <TextDisplay>チームを脱退する</TextDisplay>
-            </LeaveTeamLabel>
-          </CardBodyWrapper>
-        )}
+        <CardBodyWrapper>
+          {team.classType === 'Prospects' && currentPrice > 0 && (
+            <WarningWrapper>
+              <TextDisplay>{warningProspects}</TextDisplay>
+            </WarningWrapper>
+          )}
+          <FooterBtn onClick={onPaying}>
+            <TextDisplay>{joinBtnText}</TextDisplay>
+          </FooterBtn>
+          <FooterBtn style={{ marginTop: '10px' }} onClick={closeModal}>
+            <TextDisplay>キャンセル</TextDisplay>
+          </FooterBtn>
+        </CardBodyWrapper>
       </TeamCardWrapper>
     </div>
   )
 }
 
-export const TeamModal = asModal(TeamModalComponent)
-export default asModal(TeamModalComponent)
+export const ConfirmJoinModal = asModal(ConfirmJoinModalComponent)
+export default asModal(ConfirmJoinModalComponent)

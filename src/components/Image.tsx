@@ -8,16 +8,11 @@ interface StaticImageProps {
   image: image
   className?: any
 }
-export const StaticImageFluid: React.FC<StaticImageProps> = ({
-  image,
-  className,
-}) => {
+export const StaticImageFluid: React.FC<StaticImageProps> = ({ image, className }) => {
   return (
     <StaticQuery
       query={query}
-      render={(
-        data: { [key in image]: { childImageSharp: { fluid: FluidObject } } }
-      ) => {
+      render={(data: { [key in image]: { childImageSharp: { fluid: FluidObject } } }) => {
         const img = data[image]?.childImageSharp?.fluid as FluidObject
         if (!img) {
           return <></>

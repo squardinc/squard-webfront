@@ -43,11 +43,7 @@ export const FlagWrapper = styled.div`
 `
 
 export const Flag = styled.div`
-  background: linear-gradient(
-    to top,
-    ${colors.gradientRed},
-    ${colors.gradientYellow}
-  );
+  background: linear-gradient(to top, ${colors.gradientRed}, ${colors.gradientYellow});
   padding: 40px 10px 70px;
   text-align: center;
 

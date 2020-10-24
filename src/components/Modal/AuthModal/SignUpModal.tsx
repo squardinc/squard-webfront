@@ -5,8 +5,8 @@ import ExternalLink from 'src/components/Link/ExternalLink'
 import { asModal, ModalProps } from 'src/components/Modal/asModal'
 import { MessageModal } from 'src/components/Modal/MessageModal'
 import { DefaultModalContainer } from 'src/components/Modal/ModalContainer'
-// import { RoundButton } from 'src/components/Button/DefaultButton'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { LoadingContext } from 'src/context/LoadingContextProvider'
 import { AuthService } from 'src/services/AuthService'
 import { validEmaliAddress } from 'src/utils/StringValidator'
 import styled from 'styled-components'
@@ -77,6 +77,7 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
   )
   const [registrationUserId, setRegistrationUserId] = React.useState('')
   const [errorMesasge, setErrorMessage] = React.useState('')
+  const { setLoading } = React.useContext(LoadingContext)
 
   return (
     <>
@@ -134,15 +135,23 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
                 disabled={!isSubmittable}
                 onClick={async () => {
                   const { host, pathname } = window.location
-                  AuthService.signUp(email, password, host, pathname).then(
-                    (userId) => {
-                      setRegistrationUserId(userId)
-                    },
-                    (err) => {
-                      setErrorMessage(err)
-                    }
-                  )
-                  setErrorMessage('')
+                  try {
+                    setLoading(true)
+                    const userId = await AuthService.signUp(email, password, host, pathname)
+                    setLoading(false)
+                    setRegistrationUserId(userId)
+                  } catch (err) {
+                    setLoading(false)
+                    setErrorMessage(err)
+                  }
+
+                  // .then(
+                  //   (userId) => {
+                  //     setRegistrationUserId(userId)
+                  //   },
+                  //   (err) => {
+                  //     setErrorMessage(err)
+                  //   }
                 }}
               >
                 <TextDisplay>新規登録</TextDisplay>

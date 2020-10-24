@@ -9,15 +9,8 @@ interface SearchBarProps {
 export const SearchBar: React.FC<SearchBarProps> = ({ show }) => {
   return (
     <div className={styles.searchBar}>
-      <div
-        id="search"
-        className="pt-2 pl-1 relative mx-auto text-gray-600 w-full"
-      >
-        <div
-          className={`${styles.searchTransition} ${
-            show ? styles.open : styles.close
-          }`}
-        >
+      <div id="search" className="pt-2 pl-1 relative mx-auto text-gray-600 w-full">
+        <div className={`${styles.searchTransition} ${show ? styles.open : styles.close}`}>
           <input
             className="border-2 border-gray-300 bg-white h-12 w-full px-5 pr-16 rounded-full text-sm focus:outline-none"
             type="search"

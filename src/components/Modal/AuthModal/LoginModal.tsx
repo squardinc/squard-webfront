@@ -7,6 +7,7 @@ import { MessageModal } from 'src/components/Modal/MessageModal'
 import { DefaultModalContainer } from 'src/components/Modal/ModalContainer'
 // import { RoundButton } from 'src/components/Button/DefaultButton'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { LoadingContext } from 'src/context/LoadingContextProvider'
 import { UserContext } from 'src/context/UserContext'
 import { AuthService } from 'src/services/AuthService'
 import { validEmaliAddress } from 'src/utils/StringValidator'
@@ -153,8 +154,10 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
   showSignUpModal,
   showPasswordResetRequestModal,
 }) => {
+  const { setLoading } = React.useContext(LoadingContext)
   const { user, setUser } = React.useContext(UserContext)
   const [errorMesasge, setErrorMessage] = React.useState('')
+
   return (
     <>
       {user.loggedIn && (
@@ -167,11 +170,16 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
       {!errorMesasge ? (
         <LoginFormModal
           login={async (e, email, password) => {
-            AuthService.login(email, password).then(
-              (user) => setUser(user),
-              (err) => setErrorMessage(err)
-            )
             e.preventDefault()
+            try {
+              setLoading(true)
+              const user = await AuthService.login(email, password)
+              setUser(user)
+              setLoading(false)
+            } catch (err) {
+              setLoading(false)
+              setErrorMessage(err)
+            }
           }}
           closeModal={closeModal}
           showSignUpModal={showSignUpModal}

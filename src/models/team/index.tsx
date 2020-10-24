@@ -125,9 +125,7 @@ class TeamMembers {
 
   constructor(members: ITeamMember[], classes: ITeamClass[]) {
     members.forEach((member) => {
-      const teamClass = classes.find(
-        (each) => each.teamClassId === member.teamClassId
-      )
+      const teamClass = classes.find((each) => each.teamClassId === member.teamClassId)
       if (!teamClass) {
         throw new Error('TBA')
       }
@@ -184,17 +182,8 @@ export class Team {
   }
 
   static fromQueryResult = (result: GetTeamQuery) => {
-    const {
-      id,
-      name,
-      subTitle,
-      introduction,
-      topImage,
-      tags,
-      system,
-      classes,
-      members,
-    } = result?.getTeam || {}
+    const { id, name, subTitle, introduction, topImage, tags, system, classes, members } =
+      result?.getTeam || {}
     return new Team(
       id || '',
       name || '',
