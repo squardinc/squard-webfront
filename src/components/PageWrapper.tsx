@@ -12,9 +12,7 @@ export const PageWrapper: React.FC = ({ children }) => {
       <div className={`theme-${theme || 'dark'}`}>
         <div className="page-base-container bg-theme-bg-main text-theme-text-main">
           <Header />
-          <div className="page-base-body">
-            {children}
-          </div>
+          <div className="page-base-body">{children}</div>
           <Copyright />
         </div>
       </div>

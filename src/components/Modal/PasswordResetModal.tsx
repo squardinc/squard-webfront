@@ -27,9 +27,7 @@ const PasswordResetComponent: React.FC<PasswordResetComponentProps> = ({
     <>
       {!errorMesasge ? (
         <DefaultModalContainer closeModal={closeModal}>
-          <TextDisplay className="text-4xl font-semibold">
-            Password Reset
-          </TextDisplay>
+          <TextDisplay className="text-4xl font-semibold">Password Reset</TextDisplay>
           {!succeeded ? (
             <>
               <TextDisplay className="mb-8 text-sm">
@@ -38,11 +36,7 @@ const PasswordResetComponent: React.FC<PasswordResetComponentProps> = ({
               <PasswordInput value={password} onChange={setPassword} />
               <div className="flex flex-col">
                 <RoundButton
-                  className={
-                    isSubmittable
-                      ? 'text-black bg-white'
-                      : 'text-gray-600 bg-gray-500'
-                  }
+                  className={isSubmittable ? 'text-black bg-white' : 'text-gray-600 bg-gray-500'}
                   text="送信"
                   disabled={!isSubmittable}
                   onClick={async () => {
@@ -59,22 +53,13 @@ const PasswordResetComponent: React.FC<PasswordResetComponentProps> = ({
             </>
           ) : (
             <>
-              <TextDisplay className="mb-8 text-sm">
-                パスワードの再設定が完了しました。
-              </TextDisplay>
-              <RoundButton
-                className="border-2 text-lg"
-                text="OK"
-                onClick={closeModal}
-              />
+              <TextDisplay className="mb-8 text-sm">パスワードの再設定が完了しました。</TextDisplay>
+              <RoundButton className="border-2 text-lg" text="OK" onClick={closeModal} />
             </>
           )}
         </DefaultModalContainer>
       ) : (
-        <MessageModal
-          message={errorMesasge}
-          closeModal={() => setErrorMessage('')}
-        />
+        <MessageModal message={errorMesasge} closeModal={() => setErrorMessage('')} />
       )}
     </>
   )

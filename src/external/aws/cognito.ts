@@ -5,7 +5,7 @@ import {
   AWS_COGNITO_USERPOOL_CLIENT_ID,
   AWS_COGNITO_USERPOOL_DOMAIN,
   AWS_COGNITO_USERPOOL_ID,
-  AWS_REGION
+  AWS_REGION,
 } from 'src/utils/env'
 
 const configure = (origin: string) => {

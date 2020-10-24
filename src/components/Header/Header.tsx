@@ -1,9 +1,10 @@
 import { Link } from 'gatsby'
-import * as React from 'react'
+import React, { useEffect } from 'react'
 import Menu from 'src/assets/menu.svg'
 import { AuthModal, ModalType } from 'src/components/Modal/AuthModal'
 import { NavMenu } from 'src/components/NavMenu/NavMenu'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { LoadingContext } from 'src/context/LoadingContextProvider'
 import { UserContext } from 'src/context/UserContext'
 import { AuthService } from 'src/services/AuthService'
 import { LoginUserModel } from 'src/services/AuthService/LoginUserModel'
@@ -17,10 +18,30 @@ const Title = styled.div`
   margin-top: 2px;
 `
 
+function preventDefault(e) {
+  e.preventDefault()
+}
+
+function disableScroll() {
+  document.body.addEventListener('touchmove', preventDefault, { passive: false })
+}
+function enableScroll() {
+  document.body.removeEventListener('touchmove', preventDefault)
+}
+
 export const Header = () => {
   const { user, setUser } = React.useContext(UserContext)
   const [openModal, setOpenModal] = React.useState<ModalType>('Closed')
   const [showNavMenu, setShowNavMenu] = React.useState(false)
+  const { setLoading } = React.useContext(LoadingContext)
+
+  useEffect(() => {
+    if (showNavMenu) {
+      disableScroll()
+    } else {
+      enableScroll()
+    }
+  }, [showNavMenu])
 
   return (
     <React.Fragment>
@@ -56,9 +77,15 @@ export const Header = () => {
         show={showNavMenu}
         loggedIn={user.loggedIn}
         hideNavMenu={() => setShowNavMenu(false)}
-        showLoginModal={() => setOpenModal('Login')}
+        showLoginModal={() => {
+          setOpenModal('Login')
+          setShowNavMenu(false)
+        }}
         logout={async () => {
+          setShowNavMenu(false)
+          setLoading(true)
           await AuthService.logout()
+          setLoading(false)
           setUser(LoginUserModel.guest())
           setOpenModal('Logout')
         }}

@@ -9,9 +9,7 @@ export const FooterWrapper: React.FC = ({ children }) => {
     <div className="bg-theme-bg-main text-theme-text-main">
       <div
         className="content-footer"
-        style={
-          theme === 'dark' ? { backgroundImage: `url(${backgroundImage})` } : {}
-        }
+        style={theme === 'dark' ? { backgroundImage: `url(${backgroundImage})` } : {}}
       >
         {children}
       </div>

@@ -7,7 +7,7 @@ import {
   FlagWrapper,
   MainNameText,
   SubNameText,
-  TeamCardWrapper
+  TeamCardWrapper,
 } from 'src/components/TeamCard'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { ClassType } from 'src/models/person'
@@ -19,6 +19,7 @@ import styled from 'styled-components'
 
 type JoinCardProps = {
   team: ITeamClass
+  currentPrice: number
   currentClass?: ClassType
   join: VoidFunction
 }
@@ -64,8 +65,12 @@ const JoinNowButton = styled.button`
   font-size: 16px;
 `
 
-const JoinCard: React.FC<JoinCardProps> = ({ team, currentClass, join }) => {
+const JoinCard: React.FC<JoinCardProps> = ({ team, currentClass, currentPrice, join }) => {
   const formattedPrice = addComma(team.price)
+
+  const shouldJoin = currentPrice < team.price
+  //  !currentClass || (currentClass === 'Galleries' && team.classType !== 'Galleries')
+  const joinBtnText = shouldJoin ? '参加する' : '参加済'
 
   return (
     <JoinCardAnchor id={team.classType}>
@@ -97,14 +102,10 @@ const JoinCard: React.FC<JoinCardProps> = ({ team, currentClass, join }) => {
         <CardBodyWrapper>
           <JoinNowButton
             onClick={join}
-            disabled={!!currentClass}
-            className={currentClass ? 'cursor-not-allowed' : ''}
+            disabled={!shouldJoin}
+            className={!shouldJoin ? 'cursor-not-allowed' : ''}
           >
-            {currentClass ? (
-              <TextDisplay>参加済</TextDisplay>
-            ) : (
-              <TextDisplay>今すぐ参加する</TextDisplay>
-            )}
+            <TextDisplay>{joinBtnText}</TextDisplay>
           </JoinNowButton>
         </CardBodyWrapper>
       </TeamCardWrapper>

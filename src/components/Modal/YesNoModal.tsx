@@ -20,19 +20,11 @@ export const MessageCompoenent: React.FC<MessageComponentProps> = ({
   executeButtonText = 'Execute',
 }) => (
   <DefaultModalContainer closeModal={closeModal}>
-    <TextDisplay className="text-4xl font-semibold">{title}</TextDisplay>
+    <TextDisplay className="text-3xl font-semibold">{title}</TextDisplay>
     <div className="flex flex-col justify-center items-center">
-      <TextDisplay className="mb-8">{message}</TextDisplay>
-      <RoundButton
-        className="border-2 text-lg"
-        text={executeButtonText}
-        onClick={onExecute}
-      />
-      <RoundButton
-        className="border-2 text-lg"
-        text={cancelButtonText}
-        onClick={closeModal}
-      />
+      <TextDisplay className="mb-8 whitespace-pre-wrap">{message}</TextDisplay>
+      <RoundButton className="border-2 text-lg" text={executeButtonText} onClick={onExecute} />
+      <RoundButton className="border-2 text-lg" text={cancelButtonText} onClick={closeModal} />
     </div>
   </DefaultModalContainer>
 )

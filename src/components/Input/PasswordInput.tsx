@@ -6,10 +6,7 @@ interface PasswordInput {
   value: string
   onChange: (value: string) => void
 }
-export const PasswordInput: React.FC<PasswordInput> = ({
-  value = '',
-  onChange,
-}) => {
+export const PasswordInput: React.FC<PasswordInput> = ({ value = '', onChange }) => {
   return (
     <RoundInput
       onChange={(value) => {

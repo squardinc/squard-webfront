@@ -19,11 +19,7 @@ const HeaderWrapper = styled.div`
     content: '';
     display: block;
     height: 2px;
-    background: linear-gradient(
-      to right,
-      $gradient-yellow 0%,
-      $gradient-red 100%
-    );
+    background: linear-gradient(to right, $gradient-yellow 0%, $gradient-red 100%);
   }
 `
 
@@ -71,11 +67,7 @@ export const ManagementSystem: React.FC<ManagementSystemProps> = (props) => {
   return (
     <div>
       <HeaderWrapper>
-        <Heading2
-          main="MANAGEMENT SYSTEM"
-          sub="マネジメントシステム"
-          size="24px"
-        />
+        <Heading2 main="MANAGEMENT SYSTEM" sub="マネジメントシステム" size="24px" />
       </HeaderWrapper>
 
       <Description>
@@ -109,4 +101,4 @@ export const ManagementSystem: React.FC<ManagementSystemProps> = (props) => {
   )
 }
 
-export default ManagementSystem;
+export default ManagementSystem

@@ -23,11 +23,7 @@ export const CompleteCompoenent: React.FC<CompleteComponentProps> = ({
         <TextDisplay className="mb-8 text-lg">{headerDescription}</TextDisplay>
         <Complete />
         <TextDisplay className="mt-10 text-lg">{footerDescription}</TextDisplay>
-        <RoundButton
-          className="border-2 text-lg"
-          text="OK"
-          onClick={closeModal}
-        />
+        <RoundButton className="border-2 text-lg" text="OK" onClick={closeModal} />
       </div>
     </DefaultModalContainer>
   )

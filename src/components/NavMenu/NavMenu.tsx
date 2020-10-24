@@ -1,6 +1,8 @@
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { navigate } from 'gatsby'
-import * as React from 'react'
+import React, { useState } from 'react'
+import { animated, useSpring } from 'react-spring'
+import { useDrag } from 'react-use-gesture'
 import About from 'src/assets/about_icon.svg'
 import AddNewTeam from 'src/assets/add_new_team_icon.svg'
 import CompanyIcon from 'src/assets/company_icon.svg'
@@ -35,6 +37,26 @@ export const NavMenu: React.FC<NavMenuProps> = ({
     hideNavMenu()
     navigate(to)
   }
+  const [bottom, setBottom] = useState(0)
+  const [props, set] = useSpring(() => ({ y: 0 }))
+  const bind = useDrag(({ down, movement: [x, y] }) => {
+    if (!down) {
+      if (y > 30) {
+        hideNavMenu()
+        setTimeout(function () {
+          set({ y: 0 })
+          setBottom(0)
+        }, 1000)
+      } else {
+        set({ y: 0 })
+        setBottom(0)
+      }
+    } else {
+      setBottom(y)
+      set({ y: y })
+    }
+  })
+
   return (
     <>
       {show ? (
@@ -45,7 +67,14 @@ export const NavMenu: React.FC<NavMenuProps> = ({
       ) : (
         ''
       )}
-      <div className={`${styles.navMenu} ${show ? styles.open : styles.close} bg-v-gradient`}>
+
+      <animated.div
+        {...bind()}
+        className={`${styles.navMenu} ${show ? styles.open : styles.close} bg-v-gradient`}
+        style={{
+          bottom: bottom > 0 ? -bottom : 0,
+        }}
+      >
         <div style={{ width: '100%', height: '25px' }} onClick={hideNavMenu}>
           <div className={styles.navToggleBtn} />
         </div>
@@ -84,7 +113,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
             onClick={loggedIn ? logout : undefined}
           />
         </MenuItemContent>
-      </div>
+      </animated.div>
     </>
   )
 }

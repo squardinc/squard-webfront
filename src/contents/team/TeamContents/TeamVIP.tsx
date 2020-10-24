@@ -18,17 +18,11 @@ const VIP: React.FC<VIPProps> = ({ vip }) => {
           <div className={styles.vipCaption}>
             <div className={styles.vipCaptionTop}>
               <TextDisplay className={styles.vipName}>{name}</TextDisplay>
-              <TextDisplay className={styles.vipIntroduction}>
-                {vip.introduction}
-              </TextDisplay>
+              <TextDisplay className={styles.vipIntroduction}>{vip.introduction}</TextDisplay>
             </div>
             <div className={styles.vipLinks}>
               <div className="bg-yellow text-black rounded-full h-12 w-12 flex items-center justify-center mr-2">
-                <FontAwesomeIcon
-                  icon={faPaperPlane}
-                  size="1x"
-                  cursor="pointer"
-                />
+                <FontAwesomeIcon icon={faPaperPlane} size="1x" cursor="pointer" />
               </div>
               <div className="bg-yellow text-black rounded-full h-12 w-12 flex items-center justify-center mr-2">
                 <FontAwesomeIcon icon={faLink} size="1x" cursor="pointer" />

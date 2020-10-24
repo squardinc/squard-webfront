@@ -76,13 +76,9 @@ const ImageProfileEditComponent: React.FC<ImageProfileProps> = ({
   setTopImage,
   setIcon,
 }) => {
-  const [showTopImageEditModal, setShowTopImageEditModal] = React.useState(
-    false
-  )
+  const [showTopImageEditModal, setShowTopImageEditModal] = React.useState(false)
   const [showIconEditModal, setShowIconEditModal] = React.useState(false)
-  const [topImagePreviewUrl, setTopImagePreviewUrl] = React.useState<string>(
-    topImage
-  )
+  const [topImagePreviewUrl, setTopImagePreviewUrl] = React.useState<string>(topImage)
   const [iconPreviewUrl, setIconPreviewUrl] = React.useState<string>(icon)
   const [editingTopImage, setEditingTopImage] = React.useState<string>('')
   const [editingIcon, setEditingIcon] = React.useState<string>('')
@@ -154,8 +150,7 @@ const ImageProfileEditComponent: React.FC<ImageProfileProps> = ({
           fileName="top.jpeg"
           contentType="image/jpeg"
           closeModal={() => {
-            if (typeof window !== 'undefined')
-              window.URL.revokeObjectURL(topImagePreviewUrl)
+            if (typeof window !== 'undefined') window.URL.revokeObjectURL(topImagePreviewUrl)
             setShowTopImageEditModal(false)
           }}
           editingImg={editingTopImage}

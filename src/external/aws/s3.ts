@@ -11,11 +11,7 @@ Amplify.configure({
   },
 })
 
-export const uploadImg = async (
-  fileName: string,
-  image: Blob,
-  contentType: string
-) => {
+export const uploadImg = async (fileName: string, image: Blob, contentType: string) => {
   const identityId = await currentIdentityId()
   const filePath = `${identityId}/${fileName}`
   await Storage.put(filePath, new File([image], 'img.jpeg'), { contentType })

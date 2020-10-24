@@ -14,8 +14,7 @@ const ItemWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  cursor: ${(props: ItemWrapperStyleProps) =>
-    props.clickable ? 'pointer' : 'default'};
+  cursor: ${(props: ItemWrapperStyleProps) => (props.clickable ? 'pointer' : 'default')};
 `
 const TitleWrapper = styled.div`
   color: white;
@@ -30,13 +29,7 @@ export interface ItemProps {
   fontWeight?: number
   onClick?: VoidFunction
 }
-export const Item: React.FC<ItemProps> = ({
-  title,
-  onClick,
-  align,
-  fontSize,
-  fontWeight,
-}) => {
+export const Item: React.FC<ItemProps> = ({ title, onClick, align, fontSize, fontWeight }) => {
   return (
     <ItemWrapper clickable={!!onClick} onClick={() => onClick && onClick()}>
       <TitleWrapper
@@ -72,21 +65,11 @@ interface TabMenuProps {
   style?: React.CSSProperties
 }
 
-export const TabMenuBar: React.FC<TabMenuProps> = ({
-  title,
-  onCancel,
-  onSave,
-  style = {},
-}) => {
+export const TabMenuBar: React.FC<TabMenuProps> = ({ title, onCancel, onSave, style = {} }) => {
   return (
     <TabMenuWrapper style={style}>
       <TabMenuItemWrapper>
-        <Item
-          title="キャンセル"
-          align={'left'}
-          fontWeight={500}
-          onClick={onCancel}
-        />
+        <Item title="キャンセル" align={'left'} fontWeight={500} onClick={onCancel} />
       </TabMenuItemWrapper>
       <TabMenuItemWrapper>
         <Item title={title} align={'center'} />

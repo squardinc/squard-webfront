@@ -1,9 +1,8 @@
-import * as React from 'react'
-import { ModalProps } from './asModal'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import * as React from 'react'
 import { fadeIn } from 'src/utils/Modal'
-
+import { ModalProps } from './asModal'
 export const DefaultModalContainer: React.FC<ModalProps> = ({
   children,
   closeModal,
