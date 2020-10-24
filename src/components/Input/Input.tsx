@@ -68,7 +68,6 @@ export const RoundInput: React.FC<InputProps> = ({
       <Input
         className="ml-2 bg-gray-200 h-full w-full text-gray-600 focus:outline-none"
         style={{
-          fontSize: Const.fontSize.sm,
           fontFamily: Const.fontFamily.sans,
           fontWeight: Const.fontWeight.light,
           color: 'black',
