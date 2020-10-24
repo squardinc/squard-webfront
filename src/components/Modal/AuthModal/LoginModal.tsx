@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { EMailAddressInput } from 'src/components/Input/EMailAddressInput'
 import { PasswordInput } from 'src/components/Input/PasswordInput'
+import Loading from 'src/components/Loading'
 import { asModal, ModalProps } from 'src/components/Modal/asModal'
 import { CompleteModal } from 'src/components/Modal/CompleteModal'
 import { MessageModal } from 'src/components/Modal/MessageModal'
@@ -65,12 +66,14 @@ const RoundButton = styled.button`
 `
 
 interface LoginFormProps {
+  isLoading: boolean
   login: (e: React.MouseEvent, email: string, password: string) => Promise<void>
   closeModal: (e: React.MouseEvent) => void
   showPasswordResetRequestModal: (e: React.MouseEvent) => void
   showSignUpModal: (e: React.MouseEvent) => void
 }
 const LoginFormModal: React.FC<LoginFormProps> = ({
+  isLoading,
   login,
   closeModal,
   showPasswordResetRequestModal,
@@ -84,6 +87,7 @@ const LoginFormModal: React.FC<LoginFormProps> = ({
   ])
   return (
     <DefaultModalContainer closeModal={closeModal}>
+      <Loading fromModal={true} loading={isLoading} />
       <LoginContent>
         <LoginTitle>
           <TextDisplay>Login</TextDisplay>
@@ -155,6 +159,8 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
 }) => {
   const { user, setUser } = React.useContext(UserContext)
   const [errorMesasge, setErrorMessage] = React.useState('')
+  const [isLoading, setLoading] = React.useState<boolean>(false)
+
   return (
     <>
       {user.loggedIn && (
@@ -166,12 +172,17 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
       )}
       {!errorMesasge ? (
         <LoginFormModal
+          isLoading={isLoading}
           login={async (e, email, password) => {
-            AuthService.login(email, password).then(
-              (user) => setUser(user),
-              (err) => setErrorMessage(err)
-            )
             e.preventDefault()
+            try {
+              setLoading(true)
+              const user = await AuthService.login(email, password)
+              setUser(user)
+              setLoading(false)
+            } catch (err) {
+              setErrorMessage(err)
+            }
           }}
           closeModal={closeModal}
           showSignUpModal={showSignUpModal}
