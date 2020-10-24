@@ -2,6 +2,7 @@ import * as React from 'react'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { AuthModal, ModalType } from 'src/components/Modal/AuthModal'
 import { MessageModal } from 'src/components/Modal/MessageModal'
+import { YesNoModal } from 'src/components/Modal/YesNoModal'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { ClassType } from 'src/models/person'
 import { ITeamClass } from 'src/models/team'
@@ -98,9 +99,12 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
   requestJoinAsGalleries,
 }) => {
   const [openModal, setOpenModal] = React.useState<ModalType>('Closed')
-  const [showPaymentCancelledModal, setShowPaymentCancelledModal] = React.useState(
-    hasPaymentCancelled
-  )
+  const [isComfirmModal, setComfirmModal] = React.useState(false)
+  const [teamSelected, setTeamSelected] = React.useState({} as ITeamClass)
+  const [
+    showPaymentCancelledModal,
+    setShowPaymentCancelledModal,
+  ] = React.useState(hasPaymentCancelled)
   return (
     <>
       <JoinTeamWrapper>
@@ -134,14 +138,9 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
                       setOpenModal('Login')
                       return
                     }
-                    if (
-                      team.classType === 'Galleries' ||
-                      (team.teamId === 'fagends' && team.classType == 'Prospects')
-                    ) {
-                      requestJoinAsGalleries(team.teamClassId)
-                      return
-                    }
-                    requestSubscription(team.teamClassId)
+
+                    setComfirmModal(true)
+                    setTeamSelected(team)
                   }}
                 />
               </CardWrapper>
@@ -155,6 +154,25 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
         <MessageModal
           closeModal={(e) => setShowPaymentCancelledModal(false)}
           message="チームへの参加をキャンセルしました。"
+        />
+      )}
+      {isComfirmModal && (
+        <YesNoModal
+          title={``}
+          closeModal={() => setComfirmModal(false)}
+          onExecute={() => {
+            if (
+              teamSelected.classType === 'Galleries' ||
+              (teamSelected.teamId === 'fagends' && teamSelected.classType == 'Prospects')
+            ) {
+              requestJoinAsGalleries(teamSelected.teamClassId)
+              return
+            }
+            requestSubscription(teamSelected.teamClassId)
+          }}
+          message={`本当に${teamSelected.classType}参加しすますか`}
+          executeButtonText="参加する"
+          cancelButtonText="キャンセル"
         />
       )}
     </>
