@@ -105,6 +105,17 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
   const [showPaymentCancelledModal, setShowPaymentCancelledModal] = React.useState(
     hasPaymentCancelled
   )
+
+  const [currentPrice, setCurrentPrice] = React.useState<number>(0)
+
+  React.useEffect(() => {
+    for (let i = 0; i < teamData.length; i++) {
+      if (teamData[i].classType === currentClass) {
+        setCurrentPrice(teamData[i].price)
+      }
+    }
+  }, [teamData])
+
   return (
     <>
       <JoinTeamWrapper>
@@ -158,6 +169,8 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
       )}
       {isComfirmModal && (
         <ConfirmJoinModal
+          currentPrice={currentPrice}
+          currentClass={currentClass}
           team={teamSelected}
           closeModal={() => setComfirmModal(false)}
           onPaying={() => {

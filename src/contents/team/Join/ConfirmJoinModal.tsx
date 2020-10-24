@@ -14,6 +14,7 @@ import {
   TeamCardWrapper,
 } from 'src/components/TeamCard'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { ClassType } from 'src/models/person'
 import { ITeamClass } from 'src/models/team'
 import * as colors from 'src/styles/colors'
 import * as Const from 'src/styles/const'
@@ -22,6 +23,8 @@ import { addComma } from 'src/utils/NumberFormatter'
 import styled from 'styled-components'
 
 type ConfirmJoinModalProps = ModalProps & {
+  currentPrice: number
+  currentClass?: ClassType
   team: ITeamClass
   onPaying: VoidFunction
 }
@@ -45,7 +48,15 @@ const FooterBtn = styled.button`
   font-size: 16px;
 `
 
+const WarningWrapper = styled.div`
+  padding: 20px 20px;
+  padding-top: 0px;
+  font-size: 13px;
+`
+
 const ConfirmJoinModalComponent: React.FC<ConfirmJoinModalProps> = ({
+  currentClass,
+  currentPrice,
   closeModal,
   team,
   onPaying,
@@ -53,8 +64,8 @@ const ConfirmJoinModalComponent: React.FC<ConfirmJoinModalProps> = ({
   React.useEffect(() => {
     fadeIn()
   }, [])
-  const classType = `${team.classType}`
   const joinBtnText = team.price === 0 ? '参加する' : '決済画面に遷移する'
+  const warningProspects = `※ 現在参加中のクラス「${currentClass}」の、翌月以降の支払いは自動的に解除されます。`
 
   return (
     <div className="text-white rounded-xl bg-opacity-25 relative">
@@ -70,7 +81,7 @@ const ConfirmJoinModalComponent: React.FC<ConfirmJoinModalProps> = ({
           <Flag>
             <MainNameText>
               <TextDisplay>
-                {classType}
+                {team.classType}
                 <br />
                 <div>{'として参加する'}</div>
               </TextDisplay>
@@ -93,6 +104,11 @@ const ConfirmJoinModalComponent: React.FC<ConfirmJoinModalProps> = ({
             ))}
         </EntitlementsWrapper>
         <CardBodyWrapper>
+          {team.classType === 'Prospects' && currentPrice > 0 && (
+            <WarningWrapper>
+              <TextDisplay>{warningProspects}</TextDisplay>
+            </WarningWrapper>
+          )}
           <FooterBtn onClick={onPaying}>
             <TextDisplay>{joinBtnText}</TextDisplay>
           </FooterBtn>

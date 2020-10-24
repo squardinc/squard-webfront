@@ -7,7 +7,7 @@ import {
   FlagWrapper,
   MainNameText,
   SubNameText,
-  TeamCardWrapper
+  TeamCardWrapper,
 } from 'src/components/TeamCard'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { ClassType } from 'src/models/person'
@@ -66,8 +66,17 @@ const JoinNowButton = styled.button`
 
 const JoinCard: React.FC<JoinCardProps> = ({ team, currentClass, join }) => {
   const formattedPrice = addComma(team.price)
-  const joinBtnText = '参加する'
-  console.log("currentClass ---- ", currentClass)
+
+  // function getShouldJoin() {
+  //   let result: boolean = false
+
+  //   return result
+  // }
+
+  const shouldJoin =
+    !currentClass || (currentClass === 'Galleries' && team.classType !== 'Galleries')
+  const joinBtnText = shouldJoin ? '参加する' : '参加済'
+  console.log('currentClass -- ', currentClass)
   return (
     <JoinCardAnchor id={team.classType}>
       <TeamCardWrapper>
@@ -98,14 +107,10 @@ const JoinCard: React.FC<JoinCardProps> = ({ team, currentClass, join }) => {
         <CardBodyWrapper>
           <JoinNowButton
             onClick={join}
-            disabled={!!currentClass}
-            className={currentClass ? 'cursor-not-allowed' : ''}
+            disabled={!shouldJoin}
+            className={!shouldJoin ? 'cursor-not-allowed' : ''}
           >
-            {currentClass ? (
-              <TextDisplay>参加済</TextDisplay>
-            ) : (
-              <TextDisplay>{joinBtnText}</TextDisplay>
-            )}
+            <TextDisplay>{joinBtnText}</TextDisplay>
           </JoinNowButton>
         </CardBodyWrapper>
       </TeamCardWrapper>
