@@ -1,7 +1,7 @@
+import CSS from 'csstype'
 import * as React from 'react'
 import innerText from 'react-innertext'
 import styles from './TextDisplay.module.scss'
-import CSS from 'csstype'
 
 const REGEX = /^[a-zA-Z0-9!-/:-@¥[-`{-~'? "©]*$/
 const onlyAlphanumeric = (text: string) => REGEX.test(text)
@@ -21,7 +21,7 @@ export const TextDisplay: React.FC<TextDisplayProps> = ({
     <div
       className={`${className} ${
         onlyAlphanumeric(innerText(children)) ? styles.montserrat : styles.notosans
-      }`}
+      } whitespace-pre-wrap`}
       style={style ? { ...style } : {}}
     >
       {children}

@@ -11,10 +11,12 @@ import {
   FlagWrapper,
   MainNameText,
   PriceText,
-  TeamCardWrapper,
+  TeamCardWrapper
 } from 'src/components/TeamCard'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { IDisplayTeamMember, isLeavable } from 'src/models/person'
+import * as colors from 'src/styles/colors'
+import * as Const from 'src/styles/const'
 import { formattedDate } from 'src/utils/date'
 import { fadeIn } from 'src/utils/Modal'
 import { addComma } from 'src/utils/NumberFormatter'
@@ -32,8 +34,15 @@ const CloseButton = styled.div`
 `
 
 const LeaveTeamLabel = styled.div`
-  font-size: 0.8rem;
-  cursor: pointer;
+  display: inline-block;
+  padding: 0 40px;
+  border-radius: 30px;
+  color: ${colors.textWhite};
+  height: 50px;
+  line-height: 50px;
+  background: linear-gradient(70deg, ${colors.gradientRed}, ${colors.gradientYellow});
+  font-weight: ${Const.fontWeight.medium};
+  font-size: 16px;
 `
 
 const TeamModalComponent: React.FC<TeamModalProps> = ({ closeModal, team, onLeaveTeam }) => {
@@ -57,7 +66,7 @@ const TeamModalComponent: React.FC<TeamModalProps> = ({ closeModal, team, onLeav
               <TextDisplay>{team.teamName}</TextDisplay>
               <TextDisplay>{team.classType}</TextDisplay>
             </MainNameText>
-            {team.price && (
+            {team.price != null && (
               <PriceText>
                 <TextDisplay>￥{addComma(team.price)} / 月額</TextDisplay>
               </PriceText>
