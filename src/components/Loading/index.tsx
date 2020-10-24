@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as React from 'react'
 import styled, { keyframes } from 'styled-components'
 
-const LoadingMask = styled.div<{ fromModal: boolean }>`
+const LoadingMask = styled.div`
   position: fixed;
   top: 0;
   right: 0;
@@ -13,8 +13,8 @@ const LoadingMask = styled.div<{ fromModal: boolean }>`
   align-items: center;
   justify-content: center;
   z-index: 10000;
-  opacity: ${(props) => (props.fromModal ? 1 : 0.5)};
-  background: ${(props) => (props.fromModal ? 'transparent' : '#000')};
+  opacity: 0.5;
+  background: #000;
 `
 
 const rotate = keyframes`
@@ -32,13 +32,12 @@ const Spinner = styled.div`
 
 interface LoadingProps {
   loading: boolean
-  fromModal?: boolean
 }
 
-const Loading: React.FC<LoadingProps> = ({ children, loading, fromModal }) => {
+const Loading: React.FC<LoadingProps> = ({ children, loading }) => {
   if (loading) {
     return (
-      <LoadingMask fromModal={fromModal}>
+      <LoadingMask>
         <Spinner>
           <FontAwesomeIcon icon={faSpinner} size="lg" color="white" />
         </Spinner>

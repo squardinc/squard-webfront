@@ -39,7 +39,7 @@ const PasswordResetRequestComponent: React.FC<PasswordResetRequestComponentProps
 
   return (
     <>
-      <Loading loading={isLoading} fromModal={true} />
+      <Loading loading={isLoading} />
       {!errorMesasge ? (
         <DefaultModalContainer closeModal={closeModal}>
           <TextDisplay className="text-4xl font-semibold">Password Reset</TextDisplay>

@@ -87,7 +87,7 @@ const LoginFormModal: React.FC<LoginFormProps> = ({
   ])
   return (
     <DefaultModalContainer closeModal={closeModal}>
-      <Loading fromModal={true} loading={isLoading} />
+      <Loading loading={isLoading} />
       <LoginContent>
         <LoginTitle>
           <TextDisplay>Login</TextDisplay>

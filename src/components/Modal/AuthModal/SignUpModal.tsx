@@ -81,7 +81,7 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
 
   return (
     <>
-      <Loading loading={isLoading} fromModal={true} />
+      <Loading loading={isLoading} />
       {registrationUserId && (
         <MessageModal
           title="SignUp"
