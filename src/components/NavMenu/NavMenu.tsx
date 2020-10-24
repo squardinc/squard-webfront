@@ -40,7 +40,6 @@ export const NavMenu: React.FC<NavMenuProps> = ({
   const [bottom, setBottom] = useState(0)
   const [props, set] = useSpring(() => ({ y: 0 }))
   const bind = useDrag(({ down, movement: [x, y] }) => {
-    console.log(y)
     if (!down) {
       if (y > 30) {
         hideNavMenu()
