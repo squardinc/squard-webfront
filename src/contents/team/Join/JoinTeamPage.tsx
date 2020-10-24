@@ -2,7 +2,6 @@ import * as React from 'react'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { AuthModal, ModalType } from 'src/components/Modal/AuthModal'
 import { MessageModal } from 'src/components/Modal/MessageModal'
-import { YesNoModal } from 'src/components/Modal/YesNoModal'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { ClassType } from 'src/models/person'
 import { ITeamClass } from 'src/models/team'
@@ -10,6 +9,8 @@ import * as colors from 'src/styles/colors'
 import * as Const from 'src/styles/const'
 import { Heading3 } from 'src/vendor/heading3'
 import styled from 'styled-components'
+// import { TeamModal } from '../../person/TeamModal'
+import { ConfirmJoinModal } from './ConfirmJoinModal'
 import JoinCard from './joinCard'
 
 type JoinTeamProps = {
@@ -156,10 +157,10 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
         />
       )}
       {isComfirmModal && (
-        <YesNoModal
-          title={``}
+        <ConfirmJoinModal
+          team={teamSelected}
           closeModal={() => setComfirmModal(false)}
-          onExecute={() => {
+          onPaying={() => {
             if (
               teamSelected.classType === 'Galleries' ||
               (teamSelected.teamId === 'fagends' && teamSelected.classType == 'Prospects')
@@ -169,9 +170,6 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
             }
             requestSubscription(teamSelected.teamClassId)
           }}
-          message={`本当に${teamSelected.classType}参加しすますか`}
-          executeButtonText="参加する"
-          cancelButtonText="キャンセル"
         />
       )}
     </>

@@ -76,7 +76,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
           bottom: bottom > 0 ? -bottom : 0,
         }}
       >
-        <div style={{ width: '100%', height: '25px' }}>
+        <div style={{ width: '100%', height: '25px' }} onClick={hideNavMenu}>
           <div className={styles.navToggleBtn} />
         </div>
         <MenuItemContent>

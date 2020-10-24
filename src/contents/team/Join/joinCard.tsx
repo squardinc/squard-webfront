@@ -66,6 +66,7 @@ const JoinNowButton = styled.button`
 
 const JoinCard: React.FC<JoinCardProps> = ({ team, currentClass, join }) => {
   const formattedPrice = addComma(team.price)
+  const joinBtnText = '参加する'
 
   return (
     <JoinCardAnchor id={team.classType}>
@@ -103,7 +104,7 @@ const JoinCard: React.FC<JoinCardProps> = ({ team, currentClass, join }) => {
             {currentClass ? (
               <TextDisplay>参加済</TextDisplay>
             ) : (
-              <TextDisplay>今すぐ参加する</TextDisplay>
+              <TextDisplay>{joinBtnText}</TextDisplay>
             )}
           </JoinNowButton>
         </CardBodyWrapper>
