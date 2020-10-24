@@ -106,7 +106,7 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
     hasPaymentCancelled
   )
 
-  const [currentPrice, setCurrentPrice] = React.useState<number>(0)
+  const [currentPrice, setCurrentPrice] = React.useState<number>(-1)
 
   React.useEffect(() => {
     for (let i = 0; i < teamData.length; i++) {
@@ -143,6 +143,7 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
                 <JoinCard
                   key={i}
                   team={team}
+                  currentPrice={currentPrice}
                   currentClass={currentClass}
                   join={() => {
                     if (!loggedIn) {

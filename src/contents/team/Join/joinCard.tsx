@@ -19,6 +19,7 @@ import styled from 'styled-components'
 
 type JoinCardProps = {
   team: ITeamClass
+  currentPrice: number
   currentClass?: ClassType
   join: VoidFunction
 }
@@ -64,19 +65,13 @@ const JoinNowButton = styled.button`
   font-size: 16px;
 `
 
-const JoinCard: React.FC<JoinCardProps> = ({ team, currentClass, join }) => {
+const JoinCard: React.FC<JoinCardProps> = ({ team, currentClass, currentPrice, join }) => {
   const formattedPrice = addComma(team.price)
 
-  // function getShouldJoin() {
-  //   let result: boolean = false
-
-  //   return result
-  // }
-
-  const shouldJoin =
-    !currentClass || (currentClass === 'Galleries' && team.classType !== 'Galleries')
+  const shouldJoin = currentPrice < team.price
+  //  !currentClass || (currentClass === 'Galleries' && team.classType !== 'Galleries')
   const joinBtnText = shouldJoin ? '参加する' : '参加済'
-  console.log('currentClass -- ', currentClass)
+
   return (
     <JoinCardAnchor id={team.classType}>
       <TeamCardWrapper>
