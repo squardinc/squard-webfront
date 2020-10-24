@@ -2,11 +2,11 @@ import * as React from 'react'
 import { EMailAddressInput } from 'src/components/Input/EMailAddressInput'
 import { PasswordInput } from 'src/components/Input/PasswordInput'
 import ExternalLink from 'src/components/Link/ExternalLink'
-import Loading from 'src/components/Loading'
 import { asModal, ModalProps } from 'src/components/Modal/asModal'
 import { MessageModal } from 'src/components/Modal/MessageModal'
 import { DefaultModalContainer } from 'src/components/Modal/ModalContainer'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { LoadingContext } from 'src/context/LoadingContextProvider'
 import { AuthService } from 'src/services/AuthService'
 import { validEmaliAddress } from 'src/utils/StringValidator'
 import styled from 'styled-components'
@@ -77,11 +77,10 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
   )
   const [registrationUserId, setRegistrationUserId] = React.useState('')
   const [errorMesasge, setErrorMessage] = React.useState('')
-  const [isLoading, setLoading] = React.useState<boolean>(false)
+  const { setLoading } = React.useContext(LoadingContext)
 
   return (
     <>
-      <Loading loading={isLoading} />
       {registrationUserId && (
         <MessageModal
           title="SignUp"

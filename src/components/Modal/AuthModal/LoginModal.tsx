@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { EMailAddressInput } from 'src/components/Input/EMailAddressInput'
 import { PasswordInput } from 'src/components/Input/PasswordInput'
-import Loading from 'src/components/Loading'
 import { asModal, ModalProps } from 'src/components/Modal/asModal'
 import { CompleteModal } from 'src/components/Modal/CompleteModal'
 import { MessageModal } from 'src/components/Modal/MessageModal'
 import { DefaultModalContainer } from 'src/components/Modal/ModalContainer'
 // import { RoundButton } from 'src/components/Button/DefaultButton'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { LoadingContext } from 'src/context/LoadingContextProvider'
 import { UserContext } from 'src/context/UserContext'
 import { AuthService } from 'src/services/AuthService'
 import { validEmaliAddress } from 'src/utils/StringValidator'
@@ -66,14 +66,12 @@ const RoundButton = styled.button`
 `
 
 interface LoginFormProps {
-  isLoading: boolean
   login: (e: React.MouseEvent, email: string, password: string) => Promise<void>
   closeModal: (e: React.MouseEvent) => void
   showPasswordResetRequestModal: (e: React.MouseEvent) => void
   showSignUpModal: (e: React.MouseEvent) => void
 }
 const LoginFormModal: React.FC<LoginFormProps> = ({
-  isLoading,
   login,
   closeModal,
   showPasswordResetRequestModal,
@@ -87,7 +85,6 @@ const LoginFormModal: React.FC<LoginFormProps> = ({
   ])
   return (
     <DefaultModalContainer closeModal={closeModal}>
-      <Loading loading={isLoading} />
       <LoginContent>
         <LoginTitle>
           <TextDisplay>Login</TextDisplay>
@@ -157,9 +154,9 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
   showSignUpModal,
   showPasswordResetRequestModal,
 }) => {
+  const { setLoading } = React.useContext(LoadingContext)
   const { user, setUser } = React.useContext(UserContext)
   const [errorMesasge, setErrorMessage] = React.useState('')
-  const [isLoading, setLoading] = React.useState<boolean>(false)
 
   return (
     <>
@@ -172,7 +169,6 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
       )}
       {!errorMesasge ? (
         <LoginFormModal
-          isLoading={isLoading}
           login={async (e, email, password) => {
             e.preventDefault()
             try {

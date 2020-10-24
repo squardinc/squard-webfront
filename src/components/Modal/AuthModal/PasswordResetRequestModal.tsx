@@ -1,7 +1,7 @@
 import * as React from 'react'
-import Loading from 'src/components/Loading'
 // import { RoundButton } from 'src/components/Button/DefaultButton'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { LoadingContext } from 'src/context/LoadingContextProvider'
 import { AuthService } from 'src/services/AuthService'
 import { validEmaliAddress } from 'src/utils/StringValidator'
 import styled from 'styled-components'
@@ -35,11 +35,10 @@ const PasswordResetRequestComponent: React.FC<PasswordResetRequestComponentProps
   const [succeeded, setSucceeded] = React.useState(false)
   const isSubmittable = React.useMemo(() => validEmaliAddress(email), [email])
   const [errorMesasge, setErrorMessage] = React.useState('')
-  const [isLoading, setLoading] = React.useState<boolean>(false)
+  const { setLoading } = React.useContext(LoadingContext)
 
   return (
     <>
-      <Loading loading={isLoading} />
       {!errorMesasge ? (
         <DefaultModalContainer closeModal={closeModal}>
           <TextDisplay className="text-4xl font-semibold">Password Reset</TextDisplay>

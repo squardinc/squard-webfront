@@ -1,10 +1,10 @@
 import { Link } from 'gatsby'
 import React, { useEffect } from 'react'
 import Menu from 'src/assets/menu.svg'
-import Loading from 'src/components/Loading'
 import { AuthModal, ModalType } from 'src/components/Modal/AuthModal'
 import { NavMenu } from 'src/components/NavMenu/NavMenu'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { LoadingContext } from 'src/context/LoadingContextProvider'
 import { UserContext } from 'src/context/UserContext'
 import { AuthService } from 'src/services/AuthService'
 import { LoginUserModel } from 'src/services/AuthService/LoginUserModel'
@@ -33,7 +33,7 @@ export const Header = () => {
   const { user, setUser } = React.useContext(UserContext)
   const [openModal, setOpenModal] = React.useState<ModalType>('Closed')
   const [showNavMenu, setShowNavMenu] = React.useState(false)
-  const [isLoading, setLoading] = React.useState<boolean>(false)
+  const { setLoading } = React.useContext(LoadingContext)
 
   useEffect(() => {
     if (showNavMenu) {
@@ -45,7 +45,6 @@ export const Header = () => {
 
   return (
     <React.Fragment>
-      <Loading loading={isLoading} />
       <div
         className={`${styles.container} bg-theme-bg-header text-theme-text-header box-shadow-theme-header`}
       >
