@@ -7,7 +7,7 @@ import {
   FlagWrapper,
   MainNameText,
   SubNameText,
-  TeamCardWrapper,
+  TeamCardWrapper
 } from 'src/components/TeamCard'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { ClassType } from 'src/models/person'
@@ -67,7 +67,7 @@ const JoinNowButton = styled.button`
 const JoinCard: React.FC<JoinCardProps> = ({ team, currentClass, join }) => {
   const formattedPrice = addComma(team.price)
   const joinBtnText = '参加する'
-
+  console.log("currentClass ---- ", currentClass)
   return (
     <JoinCardAnchor id={team.classType}>
       <TeamCardWrapper>

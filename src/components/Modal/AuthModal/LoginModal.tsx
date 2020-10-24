@@ -181,6 +181,7 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
               setUser(user)
               setLoading(false)
             } catch (err) {
+              setLoading(false)
               setErrorMessage(err)
             }
           }}

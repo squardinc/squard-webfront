@@ -1,14 +1,15 @@
 import * as React from 'react'
+import Loading from 'src/components/Loading'
 // import { RoundButton } from 'src/components/Button/DefaultButton'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import { asModal, ModalProps } from '../asModal'
-import { DefaultModalContainer } from '../ModalContainer'
 import { AuthService } from 'src/services/AuthService'
-import { MessageModal } from '../MessageModal'
-import { EMailAddressInput } from '../../Input/EMailAddressInput'
 import { validEmaliAddress } from 'src/utils/StringValidator'
-import * as Const from '../../../styles/const'
 import styled from 'styled-components'
+import * as Const from '../../../styles/const'
+import { EMailAddressInput } from '../../Input/EMailAddressInput'
+import { asModal, ModalProps } from '../asModal'
+import { MessageModal } from '../MessageModal'
+import { DefaultModalContainer } from '../ModalContainer'
 
 const RoundButton = styled.button`
   font-size: ${Const.fontSize.sm};
@@ -34,9 +35,11 @@ const PasswordResetRequestComponent: React.FC<PasswordResetRequestComponentProps
   const [succeeded, setSucceeded] = React.useState(false)
   const isSubmittable = React.useMemo(() => validEmaliAddress(email), [email])
   const [errorMesasge, setErrorMessage] = React.useState('')
+  const [isLoading, setLoading] = React.useState<boolean>(false)
 
   return (
     <>
+      <Loading loading={isLoading} fromModal={true} />
       {!errorMesasge ? (
         <DefaultModalContainer closeModal={closeModal}>
           <TextDisplay className="text-4xl font-semibold">Password Reset</TextDisplay>
@@ -54,10 +57,15 @@ const PasswordResetRequestComponent: React.FC<PasswordResetRequestComponentProps
                   disabled={!isSubmittable}
                   onClick={async () => {
                     const { host, pathname } = window.location
-                    AuthService.resetPasswordRequest(email, host, pathname).then(
-                      () => setSucceeded(true),
-                      (err) => setErrorMessage(err)
-                    )
+                    try {
+                      setLoading(true)
+                      await AuthService.resetPasswordRequest(email, host, pathname)
+                      setSucceeded(true)
+                      setLoading(false)
+                    } catch (err) {
+                      setLoading(false)
+                      setErrorMessage(err)
+                    }
                   }}
                 >
                   送信
