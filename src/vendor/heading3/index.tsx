@@ -25,17 +25,8 @@ const Heading = styled.div`
     content: '';
     display: block;
     height: 8px;
-    background-image: linear-gradient(
-        to right bottom,
-        transparent 0% 45%,
-        #ddd 50%,
-        white 60% 100%
-      ),
-      linear-gradient(
-        to right,
-        ${colors.gradientYellow} 0%,
-        ${colors.gradientRed} 100%
-      );
+    background-image: linear-gradient(to right bottom, transparent 0% 45%, #ddd 50%, white 60% 100%),
+      linear-gradient(to right, ${colors.gradientYellow} 0%, ${colors.gradientRed} 100%);
   }
 `
 

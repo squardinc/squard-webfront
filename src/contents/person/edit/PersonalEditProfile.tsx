@@ -241,7 +241,7 @@ const LinksInput: React.FC<LinksInputProps> = ({ values = [''], onChange }) => {
     <>
       {forms.map((url, index) => {
         return (
-          <div key = {`${index}_${url}`}>
+          <div key={`${index}_${url}`}>
             <RowInput
               key={`${index}_${url}`}
               label={`リンクURL${index + 1}`}

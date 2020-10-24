@@ -70,10 +70,8 @@ export const NavMenu: React.FC<NavMenuProps> = ({
       )}
 
       <animated.div
-       {...bind()}
-        className={`${styles.navMenu} ${
-          show ? styles.open : styles.close
-        } bg-v-gradient`}
+        {...bind()}
+        className={`${styles.navMenu} ${show ? styles.open : styles.close} bg-v-gradient`}
         style={{
           bottom: bottom > 0 ? -bottom : 0,
         }}
@@ -86,9 +84,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
           <MenuItem
             text="マイページ"
             SVGIcon={MyPage}
-            onClick={
-              loggedIn ? navigateWithMenuClose(`/mypage`) : showLoginModal
-            }
+            onClick={loggedIn ? navigateWithMenuClose(`/mypage`) : showLoginModal}
           />
           <MenuItem text={'チームを作る+'} SVGIcon={AddNewTeam} />
           <MenuItem
@@ -96,11 +92,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
             SVGIcon={About}
             onClick={navigateWithMenuClose('/about')}
           />
-          <MenuItem
-            text={'よくある質問'}
-            SVGIcon={Faq}
-            onClick={navigateWithMenuClose('/faq')}
-          />
+          <MenuItem text={'よくある質問'} SVGIcon={Faq} onClick={navigateWithMenuClose('/faq')} />
           <MenuItem
             text={'会社概要'}
             SVGIcon={CompanyIcon}

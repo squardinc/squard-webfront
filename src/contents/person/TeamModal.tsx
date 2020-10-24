@@ -11,7 +11,7 @@ import {
   FlagWrapper,
   MainNameText,
   PriceText,
-  TeamCardWrapper
+  TeamCardWrapper,
 } from 'src/components/TeamCard'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { IDisplayTeamMember, isLeavable } from 'src/models/person'

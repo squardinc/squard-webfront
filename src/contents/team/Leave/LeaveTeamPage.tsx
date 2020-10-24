@@ -96,9 +96,7 @@ const LeaveTeam = ({ teamData }: LeaveTeamProps) => {
                   <TextDisplay>{teamData.sub}</TextDisplay>
                 </SubNameText>
                 <PriceText>
-                  <TextDisplay>
-                    ￥{addComma(teamData.monthlyPrice)} / 月額
-                  </TextDisplay>
+                  <TextDisplay>￥{addComma(teamData.monthlyPrice)} / 月額</TextDisplay>
                 </PriceText>
               </Flag>
             </FlagWrapper>

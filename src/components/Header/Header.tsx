@@ -17,15 +17,15 @@ const Title = styled.div`
   margin-top: 2px;
 `
 
-function preventDefault(e){
-  e.preventDefault();
+function preventDefault(e) {
+  e.preventDefault()
 }
 
-function disableScroll(){
-  document.body.addEventListener('touchmove', preventDefault, { passive: false });
+function disableScroll() {
+  document.body.addEventListener('touchmove', preventDefault, { passive: false })
 }
-function enableScroll(){
-  document.body.removeEventListener('touchmove', preventDefault);
+function enableScroll() {
+  document.body.removeEventListener('touchmove', preventDefault)
 }
 
 export const Header = () => {

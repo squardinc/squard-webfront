@@ -15,16 +15,14 @@ import {
   UpdatePageMutationVariables,
   UpdateUserInput,
   UpdateUserMutation,
-  UpdateUserMutationVariables
+  UpdateUserMutationVariables,
 } from 'src/types/API'
 import { parseSearchParams } from 'src/utils/UrlParser'
 import { PersonPageLayoutBlack, PersonPageLayoutGray } from './PersonPageLayout'
 interface PersonPageContainerProps {
   id: string
 }
-export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({
-  id,
-}) => {
+export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) => {
   const { user } = React.useContext(UserContext)
   const [isEditing, setEditing] = React.useState(false)
   const params = parseSearchParams(window.location.search)
@@ -61,16 +59,12 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({
   if (window.location.pathname === '/mypage' && window.location.search === '')
     window.history.replaceState({}, document.title, personalData.pageId)
 
-  const PersonPageLayout = isEditing
-    ? PersonPageLayoutBlack
-    : PersonPageLayoutGray
+  const PersonPageLayout = isEditing ? PersonPageLayoutBlack : PersonPageLayoutGray
   return (
     <>
       <Loading
         loading={
-          updatePageIdResponse.loading ||
-          updateUserResponse.loading ||
-          leaveTeamResponse.loading
+          updatePageIdResponse.loading || updateUserResponse.loading || leaveTeamResponse.loading
         }
       />
       <PersonPageLayout

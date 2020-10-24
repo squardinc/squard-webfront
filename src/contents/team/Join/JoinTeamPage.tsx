@@ -101,10 +101,9 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
   const [openModal, setOpenModal] = React.useState<ModalType>('Closed')
   const [isComfirmModal, setComfirmModal] = React.useState(false)
   const [teamSelected, setTeamSelected] = React.useState({} as ITeamClass)
-  const [
-    showPaymentCancelledModal,
-    setShowPaymentCancelledModal,
-  ] = React.useState(hasPaymentCancelled)
+  const [showPaymentCancelledModal, setShowPaymentCancelledModal] = React.useState(
+    hasPaymentCancelled
+  )
   return (
     <>
       <JoinTeamWrapper>

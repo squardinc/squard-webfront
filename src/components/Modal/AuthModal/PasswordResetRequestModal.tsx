@@ -39,9 +39,7 @@ const PasswordResetRequestComponent: React.FC<PasswordResetRequestComponentProps
     <>
       {!errorMesasge ? (
         <DefaultModalContainer closeModal={closeModal}>
-          <TextDisplay className="text-4xl font-semibold">
-            Password Reset
-          </TextDisplay>
+          <TextDisplay className="text-4xl font-semibold">Password Reset</TextDisplay>
           {!succeeded ? (
             <>
               <TextDisplay className="mb-8 text-sm">
@@ -56,11 +54,7 @@ const PasswordResetRequestComponent: React.FC<PasswordResetRequestComponentProps
                   disabled={!isSubmittable}
                   onClick={async () => {
                     const { host, pathname } = window.location
-                    AuthService.resetPasswordRequest(
-                      email,
-                      host,
-                      pathname
-                    ).then(
+                    AuthService.resetPasswordRequest(email, host, pathname).then(
                       () => setSucceeded(true),
                       (err) => setErrorMessage(err)
                     )
@@ -92,10 +86,7 @@ const PasswordResetRequestComponent: React.FC<PasswordResetRequestComponentProps
           )}
         </DefaultModalContainer>
       ) : (
-        <MessageModal
-          message={errorMesasge}
-          closeModal={() => setErrorMessage('')}
-        />
+        <MessageModal message={errorMesasge} closeModal={() => setErrorMessage('')} />
       )}
     </>
   )

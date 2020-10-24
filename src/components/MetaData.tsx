@@ -31,21 +31,9 @@ export const MetaData: React.FC = () => (
               rel="stylesheet"
               href="https://use.typekit.net/ajn0goi.css"
             />
-            <link
-              id="Raleway"
-              rel="stylesheet"
-              href="https://use.typekit.net/bff0wql.css"
-            />
-            <link
-              id="Raleway v2.0"
-              rel="stylesheet"
-              href="https://use.typekit.net/bwj6ctc.css"
-            />
-            <link
-              id="Lato"
-              rel="stylesheet"
-              href="https://use.typekit.net/nlu4xtp.css"
-            />
+            <link id="Raleway" rel="stylesheet" href="https://use.typekit.net/bff0wql.css" />
+            <link id="Raleway v2.0" rel="stylesheet" href="https://use.typekit.net/bwj6ctc.css" />
+            <link id="Lato" rel="stylesheet" href="https://use.typekit.net/nlu4xtp.css" />
           </Helmet>
         </>
       )

@@ -6,10 +6,7 @@ interface EMailAddressInput {
   value: string
   onChange: (value: string) => void
 }
-export const EMailAddressInput: React.FC<EMailAddressInput> = ({
-  value,
-  onChange,
-}) => {
+export const EMailAddressInput: React.FC<EMailAddressInput> = ({ value, onChange }) => {
   return (
     <RoundInput
       onChange={(value) => onChange(value)}

@@ -6,7 +6,7 @@ import * as Const from '../../styles/const'
 
 const Input = styled.input`
   :-webkit-autofill {
-    box-shadow: 0 0 0px 1000px #E6CA9B inset;
+    box-shadow: 0 0 0px 1000px #e6ca9b inset;
   }
 `
 

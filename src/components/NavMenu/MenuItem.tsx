@@ -11,28 +11,17 @@ interface MenuItemProps {
   onClick?: VoidFunction
 }
 
-export const MenuItem: React.FC<MenuItemProps> = ({
-  text,
-  SVGIcon,
-  faIcon,
-  onClick,
-}) => {
+export const MenuItem: React.FC<MenuItemProps> = ({ text, SVGIcon, faIcon, onClick }) => {
   return (
     <div
-      className={`flex cursor-pointer ${
-        onClick ? '' : styles.cursorNotAllowed
-      }`}
+      className={`flex cursor-pointer ${onClick ? '' : styles.cursorNotAllowed}`}
       onClick={onClick || (() => {})}
     >
       {SVGIcon ? (
         <SVGIcon className="h-16 w-16 flex justify-center items-center" />
       ) : (
         <div className="h-16 w-16 flex justify-center items-center">
-          <FontAwesomeIcon
-            icon={faIcon}
-            size="lg"
-            color={onClick ? 'white' : '#262626'}
-          />
+          <FontAwesomeIcon icon={faIcon} size="lg" color={onClick ? 'white' : '#262626'} />
         </div>
       )}
       <TextDisplay

@@ -7,7 +7,7 @@ import {
   FlagWrapper,
   MainNameText,
   SubNameText,
-  TeamCardWrapper
+  TeamCardWrapper,
 } from 'src/components/TeamCard'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { ClassType } from 'src/models/person'

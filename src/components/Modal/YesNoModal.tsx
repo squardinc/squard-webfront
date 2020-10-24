@@ -23,16 +23,8 @@ export const MessageCompoenent: React.FC<MessageComponentProps> = ({
     <TextDisplay className="text-4xl font-semibold">{title}</TextDisplay>
     <div className="flex flex-col justify-center items-center">
       <TextDisplay className="mb-8">{message}</TextDisplay>
-      <RoundButton
-        className="border-2 text-lg"
-        text={executeButtonText}
-        onClick={onExecute}
-      />
-      <RoundButton
-        className="border-2 text-lg"
-        text={cancelButtonText}
-        onClick={closeModal}
-      />
+      <RoundButton className="border-2 text-lg" text={executeButtonText} onClick={onExecute} />
+      <RoundButton className="border-2 text-lg" text={cancelButtonText} onClick={closeModal} />
     </div>
   </DefaultModalContainer>
 )

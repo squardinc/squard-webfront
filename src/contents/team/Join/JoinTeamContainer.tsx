@@ -15,7 +15,7 @@ import {
   JoinAsGalleriesMutation,
   JoinAsGalleriesMutationVariables,
   RequestSubscriptionMutation,
-  RequestSubscriptionMutationVariables
+  RequestSubscriptionMutationVariables,
 } from 'src/types/API'
 import { parseSearchParams } from 'src/utils/UrlParser'
 

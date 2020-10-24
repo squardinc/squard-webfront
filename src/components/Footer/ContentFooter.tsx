@@ -37,9 +37,7 @@ export const ContentFooter: React.FC<ContentFooterProps> = ({
           <div className="py-10">
             <TextDisplay>
               <div
-                className={`${styles.titleSub} ${
-                  theme === 'dark' ? 'text-theme-text-sub' : ''
-                }`}
+                className={`${styles.titleSub} ${theme === 'dark' ? 'text-theme-text-sub' : ''}`}
               >
                 {titleSub}
               </div>
@@ -48,9 +46,7 @@ export const ContentFooter: React.FC<ContentFooterProps> = ({
             <TextDisplay className={styles.description}>{text}</TextDisplay>
           </div>
           {buttonSub ? (
-            <TextDisplay
-              className={`${styles.question} pb-4 text-theme-text-sub`}
-            >
+            <TextDisplay className={`${styles.question} pb-4 text-theme-text-sub`}>
               「Prospects」や「Angels」についてはこちら↓
             </TextDisplay>
           ) : (
@@ -59,9 +55,7 @@ export const ContentFooter: React.FC<ContentFooterProps> = ({
           <div onClick={onButtonClick} className="cursor-pointer">
             <TextDisplay
               className={`${
-                theme === 'dark'
-                  ? 'border-2 border-yellow bg-black'
-                  : 'background-theme-button'
+                theme === 'dark' ? 'border-2 border-yellow bg-black' : 'background-theme-button'
               } rounded-full h-12 w-full flex items-center justify-center mr-2`}
             >
               <span className="text-theme-text-sub font-light text-lg button-text">
@@ -79,16 +73,12 @@ export const ContentFooter: React.FC<ContentFooterProps> = ({
 export const DefaultFooter = (props?: DefaultFooterProps) => {
   return (
     <ContentFooter
-      backgroundColor={
-        props && props.backgroundColor ? props.backgroundColor : undefined
-      }
+      backgroundColor={props && props.backgroundColor ? props.backgroundColor : undefined}
       titleSub="What's  the"
       titleMain="Squard?"
       text="Webサービス「Squard（スクアード）」は、個人でもなく法人でもない新しい働き方の実現を目標に、新時代のチームメイキングソリューションを提供するコラボレーションプラットフォームです。"
       buttonText="チームを作ってみる？"
-      onButtonClick={() =>
-        window.open('https://www.squard.co.jp/coming-soon/', '_blank')
-      }
+      onButtonClick={() => window.open('https://www.squard.co.jp/coming-soon/', '_blank')}
     />
   )
 }
