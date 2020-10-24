@@ -3,7 +3,6 @@ import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { AuthModal, ModalType } from 'src/components/Modal/AuthModal'
 import { MessageModal } from 'src/components/Modal/MessageModal'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import { ClassType } from 'src/models/person'
 import { ITeamClass } from 'src/models/team'
 import * as colors from 'src/styles/colors'
 import * as Const from 'src/styles/const'
@@ -19,7 +18,7 @@ type JoinTeamProps = {
   loggedIn: boolean
   teamName: string
   teamData: ITeamClass[]
-  currentClass?: ClassType
+  currentClass?: ITeamClass
   hasPaymentCancelled?: boolean
   requestJoinAsGalleries?: any
 }
@@ -106,16 +105,6 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
     hasPaymentCancelled
   )
 
-  const [currentPrice, setCurrentPrice] = React.useState<number>(-1)
-
-  React.useEffect(() => {
-    for (let i = 0; i < teamData.length; i++) {
-      if (teamData[i].classType === currentClass) {
-        setCurrentPrice(teamData[i].price)
-      }
-    }
-  }, [teamData])
-
   return (
     <>
       <JoinTeamWrapper>
@@ -143,8 +132,7 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
                 <JoinCard
                   key={i}
                   team={team}
-                  currentPrice={currentPrice}
-                  currentClass={currentClass}
+                  currentClassType={currentClass?.classType}
                   join={() => {
                     if (!loggedIn) {
                       setOpenModal('Login')
@@ -170,7 +158,6 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
       )}
       {isComfirmModal && (
         <ConfirmJoinModal
-          currentPrice={currentPrice}
           currentClass={currentClass}
           team={teamSelected}
           closeModal={() => setComfirmModal(false)}

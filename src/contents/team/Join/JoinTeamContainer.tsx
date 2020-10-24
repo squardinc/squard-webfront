@@ -105,7 +105,7 @@ const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
         isLoading={false}
         loggedIn={user.loggedIn}
         teamData={joinableTeamClasses}
-        currentClass={currentClass?.classType}
+        currentClass={currentClass}
         hasPaymentCancelled={params['payment_status'] === 'cancel'}
         requestJoinAsGalleries={(teamClassId) =>
           requestJoinAsGalleries({ variables: { teamId, teamClassId } })

@@ -7,7 +7,7 @@ import {
   FlagWrapper,
   MainNameText,
   SubNameText,
-  TeamCardWrapper,
+  TeamCardWrapper
 } from 'src/components/TeamCard'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { ClassType } from 'src/models/person'
@@ -19,8 +19,7 @@ import styled from 'styled-components'
 
 type JoinCardProps = {
   team: ITeamClass
-  currentPrice: number
-  currentClass?: ClassType
+  currentClassType?: ClassType
   join: VoidFunction
 }
 
@@ -41,13 +40,6 @@ const CardPriceTitle = styled(SubNameText)`
   margin-top: 15px;
 `
 
-const CardEntitlementText = styled(EntitlementText)`
-  font-weight: ${Const.fontWeight.thin};
-  font-size: 14px;
-  padding-left: 10px;
-  padding-right: 10px;
-`
-
 const JoinCardAnchor = styled.div`
   padding-top: 70px;
   margin-top: -70px;
@@ -65,12 +57,16 @@ const JoinNowButton = styled.button`
   font-size: 16px;
 `
 
-const JoinCard: React.FC<JoinCardProps> = ({ team, currentClass, currentPrice, join }) => {
-  const formattedPrice = addComma(team.price)
+const judgeJoinable = (classType: ClassType, currentClass?: ClassType) => {
+  if (!currentClass) return true
+  if (classType === 'Angels') return currentClass === 'Galleries'
+  if (classType === 'Prospects') return currentClass === 'Galleries' ||  currentClass === 'Angels'
+  return false
+}
 
-  const shouldJoin = currentPrice < team.price
-  //  !currentClass || (currentClass === 'Galleries' && team.classType !== 'Galleries')
-  const joinBtnText = shouldJoin ? '参加する' : '参加済'
+const JoinCard: React.FC<JoinCardProps> = ({ team, currentClassType, join }) => {
+  const formattedPrice = addComma(team.price)
+  const joinable = judgeJoinable(team.classType, currentClassType)
 
   return (
     <JoinCardAnchor id={team.classType}>
@@ -102,10 +98,10 @@ const JoinCard: React.FC<JoinCardProps> = ({ team, currentClass, currentPrice, j
         <CardBodyWrapper>
           <JoinNowButton
             onClick={join}
-            disabled={!shouldJoin}
-            className={!shouldJoin ? 'cursor-not-allowed' : ''}
+            disabled={!joinable}
+            className={joinable ? '' : 'cursor-not-allowed'}
           >
-            <TextDisplay>{joinBtnText}</TextDisplay>
+            <TextDisplay>{joinable ? '参加する' : '参加済'}</TextDisplay>
           </JoinNowButton>
         </CardBodyWrapper>
       </TeamCardWrapper>
