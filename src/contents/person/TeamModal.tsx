@@ -1,6 +1,8 @@
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { navigate } from 'gatsby'
 import * as React from 'react'
+import TeamLinkIcon from 'src/assets/team_link.svg'
 import { ExternalLink } from 'src/components/Link/ExternalLink'
 import { asModal, ModalProps } from 'src/components/Modal/asModal'
 import {
@@ -43,6 +45,7 @@ const LeaveTeamLabel = styled.div`
   background: linear-gradient(70deg, ${colors.gradientRed}, ${colors.gradientYellow});
   font-weight: ${Const.fontWeight.medium};
   font-size: 16px;
+  cursor: pointer;  
 `
 
 const TeamModalComponent: React.FC<TeamModalProps> = ({ closeModal, team, onLeaveTeam }) => {
@@ -60,8 +63,11 @@ const TeamModalComponent: React.FC<TeamModalProps> = ({ closeModal, team, onLeav
         />
       </CloseButton>
       <TeamCardWrapper>
-        <FlagWrapper>
+        <FlagWrapper onClick={() => navigate(`/${team.pageId}`)} className="cursor-pointer">
           <Flag>
+            <div className="absolute top-0 right-0">
+              <TeamLinkIcon className="m-1" />
+            </div>
             <MainNameText>
               <TextDisplay>{team.teamName}</TextDisplay>
               <TextDisplay>{team.classType}</TextDisplay>
