@@ -8,6 +8,7 @@ const Input = styled.input`
   :-webkit-autofill {
     box-shadow: 0 0 0px 1000px #e6ca9b inset;
   }
+  font-size: 16px;
 `
 
 export interface InputProps {
