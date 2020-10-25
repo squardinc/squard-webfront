@@ -1,6 +1,6 @@
 import * as React from 'react'
-import styles from './Caption.module.scss'
 import { TextDisplay } from '../TextDisplay/TextDisplay'
+import styles from './Caption.module.scss'
 
 interface CaptionProps {
   text: string
@@ -31,6 +31,7 @@ interface TwoStagedCaptionProps {
   style?: 'large' | 'medium' | 'mediumItalic'
   subFontWeight?: 'bold' | ''
   shadow?: true | false
+  color?: 'black' | 'white'
 }
 export const TwoStagedCaption: React.FC<TwoStagedCaptionProps> = ({
   sub,
@@ -38,11 +39,18 @@ export const TwoStagedCaption: React.FC<TwoStagedCaptionProps> = ({
   style = 'large',
   subFontWeight = 'bold',
   shadow = false,
+  color = 'black',
 }) => {
   return (
     <>
-      <LeftBorderCaption text={sub} fontWeight={subFontWeight} shadow={shadow} />
-      <TextDisplay className={styles[style] + ' ' + (shadow ? styles['textShadow'] : '')}>
+      <LeftBorderCaption text={sub} fontWeight={subFontWeight} shadow={shadow} color={color} />
+      <TextDisplay
+        className={
+          styles[style] +
+          ' ' +
+          (shadow ? styles['textShadow'] : '' + (color === 'white' ? 'text-white' : ''))
+        }
+      >
         {main}
       </TextDisplay>
     </>
