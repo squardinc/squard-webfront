@@ -169,6 +169,7 @@ export class Team {
   readonly teamMembers: TeamMembers
   private constructor(
     readonly id: string,
+    readonly pageId: string,
     readonly name: string,
     readonly subTitle: string,
     readonly introduction: string,
@@ -182,10 +183,11 @@ export class Team {
   }
 
   static fromQueryResult = (result: GetTeamQuery) => {
-    const { id, name, subTitle, introduction, topImage, tags, system, classes, members } =
+    const { id, name, subTitle, introduction, topImage, tags, system, classes, members, page } =
       result?.getTeam || {}
     return new Team(
       id || '',
+      page?.id || '',
       name || '',
       subTitle || '',
       introduction || '',

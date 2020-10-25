@@ -1,3 +1,4 @@
+import { Link } from 'gatsby'
 import * as React from 'react'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
@@ -12,20 +13,22 @@ interface RecommendedTeamProps {
 const RecommendedTeam: React.FC<RecommendedTeamProps> = ({ team }) => {
   return (
     <div className={styles.vipContainer}>
-      <div className="pl-0 pr-0" style={{ width: '300px', height: '520px' }}>
-        <img src={team.topImage} className={styles.vip} />
-        <div className={styles.vipCaptionContainer}>
-          <div className={styles.vipCaption}>
-            <div className={styles.vipCaptionTop}>
-              <TextDisplay className={styles.subtitle}>{trim(team.subTitle, 18)}</TextDisplay>
-              <TextDisplay className={styles.vipName}>{team.name}</TextDisplay>
-              <TextDisplay className={styles.vipIntroduction}>
-                {trim(team.introduction, 80)}
-              </TextDisplay>
+      <Link to={`/${encodeURIComponent(team.pageId)}`}>
+        <div className="pl-0 pr-0" style={{ width: '300px', height: '520px' }}>
+          <img src={team.topImage} className={styles.vip} />
+          <div className={styles.vipCaptionContainer}>
+            <div className={styles.vipCaption}>
+              <div className={styles.vipCaptionTop}>
+                <TextDisplay className={styles.subtitle}>{trim(team.subTitle, 18)}</TextDisplay>
+                <TextDisplay className={styles.vipName}>{team.name}</TextDisplay>
+                <TextDisplay className={styles.vipIntroduction}>
+                  {trim(team.introduction, 80)}
+                </TextDisplay>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </Link>
     </div>
   )
 }
