@@ -405,7 +405,7 @@ export const PersonPage: React.FC<PersonPageProps> = ({
           title={`チームを脱退する`}
           closeModal={() => setShowTeamLeaveModal(false)}
           onExecute={() => {
-            leaveTeam(selectedTeam.teamId, selectedTeam.teamClassId)
+            leaveTeam(selectedTeam.teamId, selectedTeam.teamMemberId)
           }}
           message={`チーム: ${selectedTeam.teamName}\r\n\r\n脱退すると有効期間の途中であっても直ちに権利を喪失し、返金は行われません。また、脱退後のキャンセルは行えません。`}
           cancelButtonText="キャンセル"

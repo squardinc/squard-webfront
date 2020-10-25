@@ -1,6 +1,7 @@
 import { gql, useMutation, useQuery } from '@apollo/client'
 import { navigate } from 'gatsby'
 import * as React from 'react'
+import { LoadingContext } from 'src/context/LoadingContextProvider'
 import { UserContext } from 'src/context/UserContext'
 import { leaveTeam, updatePage, updateUser } from 'src/graphql/mutations'
 import { getMyself, getUser } from 'src/graphql/queries'
@@ -23,6 +24,7 @@ interface PersonPageContainerProps {
 }
 export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) => {
   const { user } = React.useContext(UserContext)
+  const { setLoading } = React.useContext(LoadingContext)
   const [isEditing, setEditing] = React.useState(false)
   const params = parseSearchParams(window.location.search)
   const { loading, error, data, refetch } = user.isMine(id)
@@ -84,18 +86,20 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
           },
         })
       }}
-      leaveTeam={(teamId: string, teamClassId: string) =>
-        leaveTeamRequest({
+      leaveTeam={async (teamId: string, teamMemberId: string) => {
+        setLoading(true)
+        await leaveTeamRequest({
           variables: {
             teamId,
-            teamClassId,
+            teamMemberId,
           },
         })
-      }
+        setLoading(false)
+      }}
       onEditProfile={(editing: boolean) => {
         setEditing(editing)
       }}
-      refetch={ refetch}
+      refetch={refetch}
     />
   )
 }

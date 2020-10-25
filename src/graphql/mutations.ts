@@ -10,8 +10,8 @@ export const joinAsGalleries = /* GraphQL */ `
   }
 `
 export const leaveTeam = /* GraphQL */ `
-  mutation LeaveTeam($teamId: ID!, $teamClassId: ID!) {
-    leaveTeam(teamId: $teamId, teamClassId: $teamClassId) {
+  mutation LeaveTeam($teamId: ID!, $teamMemberId: ID!) {
+    leaveTeam(teamId: $teamId, teamMemberId: $teamMemberId) {
       message
     }
   }
