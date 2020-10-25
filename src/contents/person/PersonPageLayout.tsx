@@ -21,7 +21,7 @@ type PersonPageProps = {
   joinSucceededTeamId?: string
   onEditProfile?: (value: boolean) => void
   update: (input: UpdateUserInput, pageId: string) => Promise<void>
-  leaveTeam: (teamId: string, teamClassId: string) => void
+  leaveTeam: (teamId: string, teamClassId: string) => Promise<void>
   refetch: () => Promise<void>
 }
 

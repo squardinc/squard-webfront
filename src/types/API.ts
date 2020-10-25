@@ -43,7 +43,7 @@ export type JoinAsGalleriesMutation = {
 
 export type LeaveTeamMutationVariables = {
   teamId: string
-  teamClassId: string
+  teamMemberId: string
 }
 
 export type LeaveTeamMutation = {

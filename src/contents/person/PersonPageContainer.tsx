@@ -1,4 +1,4 @@
-import { gql, useMutation, useQuery } from '@apollo/client'
+import { ApolloError, gql, useMutation, useQuery } from '@apollo/client'
 import { navigate } from 'gatsby'
 import * as React from 'react'
 import { LoadingContext } from 'src/context/LoadingContextProvider'
@@ -88,13 +88,15 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
       }}
       leaveTeam={async (teamId: string, teamMemberId: string) => {
         setLoading(true)
-        await leaveTeamRequest({
+        return leaveTeamRequest({
           variables: {
             teamId,
             teamMemberId,
           },
-        })
-        setLoading(false)
+        }).then(
+          () => setLoading(false),
+          (err: ApolloError) => Promise.reject(err)
+        )
       }}
       onEditProfile={(editing: boolean) => {
         setEditing(editing)
