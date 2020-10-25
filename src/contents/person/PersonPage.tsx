@@ -1,3 +1,4 @@
+import { ApolloError } from '@apollo/client'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { navigate } from 'gatsby'
@@ -6,12 +7,14 @@ import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { ExternalLink } from 'src/components/Link/ExternalLink'
 import { MODAL_Z_INDEX } from 'src/components/Modal/asModal'
 import { CompleteModal } from 'src/components/Modal/CompleteModal'
+import { ErrorMessageModal } from 'src/components/Modal/ErrorMessageModal'
 import { YesNoModal } from 'src/components/Modal/YesNoModal'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import Top from 'src/images/temp/team/top.jpg'
 import { IDisplayTeamMember, IPersonal } from 'src/models/person'
 import * as colors from 'src/styles/colors'
 import * as Const from 'src/styles/const'
+import { ErrorType } from 'src/types/ErrorType'
 import { descriminate, toHref } from 'src/utils/SocialMediaDescriminator'
 import styled from 'styled-components'
 import { PersonImage } from '../team/TeamContents/PersonImage'
@@ -33,7 +36,7 @@ type PersonPageProps = {
   showLeaveTeamResult: boolean
   editProfile: VoidFunction
   showJoinSucceededModal: Boolean
-  leaveTeam: (teamId: string, teamClassId: string) => void
+  leaveTeam: (teamId: string, teamClassId: string) => Promise<void>
   refetch: () => Promise<void>
 }
 
@@ -307,6 +310,7 @@ export const PersonPage: React.FC<PersonPageProps> = ({
 }) => {
   const [selectedTeam, setSelectedTeam] = React.useState<IDisplayTeamMember | null>(null)
   const [showTeamLeaveModal, setShowTeamLeaveModal] = React.useState(false)
+  const [errorType, setErrorType] = React.useState<ErrorType>()
   return (
     <Suspense fallback={<></>}>
       <ContentWrapper>
@@ -405,7 +409,13 @@ export const PersonPage: React.FC<PersonPageProps> = ({
           title={`チームを脱退する`}
           closeModal={() => setShowTeamLeaveModal(false)}
           onExecute={() => {
-            leaveTeam(selectedTeam.teamId, selectedTeam.teamClassId)
+            leaveTeam(selectedTeam.teamId, selectedTeam.teamMemberId).catch((err: ApolloError) => {
+              if (err.graphQLErrors.length) {
+                setShowTeamLeaveModal(false)
+                setSelectedTeam(null)
+                setErrorType(err.graphQLErrors[0].errorType)
+              }
+            })
           }}
           message={`チーム: ${selectedTeam.teamName}\r\n\r\n脱退すると有効期間の途中であっても直ちに権利を喪失し、返金は行われません。また、脱退後のキャンセルは行えません。`}
           cancelButtonText="キャンセル"
@@ -419,6 +429,15 @@ export const PersonPage: React.FC<PersonPageProps> = ({
             setSelectedTeam(null)
             refetch()
           }}
+        />
+      )}
+      {errorType && (
+        <ErrorMessageModal
+          closeModal={() => {
+            setErrorType(undefined)
+            refetch()
+          }}
+          errorType={errorType}
         />
       )}
       <DefaultFooter />

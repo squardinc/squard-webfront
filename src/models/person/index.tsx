@@ -70,6 +70,7 @@ export interface IDisplayTeamMember {
   teamId: string
   pageId: string
   teamName: string
+  teamMemberId: string
   teamClassId: string
   classType: ClassType
   title: string
@@ -82,6 +83,7 @@ class DisplayTeamMember implements IDisplayTeamMember {
     readonly teamId: string,
     readonly pageId: string,
     readonly teamName: string,
+    readonly teamMemberId: string,
     readonly teamClassId: string,
     readonly classType: ClassType,
     readonly title: string,
@@ -91,19 +93,20 @@ class DisplayTeamMember implements IDisplayTeamMember {
   ) {}
 
   static fromUserQueryResult = (displayTeamMember = {}) => {
-    return {
-      teamId: displayTeamMember.team?.id,
-      pageId: displayTeamMember.team?.page?.id,
-      teamName: displayTeamMember.team?.name,
-      teamClassId: displayTeamMember.teamClassId,
-      classType: displayTeamMember.class?.classType,
-      title: displayTeamMember.title,
-      price: displayTeamMember.class?.price?.price,
-      expireAt: displayTeamMember.subscription?.expireAt
+    return new DisplayTeamMember(
+      displayTeamMember.team?.id,
+      displayTeamMember.team?.page?.id,
+      displayTeamMember.team?.name,
+      displayTeamMember.teamMemberId,
+      displayTeamMember.teamClassId,
+      displayTeamMember.class?.classType,
+      displayTeamMember.title,
+      displayTeamMember.class?.price?.price,
+      displayTeamMember.subscription?.expireAt
         ? dayjs.unix(displayTeamMember.subscription?.expireAt)
         : undefined,
-      benefits: displayTeamMember.class?.benefits,
-    }
+      displayTeamMember.class?.benefits
+    )
   }
 }
 export class Person implements IPersonal {

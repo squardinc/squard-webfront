@@ -1,11 +1,14 @@
+import { ApolloError } from '@apollo/client'
 import * as React from 'react'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { AuthModal, ModalType } from 'src/components/Modal/AuthModal'
+import { ErrorMessageModal } from 'src/components/Modal/ErrorMessageModal'
 import { MessageModal } from 'src/components/Modal/MessageModal'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { ITeamClass } from 'src/models/team'
 import * as colors from 'src/styles/colors'
 import * as Const from 'src/styles/const'
+import { ErrorType } from 'src/types/ErrorType'
 import { Heading3 } from 'src/vendor/heading3'
 import styled from 'styled-components'
 // import { TeamModal } from '../../person/TeamModal'
@@ -99,6 +102,7 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
   requestJoinAsGalleries,
 }) => {
   const [openModal, setOpenModal] = React.useState<ModalType>('Closed')
+  const [errorType, setErrorType] = React.useState<ErrorType>()
   const [isComfirmModal, setComfirmModal] = React.useState(false)
   const [teamSelected, setTeamSelected] = React.useState({} as ITeamClass)
   const [showPaymentCancelledModal, setShowPaymentCancelledModal] = React.useState(
@@ -138,7 +142,6 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
                       setOpenModal('Login')
                       return
                     }
-
                     setComfirmModal(true)
                     setTeamSelected(team)
                   }}
@@ -161,16 +164,31 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
           currentClass={currentClass}
           team={teamSelected}
           closeModal={() => setComfirmModal(false)}
-          onPaying={() => {
+          onPaying={async () => {
+            const onPayingFn = async () =>{
             if (
               teamSelected.classType === 'Galleries' ||
               (teamSelected.teamId === 'fagends' && teamSelected.classType == 'Prospects')
             ) {
-              requestJoinAsGalleries(teamSelected.teamClassId)
-              return
+              return requestJoinAsGalleries(teamSelected.teamClassId)
             }
-            requestSubscription(teamSelected.teamClassId)
+            return requestSubscription(teamSelected.teamClassId)
+          }
+          await onPayingFn().catch((err: ApolloError) => {
+            if (err.graphQLErrors.length) {
+              setComfirmModal(false)
+              setErrorType(err.graphQLErrors[0].errorType)
+            }
+          })
+        }}
+        />
+      )}
+      {errorType && (
+        <ErrorMessageModal
+          closeModal={() => {
+            setErrorType(undefined)
           }}
+          errorType={errorType}
         />
       )}
     </>

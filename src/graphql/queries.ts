@@ -58,6 +58,22 @@ export const getTeam = /* GraphQL */ `
     }
   }
 `
+export const getTeams = /* GraphQL */ `
+  query GetTeams {
+    getTeams {
+      id
+      name
+      subTitle
+      introduction
+      topImage
+      tags
+      page {
+        id
+        resourceId
+      }
+    }
+  }
+`;
 export const getMyMemberInfo = /* GraphQL */ `
   query GetMyMemberInfo {
     getMyMemberInfo {
