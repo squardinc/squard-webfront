@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { RoundButton } from 'src/components/Button/DefaultButton'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import { ModalProps, asModal } from './asModal'
+import { asModal, ModalProps } from './asModal'
 import { DefaultModalContainer } from './ModalContainer'
 
 type MessageComponentProps = ModalProps & {
   title?: string
-  message: string
+  message: string | JSX.Element
   buttonText?: string
 }
 export const MessageCompoenent: React.FC<MessageComponentProps> = ({
