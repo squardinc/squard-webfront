@@ -166,6 +166,22 @@ export type GetTeamQuery = {
     } | null
   } | null
 }
+export type GetTeamsQuery = {
+  getTeams:  Array< {
+    __typename: "Team",
+    id: string,
+    name: string | null,
+    subTitle: string | null,
+    introduction: string | null,
+    topImage: string | null,
+    tags: Array< string > | null,
+    page:  {
+      __typename: "Page",
+      id: string,
+      resourceId: string,
+    } | null,
+  } > | null,
+};
 
 export type GetMyMemberInfoQuery = {
   getMyMemberInfo: Array<{
