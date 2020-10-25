@@ -3,6 +3,7 @@ import React, { Suspense } from 'react'
 import { ContentFooter } from 'src/components/Footer/ContentFooter'
 import { withTheme } from 'src/context/ThemeContext'
 import { Team } from 'src/models/team'
+import { RecommendedTeams } from './RecommendedTeams/RecommendedTeams'
 import { TeamAngels } from './TeamContents/TeamAngels'
 import { TeamCoreMembers } from './TeamContents/TeamCoreMembers'
 import { TeamMembers } from './TeamContents/TeamMembers'
@@ -13,9 +14,10 @@ import { TeamTop } from './TeamTop'
 
 interface TeamLayoutProps {
   team: Team
+  recommendedTeams: Team[]
 }
 
-const Layout: React.FC<TeamLayoutProps> = ({ team }) => {
+const Layout: React.FC<TeamLayoutProps> = ({ team, recommendedTeams }) => {
   return (
     <Suspense fallback={<></>}>
       <TeamTop image={team.topImage} />
@@ -33,6 +35,7 @@ const Layout: React.FC<TeamLayoutProps> = ({ team }) => {
       <TeamProspects propspects={team.teamMembers.prospects} />
       <TeamAngels angels={team.teamMembers.angels} numOfAngels={team.teamMembers.angels.length} />
       <TeamVIP vips={team.teamMembers.vip} />
+      <RecommendedTeams teams={recommendedTeams} currentTeamId={team.id} />
       <ContentFooter
         titleSub="What's the"
         titleMain="Squard?"
