@@ -35,7 +35,7 @@ const Layout: React.FC<TeamLayoutProps> = ({ team, recommendedTeams }) => {
       <TeamProspects propspects={team.teamMembers.prospects} />
       <TeamAngels angels={team.teamMembers.angels} numOfAngels={team.teamMembers.angels.length} />
       <TeamVIP vips={team.teamMembers.vip} />
-      <RecommendedTeams teams={recommendedTeams} />
+      <RecommendedTeams teams={recommendedTeams} currentTeamId={team.id} />
       <ContentFooter
         titleSub="What's the"
         titleMain="Squard?"
