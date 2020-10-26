@@ -8,7 +8,7 @@ import styles from './RecommendedTeams.module.scss'
 const RECOMMENDED_ORDER = {
   squard: ['ayaka_artist', 'piepielielie', 'joyfully', 'fagends'],
 }
-const disabledTeams = ['piepielielie', 'joyfully']
+const disabledTeams = ['piepielielie']
 
 const trim = (text: string, length: number) =>
   text.length > length ? `${text.substring(0, length)}...` : text

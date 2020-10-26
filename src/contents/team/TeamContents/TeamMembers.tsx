@@ -3,6 +3,8 @@ import * as React from 'react'
 import { LeftBorderCaption } from 'src/components/Caption/Captions'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import ComingSoon from 'src/images/ComingSoon.jpg'
+import NoImage from 'src/images/NoImage.jpg'
+import NoImageTopMember from 'src/images/NoImageTopMember.jpg'
 import { ITeamMember } from 'src/models/team'
 import { PersonImage } from './PersonImage'
 import styles from './TeamMembers.module.scss'
@@ -14,7 +16,7 @@ const Member: React.FC<MemberProps> = ({ member }) => {
   return (
     <Link to={`/${member.user.pageId}`}>
       <div className="relative">
-        <PersonImage src={member.image || member.user.icon} className={styles.member} />
+        <PersonImage src={member.image || member.user.icon || NoImage} className={styles.member} />
         <div className={styles.memberCaption}>
           <TextDisplay className={styles.memberName}>{member.displayName}</TextDisplay>
         </div>
@@ -27,11 +29,20 @@ type TopMemberProps = MemberProps & {
   member?: ITeamMember
 }
 const TopMember: React.FC<TopMemberProps> = ({ member }) => {
+  if (!member) {
+    return (
+      <div className={styles.topMemberRow}>
+        <div className={styles.topMemberContainer}>
+          <img src={ComingSoon} alt="top" className={styles.topMember} />
+        </div>
+      </div>
+    )
+  }
   return (
     <Link to={`/${member.user.pageId}`}>
       <div className={styles.topMemberRow}>
         <div className={styles.topMemberContainer}>
-          <img src={member?.image || ComingSoon} alt="top" className={styles.topMember} />
+          <img src={member?.image || NoImageTopMember} alt="top" className={styles.topMember} />
           {member && (
             <TextDisplay className={styles.topMemberCaption}>
               <div className={styles.topMemberName}>{member.displayName}</div>
@@ -52,7 +63,7 @@ export const TeamMembers: React.FC<TeamMembersProps> = ({ topMember, members = [
   return (
     <div className={styles.container}>
       <LeftBorderCaption text="MEMBERS" color="white" />
-      {topMember && <TopMember member={topMember} />}
+      {(topMember || !members.length) && <TopMember member={topMember} />}
       <div className={styles.members}>
         {members
           .filter((member) => member != topMember)
