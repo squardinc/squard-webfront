@@ -62,6 +62,7 @@ const RoundButton = styled.button`
   border-radius: 50vh;
   height: 45px;
   margin-bottom: 10px;
+  ${(props) => props.disabled && 'cursor: not-allowed;'}
 `
 
 type SignUpComponentProps = ModalProps & {

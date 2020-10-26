@@ -5,13 +5,15 @@ import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { Team } from 'src/models/team'
 import styles from './RecommendedTeams.module.scss'
 
-const RECOMMENDED_ORDER = [
-  // 'ayaka_artist', //
-  // 'piepielielie', //
-  // 'joyfully', //
-  'fagends',
-  'squard',
-]
+const RECOMMENDED_ORDER = {
+  squard: [
+    'ayaka_artist', //
+    // 'piepielielie', //
+    // 'joyfully', //
+    'fagends',
+    'squard',
+  ],
+}
 
 const trim = (text: string, length: number) =>
   text.length > length ? `${text.substring(0, length)}...` : text
@@ -56,7 +58,7 @@ export const RecommendedTeams: React.FC<RecommendedTeamsProps> = ({
         <TwoStagedCaption sub="Recommended" main="Teams" style="medium" />
       </div>
       <div className="flex overflow-x-auto overflow-y-hidden pl-6 pr-6">
-        {RECOMMENDED_ORDER.filter((teamId) => teamId !== currentTeamId).map((teamId, index) => (
+        {(RECOMMENDED_ORDER[currentTeamId] || ['squard']).map((teamId, index) => (
           <RecommendedTeam key={index} team={teams.find((team) => teamId === team.id)} />
         ))}
       </div>
