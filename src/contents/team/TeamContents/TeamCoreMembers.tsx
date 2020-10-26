@@ -3,6 +3,7 @@ import * as React from 'react'
 import { TwoStagedCaption } from 'src/components/Caption/Captions'
 import { ImageOverlay } from 'src/components/ImageOverlay/TeamCoreMembers'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import NoImageCoreMember from 'src/images/NoImageCoreMember.jpg'
 import { ITeamMember } from 'src/models/team/index'
 import styles from './TeamCoreMembers.module.scss'
 
@@ -41,7 +42,7 @@ const TeamCoreMemberImage: React.FC<TeamCoreMemberProps> = ({ member }) => {
         )}
         <div
           style={{
-            background: `url("${member.image}") no-repeat center center`,
+            background: `url("${member.image || NoImageCoreMember}") no-repeat center center`,
             backgroundSize: 'cover',
           }}
           className={getImageTheme(member.imageColor)}
