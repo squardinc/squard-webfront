@@ -110,6 +110,7 @@ class TeamMember implements ITeamMember {
   }
 
   get displayAge() {
+    if (this.age === 'hidden') return ''
     return this.age || this.user?.age || ''
   }
 }
