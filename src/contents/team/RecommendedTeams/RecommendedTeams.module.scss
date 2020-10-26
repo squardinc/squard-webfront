@@ -13,18 +13,18 @@
 .vipContainer {
   position: relative;
   position: relative;
-  margin: 0px 25px 10px 5px;
+  margin: 0px 10px 10px 0px;
 }
 
 .vip {
-  @include personIcon(300px, 300px, 10px);
+  @include personIcon(250px, 300px, 10px);
 }
 
 $content-size: 40%;
 
 .vipCaptionContainer {
   position: relative;
-  width: 300px;
+  width: 250px;
   height: 200px;
   bottom: 25px;
   background-color: $background-color;
@@ -53,6 +53,10 @@ $content-size: 40%;
   font-weight: $weight-light;
   font-size: 14px;
   line-height : 2;
+  max-width: 230px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .vipIntroduction {
   color: white;
@@ -61,6 +65,13 @@ $content-size: 40%;
   margin: 12px 0px;
   margin-bottom: 18px;
   line-height : 1.66;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  max-width: 230px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .vipLinks {
   display: flex;

@@ -10,8 +10,6 @@ const RECOMMENDED_ORDER = {
 }
 const disabledTeams = ['piepielielie']
 
-const trim = (text: string, length: number) =>
-  text.length > length ? `${text.substring(0, length)}...` : text
 interface RecommendedTeamProps {
   team?: Team
 }
@@ -20,15 +18,15 @@ const RecommendedTeam: React.FC<RecommendedTeamProps> = ({ team }) => {
   return (
     <div className={styles.vipContainer}>
       <Link to={disabledTeams.includes(team.id) ? '#' : `/${encodeURIComponent(team.pageId)}`}>
-        <div className="pl-0 pr-0" style={{ width: '300px', height: '520px' }}>
+        <div className="pl-0 pr-0" style={{ width: '250px', height: '520px' }}>
           <img src={team.topImage} className={styles.vip} />
           <div className={styles.vipCaptionContainer}>
             <div className={styles.vipCaption}>
               <div className={styles.vipCaptionTop}>
-                <TextDisplay className={styles.subtitle}>{trim(team.subTitle, 18)}</TextDisplay>
+                <TextDisplay className={styles.subtitle}>{team.subTitle}</TextDisplay>
                 <TextDisplay className={styles.vipName}>{team.name}</TextDisplay>
                 <TextDisplay className={styles.vipIntroduction}>
-                  {trim(team.introduction, 80)}
+                  {team.introduction}
                 </TextDisplay>
               </div>
             </div>
