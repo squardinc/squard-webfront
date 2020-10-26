@@ -11,7 +11,6 @@ const RECOMMENDED_ORDER = {
     // 'piepielielie', //
     // 'joyfully', //
     'fagends',
-    'squard',
   ],
 }
 
