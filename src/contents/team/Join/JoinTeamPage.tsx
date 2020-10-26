@@ -124,7 +124,7 @@ const JoinTeam: React.FC<JoinTeamProps> = ({
             </TextJoinTeam>
             <TextDesciption>
               <TextDisplay>
-                チームが設定した月々のサブスクリプション料金を支払いProspectsやAngelsとしてチームに参加することで、様々な特典を受け取ることができます。
+                チームが設定した月額会員費を支払いProspectsやAngelsとしてチームに参加することで、様々な特典を受け取ることができます。
               </TextDisplay>
             </TextDesciption>
           </JoinInfoWrapper>
