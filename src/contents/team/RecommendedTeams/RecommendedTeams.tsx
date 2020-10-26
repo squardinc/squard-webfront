@@ -6,14 +6,9 @@ import { Team } from 'src/models/team'
 import styles from './RecommendedTeams.module.scss'
 
 const RECOMMENDED_ORDER = {
-  squard: [
-    'ayaka_artist', //
-    // 'piepielielie', //
-    // 'joyfully', //
-    'fagends',
-    'squard',
-  ],
+  squard: ['ayaka_artist', 'piepielielie', 'joyfully', 'fagends'],
 }
+const disabledTeams = ['piepielielie', 'joyfully']
 
 const trim = (text: string, length: number) =>
   text.length > length ? `${text.substring(0, length)}...` : text
@@ -24,7 +19,7 @@ const RecommendedTeam: React.FC<RecommendedTeamProps> = ({ team }) => {
   if (!team) return <></>
   return (
     <div className={styles.vipContainer}>
-      <Link to={`/${encodeURIComponent(team.pageId)}`}>
+      <Link to={disabledTeams.includes(team.id) ? '#' : `/${encodeURIComponent(team.pageId)}`}>
         <div className="pl-0 pr-0" style={{ width: '300px', height: '520px' }}>
           <img src={team.topImage} className={styles.vip} />
           <div className={styles.vipCaptionContainer}>
