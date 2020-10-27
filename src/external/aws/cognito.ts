@@ -21,7 +21,7 @@ const configure = (origin: string) => {
         domain: AWS_COGNITO_USERPOOL_DOMAIN,
         scope: ['email', 'profile', 'openid'],
         redirectSignIn: `${origin}/socialSignIn`,
-        redirectSignOut: `${origin}`,
+        redirectSignOut: `${origin}/socialSignOut`,
         clientId: AWS_COGNITO_USERPOOL_CLIENT_ID,
         responseType: 'code',
       },
@@ -90,7 +90,10 @@ export const loginWithFacebook = async () => {
   return Auth.federatedSignIn({ provider: 'Facebook' })
 }
 
-export const logout = async () => Auth.signOut({})
+export const logout = async () =>  {
+  setItem('previous_path', window.location.pathname)
+  return Auth.signOut({})
+}
 
 export const intialize = async () => {
   configure(window.location.origin)

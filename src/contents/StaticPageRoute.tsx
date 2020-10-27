@@ -3,12 +3,13 @@ import React from 'react'
 import { AboutPage } from './about/AboutPage'
 import { ConfirmSignUpLayout } from './callback/ConfirmSignUp'
 import { ResetPasswordLayout } from './callback/ResetPassword'
+import { SocialSigninLayout } from './callback/SocialSignIn'
+import { SocialSignOutLayout } from './callback/SocialSignOut'
 import { CompanyPage } from './company/company'
 import { FAQPage } from './faq/FAQ'
 import { PrivacyPolicyPage } from './privacypolicy/privacypolicy'
 import { SctlPage } from './sctl/SctlPage'
 import { SignUpLayout } from './SignUp'
-import { SocialSigninLayout } from './SocialSignIn'
 import { TermsOfUsePage } from './termsofuse/TermsOfUsePage'
 
 export const StaticPagePaths = [
@@ -22,6 +23,7 @@ export const StaticPagePaths = [
   'confirmSignUp',
   'resetPassword',
   'socialSignIn',
+  'socialSignOut',
 ] as const
 
 export type StaticPageType = typeof StaticPagePaths[number]
@@ -37,6 +39,7 @@ const StaticPageMap: { [key in StaticPageType]: React.FC } = {
   confirmSignUp: ConfirmSignUpLayout,
   resetPassword: ResetPasswordLayout,
   socialSignIn: SocialSigninLayout,
+  socialSignOut: SocialSignOutLayout,
 }
 
 interface StaticPageRouteProps {

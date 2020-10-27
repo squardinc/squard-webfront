@@ -10,6 +10,7 @@ import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { LoadingContext } from 'src/context/LoadingContextProvider'
 import { UserContext } from 'src/context/UserContext'
 import { AuthService } from 'src/services/AuthService'
+import { errorMessage } from 'src/utils/errorMessage'
 import { validEmaliAddress } from 'src/utils/StringValidator'
 import styled from 'styled-components'
 import * as Const from '../../../styles/const'
@@ -67,12 +68,14 @@ const RoundButton = styled.button`
 
 interface LoginFormProps {
   login: (e: React.MouseEvent, email: string, password: string) => Promise<void>
+  facebookLogin: (e: React.MouseEvent) => Promise<void>
   closeModal: (e: React.MouseEvent) => void
   showPasswordResetRequestModal: (e: React.MouseEvent) => void
   showSignUpModal: (e: React.MouseEvent) => void
 }
 const LoginFormModal: React.FC<LoginFormProps> = ({
   login,
+  facebookLogin,
   closeModal,
   showPasswordResetRequestModal,
   showSignUpModal,
@@ -124,10 +127,7 @@ const LoginFormModal: React.FC<LoginFormProps> = ({
                 color: 'white',
                 backgroundColor: '#3B5998',
               }}
-              onClick={(e) => {
-                e.preventDefault()
-                AuthService.loginWithFacebook()
-              }}
+              onClick={facebookLogin}
             >
               <TextDisplay>Facebookでログイン</TextDisplay>
             </RoundButton>
@@ -156,7 +156,7 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
 }) => {
   const { setLoading } = React.useContext(LoadingContext)
   const { user, setUser } = React.useContext(UserContext)
-  const [errorMesasge, setErrorMessage] = React.useState('')
+  const [errorMesasge, setErrorMessage] = React.useState<string | JSX.Element>('')
 
   return (
     <>
@@ -180,6 +180,14 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
               setLoading(false)
               setErrorMessage(err)
             }
+          }}
+          facebookLogin={async (e) => {
+            e.preventDefault()
+            setLoading(true)
+            await AuthService.loginWithFacebook().catch((err) => {
+              setLoading(false)
+              setErrorMessage(errorMessage())
+            })
           }}
           closeModal={closeModal}
           showSignUpModal={showSignUpModal}
