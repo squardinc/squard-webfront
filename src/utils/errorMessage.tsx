@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { ErrorType } from 'src/types/ErrorType'
 
 export const errorMessage = (errorType?: ErrorType) => {
