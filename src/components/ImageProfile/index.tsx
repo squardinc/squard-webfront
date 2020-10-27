@@ -35,16 +35,18 @@ const ImageAvatarWrapper = styled.div`
 
 const CameraIconCoverWrapper = styled.div`
   position: absolute;
-  top: 30vw;
+  top: 30%;
   left: 0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.3);
   :hover {
     opacity: 0.5;
   }
@@ -52,17 +54,18 @@ const CameraIconCoverWrapper = styled.div`
 
 const CameraIconAvatarWrapper = styled.div`
   position: absolute;
-  bottom: 75px;
+  bottom: 100px;
   left: 0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-
+  background: rgba(0, 0, 0, 0.3);
   :hover {
     opacity: 0.5;
   }
