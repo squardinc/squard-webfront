@@ -5,8 +5,9 @@ import {
   AWS_COGNITO_USERPOOL_CLIENT_ID,
   AWS_COGNITO_USERPOOL_DOMAIN,
   AWS_COGNITO_USERPOOL_ID,
-  AWS_REGION,
+  AWS_REGION
 } from 'src/utils/env'
+import { setItem } from 'src/utils/LocalStorage'
 
 const configure = (origin: string) => {
   Amplify.configure({
@@ -85,6 +86,7 @@ export const resetPassword = async (email: string, code: string, newPassword: st
   )
 }
 export const loginWithFacebook = async () => {
+  setItem('previous_path', window.location.pathname)
   return Auth.federatedSignIn({ provider: 'Facebook' })
 }
 

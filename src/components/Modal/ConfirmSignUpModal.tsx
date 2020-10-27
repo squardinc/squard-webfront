@@ -1,8 +1,9 @@
+import { navigate } from 'gatsby'
 import * as React from 'react'
 import { CompleteModal } from 'src/components/Modal/CompleteModal'
 import { MessageModal } from 'src/components/Modal/MessageModal'
-import { parseSearchParams } from 'src/utils/UrlParser'
 import { AuthService } from 'src/services/AuthService'
+import { parseSearchParams } from 'src/utils/UrlParser'
 
 export const ConfirmSignUpModal: React.FC = () => {
   const [showSignUpCompleteModal, setShowSignUpCompleteModal] = React.useState(false)
@@ -27,13 +28,17 @@ export const ConfirmSignUpModal: React.FC = () => {
           title="登録完了"
           closeModal={() => {
             setShowSignUpCompleteModal(false)
+            navigate(params.path || '/')
           }}
         />
       )}
       {showErrorMessage && (
         <MessageModal
           message="登録に失敗しました。再度登録し直すか、管理者までお問い合わせください。"
-          closeModal={() => setShowErrorMessage(false)}
+          closeModal={() => {
+            setShowErrorMessage(false)
+            navigate(params.path || '/')
+          }}
         />
       )}
     </>
