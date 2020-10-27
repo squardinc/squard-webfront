@@ -75,6 +75,7 @@ export const login = async (email: string, password: string) => {
 }
 
 export const resetPasswordRequest = async (email: string, origin: string, currentPath: string) => {
+  setItem('previous_path', window.location.pathname)
   return await Auth.forgotPassword(email, { origin, currentPath }).catch(() =>
     Promise.reject('エラーが発生しました。入力内容を確認して再度やり直してください。')
   )
