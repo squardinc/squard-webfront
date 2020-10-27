@@ -3,7 +3,6 @@ import { animateScroll } from 'react-scroll'
 import { CompleteModal } from 'src/components/Modal/CompleteModal'
 import { MessageModal } from 'src/components/Modal/MessageModal'
 import { withTheme } from 'src/context/ThemeContext'
-import { uploadImg } from 'src/external/aws/s3'
 import { IPersonal } from 'src/models/person'
 import * as colors from 'src/styles/colors'
 import { UpdateUserInput } from 'src/types/API'
@@ -20,6 +19,7 @@ type PersonPageProps = {
   hasPaymentComplete?: boolean
   joinSucceededTeamId?: string
   onEditProfile?: (value: boolean) => void
+  uploadImage: (image: Blob, contentType: string, fileName?: string) => Promise<string>
   update: (input: UpdateUserInput, pageId: string) => Promise<void>
   leaveTeam: (teamId: string, teamClassId: string) => Promise<void>
   refetch: () => Promise<void>
@@ -54,6 +54,7 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
   hasPaymentComplete,
   joinSucceededTeamId,
   onEditProfile,
+  uploadImage,
   update,
   leaveTeam,
   refetch,
@@ -83,9 +84,7 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
               isLoading={false}
               personal={personal}
               close={() => onEditProfile && onEditProfile(false)}
-              saveImage={async (fileName: string, image: Blob, contentType: string) =>
-                uploadImg(fileName, image, contentType)
-              }
+              saveImage={uploadImage}
               saveProfile={update}
             />
           </EditProfileWrapper>

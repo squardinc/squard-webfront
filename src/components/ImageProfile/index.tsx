@@ -1,8 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { Image } from '../Image/index'
-import { Icon } from '../Icon'
 import Camera from '../../assets/icon-camera.svg'
+import { Image } from '../Image/index'
 import { ImageEditModal } from '../Modal/ImageEditModal'
 
 export type ImageType = 'cover' | 'avatar'
@@ -16,16 +15,16 @@ export interface ImageProfileProps {
 
 const ImageProfileWrapper = styled.div`
   position: relative;
+  top: 42px;
   width: 100%;
-  height: 340px;
+  padding-bottom: 150px;
 `
 const ImageCoverWrapper = styled.div`
   width: 100%;
-  height: 250px;
 `
 const ImageAvatarWrapper = styled.div`
   position: absolute;
-  top: 175px;
+  bottom: 75px;
   left: 0;
   right: 0;
   margin-left: auto;
@@ -36,7 +35,7 @@ const ImageAvatarWrapper = styled.div`
 
 const CameraIconCoverWrapper = styled.div`
   position: absolute;
-  top: 20px;
+  top: 30vw;
   left: 0;
   right: 0;
   margin-left: auto;
@@ -53,7 +52,7 @@ const CameraIconCoverWrapper = styled.div`
 
 const CameraIconAvatarWrapper = styled.div`
   position: absolute;
-  top: 175px;
+  bottom: 75px;
   left: 0;
   right: 0;
   margin-left: auto;
@@ -128,6 +127,9 @@ const ImageProfileEditComponent: React.FC<ImageProfileProps> = ({
               onSelectFile(e, setEditingTopImage)
               setShowTopImageEditModal(true)
             }}
+            onClick={(e) => {
+              e.target.value = ''
+            }}
           />
         </label>
         <label>
@@ -141,6 +143,9 @@ const ImageProfileEditComponent: React.FC<ImageProfileProps> = ({
               e.preventDefault()
               onSelectFile(e, setEditingIcon)
               setShowIconEditModal(true)
+            }}
+            onClick={(e) => {
+              e.target.value = ''
             }}
           />
         </label>
@@ -157,6 +162,8 @@ const ImageProfileEditComponent: React.FC<ImageProfileProps> = ({
           onSelectFile={(e) => onSelectFile(e, setEditingTopImage)}
           setImg={setTopImage}
           setPreviewUrl={setTopImagePreviewUrl}
+          initialCrop={{ aspect: 1 / 1 }}
+          displayWidth={640}
         />
       )}
       {showIconEditModal && (
@@ -168,6 +175,8 @@ const ImageProfileEditComponent: React.FC<ImageProfileProps> = ({
           closeModal={() => setShowIconEditModal(false)}
           setImg={setIcon}
           setPreviewUrl={setIconPreviewUrl}
+          initialCrop={{ aspect: 74 / 94 }}
+          displayWidth={74}
         />
       )}
     </>

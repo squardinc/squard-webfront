@@ -1,9 +1,8 @@
-import React from 'react'
-import styled from 'styled-components'
-import { windowWidth } from 'src/styles/sizes'
-import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import * as Const from '../../styles/const'
 import CSS from 'csstype'
+import React from 'react'
+import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import { windowWidth } from 'src/styles/sizes'
+import styled from 'styled-components'
 
 interface ItemWrapperStyleProps {
   clickable: boolean
@@ -27,11 +26,17 @@ export interface ItemProps {
   align?: CSS.Properties['textAlign']
   fontSize?: number
   fontWeight?: number
-  onClick?: VoidFunction
+  onClick?: () => Promise<void>
 }
 export const Item: React.FC<ItemProps> = ({ title, onClick, align, fontSize, fontWeight }) => {
   return (
-    <ItemWrapper clickable={!!onClick} onClick={() => onClick && onClick()}>
+    <ItemWrapper
+      clickable={!!onClick}
+      onClick={() => {
+        if (onClick) return onClick()
+        return Promise.resolve()
+      }}
+    >
       <TitleWrapper
         style={{
           fontSize: fontSize ? `${fontSize}px` : '15px',

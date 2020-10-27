@@ -19,7 +19,7 @@ interface PersonalEditProfileProps {
   personal: IPersonal
   close: VoidFunction
   saveProfile: (data: IPersonal, pageId: string) => Promise<void>
-  saveImage: Function
+  saveImage: (image: Blob, contentType: string, fileName?: string) => Promise<string>
 }
 
 const tabMenuData = [
@@ -281,12 +281,12 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
   ])
   const onSaveProfile = async () => {
     if (icon) {
-      const url = await saveImage('icon.jpeg', icon, 'image/jpeg')
+      const url = await saveImage(icon, 'image/jpeg')
       profile.icon = url
       setProfile(Object.assign({}, profile))
     }
     if (topImage) {
-      const url = await saveImage('top.jpeg', topImage, 'image/jpeg')
+      const url = await saveImage(topImage, 'image/jpeg')
       profile.topImage = url
       setProfile(Object.assign({}, profile))
     }

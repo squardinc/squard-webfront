@@ -1,8 +1,10 @@
 import { ApolloError, gql, useMutation, useQuery } from '@apollo/client'
 import { navigate } from 'gatsby'
 import * as React from 'react'
+import { ErrorMessageModal } from 'src/components/Modal/ErrorMessageModal'
 import { LoadingContext } from 'src/context/LoadingContextProvider'
 import { UserContext } from 'src/context/UserContext'
+import { uploadImg } from 'src/external/aws/s3'
 import { leaveTeam, updatePage, updateUser } from 'src/graphql/mutations'
 import { getMyself, getUser } from 'src/graphql/queries'
 import { Person } from 'src/models/person'
@@ -26,6 +28,7 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
   const { user } = React.useContext(UserContext)
   const { setLoading } = React.useContext(LoadingContext)
   const [isEditing, setEditing] = React.useState(false)
+  const [showErrorModal, setShowErrorModal] = React.useState(false)
   const params = parseSearchParams(window.location.search)
   const { loading, error, data, refetch } = user.isMine(id)
     ? useQuery<GetMyselfQuery>(gql(getMyself))
@@ -62,47 +65,73 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
 
   const PersonPageLayout = isEditing ? PersonPageLayoutBlack : PersonPageLayoutGray
   return (
-    <PersonPageLayout
-      isLoading={false}
-      profileEditable={user.isMine(personalData.id)}
-      isEditing={isEditing}
-      hasPaymentComplete={params['payment_status'] === 'success'}
-      joinSucceededTeamId={params.teamId}
-      showLeaveTeamResult={!!leaveTeamResponse.data?.leaveTeam?.message}
-      personal={personalData}
-      update={(profile: UpdateUserInput, pageId: string) => {
-        if (pageId && personalData.pageId !== pageId) updatePageIdRequest({ variables: { pageId } })
-        updateUserRequest({
-          variables: {
-            input: {
-              nameJp: profile.nameJp,
-              nameEn: profile.nameEn,
-              links: profile.links,
-              introduction: profile.introduction,
-              displayTeamIds: profile.displayTeamIds,
-              topImage: profile.topImage,
-              icon: profile.icon,
+    <>
+      <PersonPageLayout
+        isLoading={false}
+        profileEditable={user.isMine(personalData.id)}
+        isEditing={isEditing}
+        hasPaymentComplete={params['payment_status'] === 'success'}
+        joinSucceededTeamId={params.teamId}
+        showLeaveTeamResult={!!leaveTeamResponse.data?.leaveTeam?.message}
+        personal={personalData}
+        uploadImage={async (image: Blob, contentType: string, fileName?: string) => {
+          setLoading(true)
+          return uploadImg(image, contentType, fileName).catch((err: ApolloError) => {
+            Promise.reject(err)
+            setLoading(false)
+            setShowErrorModal(true)
+          })
+        }}
+        update={async (profile: UpdateUserInput, pageId: string) => {
+          setLoading(true)
+          if (pageId && personalData.pageId !== pageId)
+            updatePageIdRequest({ variables: { pageId } })
+          return updateUserRequest({
+            variables: {
+              input: {
+                nameJp: profile.nameJp,
+                nameEn: profile.nameEn,
+                links: profile.links,
+                introduction: profile.introduction,
+                displayTeamIds: profile.displayTeamIds,
+                topImage: profile.topImage,
+                icon: profile.icon,
+              },
             },
-          },
-        })
-      }}
-      leaveTeam={async (teamId: string, teamMemberId: string) => {
-        setLoading(true)
-        return leaveTeamRequest({
-          variables: {
-            teamId,
-            teamMemberId,
-          },
-        }).then(
-          () => setLoading(false),
-          (err: ApolloError) => Promise.reject(err)
-        )
-      }}
-      onEditProfile={(editing: boolean) => {
-        setEditing(editing)
-      }}
-      refetch={refetch}
-    />
+          }).then(
+            () => setLoading(false),
+            (err: ApolloError) => {
+              Promise.reject(err)
+              setLoading(false)
+              setShowErrorModal(true)
+            }
+          )
+        }}
+        leaveTeam={async (teamId: string, teamMemberId: string) => {
+          setLoading(true)
+          return leaveTeamRequest({
+            variables: {
+              teamId,
+              teamMemberId,
+            },
+          }).then(
+            () => setLoading(false),
+            (err: ApolloError) => Promise.reject(err)
+          )
+        }}
+        onEditProfile={(editing: boolean) => {
+          setEditing(editing)
+        }}
+        refetch={refetch}
+      />
+      {showErrorModal && (
+        <ErrorMessageModal
+          closeModal={(e) => {
+            setShowErrorModal(false)
+          }}
+        />
+      )}
+    </>
   )
 }
 

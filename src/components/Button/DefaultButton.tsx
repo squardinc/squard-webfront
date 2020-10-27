@@ -92,7 +92,7 @@ export const RoundButton: React.FC<RoundButtonProps> = ({
     <button
       type={type}
       onClick={onClick}
-      className={`w-full ${disabled ? 'cursor-not-allowed' : ''}`}
+      className={`w-full ${disabled ? 'cursor-not-allowed opacity-50' : ''}`}
       disabled={disabled}
       style={style ? style : {}}
     >

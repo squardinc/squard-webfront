@@ -12,7 +12,7 @@ export const DefaultModalContainer: React.FC<ModalProps> = ({
     fadeIn()
   }, [])
   return (
-    <div className={`${backgroundColor} text-white p-6 rounded-xl w-full`}>
+    <div className={`${backgroundColor} text-white p-6 rounded-xl w-full max-h-screen`}>
       <div className="flex justify-end w-full">
         <FontAwesomeIcon
           icon={faTimes}
