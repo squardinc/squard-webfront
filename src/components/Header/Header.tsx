@@ -1,3 +1,5 @@
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'gatsby'
 import React, { useEffect } from 'react'
 import Menu from 'src/assets/menu.svg'
@@ -11,6 +13,7 @@ import { LoginUserModel } from 'src/services/AuthService/LoginUserModel'
 import styled from 'styled-components'
 import * as Const from '../../styles/const'
 import styles from './Header.module.scss'
+import { UserIcon } from './UserIcon'
 
 const Title = styled.div`
   font-weight: ${Const.fontWeight.bold};
@@ -30,11 +33,10 @@ function enableScroll() {
 }
 
 export const Header = () => {
+  const { setLoading } = React.useContext(LoadingContext)
   const { user, setUser } = React.useContext(UserContext)
   const [openModal, setOpenModal] = React.useState<ModalType>('Closed')
   const [showNavMenu, setShowNavMenu] = React.useState(false)
-  const { setLoading } = React.useContext(LoadingContext)
-
   useEffect(() => {
     if (showNavMenu) {
       disableScroll()
@@ -42,7 +44,6 @@ export const Header = () => {
       enableScroll()
     }
   }, [showNavMenu])
-
   return (
     <React.Fragment>
       <div
@@ -63,7 +64,16 @@ export const Header = () => {
               <span className="text-xl font-bold text-red-600">.</span>
             </Link>
           </TextDisplay>
-          <div className="w-6">
+          <div className="w-8 h-8">
+            {user.loggedIn ? (
+              <UserIcon />
+            ) : (
+              <FontAwesomeIcon
+                size="lg"
+                icon={faUserCircle}
+                onClick={() => setOpenModal('Login')}
+              />
+            )}
             {/* {showSearchBar ? (
               <Cross cursor="pointer" onClick={() => setShowSearchBar(false)} />
             ) : (
