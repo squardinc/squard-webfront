@@ -35,8 +35,15 @@ export const ErrorMessageComponent: React.FC<ErrorMessageComponentProps> = ({
   React.useEffect(() => {
     setLoading(false)
   }, [])
-  if (errorType === 'AGREEMENT_TO_TERMS_OF_USE_REQUIRED')
-    return <AgreementsComponent closeModal={closeModal} closable={closable} />
+  if (errorType === 'AGREEMENT_TO_TERMS_OF_USE_REQUIRED') {
+    return (
+      <AgreementsComponent
+        currentVersion={errorInfo?.errorInfo?.latest}
+        closeModal={closeModal}
+        closable={closable}
+      />
+    )
+  }
   return (
     <MessageModal
       closeModal={closeModal}

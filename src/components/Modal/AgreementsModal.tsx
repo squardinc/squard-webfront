@@ -8,6 +8,7 @@ import { agreeTermsOfUse } from 'src/graphql/mutations'
 import { AuthService } from 'src/services/AuthService'
 import { LoginUserModel } from 'src/services/AuthService/LoginUserModel'
 import { AgreeTermsOfUseMutation, AgreeTermsOfUseMutationVariables } from 'src/types/API'
+import { formattedDateJp } from 'src/utils/date'
 import { withFadeOut } from 'src/utils/Modal'
 import ExternalLink from '../Link/ExternalLink'
 import asModal, { ModalProps } from './asModal'
@@ -22,6 +23,7 @@ export const AgreementsComponent: React.FC<AgreementsModalProps> = ({
   showLogoutModal,
   closeModal,
   closable,
+  currentVersion,
 }) => {
   const { setUser } = React.useContext(UserContext)
   const [showAgreedTermsOfUseModal, setShowAgreedTermsOfUseModal] = React.useState(false)
@@ -45,12 +47,16 @@ export const AgreementsComponent: React.FC<AgreementsModalProps> = ({
         />
       ) : (
         <DefaultModalContainer closeModal={closeModal} closable={closable}>
-          <TextDisplay className="text-3xl font-semibold">{'利用規約の同意'}</TextDisplay>
+          <TextDisplay className="text-3xl font-semibold">{'利用規約への同意'}</TextDisplay>
           <div className="flex flex-col justify-center items-center">
             <TextDisplay className="mb-8 whitespace-pre-wrap">
-              {
-                '利用規約が更新されました。利用を継続するには最新の利用規約をご確認頂き、同意を頂く必要があります。'
-              }
+              {`利用規約が更新されています。\r\nご利用を継続頂くには${formattedDateJp(
+                currentVersion || TERMS_OF_USE_VERSION
+              )}施行の`}
+              <ExternalLink href="/termsofuse" className="underline">
+                利用規約をご確認
+              </ExternalLink>
+              頂き、同意を頂く必要があります。
             </TextDisplay>
             <div className="flex justify-center items-center mb-2">
               <input
@@ -70,7 +76,9 @@ export const AgreementsComponent: React.FC<AgreementsModalProps> = ({
               className="border-2 text-lg"
               text="同意して利用を継続する"
               onClick={() => {
-                agreeTermsOfUseRequest({ variables: { version: TERMS_OF_USE_VERSION } })
+                agreeTermsOfUseRequest({
+                  variables: { version: currentVersion || TERMS_OF_USE_VERSION },
+                })
               }}
               disabled={!agreedTermsOfUse}
             />

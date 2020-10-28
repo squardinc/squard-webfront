@@ -1,4 +1,5 @@
 import { ApolloError } from '@apollo/client'
+import { GraphQLError } from 'graphql'
 import * as React from 'react'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { AuthModal, ModalType } from 'src/components/Modal/AuthModal'
