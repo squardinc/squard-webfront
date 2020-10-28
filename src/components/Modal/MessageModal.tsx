@@ -14,8 +14,9 @@ export const MessageCompoenent: React.FC<MessageComponentProps> = ({
   title = '',
   message,
   buttonText = 'Close',
+  closable,
 }) => (
-  <DefaultModalContainer closeModal={closeModal}>
+  <DefaultModalContainer closeModal={closeModal} closable={closable}>
     <TextDisplay className="text-4xl font-semibold">{title}</TextDisplay>
     <div className="flex flex-col justify-center items-center">
       <TextDisplay className="mb-8">{message}</TextDisplay>

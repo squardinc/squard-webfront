@@ -6,6 +6,8 @@ import styled from 'styled-components'
 import * as Const from '../../styles/const'
 import styles from './termsofuse.module.scss'
 
+export const TERMS_OF_USE_VERSION = '2020-10-18'
+
 interface PolicySectionContent {
   section?: string | JSX.Element
   subsections?: string[] | JSX.Element[]
