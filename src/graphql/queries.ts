@@ -73,7 +73,7 @@ export const getTeams = /* GraphQL */ `
       }
     }
   }
-`;
+`
 export const getMyMemberInfo = /* GraphQL */ `
   query GetMyMemberInfo {
     getMyMemberInfo {
@@ -285,6 +285,14 @@ export const getPage = /* GraphQL */ `
       id
       resourceId
       type
+    }
+  }
+`
+export const getAgreements = /* GraphQL */ `
+  query GetAgreements($userId: ID!) {
+    getAgreements(userId: $userId) {
+      id
+      agreedTermsOfUses
     }
   }
 `

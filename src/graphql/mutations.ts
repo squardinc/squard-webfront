@@ -65,3 +65,10 @@ export const updatePage = /* GraphQL */ `
     updatePage(pageId: $pageId)
   }
 `
+export const agreeTermsOfUse = /* GraphQL */ `
+  mutation AgreeTermsOfUse($version: AWSDate!) {
+    agreeTermsOfUse(version: $version) {
+      message
+    }
+  }
+`

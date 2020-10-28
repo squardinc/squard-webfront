@@ -110,6 +110,17 @@ export type UpdatePageMutation = {
   updatePage: string | null
 }
 
+export type AgreeTermsOfUseMutationVariables = {
+  version: string,
+};
+
+export type AgreeTermsOfUseMutation = {
+  agreeTermsOfUse:  {
+    __typename: "Response",
+    message: string | null,
+  } | null,
+};
+
 export type GetTeamQueryVariables = {
   id: string
 }
@@ -381,3 +392,15 @@ export type GetPageQuery = {
     type: PageType | null
   } | null
 }
+
+export type GetAgreementsQueryVariables = {
+  userId: string,
+};
+
+export type GetAgreementsQuery = {
+  getAgreements:  {
+    __typename: "Agreements",
+    id: string,
+    agreedTermsOfUses: Array< string > | null,
+  } | null,
+};
