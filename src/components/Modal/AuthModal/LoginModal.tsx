@@ -9,11 +9,10 @@ import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { LoadingContext } from 'src/context/LoadingContextProvider'
 import { UserContext } from 'src/context/UserContext'
 import { AuthService } from 'src/services/AuthService'
-import { LoginUser } from 'src/services/AuthService/interfaces'
-import { LoginUserModel } from 'src/services/AuthService/LoginUserModel'
 import { validEmaliAddress } from 'src/utils/StringValidator'
 import styled from 'styled-components'
 import * as Const from '../../../styles/const'
+import { AgreementsModal } from '../AgreementsModal'
 
 const LoginContent = styled.div`
   padding-left: 0px;
@@ -148,25 +147,44 @@ const LoginFormModal: React.FC<LoginFormProps> = ({
 type LoginComponentProps = ModalProps & {
   showSignUpModal: (e: React.MouseEvent) => void
   showPasswordResetRequestModal: (e: React.MouseEvent) => void
+  showLogoutModal: (e: React.MouseEvent) => void
   setErrorMessage: (error: string | JSX.Element | undefined) => void
 }
 const LoginComponent: React.FC<LoginComponentProps> = ({
   closeModal,
   showSignUpModal,
   showPasswordResetRequestModal,
+  showLogoutModal,
   setErrorMessage,
 }) => {
   const { setLoading } = React.useContext(LoadingContext)
   const { user, setUser } = React.useContext(UserContext)
-  const [ loginUser, setLoginUser ] = React.useState<LoginUser>(LoginUserModel.guest())
+  const [showAgreementModal, setShowAgreementModal] = React.useState(false)
+  if (showAgreementModal) {
+    return (
+      <AgreementsModal
+        closeModal={(e) => {
+          setShowAgreementModal(false)
+          closeModal(e)
+        }}
+        showLogoutModal={(e) => {
+          setShowAgreementModal(false)
+          showLogoutModal(e)
+        }}
+      />
+    )
+  }
   return (
     <>
-      {loginUser.loggedIn ? (
+      {user.loggedIn ? (
         <CompleteModal
           title="Login Completed!"
           footerDescription="ログインしました"
           closeModal={(e) => {
-            setUser(loginUser)
+            if (!user.agreementsVerified) {
+              setShowAgreementModal(true)
+              return
+            }
             closeModal(e)
           }}
         />
@@ -177,7 +195,7 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
             try {
               setLoading(true)
               const user = await AuthService.login(email, password)
-              setLoginUser(user)
+              setUser(user)
               setLoading(false)
             } catch (err) {
               setLoading(false)

@@ -1,7 +1,8 @@
+import { GraphQLError } from 'graphql'
 import * as React from 'react'
 import { LoadingContext } from 'src/context/LoadingContextProvider'
 import { ErrorType } from 'src/types/ErrorType'
-import { AgreementsModal } from './AgreementsModal'
+import { AgreementsComponent } from './AgreementsModal'
 import { asModal, ModalProps } from './asModal'
 import { MessageModal } from './MessageModal'
 
@@ -19,22 +20,23 @@ export const errorMessage = (errorType?: ErrorType) => {
 
 type ErrorMessageComponentProps = ModalProps & {
   message?: string | JSX.Element
-  errorType?: ErrorType
+  errorInfo?: GraphQLError
   buttonText?: string
 }
-const ErrorMessageComponent: React.FC<ErrorMessageComponentProps> = ({
+export const ErrorMessageComponent: React.FC<ErrorMessageComponentProps> = ({
   closeModal,
   message,
-  errorType,
+  errorInfo,
   buttonText = 'Close',
   closable,
 }) => {
   const { setLoading } = React.useContext(LoadingContext)
+  const errorType: ErrorType | undefined = errorInfo?.errorType
   React.useEffect(() => {
     setLoading(false)
   }, [])
-  if (errorType === 'AREEMENT_TO_TERMS_OF_USE_REQUIRED')
-    return <AgreementsModal closeModal={() => closeModal} closable={closable} />
+  if (errorType === 'AGREEMENT_TO_TERMS_OF_USE_REQUIRED')
+    return <AgreementsComponent closeModal={closeModal} closable={closable} />
   return (
     <MessageModal
       closeModal={closeModal}

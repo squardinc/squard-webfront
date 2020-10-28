@@ -218,6 +218,20 @@ export const getUser = /* GraphQL */ `
     }
   }
 `
+export const getLoginInfo = /* GraphQL */ `
+  query GetMyself {
+    getMyself {
+      id
+      icon
+      page {
+        id
+      }
+      agreements {
+        agreedTermsOfUseVersions
+      }
+    }
+  }
+`
 export const getMyself = /* GraphQL */ `
   query GetMyself {
     getMyself {
@@ -230,11 +244,6 @@ export const getMyself = /* GraphQL */ `
       displayTeamIds
       topImage
       icon
-      page {
-        id
-        resourceId
-        type
-      }
       teamMembers {
         teamId
         teamMemberId
@@ -289,8 +298,8 @@ export const getPage = /* GraphQL */ `
   }
 `
 export const getAgreements = /* GraphQL */ `
-  query GetAgreements($userId: ID!) {
-    getAgreements(userId: $userId) {
+  query GetAgreements {
+    getAgreements {
       id
       agreedTermsOfUses
     }

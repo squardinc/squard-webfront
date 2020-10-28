@@ -1,4 +1,4 @@
-const TOKEN_REQUIRED_QUERIES = ['GetMyself']
+const TOKEN_REQUIRED_QUERIES = ['GetMyself', 'GetAgreements']
 
 export const isTokenRequired = (operationName?: string) => {
   if (!operationName) return false

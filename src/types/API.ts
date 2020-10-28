@@ -111,15 +111,15 @@ export type UpdatePageMutation = {
 }
 
 export type AgreeTermsOfUseMutationVariables = {
-  version: string,
-};
+  version: string
+}
 
 export type AgreeTermsOfUseMutation = {
-  agreeTermsOfUse:  {
-    __typename: "Response",
-    message: string | null,
-  } | null,
-};
+  agreeTermsOfUse: {
+    __typename: 'Response'
+    message: string | null
+  } | null
+}
 
 export type GetTeamQueryVariables = {
   id: string
@@ -178,21 +178,21 @@ export type GetTeamQuery = {
   } | null
 }
 export type GetTeamsQuery = {
-  getTeams:  Array< {
-    __typename: "Team",
-    id: string,
-    name: string | null,
-    subTitle: string | null,
-    introduction: string | null,
-    topImage: string | null,
-    tags: Array< string > | null,
-    page:  {
-      __typename: "Page",
-      id: string,
-      resourceId: string,
-    } | null,
-  } > | null,
-};
+  getTeams: Array<{
+    __typename: 'Team'
+    id: string
+    name: string | null
+    subTitle: string | null
+    introduction: string | null
+    topImage: string | null
+    tags: Array<string> | null
+    page: {
+      __typename: 'Page'
+      id: string
+      resourceId: string
+    } | null
+  }> | null
+}
 
 export type GetMyMemberInfoQuery = {
   getMyMemberInfo: Array<{
@@ -377,6 +377,9 @@ export type GetMyselfQuery = {
       resourceId: string
       type: PageType | null
     } | null
+    agreements: {
+      agreedTermsOfUseVersions: string[] | null
+    } | null
   } | null
 }
 
@@ -394,13 +397,13 @@ export type GetPageQuery = {
 }
 
 export type GetAgreementsQueryVariables = {
-  userId: string,
-};
+  userId: string
+}
 
 export type GetAgreementsQuery = {
-  getAgreements:  {
-    __typename: "Agreements",
-    id: string,
-    agreedTermsOfUses: Array< string > | null,
-  } | null,
-};
+  getAgreements: {
+    __typename: 'Agreements'
+    id: string
+    agreedTermsOfUses: Array<string> | null
+  } | null
+}

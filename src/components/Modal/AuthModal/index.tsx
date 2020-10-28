@@ -14,7 +14,9 @@ export type ModalType = 'SignUp' | 'Login' | 'PasswordResetRequest' | 'Logout' |
 export const AuthModal: React.FC<AuthModalProps> = ({ openModal, setOpenModal }) => {
   const [errorMessage, setErrorMessage] = React.useState<string | JSX.Element | undefined>()
   if (errorMessage)
-    return <ErrorMessageModal message={errorMessage} closeModal={() => setErrorMessage(undefined)} />
+    return (
+      <ErrorMessageModal message={errorMessage} closeModal={() => setErrorMessage(undefined)} />
+    )
   return (
     <>
       {openModal === 'SignUp' && (
@@ -26,6 +28,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ openModal, setOpenModal })
       {openModal === 'Login' && (
         <LoginModal
           closeModal={() => setOpenModal('Closed')}
+          showLogoutModal={() => setOpenModal('Logout')}
           showSignUpModal={withFadeOut(() => setOpenModal('SignUp'))}
           showPasswordResetRequestModal={withFadeOut(() => setOpenModal('PasswordResetRequest'))}
           setErrorMessage={setErrorMessage}
