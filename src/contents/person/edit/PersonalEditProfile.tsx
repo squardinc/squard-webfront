@@ -1,7 +1,10 @@
+import { ApolloError } from '@apollo/client'
+import { GraphQLError } from 'graphql'
 import * as React from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
 import { ImageProfileEdit } from 'src/components/ImageProfile'
 import { LayoutHorizontal, LayoutType, LayoutVertical } from 'src/components/layout'
+import { ErrorMessageModal } from 'src/components/Modal/ErrorMessageModal'
 import { TabMenuBar } from 'src/components/TabMenu'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import Top from 'src/images/temp/team/top.jpg'
@@ -272,6 +275,7 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
   saveImage,
   saveProfile,
 }) => {
+  const [errorInfo, setErrorInfo] = React.useState<GraphQLError>()
   const [topImage, setTopImage] = React.useState<Blob>()
   const [icon, setIcon] = React.useState<Blob>()
   const [profile, setProfile] = React.useState<IPersonal>(personal)
@@ -294,57 +298,68 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
     close()
   }
   return (
-    <PersonalEditProfileWrapper>
-      <TabMenuBar title="プロフィールを編集" onCancel={close} onSave={onSaveProfile} />
-      <LayoutVertical layoutType={LayoutType.topCenter}>
-        <ImageProfileEdit
-          topImage={profile.topImage || Top}
-          icon={profile.icon || Top}
-          setTopImage={setTopImage}
-          setIcon={setIcon}
+    <>
+      <PersonalEditProfileWrapper>
+        <TabMenuBar
+          title="プロフィールを編集"
+          onCancel={close}
+          onSave={() =>
+            onSaveProfile().catch((err: ApolloError) => {
+              if (err.graphQLErrors.length) {
+                setErrorInfo(err.graphQLErrors[0])
+              }
+            })
+          }
         />
-        <InformationWrapper style={{ width: '100%' }}>
-          <RowInput
-            label={'名前'}
-            value={profile.nameJp}
-            onChange={(value = '') => {
-              if (value.length <= 32) setProfile(Object.assign({}, profile, { nameJp: value }))
-            }}
+        <LayoutVertical layoutType={LayoutType.topCenter}>
+          <ImageProfileEdit
+            topImage={profile.topImage || Top}
+            icon={profile.icon || Top}
+            setTopImage={setTopImage}
+            setIcon={setIcon}
           />
-          <RowInput
-            label={'英語表記'}
-            value={profile.nameEn}
-            onChange={(value = '') => {
-              if (value.length <= 64) setProfile(Object.assign({}, profile, { nameEn: value }))
-            }}
-          />
-          {/* <RowInput
+          <InformationWrapper style={{ width: '100%' }}>
+            <RowInput
+              label={'名前'}
+              value={profile.nameJp}
+              onChange={(value = '') => {
+                if (value.length <= 32) setProfile(Object.assign({}, profile, { nameJp: value }))
+              }}
+            />
+            <RowInput
+              label={'英語表記'}
+              value={profile.nameEn}
+              onChange={(value = '') => {
+                if (value.length <= 64) setProfile(Object.assign({}, profile, { nameEn: value }))
+              }}
+            />
+            {/* <RowInput
             label={'ID'}
             value={pageId}
             onChange={(value) => {
               setPageId(value)
             }}
           /> */}
-          <RowTextarea
-            label={'自己紹介'}
-            value={profile.introduction}
-            onChange={(value = '') => {
-              if (value.length <= 1024)
-                setProfile(Object.assign({}, profile, { introduction: value }))
-            }}
-          />
+            <RowTextarea
+              label={'自己紹介'}
+              value={profile.introduction}
+              onChange={(value = '') => {
+                if (value.length <= 1024)
+                  setProfile(Object.assign({}, profile, { introduction: value }))
+              }}
+            />
 
-          <LinksInput
-            values={profile.links}
-            onChange={(value = '', index) => {
-              const links = [...profile.links]
-              links[index] = value
-              setProfile({ ...profile, links: links.filter(Boolean) })
-            }}
-          />
-        </InformationWrapper>
+            <LinksInput
+              values={profile.links}
+              onChange={(value = '', index) => {
+                const links = [...profile.links]
+                links[index] = value
+                setProfile({ ...profile, links: links.filter(Boolean) })
+              }}
+            />
+          </InformationWrapper>
 
-        {/* <TeamWrapper>
+          {/* <TeamWrapper>
           <Label style={{ width: '100%' }}>所属チーム表示切り替え</Label>
 
           {personal.teams.map((team, i) => {
@@ -378,22 +393,37 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
           })}
         </TeamWrapper> */}
 
-        <BottomWrapper>
-          <LayoutVertical layoutType={LayoutType.center} style={{ margin: 'auto' }}>
-            <RoundButton
-              style={{ background: 'white', color: 'black' }}
-              disabled={!isSubmittable}
-              onClick={onSaveProfile}
-            >
-              <TextDisplay>保存</TextDisplay>
-            </RoundButton>
-            <RoundButton style={{ color: 'white' }} onClick={close}>
-              <TextDisplay>キャンセル</TextDisplay>
-            </RoundButton>
-          </LayoutVertical>
-        </BottomWrapper>
-      </LayoutVertical>
-    </PersonalEditProfileWrapper>
+          <BottomWrapper>
+            <LayoutVertical layoutType={LayoutType.center} style={{ margin: 'auto' }}>
+              <RoundButton
+                style={{ background: 'white', color: 'black' }}
+                disabled={!isSubmittable}
+                onClick={() =>
+                  onSaveProfile().catch((err: ApolloError) => {
+                    if (err.graphQLErrors.length) {
+                      setErrorInfo(err.graphQLErrors[0])
+                    }
+                  })
+                }
+              >
+                <TextDisplay>保存</TextDisplay>
+              </RoundButton>
+              <RoundButton style={{ color: 'white' }} onClick={close}>
+                <TextDisplay>キャンセル</TextDisplay>
+              </RoundButton>
+            </LayoutVertical>
+          </BottomWrapper>
+        </LayoutVertical>
+      </PersonalEditProfileWrapper>
+      {errorInfo && (
+        <ErrorMessageModal
+          closeModal={() => {
+            setErrorInfo(undefined)
+          }}
+          errorInfo={errorInfo}
+        />
+      )}
+    </>
   )
 }
 

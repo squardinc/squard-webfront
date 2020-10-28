@@ -53,6 +53,9 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
       refresh() // to refetch user icon
     }
   }, [updateUserResponse.data, leaveTeamResponse.data])
+  React.useEffect(() => {
+    if (!user.loggedIn) setEditing(false)
+  }, [user])
 
   if (error) {
     navigate('/')
@@ -63,9 +66,6 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
   }
 
   const personalData = Person.fromQueryResult(data)
-  if (window.location.pathname === '/mypage' && window.location.search === '')
-    window.history.replaceState({}, document.title, personalData.pageId)
-
   const PersonPageLayout = isEditing ? PersonPageLayoutBlack : PersonPageLayoutGray
   return (
     <>
@@ -89,7 +89,7 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
           setLoading(true)
           if (pageId && personalData.pageId !== pageId)
             updatePageIdRequest({ variables: { pageId } })
-          return updateUserRequest({
+          await updateUserRequest({
             variables: {
               input: {
                 nameJp: profile.nameJp,
@@ -101,14 +101,8 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
                 icon: profile.icon,
               },
             },
-          }).then(
-            () => setLoading(false),
-            (err: ApolloError) => {
-              Promise.reject(err)
-              setLoading(false)
-              setShowErrorModal(true)
-            }
-          )
+          })
+          setLoading(false)
         }}
         leaveTeam={async (teamId: string, teamMemberId: string) => {
           setLoading(true)
