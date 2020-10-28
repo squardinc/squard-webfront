@@ -64,9 +64,9 @@ export const Header = () => {
               <span className="text-xl font-bold text-red-600">.</span>
             </Link>
           </TextDisplay>
-          <div className="w-8 h-8">
+          <div className="w-8 h-8 flex justify-center items-center">
             {user.loggedIn ? (
-              <UserIcon icon={user.icon} />
+              <UserIcon user={user} />
             ) : (
               <FontAwesomeIcon
                 size="lg"
@@ -85,7 +85,7 @@ export const Header = () => {
       </div>
       <NavMenu
         show={showNavMenu}
-        loggedIn={user.loggedIn}
+        user={user}
         hideNavMenu={() => setShowNavMenu(false)}
         showLoginModal={() => {
           setOpenModal('Login')

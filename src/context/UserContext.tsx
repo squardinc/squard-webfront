@@ -35,9 +35,11 @@ export const UserContextProvider: React.FC = ({ children }) => {
       })
       return
     }
-    const { id, icon, agreements } = data?.getMyself || {}
+    const { id, page, icon, agreements } = data?.getMyself || {}
     if (id && icon !== user.icon) {
-      setUser(LoginUserModel.user(id, icon || '', agreements?.agreedTermsOfUseVersions))
+      setUser(
+        LoginUserModel.user(id, page?.id || '', icon || '', agreements?.agreedTermsOfUseVersions)
+      )
     }
     setLoginingUserId('')
   }, [user, data])

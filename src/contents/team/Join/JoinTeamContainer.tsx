@@ -22,6 +22,7 @@ import { parseSearchParams } from 'src/utils/UrlParser'
 const JoinableClasses: ClassType[] = ['Angels', 'Prospects', 'Galleries']
 
 const handleJoinResponnse = (
+  userPageId,
   teamId,
   joinAsGalleriesResponse?: MutationResult<JoinAsGalleriesMutation>
 ) => {
@@ -34,7 +35,7 @@ const handleJoinResponnse = (
     return
   }
   if (data) {
-    navigate(`/mypage?teamId=${teamId}`)
+    navigate(`/${userPageId}?teamId=${teamId}`)
   }
 }
 
@@ -83,7 +84,7 @@ const JoinTeamContainer: React.FC<JoinTeamContainerProps> = ({ teamId }) => {
       teamClass?.price?.price || 0
     )
   })
-  handleJoinResponnse(team.id, joinAsGalleriesResponse)
+  handleJoinResponnse(user.pageId, team.id, joinAsGalleriesResponse)
   return (
     <>
       <Loading
