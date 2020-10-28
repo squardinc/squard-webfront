@@ -2,7 +2,7 @@ import * as React from 'react'
 import { EMailAddressInput } from 'src/components/Input/EMailAddressInput'
 import { PasswordInput } from 'src/components/Input/PasswordInput'
 import ExternalLink from 'src/components/Link/ExternalLink'
-import { asModal, ModalProps } from 'src/components/Modal/asModal'
+import asModal, { ModalProps } from 'src/components/Modal/asModal'
 import { MessageModal } from 'src/components/Modal/MessageModal'
 import { DefaultModalContainer } from 'src/components/Modal/ModalContainer'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
@@ -71,11 +71,10 @@ type SignUpComponentProps = ModalProps & {
 const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLoginModal }) => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
-  const [agreeTermsOfUse, setAgreeTermsOfUse] = React.useState(false)
-  const isSubmittable = React.useMemo(
-    () => validEmaliAddress(email) && password.length >= 8 && agreeTermsOfUse,
-    [email, password, agreeTermsOfUse]
-  )
+  const isSubmittable = React.useMemo(() => validEmaliAddress(email) && password.length >= 8, [
+    email,
+    password,
+  ])
   const [registrationUserId, setRegistrationUserId] = React.useState('')
   const [errorMesasge, setErrorMessage] = React.useState('')
   const { setLoading } = React.useContext(LoadingContext)
@@ -97,7 +96,7 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
               <TextDisplay>SignUp</TextDisplay>
             </SignupTitle>
             <TextDisplay>
-              <Label>アカウント情報を入力してくださ い</Label>
+              <Label>アカウント情報を入力してください</Label>
             </TextDisplay>
             <EmailWrapper>
               <EMailAddressInput
@@ -112,19 +111,12 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
             <TextDisplay className="flex justify-end w-full text-sm mb-4">
               <HintWrapper>※8文字以上16文字以内</HintWrapper>
             </TextDisplay>
-            <div className="flex justify-center items-center mb-2">
-              <input
-                type="checkbox"
-                checked={agreeTermsOfUse}
-                className="form-checkbox"
-                onChange={(e) => setAgreeTermsOfUse(e.target.checked)}
-              />
-              <div className="ml-2">
-                <ExternalLink href="/termsofuse" className="underline">
-                  利用規約
-                </ExternalLink>
-                に同意する
-              </div>
+            <div className="my-2 text-sm">
+              ※ご利用にはアカウント登録後に
+              <ExternalLink href="/termsofuse" className="underline">
+                利用規約
+              </ExternalLink>
+              に同意頂く必要があります。
             </div>
             <div className="flex flex-col">
               <RoundButton
@@ -145,17 +137,25 @@ const SignUpComponent: React.FC<SignUpComponentProps> = ({ closeModal, showLogin
                     setLoading(false)
                     setErrorMessage(err)
                   }
-
-                  // .then(
-                  //   (userId) => {
-                  //     setRegistrationUserId(userId)
-                  //   },
-                  //   (err) => {
-                  //     setErrorMessage(err)
-                  //   }
                 }}
               >
                 <TextDisplay>新規登録</TextDisplay>
+              </RoundButton>
+              <RoundButton
+                style={{
+                  color: 'white',
+                  backgroundColor: '#3B5998',
+                }}
+                onClick={async (e) => {
+                  e.preventDefault()
+                  setLoading(true)
+                  await AuthService.loginWithFacebook().catch((err) => {
+                    setLoading(false)
+                    setErrorMessage('')
+                  })
+                }}
+              >
+                <TextDisplay>Facebookで登録</TextDisplay>
               </RoundButton>
             </div>
             <TextDisplay>

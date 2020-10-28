@@ -50,13 +50,13 @@ export const AgreementsComponent: React.FC<AgreementsModalProps> = ({
           <TextDisplay className="text-3xl font-semibold">{'利用規約への同意'}</TextDisplay>
           <div className="flex flex-col justify-center items-center">
             <TextDisplay className="mb-8 whitespace-pre-wrap">
-              {`利用規約が更新されています。\r\nご利用を継続頂くには${formattedDateJp(
+              {`ご利用を継続頂くには${formattedDateJp(
                 currentVersion || TERMS_OF_USE_VERSION
               )}施行の`}
               <ExternalLink href="/termsofuse" className="underline">
                 利用規約をご確認
               </ExternalLink>
-              頂き、同意を頂く必要があります。
+              頂き、その内容について同意して頂く必要があります。
             </TextDisplay>
             <div className="flex justify-center items-center mb-2">
               <input
