@@ -2,6 +2,7 @@ import { ApolloError } from '@apollo/client'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { navigate } from 'gatsby'
+import { GraphQLError } from 'graphql'
 import React, { Suspense } from 'react'
 import { DefaultFooter } from 'src/components/Footer/ContentFooter'
 import { ExternalLink } from 'src/components/Link/ExternalLink'
@@ -10,11 +11,10 @@ import { CompleteModal } from 'src/components/Modal/CompleteModal'
 import { ErrorMessageModal } from 'src/components/Modal/ErrorMessageModal'
 import { YesNoModal } from 'src/components/Modal/YesNoModal'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import Top from 'src/images/temp/team/top.jpg'
+import NoImage from 'src/images/NoImage.jpg'
 import { IDisplayTeamMember, IPersonal } from 'src/models/person'
 import * as colors from 'src/styles/colors'
 import * as Const from 'src/styles/const'
-import { ErrorType } from 'src/types/ErrorType'
 import { descriminate, toHref } from 'src/utils/SocialMediaDescriminator'
 import styled from 'styled-components'
 import { PersonImage } from '../team/TeamContents/PersonImage'
@@ -310,7 +310,7 @@ export const PersonPage: React.FC<PersonPageProps> = ({
 }) => {
   const [selectedTeam, setSelectedTeam] = React.useState<IDisplayTeamMember | null>(null)
   const [showTeamLeaveModal, setShowTeamLeaveModal] = React.useState(false)
-  const [errorType, setErrorType] = React.useState<ErrorType>()
+  const [errorInfo, setErrorInfo] = React.useState<GraphQLError>()
   return (
     <Suspense fallback={<></>}>
       <ContentWrapper>
@@ -325,7 +325,7 @@ export const PersonPage: React.FC<PersonPageProps> = ({
           </UserCover>
           <ProfileContainerWrapper>
             <ProfilerImageContainer>
-              <ProfileImage icon={personal.icon ? encodeURI(personal.icon) : Top} />
+              <ProfileImage icon={personal.icon ? encodeURI(personal.icon) : NoImage} />
             </ProfilerImageContainer>
             <NameWrapper>
               <NameText>
@@ -413,7 +413,7 @@ export const PersonPage: React.FC<PersonPageProps> = ({
               if (err.graphQLErrors.length) {
                 setShowTeamLeaveModal(false)
                 setSelectedTeam(null)
-                setErrorType(err.graphQLErrors[0].errorType)
+                setErrorInfo(err.graphQLErrors[0])
               }
             })
           }}
@@ -431,13 +431,13 @@ export const PersonPage: React.FC<PersonPageProps> = ({
           }}
         />
       )}
-      {errorType && (
+      {errorInfo && (
         <ErrorMessageModal
           closeModal={() => {
-            setErrorType(undefined)
+            setErrorInfo(undefined)
             refetch()
           }}
-          errorType={errorType}
+          errorInfo={errorInfo}
         />
       )}
       <DefaultFooter />
