@@ -17,10 +17,8 @@ interface UserIconProps {
 }
 export const UserIcon: React.FC<UserIconProps> = ({ user }) => {
   return (
-    <>
-      <Link to={`/${user.pageId}`}>
-        <Icon image={user.icon || NoImage} />
-      </Link>
-    </>
+    <Link to={`/${user.pageId}`} className="w-full h-full">
+      <Icon image={user.icon || NoImage} />
+    </Link>
   )
 }

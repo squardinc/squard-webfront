@@ -69,7 +69,7 @@ export const Header = () => {
               <UserIcon user={user} />
             ) : (
               <FontAwesomeIcon
-                size="lg"
+                size="2x"
                 icon={faUserCircle}
                 onClick={() => setOpenModal('Login')}
               />
