@@ -9,7 +9,7 @@ type MessageComponentProps = ModalProps & {
   message: string | JSX.Element
   buttonText?: string
 }
-export const MessageCompoenent: React.FC<MessageComponentProps> = ({
+export const MessageComponent: React.FC<MessageComponentProps> = ({
   closeModal,
   title = '',
   message,
@@ -25,4 +25,4 @@ export const MessageCompoenent: React.FC<MessageComponentProps> = ({
   </DefaultModalContainer>
 )
 
-export const MessageModal = asModal(MessageCompoenent)
+export const MessageModal = asModal(MessageComponent)

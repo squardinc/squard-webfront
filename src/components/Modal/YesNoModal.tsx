@@ -11,7 +11,7 @@ type MessageComponentProps = ModalProps & {
   cancelButtonText?: string
   executeButtonText?: string
 }
-export const MessageCompoenent: React.FC<MessageComponentProps> = ({
+export const MessageComponent: React.FC<MessageComponentProps> = ({
   onExecute,
   closeModal,
   title = '',
@@ -29,4 +29,4 @@ export const MessageCompoenent: React.FC<MessageComponentProps> = ({
   </DefaultModalContainer>
 )
 
-export const YesNoModal = asModal(MessageCompoenent)
+export const YesNoModal = asModal(MessageComponent)
