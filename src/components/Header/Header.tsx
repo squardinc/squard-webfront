@@ -66,7 +66,7 @@ export const Header = () => {
           </TextDisplay>
           <div className="w-8 h-8">
             {user.loggedIn ? (
-              <UserIcon />
+              <UserIcon icon={user.icon} />
             ) : (
               <FontAwesomeIcon
                 size="lg"

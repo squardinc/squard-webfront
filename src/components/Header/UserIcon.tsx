@@ -1,11 +1,6 @@
-import { gql, useQuery } from '@apollo/client'
 import { Link } from 'gatsby'
 import React from 'react'
-import { ErrorMessageModal } from 'src/components/Modal/ErrorMessageModal'
-import { UserContext } from 'src/context/UserContext'
-import { getMyself } from 'src/graphql/queries'
-import Top from 'src/images/temp/team/top.jpg'
-import { GetMyselfQuery } from 'src/types/API'
+import NoImage from 'src/images/NoImage.jpg'
 import styled from 'styled-components'
 
 const Icon = styled.div<{ image: string }>`
@@ -16,21 +11,15 @@ const Icon = styled.div<{ image: string }>`
   width: 100%;
   height: 100%;
 `
-export const UserIcon = () => {
-  const { refreshTrigger } = React.useContext(UserContext)
-  const { data, error, refetch } = useQuery<GetMyselfQuery>(gql(getMyself))
-  // FIXME
-  React.useEffect(() => {
-    refetch()
-  }, [refreshTrigger])
+interface UserIconProps {
+  icon?: string
+}
+export const UserIcon: React.FC<UserIconProps> = ({ icon }) => {
   return (
     <>
       <Link to="/mypage">
-        <Icon image={data?.getMyself?.icon || Top} />
+        <Icon image={icon || NoImage} />
       </Link>
-      {error && (
-        <ErrorMessageModal closeModal={() => {}} errorType={error?.graphQLErrors[0]?.errorType} />
-      )}
     </>
   )
 }
