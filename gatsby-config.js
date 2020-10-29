@@ -86,5 +86,14 @@ module.exports = {
         verbose: true,
       },
     },
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: [`/*`],
+        workboxConfig: {
+          globPatterns: ['**/icon-path*'],
+        },
+      },
+    },
   ],
 }
