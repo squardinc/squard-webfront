@@ -64,6 +64,7 @@ export const AgreementsComponent: React.FC<AgreementsModalProps> = ({
                 checked={agreedTermsOfUse}
                 className="form-checkbox"
                 onChange={(e) => setAgreedTermsOfUse(e.target.checked)}
+                tabIndex={0}
               />
               <div className="ml-2">
                 <ExternalLink href="/termsofuse" className="underline">
