@@ -102,6 +102,16 @@ module.exports = {
         cache_busting_mode: 'none',
       },
     },
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: [`/*`],
+        debug: true,
+        workboxConfig: {
+          globPatterns: ['**/icon-path*'],
+        },
+      },
+    },
     `gatsby-plugin-typescript`,
     {
       resolve: 'gatsby-plugin-react-svg',
@@ -131,15 +141,6 @@ module.exports = {
         verbose: true,
       },
     },
-    `gatsby-plugin-offline`,
-    // {
-    //   resolve: `gatsby-plugin-offline`,
-    //   options: {
-    //     precachePages: [`/*`],
-    //     workboxConfig: {
-    //       globPatterns: ['**/icon-path*'],
-    //     },
-    //   },
-    // },
+    // `gatsby-plugin-offline`,
   ],
 }

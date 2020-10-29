@@ -12,7 +12,7 @@ import { UserContextProvider } from 'src/context/UserContext'
 
 const IndexPage: React.FC = () => {
   const isSSR = typeof window === 'undefined'
-
+  console.log('index')
   return (
     <>
       {!isSSR && (
