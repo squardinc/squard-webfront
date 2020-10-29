@@ -109,6 +109,7 @@ module.exports = {
         debug: true,
         workboxConfig: {
           globPatterns: ['**/icon-path*'],
+          appendScript: require.resolve(`src/custom-sw-code.js`),
         },
       },
     },
