@@ -1,10 +1,7 @@
-import { gql, useQuery } from '@apollo/client'
 import { Link } from 'gatsby'
 import React from 'react'
-import { UserContext } from 'src/context/UserContext'
-import { getMyself } from 'src/graphql/queries'
-import Top from 'src/images/temp/team/top.jpg'
-import { GetMyselfQuery } from 'src/types/API'
+import NoImage from 'src/images/NoImage.jpg'
+import { LoginUser } from 'src/services/AuthService/interfaces'
 import styled from 'styled-components'
 
 const Icon = styled.div<{ image: string }>`
@@ -15,16 +12,13 @@ const Icon = styled.div<{ image: string }>`
   width: 100%;
   height: 100%;
 `
-export const UserIcon = () => {
-  const { refreshTrigger } = React.useContext(UserContext)
-  const { data, refetch } = useQuery<GetMyselfQuery>(gql(getMyself))
-  // FIXME
-  React.useEffect(() => {
-    refetch()
-  }, [refreshTrigger])
+interface UserIconProps {
+  user: LoginUser
+}
+export const UserIcon: React.FC<UserIconProps> = ({ user }) => {
   return (
-    <Link to="/mypage">
-      <Icon image={data?.getMyself?.icon || Top} />
+    <Link to={`/${user.pageId}`} className="w-full h-full">
+      <Icon image={user.icon || NoImage} />
     </Link>
   )
 }

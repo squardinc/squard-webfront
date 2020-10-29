@@ -10,6 +10,7 @@ import Faq from 'src/assets/faq_icon.svg'
 import LegalInfo from 'src/assets/legal_information_icon.svg'
 import MyPage from 'src/assets/my_page_icon_jp.svg'
 import PrivacyPolicy from 'src/assets/privacy_policy_icon_jp.svg'
+import { LoginUser } from 'src/services/AuthService/interfaces'
 import styled from 'styled-components'
 import { MenuItem } from './MenuItem'
 import styles from './NavMenu.module.scss'
@@ -21,14 +22,14 @@ const MenuItemContent = styled.div`
 
 interface NavMenuProps {
   show: boolean
-  loggedIn: boolean
+  user: LoginUser
   hideNavMenu: VoidFunction
   showLoginModal: VoidFunction
   logout: VoidFunction
 }
 export const NavMenu: React.FC<NavMenuProps> = ({
   show,
-  loggedIn,
+  user,
   hideNavMenu,
   showLoginModal,
   logout,
@@ -83,7 +84,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
           <MenuItem
             text="マイページ"
             SVGIcon={MyPage}
-            onClick={loggedIn ? navigateWithMenuClose(`/mypage`) : showLoginModal}
+            onClick={user.loggedIn ? navigateWithMenuClose(`/${user.pageId}`) : showLoginModal}
           />
           <MenuItem text={'チームを作る+'} SVGIcon={AddNewTeam} />
           <MenuItem
@@ -110,7 +111,7 @@ export const NavMenu: React.FC<NavMenuProps> = ({
           <MenuItem
             text={'ログアウト'}
             faIcon={faSignOutAlt}
-            onClick={loggedIn ? logout : undefined}
+            onClick={user.loggedIn ? logout : undefined}
           />
         </MenuItemContent>
       </animated.div>

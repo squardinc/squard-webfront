@@ -95,6 +95,7 @@ export const RoundButton: React.FC<RoundButtonProps> = ({
       className={`w-full ${disabled ? 'cursor-not-allowed opacity-50' : ''}`}
       disabled={disabled}
       style={style ? style : {}}
+      tabIndex={0}
     >
       <TextDisplay
         className={`flex justify-center items-center h-10 w-full my-1 rounded-full text-sm ${className}`}

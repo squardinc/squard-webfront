@@ -73,7 +73,7 @@ export const getTeams = /* GraphQL */ `
       }
     }
   }
-`;
+`
 export const getMyMemberInfo = /* GraphQL */ `
   query GetMyMemberInfo {
     getMyMemberInfo {
@@ -218,6 +218,20 @@ export const getUser = /* GraphQL */ `
     }
   }
 `
+export const getLoginInfo = /* GraphQL */ `
+  query GetMyself {
+    getMyself {
+      id
+      icon
+      page {
+        id
+      }
+      agreements {
+        agreedTermsOfUseVersions
+      }
+    }
+  }
+`
 export const getMyself = /* GraphQL */ `
   query GetMyself {
     getMyself {
@@ -230,11 +244,6 @@ export const getMyself = /* GraphQL */ `
       displayTeamIds
       topImage
       icon
-      page {
-        id
-        resourceId
-        type
-      }
       teamMembers {
         teamId
         teamMemberId
@@ -285,6 +294,14 @@ export const getPage = /* GraphQL */ `
       id
       resourceId
       type
+    }
+  }
+`
+export const getAgreements = /* GraphQL */ `
+  query GetAgreements {
+    getAgreements {
+      id
+      agreedTermsOfUses
     }
   }
 `

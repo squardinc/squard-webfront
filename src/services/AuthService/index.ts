@@ -28,8 +28,8 @@ class Service {
 
   intialize = async () => {
     return Cognito.intialize().then(
-      (credential) => new LoginUserModel(credential.getIdToken().decodePayload().sub),
-      () => LoginUserModel.guest()
+      (credential) => credential.getIdToken().decodePayload().sub,
+      () => ''
     )
   }
   idToken = async () => Cognito.currentIdToken()

@@ -26,6 +26,7 @@ export const ConfirmSignUpModal: React.FC = () => {
       {showSignUpCompleteModal && (
         <CompleteModal
           title="登録完了"
+          footerDescription="ご登録の情報でログイン頂けます。"
           closeModal={() => {
             setShowSignUpCompleteModal(false)
             navigate(params.path || '/')

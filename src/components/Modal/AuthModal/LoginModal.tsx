@@ -3,17 +3,16 @@ import { EMailAddressInput } from 'src/components/Input/EMailAddressInput'
 import { PasswordInput } from 'src/components/Input/PasswordInput'
 import { asModal, ModalProps } from 'src/components/Modal/asModal'
 import { CompleteModal } from 'src/components/Modal/CompleteModal'
-import { MessageModal } from 'src/components/Modal/MessageModal'
 import { DefaultModalContainer } from 'src/components/Modal/ModalContainer'
 // import { RoundButton } from 'src/components/Button/DefaultButton'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { LoadingContext } from 'src/context/LoadingContextProvider'
 import { UserContext } from 'src/context/UserContext'
 import { AuthService } from 'src/services/AuthService'
-import { errorMessage } from 'src/utils/errorMessage'
 import { validEmaliAddress } from 'src/utils/StringValidator'
 import styled from 'styled-components'
 import * as Const from '../../../styles/const'
+import { AgreementsModal } from '../AgreementsModal'
 
 const LoginContent = styled.div`
   padding-left: 0px;
@@ -148,26 +147,48 @@ const LoginFormModal: React.FC<LoginFormProps> = ({
 type LoginComponentProps = ModalProps & {
   showSignUpModal: (e: React.MouseEvent) => void
   showPasswordResetRequestModal: (e: React.MouseEvent) => void
+  showLogoutModal: (e: React.MouseEvent) => void
+  setErrorMessage: (error: string | JSX.Element | undefined) => void
 }
 const LoginComponent: React.FC<LoginComponentProps> = ({
   closeModal,
   showSignUpModal,
   showPasswordResetRequestModal,
+  showLogoutModal,
+  setErrorMessage,
 }) => {
   const { setLoading } = React.useContext(LoadingContext)
   const { user, setUser } = React.useContext(UserContext)
-  const [errorMesasge, setErrorMessage] = React.useState<string | JSX.Element>('')
-
+  const [showAgreementModal, setShowAgreementModal] = React.useState(false)
+  if (showAgreementModal) {
+    return (
+      <AgreementsModal
+        closeModal={(e) => {
+          setShowAgreementModal(false)
+          closeModal(e)
+        }}
+        showLogoutModal={(e) => {
+          setShowAgreementModal(false)
+          showLogoutModal(e)
+        }}
+      />
+    )
+  }
   return (
     <>
-      {user.loggedIn && (
+      {user.loggedIn ? (
         <CompleteModal
           title="Login Completed!"
           footerDescription="ログインしました"
-          closeModal={closeModal}
+          closeModal={(e) => {
+            if (!user.agreementsVerified) {
+              setShowAgreementModal(true)
+              return
+            }
+            closeModal(e)
+          }}
         />
-      )}
-      {!errorMesasge ? (
+      ) : (
         <LoginFormModal
           login={async (e, email, password) => {
             e.preventDefault()
@@ -186,15 +207,13 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
             setLoading(true)
             await AuthService.loginWithFacebook().catch((err) => {
               setLoading(false)
-              setErrorMessage(errorMessage())
+              setErrorMessage('')
             })
           }}
           closeModal={closeModal}
           showSignUpModal={showSignUpModal}
           showPasswordResetRequestModal={showPasswordResetRequestModal}
         />
-      ) : (
-        <MessageModal message={errorMesasge} closeModal={() => setErrorMessage('')} />
       )}
     </>
   )
