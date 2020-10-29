@@ -105,12 +105,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-offline`,
       options: {
-        precachePages: [`/*`],
+        appendScript: require.resolve(`./src/custom-sw.js`),
         debug: true,
-        workboxConfig: {
-          globPatterns: ['**/icon-path*'],
-          appendScript: require.resolve(`src/custom-sw-code.js`),
-        },
       },
     },
     `gatsby-plugin-typescript`,
