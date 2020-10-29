@@ -316,7 +316,7 @@ export const PersonPage: React.FC<PersonPageProps> = ({
       <ContentWrapper>
         <UserCoverWrapper>
           <UserCover backgroundColor={'#ebebeb'}>
-            <PersonImage src={personal.topImage} style={{ width: '100%', minHeight: '320px' }} />
+            <PersonImage src={personal.topImage} style={{ width: '100%', minHeight: '640px' }} />
             {profileEditable && (
               <ButtonEditWrapper onClick={editProfile}>
                 <FontAwesomeIcon icon={faEdit} size="2x" />
