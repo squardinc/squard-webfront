@@ -12,6 +12,7 @@ export default function HTML(props) {
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
         {props.headComponents}
+        <noscript>本サービスを利用するにはJavascriptを有効にする必要があります</noscript>
       </head>
       <body {...props.bodyAttributes}>
         {props.preBodyComponents}
