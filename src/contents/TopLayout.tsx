@@ -1,6 +1,9 @@
 import * as React from 'react'
 import { TeamContainer } from './team/TeamContainer'
 
-export const TopLayout: React.FC = () => {
+interface TopLayoutProps {
+  default: boolean
+}
+export const TopLayout: React.FC<TopLayoutProps> = () => {
   return <TeamContainer id="squard" />
 }

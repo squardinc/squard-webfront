@@ -5,7 +5,7 @@ import Loading from 'src/components/Loading'
 import { PageWrapper } from 'src/components/PageWrapper'
 import { ContentLayout } from 'src/contents/ContentLayout'
 import { ContentSubLayout } from 'src/contents/ContentSubLayout'
-import { Redirect } from 'src/contents/redirect'
+import { TopLayout } from 'src/contents/TopLayout'
 import { LoadingContextProvider } from 'src/context/LoadingContextProvider'
 import { ThemeContextProvider } from 'src/context/ThemeContext'
 import { UserContextProvider } from 'src/context/UserContext'
@@ -29,7 +29,7 @@ const IndexPage: React.FC = () => {
                         contentId=""
                         subContentId=""
                       />
-                      <Redirect default />
+                      <TopLayout default />
                     </Router>
                   </React.Suspense>
                 </PageWrapper>
