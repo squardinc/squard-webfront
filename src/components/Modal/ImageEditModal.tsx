@@ -24,7 +24,7 @@ const ImageEditComponent: React.FC<ImageEditComponentProps> = ({
   onSelectFile,
   fileName,
   contentType,
-  initialCrop = {},
+  initialCrop = { aspect: 1 },
   displayWidth,
   setPreviewUrl,
 }) => {
@@ -34,14 +34,27 @@ const ImageEditComponent: React.FC<ImageEditComponentProps> = ({
     x: 25,
     y: 25,
     width: 50,
-    height: 50,
     ...initialCrop,
   })
   const [scale, setScale] = React.useState<{ x: number; y: number }>({ x: 0, y: 0 })
   const [currentPreviewUrl, setCurrentPreviewUrl] = React.useState('')
   const onLoad = React.useCallback((img) => {
     imgRef.current = img
-    if (imgRef.current) createCropPreview(imgRef.current, crop, fileName)
+    if (!imgRef.current) return
+    const { width, height } = imgRef.current
+    const imgAspect = width / height
+    const aspectRatio = crop.aspect || 1
+    const aspectAppliedWidth = aspectRatio >= imgAspect ? width : (width / imgAspect) * aspectRatio
+    const aspectAppliedHeight =
+      aspectRatio <= imgAspect ? height : (height * imgAspect) / aspectRatio
+    setCrop({
+      unit: 'px',
+      x: (width - aspectAppliedWidth) / 2,
+      y: (height - aspectAppliedHeight) / 2,
+      width: aspectAppliedWidth,
+      aspect: crop.aspect,
+    })
+    return false
   }, [])
 
   const createCropPreview = async (
