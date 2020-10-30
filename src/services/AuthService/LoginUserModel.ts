@@ -13,6 +13,9 @@ export class LoginUserModel implements LoginUser {
   static user = (id: string, pageId: string, icon = '', agreedTermsOfUseVersions = []) =>
     new LoginUserModel(id, pageId, icon, agreedTermsOfUseVersions)
 
+  withNewIcon = (newIcon: string) =>
+    LoginUserModel.user(this.id, this.pageId, newIcon, this.agreedTermsOfUseVersions)
+
   get loggedIn() {
     return !!this.id
   }

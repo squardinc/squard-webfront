@@ -7,6 +7,7 @@ import { LayoutHorizontal, LayoutType, LayoutVertical } from 'src/components/lay
 import { ErrorMessageModal } from 'src/components/Modal/ErrorMessageModal'
 import { TabMenuBar } from 'src/components/TabMenu'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
+import NoImage from 'src/images/NoImage.jpg'
 import Top from 'src/images/temp/team/top.jpg'
 import { IPersonal } from 'src/models/person'
 import { isValidLink } from 'src/utils/SocialMediaDescriminator'
@@ -317,7 +318,7 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
         <LayoutVertical layoutType={LayoutType.topCenter}>
           <ImageProfileEdit
             topImage={profile.topImage || Top}
-            icon={profile.icon || Top}
+            icon={profile.icon || NoImage}
             setTopImage={setTopImage}
             setIcon={setIcon}
           />

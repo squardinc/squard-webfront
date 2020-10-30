@@ -5,4 +5,5 @@ export interface LoginUser {
   agreementsVerified: boolean
   loggedIn: boolean
   isMine: (id: string) => boolean
+  withNewIcon: (newIcon: string) => LoginUser
 }

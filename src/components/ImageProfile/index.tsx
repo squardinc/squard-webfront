@@ -179,7 +179,7 @@ const ImageProfileEditComponent: React.FC<ImageProfileProps> = ({
           setImg={setIcon}
           setPreviewUrl={setIconPreviewUrl}
           initialCrop={{ aspect: 74 / 94 }}
-          displayWidth={74}
+          displayWidth={148}
         />
       )}
     </>

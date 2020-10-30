@@ -25,7 +25,7 @@ interface PersonPageContainerProps {
   id: string
 }
 export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) => {
-  const { user, refresh } = React.useContext(UserContext)
+  const { user, setUser } = React.useContext(UserContext)
   const { setLoading } = React.useContext(LoadingContext)
   const [isEditing, setEditing] = React.useState(false)
   const [showErrorModal, setShowErrorModal] = React.useState(false)
@@ -50,7 +50,8 @@ export const PersonPageContainer: React.FC<PersonPageContainerProps> = ({ id }) 
   React.useEffect(() => {
     if (updateUserResponse.data || leaveTeamResponse.data) {
       refetch()
-      refresh() // to refetch user icon
+      const updatedIcon = updateUserResponse.data?.updateUser?.icon
+      if (updatedIcon && user.icon !== updatedIcon) setUser(user.withNewIcon(updatedIcon))
     }
   }, [updateUserResponse.data, leaveTeamResponse.data])
   React.useEffect(() => {
