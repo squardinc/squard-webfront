@@ -18,7 +18,7 @@ type PersonPageProps = {
   isEditing: boolean
   hasPaymentComplete?: boolean
   joinSucceededTeamId?: string
-  onEditProfile?: (value: boolean) => void
+  onEditProfile: (value: boolean) => void
   uploadImage: (image: Blob, contentType: string, fileName?: string) => Promise<string>
   update: (input: UpdateUserInput, pageId: string) => Promise<void>
   leaveTeam: (teamId: string, teamClassId: string) => Promise<void>
@@ -70,7 +70,7 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
           <PersonPage
             isLoading={false}
             personal={personal}
-            editProfile={() => onEditProfile && onEditProfile(true)}
+            editProfile={() => onEditProfile(true)}
             profileEditable={profileEditable}
             joinSucceededTeamId={joinSucceededTeamId}
             showJoinSucceededModal={showJoinSucceededModal}
@@ -83,7 +83,10 @@ const PersonPageLayout: React.FC<PersonPageProps> = ({
             <PersonalEditProfile
               isLoading={false}
               personal={personal}
-              close={() => onEditProfile && onEditProfile(false)}
+              close={() => {
+                scrollTo({ top: 0 })
+                onEditProfile(false)
+              }}
               saveImage={uploadImage}
               saveProfile={update}
             />

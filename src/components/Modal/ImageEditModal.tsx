@@ -101,7 +101,7 @@ const ImageEditComponent: React.FC<ImageEditComponentProps> = ({
     fileName: string,
     maxWidth?: number
   ) => {
-    if (!crop.width || !crop.height || !crop.x || !crop.y) return
+    if (!crop.width || !crop.height) return
     if (!maxWidth) return currentPreviewUrl
     const croppedWidth = crop.width * scale.x
     const croppedHeight = crop.height * scale.y
@@ -163,7 +163,9 @@ const ImageEditComponent: React.FC<ImageEditComponentProps> = ({
           onImageLoaded={onLoad}
           crop={crop}
           imageStyle={{ maxHeight: '50vh' }}
-          onChange={setCrop}
+          onChange={(changedCrop) => {
+            if (changedCrop.width && changedCrop.height) setCrop(changedCrop)
+          }}
           onComplete={makeClientCrop}
           keepSelection
         />
