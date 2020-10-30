@@ -17,14 +17,14 @@ const ImageProfileWrapper = styled.div`
   position: relative;
   top: 42px;
   width: 100%;
-  padding-bottom: 150px;
+  margin-bottom: 150px;
 `
 const ImageCoverWrapper = styled.div`
   width: 100%;
 `
 const ImageAvatarWrapper = styled.div`
   position: absolute;
-  bottom: 75px;
+  bottom: -75px;
   left: 0;
   right: 0;
   margin-left: auto;
@@ -54,7 +54,7 @@ const CameraIconCoverWrapper = styled.div`
 
 const CameraIconAvatarWrapper = styled.div`
   position: absolute;
-  bottom: 100px;
+  bottom: -50px;
   left: 0;
   right: 0;
   margin-left: auto;

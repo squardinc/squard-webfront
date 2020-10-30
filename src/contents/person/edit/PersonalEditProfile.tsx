@@ -52,6 +52,9 @@ const Input = styled.input`
   display: block;
   background: none;
   color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `
 const TextareaWrapper = styled.div`
   width: calc(100% - 120px);
