@@ -307,6 +307,7 @@ export const PersonalEditProfile: React.FC<PersonalEditProfileProps> = ({
         <TabMenuBar
           title="プロフィールを編集"
           onCancel={close}
+          saveDisabled={!isSubmittable}
           onSave={() =>
             onSaveProfile().catch((err: ApolloError) => {
               if (err.graphQLErrors.length) {

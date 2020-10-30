@@ -1,19 +1,22 @@
 import CSS from 'csstype'
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { windowWidth } from 'src/styles/sizes'
 import styled from 'styled-components'
 
-interface ItemWrapperStyleProps {
+type  ItemWrapperStyleProps = CSSProperties & {
   clickable: boolean
 }
-const ItemWrapper = styled.div`
+const ItemWrapper = styled.button`
   flex: 1;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  cursor: ${(props: ItemWrapperStyleProps) => (props.clickable ? 'pointer' : 'default')};
+  cursor: ${(props: ItemWrapperStyleProps) => {
+    if(!props.clickable) return 'default'
+    return props.disabled ? 'not-allowed': 'pointer' 
+  }};
 `
 const TitleWrapper = styled.div`
   color: white;
@@ -26,12 +29,21 @@ export interface ItemProps {
   align?: CSS.Properties['textAlign']
   fontSize?: number
   fontWeight?: number
+  disabled: boolean
   onClick?: () => Promise<void>
 }
-export const Item: React.FC<ItemProps> = ({ title, onClick, align, fontSize, fontWeight }) => {
+export const Item: React.FC<ItemProps> = ({
+  title,
+  onClick,
+  disabled,
+  align,
+  fontSize,
+  fontWeight,
+}) => {
   return (
     <ItemWrapper
-      clickable={!!onClick}
+      clickable={onClick}
+      disabled={disabled}
       onClick={() => {
         if (onClick) return onClick()
         return Promise.resolve()
@@ -67,10 +79,17 @@ interface TabMenuProps {
   title: string
   onCancel: VoidFunction
   onSave: VoidFunction
+  saveDisabled: boolean
   style?: React.CSSProperties
 }
 
-export const TabMenuBar: React.FC<TabMenuProps> = ({ title, onCancel, onSave, style = {} }) => {
+export const TabMenuBar: React.FC<TabMenuProps> = ({
+  title,
+  onCancel,
+  onSave,
+  saveDisabled,
+  style = {},
+}) => {
   return (
     <TabMenuWrapper style={style}>
       <TabMenuItemWrapper>
@@ -80,7 +99,13 @@ export const TabMenuBar: React.FC<TabMenuProps> = ({ title, onCancel, onSave, st
         <Item title={title} align={'center'} />
       </TabMenuItemWrapper>
       <TabMenuItemWrapper>
-        <Item title="保存" align={'right'} fontWeight={500} onClick={onSave} />
+        <Item
+          title="保存"
+          align={'right'}
+          fontWeight={500}
+          disabled={saveDisabled}
+          onClick={onSave}
+        />
       </TabMenuItemWrapper>
     </TabMenuWrapper>
   )
