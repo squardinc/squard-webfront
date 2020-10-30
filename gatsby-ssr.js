@@ -5,4 +5,4 @@
  */
 
 // You can delete this file if you're not using it
-exports.replaceRenderer = ({ replaceBodyHTMLString }) => { replaceBodyHTMLString('<div id="___gatsby"></div>'); };
+// exports.replaceRenderer = ({ replaceBodyHTMLString }) => { replaceBodyHTMLString('<div id="___gatsby"></div>'); };
