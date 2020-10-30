@@ -158,7 +158,7 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
   setErrorMessage,
 }) => {
   const { setLoading } = React.useContext(LoadingContext)
-  const { user, setUser } = React.useContext(UserContext)
+  const { user, setLoginingUserId } = React.useContext(UserContext)
   const [showAgreementModal, setShowAgreementModal] = React.useState(false)
   if (showAgreementModal) {
     return (
@@ -194,8 +194,8 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
             e.preventDefault()
             try {
               setLoading(true)
-              const user = await AuthService.login(email, password)
-              setUser(user)
+              const userId = await AuthService.login(email, password)
+              setLoginingUserId(userId)
               setLoading(false)
             } catch (err) {
               setLoading(false)

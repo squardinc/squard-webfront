@@ -1,5 +1,4 @@
 import * as Cognito from 'src/external/aws/cognito'
-import { LoginUserModel } from './LoginUserModel'
 
 class Service {
   signUp = async (email: string, password: string, origin: string, currentPath: string) => {
@@ -12,7 +11,7 @@ class Service {
 
   login = async (email: string, password: string) => {
     const credential = await Cognito.login(email, password)
-    return new LoginUserModel(credential.getIdToken().decodePayload().sub)
+    return credential.getIdToken().decodePayload().sub
   }
   resetPasswordRequest = async (email: string, origin: string, currentPath: string) => {
     return Cognito.resetPasswordRequest(email, origin, currentPath)

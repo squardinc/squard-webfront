@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { RoundButton } from 'src/components/Button/DefaultButton'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
-import { asModal, ModalProps } from './asModal'
-import { DefaultModalContainer } from './ModalContainer'
-import { AuthService } from 'src/services/AuthService'
-import { MessageModal } from './MessageModal'
 import { UserContext } from 'src/context/UserContext'
+import { AuthService } from 'src/services/AuthService'
 import { PasswordInput } from '../Input/PasswordInput'
+import { asModal, ModalProps } from './asModal'
+import { MessageModal } from './MessageModal'
+import { DefaultModalContainer } from './ModalContainer'
 
 type PasswordResetComponentProps = ModalProps & {
   username: string
@@ -17,7 +17,7 @@ const PasswordResetComponent: React.FC<PasswordResetComponentProps> = ({
   code,
   closeModal,
 }) => {
-  const { setUser } = React.useContext(UserContext)
+  const { setLoginingUserId } = React.useContext(UserContext)
   const [password, setPassword] = React.useState('')
   const isSubmittable = React.useMemo(() => password.length >= 8, [password])
   const [succeeded, setSucceeded] = React.useState(false)
@@ -42,7 +42,7 @@ const PasswordResetComponent: React.FC<PasswordResetComponentProps> = ({
                   onClick={async () => {
                     AuthService.resetPassword(username, code, password).then(
                       async () => {
-                        setUser(await AuthService.login(username, password))
+                        setLoginingUserId(await AuthService.login(username, password))
                         setSucceeded(true)
                       },
                       (err) => setErrorMessage(err)

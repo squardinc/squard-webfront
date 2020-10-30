@@ -7,12 +7,16 @@ import { LoginUserModel } from 'src/services/AuthService/LoginUserModel'
 import { GetMyselfQuery } from 'src/types/API'
 
 interface UserContextInterface {
+  loginingUserId: string
+  setLoginingUserId: (loginingUserId: string) => void
   user: LoginUser
   setUser: (User: LoginUser) => void
   refreshTrigger: boolean
   refresh: () => void
 }
 export const UserContext = React.createContext<UserContextInterface>({
+  loginingUserId: '',
+  setLoginingUserId: (loginingUserId: string) => {},
   user: LoginUserModel.guest(),
   setUser: (user: LoginUser) => {},
   refreshTrigger: false,
@@ -30,9 +34,14 @@ export const UserContextProvider: React.FC = ({ children }) => {
         if (!userId) {
           return
         }
-        setLoginingUserId(userId)
         queryMyself()
+        setLoginingUserId(userId)
+        return
       })
+      return
+    }
+    if (!data && loginingUserId) {
+      queryMyself()
       return
     }
     const { id, page, icon, agreements } = data?.getMyself || {}
@@ -42,10 +51,12 @@ export const UserContextProvider: React.FC = ({ children }) => {
       )
     }
     setLoginingUserId('')
-  }, [user, data])
+  }, [loginingUserId, user, data])
   const refresh = () => setRefreshTrigger(!refreshTrigger)
   return (
-    <UserContext.Provider value={{ user, setUser, refreshTrigger, refresh }}>
+    <UserContext.Provider
+      value={{ loginingUserId, setLoginingUserId, user, setUser, refreshTrigger, refresh }}
+    >
       {children}
     </UserContext.Provider>
   )
