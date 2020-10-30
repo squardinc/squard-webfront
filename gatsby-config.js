@@ -132,12 +132,7 @@ module.exports = {
         extensions: ['css', 'html', 'js', 'svg', 'eot', 'ttf', 'woff', 'woff2'],
       },
     },
-    {
-      resolve: 'gatsby-plugin-zopfli',
-      options: {
-        verbose: true,
-      },
-    },
+    'gatsby-plugin-zopfli',
     // `gatsby-plugin-offline`,
   ],
 }
