@@ -31,10 +31,10 @@ const ImageEditComponent: React.FC<ImageEditComponentProps> = ({
   const imgRef = React.useRef<HTMLImageElement>()
   const [crop, setCrop] = React.useState<ReactCrop.Crop>({
     unit: '%',
-    x: 0,
-    y: 0,
-    width: 0,
-    height: 0,
+    x: 25,
+    y: 25,
+    width: 50,
+    height: 50,
     ...initialCrop,
   })
   const [scale, setScale] = React.useState<{ x: number; y: number }>({ x: 0, y: 0 })
@@ -152,6 +152,7 @@ const ImageEditComponent: React.FC<ImageEditComponentProps> = ({
           imageStyle={{ maxHeight: '50vh' }}
           onChange={setCrop}
           onComplete={makeClientCrop}
+          keepSelection
         />
       </div>
       <TextDisplay className="flex justify-between text-sm font-thin">
