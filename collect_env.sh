@@ -10,7 +10,6 @@ filepath="env/.${stage}"
 if [ "${stage}" == "prod" ]; then
   filepath="env/.master"
 fi
-rm -f "${filepath}"
 
 appsyncJson=$(aws appsync list-graphql-apis | jq -r ".graphqlApis[] | select(.tags.STAGE == \"${stage}\")")
 appsyncApiId=$(echo ${appsyncJson} | jq -r ".apiId")
@@ -40,7 +39,7 @@ GATSBY_AWS_COGNITO_USERPOOL_CLIENT_ID=${AWS_COGNITO_USERPOOL_CLIENT_ID}
 GATSBY_AWS_COGNITO_USERPOOL_DOMAIN=squard-${stage}.auth.ap-northeast-1.amazoncognito.com
 GATSBY_AWS_S3_BUCKET_NAME=495476032358-${stage}-images
 GATSBY_STRIPE_PUBLIC_KEY=${STRIPE_PUBLIC_KEY}
-GOOGLE_ANALYTICS_TRACKING_ID=${GOOGLE_ANALYTICS_TRACKING_ID}" >> "${filepath}"
+GOOGLE_ANALYTICS_TRACKING_ID=${GOOGLE_ANALYTICS_TRACKING_ID}" > "${filepath}"
 
 echo "collected: ${filepath}"
 cat "${filepath}"
