@@ -8,8 +8,6 @@ import { NavMenu } from 'src/components/NavMenu/NavMenu'
 import { TextDisplay } from 'src/components/TextDisplay/TextDisplay'
 import { LoadingContext } from 'src/context/LoadingContextProvider'
 import { UserContext } from 'src/context/UserContext'
-import { AuthService } from 'src/services/AuthService'
-import { LoginUserModel } from 'src/services/AuthService/LoginUserModel'
 import styled from 'styled-components'
 import * as Const from '../../styles/const'
 import styles from './Header.module.scss'
@@ -92,11 +90,8 @@ export const Header = () => {
           setShowNavMenu(false)
         }}
         logout={async () => {
-          setShowNavMenu(false)
           setLoading(true)
-          await AuthService.logout()
-          setLoading(false)
-          setUser(LoginUserModel.guest())
+          setShowNavMenu(false)
           setOpenModal('Logout')
         }}
       />
