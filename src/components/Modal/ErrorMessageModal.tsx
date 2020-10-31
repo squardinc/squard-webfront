@@ -7,8 +7,7 @@ import { asModal, ModalProps } from './asModal'
 import { MessageModal } from './MessageModal'
 
 const NEW_LINE = '%0D%0A'
-const ERROR_HEADER =
-  `${NEW_LINE}${NEW_LINE}----------- 以下は問題調査のため自動的に付加された情報です ----------${NEW_LINE}${NEW_LINE}`
+const ERROR_HEADER = `${NEW_LINE}${NEW_LINE}----------- 以下は問題調査のため自動的に付加された情報です ----------${NEW_LINE}${NEW_LINE}`
 
 export const errorMessage = (errorType?: ErrorType, mailBody?: string) => {
   if (errorType === 'NOT_JOINED') return 'チームに参加していません。'
