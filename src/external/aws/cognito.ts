@@ -91,8 +91,10 @@ export const loginWithFacebook = async () => {
   return Auth.federatedSignIn({ provider: 'Facebook' })
 }
 
+const IGNORE_PREVIOUS_PATHS = ['/socialSignIn', '/logout']
 export const logout = async () => {
-  if (window.location.pathname !== '/socialSignIn') setItem('previous_path', window.location.pathname)
+  if (!IGNORE_PREVIOUS_PATHS.includes(window.location.pathname))
+    setItem('previous_path', window.location.pathname)
   return Auth.signOut({})
 }
 

@@ -7,6 +7,7 @@ import { SocialSigninLayout } from './callback/SocialSignIn'
 import { SocialSignOutLayout } from './callback/SocialSignOut'
 import { CompanyPage } from './company/company'
 import { FAQPage } from './faq/FAQ'
+import { LogoutLayout } from './Logout'
 import { PrivacyPolicyPage } from './privacypolicy/privacypolicy'
 import { SctlPage } from './sctl/SctlPage'
 import { SignUpLayout } from './SignUp'
@@ -24,6 +25,7 @@ export const StaticPagePaths = [
   'resetPassword',
   'socialSignIn',
   'socialSignOut',
+  'logout',
 ] as const
 
 export type StaticPageType = typeof StaticPagePaths[number]
@@ -40,6 +42,7 @@ const StaticPageMap: { [key in StaticPageType]: React.FC } = {
   resetPassword: ResetPasswordLayout,
   socialSignIn: SocialSigninLayout,
   socialSignOut: SocialSignOutLayout,
+  logout: LogoutLayout,
 }
 
 interface StaticPageRouteProps {
