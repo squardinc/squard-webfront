@@ -61,7 +61,7 @@ const ConfirmJoinModalComponent: React.FC<ConfirmJoinModalProps> = ({
   React.useEffect(() => {
     fadeIn()
   }, [])
-  const joinBtnText = team.price === 0 ? '参加する' : '決済画面に遷移する'
+  const joinBtnText = team.price === 0 ? '参加する' : '決済画面に移動する'
   const warningProspects = `※ 現在参加中のクラス「${currentClass?.classType}」の\r\n翌月以降の支払いは自動的に解除されます。`
 
   return (
