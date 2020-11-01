@@ -16,13 +16,13 @@ export const MessageComponent: React.FC<MessageComponentProps> = ({
   buttonText = 'Close',
   closable,
 }) => (
-  <DefaultModalContainer closeModal={closeModal} closable={closable}>
-    <TextDisplay className="text-4xl font-semibold">{title}</TextDisplay>
-    <div className="flex flex-col justify-center items-center">
-      <TextDisplay className="mb-8">{message}</TextDisplay>
-      <RoundButton className="border-2 text-lg" text={buttonText} onClick={closeModal} />
-    </div>
-  </DefaultModalContainer>
-)
+    <DefaultModalContainer closeModal={closeModal} closable={closable}>
+      <TextDisplay className="text-4xl font-semibold">{title}</TextDisplay>
+      <div className="flex flex-col justify-center items-center">
+        <TextDisplay className="mb-8">{message}</TextDisplay>
+        <RoundButton className="border-2 text-lg" text={buttonText} onClick={closeModal} />
+      </div>
+    </DefaultModalContainer>
+  )
 
 export const MessageModal = asModal(MessageComponent)

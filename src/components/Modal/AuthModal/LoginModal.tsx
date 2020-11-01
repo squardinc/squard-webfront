@@ -189,32 +189,51 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
           }}
         />
       ) : (
-        <LoginFormModal
-          login={async (e, email, password) => {
-            e.preventDefault()
-            try {
+          <LoginFormModal
+            login={async (e, email, password) => {
+              e.preventDefault()
+              try {
+                setLoading(true)
+                const userId = await AuthService.login(email, password)
+                setLoginingUserId(userId)
+                setLoading(false)
+              } catch (err) {
+                setLoading(false)
+                // setErrorMessage(err)
+                setErrorMessage(
+                  <>
+                    <h2>ログインに失敗しました。</h2>
+                    <p style={{ fontSize: "12px" }}>※11月以前にご登録いただいた方は、
+                    <button
+                        style={{ textDecoration: "underline" }}
+                        onClick={() => {
+                          setErrorMessage(undefined)
+                          showPasswordResetRequestModal(e)
+                        }}
+                      >パスワードを再設定</button>
+                    していただく必要がございます。</p>
+                  </>
+                )
+              }
+            }}
+            facebookLogin={async (e) => {
+              e.preventDefault()
               setLoading(true)
-              const userId = await AuthService.login(email, password)
-              setLoginingUserId(userId)
-              setLoading(false)
-            } catch (err) {
-              setLoading(false)
-              setErrorMessage(err)
-            }
-          }}
-          facebookLogin={async (e) => {
-            e.preventDefault()
-            setLoading(true)
-            await AuthService.loginWithFacebook().catch((err) => {
-              setLoading(false)
-              setErrorMessage('')
-            })
-          }}
-          closeModal={closeModal}
-          showSignUpModal={showSignUpModal}
-          showPasswordResetRequestModal={showPasswordResetRequestModal}
-        />
-      )}
+              await AuthService.loginWithFacebook().catch((err) => {
+                setLoading(false)
+                setErrorMessage(
+                  <>
+                    <h2>ログインに失敗しました。</h2>
+                    <p style={{ fontSize: "12px" }}>※11月以前にご登録いただいた方は、パスワードを再設定していただく必要がございます。</p>
+                  </>
+                )
+              })
+            }}
+            closeModal={closeModal}
+            showSignUpModal={showSignUpModal}
+            showPasswordResetRequestModal={showPasswordResetRequestModal}
+          />
+        )}
     </>
   )
 }
