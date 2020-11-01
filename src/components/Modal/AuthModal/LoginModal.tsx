@@ -149,6 +149,7 @@ type LoginComponentProps = ModalProps & {
   showPasswordResetRequestModal: (e: React.MouseEvent) => void
   showLogoutModal: (e: React.MouseEvent) => void
   setErrorMessage: (error: string | JSX.Element | undefined) => void
+  showPasswordResetModal: (e: React.MouseEvent) => void
 }
 const LoginComponent: React.FC<LoginComponentProps> = ({
   closeModal,
@@ -156,6 +157,7 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
   showPasswordResetRequestModal,
   showLogoutModal,
   setErrorMessage,
+  showPasswordResetModal,
 }) => {
   const { setLoading } = React.useContext(LoadingContext)
   const { user, setLoginingUserId } = React.useContext(UserContext)
@@ -189,32 +191,36 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
           }}
         />
       ) : (
-        <LoginFormModal
-          login={async (e, email, password) => {
-            e.preventDefault()
-            try {
+          <LoginFormModal
+            login={async (e, email, password) => {
+              e.preventDefault()
+              try {
+                setLoading(true)
+                const userId = await AuthService.login(email, password)
+                // if (userId) {
+                //   setLoginingUserId(userId)
+                //   setLoading(false)
+                // } else {
+                showPasswordResetModal(e)
+                // }
+              } catch (err) {
+                setLoading(false)
+                setErrorMessage(err)
+              }
+            }}
+            facebookLogin={async (e) => {
+              e.preventDefault()
               setLoading(true)
-              const userId = await AuthService.login(email, password)
-              setLoginingUserId(userId)
-              setLoading(false)
-            } catch (err) {
-              setLoading(false)
-              setErrorMessage(err)
-            }
-          }}
-          facebookLogin={async (e) => {
-            e.preventDefault()
-            setLoading(true)
-            await AuthService.loginWithFacebook().catch((err) => {
-              setLoading(false)
-              setErrorMessage('')
-            })
-          }}
-          closeModal={closeModal}
-          showSignUpModal={showSignUpModal}
-          showPasswordResetRequestModal={showPasswordResetRequestModal}
-        />
-      )}
+              await AuthService.loginWithFacebook().catch((err) => {
+                setLoading(false)
+                setErrorMessage('')
+              })
+            }}
+            closeModal={closeModal}
+            showSignUpModal={showSignUpModal}
+            showPasswordResetRequestModal={showPasswordResetRequestModal}
+          />
+        )}
     </>
   )
 }
