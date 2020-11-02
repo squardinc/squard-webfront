@@ -108,7 +108,7 @@ const UserCover = styled.div`
     height: 100px;
     background: linear-gradient(
       to right bottom,
-      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 0) calc(50% + 1px),
       ${(props: StyleCssProps) =>
           props.backgroundColor ? props.backgroundColor : colors.textWhite}
         50%
