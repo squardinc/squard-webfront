@@ -35,8 +35,8 @@ const StyledComponent = styled.div<{ checked: boolean }>`
     :before {
     ${({ checked }) => checked && `
       width: 10px;
-      top: -5px;
-      left: 5px;
+      top: -8px;
+      left: 12px;
       border-radius: 0;
       opacity: 1;
       border-top-color: transparent;
