@@ -133,7 +133,7 @@ body {
 
 button:focus {
   outline: none;
-  box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
+  filter: drop-shadow(5px 5px 3px  rgba(0, 0, 0, 0.5))
 }
 
 .page-base-container {
