@@ -1,0 +1,18 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+      docker: 18
+  pre_build:
+    commands:
+      - yarn
+  build:
+    commands:
+      - export BRANCH=$(git symbolic-ref --short HEAD)
+      - yarn build:prod
+  post_build:
+    commands:
+      - aws s3 sync ./public s3://aws-495476032358-squard-frontend-prod/
+      - aws cloudfront create-invalidation --distribution-id EWTJR4OXGOMDO --paths '/*'
+
