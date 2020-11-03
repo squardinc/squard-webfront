@@ -1,4 +1,8 @@
 version: 0.2
+env:
+  variables:
+    branch: "deploy branch"
+
 phases:
   install:
     runtime-versions:
@@ -8,8 +12,7 @@ phases:
       - yarn
   build:
     commands:
-      - export BRANCH=$(git symbolic-ref --short HEAD)
-      - yarn build:prod
+      - yarn build:${branch}
   post_build:
     commands:
       - aws s3 sync ./public s3://aws-495476032358-squard-frontend-prod/
